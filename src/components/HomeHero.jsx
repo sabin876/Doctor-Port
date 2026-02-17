@@ -12,19 +12,34 @@ import slide3 from '../assets/Hero Section 3.png';
 const HomeHero = () => {
     const [currentSlide, setCurrentSlide] = React.useState(0);
 
-    // Define the slides array with imported images
-    const slides = [
-        slide1,
-        slide2,
-        slide3,
+    // Define the slides array with imported images and content
+    const slidesData = [
+        {
+            image: slide1,
+            heading_top: "Move Without",
+            heading_bottom: "Limits",
+            description: "Advanced Joint Replacement & Sports Medicine. Precision care designed for your swift recovery and long-term joint health."
+        },
+        {
+            image: slide2,
+            heading_top: "Expert Orthopedic",
+            heading_bottom: "Care",
+            description: "Global expertise in upper limb and robotic-assisted knee surgery. Specialized in helping you return to your active life."
+        },
+        {
+            image: slide3,
+            heading_top: "Recovery Focused",
+            heading_bottom: "Excellence",
+            description: "Personalized orthopedic treatments tailored to your lifestyle. Combining innovation with compassionate patient care."
+        }
     ];
 
     React.useEffect(() => {
         const timer = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % slides.length);
-        }, 5000);
+            setCurrentSlide((prev) => (prev + 1) % slidesData.length);
+        }, 6000); // Increased duration slightly for reading
         return () => clearInterval(timer);
-    }, [slides.length]); // Add slides.length to dependency array
+    }, [slidesData.length]);
 
     return (
         <div id="home" className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden bg-[#043275]">
@@ -35,7 +50,7 @@ const HomeHero = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
                     {/* Left Column - Content */}
-                    <div className="text-left order-2 lg:order-1">
+                    <div className="text-left order-2 lg:order-1 min-h-[500px] flex flex-col justify-center">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -46,52 +61,48 @@ const HomeHero = () => {
                             Leading Orthopedic Specialist in Dubai
                         </motion.div>
 
-                        <div className="overflow-hidden mb-6">
-                            <motion.h1
-                                initial="hidden"
-                                animate="visible"
-                                variants={{
-                                    hidden: { opacity: 0 },
-                                    visible: {
-                                        opacity: 1,
-                                        transition: {
-                                            staggerChildren: 0.12,
-                                            delayChildren: 0.4
-                                        }
-                                    }
-                                }}
-                                className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white leading-[1.05] tracking-tight"
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={currentSlide}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: 20 }}
+                                transition={{ duration: 0.6 }}
                             >
-                                <motion.span
-                                    variants={{
-                                        hidden: { y: 80, opacity: 0 },
-                                        visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1] } }
-                                    }}
-                                    className="inline-block mr-3 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-white animate-shimmer bg-[length:200%_auto]"
-                                >
-                                    Move Without
-                                </motion.span>
-                                <br className="hidden md:block" />
-                                <motion.span
-                                    variants={{
-                                        hidden: { y: 80, opacity: 0 },
-                                        visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1], delay: 0.2 } }
-                                    }}
-                                    className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-white animate-shimmer bg-[length:200%_auto]"
-                                >
-                                    Limits
-                                </motion.span>
-                            </motion.h1>
-                        </div>
+                                <div className="overflow-hidden mb-6">
+                                    <motion.h1
+                                        className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white leading-[1.05] tracking-tight"
+                                    >
+                                        <motion.span
+                                            initial={{ y: 50, opacity: 0 }}
+                                            animate={{ y: 0, opacity: 1 }}
+                                            transition={{ duration: 0.8, delay: 0.2 }}
+                                            className="inline-block mr-3"
+                                        >
+                                            {slidesData[currentSlide].heading_top}
+                                        </motion.span>
+                                        <br className="hidden md:block" />
+                                        <motion.span
+                                            initial={{ y: 50, opacity: 0 }}
+                                            animate={{ y: 0, opacity: 1 }}
+                                            transition={{ duration: 0.8, delay: 0.4 }}
+                                            className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-white animate-shimmer bg-[length:200%_auto]"
+                                        >
+                                            {slidesData[currentSlide].heading_bottom}
+                                        </motion.span>
+                                    </motion.h1>
+                                </div>
 
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.8 }}
-                            className="text-xl text-white/90 mb-10 leading-relaxed max-w-xl font-normal"
-                        >
-                            Advanced Joint Replacement & Sports Medicine. Precision care designed for your swift recovery and long-term joint health.
-                        </motion.p>
+                                <motion.p
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.8, delay: 0.6 }}
+                                    className="text-xl text-white/90 mb-10 leading-relaxed max-w-xl font-normal"
+                                >
+                                    {slidesData[currentSlide].description}
+                                </motion.p>
+                            </motion.div>
+                        </AnimatePresence>
 
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
@@ -112,7 +123,6 @@ const HomeHero = () => {
                                     boxShadow: { duration: 2, repeat: Infinity }
                                 }}
                             >
-                                {/* Ping animation effect behind the button */}
                                 <span className="absolute inset-0 rounded-xl bg-white/20 animate-ping pointer-events-none"></span>
 
                                 <motion.span
@@ -189,7 +199,7 @@ const HomeHero = () => {
                                     className="relative w-full h-full"
                                 >
                                     <img
-                                        src={slides[currentSlide]}
+                                        src={slidesData[currentSlide].image}
                                         alt="Hero Slide"
                                         className="w-full h-full object-cover"
                                     />
