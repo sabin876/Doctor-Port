@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin, Facebook, Linkedin, Instagram } from 'lucide-react
 const TopBar = () => {
     return (
         <div className="bg-[#1282b2] text-white py-2 px-4 sm:px-6 lg:px-8 relative z-[60] border-b border-white/10 shadow-sm">
-            <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-center items-center gap-3 md:gap-8 text-[11px] font-medium tracking-tight">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between text-[11px] font-montserrat font-bold uppercase tracking-wider">
 
                 {/* Contact Info & Address */}
                 <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 opacity-95">

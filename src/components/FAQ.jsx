@@ -43,9 +43,9 @@ const FAQ = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-4xl md:text-5xl lg:text-7xl font-black text-primary-950 mb-8 tracking-tighter uppercase italic leading-none"
+                        className="text-4xl md:text-5xl font-montserrat font-extrabold text-[#333] mb-8 tracking-tight"
                     >
-                        Your Curated <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">Knowledge Base</span>
+                        Common Questions
                     </motion.h2>
                 </div>
 

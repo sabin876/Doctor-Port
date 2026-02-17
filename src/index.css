@@ -1,3 +1,4 @@
+/* Font configuration updated: Work Sans & Montserrat */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,8 +7,19 @@
   html {
     scroll-behavior: smooth;
   }
+
   body {
     @apply font-sans antialiased text-gray-800 bg-white;
-    font-family: 'Manrope', sans-serif !important;
+    font-family: 'Work Sans', sans-serif !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif !important;
   }
 }

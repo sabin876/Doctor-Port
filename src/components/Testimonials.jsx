@@ -69,9 +69,9 @@ const Testimonials = () => {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight"
+                            className="text-4xl md:text-5xl font-montserrat font-extrabold text-blue-900 mb-6 tracking-tight leading-tight"
                         >
-                            Voices of <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-purple-600">Recovery</span>
+                            What Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Patients</span> Say
                         </motion.h2>
                     </div>
                     <div className="hidden md:flex space-x-3">

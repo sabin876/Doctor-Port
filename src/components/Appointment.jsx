@@ -47,9 +47,9 @@ const Appointment = () => {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-4xl md:text-5xl lg:text-7xl font-black text-primary-950 mb-8 tracking-tighter uppercase italic leading-none"
+                            className="text-3xl md:text-4xl font-montserrat font-black text-primary-950 mb-4 tracking-tight uppercase"
                         >
-                            Secure Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">Consultation</span>
+                            Book Your Appointment Today
                         </motion.h3>
                         <p className="text-xl font-medium text-gray-500 mb-10 leading-relaxed max-w-xl">
                             Scheduling a consultation is the first step towards recovery. Dr. Ulhas Sonar is here to answer your questions and provide a clear path forward.

@@ -12,10 +12,10 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
                     <div className="col-span-1">
                         <div className="flex flex-col mb-8">
-                            <span className="text-3xl font-black tracking-tighter italic uppercase text-white leading-none">
+                            <span className="text-3xl font-montserrat font-black tracking-tighter uppercase text-white leading-none">
                                 Dr. Ulhas Sonar
                             </span>
-                            <span className="text-blue-400 text-[10px] font-black uppercase tracking-[0.3em] mt-2">
+                            <span className="text-blue-400 text-[10px] font-montserrat font-black uppercase tracking-[0.3em] mt-2">
                                 Orthopedic Surgeon
                             </span>
                         </div>
@@ -25,7 +25,7 @@ const Footer = () => {
                     </div>
 
                     <div>
-                        <h4 className="text-xs font-black uppercase tracking-[0.3em] mb-8 text-blue-400">Navigation</h4>
+                        <h4 className="text-xs font-montserrat font-black uppercase tracking-[0.3em] mb-8 text-blue-400">Navigation</h4>
                         <ul className="space-y-4 text-sm font-bold">
                             <li><a href="#home" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 mr-0 group-hover:mr-2 transition-all"></span>Home</a></li>
                             <li><a href="#about" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 mr-0 group-hover:mr-2 transition-all"></span>About</a></li>
@@ -35,7 +35,7 @@ const Footer = () => {
                     </div>
 
                     <div>
-                        <h4 className="text-xs font-black uppercase tracking-[0.3em] mb-8 text-blue-400">Support</h4>
+                        <h4 className="text-xs font-montserrat font-black uppercase tracking-[0.3em] mb-8 text-blue-400">Support</h4>
                         <ul className="space-y-4 text-sm font-bold">
                             <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 mr-0 group-hover:mr-2 transition-all"></span>Patient Resources</a></li>
                             <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 mr-0 group-hover:mr-2 transition-all"></span>Articles</a></li>
@@ -45,7 +45,7 @@ const Footer = () => {
                     </div>
 
                     <div>
-                        <h4 className="text-xs font-black uppercase tracking-[0.3em] mb-8 text-blue-400">Clinic Info</h4>
+                        <h4 className="text-xs font-montserrat font-black uppercase tracking-[0.3em] mb-8 text-blue-400">Clinic Info</h4>
                         <ul className="space-y-6 text-sm font-bold">
                             <li className="flex gap-4">
                                 <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-blue-400 flex-shrink-0">
@@ -64,8 +64,8 @@ const Footer = () => {
                 </div>
 
                 <div className="mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p className="text-gray-500 text-xs font-bold uppercase tracking-widest leading-none">&copy; {currentYear} Dr. Ulhas Sonar. Crafted for Precision.</p>
-                    <div className="flex gap-8">
+                    <p className="text-gray-500 text-xs font-montserrat font-bold uppercase tracking-widest leading-none">&copy; {currentYear} Dr. Ulhas Sonar. Crafted for Precision.</p>
+                    <div className="flex gap-8 font-montserrat font-black">
                         {['FB', 'TW', 'IG', 'LI'].map(social => (
                             <a key={social} href="#" className="text-gray-600 hover:text-white text-[10px] font-black tracking-widest transition-colors">{social}</a>
                         ))}

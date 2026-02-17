@@ -26,7 +26,8 @@ export default {
                 }
             },
             fontFamily: {
-                sans: ['"Manrope"', 'Inter', 'sans-serif'],
+                sans: ['Work Sans', 'sans-serif'],
+                montserrat: ['Montserrat', 'sans-serif'],
             },
             animation: {
                 'fade-in-up': 'fadeInUp 0.5s ease-out forwards',

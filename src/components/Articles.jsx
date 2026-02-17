@@ -75,14 +75,14 @@ const Articles = () => {
 
                 {/* Header Section */}
                 <div className="text-center mb-16">
-                    <motion.h1
+                    <motion.h2
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+                        className="text-4xl md:text-5xl font-montserrat font-extrabold text-[#333] mb-8 tracking-tight"
                     >
-                        Patient <span className="text-primary-600">Resources</span>
-                    </motion.h1>
+                        Expert <span className="text-blue-600">Orthopedic</span> Insights
+                    </motion.h2>
                     <motion.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}

@@ -58,7 +58,7 @@ const Hero = () => {
                             Leading Orthopedic Specialist in Dubai
                         </motion.div>
 
-                        <h1 className="text-6xl md:text-7xl lg:text-[100px] font-extrabold text-white leading-[1.05] mb-8 tracking-tight">
+                        <h1 className="text-6xl md:text-7xl lg:text-[100px] font-montserrat font-extrabold text-white leading-[1.05] mb-8 tracking-tighter">
                             Move Without <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-white animate-shimmer bg-[length:200%_auto]">
                                 Limits

@@ -71,7 +71,7 @@ const HomeHero = () => {
                             >
                                 <div className="overflow-hidden mb-6">
                                     <motion.h1
-                                        className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white leading-[1.05] tracking-tight"
+                                        className="text-5xl md:text-7xl lg:text-8xl font-montserrat font-extrabold text-white leading-[1.05] tracking-tight"
                                     >
                                         <motion.span
                                             initial={{ y: 50, opacity: 0 }}

@@ -52,10 +52,10 @@ const WhyChooseUs = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="text-4xl md:text-5xl lg:text-6xl font-black text-primary-950 mb-6 tracking-tighter uppercase italic"
+                        className="text-4xl md:text-5xl font-montserrat font-extrabold text-blue-900 mb-6 tracking-tight"
                     >
-                        Unmatched Surgical <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">Precision</span>
+                        Why Trust Your Care to <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Dr. Ulhas Sonar?</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}

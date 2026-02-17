@@ -107,9 +107,8 @@ const Services = () => {
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight"
-                    >
-                        Expert <span className="text-primary-600">Orthopedic</span> Solutions
+                        className="text-4xl md:text-5xl font-montserrat font-extrabold text-blue-900 mb-6 tracking-tight">
+                        Our Specialized <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 font-black">Services</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}

@@ -1,3 +1,4 @@
+// Rebuild for font changes
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 

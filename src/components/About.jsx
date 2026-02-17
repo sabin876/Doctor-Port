@@ -91,8 +91,8 @@ const About = () => {
                             About Dr. Ulhas
                         </motion.div>
 
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight leading-tight">
-                            Your Trusted <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-purple-600">Orthopedic Expert</span> in Dubai
+                        <h2 className="text-4xl md:text-5xl font-montserrat font-extrabold text-[#333] mb-8 tracking-tight">
+                            Personalized Path to <span className="text-blue-600">Recovery</span>
                         </h2>
 
                         <p className="text-lg text-gray-600 mb-5 leading-relaxed">
