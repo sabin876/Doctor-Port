@@ -186,9 +186,9 @@ const HomeHero = () => {
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="relative w-full h-[500px] lg:h-[600px] order-1 lg:order-2 -mt-10 lg:-mt-20"
+                        className="relative w-full h-[500px] lg:h-[600px] order-1 lg:order-2"
                     >
-                        <div className="relative z-10 w-full h-full rounded-[2rem] overflow-hidden shadow-2xl">
+                        <div className="relative z-10 w-full h-full overflow-hidden">
                             <AnimatePresence mode='wait'>
                                 <motion.div
                                     key={currentSlide}
