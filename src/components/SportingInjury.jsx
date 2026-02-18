@@ -52,58 +52,22 @@ const SportingInjury = () => {
                         className="w-full lg:w-3/5"
                     >
                         <div className="relative group cursor-pointer overflow-hidden rounded-xl shadow-2xl aspect-video bg-[#043275]">
-                            {/* Slideshow Background to match Hero section */}
+                            {/* Background slideshow only */}
                             <AnimatePresence mode="wait">
                                 <motion.img
                                     key={currentSlide}
                                     src={slides[currentSlide]}
                                     alt="Sporting Injury Background"
                                     initial={{ opacity: 0, scale: 1.1 }}
-                                    animate={{ opacity: 0.6, scale: 1 }}
+                                    animate={{ opacity: 0.8, scale: 1 }}
                                     exit={{ opacity: 0 }}
                                     transition={{ duration: 1.5 }}
                                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                                 />
                             </AnimatePresence>
 
-                            {/* Subtle pattern overlay to match hero feel */}
+                            {/* Subtle pattern overlay */}
                             <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-
-                            {/* Video Title Overlay (KNEE INJURIES) */}
-                            <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                <motion.div
-                                    initial={{ scale: 0.9, opacity: 0 }}
-                                    whileInView={{ scale: 1, opacity: 1 }}
-                                    className="text-white text-center z-10"
-                                >
-                                    <h3 className="text-4xl md:text-6xl font-montserrat font-black tracking-tighter uppercase leading-none">
-                                        KNEE<br />
-                                        <span className="text-2xl md:text-4xl tracking-[0.2em] font-medium">INJURIES</span>
-                                    </h3>
-                                    <div className="mt-4 w-24 h-1 bg-blue-600 mx-auto"></div>
-                                </motion.div>
-
-                                {/* Play Button */}
-                                <div className="mt-8 w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/50 group-hover:bg-white group-hover:border-white transition-all duration-300">
-                                    <Play className="w-8 h-8 text-white fill-white group-hover:text-blue-600 group-hover:fill-blue-600 transition-colors" />
-                                </div>
-                            </div>
-
-                            {/* Fake Video Player Controls */}
-                            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                                <div className="flex items-center gap-4 text-white text-[10px] font-mono">
-                                    <Play className="w-3 h-3" />
-                                    <span>00:00</span>
-                                    <div className="h-1 flex-grow bg-white/30 rounded-full overflow-hidden">
-                                        <div className="w-1/3 h-full bg-white"></div>
-                                    </div>
-                                    <span>03:36</span>
-                                    <div className="w-4 h-4 rounded-sm border border-white/50 flex items-center justify-center">
-                                        <div className="w-2 h-2 bg-white rounded-full"></div>
-                                    </div>
-                                    <div className="w-4 h-4 border border-white/50"></div>
-                                </div>
-                            </div>
                         </div>
                     </motion.div>
 
