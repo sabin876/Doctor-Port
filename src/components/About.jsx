@@ -40,7 +40,7 @@ const About = () => {
     ];
 
     return (
-        <section id="about" className="pt-40 pb-24 bg-gradient-to-b from-white to-gray-50/50 overflow-hidden relative">
+        <section id="about" className="pt-24 pb-24 bg-gradient-to-b from-white to-gray-50/50 overflow-hidden relative">
             {/* Background Decoration */}
             <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
             <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-purple-100/40 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
