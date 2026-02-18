@@ -90,11 +90,11 @@ const Contact = () => {
                         initial={{ opacity: 0, x: 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.4 }}
-                        className="bg-gray-900 rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden group lg:sticky lg:top-32 order-1 lg:order-2"
+                        className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-xl border border-gray-100 relative overflow-hidden group lg:sticky lg:top-32 order-1 lg:order-2"
                     >
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-primary-600/20 rounded-full blur-3xl group-hover:bg-primary-600/30 transition-all duration-700"></div>
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl group-hover:bg-blue-100 transition-all duration-700"></div>
 
-                        <h3 className="text-3xl font-extrabold text-white mb-8 tracking-tight">Send A Private Message</h3>
+                        <h3 className="text-3xl font-extrabold text-gray-900 mb-8 tracking-tight">Send A Private Message</h3>
                         <form className="space-y-5 relative z-10">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <InputField label="Your Name" type="text" placeholder="e.g. John Doe" />
@@ -102,9 +102,9 @@ const Contact = () => {
                             </div>
                             <InputField label="Phone Number" type="tel" placeholder="+971..." />
                             <div>
-                                <label className="block text-[11px] font-bold text-blue-300 mb-2 uppercase tracking-wide">Medical Inquiry</label>
+                                <label className="block text-[11px] font-bold text-gray-700 mb-2 uppercase tracking-wide">Medical Inquiry</label>
                                 <textarea
-                                    className="w-full px-5 py-4 rounded-xl border border-white/10 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all outline-none bg-white/5 text-white placeholder-gray-500 resize-none h-32 font-medium text-sm"
+                                    className="w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all outline-none bg-gray-50 text-gray-900 placeholder-gray-400 resize-none h-32 font-medium text-sm"
                                     placeholder="Describe your condition briefly..."
                                 ></textarea>
                             </div>
@@ -184,11 +184,11 @@ const SocialLink = ({ href, icon }) => (
 
 const InputField = ({ label, type, placeholder }) => (
     <div>
-        <label className="block text-[11px] font-bold text-blue-300 mb-2 uppercase tracking-wide leading-none">{label}</label>
+        <label className="block text-[11px] font-bold text-gray-700 mb-2 uppercase tracking-wide leading-none">{label}</label>
         <input
             type={type}
             placeholder={placeholder}
-            className="w-full px-5 py-4 rounded-xl border border-white/10 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all outline-none bg-white/5 text-white placeholder-gray-500 font-medium text-sm"
+            className="w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all outline-none bg-gray-50 text-gray-900 placeholder-gray-400 font-medium text-sm"
         />
     </div>
 );

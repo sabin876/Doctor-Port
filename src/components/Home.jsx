@@ -7,7 +7,6 @@ import WhyChooseUs from './WhyChooseUs';
 import Services from './Services';
 import Testimonials from './Testimonials';
 import Appointment from './Appointment';
-import FAQ from './FAQ';
 
 const Home = () => {
     return (
@@ -18,9 +17,8 @@ const Home = () => {
             {/* <WhyChooseUs /> */}
             {/* <About /> */}
             <Services />
+            <Testimonials />
             {/* <Appointment /> */}
-            {/* <Testimonials /> */}
-            <FAQ />
         </main>
     );
 };

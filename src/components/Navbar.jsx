@@ -42,8 +42,8 @@ const Navbar = () => {
         { name: 'About', path: '/about', isRouterLink: true },
         { name: 'Services', target: 'services', isRouterLink: false },
         { name: 'Articles', path: '/articles', isRouterLink: true },
-        { name: 'FAQ', target: 'faq', isRouterLink: false },
-        { name: 'Contact', target: 'contact', isRouterLink: false },
+        { name: 'FAQ', path: '/faq', isRouterLink: true },
+        { name: 'Contact', path: '/contact', isRouterLink: true },
     ];
 
     const languages = [
