@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, Play } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 // Import About page hero background images
 import slide1 from '../assets/hero-bg-1.jpg';
@@ -8,6 +9,8 @@ import slide2 from '../assets/hero-bg-2.jpg';
 import slide3 from '../assets/hero-bg-3.jpg';
 
 const SportingInjury = () => {
+    const { language } = useLanguage();
+    const isRtl = language === 'AR';
     const [currentSlide, setCurrentSlide] = useState(0);
     const slides = [slide1, slide2, slide3];
 
@@ -45,7 +48,7 @@ const SportingInjury = () => {
                 <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
                     {/* Video Section */}
                     <motion.div
-                        initial={{ opacity: 0, x: -30 }}
+                        initial={{ opacity: 0, x: isRtl ? 30 : -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.7 }}
@@ -73,7 +76,7 @@ const SportingInjury = () => {
 
                     {/* Content Section */}
                     <motion.div
-                        initial={{ opacity: 0, x: 30 }}
+                        initial={{ opacity: 0, x: isRtl ? -30 : 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.7, delay: 0.2 }}
@@ -85,7 +88,7 @@ const SportingInjury = () => {
                             {solutions.map((item, index) => (
                                 <motion.li
                                     key={index}
-                                    initial={{ opacity: 0, x: 20 }}
+                                    initial={{ opacity: 0, x: isRtl ? -20 : 20 }}
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.4, delay: 0.3 + (index * 0.1) }}
