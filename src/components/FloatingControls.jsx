@@ -39,7 +39,7 @@ const FloatingControls = () => {
     };
 
     return (
-        <div className="fixed bottom-10 right-10 z-50 flex flex-col gap-6 items-center">
+        <div className="fixed bottom-10 end-10 z-50 flex flex-col gap-6 items-center">
             {/* Smart Scroll Button */}
             <motion.button
                 onClick={handleScrollClick}

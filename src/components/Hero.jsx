@@ -46,7 +46,7 @@ const Hero = () => {
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="text-center lg:text-left"
+                        className="text-center lg:text-start"
                     >
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -54,7 +54,7 @@ const Hero = () => {
                             transition={{ delay: 0.2 }}
                             className="inline-flex items-center px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-bold mb-8 shadow-glass"
                         >
-                            <span className="w-2.5 h-2.5 rounded-full bg-blue-400 mr-3 animate-pulse shadow-[0_0_10px_rgba(96,165,250,0.8)]"></span>
+                            <span className="w-2.5 h-2.5 rounded-full bg-blue-400 me-3 animate-pulse shadow-[0_0_10px_rgba(96,165,250,0.8)]"></span>
                             Leading Orthopedic Specialist in Dubai
                         </motion.div>
 
@@ -82,7 +82,7 @@ const Hero = () => {
                                 className="group relative flex items-center justify-center px-10 py-5 bg-white text-primary-900 rounded-2xl font-black text-lg transition-all hover:scale-105 hover:shadow-[0_20px_40px_-10px_rgba(255,255,255,0.3)] active:scale-95 overflow-hidden"
                             >
                                 <span className="relative z-10 flex items-center">
-                                    Book Consult <Calendar className="ml-3 w-6 h-6 group-hover:rotate-12 transition-transform" />
+                                    Book Consult <Calendar className="ms-3 w-6 h-6 group-hover:rotate-12 transition-transform" />
                                 </span>
                             </a>
                             <Link
@@ -92,7 +92,7 @@ const Hero = () => {
                                 className="flex items-center justify-center px-10 py-5 bg-blue-600/20 backdrop-blur-xl text-white border-2 border-white/30 rounded-2xl font-black text-lg transition-all hover:bg-blue-600/40 hover:border-white/60 hover:scale-105 cursor-pointer"
                             >
                                 Explorer Services
-                                <ChevronRight className="ml-2 w-6 h-6" />
+                                <ChevronRight className="ms-2 w-6 h-6" />
                             </Link>
                         </motion.div>
 
@@ -139,7 +139,7 @@ const Hero = () => {
                                             className="w-full h-full object-cover rounded-[2rem] hover:scale-110 transition-transform duration-1000"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
-                                        <div className="absolute bottom-10 left-10 text-white">
+                                        <div className="absolute bottom-10 start-10 text-white">
                                             <p className="font-extrabold text-4xl tracking-tight leading-none">Dr. Ulhas Sonar</p>
                                             <div className="flex items-center gap-2 mt-2">
                                                 <div className="h-0.5 w-8 bg-blue-400"></div>
@@ -153,7 +153,7 @@ const Hero = () => {
                                     translateZ="150"
                                     rotateX={15}
                                     rotateZ={-5}
-                                    className="absolute -top-6 -right-6 rounded-2xl bg-white p-6 shadow-premium hidden md:block animate-float"
+                                    className="absolute -top-6 -end-6 rounded-2xl bg-white p-6 shadow-premium hidden md:block animate-float"
                                 >
                                     <div className="flex items-center gap-4">
                                         <div className="w-12 h-12 rounded-xl bg-green-500 flex items-center justify-center text-white">
@@ -169,7 +169,7 @@ const Hero = () => {
                                 <CardItem
                                     translateZ="120"
                                     rotateX={-10}
-                                    className="absolute -bottom-4 -left-6 rounded-2xl bg-primary-900/40 backdrop-blur-xl border border-white/10 p-5 shadow-2xl hidden md:block"
+                                    className="absolute -bottom-4 -start-6 rounded-2xl bg-primary-900/40 backdrop-blur-xl border border-white/10 p-5 shadow-2xl hidden md:block"
                                 >
                                     <div className="flex items-center gap-3">
                                         <div className="flex -space-x-3">

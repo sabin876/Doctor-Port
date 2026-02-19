@@ -3,6 +3,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, ChevronRight } from 'lucide-react';
 import { Link } from 'react-scroll';
+import { useLanguage } from '../context/LanguageContext';
 
 // Import images for the slideshow
 import slide1 from '../assets/Hero section1.png';
@@ -10,6 +11,8 @@ import slide2 from '../assets/Hero Section 2.png';
 import slide3 from '../assets/Hero Section 3.png';
 
 const HomeHero = () => {
+    const { language } = useLanguage();
+    const isRtl = language === 'AR';
     const [currentSlide, setCurrentSlide] = React.useState(0);
 
     // Define the slides array with imported images and content
@@ -50,23 +53,23 @@ const HomeHero = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
                     {/* Left Column - Content */}
-                    <div className="text-left order-2 lg:order-1 min-h-[500px] flex flex-col justify-center">
+                    <div className="text-start order-2 lg:order-1 min-h-[500px] flex flex-col justify-center">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
                             className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white text-sm font-bold mb-8 backdrop-blur-sm"
                         >
-                            <span className="w-2 h-2 rounded-full bg-cyan-400 mr-2 animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.8)]"></span>
+                            <span className="w-2 h-2 rounded-full bg-cyan-400 me-2 animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.8)]"></span>
                             Leading Orthopedic Specialist in Dubai
                         </motion.div>
 
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={currentSlide}
-                                initial={{ opacity: 0, x: -20 }}
+                                initial={{ opacity: 0, x: isRtl ? 20 : -20 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: 20 }}
+                                exit={{ opacity: 0, x: isRtl ? -20 : 20 }}
                                 transition={{ duration: 0.6 }}
                             >
                                 <div className="overflow-hidden mb-6">
@@ -77,7 +80,7 @@ const HomeHero = () => {
                                             initial={{ y: 50, opacity: 0 }}
                                             animate={{ y: 0, opacity: 1 }}
                                             transition={{ duration: 0.8, delay: 0.2 }}
-                                            className="inline-block mr-3"
+                                            className="inline-block me-3"
                                         >
                                             {slidesData[currentSlide].heading_top}
                                         </motion.span>
@@ -134,7 +137,7 @@ const HomeHero = () => {
                                         animate={{ x: [0, 4, 0] }}
                                         transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                                     >
-                                        <Calendar className="ml-2 w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
+                                        <Calendar className="ms-2 w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
                                     </motion.span>
                                 </motion.span>
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
@@ -146,7 +149,7 @@ const HomeHero = () => {
                                 className="flex items-center justify-center px-8 py-4 bg-white/10 text-white border border-white/20 rounded-xl font-bold text-lg transition-all hover:bg-white/20 hover:border-white/40 active:scale-95 cursor-pointer backdrop-blur-md"
                             >
                                 Explore Services
-                                <ChevronRight className="ml-2 w-5 h-5 text-white/80" />
+                                <ChevronRight className="ms-2 w-5 h-5 text-white/80" />
                             </Link>
                         </motion.div>
 
@@ -183,7 +186,7 @@ const HomeHero = () => {
 
                     {/* Right Column - Slideshow */}
                     <motion.div
-                        initial={{ opacity: 0, x: 50 }}
+                        initial={{ opacity: 0, x: isRtl ? -50 : 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
                         className="relative w-full h-[500px] lg:h-[600px] order-1 lg:order-2"

@@ -7,7 +7,7 @@ const FloatingContactButtons = () => {
     const whatsappNumber = "+971585865606"; // WhatsApp number
 
     return (
-        <div className="fixed right-6 bottom-6 z-50 flex flex-col gap-4">
+        <div className="fixed end-6 bottom-6 z-50 flex flex-col gap-4">
             {/* WhatsApp Button */}
             <motion.a
                 href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`}
@@ -27,7 +27,7 @@ const FloatingContactButtons = () => {
                 <MessageCircle className="w-7 h-7 text-white relative z-10" />
 
                 {/* Tooltip */}
-                <span className="absolute right-16 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-xs font-semibold px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+                <span className="absolute end-16 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-xs font-semibold px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
                     Chat on WhatsApp
                 </span>
             </motion.a>
@@ -49,7 +49,7 @@ const FloatingContactButtons = () => {
                 <Phone className="w-7 h-7 text-white relative z-10" />
 
                 {/* Tooltip */}
-                <span className="absolute right-16 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-xs font-semibold px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+                <span className="absolute end-16 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-xs font-semibold px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
                     Call Now
                 </span>
             </motion.a>

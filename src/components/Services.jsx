@@ -110,7 +110,7 @@ const Services = () => {
                                 whileHover={{ y: -10 }}
                             >
                                 {/* Animated Background Glow */}
-                                <div className="absolute top-0 left-0 w-full h-full bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                                <div className="absolute top-0 start-0 w-full h-full bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                                 {/* Icon with pulse animation */}
                                 <div className="mb-6 text-white relative z-10">

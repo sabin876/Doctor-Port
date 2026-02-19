@@ -128,7 +128,7 @@ const SpecializedSolutions = () => {
             </div>
 
             {/* Background Decorative Curves */}
-            <div className="absolute top-0 right-0 -z-10 w-1/3 h-full overflow-hidden opacity-10">
+            <div className="absolute top-0 end-0 -z-10 w-1/3 h-full overflow-hidden opacity-10">
                 <svg viewBox="0 0 200 600" className="w-full h-full text-[#0077b6]">
                     <path d="M200 0 Q 50 300 200 600" fill="none" stroke="currentColor" strokeWidth="2" />
                     <path d="M250 50 Q 100 350 250 650" fill="none" stroke="currentColor" strokeWidth="2" />

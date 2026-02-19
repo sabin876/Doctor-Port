@@ -54,10 +54,10 @@ const FAQ = () => {
                         <div key={index} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
                             <button
                                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                className="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none"
+                                className="w-full px-6 py-5 flex justify-between items-center text-start focus:outline-none"
                             >
                                 <span className="text-lg font-medium text-gray-900">{faq.question}</span>
-                                <span className="ml-4 flex-shrink-0 text-primary-500">
+                                <span className="ms-4 flex-shrink-0 text-primary-500">
                                     {openIndex === index ? <Minus size={20} /> : <Plus size={20} />}
                                 </span>
                             </button>

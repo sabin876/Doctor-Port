@@ -106,7 +106,7 @@ const Navbar = () => {
                                     className="text-sm font-metabolic font-black transition-all duration-300 hover:text-primary-600 relative group text-primary-950 uppercase tracking-widest"
                                 >
                                     {link.name}
-                                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
+                                    <span className="absolute -bottom-1 start-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
                                 </RouterLink>
                             ) : (
                                 <button
@@ -115,7 +115,7 @@ const Navbar = () => {
                                     className="text-sm font-metabolic font-black transition-all duration-300 hover:text-primary-600 relative group text-primary-950 uppercase tracking-widest"
                                 >
                                     {link.name}
-                                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
+                                    <span className="absolute -bottom-1 start-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
                                 </button>
                             )
                         ))}
@@ -141,7 +141,7 @@ const Navbar = () => {
                                         initial={{ opacity: 0, y: 10 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: 10 }}
-                                        className="absolute right-0 mt-4 w-44 bg-white border border-gray-100 rounded-2xl shadow-premium overflow-hidden z-50 p-1"
+                                        className="absolute end-0 mt-4 w-44 bg-white border border-gray-100 rounded-2xl shadow-premium overflow-hidden z-50 p-1"
                                     >
                                         {languages.map((l) => (
                                             <button
@@ -169,7 +169,7 @@ const Navbar = () => {
                             rel="noopener noreferrer"
                             className="bg-primary-600 text-white px-8 py-3.5 rounded-2xl font-metabolic font-black text-xs uppercase tracking-widest hover:bg-primary-700 transition-all duration-300 shadow-premium hover:shadow-premium-hover hover:-translate-y-0.5 flex items-center group/btn"
                         >
-                            <Calendar className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform" />
+                            <Calendar className="w-4 h-4 me-2 group-hover/btn:rotate-12 transition-transform" />
                             Book Now
                         </a>
                     </div>
@@ -190,9 +190,9 @@ const Navbar = () => {
                 {isOpen && (
                     <motion.div
                         className="fixed inset-0 top-20 bg-white/95 backdrop-blur-xl z-40 md:hidden overflow-y-auto"
-                        initial={{ opacity: 0, x: '100%' }}
+                        initial={{ opacity: 0, x: isRtl ? '-100%' : '100%' }}
                         animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: '100%' }}
+                        exit={{ opacity: 0, x: isRtl ? '-100%' : '100%' }}
                         transition={{ type: "spring", damping: 25, stiffness: 200 }}
                     >
                         <div className="flex flex-col items-center py-12 space-y-8 px-6">

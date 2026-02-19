@@ -112,7 +112,7 @@ const Articles = () => {
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                                 {/* Category Tag */}
-                                <div className="absolute top-4 left-4">
+                                <div className="absolute top-4 start-4">
                                     <span className={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider ${article.categoryColor}`}>
                                         {article.category}
                                     </span>

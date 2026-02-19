@@ -29,7 +29,7 @@ const TopBar = () => {
                 </div>
 
                 {/* Social Icons */}
-                <div className="flex items-center gap-4 pl-0 md:pl-6">
+                <div className="flex items-center gap-4 ps-0 md:ps-6">
                     <a href="#" className="hover:text-white/80 transition-colors">
                         <Facebook className="w-4 h-4" />
                     </a>

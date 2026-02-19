@@ -37,7 +37,7 @@ const WhyChooseUs = () => {
     return (
         <section id="about" className="py-32 bg-[#f8fafc] relative overflow-hidden">
             {/* Background decoration */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(14,165,233,0.08),transparent_70%)] z-0"></div>
+            <div className="absolute top-0 start-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(14,165,233,0.08),transparent_70%)] z-0"></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-20">
@@ -107,7 +107,7 @@ const WhyChooseUs = () => {
                             </p>
                             <a href="#contact" className="inline-flex items-center bg-white text-primary-950 font-black py-4 px-10 rounded-2xl hover:bg-blue-50 transition-all hover:scale-105 shadow-xl">
                                 Start Your Recovery
-                                <Zap className="ml-2 w-5 h-5 fill-primary-950 text-primary-950" />
+                                <Zap className="ms-2 w-5 h-5 fill-primary-950 text-primary-950" />
                             </a>
                         </div>
                         <div className="hidden lg:flex justify-end">
@@ -119,8 +119,8 @@ const WhyChooseUs = () => {
                         </div>
                     </div>
                     {/* Decorative background circles */}
-                    <div className="absolute -top-20 -right-20 w-[30rem] h-[30rem] bg-blue-600/10 rounded-full blur-[100px]"></div>
-                    <div className="absolute -bottom-20 -left-20 w-[30rem] h-[30rem] bg-indigo-600/10 rounded-full blur-[100px]"></div>
+                    <div className="absolute -top-20 -end-20 w-[30rem] h-[30rem] bg-blue-600/10 rounded-full blur-[100px]"></div>
+                    <div className="absolute -bottom-20 -start-20 w-[30rem] h-[30rem] bg-indigo-600/10 rounded-full blur-[100px]"></div>
                 </motion.div>
             </div>
         </section>

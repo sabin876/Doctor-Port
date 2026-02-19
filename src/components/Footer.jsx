@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <footer className="bg-primary-950 text-white pt-24 pb-12 relative overflow-hidden">
             {/* Background Decoration */}
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary-500/20 to-transparent"></div>
+            <div className="absolute top-0 start-0 w-full h-px bg-gradient-to-r from-transparent via-primary-500/20 to-transparent"></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
@@ -32,20 +32,20 @@ const Footer = () => {
                     <div>
                         <h4 className="text-xs font-montserrat font-black uppercase tracking-[0.3em] mb-8 text-blue-400">Navigation</h4>
                         <ul className="space-y-4 text-sm font-bold">
-                            <li><a href="#home" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 mr-0 group-hover:mr-2 transition-all"></span>Home</a></li>
-                            <li><a href="#about" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 mr-0 group-hover:mr-2 transition-all"></span>About</a></li>
-                            <li><a href="#services" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 mr-0 group-hover:mr-2 transition-all"></span>Services</a></li>
-                            <li><a href="#testimonials" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 mr-0 group-hover:mr-2 transition-all"></span>Testimonials</a></li>
+                            <li><a href="#home" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>Home</a></li>
+                            <li><a href="#about" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>About</a></li>
+                            <li><a href="#services" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>Services</a></li>
+                            <li><a href="#testimonials" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>Testimonials</a></li>
                         </ul>
                     </div>
 
                     <div>
                         <h4 className="text-xs font-montserrat font-black uppercase tracking-[0.3em] mb-8 text-blue-400">Support</h4>
                         <ul className="space-y-4 text-sm font-bold">
-                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 mr-0 group-hover:mr-2 transition-all"></span>Patient Resources</a></li>
-                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 mr-0 group-hover:mr-2 transition-all"></span>Articles</a></li>
-                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 mr-0 group-hover:mr-2 transition-all"></span>FAQ</a></li>
-                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 mr-0 group-hover:mr-2 transition-all"></span>Privacy</a></li>
+                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>Patient Resources</a></li>
+                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>Articles</a></li>
+                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>FAQ</a></li>
+                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>Privacy</a></li>
                         </ul>
                     </div>
 
@@ -79,7 +79,7 @@ const Footer = () => {
             </div>
 
             {/* Decorative background circle */}
-            <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px]"></div>
+            <div className="absolute -bottom-40 -start-40 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px]"></div>
         </footer>
     );
 };

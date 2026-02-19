@@ -62,7 +62,7 @@ const Appointment = () => {
                                         <Clock size={20} />
                                     </div>
                                 </div>
-                                <div className="ml-4">
+                                <div className="ms-4">
                                     <h4 className="text-lg font-bold text-gray-900">Quick Availability</h4>
                                     <p className="text-gray-500">We prioritize urgent cases and new patients.</p>
                                 </div>
@@ -73,7 +73,7 @@ const Appointment = () => {
                                         <MessageSquare size={20} />
                                     </div>
                                 </div>
-                                <div className="ml-4">
+                                <div className="ms-4">
                                     <h4 className="text-lg font-bold text-gray-900">Second Opinions</h4>
                                     <p className="text-gray-500">Complimentary discussion for surgery confirmations.</p>
                                 </div>
@@ -88,7 +88,7 @@ const Appointment = () => {
                         transition={{ duration: 0.6 }}
                         className="bg-white rounded-3xl shadow-2xl p-8 relative"
                     >
-                        <div className="absolute top-0 left-0 w-full h-2 bg-gray-100 rounded-t-3xl overflow-hidden">
+                        <div className="absolute top-0 start-0 w-full h-2 bg-gray-100 rounded-t-3xl overflow-hidden">
                             <motion.div
                                 className="h-full bg-primary-600"
                                 initial={{ width: "33%" }}
