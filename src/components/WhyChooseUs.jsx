@@ -1,8 +1,9 @@
-import React from 'react';
-import { motion } from 'framer-motion';
 import { ShieldCheck, Zap, Heart, UserCheck } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const WhyChooseUs = () => {
+    const { language } = useLanguage();
+    const isRtl = language === 'AR';
     const features = [
         {
             title: "Expert Care",
@@ -37,7 +38,7 @@ const WhyChooseUs = () => {
     return (
         <section id="about" className="py-32 bg-[#f8fafc] relative overflow-hidden">
             {/* Background decoration */}
-            <div className="absolute top-0 start-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(14,165,233,0.08),transparent_70%)] z-0"></div>
+            <div className={`absolute top-0 start-1/2 ${isRtl ? 'translate-x-1/2' : '-translate-x-1/2'} w-full h-full bg-[radial-gradient(circle_at_center,rgba(14,165,233,0.08),transparent_70%)] z-0`}></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-20">

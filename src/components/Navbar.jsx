@@ -10,6 +10,7 @@ import { useLanguage } from '../context/LanguageContext';
 
 const Navbar = () => {
     const { language: lang, setLanguage } = useLanguage();
+    const isRtl = lang === 'AR';
     const [isOpen, setIsOpen] = useState(false);
     const [isLangOpen, setIsLangOpen] = useState(false);
 
@@ -106,7 +107,7 @@ const Navbar = () => {
                                     className="text-sm font-metabolic font-black transition-all duration-300 hover:text-primary-600 relative group text-primary-950 uppercase tracking-widest"
                                 >
                                     {link.name}
-                                    <span className="absolute -bottom-1 start-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
+                                    <span className={`absolute -bottom-1 ${isRtl ? 'end-0' : 'start-0'} w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full`}></span>
                                 </RouterLink>
                             ) : (
                                 <button
@@ -115,7 +116,7 @@ const Navbar = () => {
                                     className="text-sm font-metabolic font-black transition-all duration-300 hover:text-primary-600 relative group text-primary-950 uppercase tracking-widest"
                                 >
                                     {link.name}
-                                    <span className="absolute -bottom-1 start-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
+                                    <span className={`absolute -bottom-1 ${isRtl ? 'end-0' : 'start-0'} w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full`}></span>
                                 </button>
                             )
                         ))}

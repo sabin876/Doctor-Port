@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, Clock, ChevronRight, CheckCircle, User, Mail, Phone, MessageSquare } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Appointment = () => {
+    const { language } = useLanguage();
+    const isRtl = language === 'AR';
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({
         name: '',
@@ -32,7 +33,7 @@ const Appointment = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="grid md:grid-cols-2 gap-16 items-center">
                     <motion.div
-                        initial={{ opacity: 0, x: -50 }}
+                        initial={{ opacity: 0, x: isRtl ? 50 : -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6 }}
                     >
@@ -83,7 +84,7 @@ const Appointment = () => {
 
                     {/* Interactive Multi-step Form */}
                     <motion.div
-                        initial={{ opacity: 0, x: 50 }}
+                        initial={{ opacity: 0, x: isRtl ? -50 : 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6 }}
                         className="bg-white rounded-3xl shadow-2xl p-8 relative"
@@ -110,34 +111,34 @@ const Appointment = () => {
                                 {step === 1 && (
                                     <motion.div
                                         key="step1"
-                                        initial={{ opacity: 0, x: 20 }}
+                                        initial={{ opacity: 0, x: isRtl ? -20 : 20 }}
                                         animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: -20 }}
+                                        exit={{ opacity: 0, x: isRtl ? 20 : -20 }}
                                         className="space-y-4"
                                     >
                                         <div>
                                             <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
                                             <div className="relative">
-                                                <User className="absolute left-3 top-3 text-gray-400" size={18} />
-                                                <input required type="text" name="name" value={formData.name} onChange={handleChange} className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="John Doe" />
+                                                <User className={`absolute ${isRtl ? 'right-3' : 'left-3'} top-3 text-gray-400`} size={18} />
+                                                <input required type="text" name="name" value={formData.name} onChange={handleChange} className={`w-full ${isRtl ? 'pr-10 pl-4' : 'pl-10 pr-4'} py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all`} placeholder="John Doe" />
                                             </div>
                                         </div>
                                         <div>
                                             <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
                                             <div className="relative">
-                                                <Mail className="absolute left-3 top-3 text-gray-400" size={18} />
-                                                <input required type="email" name="email" value={formData.email} onChange={handleChange} className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="john@example.com" />
+                                                <Mail className={`absolute ${isRtl ? 'right-3' : 'left-3'} top-3 text-gray-400`} size={18} />
+                                                <input required type="email" name="email" value={formData.email} onChange={handleChange} className={`w-full ${isRtl ? 'pr-10 pl-4' : 'pl-10 pr-4'} py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all`} placeholder="john@example.com" />
                                             </div>
                                         </div>
                                         <div>
                                             <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
                                             <div className="relative">
-                                                <Phone className="absolute left-3 top-3 text-gray-400" size={18} />
-                                                <input required type="tel" name="phone" value={formData.phone} onChange={handleChange} className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="+971..." />
+                                                <Phone className={`absolute ${isRtl ? 'right-3' : 'left-3'} top-3 text-gray-400`} size={18} />
+                                                <input required type="tel" name="phone" value={formData.phone} onChange={handleChange} className={`w-full ${isRtl ? 'pr-10 pl-4' : 'pl-10 pr-4'} py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all`} placeholder="+971..." />
                                             </div>
                                         </div>
                                         <button onClick={handleNext} className="w-full bg-primary-600 text-white py-3 rounded-xl font-semibold hover:bg-primary-700 transition-colors mt-4 flex items-center justify-center">
-                                            Next Step <ChevronRight size={18} className="ml-2" />
+                                            Next Step <ChevronRight size={18} className="ms-2" />
                                         </button>
                                     </motion.div>
                                 )}
@@ -145,9 +146,9 @@ const Appointment = () => {
                                 {step === 2 && (
                                     <motion.div
                                         key="step2"
-                                        initial={{ opacity: 0, x: 20 }}
+                                        initial={{ opacity: 0, x: isRtl ? -20 : 20 }}
                                         animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: -20 }}
+                                        exit={{ opacity: 0, x: isRtl ? 20 : -20 }}
                                         className="space-y-4"
                                     >
                                         <div>
@@ -172,7 +173,7 @@ const Appointment = () => {
                                                 Back
                                             </button>
                                             <button onClick={handleNext} className="w-2/3 bg-primary-600 text-white py-3 rounded-xl font-semibold hover:bg-primary-700 transition-colors flex items-center justify-center">
-                                                Review <ChevronRight size={18} className="ml-2" />
+                                                Review <ChevronRight size={18} className="ms-2" />
                                             </button>
                                         </div>
                                     </motion.div>
@@ -181,9 +182,9 @@ const Appointment = () => {
                                 {step === 3 && (
                                     <motion.div
                                         key="step3"
-                                        initial={{ opacity: 0, x: 20 }}
+                                        initial={{ opacity: 0, x: isRtl ? -20 : 20 }}
                                         animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: -20 }}
+                                        exit={{ opacity: 0, x: isRtl ? 20 : -20 }}
                                         className="text-center py-6"
                                     >
                                         <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-green-600 mx-auto mb-6">

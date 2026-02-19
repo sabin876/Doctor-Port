@@ -1,9 +1,10 @@
-import React from 'react';
-import { motion } from 'framer-motion';
 import { Award, Globe, GraduationCap, CheckCircle } from 'lucide-react';
 import doctorProfileImg from '../assets/doctor-profile.png';
+import { useLanguage } from '../context/LanguageContext';
 
 const About = () => {
+    const { language } = useLanguage();
+    const isRtl = language === 'AR';
     const qualifications = [
         {
             icon: Globe,
@@ -42,15 +43,15 @@ const About = () => {
     return (
         <section id="about" className="pt-24 pb-24 bg-gradient-to-b from-white to-gray-50/50 overflow-hidden relative">
             {/* Background Decoration */}
-            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-purple-100/40 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+            <div className="absolute top-0 end-0 -me-20 -mt-20 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+            <div className="absolute bottom-0 start-0 -ms-20 -mb-20 w-96 h-96 bg-purple-100/40 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="lg:grid lg:grid-cols-2 lg:gap-20 items-center">
                     {/* Image Section */}
                     <motion.div
                         className="mb-16 lg:mb-0 relative"
-                        initial={{ opacity: 0, x: -50 }}
+                        initial={{ opacity: 0, x: isRtl ? 50 : -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
@@ -68,7 +69,7 @@ const About = () => {
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: 0.4, duration: 0.5 }}
-                                className="absolute bottom-8 left-8 z-20 bg-white/20 backdrop-blur-xl px-8 py-5 rounded-3xl shadow-2xl border border-white/30"
+                                className="absolute bottom-8 start-8 z-20 bg-white/20 backdrop-blur-xl px-8 py-5 rounded-3xl shadow-2xl border border-white/30"
                             >
                                 <p className="text-5xl font-extrabold text-white drop-shadow-lg">15+</p>
                                 <p className="text-sm font-bold text-white/90 mt-1">Years Experience</p>
@@ -78,7 +79,7 @@ const About = () => {
 
                     {/* Content Section */}
                     <motion.div
-                        initial={{ opacity: 0, x: 50 }}
+                        initial={{ opacity: 0, x: isRtl ? -50 : 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.2 }}
@@ -139,7 +140,7 @@ const About = () => {
                                     </div>
 
                                     {/* Shine Effect */}
-                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000 pointer-events-none"></div>
+                                    <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent ${isRtl ? 'translate-x-[200%] group-hover:translate-x-[-200%]' : 'translate-x-[-200%] group-hover:translate-x-[200%]'} transition-transform duration-1000 pointer-events-none`}></div>
                                 </motion.div>
                             ))}
                         </div>

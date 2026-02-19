@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Star, ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const testimonials = [
     {
@@ -48,6 +47,8 @@ const testimonials = [
 ];
 
 const Testimonials = () => {
+    const { language } = useLanguage();
+    const isRtl = language === 'AR';
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
     const scrollRef = useRef(null);
@@ -129,7 +130,7 @@ const Testimonials = () => {
                                 <path d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
                             </svg>
                             <span className="bg-gradient-to-r from-[#4285f4] via-[#ea4335] to-[#fbbc05] bg-clip-text text-transparent">Write a Review on Google</span>
-                            <ChevronRight className="w-5 h-5 text-gray-400 group-hover:translate-x-1 group-hover:text-[#34a853] transition-all" />
+                            <ChevronRight className={`w-5 h-5 text-gray-400 group-hover:${isRtl ? '-translate-x-1' : 'translate-x-1'} group-hover:text-[#34a853] transition-all`} />
                         </motion.a>
                     </div>
                 </motion.div>
@@ -153,7 +154,7 @@ const Testimonials = () => {
                     <div className="flex gap-6 overflow-hidden pt-4">
                         <motion.div
                             className="flex gap-6 w-full"
-                            animate={{ x: isMobile ? `-${currentIndex * 100}%` : `-${currentIndex * (100 / 3.4)}%` }}
+                            animate={{ x: isRtl ? (isMobile ? `${currentIndex * 100}%` : `${currentIndex * (100 / 3.4)}%`) : (isMobile ? `-${currentIndex * 100}%` : `-${currentIndex * (100 / 3.4)}%`) }}
                             transition={{ type: "spring", stiffness: 300, damping: 35 }}
                         >
                             {testimonials.map((testimonial, index) => (

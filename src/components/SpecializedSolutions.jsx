@@ -1,6 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import kneeArthroscopyImg from '../assets/knee-arthroscopy.png';
 import wristPainImg from '../assets/wrist-pain.png';
 import backPainImg from '../assets/back-pain.png';
@@ -46,6 +45,8 @@ const solutions = [
 ];
 
 const SpecializedSolutions = () => {
+    const { language } = useLanguage();
+    const isRtl = language === 'AR';
     return (
         <section className="py-20 bg-white relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -122,7 +123,7 @@ const SpecializedSolutions = () => {
                         className="inline-flex items-center gap-2 text-[#0088cc] font-bold text-sm uppercase tracking-widest hover:text-[#006699] transition-colors group"
                     >
                         View All Services & Treatments
-                        <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                        <ArrowRight className={`w-5 h-5 transition-transform group-hover:${isRtl ? '-translate-x-1' : 'translate-x-1'}`} />
                     </a>
                 </motion.div>
             </div>

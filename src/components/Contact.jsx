@@ -1,14 +1,15 @@
-import React from 'react';
-import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Facebook, Linkedin, Instagram, Youtube, Twitter, Send } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Contact = () => {
+    const { language } = useLanguage();
+    const isRtl = language === 'AR';
     return (
         <section id="contact" className="relative py-24 bg-white overflow-hidden">
             {/* Background Decorations */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-30 pointer-events-none">
-                <div className="absolute top-[-10%] right-[-5%] w-[30rem] h-[30rem] bg-blue-100 rounded-full blur-[100px]"></div>
-                <div className="absolute bottom-[-10%] left-[-10%] w-[30rem] h-[30rem] bg-blue-50 rounded-full blur-[100px]"></div>
+            <div className="absolute top-0 start-0 w-full h-full overflow-hidden z-0 opacity-30 pointer-events-none">
+                <div className="absolute top-[-10%] end-[-5%] w-[30rem] h-[30rem] bg-blue-100 rounded-full blur-[100px]"></div>
+                <div className="absolute bottom-[-10%] start-[-10%] w-[30rem] h-[30rem] bg-blue-50 rounded-full blur-[100px]"></div>
             </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -87,12 +88,12 @@ const Contact = () => {
 
                     {/* Contact Form */}
                     <motion.div
-                        initial={{ opacity: 0, x: 50 }}
+                        initial={{ opacity: 0, x: isRtl ? -50 : 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.4 }}
                         className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-xl border border-gray-100 relative overflow-hidden group lg:sticky lg:top-32 order-1 lg:order-2"
                     >
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl group-hover:bg-blue-100 transition-all duration-700"></div>
+                        <div className="absolute top-0 end-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl group-hover:bg-blue-100 transition-all duration-700"></div>
 
                         <h3 className="text-3xl font-extrabold text-gray-900 mb-8 tracking-tight">Send A Private Message</h3>
                         <form className="space-y-5 relative z-10">
@@ -154,7 +155,7 @@ const ContactCard = ({ icon, title, content, subContent, delay, color, isLink, h
         transition={{ delay }}
         className="flex items-start bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 hover:border-primary-100 group"
     >
-        <div className={`flex-shrink-0 p-3.5 rounded-xl ${color} mr-5 group-hover:scale-110 transition-transform duration-300`}>
+        <div className={`flex-shrink-0 p-3.5 rounded-xl ${color} me-5 group-hover:scale-110 transition-transform duration-300`}>
             {icon}
         </div>
         <div>

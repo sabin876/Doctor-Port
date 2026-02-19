@@ -1,14 +1,13 @@
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, ChevronRight } from 'lucide-react';
-import { Link } from 'react-scroll';
 import { CardContainer, CardBody, CardItem } from './ui/3d-card';
+import { useLanguage } from '../context/LanguageContext';
 import doctorImg from '../assets/hero-slide-1.png'; // Reverted to previous photo
 import slide1 from '../assets/hero-bg-1.jpg';
 import slide2 from '../assets/hero-bg-2.jpg';
 import slide3 from '../assets/hero-bg-3.jpg';
 
 const Hero = () => {
+    const { language } = useLanguage();
+    const isRtl = language === 'AR';
     const [currentSlide, setCurrentSlide] = React.useState(0);
     const slides = [slide1, slide2, slide3];
 
@@ -43,7 +42,7 @@ const Hero = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
                     <motion.div
-                        initial={{ opacity: 0, x: -50 }}
+                        initial={{ opacity: 0, x: isRtl ? 50 : -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
                         className="text-center lg:text-start"
