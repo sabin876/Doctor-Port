@@ -6,10 +6,23 @@ import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../assets/logo.png';
 
 
+import { useLanguage } from '../context/LanguageContext';
+
 const Navbar = () => {
+    const { language: lang, setLanguage } = useLanguage();
     const [isOpen, setIsOpen] = useState(false);
-    const [lang, setLang] = useState('EN');
     const [isLangOpen, setIsLangOpen] = useState(false);
+
+    const triggerTranslate = (langCode) => {
+        const targetLang = langCode.toLowerCase();
+
+        // 1. Set Google Translate cookies
+        document.cookie = `googtrans=/en/${targetLang}; path=/;`;
+        document.cookie = `googtrans=/en/${targetLang}; path=/; domain=${window.location.hostname};`;
+
+        // 2. Force a reload to apply the translation immediately
+        window.location.reload();
+    };
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -73,10 +86,10 @@ const Navbar = () => {
                                 transition={{ type: "spring", stiffness: 300 }}
                             />
                             <div className="flex flex-col">
-                                <span className="text-2xl font-sans font-extrabold tracking-tight text-primary-900 leading-none">
+                                <span className="text-2xl font-metabolic font-extrabold tracking-tight text-primary-900 leading-none">
                                     Dr. Ulhas Sonar
                                 </span>
-                                <span className="text-[11px] font-sans uppercase tracking-[0.2em] font-medium text-primary-600">
+                                <span className="text-[11px] font-metabolic uppercase tracking-[0.2em] font-medium text-primary-600">
                                     Orthopedic Surgeon
                                 </span>
                             </div>
@@ -90,7 +103,7 @@ const Navbar = () => {
                                 <RouterLink
                                     key={link.name}
                                     to={link.path}
-                                    className="text-sm font-sans font-black transition-all duration-300 hover:text-primary-600 relative group text-primary-950 uppercase tracking-widest"
+                                    className="text-sm font-metabolic font-black transition-all duration-300 hover:text-primary-600 relative group text-primary-950 uppercase tracking-widest"
                                 >
                                     {link.name}
                                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
@@ -99,7 +112,7 @@ const Navbar = () => {
                                 <button
                                     key={link.name}
                                     onClick={() => handleNavigation(link.target)}
-                                    className="text-sm font-sans font-black transition-all duration-300 hover:text-primary-600 relative group text-primary-950 uppercase tracking-widest"
+                                    className="text-sm font-metabolic font-black transition-all duration-300 hover:text-primary-600 relative group text-primary-950 uppercase tracking-widest"
                                 >
                                     {link.name}
                                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
@@ -118,7 +131,7 @@ const Navbar = () => {
                                     alt={currentLang.name}
                                     className="w-5 h-auto rounded-sm shadow-sm"
                                 />
-                                <span className="font-sans font-bold">{currentLang.name}</span>
+                                <span className="font-metabolic font-bold">{currentLang.name}</span>
                                 <ChevronDown className={`w-3.5 h-3.5 text-gray-400 transition-transform duration-300 ${isLangOpen ? 'rotate-180' : ''}`} />
                             </button>
 
@@ -134,10 +147,12 @@ const Navbar = () => {
                                             <button
                                                 key={l.code}
                                                 onClick={() => {
-                                                    setLang(l.code);
+                                                    const code = l.code;
+                                                    setLanguage(code);
                                                     setIsLangOpen(false);
+                                                    triggerTranslate(code);
                                                 }}
-                                                className={`w-full flex items-center gap-3 px-4 py-3 text-sm font-sans font-medium rounded-xl transition-colors ${lang === l.code ? 'bg-primary-50 text-blue-600' : 'text-gray-600 hover:bg-gray-50'}`}
+                                                className={`w-full flex items-center gap-3 px-4 py-3 text-sm font-metabolic font-medium rounded-xl transition-colors ${lang === l.code ? 'bg-primary-50 text-blue-600' : 'text-gray-600 hover:bg-gray-50'}`}
                                             >
                                                 <img src={l.flag} alt={l.name} className="w-5 h-auto rounded-sm shadow-sm" />
                                                 <span>{l.name}</span>
@@ -152,7 +167,7 @@ const Navbar = () => {
                             href="https://csh.ae/find-a-doctor?name=ulhas"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-primary-600 text-white px-8 py-3.5 rounded-2xl font-sans font-black text-xs uppercase tracking-widest hover:bg-primary-700 transition-all duration-300 shadow-premium hover:shadow-premium-hover hover:-translate-y-0.5 flex items-center group/btn"
+                            className="bg-primary-600 text-white px-8 py-3.5 rounded-2xl font-metabolic font-black text-xs uppercase tracking-widest hover:bg-primary-700 transition-all duration-300 shadow-premium hover:shadow-premium-hover hover:-translate-y-0.5 flex items-center group/btn"
                         >
                             <Calendar className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform" />
                             Book Now
@@ -192,7 +207,7 @@ const Navbar = () => {
                                         <RouterLink
                                             to={link.path}
                                             onClick={() => setIsOpen(false)} // Close mobile menu on click
-                                            className="text-2xl font-sans font-bold text-gray-900 hover:text-primary-600 transition-colors uppercase tracking-widest"
+                                            className="text-2xl font-metabolic font-bold text-gray-900 hover:text-primary-600 transition-colors uppercase tracking-widest"
                                         >
                                             {link.name}
                                         </RouterLink>
@@ -204,7 +219,7 @@ const Navbar = () => {
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: index * 0.1 }}
                                         onClick={() => handleNavigation(link.target)}
-                                        className="text-2xl font-sans font-bold text-gray-900 hover:text-primary-600 transition-colors uppercase tracking-widest"
+                                        className="text-2xl font-metabolic font-bold text-gray-900 hover:text-primary-600 transition-colors uppercase tracking-widest"
                                     >
                                         {link.name}
                                     </motion.button>
@@ -213,16 +228,18 @@ const Navbar = () => {
 
                             {/* Mobile Language Selector */}
                             <div className="flex flex-col items-center gap-4 w-full border-t border-gray-100 pt-8">
-                                <p className="text-[10px] uppercase tracking-widest font-sans font-black text-gray-400">Select Language</p>
+                                <p className="text-[10px] uppercase tracking-widest font-metabolic font-black text-gray-400">Select Language</p>
                                 <div className="flex flex-wrap justify-center gap-4">
                                     {languages.map((l) => (
                                         <button
                                             key={l.code}
                                             onClick={() => {
-                                                setLang(l.code);
+                                                const code = l.code;
+                                                setLanguage(code);
                                                 setIsOpen(false);
+                                                triggerTranslate(code);
                                             }}
-                                            className={`px-6 py-2 rounded-xl text-sm font-sans font-black transition-all ${lang === l.code ? 'bg-primary-600 text-white shadow-lg' : 'bg-gray-100 text-gray-600'}`}
+                                            className={`px-6 py-2 rounded-xl text-sm font-metabolic font-black transition-all ${lang === l.code ? 'bg-primary-600 text-white shadow-lg' : 'bg-gray-100 text-gray-600'}`}
                                         >
                                             {l.name}
                                         </button>
@@ -235,7 +252,7 @@ const Navbar = () => {
                                     href="https://csh.ae/find-a-doctor?name=ulhas"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="block w-full bg-primary-600 text-white text-center py-4 rounded-xl font-sans font-bold shadow-xl shadow-primary-200 uppercase tracking-widest text-xs"
+                                    className="block w-full bg-primary-600 text-white text-center py-4 rounded-xl font-metabolic font-bold shadow-xl shadow-primary-200 uppercase tracking-widest text-xs"
                                 >
                                     Book Appointment
                                 </a>

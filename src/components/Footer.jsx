@@ -1,4 +1,4 @@
-import React from 'react';
+import logo from '../assets/logo.png';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -12,12 +12,17 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
                     <div className="col-span-1">
                         <div className="flex flex-col mb-8">
-                            <span className="text-3xl font-montserrat font-black tracking-tighter uppercase text-white leading-none">
-                                Dr. Ulhas Sonar
-                            </span>
-                            <span className="text-blue-400 text-[10px] font-montserrat font-black uppercase tracking-[0.3em] mt-2">
-                                Orthopedic Surgeon
-                            </span>
+                            <div className="flex items-center gap-3 mb-4">
+                                <img src={logo} alt="Dr. Ulhas Sonar" className="h-12 w-auto brightness-0 invert opacity-90" />
+                                <div className="flex flex-col">
+                                    <span className="text-xl font-montserrat font-black tracking-tighter uppercase text-white leading-none">
+                                        Dr. Ulhas Sonar
+                                    </span>
+                                    <span className="text-blue-400 text-[9px] font-montserrat font-black uppercase tracking-[0.2em] mt-1">
+                                        Orthopedic Surgeon
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                         <p className="text-gray-400 text-sm leading-relaxed font-medium max-w-xs">
                             Dedicated to restoring your active life through advanced surgical precision and compassionate care in the heart of Dubai.

@@ -1,4 +1,4 @@
-/* Font configuration updated: Work Sans & Montserrat */
+/* Font configuration updated: Metropolis */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,7 +10,7 @@
 
   body {
     @apply font-sans antialiased text-gray-800 bg-white;
-    font-family: 'Work Sans', sans-serif !important;
+    font-family: 'Metropolis', 'Work Sans', sans-serif !important;
   }
 
   h1,
@@ -19,7 +19,17 @@
   h4,
   h5,
   h6,
+  .font-metabolic,
   .font-montserrat {
-    font-family: 'Montserrat', sans-serif !important;
+    font-family: 'Metropolis', 'Montserrat', sans-serif !important;
+  }
+
+  /* Extreme priority override for Navbar and Header */
+  nav,
+  nav *,
+  header,
+  header *,
+  .sticky {
+    font-family: 'Metropolis', sans-serif !important;
   }
 }

@@ -26,8 +26,9 @@ export default {
                 }
             },
             fontFamily: {
-                sans: ['Work Sans', 'sans-serif'],
-                montserrat: ['Montserrat', 'sans-serif'],
+                sans: ['Metropolis', 'Work Sans', 'sans-serif'],
+                montserrat: ['Metropolis', 'Montserrat', 'sans-serif'],
+                metabolic: ['Metropolis', 'sans-serif'],
             },
             animation: {
                 'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
