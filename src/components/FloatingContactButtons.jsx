@@ -1,8 +1,9 @@
-import React from 'react';
-import { motion } from 'framer-motion';
 import { Phone, MessageCircle } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const FloatingContactButtons = () => {
+    const { language } = useLanguage();
+    const isRtl = language === 'AR';
     const phoneNumber = "+971585865606"; // Dr. Ulhas's phone number
     const whatsappNumber = "+971585865606"; // WhatsApp number
 
@@ -15,7 +16,7 @@ const FloatingContactButtons = () => {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
-                initial={{ opacity: 0, x: 100 }}
+                initial={{ opacity: 0, x: isRtl ? -100 : 100 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="group relative w-14 h-14 bg-[#25D366] rounded-full shadow-lg hover:shadow-2xl flex items-center justify-center transition-all duration-300"
@@ -37,7 +38,7 @@ const FloatingContactButtons = () => {
                 href={`tel:${phoneNumber}`}
                 whileHover={{ scale: 1.1, rotate: -5 }}
                 whileTap={{ scale: 0.9 }}
-                initial={{ opacity: 0, x: 100 }}
+                initial={{ opacity: 0, x: isRtl ? -100 : 100 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="group relative w-14 h-14 bg-primary-600 rounded-full shadow-lg hover:shadow-2xl flex items-center justify-center transition-all duration-300"
