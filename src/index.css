@@ -1,5 +1,22 @@
-/* Font configuration updated: Metropolis */
 @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Prevent Google Translate from shifting the layout - Critical for Production */
+body {
+  top: 0 !important;
+  position: static !important;
+}
+
+.skiptranslate {
+  display: none !important;
+}
+
+iframe.goog-te-banner-frame {
+  display: none !important;
+  visibility: hidden !important;
+}
+
 @tailwind components;
 @tailwind utilities;
 
