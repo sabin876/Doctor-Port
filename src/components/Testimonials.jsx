@@ -1,3 +1,5 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { Star, ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 

@@ -25,10 +25,11 @@ function App() {
           <Route path="/faq" element={<FAQ />} />
         </Routes>
         <Footer />
-        <FloatingControls />
-        <FloatingContactButtons />
+        {/* <FloatingControls />
+        <FloatingContactButtons /> */}
       </div>
     </Router>
+    // <div style={{ padding: 20 }}><h1>App Component Loaded</h1></div>
   );
 }
 

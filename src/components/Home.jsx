@@ -15,10 +15,10 @@ const Home = () => {
             <SpecializedSolutions />
             <SportingInjury />
             {/* <WhyChooseUs /> */}
-            {/* <About /> */}
+            <About />
             <Services />
             <Testimonials />
-            {/* <Appointment /> */}
+            <Appointment />
         </main>
     );
 };

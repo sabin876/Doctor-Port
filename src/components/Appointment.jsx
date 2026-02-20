@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, Clock, ChevronRight, CheckCircle, User, Mail, Phone, MessageSquare } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
