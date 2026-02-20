@@ -22,9 +22,6 @@ iframe.goog-te-banner-frame {
   visibility: hidden !important;
 }
 
-@tailwind components;
-@tailwind utilities;
-
 @layer base {
   html {
     scroll-behavior: smooth;
