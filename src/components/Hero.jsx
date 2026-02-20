@@ -45,7 +45,7 @@ const Hero = () => {
                         initial={{ opacity: 0, x: isRtl ? 50 : -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="text-center lg:text-start"
+                        className={`text-center lg:text-start ${isRtl ? 'lg:text-right' : 'lg:text-left'}`}
                     >
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -72,7 +72,7 @@ const Hero = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4 }}
-                            className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start"
+                            className={`flex flex-col sm:flex-row gap-6 justify-center ${isRtl ? 'lg:justify-end' : 'lg:justify-start'}`}
                         >
                             <a
                                 href="https://csh.ae/find-a-doctor?name=ulhas"
@@ -99,7 +99,7 @@ const Hero = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.6 }}
-                            className="mt-16 flex flex-wrap items-center justify-center lg:justify-start gap-12"
+                            className={`mt-16 flex flex-wrap items-center justify-center gap-12 ${isRtl ? 'lg:justify-end' : 'lg:justify-start'}`}
                         >
                             <div className="flex flex-col">
                                 <span className="text-4xl font-extrabold text-white tracking-tight">14+</span>
