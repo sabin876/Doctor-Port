@@ -4,7 +4,7 @@ import { Calendar, Clock, ChevronRight, CheckCircle, User, Mail, Phone, MessageS
 import { useLanguage } from '../context/LanguageContext';
 
 const Appointment = () => {
-    const { language } = useLanguage();
+    const { language, t } = useLanguage();
     const isRtl = language === 'AR';
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({
@@ -44,7 +44,7 @@ const Appointment = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             className="inline-block px-4 py-1.5 mb-6 rounded-full bg-primary-50 text-primary-600 text-xs font-black uppercase tracking-[0.2em]"
                         >
-                            Direct Access
+                            {t('appointment.badge')}
                         </motion.div>
                         <motion.h3
                             initial={{ opacity: 0, y: 20 }}
@@ -52,10 +52,10 @@ const Appointment = () => {
                             viewport={{ once: true }}
                             className="text-3xl md:text-4xl font-montserrat font-black text-primary-950 mb-4 tracking-tight uppercase"
                         >
-                            Book Your Appointment Today
+                            {t('appointment.title')}
                         </motion.h3>
                         <p className="text-xl font-medium text-gray-500 mb-10 leading-relaxed max-w-xl">
-                            Scheduling a consultation is the first step towards recovery. Dr. Ulhas Sonar is here to answer your questions and provide a clear path forward.
+                            {t('appointment.description')}
                         </p>
 
                         <div className="space-y-6">
@@ -66,8 +66,8 @@ const Appointment = () => {
                                     </div>
                                 </div>
                                 <div className="ms-4">
-                                    <h4 className="text-lg font-bold text-gray-900">Quick Availability</h4>
-                                    <p className="text-gray-500">We prioritize urgent cases and new patients.</p>
+                                    <h4 className="text-lg font-bold text-gray-900">{t('appointment.quick.title')}</h4>
+                                    <p className="text-gray-500">{t('appointment.quick.desc')}</p>
                                 </div>
                             </div>
                             <div className="flex items-start">
@@ -77,8 +77,8 @@ const Appointment = () => {
                                     </div>
                                 </div>
                                 <div className="ms-4">
-                                    <h4 className="text-lg font-bold text-gray-900">Second Opinions</h4>
-                                    <p className="text-gray-500">Complimentary discussion for surgery confirmations.</p>
+                                    <h4 className="text-lg font-bold text-gray-900">{t('appointment.second.title')}</h4>
+                                    <p className="text-gray-500">{t('appointment.second.desc')}</p>
                                 </div>
                             </div>
                         </div>
@@ -101,11 +101,11 @@ const Appointment = () => {
 
                         <div className="mb-8 mt-4">
                             <h4 className="text-2xl font-bold text-gray-900">
-                                {step === 1 && "Personal Details"}
-                                {step === 2 && "Appointment Preferences"}
-                                {step === 3 && "Confirmation"}
+                                {step === 1 && t('appointment.step1')}
+                                {step === 2 && t('appointment.step2')}
+                                {step === 3 && t('appointment.step3')}
                             </h4>
-                            <p className="text-sm text-gray-500">Step {step} of 3</p>
+                            <p className="text-sm text-gray-500">{t('appointment.stepOf')} {step} {t('appointment.stepOfTotal')}</p>
                         </div>
 
                         <form onSubmit={(e) => e.preventDefault()}>
@@ -119,28 +119,28 @@ const Appointment = () => {
                                         className="space-y-4"
                                     >
                                         <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('appointment.name')}</label>
                                             <div className="relative">
                                                 <User className={`absolute ${isRtl ? 'right-3' : 'left-3'} top-3 text-gray-400`} size={18} />
                                                 <input required type="text" name="name" value={formData.name} onChange={handleChange} className={`w-full ${isRtl ? 'pr-10 pl-4' : 'pl-10 pr-4'} py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all`} placeholder="John Doe" />
                                             </div>
                                         </div>
                                         <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('appointment.email')}</label>
                                             <div className="relative">
                                                 <Mail className={`absolute ${isRtl ? 'right-3' : 'left-3'} top-3 text-gray-400`} size={18} />
                                                 <input required type="email" name="email" value={formData.email} onChange={handleChange} className={`w-full ${isRtl ? 'pr-10 pl-4' : 'pl-10 pr-4'} py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all`} placeholder="john@example.com" />
                                             </div>
                                         </div>
                                         <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('appointment.phone')}</label>
                                             <div className="relative">
                                                 <Phone className={`absolute ${isRtl ? 'right-3' : 'left-3'} top-3 text-gray-400`} size={18} />
                                                 <input required type="tel" name="phone" value={formData.phone} onChange={handleChange} className={`w-full ${isRtl ? 'pr-10 pl-4' : 'pl-10 pr-4'} py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all`} placeholder="+971..." />
                                             </div>
                                         </div>
                                         <button onClick={handleNext} className="w-full bg-primary-600 text-white py-3 rounded-xl font-semibold hover:bg-primary-700 transition-colors mt-4 flex items-center justify-center">
-                                            Next Step <ChevronRight size={18} className="ms-2" />
+                                            {t('appointment.next')} <ChevronRight size={18} className="ms-2" />
                                         </button>
                                     </motion.div>
                                 )}
@@ -154,28 +154,28 @@ const Appointment = () => {
                                         className="space-y-4"
                                     >
                                         <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-1">Consultation Type</label>
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('appointment.type')}</label>
                                             <select name="type" value={formData.type} onChange={handleChange} className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all">
-                                                <option>Initial Consultation</option>
-                                                <option>Second Opinion (Free)</option>
-                                                <option>Follow-up</option>
-                                                <option>Surgery Planning</option>
+                                                <option>{t('appointment.types.initial')}</option>
+                                                <option>{t('appointment.types.second')}</option>
+                                                <option>{t('appointment.types.followup')}</option>
+                                                <option>{t('appointment.types.surgery')}</option>
                                             </select>
                                         </div>
                                         <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-1">Preferred Date (Optional)</label>
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('appointment.date')}</label>
                                             <input type="date" name="date" value={formData.date} onChange={handleChange} className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" />
                                         </div>
                                         <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-1">How can we help?</label>
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('appointment.message')}</label>
                                             <textarea name="message" value={formData.message} onChange={handleChange} rows="3" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="Briefly describe your pain or condition..."></textarea>
                                         </div>
                                         <div className="flex gap-4 mt-4">
                                             <button onClick={handleBack} className="w-1/3 bg-gray-100 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-colors">
-                                                Back
+                                                {t('appointment.back')}
                                             </button>
                                             <button onClick={handleNext} className="w-2/3 bg-primary-600 text-white py-3 rounded-xl font-semibold hover:bg-primary-700 transition-colors flex items-center justify-center">
-                                                Review <ChevronRight size={18} className="ms-2" />
+                                                {t('appointment.review')} <ChevronRight size={18} className="ms-2" />
                                             </button>
                                         </div>
                                     </motion.div>
@@ -192,17 +192,17 @@ const Appointment = () => {
                                         <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-green-600 mx-auto mb-6">
                                             <CheckCircle size={40} />
                                         </div>
-                                        <h4 className="text-xl font-bold text-gray-900 mb-2">Almost Done!</h4>
+                                        <h4 className="text-xl font-bold text-gray-900 mb-2">{t('appointment.almostDone')}</h4>
                                         <p className="text-gray-500 mb-8">
-                                            Please verify your details before submitting. We'll contact you at <strong>{formData.phone}</strong>.
+                                            {t('appointment.confirmMsg')} <strong>{formData.phone}</strong>.
                                         </p>
 
                                         <div className="flex gap-4">
                                             <button onClick={handleBack} className="w-1/3 bg-gray-100 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-colors">
-                                                Back
+                                                {t('appointment.back')}
                                             </button>
                                             <button className="w-2/3 bg-primary-600 text-white py-3 rounded-xl font-semibold hover:bg-primary-700 transition-colors shadow-lg hover:shadow-primary-500/40">
-                                                Confirm Appointment
+                                                {t('appointment.confirm')}
                                             </button>
                                         </div>
                                     </motion.div>

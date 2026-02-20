@@ -12,7 +12,8 @@ export const translations = {
             articles: "Articles",
             faq: "FAQ",
             contact: "Contact",
-            bookNow: "Book Now"
+            bookNow: "Book Now",
+            selectLanguage: "Select Language"
         },
         // TopBar
         topBar: {
@@ -24,16 +25,61 @@ export const translations = {
         // Hero Section
         hero: {
             badge: "Leading Orthopedic Specialist in Dubai",
-            title: "Move Without",
-            subtitle: "Limits",
-            description: "Advanced Joint Replacement & Sports Medicine. Precision care designed for your swift recovery and long-term joint health.",
             bookAppointment: "Book Consult",
-            learnMore: "Explorer Services",
+            exploreServices: "Explore Services",
             stats: {
-                experience: "Years Expert",
-                surgeries: "Success Ops",
-                rating: "Patient Score"
-            }
+                years: "Years",
+                patients: "Patients",
+                surgeries: "Surgeries",
+                rating: "Rating"
+            },
+            slides: [
+                {
+                    heading_top: "Move Without",
+                    heading_bottom: "Limits",
+                    description: "Advanced Joint Replacement & Sports Medicine. Precision care designed for your swift recovery and long-term joint health."
+                },
+                {
+                    heading_top: "Expert Orthopedic",
+                    heading_bottom: "Care",
+                    description: "Global expertise in upper limb and robotic-assisted knee surgery. Specialized in helping you return to your active life."
+                },
+                {
+                    heading_top: "Recovery Focused",
+                    heading_bottom: "Excellence",
+                    description: "Personalized orthopedic treatments tailored to your lifestyle. Combining innovation with compassionate patient care."
+                }
+            ]
+        },
+        // Specialized Solutions
+        specializedSolutions: {
+            title: "Personalized solutions for every orthopedic need",
+            description: "FOI physicians provide a responsive, personalized care plan for any musculoskeletal injury or condition.",
+            viewAll: "View All Services & Treatments",
+            items: [
+                { title: "Hand & Wrist" },
+                { title: "Back & Neck" },
+                { title: "Foot & Ankle" },
+                { title: "Elbow" },
+                { title: "Knee & Leg" },
+                { title: "Hip & Thigh" },
+                { title: "Shoulder" }
+            ]
+        },
+        // Sporting Injury
+        sportingInjury: {
+            title: "Have You Suffered A",
+            titleHighlight: "Sporting Injury",
+            titleEnd: "To The Hip Or Knee?",
+            learnMore: "Learn about possible solutions:",
+            bookBtn: "Book A Consultation",
+            solutions: [
+                "Hip labral tear",
+                "Hip Impingement",
+                "Anterior Cruciate Ligament Injury",
+                "Meniscal Tears",
+                "Patellofemoral Instability"
+            ]
         },
         // About Section
         about: {
@@ -172,6 +218,36 @@ export const translations = {
                 submit: "Send Message"
             }
         },
+        appointment: {
+            badge: "Direct Access",
+            title: "Book Your Appointment Today",
+            description: "Scheduling a consultation is the first step towards recovery. Dr. Ulhas Sonar is here to answer your questions and provide a clear path forward.",
+            quick: { title: "Quick Availability", desc: "We prioritize urgent cases and new patients." },
+            second: { title: "Second Opinions", desc: "Complimentary discussion for surgery confirmations." },
+            step1: "Personal Details",
+            step2: "Appointment Preferences",
+            step3: "Confirmation",
+            stepOf: "Step",
+            stepOfTotal: "of 3",
+            name: "Full Name",
+            email: "Email Address",
+            phone: "Phone Number",
+            type: "Consultation Type",
+            date: "Preferred Date (Optional)",
+            message: "How can we help?",
+            next: "Next Step",
+            back: "Back",
+            review: "Review",
+            almostDone: "Almost Done!",
+            confirmMsg: "Please verify your details before submitting. We'll contact you at",
+            confirm: "Confirm Appointment",
+            types: {
+                initial: "Initial Consultation",
+                second: "Second Opinion (Free)",
+                followup: "Follow-up",
+                surgery: "Surgery Planning"
+            }
+        },
         footer: {
             desc: "Dedicated to restoring your active life through advanced surgical precision and compassionate care in the heart of Dubai.",
             nav: "Navigation",
@@ -189,13 +265,14 @@ export const translations = {
             specialty: "आर्थोपेडिक सर्जन"
         },
         nav: {
-            home: "होम",
-            about: "के बारे में",
-            services: "सेवाएं",
-            articles: "लेख",
-            faq: "सामान्य प्रश्न",
-            contact: "संपर्क करें",
-            bookNow: "अभी बुक करें"
+            home: "Home",
+            about: "About",
+            services: "Services",
+            articles: "Articles",
+            faq: "FAQ",
+            contact: "Contact",
+            bookNow: "Book Now",
+            selectLanguage: "Select Language"
         },
         topBar: {
             phone: "हमें कॉल करें",
@@ -348,6 +425,36 @@ export const translations = {
                 submit: "संदेश भेजें"
             }
         },
+        appointment: {
+            badge: "सीधी पहुंच",
+            title: "आज ही अपॉइंटमेंट बुक करें",
+            description: "परामर्श शेड्यूल करना रिकवरी की दिशा में पहला कदम है। डॉ. उल्हास सोनार आपके सवालों के जवाब देने और आगे का स्पष्ट रास्ता बताने के लिए यहां हैं।",
+            quick: { title: "त्वरित उपलब्धता", desc: "हम तत्काल मामलों और नए रोगियों को प्राथमिकता देते हैं।" },
+            second: { title: "दूसरी राय", desc: "सर्जरी की पुष्टि के लिए निःशुल्क चर्चा।" },
+            step1: "व्यक्तिगत विवरण",
+            step2: "अपॉइंटमेंट प्राथमिकताएं",
+            step3: "पुष्टिकरण",
+            stepOf: "चरण",
+            stepOfTotal: "में से 3",
+            name: "पूरा नाम",
+            email: "ईमेल पता",
+            phone: "फोन नंबर",
+            type: "परामर्श प्रकार",
+            date: "पसंदीदा तारीख (वैकल्पिक)",
+            message: "हम कैसे मदद कर सकते हैं?",
+            next: "अगला चरण",
+            back: "वापस",
+            review: "समीक्षा करें",
+            almostDone: "लगभग हो गया!",
+            confirmMsg: "सबमिट करने से पहले अपना विवरण सत्यापित करें। हम आपसे संपर्क करेंगे",
+            confirm: "अपॉइंटमेंट की पुष्टि करें",
+            types: {
+                initial: "प्रारंभिक परामर्श",
+                second: "दूसरी राय (निःशुल्क)",
+                followup: "फॉलो-अप",
+                surgery: "सर्जरी योजना"
+            }
+        },
         footer: {
             desc: "दुबई के केंद्र में उन्नत सर्जिकल सटीकता और दयालु देखभाल के माध्यम से आपके सक्रिय जीवन को बहाल करने के लिए समर्पित।",
             nav: "नेविगेशन",
@@ -365,13 +472,14 @@ export const translations = {
             specialty: "جراح عظام"
         },
         nav: {
-            home: "الرئيسية",
-            about: "عن",
-            services: "الخدمات",
-            articles: "مقالات",
-            faq: "الأسئلة الشائعة",
-            contact: "اتصل بنا",
-            bookNow: "احجز الآن"
+            home: "Home",
+            about: "About",
+            services: "Services",
+            articles: "Articles",
+            faq: "FAQ",
+            contact: "Contact",
+            bookNow: "Book Now",
+            selectLanguage: "Select Language"
         },
         topBar: {
             phone: "اتصل بنا",
@@ -522,6 +630,36 @@ export const translations = {
                 medicalInquiry: "استفسار طبي",
                 placeholder: "صف حالتك بإيجاز...",
                 submit: "إرسال الرسالة"
+            }
+        },
+        appointment: {
+            badge: "وصول مباشر",
+            title: "احجز موعدك اليوم",
+            description: "جدولة استشارة هي الخطوة الأولى نحو التعافي. الدكتور أولهاس سونار هنا للإجابة على أسئلتك وتوفير مسار واضح للأمام.",
+            quick: { title: "توافر سريع", desc: "نعطي الأولوية للحالات العاجلة والمرضى الجدد." },
+            second: { title: "الآراء الثانية", desc: "نقاش مجاني لتأكيد الجراحات." },
+            step1: "التفاصيل الشخصية",
+            step2: "تفضيلات الموعد",
+            step3: "التأكيد",
+            stepOf: "الخطوة",
+            stepOfTotal: "من 3",
+            name: "الاسم الكامل",
+            email: "البريد الإلكتروني",
+            phone: "رقم الهاتف",
+            type: "نوع الاستشارة",
+            date: "التاريخ المفضل (اختياري)",
+            message: "كيف يمكننا مساعدتك؟",
+            next: "الخطوة التالية",
+            back: "رجوع",
+            review: "مراجعة",
+            almostDone: "اقتربنا!",
+            confirmMsg: "يرجى التحقق من تفاصيلك قبل الإرسال. سنتواصل معك على",
+            confirm: "تأكيد الموعد",
+            types: {
+                initial: "استشارة أولية",
+                second: "رأي ثانٍ (مجاناً)",
+                followup: "متابعة",
+                surgery: "تخطيط الجراحة"
             }
         },
         footer: {

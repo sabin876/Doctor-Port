@@ -32,3 +32,55 @@
     font-family: 'Metropolis', sans-serif !important;
   }
 }
+
+/*
+ * RTL LAYOUT NEUTRALIZATION
+ * When Arabic is selected, LanguageContext sets dir="rtl" on <html>.
+ * This causes browsers to automatically reverse flex layouts and logical CSS
+ * properties (start/end), breaking the design.
+ * We neutralize the automatic layout reversal here so structure stays LTR,
+ * while Arabic text still renders right-to-left correctly.
+ * Components handle their own explicit RTL adjustments via the isRtl prop.
+ */
+[dir="rtl"] body,
+[dir="rtl"] section,
+[dir="rtl"] nav,
+[dir="rtl"] footer,
+[dir="rtl"] header,
+[dir="rtl"] main,
+[dir="rtl"] .max-w-7xl,
+[dir="rtl"] .grid,
+[dir="rtl"] [class*="flex"] {
+  direction: ltr;
+}
+
+/* Allow text inside these to flow RTL for Arabic script */
+[dir="rtl"] p,
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6,
+[dir="rtl"] span:not([class*="w-"]):not([class*="h-"]),
+[dir="rtl"] li,
+[dir="rtl"] label {
+  unicode-bidi: plaintext;
+}
+
+/* Google Translate Cleanup */
+.skiptranslate,
+.goog-te-banner-frame.skiptranslate,
+#goog-gt-tt,
+.goog-te-balloon-frame {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+.goog-text-highlight {
+  background: none !important;
+  box-shadow: none !important;
+}

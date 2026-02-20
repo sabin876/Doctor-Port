@@ -28,11 +28,28 @@ export const LanguageProvider = ({ children }) => {
         // Update document direction for RTL languages
         document.documentElement.dir = language === 'AR' ? 'rtl' : 'ltr';
         document.documentElement.lang = language === 'AR' ? 'ar' : language === 'HI' ? 'hi' : 'en';
+
+        // Trigger Google Translate
+        const triggerGoogleTranslate = () => {
+            const googleCombo = document.querySelector('.goog-te-combo');
+            if (googleCombo) {
+                googleCombo.value = language.toLowerCase();
+                googleCombo.dispatchEvent(new Event('change'));
+            } else {
+                // Wait for Google Translate to load if it's not ready
+                setTimeout(triggerGoogleTranslate, 500);
+            }
+        };
+
+        // Don't trigger if it's already in the target language (google translate might not be initialized yet)
+        triggerGoogleTranslate();
     }, [language]);
 
     const t = (key) => {
         const keys = key.split('.');
-        let value = translations[language];
+        // Always use English as the source for Google Translate to work with
+        // This ensures the DOM starts with English and Google handles the translation
+        let value = translations['EN'];
 
         for (const k of keys) {
             if (value && typeof value === 'object') {

@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Facebook, Linkedin, Instagram, Youtube, Twitter, Send } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 

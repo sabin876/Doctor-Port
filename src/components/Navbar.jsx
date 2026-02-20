@@ -10,6 +10,9 @@ import { useLanguage } from '../context/LanguageContext';
 
 const Navbar = () => {
     const { language: lang, setLanguage, t } = useLanguage();
+    const isRtl = lang === 'AR';
+    const [isOpen, setIsOpen] = useState(false);
+    const [isLangOpen, setIsLangOpen] = useState(false);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -84,7 +87,7 @@ const Navbar = () => {
                     </div>
 
                     {/* Desktop Menu */}
-                    <div className={`hidden md:flex items-center gap-x-8 ${isRtl ? 'flex-row-reverse' : ''}`}>
+                    <div className="hidden md:flex items-center gap-x-8">
                         {navLinks.map((link) => (
                             link.isRouterLink ? (
                                 <RouterLink
@@ -214,7 +217,7 @@ const Navbar = () => {
 
                             {/* Mobile Language Selector */}
                             <div className="flex flex-col items-center gap-4 w-full border-t border-gray-100 pt-8">
-                                <p className="text-[10px] uppercase tracking-widest font-metabolic font-black text-gray-400">Select Language</p>
+                                <p className="text-[10px] uppercase tracking-widest font-metabolic font-black text-gray-400">{t('nav.selectLanguage')}</p>
                                 <div className="flex flex-wrap justify-center gap-4">
                                     {languages.map((l) => (
                                         <button
