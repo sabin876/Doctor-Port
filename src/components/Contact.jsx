@@ -2,7 +2,7 @@ import { Phone, Mail, MapPin, Facebook, Linkedin, Instagram, Youtube, Twitter, S
 import { useLanguage } from '../context/LanguageContext';
 
 const Contact = () => {
-    const { language } = useLanguage();
+    const { language, t } = useLanguage();
     const isRtl = language === 'AR';
     return (
         <section id="contact" className="relative py-24 bg-white overflow-hidden">
@@ -19,7 +19,7 @@ const Contact = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         className="inline-block px-4 py-1.5 mb-6 rounded-full bg-blue-50 text-blue-600 text-[11px] font-bold uppercase tracking-[0.2em]"
                     >
-                        Get In Touch
+                        {t('contact.badge')}
                     </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -27,14 +27,14 @@ const Contact = () => {
                         viewport={{ once: true }}
                         className="text-4xl md:text-5xl font-montserrat font-extrabold text-blue-900 mb-6 tracking-tight"
                     >
-                        Start Your Recovery <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 font-black">Journey</span>
+                        {t('contact.title')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 font-black">{t('contact.titleHighlight')}</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         className="max-w-2xl text-lg font-normal text-gray-600 mx-auto"
                     >
-                        Take the first step towards a pain-free life. Our team is ready to assist you with world-class expertise.
+                        {t('contact.description')}
                     </motion.p>
                 </div>
 
@@ -43,17 +43,17 @@ const Contact = () => {
                     <div className="space-y-6 order-2 lg:order-1">
                         <ContactCard
                             icon={<Phone className="w-6 h-6" />}
-                            title="Call Support"
+                            title={t('contact.cards.call.title')}
                             content="+971 54 703 3311"
-                            subContent="Direct line for appointments & queries"
+                            subContent={t('contact.cards.call.sub')}
                             delay={0.3}
                             color="bg-blue-50 text-blue-600"
                         />
                         <ContactCard
                             icon={<Mail className="w-6 h-6" />}
-                            title="Email Us"
+                            title={t('contact.cards.email.title')}
                             content="info@corx.ae"
-                            subContent="For official records and detailed questions"
+                            subContent={t('contact.cards.email.sub')}
                             delay={0.4}
                             color="bg-indigo-50 text-indigo-600"
                             isLink={true}
@@ -61,9 +61,9 @@ const Contact = () => {
                         />
                         <ContactCard
                             icon={<MapPin className="w-6 h-6" />}
-                            title="Visit Clinic"
-                            content="Office 303, Royal Class Building"
-                            subContent="DIP, Dubai, UAE"
+                            title={t('contact.cards.visit.title')}
+                            content={t('contact.cards.visit.content')}
+                            subContent={t('contact.cards.visit.sub')}
                             delay={0.5}
                             color="bg-teal-50 text-teal-600"
                         />
@@ -75,7 +75,7 @@ const Contact = () => {
                             transition={{ delay: 0.6 }}
                             className="bg-gray-50 rounded-[2rem] p-8 border border-gray-100"
                         >
-                            <h3 className="text-sm font-bold text-gray-900 mb-6 uppercase tracking-wider">Connect With Us</h3>
+                            <h3 className="text-sm font-bold text-gray-900 mb-6 uppercase tracking-wider">{t('contact.cards.social')}</h3>
                             <div className="flex flex-wrap gap-4">
                                 <SocialLink href="https://www.facebook.com/people/Ulhas-Sonar/pfbid02t9HgyN1ngXRHdmXqhjjRku4dc4bJCMb6TL69rrePPSL4WSP3yqUvUnCA8tmPv3Lhl/" icon={<Facebook size={20} />} />
                                 <SocialLink href="https://twitter.com/jointsurgeon" icon={<Twitter size={20} />} />
@@ -95,18 +95,18 @@ const Contact = () => {
                     >
                         <div className="absolute top-0 end-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl group-hover:bg-blue-100 transition-all duration-700"></div>
 
-                        <h3 className="text-3xl font-extrabold text-gray-900 mb-8 tracking-tight">Send A Private Message</h3>
+                        <h3 className="text-3xl font-extrabold text-gray-900 mb-8 tracking-tight">{t('contact.form.title')}</h3>
                         <form className="space-y-5 relative z-10">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                <InputField label="Your Name" type="text" placeholder="e.g. John Doe" />
-                                <InputField label="Your Email" type="email" placeholder="e.g. john@example.com" />
+                                <InputField label={t('contact.form.name')} type="text" placeholder="e.g. John Doe" />
+                                <InputField label={t('contact.form.email')} type="email" placeholder="e.g. john@example.com" />
                             </div>
-                            <InputField label="Phone Number" type="tel" placeholder="+971..." />
+                            <InputField label={t('contact.form.phone')} type="tel" placeholder="+971..." />
                             <div>
-                                <label className="block text-[11px] font-bold text-gray-700 mb-2 uppercase tracking-wide">Medical Inquiry</label>
+                                <label className="block text-[11px] font-bold text-gray-700 mb-2 uppercase tracking-wide">{t('contact.form.medicalInquiry')}</label>
                                 <textarea
                                     className="w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all outline-none bg-gray-50 text-gray-900 placeholder-gray-400 resize-none h-32 font-medium text-sm"
-                                    placeholder="Describe your condition briefly..."
+                                    placeholder={t('contact.form.placeholder')}
                                 ></textarea>
                             </div>
                             <button
@@ -114,7 +114,7 @@ const Contact = () => {
                                 className="w-full flex items-center justify-center gap-2 py-4 px-6 bg-primary-600 text-white font-bold text-sm uppercase tracking-wider rounded-xl shadow-lg hover:bg-primary-500 hover:scale-[1.01] active:scale-[0.98] transition-all duration-300"
                             >
                                 <Send className="w-4 h-4" />
-                                Send Message
+                                {t('contact.form.submit')}
                             </button>
                         </form>
                     </motion.div>

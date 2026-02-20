@@ -1,6 +1,8 @@
 import logo from '../assets/logo.png';
+import { useLanguage } from '../context/LanguageContext';
 
 const Footer = () => {
+    const { t } = useLanguage();
     const currentYear = new Date().getFullYear();
 
     return (
@@ -16,41 +18,41 @@ const Footer = () => {
                                 <img src={logo} alt="Dr. Ulhas Sonar" className="h-12 w-auto brightness-0 invert opacity-90" />
                                 <div className="flex flex-col">
                                     <span className="text-xl font-montserrat font-black tracking-tighter uppercase text-white leading-none">
-                                        Dr. Ulhas Sonar
+                                        {t('common.doctorName')}
                                     </span>
                                     <span className="text-blue-400 text-[9px] font-montserrat font-black uppercase tracking-[0.2em] mt-1">
-                                        Orthopedic Surgeon
+                                        {t('common.specialty')}
                                     </span>
                                 </div>
                             </div>
                         </div>
                         <p className="text-gray-400 text-sm leading-relaxed font-medium max-w-xs">
-                            Dedicated to restoring your active life through advanced surgical precision and compassionate care in the heart of Dubai.
+                            {t('footer.desc')}
                         </p>
                     </div>
 
                     <div>
-                        <h4 className="text-xs font-montserrat font-black uppercase tracking-[0.3em] mb-8 text-blue-400">Navigation</h4>
+                        <h4 className="text-xs font-montserrat font-black uppercase tracking-[0.3em] mb-8 text-blue-400">{t('footer.nav')}</h4>
                         <ul className="space-y-4 text-sm font-bold">
-                            <li><a href="#home" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>Home</a></li>
-                            <li><a href="#about" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>About</a></li>
-                            <li><a href="#services" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>Services</a></li>
-                            <li><a href="#testimonials" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>Testimonials</a></li>
+                            <li><a href="#home" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>{t('nav.home')}</a></li>
+                            <li><a href="#about" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>{t('nav.about')}</a></li>
+                            <li><a href="#services" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>{t('nav.services')}</a></li>
+                            <li><a href="#testimonials" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>{t('nav.testimonials') || 'Testimonials'}</a></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h4 className="text-xs font-montserrat font-black uppercase tracking-[0.3em] mb-8 text-blue-400">Support</h4>
+                        <h4 className="text-xs font-montserrat font-black uppercase tracking-[0.3em] mb-8 text-blue-400">{t('footer.support')}</h4>
                         <ul className="space-y-4 text-sm font-bold">
-                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>Patient Resources</a></li>
-                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>Articles</a></li>
-                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>FAQ</a></li>
-                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>Privacy</a></li>
+                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>{t('footer.patientResources')}</a></li>
+                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>{t('footer.articles')}</a></li>
+                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>{t('nav.faq')}</a></li>
+                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>{t('footer.privacy')}</a></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h4 className="text-xs font-montserrat font-black uppercase tracking-[0.3em] mb-8 text-blue-400">Clinic Info</h4>
+                        <h4 className="text-xs font-montserrat font-black uppercase tracking-[0.3em] mb-8 text-blue-400">{t('footer.clinic')}</h4>
                         <ul className="space-y-6 text-sm font-bold">
                             <li className="flex gap-4">
                                 <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-blue-400 flex-shrink-0">
@@ -69,7 +71,7 @@ const Footer = () => {
                 </div>
 
                 <div className="mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p className="text-gray-500 text-xs font-montserrat font-bold uppercase tracking-widest leading-none">&copy; {currentYear} Dr. Ulhas Sonar. Crafted for Precision.</p>
+                    <p className="text-gray-500 text-xs font-montserrat font-bold uppercase tracking-widest leading-none">&copy; {currentYear} {t('common.doctorName')}. {t('footer.rights')}</p>
                     <div className="flex gap-8 font-montserrat font-black">
                         {['FB', 'TW', 'IG', 'LI'].map(social => (
                             <a key={social} href="#" className="text-gray-600 hover:text-white text-[10px] font-black tracking-widest transition-colors">{social}</a>

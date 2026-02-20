@@ -9,21 +9,7 @@ import logo from '../assets/logo.png';
 import { useLanguage } from '../context/LanguageContext';
 
 const Navbar = () => {
-    const { language: lang, setLanguage } = useLanguage();
-    const isRtl = lang === 'AR';
-    const [isOpen, setIsOpen] = useState(false);
-    const [isLangOpen, setIsLangOpen] = useState(false);
-
-    const triggerTranslate = (langCode) => {
-        const targetLang = langCode.toLowerCase();
-
-        // 1. Set Google Translate cookies
-        document.cookie = `googtrans=/en/${targetLang}; path=/;`;
-        document.cookie = `googtrans=/en/${targetLang}; path=/; domain=${window.location.hostname};`;
-
-        // 2. Force a reload to apply the translation immediately
-        window.location.reload();
-    };
+    const { language: lang, setLanguage, t } = useLanguage();
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -52,12 +38,12 @@ const Navbar = () => {
     };
 
     const navLinks = [
-        { name: 'Home', target: 'home', isRouterLink: false },
-        { name: 'About', path: '/about', isRouterLink: true },
-        { name: 'Services', target: 'services', isRouterLink: false },
-        { name: 'Articles', path: '/articles', isRouterLink: true },
-        { name: 'FAQ', path: '/faq', isRouterLink: true },
-        { name: 'Contact', path: '/contact', isRouterLink: true },
+        { id: 'home', name: 'Home', target: 'home', isRouterLink: false },
+        { id: 'about', name: 'About', path: '/about', isRouterLink: true },
+        { id: 'services', name: 'Services', target: 'services', isRouterLink: false },
+        { id: 'articles', name: 'Articles', path: '/articles', isRouterLink: true },
+        { id: 'faq', name: 'FAQ', path: '/faq', isRouterLink: true },
+        { id: 'contact', name: 'Contact', path: '/contact', isRouterLink: true },
     ];
 
     const languages = [
@@ -88,17 +74,17 @@ const Navbar = () => {
                             />
                             <div className="flex flex-col">
                                 <span className="text-2xl font-metabolic font-extrabold tracking-tight text-primary-900 leading-none">
-                                    Dr. Ulhas Sonar
+                                    {t('common.doctorName')}
                                 </span>
                                 <span className="text-[11px] font-metabolic uppercase tracking-[0.2em] font-medium text-primary-600">
-                                    Orthopedic Surgeon
+                                    {t('common.specialty')}
                                 </span>
                             </div>
                         </div>
                     </div>
 
                     {/* Desktop Menu */}
-                    <div className="hidden md:flex items-center space-x-10">
+                    <div className={`hidden md:flex items-center gap-x-8 ${isRtl ? 'flex-row-reverse' : ''}`}>
                         {navLinks.map((link) => (
                             link.isRouterLink ? (
                                 <RouterLink
@@ -106,16 +92,16 @@ const Navbar = () => {
                                     to={link.path}
                                     className="text-sm font-metabolic font-black transition-all duration-300 hover:text-primary-600 relative group text-primary-950 uppercase tracking-widest"
                                 >
-                                    {link.name}
+                                    {t(`nav.${link.id}`)}
                                     <span className={`absolute -bottom-1 ${isRtl ? 'end-0' : 'start-0'} w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full`}></span>
                                 </RouterLink>
                             ) : (
                                 <button
-                                    key={link.name}
+                                    key={link.id}
                                     onClick={() => handleNavigation(link.target)}
                                     className="text-sm font-metabolic font-black transition-all duration-300 hover:text-primary-600 relative group text-primary-950 uppercase tracking-widest"
                                 >
-                                    {link.name}
+                                    {t(`nav.${link.id}`)}
                                     <span className={`absolute -bottom-1 ${isRtl ? 'end-0' : 'start-0'} w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full`}></span>
                                 </button>
                             )
@@ -151,7 +137,6 @@ const Navbar = () => {
                                                     const code = l.code;
                                                     setLanguage(code);
                                                     setIsLangOpen(false);
-                                                    triggerTranslate(code);
                                                 }}
                                                 className={`w-full flex items-center gap-3 px-4 py-3 text-sm font-metabolic font-medium rounded-xl transition-colors ${lang === l.code ? 'bg-primary-50 text-blue-600' : 'text-gray-600 hover:bg-gray-50'}`}
                                             >
@@ -171,7 +156,7 @@ const Navbar = () => {
                             className="bg-primary-600 text-white px-8 py-3.5 rounded-2xl font-metabolic font-black text-xs uppercase tracking-widest hover:bg-primary-700 transition-all duration-300 shadow-premium hover:shadow-premium-hover hover:-translate-y-0.5 flex items-center group/btn"
                         >
                             <Calendar className="w-4 h-4 me-2 group-hover/btn:rotate-12 transition-transform" />
-                            Book Now
+                            {t('nav.bookNow')}
                         </a>
                     </div>
 
@@ -210,7 +195,7 @@ const Navbar = () => {
                                             onClick={() => setIsOpen(false)} // Close mobile menu on click
                                             className="text-2xl font-metabolic font-bold text-gray-900 hover:text-primary-600 transition-colors uppercase tracking-widest"
                                         >
-                                            {link.name}
+                                            {t(`nav.${link.id}`)}
                                         </RouterLink>
                                     </motion.div>
                                 ) : (
@@ -238,7 +223,6 @@ const Navbar = () => {
                                                 const code = l.code;
                                                 setLanguage(code);
                                                 setIsOpen(false);
-                                                triggerTranslate(code);
                                             }}
                                             className={`px-6 py-2 rounded-xl text-sm font-metabolic font-black transition-all ${lang === l.code ? 'bg-primary-600 text-white shadow-lg' : 'bg-gray-100 text-gray-600'}`}
                                         >
@@ -255,7 +239,7 @@ const Navbar = () => {
                                     rel="noopener noreferrer"
                                     className="block w-full bg-primary-600 text-white text-center py-4 rounded-xl font-metabolic font-bold shadow-xl shadow-primary-200 uppercase tracking-widest text-xs"
                                 >
-                                    Book Appointment
+                                    {t('nav.bookNow')}
                                 </a>
                             </div>
                         </div>

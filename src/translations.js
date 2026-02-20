@@ -1,44 +1,46 @@
 export const translations = {
     EN: {
+        common: {
+            doctorName: "Dr. Ulhas Sonar",
+            specialty: "Orthopedic Surgeon"
+        },
         // Navbar
         nav: {
             home: "Home",
             about: "About",
             services: "Services",
+            articles: "Articles",
             faq: "FAQ",
             contact: "Contact",
             bookNow: "Book Now"
         },
-
         // TopBar
         topBar: {
-            phone: "Phone",
+            phone: "Call Us",
             email: "Email",
-            location: "Location"
+            location: "Location",
+            locationValue: "Canadian Specialist Hospital, Dubai"
         },
-
         // Hero Section
         hero: {
-            badge: "Orthopedic Excellence",
-            title: "Expert Orthopedic Care",
-            subtitle: "in Dubai",
-            description: "Specialized in sports injuries, joint replacements, and advanced robotic surgeries. Your journey to pain-free mobility starts here.",
-            bookAppointment: "Book Appointment",
-            learnMore: "Learn More",
+            badge: "Leading Orthopedic Specialist in Dubai",
+            title: "Move Without",
+            subtitle: "Limits",
+            description: "Advanced Joint Replacement & Sports Medicine. Precision care designed for your swift recovery and long-term joint health.",
+            bookAppointment: "Book Consult",
+            learnMore: "Explorer Services",
             stats: {
-                experience: "Years Experience",
-                patients: "Happy Patients",
-                surgeries: "Successful Surgeries",
-                rating: "Patient Rating"
+                experience: "Years Expert",
+                surgeries: "Success Ops",
+                rating: "Patient Score"
             }
         },
-
         // About Section
         about: {
             badge: "About Dr. Ulhas",
-            title: "Your Trusted",
-            titleHighlight: "Orthopedic Expert",
-            titleEnd: "in Dubai",
+            title: "Personalized Path to",
+            titleHighlight: "Recovery",
+            titleEnd: "",
             description1: "Dr. Ulhas Sonar is a distinguished British-Indian orthopedic surgeon with extensive global experience across the UK, India, Jersey Island, and Dubai.",
             description2: "A graduate of B J Medical College, Pune, he pursued advanced training at prestigious institutions like Wrightington Hospital and Golden Jubilee Hospital in the UK. He holds an MCh in Upper Limb Surgery and a PG Diploma in Computer and Robotic-Assisted Knee Replacement.",
             experienceBadge: "Years Experience",
@@ -61,15 +63,14 @@ export const translations = {
                 }
             }
         },
-
         // Services Section
         services: {
             badge: "Medical Specializations",
-            title: "Expert",
-            titleHighlight: "Orthopedic",
-            titleEnd: "Solutions",
+            title: "Our Specialized",
+            titleHighlight: "Services",
+            titleEnd: "",
             description: "Comprehensive care using the latest surgical and non-surgical advancements for your mobility and health.",
-            viewDetails: "View Details",
+            viewDetails: "Learn More",
             showMore: "Show More Services",
             showLess: "Show Less",
             items: [
@@ -107,83 +108,119 @@ export const translations = {
                 }
             ]
         },
-
         // FAQ Section
         faq: {
-            badge: "Common Questions",
-            title: "Frequently Asked",
-            titleHighlight: "Questions"
+            badge: "Patient Clarifications",
+            title: "Common Questions",
+            items: [
+                {
+                    question: "When should I consider joint replacement surgery?",
+                    answer: "Severe arthritis, cartilage loss, or deformities not responsive to conservative treatments often indicate the need for joint replacement, especially in knee and hip joints."
+                },
+                {
+                    question: "How long is the recovery period?",
+                    answer: "Recovery after knee or hip replacement usually takes 6–12 weeks for basic mobility, with full recovery often requiring 6–12 months."
+                },
+                {
+                    question: "What are the benefits of arthroscopic surgery?",
+                    answer: "Arthroscopic surgery offers smaller incisions, less pain, faster recovery, and lower infection risk compared to open surgery."
+                },
+                {
+                    question: "Is it worth getting a second opinion?",
+                    answer: "Yes, seeking a second opinion before surgery is encouraged to confirm your diagnosis and explore all treatment options. Dr. Ulhas offers complementary second opinions."
+                },
+                {
+                    question: "How are sports injuries treated?",
+                    answer: "Sports injuries are treated based on severity, often involving rest, physical therapy, medications, or surgery if necessary."
+                }
+            ]
         },
-
+        // Testimonials
+        testimonials: {
+            title: "What Our Patients Say",
+            reviewButton: "Write a Review on Google"
+        },
         // Contact Section
         contact: {
             badge: "Get In Touch",
-            title: "Contact",
-            titleHighlight: "Dr. Ulhas",
-            description: "Schedule a consultation or reach out for any orthopedic concerns. We're here to help you regain your mobility.",
+            title: "Start Your Recovery",
+            titleHighlight: "Journey",
+            description: "Take the first step towards a pain-free life. Our team is ready to assist you with world-class expertise.",
+            cards: {
+                call: {
+                    title: "Call Support",
+                    sub: "Direct line for appointments & queries"
+                },
+                email: {
+                    title: "Email Us",
+                    sub: "For official records and detailed questions"
+                },
+                visit: {
+                    title: "Visit Clinic",
+                    content: "Office 303, Royal Class Building",
+                    sub: "DIP, Dubai, UAE"
+                },
+                social: "Connect With Us"
+            },
             form: {
+                title: "Send A Private Message",
                 name: "Your Name",
                 email: "Your Email",
                 phone: "Phone Number",
-                message: "Your Message",
-                submit: "Send Message",
-                sending: "Sending..."
-            },
-            info: {
-                phone: "Phone",
-                email: "Email",
-                location: "Location",
-                locationValue: "City Hospital, Dubai, UAE"
+                medicalInquiry: "Medical Inquiry",
+                placeholder: "Describe your condition briefly...",
+                submit: "Send Message"
             }
         },
-
-        // Floating Buttons
-        floating: {
-            whatsapp: "Chat on WhatsApp",
-            call: "Call Now"
+        footer: {
+            desc: "Dedicated to restoring your active life through advanced surgical precision and compassionate care in the heart of Dubai.",
+            nav: "Navigation",
+            support: "Support",
+            clinic: "Clinic Info",
+            rights: "Crafted for Precision.",
+            patientResources: "Patient Resources",
+            articles: "Articles",
+            privacy: "Privacy"
         }
     },
-
     HI: {
-        // Navbar
+        common: {
+            doctorName: "डॉ. उल्हास सोनार",
+            specialty: "आर्थोपेडिक सर्जन"
+        },
         nav: {
             home: "होम",
             about: "के बारे में",
             services: "सेवाएं",
+            articles: "लेख",
             faq: "सामान्य प्रश्न",
             contact: "संपर्क करें",
             bookNow: "अभी बुक करें"
         },
-
-        // TopBar
         topBar: {
-            phone: "फोन",
+            phone: "हमें कॉल करें",
             email: "ईमेल",
-            location: "स्थान"
+            location: "स्थान",
+            locationValue: "कैनेडियन स्पेशलिस्ट अस्पताल, दुबई"
         },
-
-        // Hero Section
         hero: {
-            badge: "आर्थोपेडिक उत्कृष्टता",
-            title: "विशेषज्ञ आर्थोपेडिक देखभाल",
-            subtitle: "दुबई में",
-            description: "खेल की चोटों, जोड़ों के प्रतिस्थापन और उन्नत रोबोटिक सर्जरी में विशेषज्ञता। दर्द मुक्त गतिशीलता की आपकी यात्रा यहाँ से शुरू होती है।",
-            bookAppointment: "अपॉइंटमेंट बुक करें",
-            learnMore: "और जानें",
+            badge: "दुबई में अग्रणी आर्थोपेडिक विशेषज्ञ",
+            title: "बिना किसी",
+            subtitle: "सीमा के चलें",
+            description: "उन्नत जोड़ प्रत्यारोपण और खेल चिकित्सा। आपकी त्वरित रिकवरी और दीर्घकालिक जोड़ स्वास्थ्य के लिए डिज़ाइन की गई सटीक देखभाल।",
+            bookAppointment: "परामर्श बुक करें",
+            learnMore: "सेवाएं देखें",
             stats: {
-                experience: "वर्षों का अनुभव",
-                patients: "खुश मरीज",
-                surgeries: "सफल सर्जरी",
-                rating: "रोगी रेटिंग"
+                experience: "वर्ष विशेषज्ञ",
+                surgeries: "सफल ऑपरेशन",
+                rating: "रोगी स्कोर"
             }
         },
-
-        // About Section
         about: {
             badge: "डॉ. उल्हास के बारे में",
-            title: "आपके विश्वसनीय",
-            titleHighlight: "आर्थोपेडिक विशेषज्ञ",
-            titleEnd: "दुबई में",
+            title: "रिकवरी का",
+            titleHighlight: "व्यक्तिगत मार्ग",
+            titleEnd: "",
             description1: "डॉ. उल्हास सोनार एक प्रतिष्ठित ब्रिटिश-भारतीय आर्थोपेडिक सर्जन हैं जिनके पास यूके, भारत, जर्सी द्वीप और दुबई में व्यापक वैश्विक अनुभव है।",
             description2: "बी जे मेडिकल कॉलेज, पुणे के स्नातक, उन्होंने यूके में राइटिंगटन अस्पताल और गोल्डन जुबली अस्पताल जैसे प्रतिष्ठित संस्थानों में उन्नत प्रशिक्षण प्राप्त किया। उनके पास अपर लिम्ब सर्जरी में एमसीएच और कंप्यूटर और रोबोटिक-असिस्टेड नी रिप्लेसमेंट में पीजी डिप्लोमा है।",
             experienceBadge: "वर्षों का अनुभव",
@@ -206,15 +243,13 @@ export const translations = {
                 }
             }
         },
-
-        // Services Section
         services: {
             badge: "चिकित्सा विशेषज्ञता",
-            title: "विशेषज्ञ",
-            titleHighlight: "आर्थोपेडिक",
-            titleEnd: "समाधान",
+            title: "हमारी विशेष",
+            titleHighlight: "सेवाएं",
+            titleEnd: "",
             description: "आपकी गतिशीलता और स्वास्थ्य के लिए नवीनतम सर्जिकल और गैर-सर्जिकल प्रगति का उपयोग करते हुए व्यापक देखभाल।",
-            viewDetails: "विवरण देखें",
+            viewDetails: "और जानें",
             showMore: "अधिक सेवाएं दिखाएं",
             showLess: "कम दिखाएं",
             items: [
@@ -252,83 +287,116 @@ export const translations = {
                 }
             ]
         },
-
-        // FAQ Section
         faq: {
-            badge: "सामान्य प्रश्न",
-            title: "अक्सर पूछे जाने वाले",
-            titleHighlight: "प्रश्न"
+            badge: "रोगी स्पष्टीकरण",
+            title: "सामान्य प्रश्न",
+            items: [
+                {
+                    question: "मुझे जोड़ प्रत्यारोपण सर्जरी पर कब विचार करना चाहिए?",
+                    answer: "गंभीर गठिया, उपास्थि का नुकसान, या रूढ़िवादी उपचारों के प्रति उत्तरदायी नहीं होने वाली विकृतियां अक्सर जोड़ प्रतिस्थापन की आवश्यकता को दर्शाती हैं, विशेष रूप से घुटने और कूल्हे के जोड़ों में।"
+                },
+                {
+                    question: "रिकवरी की अवधि कितनी लंबी है?",
+                    answer: "घुटने या कूल्हे के प्रतिस्थापन के बाद रिकवरी में आमतौर पर बुनियादी गतिशीलता के लिए 6-12 सप्ताह लगते हैं, पूर्ण रिकवरी के लिए अक्सर 6-12 महीने की आवश्यकता होती है।"
+                },
+                {
+                    question: "आर्थ्रोस्कोपिक सर्जरी के क्या लाभ हैं?",
+                    answer: "आर्थ्रोस्कोपिक सर्जरी में छोटे चीरे, कम दर्द, तेजी से रिकवरी और खुली सर्जरी की तुलना में कम संक्रमण का जोखिम होता है।"
+                },
+                {
+                    question: "क्या दूसरी राय लेना उचित है?",
+                    answer: "हाँ, सर्जरी से पहले दूसरी राय लेने के लिए प्रोत्साहित किया जाता है ताकि आपके निदान की पुष्टि हो सके और उपचार के सभी विकल्पों का पता लगाया जा सके। डॉ. उल्हास पूरक दूसरी राय प्रदान करते हैं।"
+                },
+                {
+                    question: "खेल की चोटों का इलाज कैसे किया जाता है?",
+                    answer: "खेल की चोटों का इलाज गंभीरता के आधार पर किया जाता है, जिसमें अक्सर आराम, भौतिक चिकित्सा, दवाएं, या यदि आवश्यक हो तो सर्जरी शामिल होती है।"
+                }
+            ]
         },
-
-        // Contact Section
+        testimonials: {
+            title: "हमारे मरीज क्या कहते हैं",
+            reviewButton: "Google पर समीक्षा लिखें"
+        },
         contact: {
             badge: "संपर्क में रहें",
-            title: "संपर्क करें",
-            titleHighlight: "डॉ. उल्हास",
-            description: "परामर्श शेड्यूल करें या किसी भी आर्थोपेडिक चिंता के लिए संपर्क करें। हम आपकी गतिशीलता को फिर से हासिल करने में मदद करने के लिए यहां हैं।",
+            title: "अपनी रिकवरी",
+            titleHighlight: "यात्रा शुरू करें",
+            description: "दर्द मुक्त जीवन की ओर पहला कदम उठाएं। हमारी टीम विश्व स्तरीय विशेषज्ञता के साथ आपकी सहायता के लिए तैयार है।",
+            cards: {
+                call: {
+                    title: "कॉल सपोर्ट",
+                    sub: "अपॉइंटमेंट और प्रश्नों के लिए सीधी लाइन"
+                },
+                email: {
+                    title: "हमें ईमेल करें",
+                    sub: "आधिकारिक रिकॉर्ड और विस्तृत प्रश्नों के लिए"
+                },
+                visit: {
+                    title: "क्लीनिक पर आएं",
+                    content: "कार्यालय 303, रॉयल क्लास बिल्डिंग",
+                    sub: "DIP, दुबई, यूएई"
+                },
+                social: "हमसे जुड़ें"
+            },
             form: {
+                title: "एक निजी संदेश भेजें",
                 name: "आपका नाम",
                 email: "आपका ईमेल",
                 phone: "फोन नंबर",
-                message: "आपका संदेश",
-                submit: "संदेश भेजें",
-                sending: "भेजा जा रहा है..."
-            },
-            info: {
-                phone: "फोन",
-                email: "ईमेल",
-                location: "स्थान",
-                locationValue: "सिटी अस्पताल, दुबई, यूएई"
+                medicalInquiry: "चिकित्सा पूछताछ",
+                placeholder: "अपनी स्थिति का संक्षेप में वर्णन करें...",
+                submit: "संदेश भेजें"
             }
         },
-
-        // Floating Buttons
-        floating: {
-            whatsapp: "WhatsApp पर चैट करें",
-            call: "अभी कॉल करें"
+        footer: {
+            desc: "दुबई के केंद्र में उन्नत सर्जिकल सटीकता और दयालु देखभाल के माध्यम से आपके सक्रिय जीवन को बहाल करने के लिए समर्पित।",
+            nav: "नेविगेशन",
+            support: "सहायता",
+            clinic: "क्लीनिक की जानकारी",
+            rights: "सटीकता के लिए तैयार।",
+            patientResources: "रोगी संसाधन",
+            articles: "लेख",
+            privacy: "गोपनीयता"
         }
     },
-
     AR: {
-        // Navbar
+        common: {
+            doctorName: "د. أولهاس سونار",
+            specialty: "جراح عظام"
+        },
         nav: {
             home: "الرئيسية",
-            about: "حول",
+            about: "عن",
             services: "الخدمات",
+            articles: "مقالات",
             faq: "الأسئلة الشائعة",
             contact: "اتصل بنا",
             bookNow: "احجز الآن"
         },
-
-        // TopBar
         topBar: {
-            phone: "الهاتف",
+            phone: "اتصل بنا",
             email: "البريد الإلكتروني",
-            location: "الموقع"
+            location: "الموقع",
+            locationValue: "المستشفى الكندي التخصصي، دبي"
         },
-
-        // Hero Section
         hero: {
-            badge: "التميز في جراحة العظام",
-            title: "رعاية متخصصة في جراحة العظام",
-            subtitle: "في دبي",
-            description: "متخصصون في إصابات الرياضة، استبدال المفاصل والجراحات الروبوتية المتقدمة. رحلتك نحو الحركة الخالية من الألم تبدأ هنا.",
-            bookAppointment: "احجز موعد",
-            learnMore: "اعرف المزيد",
+            badge: "أخصائي جراحة العظام الرائد في دبي",
+            title: "تحرك بدون",
+            subtitle: "قيود",
+            description: "استبدال المفاصل المتقدم والطب الرياضي. رعاية دقيقة مصممة لتعافيك السريع وصحة مفاصلك على المدى الطويل.",
+            bookAppointment: "احجز استشارة",
+            learnMore: "استكشف الخدمات",
             stats: {
-                experience: "سنوات الخبرة",
-                patients: "المرضى السعداء",
-                surgeries: "العمليات الناجحة",
+                experience: "خبير سنوات",
+                surgeries: "عمليات ناجحة",
                 rating: "تقييم المرضى"
             }
         },
-
-        // About Section
         about: {
             badge: "عن الدكتور أولهاس",
-            title: "خبيرك الموثوق",
-            titleHighlight: "في جراحة العظام",
-            titleEnd: "في دبي",
+            title: "مسار شخصي نحو",
+            titleHighlight: "التعافي",
+            titleEnd: "",
             description1: "الدكتور أولهاس سونار هو جراح عظام بريطاني هندي متميز يتمتع بخبرة عالمية واسعة في المملكة المتحدة والهند وجزيرة جيرسي ودبي.",
             description2: "خريج كلية بي جي الطبية في بونا، وتابع تدريبه المتقدم في مؤسسات مرموقة مثل مستشفى رايتنجتون ومستشفى اليوبيل الذهبي في المملكة المتحدة. حاصل على ماجستير في جراحة الأطراف العلوية ودبلوم دراسات عليا في استبدال الركبة بمساعدة الكمبيوتر والروبوت.",
             experienceBadge: "سنوات الخبرة",
@@ -351,15 +419,13 @@ export const translations = {
                 }
             }
         },
-
-        // Services Section
         services: {
             badge: "التخصصات الطبية",
-            title: "حلول متخصصة",
-            titleHighlight: "في جراحة العظام",
+            title: "خدماتنا",
+            titleHighlight: "المتخصصة",
             titleEnd: "",
             description: "رعاية شاملة باستخدام أحدث التطورات الجراحية وغير الجراحية لحركتك وصحتك.",
-            viewDetails: "عرض التفاصيل",
+            viewDetails: "اعرف المزيد",
             showMore: "عرض المزيد من الخدمات",
             showLess: "عرض أقل",
             items: [
@@ -397,40 +463,76 @@ export const translations = {
                 }
             ]
         },
-
-        // FAQ Section
         faq: {
-            badge: "الأسئلة الشائعة",
-            title: "الأسئلة",
-            titleHighlight: "المتكررة"
+            badge: "توضيحات للمرضى",
+            title: "أسئلة شائعة",
+            items: [
+                {
+                    question: "متى يجب أن أفكر في جراحة استبدال المفاصل؟",
+                    answer: "غالبًا ما يشير التهاب المفاصل الحاد أو فقدان الغضروف أو التشوهات التي لا تستجيب للعلاجات التحفظية إلى الحاجة إلى استبدال المفصل، خاصة في مفاصل الركبة والورك."
+                },
+                {
+                    question: "ما هي مدة فترة التعافي؟",
+                    answer: "يستغرق التعافي بعد استبدال الركبة أو الورك عادة من 6 إلى 12 أسبوعًا للحركة الأساسية، مع تعافي كامل يتطلب غالبًا من 6 إلى 12 شهرًا."
+                },
+                {
+                    question: "ما هي فوائد الجراحة بالمنظار؟",
+                    answer: "توفر الجراحة بالمنظار شقوقًا أصغر وألمًا أقل وتعافيًا أسرع ومخاطر عدوى أقل مقارنة بالجراحة المفتوحة."
+                },
+                {
+                    question: "هل يستحق الأمر الحصول على رأي ثانٍ؟",
+                    answer: "نعم، نشجع بشدة على الحصول على رأي ثانٍ قبل الجراحة لتأكيد تشخيصك واستكشاف جميع خيارات العلاج. يقدم الدكتور أولهاس آراء ثانية تكميلية."
+                },
+                {
+                    question: "كيف يتم علاج الإصابات الرياضية؟",
+                    answer: "يتم علاج الإصابات الرياضية بناءً على شدتها، وغالبًا ما تتضمن الراحة والعلاج الطبيعي والأدوية أو الجراحة إذا لزم الأمر."
+                }
+            ]
         },
-
-        // Contact Section
+        testimonials: {
+            title: "ماذا يقول مرضانا",
+            reviewButton: "اكتب مراجعة على Google"
+        },
         contact: {
             badge: "ابق على تواصل",
-            title: "اتصل بـ",
-            titleHighlight: "الدكتور أولهاس",
-            description: "حدد موعد استشارة أو تواصل لأي مخاوف تتعلق بجراحة العظام. نحن هنا لمساعدتك على استعادة حركتك.",
+            title: "ابدأ رحلة",
+            titleHighlight: "التعافي",
+            description: "اتخذ الخطوة الأولى نحو حياة خالية من الألم. فريقنا مستعد لمساعدتك بخبرة عالمية.",
+            cards: {
+                call: {
+                    title: "دعم مخصص",
+                    sub: "خط مباشر للمواعيد والاستفسارات"
+                },
+                email: {
+                    title: "راسلنا",
+                    sub: "للسجلات الرسمية والأسئلة التفصيلية"
+                },
+                visit: {
+                    title: "زيارة العيادة",
+                    content: "مكتب 303، مبنى رويال كلاس",
+                    sub: "مجمع دبي للاستثمار، دبي، الإمارات"
+                },
+                social: "تواصل معنا"
+            },
             form: {
+                title: "إرسال رسالة خاصة",
                 name: "اسمك",
                 email: "بريدك الإلكتروني",
                 phone: "رقم الهاتف",
-                message: "رسالتك",
-                submit: "إرسال الرسالة",
-                sending: "جاري الإرسال..."
-            },
-            info: {
-                phone: "الهاتف",
-                email: "البريد الإلكتروني",
-                location: "الموقع",
-                locationValue: "مستشفى المدينة، دبي، الإمارات"
+                medicalInquiry: "استفسار طبي",
+                placeholder: "صف حالتك بإيجاز...",
+                submit: "إرسال الرسالة"
             }
         },
-
-        // Floating Buttons
-        floating: {
-            whatsapp: "الدردشة على WhatsApp",
-            call: "اتصل الآن"
+        footer: {
+            desc: "مكرس لاستعادة حياتك النشطة من خلال الدقة الجراحية المتقدمة والرعاية الرحيمة في قلب دبي.",
+            nav: "التنقل",
+            support: "الدعم",
+            clinic: "معلومات العيادة",
+            rights: "صمم من أجل الدقة.",
+            patientResources: "موارد المرضى",
+            articles: "مقالات",
+            privacy: "الخصوصية"
         }
     }
 };

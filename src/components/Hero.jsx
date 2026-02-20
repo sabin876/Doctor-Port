@@ -6,7 +6,7 @@ import slide2 from '../assets/hero-bg-2.jpg';
 import slide3 from '../assets/hero-bg-3.jpg';
 
 const Hero = () => {
-    const { language } = useLanguage();
+    const { language, t } = useLanguage();
     const isRtl = language === 'AR';
     const [currentSlide, setCurrentSlide] = React.useState(0);
     const slides = [slide1, slide2, slide3];
@@ -54,18 +54,18 @@ const Hero = () => {
                             className="inline-flex items-center px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-bold mb-8 shadow-glass"
                         >
                             <span className="w-2.5 h-2.5 rounded-full bg-blue-400 me-3 animate-pulse shadow-[0_0_10px_rgba(96,165,250,0.8)]"></span>
-                            Leading Orthopedic Specialist in Dubai
+                            {t('hero.badge')}
                         </motion.div>
 
                         <h1 className="text-6xl md:text-7xl lg:text-[100px] font-montserrat font-extrabold text-white leading-[1.05] mb-8 tracking-tighter">
-                            Move Without <br />
+                            {t('hero.title')} <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-white animate-shimmer bg-[length:200%_auto]">
-                                Limits
+                                {t('hero.subtitle')}
                             </span>
                         </h1>
 
                         <p className="text-xl md:text-2xl text-blue-50/90 mb-10 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
-                            Advanced Joint Replacement & Sports Medicine. Precision care designed for your swift recovery and long-term joint health.
+                            {t('hero.description')}
                         </p>
 
                         <motion.div
@@ -81,7 +81,7 @@ const Hero = () => {
                                 className="group relative flex items-center justify-center px-10 py-5 bg-white text-primary-900 rounded-2xl font-black text-lg transition-all hover:scale-105 hover:shadow-[0_20px_40px_-10px_rgba(255,255,255,0.3)] active:scale-95 overflow-hidden"
                             >
                                 <span className="relative z-10 flex items-center">
-                                    Book Consult <Calendar className="ms-3 w-6 h-6 group-hover:rotate-12 transition-transform" />
+                                    {t('hero.bookAppointment')} <Calendar className="ms-3 w-6 h-6 group-hover:rotate-12 transition-transform" />
                                 </span>
                             </a>
                             <Link
@@ -90,7 +90,7 @@ const Hero = () => {
                                 offset={-70}
                                 className="flex items-center justify-center px-10 py-5 bg-blue-600/20 backdrop-blur-xl text-white border-2 border-white/30 rounded-2xl font-black text-lg transition-all hover:bg-blue-600/40 hover:border-white/60 hover:scale-105 cursor-pointer"
                             >
-                                Explorer Services
+                                {t('hero.learnMore')}
                                 <ChevronRight className="ms-2 w-6 h-6" />
                             </Link>
                         </motion.div>
@@ -103,17 +103,17 @@ const Hero = () => {
                         >
                             <div className="flex flex-col">
                                 <span className="text-4xl font-extrabold text-white tracking-tight">14+</span>
-                                <span className="text-xs text-blue-300 uppercase tracking-[0.2em] font-semibold">Years Expert</span>
+                                <span className="text-xs text-blue-300 uppercase tracking-[0.2em] font-semibold">{t('hero.stats.experience')}</span>
                             </div>
                             <div className="w-px h-12 bg-white/20 hidden sm:block"></div>
                             <div className="flex flex-col">
                                 <span className="text-4xl font-extrabold text-white tracking-tight">5K+</span>
-                                <span className="text-xs text-blue-300 uppercase tracking-[0.2em] font-semibold">Success Ops</span>
+                                <span className="text-xs text-blue-300 uppercase tracking-[0.2em] font-semibold">{t('hero.stats.surgeries')}</span>
                             </div>
                             <div className="w-px h-12 bg-white/20 hidden sm:block"></div>
                             <div className="flex flex-col">
                                 <span className="text-4xl font-extrabold text-white tracking-tight">5.0</span>
-                                <span className="text-xs text-blue-300 uppercase tracking-[0.2em] font-semibold">Patient Score</span>
+                                <span className="text-xs text-blue-300 uppercase tracking-[0.2em] font-semibold">{t('hero.stats.rating')}</span>
                             </div>
                         </motion.div>
                     </motion.div>

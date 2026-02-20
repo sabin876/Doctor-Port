@@ -4,37 +4,37 @@ import doctorProfileImg from '../assets/doctor-profile.png';
 import { useLanguage } from '../context/LanguageContext';
 
 const About = () => {
-    const { language } = useLanguage();
+    const { language, t } = useLanguage();
     const isRtl = language === 'AR';
     const qualifications = [
         {
             icon: Globe,
-            title: "Global Expertise",
-            desc: "UK, India, Jersey & Dubai",
+            title: t('about.qualifications.global.title'),
+            desc: t('about.qualifications.global.desc'),
             gradient: "from-blue-500 to-cyan-500",
             iconBg: "bg-blue-50",
             iconColor: "text-blue-600"
         },
         {
             icon: GraduationCap,
-            title: "Advanced Training",
-            desc: "Wrightington & Golden Jubilee",
+            title: t('about.qualifications.training.title'),
+            desc: t('about.qualifications.training.desc'),
             gradient: "from-indigo-500 to-purple-500",
             iconBg: "bg-indigo-50",
             iconColor: "text-indigo-600"
         },
         {
             icon: Award,
-            title: "Fellowships",
-            desc: "FRCS (England), EBOT",
+            title: t('about.qualifications.fellowships.title'),
+            desc: t('about.qualifications.fellowships.desc'),
             gradient: "from-purple-500 to-pink-500",
             iconBg: "bg-purple-50",
             iconColor: "text-purple-600"
         },
         {
             icon: CheckCircle,
-            title: "Specialisation",
-            desc: "Upper Limb & Robotic Knee",
+            title: t('about.qualifications.specialisation.title'),
+            desc: t('about.qualifications.specialisation.desc'),
             gradient: "from-emerald-500 to-teal-500",
             iconBg: "bg-emerald-50",
             iconColor: "text-emerald-600"
@@ -73,7 +73,7 @@ const About = () => {
                                 className="absolute bottom-8 start-8 z-20 bg-white/20 backdrop-blur-xl px-8 py-5 rounded-3xl shadow-2xl border border-white/30"
                             >
                                 <p className="text-5xl font-extrabold text-white drop-shadow-lg">15+</p>
-                                <p className="text-sm font-bold text-white/90 mt-1">Years Experience</p>
+                                <p className="text-sm font-bold text-white/90 mt-1">{t('about.experienceBadge')}</p>
                             </motion.div>
                         </div>
                     </motion.div>
@@ -90,19 +90,19 @@ const About = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             className="inline-block px-5 py-2 mb-6 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 text-primary-600 text-[11px] font-bold uppercase tracking-[0.2em]"
                         >
-                            About Dr. Ulhas
+                            {t('about.badge')}
                         </motion.div>
 
                         <h2 className="text-4xl md:text-5xl font-montserrat font-extrabold text-[#333] mb-8 tracking-tight">
-                            Personalized Path to <span className="text-blue-600">Recovery</span>
+                            {t('about.title')} <span className="text-blue-600">{t('about.titleHighlight')}</span> {t('about.titleEnd')}
                         </h2>
 
                         <p className="text-lg text-gray-600 mb-5 leading-relaxed">
-                            Dr. Ulhas Sonar is a distinguished British-Indian orthopedic surgeon with extensive global experience across the UK, India, Jersey Island, and Dubai.
+                            {t('about.description1')}
                         </p>
 
                         <p className="text-base text-gray-500 mb-10 leading-relaxed">
-                            A graduate of B J Medical College, Pune, he pursued advanced training at prestigious institutions like Wrightington Hospital and Golden Jubilee Hospital in the UK. He holds an MCh in Upper Limb Surgery and a PG Diploma in Computer and Robotic-Assisted Knee Replacement.
+                            {t('about.description2')}
                         </p>
 
                         {/* Premium Cards Grid */}

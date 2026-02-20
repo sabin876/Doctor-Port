@@ -6,47 +6,9 @@
   <link rel="icon" type="image/png" href="/src/assets/logo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>dr-ulhas-ortho</title>
-  <style>
-    /* Prevent Google Translate from shifting the layout */
-    html {
-      top: 0 !important;
-    }
-
-    body {
-      top: 0 !important;
-      position: static !important;
-    }
-
-    /* Hide the Google Translate bar and other UI elements */
-    .skiptranslate,
-    .goog-te-banner-frame,
-    #goog-gt-tt,
-    .goog-te-balloon-frame,
-    .google-translate-banner-stripped {
-      display: none !important;
-      visibility: hidden !important;
-    }
-
-    .goog-te-menu-value {
-      display: none !important;
-    }
-  </style>
 </head>
 
 <body>
-  <div id="google_translate_element" style="display:none"></div>
-  <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'en',
-        includedLanguages: 'en,ar,hi',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-        autoDisplay: false
-      }, 'google_translate_element');
-    }
-  </script>
-  <script type="text/javascript"
-    src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>

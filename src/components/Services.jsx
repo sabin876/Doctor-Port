@@ -14,55 +14,58 @@ import {
     ArrowRight
 } from 'lucide-react';
 
+import { useLanguage } from '../context/LanguageContext';
+
 const Services = () => {
+    const { t } = useLanguage();
     const [showAll, setShowAll] = useState(false);
 
     const services = [
         {
-            title: "Sports / ACL / Meniscus Injury Management",
-            desc: "Customized plans for ligament injuries, tendonitis, and joint overload, surgical and non-surgical.",
+            title: t('services.items.0.title'),
+            desc: t('services.items.0.desc'),
             icon: Activity,
             color: "bg-primary-600"
         },
         {
-            title: "Knee and Shoulder Arthroscopy",
-            desc: "Minimally invasive treatment for ligament tears, meniscus injuries, and joint instability.",
+            title: t('services.items.1.title'),
+            desc: t('services.items.1.desc'),
             icon: Scan,
             color: "bg-primary-700"
         },
         {
-            title: "Deformity Corrections / Osteotomies",
-            desc: "Comprehensive care for degenerative joints including knee and hip replacements.",
+            title: t('services.items.2.title'),
+            desc: t('services.items.2.desc'),
             icon: Bone,
             color: "bg-primary-600"
         },
         {
-            title: "Total / Partial Joint Replacement Surgeries",
-            desc: "Comprehensive care for degenerative joints including knee and hip replacements.",
+            title: t('services.items.3.title'),
+            desc: t('services.items.3.desc'),
             icon: Layers,
             color: "bg-primary-700"
         },
         {
-            title: "Robotic / Computer Assisted Surgeries",
-            desc: "Advanced precision surgery using robotic assistance for better outcomes.",
+            title: t('services.items.4.title'),
+            desc: t('services.items.4.desc'),
             icon: Cpu,
             color: "bg-primary-600"
         },
         {
-            title: "Joint Preservation / Regeneration",
-            desc: "Minimally invasive treatment for ligament tears, meniscus injuries, and joint instability.",
+            title: t('services.items.5.title'),
+            desc: t('services.items.5.desc'),
             icon: HeartPulse,
             color: "bg-primary-700"
         },
         {
-            title: "Fractures and Trauma Care",
-            desc: "Emergency stabilization, surgical repair, and rehabilitation for fractures and dislocations.",
+            title: t('services.items.6.title'),
+            desc: t('services.items.6.desc'),
             icon: Bandage,
             color: "bg-primary-600"
         },
         {
-            title: "Bone & Joint Health Consultation",
-            desc: "You don't need to wait for pain to become unbearable. Expert consultation.",
+            title: t('services.items.7.title'),
+            desc: t('services.items.7.desc'),
             icon: Stethoscope,
             color: "bg-primary-700"
         }
@@ -79,20 +82,20 @@ const Services = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         className="inline-block px-4 py-1.5 mb-4 rounded-full bg-primary-50 text-primary-700 text-[11px] font-bold uppercase tracking-[0.2em]"
                     >
-                        Medical Specializations
+                        {t('services.badge')}
                     </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         className="text-4xl md:text-5xl font-montserrat font-extrabold text-gray-900 mb-6 tracking-tight">
-                        Our Specialized <span className="text-primary-600">Services</span>
+                        {t('services.title')} <span className="text-primary-600">{t('services.titleHighlight')}</span> {t('services.titleEnd')}
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         className="mt-4 max-w-2xl text-lg font-normal text-gray-600 mx-auto"
                     >
-                        Comprehensive care using the latest surgical and non-surgical advancements for your mobility and health.
+                        {t('services.description')}
                     </motion.p>
                 </div>
 
@@ -137,7 +140,7 @@ const Services = () => {
                                             whileTap={{ scale: 0.95 }}
                                             className="px-6 py-2 border-2 border-white text-white text-[13px] font-bold uppercase tracking-widest rounded-full hover:bg-white hover:text-primary-700 transition-all duration-300 flex items-center justify-center"
                                         >
-                                            Learn More
+                                            {t('services.viewDetails')}
                                         </motion.button>
                                     </div>
                                 </div>
@@ -161,12 +164,12 @@ const Services = () => {
                     >
                         {showAll ? (
                             <>
-                                Show Less
+                                {t('services.showLess')}
                                 <ChevronUp className="w-5 h-5 transition-transform group-hover:translate-y-[-2px]" />
                             </>
                         ) : (
                             <>
-                                Show More Services
+                                {t('services.showMore')}
                                 <ChevronDown className="w-5 h-5 transition-transform group-hover:translate-y-[2px]" />
                             </>
                         )}

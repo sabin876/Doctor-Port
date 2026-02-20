@@ -1,32 +1,34 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
-
-const faqs = [
-    {
-        question: "When should I consider joint replacement surgery?",
-        answer: "Severe arthritis, cartilage loss, or deformities not responsive to conservative treatments often indicate the need for joint replacement, especially in knee and hip joints."
-    },
-    {
-        question: "How long is the recovery period?",
-        answer: "Recovery after knee or hip replacement usually takes 6–12 weeks for basic mobility, with full recovery often requiring 6–12 months."
-    },
-    {
-        question: "What are the benefits of arthroscopic surgery?",
-        answer: "Arthroscopic surgery offers smaller incisions, less pain, faster recovery, and lower infection risk compared to open surgery."
-    },
-    {
-        question: "Is it worth getting a second opinion?",
-        answer: "Yes, seeking a second opinion before surgery is encouraged to confirm your diagnosis and explore all treatment options. Dr. Ulhas offers complementary second opinions."
-    },
-    {
-        question: "How are sports injuries treated?",
-        answer: "Sports injuries are treated based on severity, often involving rest, physical therapy, medications, or surgery if necessary."
-    }
-];
+import { useLanguage } from '../context/LanguageContext';
 
 const FAQ = () => {
+    const { t } = useLanguage();
     const [openIndex, setOpenIndex] = useState(null);
+
+    const faqs = [
+        {
+            question: t('faq.items.0.question'),
+            answer: t('faq.items.0.answer')
+        },
+        {
+            question: t('faq.items.1.question'),
+            answer: t('faq.items.1.answer')
+        },
+        {
+            question: t('faq.items.2.question'),
+            answer: t('faq.items.2.answer')
+        },
+        {
+            question: t('faq.items.3.question'),
+            answer: t('faq.items.3.answer')
+        },
+        {
+            question: t('faq.items.4.question'),
+            answer: t('faq.items.4.answer')
+        }
+    ];
 
     return (
         <section id="faq" className="py-24 bg-gray-50">
@@ -37,7 +39,7 @@ const FAQ = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         className="inline-block px-4 py-1.5 mb-6 rounded-full bg-primary-50 text-primary-600 text-xs font-black uppercase tracking-[0.2em]"
                     >
-                        Patient Clarifications
+                        {t('faq.badge')}
                     </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -45,7 +47,7 @@ const FAQ = () => {
                         viewport={{ once: true }}
                         className="text-4xl md:text-5xl font-montserrat font-extrabold text-[#333] mb-8 tracking-tight"
                     >
-                        Common Questions
+                        {t('faq.title')}
                     </motion.h2>
                 </div>
 
@@ -81,6 +83,6 @@ const FAQ = () => {
             </div>
         </section>
     );
-}
+};
 
 export default FAQ;
