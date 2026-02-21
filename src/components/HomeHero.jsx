@@ -186,29 +186,88 @@ const HomeHero = () => {
 
                     {/* Right Column - Slideshow */}
                     <motion.div
-                        initial={{ opacity: 0, x: isRtl ? -50 : 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="relative w-full h-[500px] lg:h-[600px] order-1 lg:order-2"
+                        initial={{ opacity: 0, scale: 0.9, x: isRtl ? -50 : 50 }}
+                        animate={{ opacity: 1, scale: 1, x: 0 }}
+                        transition={{ duration: 1, ease: "easeOut" }}
+                        className="relative w-full h-[500px] lg:h-[600px] order-1 lg:order-2 flex items-center justify-center pt-8"
                     >
-                        <div className="relative z-10 w-full h-full overflow-hidden">
-                            <AnimatePresence mode='wait'>
+                        {/* Decorative Background Elements */}
+                        <motion.div
+                            animate={{
+                                scale: [1, 1.2, 1],
+                                opacity: [0.3, 0.5, 0.3],
+                                rotate: [0, 90, 0]
+                            }}
+                            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-400/20 blur-[100px] rounded-full z-0"
+                        />
+                        <motion.div
+                            animate={{
+                                scale: [1.2, 1, 1.2],
+                                opacity: [0.2, 0.4, 0.2],
+                                rotate: [0, -90, 0]
+                            }}
+                            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-cyan-400/10 blur-[80px] rounded-full z-0"
+                        />
+
+                        {/* main photo container with floating motion */}
+                        <motion.div
+                            className="relative z-10 w-full h-full max-w-[500px] lg:max-w-full"
+                            animate={{
+                                y: [-15, 15, -15],
+                                rotate: [-1, 1, -1]
+                            }}
+                            transition={{
+                                duration: 6,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                        >
+                            <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/40 border border-white/10 group">
+                                <AnimatePresence mode='wait'>
+                                    <motion.div
+                                        key={currentSlide}
+                                        initial={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
+                                        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                                        exit={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
+                                        transition={{ duration: 1.2, ease: "anticipate" }}
+                                        className="relative w-full h-full"
+                                    >
+                                        <img
+                                            src={slidesData[currentSlide].image}
+                                            alt="Hero Slide"
+                                            className="w-full h-full object-cover transition-transform duration-[6000ms] ease-linear scale-110 group-hover:scale-100"
+                                        />
+
+                                        {/* Overlay gradient for depth */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#043275]/40 via-transparent to-transparent"></div>
+                                    </motion.div>
+                                </AnimatePresence>
+
+                                {/* Floating Info Card inside the image area */}
                                 <motion.div
-                                    key={currentSlide}
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 1.5 }}
-                                    className="relative w-full h-full"
+                                    initial={{ opacity: 0, x: 50 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 1.5, duration: 0.8 }}
+                                    className="absolute bottom-10 right-10 bg-white/10 backdrop-blur-xl border border-white/20 p-4 rounded-2xl hidden md:block"
                                 >
-                                    <img
-                                        src={slidesData[currentSlide].image}
-                                        alt="Hero Slide"
-                                        className="w-full h-full object-cover"
-                                    />
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 rounded-full bg-cyan-400/20 flex items-center justify-center">
+                                            <div className="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></div>
+                                        </div>
+                                        <div>
+                                            <p className="text-white text-xs font-bold uppercase tracking-wider opacity-60">Success Rate</p>
+                                            <p className="text-white text-lg font-black leading-none">99.8%</p>
+                                        </div>
+                                    </div>
                                 </motion.div>
-                            </AnimatePresence>
-                        </div>
+                            </div>
+
+                            {/* Decorative Frame Elements */}
+                            <div className="absolute -top-4 -left-4 w-24 h-24 border-t-4 border-l-4 border-cyan-400/40 rounded-tl-3xl"></div>
+                            <div className="absolute -bottom-4 -right-4 w-24 h-24 border-b-4 border-r-4 border-blue-400/40 rounded-br-3xl"></div>
+                        </motion.div>
                     </motion.div>
 
                 </div>

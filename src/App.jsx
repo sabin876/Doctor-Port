@@ -5,6 +5,7 @@ import Home from './components/Home';
 import AboutPage from './components/AboutPage';
 import Contact from './components/Contact';
 import Articles from './components/Articles';
+import ArticleDetail from './components/ArticleDetail';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import FloatingControls from './components/FloatingControls';
@@ -22,6 +23,7 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/articles" element={<Articles />} />
+          <Route path="/articles/:id" element={<ArticleDetail />} />
           <Route path="/faq" element={<FAQ />} />
         </Routes>
         <Footer />
