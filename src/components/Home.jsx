@@ -2,11 +2,8 @@ import React from 'react';
 import HomeHero from './HomeHero';
 import SpecializedSolutions from './SpecializedSolutions';
 import SportingInjury from './SportingInjury';
-import About from './About';
 import WhyChooseUs from './WhyChooseUs';
-import Services from './Services';
 import Testimonials from './Testimonials';
-import Appointment from './Appointment';
 
 const Home = () => {
     return (
@@ -15,10 +12,7 @@ const Home = () => {
             <SpecializedSolutions />
             <SportingInjury />
             {/* <WhyChooseUs /> */}
-            <About />
-            <Services />
             <Testimonials />
-            <Appointment />
         </main>
     );
 };

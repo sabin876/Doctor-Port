@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -120,13 +120,13 @@ const SpecializedSolutions = () => {
                     transition={{ duration: 0.6, delay: 0.8 }}
                     className="mt-16 text-center"
                 >
-                    <a
-                        href="#services"
+                    <Link
+                        to="/services"
                         className="inline-flex items-center gap-2 text-[#0088cc] font-bold text-sm uppercase tracking-widest hover:text-[#006699] transition-colors group"
                     >
                         View All Services & Treatments
                         <ArrowRight className={`w-5 h-5 transition-transform group-hover:${isRtl ? '-translate-x-1' : 'translate-x-1'}`} />
-                    </a>
+                    </Link>
                 </motion.div>
             </div>
 

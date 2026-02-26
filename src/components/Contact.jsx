@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Facebook, Linkedin, Instagram, Youtube, Twitter, Send } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Linkedin, Instagram, Youtube, Twitter, Send, Activity, ShieldCheck, Zap } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const Contact = () => {
@@ -7,36 +7,108 @@ const Contact = () => {
     const isRtl = language === 'AR';
     return (
         <section id="contact" className="relative py-24 bg-white overflow-hidden">
-            {/* Background Decorations */}
-            <div className="absolute top-0 start-0 w-full h-full overflow-hidden z-0 opacity-30 pointer-events-none">
-                <div className="absolute top-[-10%] end-[-5%] w-[30rem] h-[30rem] bg-blue-100 rounded-full blur-[100px]"></div>
-                <div className="absolute bottom-[-10%] start-[-10%] w-[30rem] h-[30rem] bg-blue-50 rounded-full blur-[100px]"></div>
+            {/* Orthopedic Background Animation */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+                {/* Medical Grid Lines */}
+                <div className="absolute inset-0 opacity-[0.03]"
+                    style={{
+                        backgroundImage: 'linear-gradient(#0088cc 1px, transparent 1px), linear-gradient(90deg, #0088cc 1px, transparent 1px)',
+                        backgroundSize: '40px 40px'
+                    }}
+                />
+
+                {/* Floating Medical Elements */}
+                <motion.div
+                    animate={{
+                        y: [0, -20, 0],
+                        rotate: [0, 5, 0]
+                    }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute top-[10%] left-[5%] opacity-[0.05] text-blue-600"
+                >
+                    <Activity size={120} strokeWidth={0.5} />
+                </motion.div>
+
+                <motion.div
+                    animate={{
+                        y: [0, 30, 0],
+                        rotate: [0, -10, 0]
+                    }}
+                    transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                    className="absolute bottom-[15%] right-[8%] opacity-[0.05] text-teal-600"
+                >
+                    <ShieldCheck size={160} strokeWidth={0.5} />
+                </motion.div>
+
+                <motion.div
+                    animate={{
+                        scale: [1, 1.1, 1],
+                        opacity: [0.03, 0.05, 0.03]
+                    }}
+                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute top-[40%] right-[15%] text-blue-400"
+                >
+                    <Zap size={80} strokeWidth={0.5} />
+                </motion.div>
+
+                {/* Subtle Gradient Glows */}
+                <div className="absolute top-[-10%] end-[-5%] w-[40rem] h-[40rem] bg-blue-100/50 rounded-full blur-[120px]"></div>
+                <div className="absolute bottom-[-10%] start-[-10%] w-[40rem] h-[40rem] bg-teal-50/50 rounded-full blur-[120px]"></div>
             </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-16">
                     <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, scale: 0.8, filter: 'blur(10px)' }}
+                        whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
                         className="inline-block px-4 py-1.5 mb-6 rounded-full bg-blue-50 text-blue-600 text-[11px] font-bold uppercase tracking-[0.2em]"
                     >
                         {t('contact.badge')}
                     </motion.div>
+
                     <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
+                        transition={{
+                            duration: 1,
+                            type: "spring",
+                            stiffness: 100,
+                            damping: 20
+                        }}
                         className="text-4xl md:text-5xl font-montserrat font-extrabold text-blue-900 mb-6 tracking-tight"
                     >
                         {t('contact.title')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 font-black">{t('contact.titleHighlight')}</span>
                     </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        className="max-w-2xl text-lg font-normal text-gray-600 mx-auto"
-                    >
-                        {t('contact.description')}
-                    </motion.p>
+
+                    <div className="max-w-2xl mx-auto overflow-hidden">
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                            className="text-lg font-normal text-gray-600"
+                        >
+                            {t('contact.description').split(' ').map((word, i) => (
+                                <motion.span
+                                    key={i}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{
+                                        duration: 0.5,
+                                        delay: i * 0.03 + 0.3,
+                                        ease: "easeOut"
+                                    }}
+                                    className="inline-block me-1"
+                                >
+                                    {word}
+                                </motion.span>
+                            ))}
+                        </motion.p>
+                    </div>
                 </div>
 
                 <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
@@ -71,9 +143,14 @@ const Contact = () => {
 
                         {/* Social Media */}
                         <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.6 }}
+                            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                            transition={{
+                                delay: 0.6,
+                                type: "spring",
+                                stiffness: 60,
+                                damping: 15
+                            }}
                             className="bg-gray-50 rounded-[2rem] p-8 border border-gray-100"
                         >
                             <h3 className="text-sm font-bold text-gray-900 mb-6 uppercase tracking-wider">{t('contact.cards.social')}</h3>
@@ -89,9 +166,14 @@ const Contact = () => {
 
                     {/* Contact Form */}
                     <motion.div
-                        initial={{ opacity: 0, x: isRtl ? -50 : 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.4 }}
+                        initial={{ opacity: 0, x: isRtl ? -80 : 80, scale: 0.95 }}
+                        whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                        transition={{
+                            delay: 0.4,
+                            type: "spring",
+                            stiffness: 70,
+                            damping: 18
+                        }}
                         className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-xl border border-gray-100 relative overflow-hidden group lg:sticky lg:top-32 order-1 lg:order-2"
                     >
                         <div className="absolute top-0 end-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl group-hover:bg-blue-100 transition-all duration-700"></div>
@@ -124,10 +206,14 @@ const Contact = () => {
 
             {/* Map Section */}
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 40, scale: 0.98 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.6 }}
+                transition={{
+                    delay: 0.6,
+                    duration: 1,
+                    ease: "easeOut"
+                }}
                 className="mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
             >
                 <div className="bg-gray-50 rounded-[2rem] shadow-sm overflow-hidden border border-gray-100 h-64 lg:h-96 w-full relative group">
@@ -150,10 +236,15 @@ const Contact = () => {
 // Helper Components
 const ContactCard = ({ icon, title, content, subContent, delay, color, isLink, href }) => (
     <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, scale: 0.9, y: 30, rotateX: 15 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0, rotateX: 0 }}
         viewport={{ once: true }}
-        transition={{ delay }}
+        transition={{
+            delay,
+            type: "spring",
+            stiffness: 80,
+            damping: 15
+        }}
         className="flex items-start bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 hover:border-primary-100 group"
     >
         <div className={`flex-shrink-0 p-3.5 rounded-xl ${color} me-5 group-hover:scale-110 transition-transform duration-300`}>

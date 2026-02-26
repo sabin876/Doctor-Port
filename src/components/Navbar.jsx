@@ -43,7 +43,7 @@ const Navbar = () => {
     const navLinks = [
         { id: 'home', name: 'Home', target: 'home', isRouterLink: false },
         { id: 'about', name: 'About', path: '/about', isRouterLink: true },
-        { id: 'services', name: 'Services', target: 'services', isRouterLink: false },
+        { id: 'services', name: 'Services', path: '/services', isRouterLink: true },
         { id: 'articles', name: 'Articles', path: '/articles', isRouterLink: true },
         { id: 'faq', name: 'FAQ', path: '/faq', isRouterLink: true },
         { id: 'contact', name: 'Contact', path: '/contact', isRouterLink: true },

@@ -1,7 +1,7 @@
 import { CardContainer, CardBody, CardItem } from './ui/3d-card';
 import { useLanguage } from '../context/LanguageContext';
 import doctorImg from '../assets/hero-slide-1.png'; // Reverted to previous photo
-import slide1 from '../assets/hero-bg-1.jpg';
+import slide1 from '../assets/hero-bg-1.png';
 import slide2 from '../assets/hero-bg-2.jpg';
 import slide3 from '../assets/hero-bg-3.jpg';
 

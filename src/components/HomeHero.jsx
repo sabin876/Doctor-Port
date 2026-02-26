@@ -2,11 +2,12 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, ChevronRight } from 'lucide-react';
-import { Link } from 'react-scroll';
+import { Link as ScrollLink } from 'react-scroll';
+import { Link as RouterLink } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
 // Import images for the slideshow
-import slide1 from '../assets/Hero section1.png';
+import slide1 from '../assets/hero-bg-1.png';
 import slide2 from '../assets/Hero Section 2.png';
 import slide3 from '../assets/Hero Section 3.png';
 
@@ -142,15 +143,13 @@ const HomeHero = () => {
                                 </motion.span>
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                             </motion.a>
-                            <Link
-                                to="services"
-                                smooth={true}
-                                offset={-70}
+                            <RouterLink
+                                to="/services"
                                 className="flex items-center justify-center px-8 py-4 bg-white/10 text-white border border-white/20 rounded-xl font-bold text-lg transition-all hover:bg-white/20 hover:border-white/40 active:scale-95 cursor-pointer backdrop-blur-md"
                             >
                                 Explore Services
                                 <ChevronRight className="ms-2 w-5 h-5 text-white/80" />
-                            </Link>
+                            </RouterLink>
                         </motion.div>
 
                         {/* Stats - Compact Row */}

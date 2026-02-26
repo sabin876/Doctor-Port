@@ -121,36 +121,36 @@ export const translations = {
             showLess: "Show Less",
             items: [
                 {
-                    title: "Sports / ACL / Meniscus Injury Management",
-                    desc: "Customized plans for ligament injuries, tendonitis, and joint overload, surgical and non-surgical."
+                    title: "Joint Replacement",
+                    desc: "Advanced total and partial replacement for knee and hip joints using precision techniques."
                 },
                 {
-                    title: "Knee and Shoulder Arthroscopy",
-                    desc: "Minimally invasive treatment for ligament tears, meniscus injuries, and joint instability."
+                    title: "Sports Medicine",
+                    desc: "Comprehensive care for athletic injuries, including ACL reconstruction and ligament repair."
                 },
                 {
-                    title: "Deformity Corrections / Osteotomies",
-                    desc: "Comprehensive care for degenerative joints including knee and hip replacements."
+                    title: "Spine Surgery",
+                    desc: "Specialized treatment for neck and back conditions, from disc issues to complex spinal trauma."
                 },
                 {
-                    title: "Total / Partial Joint Replacement Surgeries",
-                    desc: "Comprehensive care for degenerative joints including knee and hip replacements."
+                    title: "Arthroscopic Surgery",
+                    desc: "Minimally invasive keyhole procedures for faster recovery in joint-related issues."
                 },
                 {
-                    title: "Robotic / Computer Assisted Surgeries",
-                    desc: "Advanced precision surgery using robotic assistance for better outcomes."
+                    title: "Hand and Wrist",
+                    desc: "Expert treatment for carpal tunnel, fractures, and complex hand/wrist deformities."
                 },
                 {
-                    title: "Joint Preservation / Regeneration",
-                    desc: "Minimally invasive treatment for ligament tears, meniscus injuries, and joint instability."
+                    title: "Foot and Ankle",
+                    desc: "Specialized care for deformities, sports injuries, and complex trauma of the foot/ankle."
                 },
                 {
-                    title: "Fractures and Trauma Care",
-                    desc: "Emergency stabilization, surgical repair, and rehabilitation for fractures and dislocations."
+                    title: "Orthopedic Trauma",
+                    desc: "Emergency care and surgical repair for complex fractures and severe bone injuries."
                 },
                 {
-                    title: "Bone & Joint Health Consultation",
-                    desc: "You don't need to wait for pain to become unbearable. Expert consultation."
+                    title: "Physiotherapy",
+                    desc: "Expert rehabilitation programs designed to restore mobility and strength after surgery."
                 }
             ]
         },
@@ -331,36 +331,36 @@ export const translations = {
             showLess: "कम दिखाएं",
             items: [
                 {
-                    title: "खेल / ACL / मेनिस्कस चोट प्रबंधन",
-                    desc: "लिगामेंट चोटों, टेंडोनाइटिस और जोड़ों के अधिभार के लिए अनुकूलित योजनाएं, सर्जिकल और गैर-सर्जिकल।"
+                    title: "जोड़ प्रतिस्थापन (Joint Replacement)",
+                    desc: "सटीक तकनीकों का उपयोग करके घुटने और कूल्हे के जोड़ों के लिए उन्नत पूर्ण और आंशिक प्रतिस्थापन।"
                 },
                 {
-                    title: "घुटने और कंधे की आर्थ्रोस्कोपी",
-                    desc: "लिगामेंट आंसू, मेनिस्कस चोटों और जोड़ों की अस्थिरता के लिए न्यूनतम आक्रामक उपचार।"
+                    title: "स्पोर्ट्स मेडिसिन (Sports Medicine)",
+                    desc: "ACL पुनर्निर्माण और लिगामेंट मरम्मत सहित एथलेटिक चोटों के लिए व्यापक देखभाल।"
                 },
                 {
-                    title: "विकृति सुधार / ऑस्टियोटॉमी",
-                    desc: "घुटने और कूल्हे के प्रतिस्थापन सहित अपक्षयी जोड़ों के लिए व्यापक देखभाल।"
+                    title: "रीढ़ की सर्जरी (Spine Surgery)",
+                    desc: "डिस्क की समस्याओं से लेकर जटिल रीढ़ की चोटों तक, गर्दन और पीठ की स्थितियों के लिए विशेष उपचार।"
                 },
                 {
-                    title: "कुल / आंशिक जोड़ प्रतिस्थापन सर्जरी",
-                    desc: "घुटने और कूल्हे के प्रतिस्थापन सहित अपक्षयी जोड़ों के लिए व्यापक देखभाल।"
+                    title: "आर्थ्रोस्कोपिक सर्जरी (Arthroscopic Surgery)",
+                    desc: "जोड़ों से संबंधित समस्याओं में तेजी से रिकवरी के लिए न्यूनतम आक्रामक कीहोल प्रक्रियाएं।"
                 },
                 {
-                    title: "रोबोटिक / कंप्यूटर सहायता प्राप्त सर्जरी",
-                    desc: "बेहतर परिणामों के लिए रोबोटिक सहायता का उपयोग करते हुए उन्नत सटीक सर्जरी।"
+                    title: "हाथ और कलाई (Hand and Wrist)",
+                    desc: "कार्पल टनेल, फ्रैक्चर और जटिल हाथ/कलाई की विकृतियों के लिए विशेषज्ञ उपचार।।"
                 },
                 {
-                    title: "जोड़ संरक्षण / पुनर्जनन",
-                    desc: "लिगामेंट आंसू, मेनिस्कस चोटों और जोड़ों की अस्थिरता के लिए न्यूनतम आक्रामक उपचार।"
+                    title: "पैर और टखना (Foot and Ankle)",
+                    desc: "पैर/टखने की विकृतियों, खेल की चोटों और जटिल आघात के लिए विशेष देखभाल।"
                 },
                 {
-                    title: "फ्रैक्चर और ट्रॉमा केयर",
-                    desc: "फ्रैक्चर और अव्यवस्था के लिए आपातकालीन स्थिरीकरण, सर्जिकल मरम्मत और पुनर्वास।"
+                    title: "आर्थोपेडिक आघात (Orthopedic Trauma)",
+                    desc: "जटिल फ्रैक्चर और गंभीर हड्डियों की चोटों के लिए आपातकालीन देखभाल और सर्जिकल मरम्मत।"
                 },
                 {
-                    title: "हड्डी और जोड़ स्वास्थ्य परामर्श",
-                    desc: "आपको दर्द असहनीय होने तक इंतजार करने की जरूरत नहीं है। विशेषज्ञ परामर्श।"
+                    title: "फिजियोथेरेपी (Physiotherapy)",
+                    desc: "सर्जरी के बाद गतिशीलता और ताकत बहाल करने के लिए डिज़ाइन किए गए विशेषज्ञ पुनर्वास कार्यक्रम।"
                 }
             ]
         },
@@ -538,36 +538,36 @@ export const translations = {
             showLess: "عرض أقل",
             items: [
                 {
-                    title: "إدارة إصابات الرياضة / الرباط الصليبي / الغضروف المفصلي",
-                    desc: "خطط مخصصة لإصابات الأربطة والتهاب الأوتار وزيادة الحمل على المفاصل، جراحية وغير جراحية."
+                    title: "استبدال المفاصل",
+                    desc: "استبدال كلي وجزئي متقدم لمفاصل الركبة والورك باستخدام تقنيات دقيقة."
                 },
                 {
-                    title: "تنظير الركبة والكتف",
-                    desc: "علاج طفيف التوغل لتمزق الأربطة وإصابات الغضروف المفصلي وعدم استقرار المفاصل."
+                    title: "الطب الرياضي",
+                    desc: "رعاية شاملة للإصابات الرياضية، بما في ذلك إعادة بناء الرباط الصليبي وإصلاح الأربطة."
                 },
                 {
-                    title: "تصحيح التشوهات / قطع العظم",
-                    desc: "رعاية شاملة للمفاصل التنكسية بما في ذلك استبدال الركبة والورك."
+                    title: "جراحة العمود الفقري",
+                    desc: "علاج متخصص لحالات الرقبة والظهر، من مشاكل الديسك إلى إصابات العمود الفقري المعقدة."
                 },
                 {
-                    title: "جراحات استبدال المفاصل الكلية / الجزئية",
-                    desc: "رعاية شاملة للمفاصل التنكسية بما في ذلك استبدال الركبة والورك."
+                    title: "الجراحة بالمنظار",
+                    desc: "إجراءات ثقب المفتاح طفيفة التوغل لتعافي أسرع في المشاكل المتعلقة بالمفاصل."
                 },
                 {
-                    title: "الجراحات بمساعدة الروبوت / الكمبيوتر",
-                    desc: "جراحة دقيقة متقدمة باستخدام المساعدة الروبوتية لنتائج أفضل."
+                    title: "اليد والمعصم",
+                    desc: "علاج خبير لنفق الرسغ والكسور وتشوهات اليد والمعصم المعقدة."
                 },
                 {
-                    title: "الحفاظ على المفاصل / التجديد",
-                    desc: "علاج طفيف التوغل لتمزق الأربطة وإصابات الغضروف المفصلي وعدم استقرار المفاصل."
+                    title: "القدم والكاحل",
+                    desc: "رعاية متخصصة للتشوهات والإصابات الرياضية والإصابات المعقدة للقدم والكاحل."
                 },
                 {
-                    title: "رعاية الكسور والصدمات",
-                    desc: "الاستقرار الطارئ والإصلاح الجراحي وإعادة التأهيل للكسور والخلع."
+                    title: "إصابات العظام",
+                    desc: "الرعاية الطارئة والإصلاح الجراحي للكسور المعقدة وإصابات العظام الشديدة."
                 },
                 {
-                    title: "استشارات صحة العظام والمفاصل",
-                    desc: "لا تحتاج إلى الانتظار حتى يصبح الألم لا يطاق. استشارة خبير."
+                    title: "العلاج الطبيعي",
+                    desc: "برامج إعادة تأهيل خبيرة مصممة لاستعادة الحركة والقوة بعد الجراحة."
                 }
             ]
         },
