@@ -1,10 +1,34 @@
-
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, animate } from 'framer-motion';
 import { Calendar, ChevronRight } from 'lucide-react';
 import { Link as ScrollLink } from 'react-scroll';
 import { Link as RouterLink } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+
+const AnimatedCounter = ({ value, suffix }) => {
+    const [count, setCount] = React.useState(0);
+    const target = parseFloat(value);
+    const isDecimal = value.includes('.');
+
+    React.useEffect(() => {
+        const controls = animate(0, target, {
+            duration: 2.5,
+            delay: 1.5,
+            ease: "easeOut",
+            onUpdate: (latest) => {
+                setCount(latest);
+            }
+        });
+        return controls.stop;
+    }, [target]);
+
+    return (
+        <span>
+            {isDecimal ? count.toFixed(1) : Math.round(count)}
+            {suffix}
+        </span>
+    );
+};
 
 // Import images for the slideshow
 import slide1 from '../assets/hero-bg-1.png';
@@ -160,10 +184,10 @@ const HomeHero = () => {
                             className="grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-white/10 pt-8"
                         >
                             {[
-                                { number: '15+', label: 'Years' },
-                                { number: '5k+', label: 'Patients' },
-                                { number: '3k+', label: 'Surgeries' },
-                                { number: '4.9', label: 'Rating' }
+                                { value: '15', suffix: '+', label: 'Years' },
+                                { value: '5', suffix: 'k+', label: 'Patients' },
+                                { value: '3', suffix: 'k+', label: 'Surgeries' },
+                                { value: '4.9', suffix: '', label: 'Rating' }
                             ].map((stat, index) => (
                                 <motion.div
                                     key={stat.label}
@@ -172,7 +196,7 @@ const HomeHero = () => {
                                     transition={{ delay: 1.5 + index * 0.1 }}
                                 >
                                     <div className="text-3xl font-black text-white mb-1">
-                                        {stat.number}
+                                        <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                                     </div>
                                     <div className="text-xs text-blue-200/70 font-bold uppercase tracking-wider">
                                         {stat.label}
