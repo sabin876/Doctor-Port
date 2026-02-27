@@ -84,7 +84,7 @@ const Affiliations = ({ lang = 'EN' }) => {
                                 <img
                                     src={logo.src}
                                     alt={logo.name}
-                                    className="max-w-full max-h-full object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+                                    className="max-w-full max-h-full object-contain transition-all duration-500 group-hover:scale-110"
                                     onError={(e) => {
                                         e.target.style.display = 'none';
                                         e.target.nextSibling.style.display = 'flex';
