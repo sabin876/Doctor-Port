@@ -1,9 +1,36 @@
+import React from 'react';
+import { motion, AnimatePresence, animate } from 'framer-motion';
 import { CardContainer, CardBody, CardItem } from './ui/3d-card';
 import { useLanguage } from '../context/LanguageContext';
 import doctorImg from '../assets/hero-slide-1.png'; // Reverted to previous photo
 import slide1 from '../assets/hero-bg-1.png';
 import slide2 from '../assets/hero-bg-2.jpg';
 import slide3 from '../assets/hero-bg-3.jpg';
+
+const AnimatedCounter = ({ value, suffix }) => {
+    const [count, setCount] = React.useState(0);
+    const target = parseFloat(value);
+    const isDecimal = value.includes('.');
+
+    React.useEffect(() => {
+        const controls = animate(0, target, {
+            duration: 2.5,
+            delay: 1.5,
+            ease: "easeOut",
+            onUpdate: (latest) => {
+                setCount(latest);
+            }
+        });
+        return controls.stop;
+    }, [target]);
+
+    return (
+        <span>
+            {isDecimal ? count.toFixed(1) : Math.round(count)}
+            {suffix}
+        </span>
+    );
+};
 
 const Hero = () => {
     const { language, t } = useLanguage();
@@ -99,22 +126,26 @@ const Hero = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.6 }}
-                            className={`mt-16 flex flex-wrap items-center justify-center gap-12 ${isRtl ? 'lg:justify-end' : 'lg:justify-start'}`}
+                            className={`mt-16 flex flex-wrap items-center justify-center gap-6 sm:gap-8 ${isRtl ? 'lg:justify-end' : 'lg:justify-start'}`}
                         >
-                            <div className="flex flex-col">
-                                <span className="text-4xl font-extrabold text-white tracking-tight">14+</span>
-                                <span className="text-xs text-blue-300 uppercase tracking-[0.2em] font-semibold">{t('hero.stats.experience')}</span>
-                            </div>
-                            <div className="w-px h-12 bg-white/20 hidden sm:block"></div>
-                            <div className="flex flex-col">
-                                <span className="text-4xl font-extrabold text-white tracking-tight">5K+</span>
-                                <span className="text-xs text-blue-300 uppercase tracking-[0.2em] font-semibold">{t('hero.stats.surgeries')}</span>
-                            </div>
-                            <div className="w-px h-12 bg-white/20 hidden sm:block"></div>
-                            <div className="flex flex-col">
-                                <span className="text-4xl font-extrabold text-white tracking-tight">5.0</span>
-                                <span className="text-xs text-blue-300 uppercase tracking-[0.2em] font-semibold">{t('hero.stats.rating')}</span>
-                            </div>
+                            {[
+                                { value: '15', suffix: '+', label: t('hero.stats.years') || 'Years' },
+                                { value: '5', suffix: 'k+', label: t('hero.stats.patients') || 'Patients' },
+                                { value: '3', suffix: 'k+', label: t('hero.stats.surgeries') || 'Surgeries' },
+                                { value: '4.9', suffix: '', label: t('hero.stats.rating') || 'Rating' }
+                            ].map((stat, index, arr) => (
+                                <React.Fragment key={index}>
+                                    <div className="flex flex-col">
+                                        <span className="text-4xl font-extrabold text-white tracking-tight">
+                                            <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                                        </span>
+                                        <span className="text-xs text-blue-300 uppercase tracking-[0.2em] font-semibold text-center">{stat.label}</span>
+                                    </div>
+                                    {index < arr.length - 1 && (
+                                        <div className="w-px h-12 bg-white/20 hidden sm:block"></div>
+                                    )}
+                                </React.Fragment>
+                            ))}
                         </motion.div>
                     </motion.div>
 
