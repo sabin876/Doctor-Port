@@ -8,11 +8,11 @@ const Affiliations = ({ lang = 'EN' }) => {
     const logos = [
         {
             name: "Edge Hill University",
-            src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Edge_Hill_University_logo.png/200px-Edge_Hill_University_logo.png"
+            src: "https://www.edgehill.ac.uk/wp-content/ehu-themes/ehu-wordpress-theme/resources/images/ehu_logo.webp"
         },
         {
             name: "Royal College of Surgeons",
-            src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Royal_College_of_Surgeons_of_England_logo.svg/langfr-280px-Royal_College_of_Surgeons_of_England_logo.svg.png"
+            src: "https://www.rcseng.ac.uk/-/media/Images/RCS/System/royal-college-of-surgeons-of-england-logo-v2-transparent.png"
         },
         {
             name: "General Medical Council",
@@ -20,23 +20,23 @@ const Affiliations = ({ lang = 'EN' }) => {
         },
         {
             name: "EBOT",
-            src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ebot-logo.png/800px-Ebot-logo.png"
+            src: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Ebot-logo.png"
         },
         {
             name: "Dubai Health Authority",
-            src: "https://www.dha.gov.ae/Asset%20Library/Logo/DHA%20Logo.png"
+            src: "https://www.dha.gov.ae/img/assets/DHALOGO60.svg"
         },
         {
             name: "ISKSAA",
-            src: "https://isksaa.com/images/isksaa_logo.png"
+            src: "https://isksaa.com/images/logo.png"
         },
         {
             name: "Maharashtra Medical Council",
-            src: "https://maharashtramedicalcouncil.in/Theme/MMC/logo.png"
+            src: "https://www.maharashtramedicalcouncil.in/assets/img/mmc_logo.png"
         },
         {
             name: "CAOS UK",
-            src: "https://caosuk.org/wp-content/uploads/2021/04/CAOS-UK-Main-Logo.png"
+            src: "https://images.squarespace-cdn.com/content/v1/5d3f5a3b9412990001748a14/1568375829409-QKLOP7XRB54QL1IXSKQM/logo.jpg"
         }
     ];
 
