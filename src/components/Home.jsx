@@ -1,5 +1,5 @@
-import React from 'react';
 import HomeHero from './HomeHero';
+import Affiliations from './Affiliations';
 import SpecializedSolutions from './SpecializedSolutions';
 import SportingInjury from './SportingInjury';
 import WhyChooseUs from './WhyChooseUs';
@@ -9,6 +9,7 @@ const Home = () => {
     return (
         <main>
             <HomeHero />
+            <Affiliations />
             <SpecializedSolutions />
             <SportingInjury />
             {/* <WhyChooseUs /> */}

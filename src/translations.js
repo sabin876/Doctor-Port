@@ -13,7 +13,8 @@ export const translations = {
             faq: "FAQ",
             contact: "Contact",
             bookNow: "Book Now",
-            selectLanguage: "Select Language"
+            selectLanguage: "Select Language",
+            affiliations: "Memberships & Affiliations"
         },
         // TopBar
         topBar: {
@@ -272,7 +273,8 @@ export const translations = {
             faq: "FAQ",
             contact: "Contact",
             bookNow: "Book Now",
-            selectLanguage: "Select Language"
+            selectLanguage: "भाषा चुनें",
+            affiliations: "सदस्यता और संबद्धता"
         },
         topBar: {
             phone: "हमें कॉल करें",
@@ -335,7 +337,7 @@ export const translations = {
                     desc: "सटीक तकनीकों का उपयोग करके घुटने और कूल्हे के जोड़ों के लिए उन्नत पूर्ण और आंशिक प्रतिस्थापन।"
                 },
                 {
-                    title: "स्पोर्ट्स मेडिसिन (Sports Medicine)",
+                    title: "स्पोर्ट्स मेडिसิน (Sports Medicine)",
                     desc: "ACL पुनर्निर्माण और लिगामेंट मरम्मत सहित एथलेटिक चोटों के लिए व्यापक देखभाल।"
                 },
                 {
@@ -406,7 +408,7 @@ export const translations = {
                 },
                 email: {
                     title: "हमें ईमेल करें",
-                    sub: "आधिकारिक रिकॉर्ड और विस्तृत प्रश्नों के लिए"
+                    sub: "आ आधिकारिक रिकॉर्ड और विस्तृत प्रश्नों के लिए"
                 },
                 visit: {
                     title: "क्लीनिक पर आएं",
@@ -479,7 +481,8 @@ export const translations = {
             faq: "FAQ",
             contact: "Contact",
             bookNow: "Book Now",
-            selectLanguage: "Select Language"
+            selectLanguage: "اختر اللغة",
+            affiliations: "العضويات والانتسابات المهنية"
         },
         topBar: {
             phone: "اتصل بنا",
@@ -588,7 +591,7 @@ export const translations = {
                     answer: "توفر الجراحة بالمنظار شقوقًا أصغر وألمًا أقل وتعافيًا أسرع ومخاطر عدوى أقل مقارنة بالجراحة المفتوحة."
                 },
                 {
-                    question: "هل يستحق الأمر الحصول على رأي ثانٍ؟",
+                    question: "هل يستحق الأمر الحصول पर رأي ثانٍ؟",
                     answer: "نعم، نشجع بشدة على الحصول على رأي ثانٍ قبل الجراحة لتأكيد تشخيصك واستكشاف جميع خيارات العلاج. يقدم الدكتور أولهاس آراء ثانية تكميلية."
                 },
                 {
