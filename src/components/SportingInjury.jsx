@@ -51,18 +51,28 @@ const SportingInjury = () => {
                         transition={{ duration: 0.9, ease: "easeOut" }}
                         className="w-full lg:w-[480px] xl:w-[540px]"
                     >
-                        <div className="group relative">
-                            {/* Decorative Glow */}
-                            <div className="absolute -inset-1 bg-gradient-to-r from-[#3a7e7a]/20 to-orange-200/20 rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                        <motion.div
+                            animate={{
+                                y: [0, -12, 0],
+                            }}
+                            transition={{
+                                duration: 5,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                            className="group relative"
+                        >
+                            {/* High-Impact Decorative Glow */}
+                            <div className="absolute -inset-2 bg-gradient-to-r from-[#3a7e7a]/40 to-orange-400/40 rounded-3xl blur-3xl opacity-20 group-hover:opacity-50 transition duration-1000 group-hover:duration-500"></div>
 
-                            <div className="relative p-3 bg-white/80 backdrop-blur-xl rounded-3xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.12)] border border-white/50 overflow-hidden">
+                            <div className="relative p-3 bg-white/90 backdrop-blur-2xl rounded-3xl shadow-[0_40px_80px_-20px_rgba(0,0,0,0.18)] border border-white/60 overflow-hidden">
                                 {/* Top Bar decoration */}
                                 <div className="flex items-center gap-2 mb-4 px-3">
                                     <div className="w-3 h-3 rounded-full bg-red-400"></div>
                                     <div className="w-3 h-3 rounded-full bg-amber-400"></div>
                                     <div className="w-3 h-3 rounded-full bg-emerald-400"></div>
                                     <div className="ml-auto flex items-center gap-2">
-                                        <span className="text-[10px] font-black text-gray-400 tracking-tighter uppercase">LIVE RECOVERY INSIGHTS</span>
+                                        <span className="text-[10px] font-black text-gray-500 tracking-widest uppercase">RECOVERY STREAM</span>
                                         <div className="w-2 h-2 rounded-full bg-red-500 animate-ping"></div>
                                     </div>
                                 </div>
@@ -70,7 +80,6 @@ const SportingInjury = () => {
                                 <div className="rounded-2xl overflow-hidden bg-gray-50 border border-gray-100">
                                     <blockquote
                                         className="instagram-media"
-                                        data-instgrm-captioned
                                         data-instgrm-permalink="https://www.instagram.com/reel/DTijxQ3krcw/?utm_source=ig_embed&amp;utm_campaign=loading"
                                         data-instgrm-version="14"
                                         style={{ background: '#FFF', border: 0, borderRadius: '3px', boxShadow: '0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15)', margin: '1px', maxWidth: '540px', minWidth: '326px', padding: 0, width: '99.375%', width: '-webkit-calc(100% - 2px)', width: 'calc(100% - 2px)' }}
@@ -128,7 +137,7 @@ const SportingInjury = () => {
                                     </blockquote>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
                     </motion.div>
 
                     {/* Right Side: High-Impact Content */}
