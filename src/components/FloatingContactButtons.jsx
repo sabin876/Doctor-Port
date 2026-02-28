@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { Phone, MessageCircle } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 

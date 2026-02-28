@@ -45,7 +45,7 @@ const Navbar = () => {
         { id: 'about', name: 'About', path: '/about', isRouterLink: true },
         { id: 'services', name: 'Services', path: '/services', isRouterLink: true },
         { id: 'articles', name: 'Articles', path: '/articles', isRouterLink: true },
-        { id: 'faq', name: 'FAQ', path: '/faq', isRouterLink: true },
+        { id: 'gallery', name: 'Gallery', path: '/gallery', isRouterLink: true },
         { id: 'contact', name: 'Contact', path: '/contact', isRouterLink: true },
     ];
 
@@ -156,7 +156,7 @@ const Navbar = () => {
                             href="https://csh.ae/find-a-doctor?name=ulhas"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-primary-600 text-white px-8 py-3.5 rounded-2xl font-metabolic font-black text-xs uppercase tracking-widest hover:bg-primary-700 transition-all duration-300 shadow-premium hover:shadow-premium-hover hover:-translate-y-0.5 flex items-center group/btn"
+                            className="bg-primary-600 text-white px-6 py-2.5 rounded-xl font-metabolic font-black text-[10px] uppercase tracking-widest hover:bg-primary-700 transition-all duration-300 shadow-premium hover:shadow-premium-hover hover:-translate-y-0.5 flex items-center group/btn"
                         >
                             <Calendar className="w-4 h-4 me-2 group-hover/btn:rotate-12 transition-transform" />
                             {t('nav.bookNow')}

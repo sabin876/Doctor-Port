@@ -105,10 +105,10 @@ const Hero = () => {
                                 href="https://csh.ae/find-a-doctor?name=ulhas"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group relative flex items-center justify-center px-10 py-5 bg-white text-primary-900 rounded-2xl font-black text-lg transition-all hover:scale-105 hover:shadow-[0_20px_40px_-10px_rgba(255,255,255,0.3)] active:scale-95 overflow-hidden"
+                                className="group relative flex items-center justify-center px-8 py-4 bg-white text-primary-900 rounded-xl font-black text-base transition-all hover:scale-105 hover:shadow-[0_20px_40px_-10px_rgba(255,255,255,0.3)] active:scale-95 overflow-hidden"
                             >
                                 <span className="relative z-10 flex items-center">
-                                    {t('hero.bookAppointment')} <Calendar className="ms-3 w-6 h-6 group-hover:rotate-12 transition-transform" />
+                                    {t('nav.bookNow')} <Calendar className="ms-3 w-5 h-5 group-hover:rotate-12 transition-transform" />
                                 </span>
                             </a>
                             <Link

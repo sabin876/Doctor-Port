@@ -7,7 +7,7 @@ import Contact from './components/Contact';
 import ServicesPage from './components/ServicesPage';
 import Articles from './components/Articles';
 import ArticleDetail from './components/ArticleDetail';
-import FAQ from './components/FAQ';
+import Gallery from './components/Gallery';
 import Footer from './components/Footer';
 import FloatingControls from './components/FloatingControls';
 import FloatingContactButtons from './components/FloatingContactButtons';
@@ -26,11 +26,10 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/articles/:id" element={<ArticleDetail />} />
-          <Route path="/faq" element={<FAQ />} />
+          <Route path="/gallery" element={<Gallery />} />
         </Routes>
         <Footer />
-        {/* <FloatingControls />
-        <FloatingContactButtons /> */}
+        <FloatingContactButtons />
       </div>
     </Router>
     // <div style={{ padding: 20 }}><h1>App Component Loaded</h1></div>
