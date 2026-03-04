@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Award, Globe, GraduationCap, CheckCircle } from 'lucide-react';
 import doctorProfileImg from '../assets/doctor-profile.png';

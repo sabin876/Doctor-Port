@@ -12,15 +12,10 @@ export const useLanguage = () => {
 };
 
 export const LanguageProvider = ({ children }) => {
-    const [language, setLanguage] = useState('EN');
-
-    // Load language from localStorage on mount
-    useEffect(() => {
+    const [language, setLanguage] = useState(() => {
         const savedLang = localStorage.getItem('language');
-        if (savedLang && ['EN', 'HI', 'AR'].includes(savedLang)) {
-            setLanguage(savedLang);
-        }
-    }, []);
+        return (savedLang && ['EN', 'HI', 'AR'].includes(savedLang)) ? savedLang : 'EN';
+    });
 
     // Save language to localStorage when it changes
     useEffect(() => {

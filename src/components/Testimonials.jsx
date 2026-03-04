@@ -104,7 +104,7 @@ const Testimonials = () => {
                     {/* Google-themed "Write a Review" Button with subtle pulse animation */}
                     <div className="flex justify-center flex-col items-center gap-2">
                         <motion.a
-                            href="https://maps.app.goo.gl/dVBB87ar5qR33eeL9"
+                            href="https://search.google.com/local/writereview?placeid=ChIJvcw0bVJDXz4RpK6Mt7LczfI="
                             target="_blank"
                             rel="noopener noreferrer"
                             animate={{
