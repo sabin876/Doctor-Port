@@ -25,7 +25,7 @@ export const translations = {
         },
         // Hero Section
         hero: {
-            badge: "FRCS Trauma and Ortho (UK), FEBOT (Europe), M Ch Ortho, PGDip Robotic TKR, MBBS, MS Ortho",
+            badge: "MBBS, MS, MRCS, MCh, FEBOT, FRCS, PGDip Robotics",
             description: "With more than 15+ years of global experience across UK, India, Jersey Island and Dubai in trauma and orthopedic surgery with special interest in knee, hip, shoulder and complex trauma orthopedic surgery, Dr Sonar brings world class orthopedic care to Dubai.",
             bookAppointment: "Book Consult",
             exploreServices: "Explore Services",
@@ -85,12 +85,12 @@ export const translations = {
         },
         // About Section
         about: {
-            badge: "About Dr. Ulhas",
-            title: "Personalized Path to",
-            titleHighlight: "Recovery",
-            titleEnd: "",
-            description1: "Dr. Ulhas Sonar is a distinguished British-Indian orthopedic surgeon with extensive global experience across the UK, India, Jersey Island, and Dubai.",
-            description2: "A graduate of B J Medical College, Pune, he pursued advanced training at prestigious institutions like Wrightington Hospital and Golden Jubilee Hospital in the UK. He holds an MCh in Upper Limb Surgery and a PG Diploma in Computer and Robotic-Assisted Knee Replacement.",
+            badge: "MBBS, MS (Ortho), MRCS (England), MCh Upper Limb Surgeries (Wrightington, UK), FEBOT (Switzerland), FRCS (T&O) UK, PG Dip in Computer and Robotics Assisted TKR(Glasgow, UK)",
+            title: "Your Orthopaedic",
+            titleHighlight: "Surgeon",
+            titleEnd: "in Dubai",
+            description1: "Dr. Ulhas Sonar is a British Indian orthopedic surgeon with extensive global experience across the UK, India, Jersey Island, and Dubai. A graduate of B J Medical College, Pune, he began his career as an Assistant Professor in India before pursuing advanced training in the UK at prestigious institutions like Wrightington Hospital and Golden Jubilee Hospital.",
+            description2: "He is a fellow of the Royal College of Surgeons (England) as well as European Board of Orthopaedics and Traumatology (Switzerland), and holds an MCh Super Specialisation in Upper Limb Surgery along with a PG Diploma in Computer and Robotic-Assisted Total Knee Replacement. Committed to evidence-based, patient-centred care, Dr. Ulhas is also an accomplished researcher, educator, and passionate advocate for patient safety and rights.",
             experienceBadge: "Years Experience",
             qualifications: {
                 global: {
@@ -251,7 +251,7 @@ export const translations = {
             }
         },
         footer: {
-            desc: "Dedicated to restoring your active life through advanced surgical precision and compassionate care in the heart of Dubai.",
+            desc: "Precise orthopaedic surgical care delivered with integrity, respect for patient rights, and an individualised medical evidence-based approach—restoring movement, function, and active lives.",
             nav: "Navigation",
             support: "Support",
             clinic: "Clinic Info",
@@ -284,7 +284,7 @@ export const translations = {
             locationValue: "कैनेडियन स्पेशलिस्ट अस्पताल, दुबई"
         },
         hero: {
-            badge: "FRCS Trauma and Ortho (UK), FEBOT (Europe), M Ch Ortho, PGDip Robotic TKR, MBBS, MS Ortho",
+            badge: "MBBS, MS, MRCS, MCh, FEBOT, FRCS, PGDip Robotics",
             title: "बिना किसी",
             subtitle: "सीमा के चलें",
             description: "यूके, भारत, जर्सी द्वीप और दुबई में आघात और आर्थोपेडिक सर्जरी में 15+ वर्षों के वैश्विक अनुभव के साथ, डॉ. सोनार दुबई में विश्व स्तरीय आर्थोपेडिक देखभाल लाते हैं।",
@@ -298,11 +298,11 @@ export const translations = {
         },
         about: {
             badge: "डॉ. उल्हास के बारे में",
-            title: "रिकवरी का",
-            titleHighlight: "व्यक्तिगत मार्ग",
+            title: "दुबई में आपके आर्थोपेडिक",
+            titleHighlight: "सर्जन",
             titleEnd: "",
-            description1: "डॉ. उल्हास सोनार एक प्रतिष्ठित ब्रिटिश-भारतीय आर्थोपेडिक सर्जन हैं जिनके पास यूके, भारत, जर्सी द्वीप और दुबई में व्यापक वैश्विक अनुभव है।",
-            description2: "बी जे मेडिकल कॉलेज, पुणे के स्नातक, उन्होंने यूके में राइटिंगटन अस्पताल और गोल्डन जुबली अस्पताल जैसे प्रतिष्ठित संस्थानों में उन्नत प्रशिक्षण प्राप्त किया। उनके पास अपर लिम्ब सर्जरी में एमसीएच और कंप्यूटर और रोबोटिक-असिस्टेड नी रिप्लेसमेंट में पीजी डिप्लोमा है।",
+            description1: "डॉ. उल्हास सोनार एक ब्रिटिश भारतीय आर्थोपेडिक सर्जन हैं जिनके पास यूके, भारत, जर्सी द्वीप और दुबई में व्यापक वैश्विक अनुभव है। बी जे मेडिकल कॉलेज, पुणे के स्नातक, उन्होंने यूके में राइटिंगटन अस्पताल और गोल्डन जुबली अस्पताल जैसे प्रतिष्ठित संस्थानों में उन्नत प्रशिक्षण प्राप्त करने से पहले भारत में सहायक प्रोफेसर के रूप में अपना करियर शुरू किया।",
+            description2: "वह रॉयल कॉलेज ऑफ सर्जन्स (इंग्लैंड) के साथ-साथ यूरोपियन बोर्ड ऑफ ऑर्थोपेडिक्स एंड ट्रुमेटोलॉजी (स्विट्जरलैंड) के फेलो हैं, और उनके पास अपर लिम्ब सर्जरी में एमसीएच सुपर स्पेशलाइजेशन के साथ-साथ कंप्यूटर और रोबोटिक-असिस्टेड टोटल नी रिप्लेसमेंट में पीजी डिप्लोमा है। साक्ष्य-आधारित, रोगी-केंद्रित देखभाल के लिए प्रतिबद्ध, डॉ. उल्हास एक कुशल शोधकर्ता, शिक्षक और रोगी सुरक्षा और अधिकारों के लिए भावुक वकील भी हैं।",
             experienceBadge: "वर्षों का अनुभव",
             qualifications: {
                 global: {
@@ -459,7 +459,7 @@ export const translations = {
             }
         },
         footer: {
-            desc: "दुबई के केंद्र में उन्नत सर्जिकल सटीकता और दयालु देखभाल के माध्यम से आपके सक्रिय जीवन को बहाल करने के लिए समर्पित।",
+            desc: "सटीक आर्थोपेडिक सर्जिकल देखभाल जो पूर्ण निष्ठा, रोगी के अधिकारों के प्रति सम्मान और व्यक्तिगत चिकित्सा साक्ष्य-आधारित दृष्टिकोण के साथ प्रदान की जाती है—गतिशीलता, कार्यक्षमता और सक्रिय जीवन को पुनर्जीवित करती है।",
             nav: "नेविगेशन",
             support: "सहायता",
             clinic: "क्लीनिक की जानकारी",
@@ -492,7 +492,7 @@ export const translations = {
             locationValue: "المستشفى الكندي التخصصي، دبي"
         },
         hero: {
-            badge: "FRCS Trauma and Ortho (UK), FEBOT (Europe), M Ch Ortho, PGDip Robotic TKR, MBBS, MS Ortho",
+            badge: "MBBS, MS, MRCS, MCh, FEBOT, FRCS, PGDip Robotics",
             title: "تحرك بدون",
             subtitle: "قيود",
             description: "بخبرة عالمية تمتد لأكثر من 15 عامًا في المملكة المتحدة والهند وجزيرة جيرسي ودبي في جراحة الصدمات والعظام، يقدم الدكتور سونار رعاية عظام عالمية المستوى في دبي.",
@@ -506,11 +506,11 @@ export const translations = {
         },
         about: {
             badge: "عن الدكتور أولهاس",
-            title: "مسار شخصي نحو",
-            titleHighlight: "التعافي",
+            title: "جراح العظام الخاص بك",
+            titleHighlight: "في دبي",
             titleEnd: "",
-            description1: "الدكتور أولهاس سونار هو جراح عظام بريطاني هندي متميز يتمتع بخبرة عالمية واسعة في المملكة المتحدة والهند وجزيرة جيرسي ودبي.",
-            description2: "خريج كلية بي جي الطبية في بونا، وتابع تدريبه المتقدم في مؤسسات مرموقة مثل مستشفى رايتنجتون ومستشفى اليوبيل الذهبي في المملكة المتحدة. حاصل على ماجستير في جراحة الأطراف العلوية ودبلوم دراسات عليا في استبدال الركبة بمساعدة الكمبيوتر والروبوت.",
+            description1: "الدكتور أولهاس سونار هو جراح عظام هندي بريطاني يتمتع بخبرة عالمية واسعة في المملكة المتحدة والهند وجزيرة جيرسي ودبي. تخرج من كلية بي جي الطبية في بونا، وبدأ حياته المهنية كأستاذ مساعد في الهند قبل متابعة تدريبه المتقدم في المملكة المتحدة في مؤسسات مرموقة مثل مستشفى رايتنجتون ومستشفى اليوبيل الذهبي.",
+            description2: "وهو زميل كلية الجراحين الملكية (إنجلترا) وكذلك المجلس الأوروبي لجراحة العظام والكسور (سويسرا)، وحاصل على تخصص عالي (MCh) في جراحة الأطراف العلوية بالإضافة إلى دبلوم دراسات عليا في استبدال الركبة الكلي بمساعدة الكمبيوتر والروبوت. يلتزم الدكتور أولهاس بالرعاية القائمة على الأدلة والتي تركز على المريض، وهو أيضًا باحث ومعلم بارز ومدافع شغوف عن سلامة المرضى وحقوقهم.",
             experienceBadge: "سنوات الخبرة",
             qualifications: {
                 global: {
@@ -667,7 +667,7 @@ export const translations = {
             }
         },
         footer: {
-            desc: "مكرس لاستعادة حياتك النشطة من خلال الدقة الجراحية المتقدمة والرعاية الرحيمة في قلب دبي.",
+            desc: "رعاية جراحية دقيقة للعظام تُقدم بنزاهة، واحترام لحقوق المريض، ونهج طبي مخصص قائم على الأدلة - لاستعادة الحركة والوظيفة والحياة النشطة.",
             nav: "التنقل",
             support: "الدعم",
             clinic: "معلومات العيادة",
