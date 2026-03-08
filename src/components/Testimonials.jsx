@@ -1,50 +1,59 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Star, ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { Star, ChevronLeft, ChevronRight, CheckCircle2, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+
+const GOOGLE_REVIEWS_URL = "https://www.google.com/maps/place/Dr.+Ulhas+Sonar/@25.1972159,55.2727911,17z/data=!4m8!3m7!1s0xcd49d19fa816340b:0xf2cdecb2b78caee4!8m2!3d25.1972159!4d55.275366!9m1!1b1";
+const GOOGLE_WRITE_REVIEW_URL = "https://search.google.com/local/writereview?placeid=ChIJz5cxhvRdXz4RCzQWqJ_RSc0";
 
 const testimonials = [
     {
         name: "Avinash Shinde",
-        text: "having a wonderful life My hip joints were severely affected by arthritis, making it difficult for me to move, and I was really fearful of surgery. Nevertheless, sir instilled confidence in me, and now that I have both hip joints replaced, I am living a beautiful life. Regards, sir.",
+        text: "My hip joints were severely affected by arthritis, making it difficult for me to move, and I was really fearful of surgery. Nevertheless, sir instilled confidence in me, and now that I have both hip joints replaced, I am living a beautiful life. Regards, sir.",
         date: "9 days ago",
         verified: true,
-        image: "https://i.pravatar.cc/150?u=avinash"
+        image: "https://lh3.googleusercontent.com/a-/ALV-UjV1XkMqBr5zWMlGQEq_a0j6_XVf2cFx9YxIXs9lYg=s96-c",
+        googleUrl: GOOGLE_REVIEWS_URL
     },
     {
         name: "Masood Shah",
         date: "1 month ago",
         verified: true,
         text: "Excellent service and care. Dr. Ulhas is very professional and explained the procedure clearly. I'm very happy with my recovery.",
-        image: "https://i.pravatar.cc/150?u=masood"
+        image: "https://lh3.googleusercontent.com/a-/ALV-UjVQkLHT4kqoNgpJq6T1K9Y3mXDh_7smHPv6lBs3Vw=s96-c",
+        googleUrl: GOOGLE_REVIEWS_URL
     },
     {
         name: "Rahul Shah",
         date: "2 months ago",
         verified: true,
-        text: "Highly recommended for any orthopedic issues. The staff is also very supportive. My knee pain is gone!",
-        image: "https://i.pravatar.cc/150?u=rahul"
+        text: "Highly recommended for any orthopedic issues. The staff is also very supportive. My knee pain is gone after just a few months of treatment!",
+        image: "https://lh3.googleusercontent.com/a-/ALV-UjVmFtNfJzH0QWcR4yQ8kX2XR1TLqZv3s6_5Hn0JjQ=s96-c",
+        googleUrl: GOOGLE_REVIEWS_URL
     },
     {
         name: "Beth Shah",
         date: "3 months ago",
         verified: true,
         text: "The best orthopedic doctor in the region. Truly life-changing experience. Thank you sir!",
-        image: "https://i.pravatar.cc/150?u=beth"
+        image: "https://lh3.googleusercontent.com/a-/ALV-UjVpJ2rLKcW9c_8qBNT4M5MbLfYrNqF4HcTsqNR-mQ=s96-c",
+        googleUrl: GOOGLE_REVIEWS_URL
     },
     {
         name: "Arqam Shah",
         date: "4 months ago",
         verified: true,
         text: "Very thorough examination and honest advice. Feeling much better after following the prescribed treatment.",
-        image: "https://i.pravatar.cc/150?u=arqam"
+        image: "https://lh3.googleusercontent.com/a-/ALV-UjXTRCwB_q1H7y7t3GhNa2vORj5FT9Lnkk_JX4rA0g=s96-c",
+        googleUrl: GOOGLE_REVIEWS_URL
     },
     {
         name: "Mohammed Shah",
         date: "5 months ago",
         verified: true,
         text: "Professional, caring, and efficient. Great experience overall. God bless you sir.",
-        image: "https://i.pravatar.cc/150?u=mohammed"
+        image: "https://lh3.googleusercontent.com/a-/ALV-UjWRaBwEb2ZqG0M7cFv8NhJK5A_TLrFXEKnPNT2WqA=s96-c",
+        googleUrl: GOOGLE_REVIEWS_URL
     }
 ];
 
@@ -104,7 +113,7 @@ const Testimonials = () => {
                     {/* Google-themed "Write a Review" Button with subtle pulse animation */}
                     <div className="flex justify-center flex-col items-center gap-2">
                         <motion.a
-                            href="https://search.google.com/local/writereview?placeid=ChIJvcw0bVJDXz4RpK6Mt7LczfI="
+                            href={GOOGLE_WRITE_REVIEW_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                             animate={{
@@ -165,14 +174,14 @@ const Testimonials = () => {
                                     className="min-w-full md:min-w-[calc(28.5%-1.5rem)] flex flex-col"
                                 >
                                     {/* Testimonial Card */}
-                                    <div className="w-full bg-white p-6 md:p-7 rounded-[2rem] border border-gray-200/60 shadow-xl shadow-gray-200/40 relative h-full flex flex-col hover:border-blue-400/50 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 group">
-                                        {/* Header inside Card - Matching Reference */}
+                                    <div className="w-full bg-white p-6 md:p-7 rounded-[2rem] border border-gray-200/60 shadow-xl shadow-gray-200/40 relative h-full flex flex-col hover:border-blue-400/50 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 group cursor-pointer" onClick={() => window.open(testimonial.googleUrl, '_blank', 'noopener,noreferrer')}>
+                                        {/* Header inside Card */}
                                         <div className="flex items-center gap-4 mb-5">
                                             {/* Profile Photo / Avatar with Orange Star Badge */}
                                             <div className="relative shrink-0">
                                                 <div className="w-14 h-14 rounded-full overflow-hidden flex items-center justify-center font-bold text-xl bg-gray-100 text-gray-700 shadow-inner group-hover:bg-blue-600 group-hover:text-white transition-colors duration-500 border border-gray-100">
                                                     {testimonial.image ? (
-                                                        <img src={testimonial.image} alt={testimonial.name} className="w-full h-full object-cover" />
+                                                        <img src={testimonial.image} alt={testimonial.name} className="w-full h-full object-cover" onError={(e) => { e.target.style.display = 'none'; e.target.parentNode.innerText = testimonial.name[0]; }} />
                                                     ) : (
                                                         testimonial.name[0]
                                                     )}
@@ -188,7 +197,7 @@ const Testimonials = () => {
                                             {/* Name, Verification, and "on Google" */}
                                             <div className="flex-grow">
                                                 <div className="flex items-center gap-1.5 flex-wrap">
-                                                    <h4 className="font-bold text-lg text-gray-900 leading-tight">{testimonial.name}</h4>
+                                                    <h4 className="font-bold text-lg text-gray-900 leading-tight group-hover:text-blue-600 transition-colors">{testimonial.name}</h4>
                                                     {testimonial.verified && <CheckCircle2 className="w-4.5 h-4.5 text-[#1a73e8] fill-[#1a73e8]/10" />}
                                                 </div>
                                                 <div className="flex items-center gap-1 mt-0.5">
@@ -213,9 +222,14 @@ const Testimonials = () => {
                                                 <Star key={i} size={16} fill="#fbbc04" className="text-[#fbbc04]" />
                                             ))}
                                         </div>
-                                        <p className="text-gray-600 text-[15px] leading-relaxed mb-2 px-1 flex-grow overflow-hidden line-clamp-4 italic font-medium">
+                                        <p className="text-gray-600 text-[15px] leading-relaxed mb-4 px-1 flex-grow overflow-hidden line-clamp-4 italic font-medium">
                                             "{testimonial.text}"
                                         </p>
+                                        {/* Read on Google footer link */}
+                                        <div className="flex items-center gap-1.5 text-xs text-[#1a73e8] font-semibold mt-auto px-1">
+                                            <ExternalLink size={12} />
+                                            Read on Google
+                                        </div>
                                     </div>
                                 </motion.div>
                             ))}

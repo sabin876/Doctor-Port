@@ -4,6 +4,7 @@ import SpecializedSolutions from './SpecializedSolutions';
 import SportingInjury from './SportingInjury';
 import WhyChooseUs from './WhyChooseUs';
 import Testimonials from './Testimonials';
+import FAQ from './FAQ';
 
 const Home = () => {
     return (
@@ -14,6 +15,7 @@ const Home = () => {
             <SportingInjury />
             {/* <WhyChooseUs /> */}
             <Testimonials />
+            <FAQ />
         </main>
     );
 };

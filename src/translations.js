@@ -25,7 +25,8 @@ export const translations = {
         },
         // Hero Section
         hero: {
-            badge: "Leading Orthopedic Specialist in Dubai",
+            badge: "FRCS Trauma and Ortho (UK), FEBOT (Europe), M Ch Ortho, PGDip Robotic TKR, MBBS, MS Ortho",
+            description: "With more than 15+ years of global experience across UK, India, Jersey Island and Dubai in trauma and orthopedic surgery with special interest in knee, hip, shoulder and complex trauma orthopedic surgery, Dr Sonar brings world class orthopedic care to Dubai.",
             bookAppointment: "Book Consult",
             exploreServices: "Explore Services",
             stats: {
@@ -283,10 +284,10 @@ export const translations = {
             locationValue: "कैनेडियन स्पेशलिस्ट अस्पताल, दुबई"
         },
         hero: {
-            badge: "दुबई में अग्रणी आर्थोपेडिक विशेषज्ञ",
+            badge: "FRCS Trauma and Ortho (UK), FEBOT (Europe), M Ch Ortho, PGDip Robotic TKR, MBBS, MS Ortho",
             title: "बिना किसी",
             subtitle: "सीमा के चलें",
-            description: "उन्नत जोड़ प्रत्यारोपण और खेल चिकित्सा। आपकी त्वरित रिकवरी और दीर्घकालिक जोड़ स्वास्थ्य के लिए डिज़ाइन की गई सटीक देखभाल।",
+            description: "यूके, भारत, जर्सी द्वीप और दुबई में आघात और आर्थोपेडिक सर्जरी में 15+ वर्षों के वैश्विक अनुभव के साथ, डॉ. सोनार दुबई में विश्व स्तरीय आर्थोपेडिक देखभाल लाते हैं।",
             bookAppointment: "परामर्श बुक करें",
             learnMore: "सेवाएं देखें",
             stats: {
@@ -491,10 +492,10 @@ export const translations = {
             locationValue: "المستشفى الكندي التخصصي، دبي"
         },
         hero: {
-            badge: "أخصائي جراحة العظام الرائد في دبي",
+            badge: "FRCS Trauma and Ortho (UK), FEBOT (Europe), M Ch Ortho, PGDip Robotic TKR, MBBS, MS Ortho",
             title: "تحرك بدون",
             subtitle: "قيود",
-            description: "استبدال المفاصل المتقدم والطب الرياضي. رعاية دقيقة مصممة لتعافيك السريع وصحة مفاصلك على المدى الطويل.",
+            description: "بخبرة عالمية تمتد لأكثر من 15 عامًا في المملكة المتحدة والهند وجزيرة جيرسي ودبي في جراحة الصدمات والعظام، يقدم الدكتور سونار رعاية عظام عالمية المستوى في دبي.",
             bookAppointment: "احجز استشارة",
             learnMore: "استكشف الخدمات",
             stats: {
