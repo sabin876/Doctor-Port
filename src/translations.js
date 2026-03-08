@@ -175,20 +175,20 @@ export const translations = {
             title: "Common Questions",
             items: [
                 {
-                    question: "When should I consider joint replacement surgery?",
-                    answer: "Severe arthritis, cartilage loss, or deformities not responsive to conservative treatments often indicate the need for joint replacement, especially in knee and hip joints."
+                    question: "What conditions typically require joint replacement surgery?",
+                    answer: "Severe arthritis, cartilage loss, or deformities not responsive to conservative treatments, often in knee and hip joints."
                 },
                 {
-                    question: "How long is the recovery period?",
+                    question: "How long does recovery take after knee or hip replacement?",
                     answer: "Recovery after knee or hip replacement usually takes 6–12 weeks for basic mobility, with full recovery often requiring 6–12 months."
                 },
                 {
-                    question: "What are the benefits of arthroscopic surgery?",
+                    question: "Benefits of arthroscopic surgery over open surgery?",
                     answer: "Arthroscopic surgery offers smaller incisions, less pain, faster recovery, and lower infection risk compared to open surgery."
                 },
                 {
-                    question: "Is it worth getting a second opinion?",
-                    answer: "Yes, seeking a second opinion before surgery is encouraged to confirm your diagnosis and explore all treatment options. Dr. Ulhas offers complementary second opinions."
+                    question: "Can I get a second opinion before surgery?",
+                    answer: "Yes, seeking a second opinion before surgery is encouraged to confirm your diagnosis and explore all treatment options."
                 },
                 {
                     question: "How are sports injuries treated?",
@@ -398,20 +398,20 @@ export const translations = {
             title: "सामान्य प्रश्न",
             items: [
                 {
-                    question: "मुझे जोड़ प्रत्यारोपण सर्जरी पर कब विचार करना चाहिए?",
-                    answer: "गंभीर गठिया, उपास्थि का नुकसान, या रूढ़िवादी उपचारों के प्रति उत्तरदायी नहीं होने वाली विकृतियां अक्सर जोड़ प्रतिस्थापन की आवश्यकता को दर्शाती हैं, विशेष रूप से घुटने और कूल्हे के जोड़ों में।"
+                    question: "किन स्थितियों में आमतौर पर जोड़ प्रत्यारोपण (Joint Replacement) सर्जरी की आवश्यकता होती है?",
+                    answer: "गंभीर गठिया, उपास्थि (cartilage) का नुकसान, या रूढ़िवादी उपचारों के प्रति उत्तरदायी नहीं होने वाली विकृतियां, जो अक्सर घुटने और कूल्हे के जोड़ों में होती हैं।"
                 },
                 {
-                    question: "रिकवरी की अवधि कितनी लंबी है?",
-                    answer: "घुटने या कूल्हे के प्रतिस्थापन के बाद रिकवरी में आमतौर पर बुनियादी गतिशीलता के लिए 6-12 सप्ताह लगते हैं, पूर्ण रिकवरी के लिए अक्सर 6-12 महीने की आवश्यकता होती है।"
+                    question: "घुटने या कूल्हे के प्रतिस्थापन के बाद रिकवरी में कितना समय लगता है?",
+                    answer: "घुटने या कूल्हे के प्रतिस्थापन के बाद रिकवरी में आमतौर पर बुनियादी गतिशीलता के लिए 6-12 सप्ताह लगते हैं, और पूर्ण रिकवरी के लिए अक्सर 6-12 महीने की आवश्यकता होती है।"
                 },
                 {
-                    question: "आर्थ्रोस्कोपिक सर्जरी के क्या लाभ हैं?",
-                    answer: "आर्थ्रोस्कोपिक सर्जरी में छोटे चीरे, कम दर्द, तेजी से रिकवरी और खुली सर्जरी की तुलना में कम संक्रमण का जोखिम होता है।"
+                    question: "ओपन सर्जरी की तुलना में आर्थ्रोस्कोपिक सर्जरी के क्या लाभ हैं?",
+                    answer: "ओपन सर्जरी की तुलना में आर्थ्रोस्कोपिक सर्जरी में छोटे चीरे, कम दर्द, तेजी से रिकवरी और संक्रमण का जोखिम कम होता है।"
                 },
                 {
-                    question: "क्या दूसरी राय लेना उचित है?",
-                    answer: "हाँ, सर्जरी से पहले दूसरी राय लेने के लिए प्रोत्साहित किया जाता है ताकि आपके निदान की पुष्टि हो सके और उपचार के सभी विकल्पों का पता लगाया जा सके। डॉ. उल्हास पूरक दूसरी राय प्रदान करते हैं।"
+                    question: "क्या मैं सर्जरी से पहले दूसरी राय ले सकता हूँ?",
+                    answer: "हाँ, सर्जरी से पहले दूसरी राय लेने के लिए प्रोत्साहित किया जाता है ताकि आपके निदान की पुष्टि हो सके और सभी उपचार विकल्पों का पता लगाया जा सके।"
                 },
                 {
                     question: "खेल की चोटों का इलाज कैसे किया जाता है?",
@@ -619,20 +619,20 @@ export const translations = {
             title: "أسئلة شائعة",
             items: [
                 {
-                    question: "متى يجب أن أفكر في جراحة استبدال المفاصل؟",
-                    answer: "غالبًا ما يشير التهاب المفاصل الحاد أو فقدان الغضروف أو التشوهات التي لا تستجيب للعلاجات التحفظية إلى الحاجة إلى استبدال المفصل، خاصة في مفاصل الركبة والورك."
+                    question: "ما هي الحالات التي تتطلب عادة جراحة استبدال المفاصل؟",
+                    answer: "التهاب المفاصل الحاد، فقدان الغضروف، أو التشوهات التي لا تستجيب للعلاجات التحفظية، غالباً في مفاصل الركبة والورك."
                 },
                 {
-                    question: "ما هي مدة فترة التعافي؟",
+                    question: "كم من الوقت يستغرق التعافي بعد استبدال الركبة أو الورك؟",
                     answer: "يستغرق التعافي بعد استبدال الركبة أو الورك عادة من 6 إلى 12 أسبوعًا للحركة الأساسية، مع تعافي كامل يتطلب غالبًا من 6 إلى 12 شهرًا."
                 },
                 {
-                    question: "ما هي فوائد الجراحة بالمنظار؟",
+                    question: "ما هي فوائد الجراحة بالمنظار مقارنة بالجراحة المفتوحة؟",
                     answer: "توفر الجراحة بالمنظار شقوقًا أصغر وألمًا أقل وتعافيًا أسرع ومخاطر عدوى أقل مقارنة بالجراحة المفتوحة."
                 },
                 {
-                    question: "هل يستحق الأمر الحصول पर رأي ثانٍ؟",
-                    answer: "نعم، نشجع بشدة على الحصول على رأي ثانٍ قبل الجراحة لتأكيد تشخيصك واستكشاف جميع خيارات العلاج. يقدم الدكتور أولهاس آراء ثانية تكميلية."
+                    question: "هل يمكنني الحصول على رأي ثانٍ قبل الجراحة؟",
+                    answer: "نعم، يُشجع على الحصول على رأي ثانٍ قبل الجراحة لتأكيد تشخيصك واستكشاف جميع خيارات العلاج."
                 },
                 {
                     question: "كيف يتم علاج الإصابات الرياضية؟",
