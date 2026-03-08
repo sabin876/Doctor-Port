@@ -35,6 +35,19 @@ export const translations = {
                 surgeries: "Surgeries",
                 rating: "Rating"
             },
+            highlights: [
+                "15+ years experience",
+                "6 prestigious qualifications across UK, Europe, India",
+                "10+ research and publications",
+                "10+ Podium presentations",
+                "6+ medical audits",
+                "5-star ratings by patients",
+                "Excellent patient satisfaction",
+                "Exceptional surgical outcomes",
+                "Multiple awards",
+                "Brilliant success rate",
+                "Minimal complication rates"
+            ],
             slides: [
                 {
                     heading_top: "Move Without",
@@ -294,7 +307,20 @@ export const translations = {
                 experience: "वर्ष विशेषज्ञ",
                 surgeries: "सफल ऑपरेशन",
                 rating: "रोगी स्कोर"
-            }
+            },
+            highlights: [
+                "15+ वर्षों का अनुभव",
+                "यूके, यूरोप, भारत में 6 प्रतिष्ठित योग्यताएं",
+                "10+ शोध और प्रकाशन",
+                "10+ पोडियम प्रस्तुतियां",
+                "6+ मेडिकल ऑडिट",
+                "मरीजों द्वारा 5-स्टार रेटिंग",
+                "उत्कृष्ट रोगी संतुष्टि",
+                "असाधारण सर्जिकल परिणाम",
+                "कई पुरस्कार",
+                "शानदार सफलता दर",
+                "न्यूनतम जटिलता दर"
+            ],
         },
         about: {
             badge: "डॉ. उल्हास के बारे में",
@@ -502,7 +528,20 @@ export const translations = {
                 experience: "خبير سنوات",
                 surgeries: "عمليات ناجحة",
                 rating: "تقييم المرضى"
-            }
+            },
+            highlights: [
+                "أكثر من 15 عاماً من الخبرة",
+                "6 مؤهلات مرموقة في المملكة المتحدة وأوروبا والهند",
+                "أكثر من 10 أبحاث ومنشورات",
+                "أكثر من 10 عروض تقديمية",
+                "أكثر من 6 عمليات تدقيق طبي",
+                "تقييم 5 نجوم من قبل المرضى",
+                "رضا ممتاز للمرضى",
+                "نتائج جراحية استثنائية",
+                "جوائز متعددة",
+                "معدل نجاح رائع",
+                "معدلات مضاعفات منخفضة جداً"
+            ],
         },
         about: {
             badge: "عن الدكتور أولهاس",

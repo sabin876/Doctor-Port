@@ -3,6 +3,8 @@ import { motion, AnimatePresence, animate } from 'framer-motion';
 import { Calendar, ChevronRight, Activity, Star, Award, Stethoscope, GraduationCap } from 'lucide-react';
 import { Link as RouterLink } from 'react-router-dom';
 import { CardContainer, CardBody, CardItem } from './ui/3d-card';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 import doctorSurgery from '../assets/doctor-surgery.png';
 import doctorPortrait from '../assets/doctor-profile.png';
@@ -98,6 +100,10 @@ const slides = [
 const SLIDE_DURATION = 5000;
 
 const HomeHero = () => {
+    const { language } = useLanguage();
+    const t = translations[language];
+    const highlights = t.hero?.highlights || [];
+
     const [activeSlide, setActiveSlide] = useState(0);
     const [direction, setDirection] = useState(1);
 
@@ -473,6 +479,33 @@ const HomeHero = () => {
                     </motion.div>
                 </motion.div>
             </div>
+
+            {/* ═══════════ Highlights Marquee ═══════════ */}
+            {highlights && highlights.length > 0 && (
+                <div className="absolute bottom-0 left-0 w-full overflow-hidden bg-white/5 border-t border-white/10 py-3 backdrop-blur-sm shadow-[0_-10px_30px_rgba(0,0,0,0.2)] z-20">
+                    <motion.div
+                        className="flex whitespace-nowrap"
+                        animate={{ x: direction === "rtl" ? ["0%", "100%"] : ["-100%", "0%"] }} // Adjusted for potential future RTL needs, but left-to-right is default here via setup
+                        initial={{ x: "0%" }}
+                        transition={{
+                            x: {
+                                repeat: Infinity,
+                                repeatType: "loop",
+                                duration: 80,
+                                ease: "linear",
+                            },
+                        }}
+                    >
+                        {/* Render the array twice for seamless looping */}
+                        {[...highlights, ...highlights].map((highlight, idx) => (
+                            <div key={idx} className="flex items-center text-white/80 mx-10 text-sm md:text-base font-medium tracking-wide">
+                                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 mr-4 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
+                                {highlight}
+                            </div>
+                        ))}
+                    </motion.div>
+                </div>
+            )}
         </div>
     );
 };
