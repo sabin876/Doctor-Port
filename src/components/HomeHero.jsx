@@ -288,7 +288,7 @@ const HomeHero = () => {
                                 }}
                             >
                                 <Calendar className="w-5 h-5 transition-transform group-hover:rotate-12" />
-                                Book Appointment
+                                {language === 'EN' ? 'Book Appointment' : t.hero?.bookAppointment || 'Book Appointment'}
                                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                             </motion.button>
 
