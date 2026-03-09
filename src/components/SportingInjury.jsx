@@ -23,12 +23,14 @@ const SportingInjury = () => {
     }, []);
 
     const solutions = [
-        { title: "Hip Labral Tear", icon: <Target className="w-5 h-5" />, color: "bg-blue-50 text-blue-600" },
-        { title: "Hip Impingement", icon: <Activity className="w-5 h-5" />, color: "bg-emerald-50 text-emerald-600" },
-        { title: "ACL Injury", icon: <ShieldAlert className="w-5 h-5" />, color: "bg-orange-50 text-orange-600" },
-        { title: "Meniscal Tears", icon: <Target className="w-5 h-5" />, color: "bg-purple-50 text-purple-600" },
-        { title: "Knee Instablity", icon: <Activity className="w-5 h-5" />, color: "bg-pink-50 text-pink-600" },
-        { title: "Sports Rehab", icon: <Zap className="w-5 h-5" />, color: "bg-amber-50 text-amber-600" }
+        { title: "ACL Injury", icon: <ShieldAlert className="w-5 h-5" />, color: "bg-blue-50 text-blue-600" },
+        { title: "Meniscus Injury", icon: <Target className="w-5 h-5" />, color: "bg-emerald-50 text-emerald-600" },
+        { title: "Cartilage Injury", icon: <Activity className="w-5 h-5" />, color: "bg-orange-50 text-orange-600" },
+        { title: "Knee Instability", icon: <Zap className="w-5 h-5" />, color: "bg-purple-50 text-purple-600" },
+        { title: "Ligament Injuries", icon: <ShieldAlert className="w-5 h-5" />, color: "bg-pink-50 text-pink-600" },
+        { title: "Sports Injuries/Rehab & Recovery", icon: <Activity className="w-5 h-5" />, color: "bg-amber-50 text-amber-600" },
+        { title: "Shoulder Impingement", icon: <Target className="w-5 h-5" />, color: "bg-indigo-50 text-indigo-600" },
+        { title: "Rotator Cuff Tear", icon: <Zap className="w-5 h-5" />, color: "bg-rose-50 text-rose-600" }
     ];
 
     return (
