@@ -7,7 +7,7 @@ const articlesData = [
     {
         id: 'knee-replacement-signs',
         title: "Is It Time for a Knee Replacement? 7 Signs You Shouldn't Ignore",
-        excerpt: "Many patients live with joint pain far longer than necessary. Learn the clinical signs that indicate it might be time to consider knee replacement surgery.",
+        excerpt: "Many patients live with joint pain far longer than necessary, hoping it will get better with time. As an orthopaedic surgeon with years of experience treating complex knee conditions, I often meet individuals who say, “I wish I’d come in sooner.”",
         category: "Knee Health",
         categoryColor: "bg-blue-100 text-blue-700",
         image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&h=600&fit=crop",
@@ -17,7 +17,7 @@ const articlesData = [
     {
         id: 'shoulder-steroid-injection',
         title: "Steroid Injection for Shoulder Pain: What You Should Know",
-        excerpt: "Shoulder pain from conditions like rotator cuff inflammation can be debilitating. Discover how steroid injections can provide relief and help in diagnosis.",
+        excerpt: "Shoulder pain — especially from conditions like rotator cuff inflammation or bursitis — can limit your daily life. One effective treatment used by orthopedic specialists is a steroid injection into the subacromial space of the shoulder.",
         category: "Shoulder Care",
         categoryColor: "bg-teal-100 text-teal-700",
         image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&h=600&fit=crop",
@@ -27,7 +27,7 @@ const articlesData = [
     {
         id: 'knee-steroid-injection',
         title: "Steroid Injections for Knee Pain: What You Need to Know",
-        excerpt: "Chronic knee pain caused by arthritis or inflammation can significantly impact your life. Learn about the benefits and considerations of steroid injections.",
+        excerpt: "Chronic knee pain caused by arthritis or inflammation can significantly affect daily life. One of the commonly used treatments for relief is a steroid injection into the knee joint.",
         category: "Pain Management",
         categoryColor: "bg-purple-100 text-purple-700",
         image: "https://images.unsplash.com/photo-1581594632702-52c1cb8d799d?w=800&h=600&fit=crop",

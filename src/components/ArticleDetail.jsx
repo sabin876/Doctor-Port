@@ -65,6 +65,15 @@ const articles = {
                 <li>Tendon weakening (if used repeatedly)</li>
                 <li>Rare but serious risk of infection</li>
             </ul>
+
+            <h3>What to Do After the Injection</h3>
+            <ul>
+                <li>Rest your shoulder and avoid heavy lifting for a few days.</li>
+                <li>Apply ice packs to reduce swelling.</li>
+                <li>Keep the shoulder moving gently — do not stop all motion.</li>
+                <li>Monitor for signs of infection: redness, severe pain, fever, or reduced movement.</li>
+            </ul>
+            <p>If any concerning symptoms appear, contact your doctor immediately. Early infections respond well to antibiotics, but delayed treatment may require surgery.</p>
         `
     },
     'knee-steroid-injection': {
@@ -78,6 +87,7 @@ const articles = {
             <p>Chronic knee pain caused by arthritis or inflammation can significantly affect daily life. One of the commonly used treatments for relief is a steroid injection into the knee joint. These injections can provide both pain relief and help in confirming the diagnosis, especially when symptoms are unclear.</p>
             
             <h3>Why Are Steroid Injections Used?</h3>
+            <p>The effects vary from person to person. Some patients experience no relief, while others benefit for several months.</p>
             <p>Steroid injections serve two main goals:</p>
             <ul>
                 <li><strong>Diagnostic Tool:</strong> The response to the injection helps your doctor confirm the source of the pain.</li>
@@ -91,14 +101,28 @@ const articles = {
                 <li>A fine needle is inserted into the joint to deliver a mix of steroid and local anesthetic.</li>
                 <li>A small dressing is applied, which can be removed after 48 hours.</li>
             </ul>
+            <p>There are no cuts or stitches, and it’s usually well tolerated.</p>
+
+            <h3>What Are the Risks?</h3>
+            <p>As with any procedure, there are some potential risks, including:</p>
+            <ul>
+                <li>Pain or swelling after injection (a flare-up)</li>
+                <li>Bleeding or bruising</li>
+                <li>Infection (rare but serious if it occurs)</li>
+                <li>Allergic reaction</li>
+                <li>Skin changes (e.g., lightening of skin, fat loss at the site)</li>
+                <li>Tendon weakening or delayed side effects</li>
+            </ul>
             
             <h3>Post-Injection Care</h3>
+            <p>To ensure the best results:</p>
             <ul>
                 <li>Rest the knee and avoid heavy activities for a few days.</li>
                 <li>Ice the area for 1–2 days.</li>
                 <li>Maintain normal knee movement (don't stop walking unless advised).</li>
                 <li>Watch for warning signs like redness, fever, or worsening pain.</li>
             </ul>
+            <p>If you notice signs of infection or feel unwell, contact your doctor immediately. Early infections are treatable with antibiotics, while late or severe cases might need surgery.</p>
         `
     },
     'personalized-knee-alignment': {
