@@ -50,9 +50,9 @@ export const translations = {
             ],
             slides: [
                 {
-                    heading_top: "Move Without",
-                    heading_bottom: "Limits",
-                    description: "Advanced Joint Replacement & Sports Medicine. Precision care designed for your swift recovery and long-term joint health."
+                    heading_top: "Restore Your",
+                    heading_bottom: "Active Life",
+                    description: "Dr. Ulhas Sonar specializes in advanced joint replacement, sports injuries, and minimal invasive arthroscopy. Trust in care that goes beyond diagnosis."
                 },
                 {
                     heading_top: "Expert Orthopedic",
