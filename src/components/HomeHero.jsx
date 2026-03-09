@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { Link as ScrollLink, scroller } from 'react-scroll';
 import { motion, AnimatePresence, animate } from 'framer-motion';
 import { Calendar, ChevronRight, Activity, Star, Award, Stethoscope, GraduationCap } from 'lucide-react';
 import { Link as RouterLink } from 'react-router-dom';
@@ -276,10 +277,8 @@ const HomeHero = () => {
                             variants={itemVariants}
                             className="flex flex-col sm:flex-row gap-5 mb-14"
                         >
-                            <motion.a
-                                href="https://csh.ae/find-a-doctor?name=ulhas"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <motion.button
+                                onClick={() => scroller.scrollTo('contact', { smooth: true, duration: 500, offset: -70 })}
                                 whileHover={{ scale: 1.05, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
                                 className="group relative flex items-center justify-center gap-3 px-10 py-4 rounded-2xl font-bold text-lg overflow-hidden transition-all shadow-[0_15px_35px_rgba(29,78,216,0.4)]"
@@ -291,7 +290,7 @@ const HomeHero = () => {
                                 <Calendar className="w-5 h-5 transition-transform group-hover:rotate-12" />
                                 Book Appointment
                                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                            </motion.a>
+                            </motion.button>
 
                             <RouterLink
                                 to="/services"

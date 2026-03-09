@@ -5,6 +5,7 @@ import SportingInjury from './SportingInjury';
 import WhyChooseUs from './WhyChooseUs';
 import Testimonials from './Testimonials';
 import FAQ from './FAQ';
+import Contact from './Contact';
 
 const Home = () => {
     return (
@@ -16,6 +17,7 @@ const Home = () => {
             {/* <WhyChooseUs /> */}
             <Testimonials />
             <FAQ />
+            <Contact />
         </main>
     );
 };
