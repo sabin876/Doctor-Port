@@ -25,6 +25,16 @@ const articlesData = [
         date: "March 9, 2026"
     },
     {
+        id: 'tkr-surgical-steps',
+        title: "Steps in Total Knee Replacement",
+        excerpt: "Total Knee Replacement (TKR) is a complex yet highly rewarding procedure aimed at restoring mobility and relieving chronic pain in patients with severe knee arthritis or injury.",
+        category: "Education",
+        categoryColor: "bg-emerald-100 text-emerald-700",
+        image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=800&h=600&fit=crop",
+        author: "Dr. Ulhas Sonar",
+        date: "March 9, 2026"
+    },
+    {
         id: 'shoulder-steroid-injection',
         title: "Steroid Injection for Shoulder Pain: What You Should Know",
         excerpt: "Shoulder pain — especially from conditions like rotator cuff inflammation or bursitis — can limit your daily life. One effective treatment used by orthopedic specialists is a steroid injection into the subacromial space of the shoulder.",
@@ -53,16 +63,6 @@ const articlesData = [
         image: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=800&h=600&fit=crop",
         author: "Dr. Ulhas Sonar",
         date: "May 20, 2024"
-    },
-    {
-        id: 'tkr-surgical-steps',
-        title: "Steps in Total Knee Replacement",
-        excerpt: "A systematic surgical overview. A step-by-step guide to modern TKR, emphasizing precision, alignment, and patient-specific care.",
-        category: "Education",
-        categoryColor: "bg-emerald-100 text-emerald-700",
-        image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=800&h=600&fit=crop",
-        author: "Dr. Ulhas Sonar",
-        date: "May 5, 2024"
     }
 ];
 

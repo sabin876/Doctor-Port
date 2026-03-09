@@ -172,27 +172,45 @@ const articles = {
     },
     'tkr-surgical-steps': {
         title: "Steps in Total Knee Replacement",
-        date: "May 5, 2024",
+        date: "March 9, 2026",
         author: "Dr. Ulhas Sonar",
         category: "Education",
         image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=1200&auto=format&fit=crop",
         readTime: "7 min read",
         content: `
-            <p>Total Knee Replacement (TKR) is a complex yet highly rewarding procedure aimed at restoring mobility and relieving chronic pain. Here is a step-by-step guide to modern TKR, emphasizing precision and alignment.</p>
+            <p>Total Knee Replacement (TKR) is a complex yet highly rewarding procedure aimed at restoring mobility and relieving chronic pain in patients with severe knee arthritis or injury. Dr. Ulhas Sonar, a British-Indian orthopedic surgeon with global training, outlines a step-by-step guide to modern TKR, emphasizing precision, alignment, and patient-specific care.</p>
             
-            <h3>1. Pre-operative Evaluation</h3>
-            <p>The process begins with a thorough clinical examination, including assessment of deformity correction, ligament stability, and range of motion.</p>
-            
-            <h3>2. Positioning & Preparation</h3>
-            <p>Patients are positioned supine, and a strict sterile protocol is followed to minimize infection risk.</p>
-            
-            <h3>3. The Surgical Technique</h3>
+            <h3>Pre-operative Evaluation</h3>
+            <p>The process begins with a thorough clinical examination, including assessment of skin condition, deformity correction, ligament stability, and range of motion. X-rays—ideally long-leg views—help assess bone quality and alignment.</p>
             <ul>
-                <li><strong>Approach:</strong> Typically via the medial parapatellar approach.</li>
-                <li><strong>Femur & Tibia Preparation:</strong> Involves removing osteophytes and making accurate bone cuts using intramedullary and extramedullary referencing.</li>
-                <li><strong>Trialing & Balancing:</strong> Components are trialed to check fit, gaps, and tracking.</li>
-                <li><strong>Cementation:</strong> Components are fixed with surgical cement.</li>
+                <li>A popping sound or sensation at injury</li>
+                <li>Swelling within hours</li>
+                <li>Instability — "giving way" feeling when walking</li>
             </ul>
+
+            <h3>Positioning & Preparation</h3>
+            <p>Patients are positioned supine, and a strict sterile protocol is followed with double prep, antibiotics, and theater discipline to minimize infection risk.</p>
+            
+            <h3>Key Surgical Goals</h3>
+            <p>The technical objectives include achieving proper alignment, restoring joint line, balancing ligaments, and ensuring smooth patella tracking.</p>
+
+            <h3>The Surgical Technique</h3>
+            <ul>
+                <li><strong>Approach:</strong> Most commonly via the medial parapatellar approach.</li>
+                <li><strong>Femur First:</strong> Involves removing osteophytes, using intramedullary alignment, and making accurate femoral cuts.</li>
+                <li><strong>Tibia Preparation:</strong> Typically done using extramedullary referencing, ensuring proper slope and varus/valgus alignment.</li>
+                <li><strong>Trialing & Balancing:</strong> Components are trialed to check fit, gaps, and tracking before final fixation.</li>
+                <li><strong>Patella & Cementation:</strong> Patella is prepared, and components are cemented with careful handling.</li>
+            </ul>
+
+            <h3>Flexion & Extension Gap Management</h3>
+            <p>Fine-tuning is done through balancing soft tissues and adjusting cuts. Scenarios like tight flexion or extension gaps are managed with augmentations or component adjustments.</p>
+
+            <h3>Closure</h3>
+            <p>The surgery concludes with layered closure in flexion, using appropriate dressings to support healing.</p>
+
+            <h3>Conclusion:</h3>
+            <p>TKR is a technical procedure, but with the right approach, attention to detail, and patient-specific planning, excellent outcomes are achievable. Dr. Ulhas Sonar’s systematic method ensures both new and experienced surgeons understand the balance between mechanics and clinical decision-making.</p>
         `
     }
 };
