@@ -1,3 +1,6 @@
+import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Activity, Target, ShieldAlert, ArrowRight, Zap } from 'lucide-react';
 import { CardContainer, CardBody, CardItem } from './ui/3d-card';
 
 const SportingInjury = () => {
