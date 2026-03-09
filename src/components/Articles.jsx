@@ -15,6 +15,16 @@ const articlesData = [
         date: "March 9, 2026"
     },
     {
+        id: 'tkr-implant-evolution',
+        title: "The Evolution of TKR Implants",
+        excerpt: "Total Knee Replacement (TKR) implants have come a long way from the early days of hinge prostheses to today’s advanced, patient-specific systems.",
+        category: "Surgery",
+        categoryColor: "bg-indigo-100 text-indigo-700",
+        image: "https://images.unsplash.com/photo-1628595351029-c2bf17511435?w=800&h=600&fit=crop",
+        author: "Dr. Ulhas Sonar",
+        date: "March 9, 2026"
+    },
+    {
         id: 'shoulder-steroid-injection',
         title: "Steroid Injection for Shoulder Pain: What You Should Know",
         excerpt: "Shoulder pain — especially from conditions like rotator cuff inflammation or bursitis — can limit your daily life. One effective treatment used by orthopedic specialists is a steroid injection into the subacromial space of the shoulder.",
@@ -43,16 +53,6 @@ const articlesData = [
         image: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=800&h=600&fit=crop",
         author: "Dr. Ulhas Sonar",
         date: "May 20, 2024"
-    },
-    {
-        id: 'tkr-implant-evolution',
-        title: "The Evolution of TKR Implants",
-        excerpt: "From simple hinges to patient-specific systems. Discover how TKR implant design has evolved to enhance stability and patient satisfaction.",
-        category: "Surgery",
-        categoryColor: "bg-indigo-100 text-indigo-700",
-        image: "https://images.unsplash.com/photo-1628595351029-c2bf17511435?w=800&h=600&fit=crop",
-        author: "Dr. Ulhas Sonar",
-        date: "April 15, 2024"
     },
     {
         id: 'tkr-surgical-steps',

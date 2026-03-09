@@ -142,23 +142,32 @@ const articles = {
     },
     'tkr-implant-evolution': {
         title: "The Evolution of TKR Implants",
-        date: "April 15, 2024",
+        date: "March 9, 2026",
         author: "Dr. Ulhas Sonar",
         category: "Surgery",
         image: "https://images.unsplash.com/photo-1628595351029-c2bf17511435?w=1200&auto=format&fit=crop",
         readTime: "5 min read",
         content: `
-            <p>Total Knee Replacement (TKR) implants have come a long way from the early days of hinge prostheses to today’s advanced, patient-specific systems. Learn how TKR implant design has evolved to enhance stability, longevity, and patient satisfaction.</p>
+            <p>Total Knee Replacement (TKR) implants have come a long way from the early days of hinge prostheses to today’s advanced, patient-specific systems. In this blog, Dr. Ulhas Sonar, a UK-trained orthopedic surgeon, provides a concise overview of how TKR implant design has evolved to enhance stability, longevity, and patient satisfaction.</p>
             
             <h3>From Hinges to Modularity</h3>
-            <p>Early implants were simple and rigid. Over time, the need for anatomical movement led to innovations like the Total Condylar Prosthesis and femoral rollback mechanisms, improving function and wear resistance.</p>
+            <p>Early implants like the Walldius hinge and McIntosh designs were simple and rigid. Over time, the need for anatomical movement and joint stability led to innovations like the Total Condylar Prosthesis and femoral rollback mechanisms, improving function and wear resistance.</p>
+            
+            <h3>Design Philosophies</h3>
+            <p>Modern implants are designed around concepts of modularity, constraint, and stability. Options now range from cruciate-retaining (CR) to posterior-stabilized (PS), and more constrained or hinged models — each suited for different anatomical and clinical needs.</p>
             
             <h3>Key Advancements</h3>
             <ul>
                 <li>Mobile-bearing designs reduce wear and enhance mobility.</li>
-                <li>Highly congruent liners improve patellar tracking.</li>
-                <li>Patient-specific instrumentation (PSI) allows for personalized alignment.</li>
+                <li>Highly congruent liners and rotating-hinge systems improve patellar tracking and soft tissue balance.</li>
+                <li>Patient-specific instrumentation (PSI) allows for more personalized and precise alignment.</li>
             </ul>
+
+            <h3>Data-Driven Choices</h3>
+            <p>UK NJR (National Joint Registry) data supports newer designs like PFC Sigma (Depuy), NexGen (Zimmer), and Triathlon (Stryker) for their improved outcomes in flexibility, longevity, and anatomical compatibility.</p>
+
+            <h3>Conclusion:</h3>
+            <p>The evolution of TKR implants reflects a shift toward personalization, functionality, and surgical flexibility. With a range of implant types tailored to individual cases, modern knee replacements offer better outcomes and quicker recoveries than ever before.</p>
         `
     },
     'tkr-surgical-steps': {
