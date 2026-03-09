@@ -6,13 +6,13 @@ import { User, Calendar, ArrowRight } from 'lucide-react';
 const articlesData = [
     {
         id: 'knee-replacement-signs',
-        title: "Is It Time for a Knee Replacement? 7 Signs You Shouldn't Ignore",
-        excerpt: "Many patients live with joint pain far longer than necessary, hoping it will get better with time. As an orthopaedic surgeon with years of experience treating complex knee conditions, I often meet individuals who say, “I wish I’d come in sooner.”",
+        title: "Alignment concept: Total Knee Replacement",
+        excerpt: "Total Knee Arthroplasty (TKA) has undergone a major evolution—from focusing on generic mechanical alignment to modern, personalized alignment strategies.",
         category: "Knee Health",
         categoryColor: "bg-blue-100 text-blue-700",
-        image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&h=600&fit=crop",
+        image: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=800&h=600&fit=crop",
         author: "Dr. Ulhas Sonar",
-        date: "June 17, 2025"
+        date: "March 9, 2026"
     },
     {
         id: 'shoulder-steroid-injection',

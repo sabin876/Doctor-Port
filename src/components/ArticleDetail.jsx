@@ -5,28 +5,26 @@ import { ChevronLeft, Calendar, User, Clock, Share2, Tag, ArrowRight } from 'luc
 
 const articles = {
     'knee-replacement-signs': {
-        title: "Is It Time for a Knee Replacement? 7 Signs You Shouldn't Ignore",
-        date: "June 17, 2025",
+        title: "Alignment concept: Total Knee Replacement",
+        date: "March 9, 2026",
         author: "Dr. Ulhas Sonar",
         category: "Knee Health",
-        image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=1200&auto=format&fit=crop",
         readTime: "5 min read",
         content: `
-            <p>Many patients live with joint pain far longer than necessary, hoping it will get better with time. As an orthopaedic surgeon with years of experience treating complex knee conditions, I often meet individuals who say, "I wish I’d come in sooner."</p>
+            <p>Total Knee Arthroplasty (TKA) has undergone a major evolution—from focusing on generic mechanical alignment to modern, personalized alignment strategies. Dr. Ulhas Sonar, a globally trained orthopedic surgeon, shares insights into how understanding joint anatomy and using technology can lead to better surgical outcomes.</p>
             
-            <h3>Here are seven clinical signs I encourage every patient to monitor closely:</h3>
+            <h3>From Mechanical to Personalized Alignment</h3>
+            <p>Traditional mechanical alignment aimed to achieve a neutral 180° hip-knee-ankle (HKA) axis. While it offers good implant survival, it doesn’t reflect natural limb variations and may compromise function in some patients. Studies have shown many people naturally fall outside the “neutral” alignment range.</p>
             
-            <ol>
-                <li><strong>Severe and Persistent Pain:</strong> Pain that interferes with sleep, daily activity, or doesn’t improve with rest or medication is a major red flag.</li>
-                <li><strong>Mobility Restrictions:</strong> If walking short distances, climbing stairs, or getting out of a chair becomes difficult, your joint may have significant structural damage.</li>
-                <li><strong>Swelling and Inflammation:</strong> Ongoing inflammation that doesn’t respond to conservative treatment could signal joint deterioration or underlying arthritis.</li>
-                <li><strong>Morning Stiffness That Lingers:</strong> Mild stiffness is normal. But if your knee stays stiff for over 30 minutes, it may indicate moderate to advanced osteoarthritis.</li>
-                <li><strong>Reduced Quality of Life:</strong> When knee pain limits your participation in work, travel, family time, or sleep, surgical options should be considered.</li>
-                <li><strong>Dependency on Painkillers:</strong> Needing medication frequently to manage pain is not sustainable and could lead to complications.</li>
-                <li><strong>Ineffective Non-Surgical Treatments:</strong> If physiotherapy, weight loss, bracing, or injections have failed to bring relief, surgery may provide a definitive solution.</li>
-            </ol>
+            <h3>Newer Concepts: Kinematic, Inverse Kinematic & Functional Alignment</h3>
+            <p>Modern alignment techniques—like Kinematic Alignment (KA) and Inverse KA—strive to replicate the patient’s pre-arthritic anatomy by resurfacing bone and preserving soft tissue. Restricted KA adds safety limits to avoid overloading implants, while Functional Alignment uses robotic systems to balance implants around native soft-tissue tension in real-time.</p>
+
+            <h3>The Role of Technology</h3>
+            <p>With robotic-assisted systems and computer navigation, surgeons can now plan precise resections, adjust for gap balancing, and reduce soft-tissue damage. This shift improves patient satisfaction, functional scores, and may reduce revision risks over time.</p>
             
-            <p>Knee replacement is not about age. It’s about quality of life. When joint pain stops you from living fully, it’s time to seek an expert opinion. In my practice, I use a comprehensive approach — including imaging, gait assessment, and conservative options — before recommending surgery.</p>
+            <h3>Conclusion:</h3>
+            <p>The future of knee replacement is personalized. By understanding individual anatomy and combining it with cutting-edge surgical tools, TKA outcomes are becoming more functional, durable, and patient-friendly than ever.</p>
         `
     },
     'shoulder-steroid-injection': {
