@@ -166,6 +166,7 @@ const Contact = () => {
 
                     {/* Contact Form */}
                     <motion.div
+                        id="contact-form"
                         initial={{ opacity: 0, x: isRtl ? -80 : 80, scale: 0.95 }}
                         whileInView={{ opacity: 1, x: 0, scale: 1 }}
                         transition={{

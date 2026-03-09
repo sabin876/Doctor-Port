@@ -19,8 +19,35 @@ const Navbar = () => {
 
     const isHome = location.pathname === '/';
 
-    const handleNavigation = (target) => {
+    const handleNavigation = (target, route = null) => {
         setIsOpen(false);
+
+        // If a route is provided (like '/contact')
+        if (route) {
+            const isCurrentlyOnRoute = location.pathname === route;
+
+            if (isCurrentlyOnRoute) {
+                // If already on the page, just scroll
+                scroller.scrollTo(target, {
+                    smooth: true,
+                    duration: 500,
+                    offset: -70,
+                });
+            } else {
+                // If on different page, navigate then scroll
+                navigate(route);
+                setTimeout(() => {
+                    scroller.scrollTo(target, {
+                        smooth: true,
+                        duration: 500,
+                        offset: -70,
+                    });
+                }, 500); // slightly longer timeout to ensure page loads
+            }
+            return;
+        }
+
+        // Standard behavior for hash links on the home page
         if (isHome) {
             scroller.scrollTo(target, {
                 smooth: true,
@@ -29,7 +56,6 @@ const Navbar = () => {
             });
         } else {
             navigate('/', { state: { scrollTo: target } });
-            // Small timeout to allow navigation to complete before scrolling
             setTimeout(() => {
                 scroller.scrollTo(target, {
                     smooth: true,
@@ -46,7 +72,7 @@ const Navbar = () => {
         { id: 'services', name: 'Services', path: '/services', isRouterLink: true },
         { id: 'articles', name: 'Articles', path: '/articles', isRouterLink: true },
         { id: 'gallery', name: 'Gallery', path: '/gallery', isRouterLink: true },
-        { id: 'contact', name: 'Contact', path: '/contact', isRouterLink: true },
+        { id: 'contact', name: 'Contact', target: 'contact-form', route: '/contact', isRouterLink: false },
     ];
 
     const languages = [
@@ -101,7 +127,7 @@ const Navbar = () => {
                             ) : (
                                 <button
                                     key={link.id}
-                                    onClick={() => handleNavigation(link.target)}
+                                    onClick={() => handleNavigation(link.target, link.route)}
                                     className="text-sm font-metabolic font-black transition-all duration-300 hover:text-primary-600 relative group text-primary-950 uppercase tracking-widest"
                                 >
                                     {t(`nav.${link.id}`)}
@@ -152,13 +178,13 @@ const Navbar = () => {
                             </AnimatePresence>
                         </div>
 
-                        <RouterLink
-                            to="/contact"
+                        <button
+                            onClick={() => handleNavigation('contact-form', '/contact')}
                             className="bg-primary-600 text-white px-6 py-2.5 rounded-xl font-metabolic font-black text-[10px] uppercase tracking-widest hover:bg-primary-700 transition-all duration-300 shadow-premium hover:shadow-premium-hover hover:-translate-y-0.5 flex items-center group/btn"
                         >
                             <Calendar className="w-4 h-4 me-2 group-hover/btn:rotate-12 transition-transform" />
                             {t('nav.bookNow')}
-                        </RouterLink>
+                        </button>
                     </div>
 
                     <div className="md:hidden flex items-center">
@@ -205,10 +231,10 @@ const Navbar = () => {
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: index * 0.1 }}
-                                        onClick={() => handleNavigation(link.target)}
+                                        onClick={() => handleNavigation(link.target, link.route)}
                                         className="text-2xl font-metabolic font-bold text-gray-900 hover:text-primary-600 transition-colors uppercase tracking-widest"
                                     >
-                                        {link.name}
+                                        {t(`nav.${link.id}`)}
                                     </motion.button>
                                 )
                             ))}
@@ -234,13 +260,12 @@ const Navbar = () => {
                             </div>
 
                             <div className="w-full pt-8">
-                                <RouterLink
-                                    to="/contact"
-                                    onClick={() => setIsOpen(false)}
+                                <button
+                                    onClick={() => handleNavigation('contact-form', '/contact')}
                                     className="block w-full bg-primary-600 text-white text-center py-4 rounded-xl font-metabolic font-bold shadow-xl shadow-primary-200 uppercase tracking-widest text-xs"
                                 >
                                     {t('nav.bookNow')}
-                                </RouterLink>
+                                </button>
                             </div>
                         </div>
                     </motion.div>
