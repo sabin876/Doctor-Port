@@ -18,6 +18,11 @@ import {
 
 import { useLanguage } from '../context/LanguageContext';
 import kneeArthroscopyImg from '../assets/knee-arthroscopy.png';
+import jointReplacementImg from '../assets/joint-replacement-bg.png';
+import sportsMedicineImg from '../assets/sports-medicine-bg.png';
+import spineSurgeryImg from '../assets/spine-surgery-bg.png';
+import handWristImg from '../assets/hand-wrist-bg.png';
+import footAnkleImg from '../assets/foot-ankle-bg.png';
 
 const Services = () => {
     const { t } = useLanguage();
@@ -28,6 +33,7 @@ const Services = () => {
             title: t('services.items.0.title'),
             desc: t('services.items.0.desc'),
             icon: Bone,
+            image: jointReplacementImg,
             gradient: "from-blue-600/10 to-transparent",
             accent: "blue"
         },
@@ -35,6 +41,7 @@ const Services = () => {
             title: t('services.items.1.title'),
             desc: t('services.items.1.desc'),
             icon: Activity,
+            image: sportsMedicineImg,
             gradient: "from-cyan-600/10 to-transparent",
             accent: "cyan"
         },
@@ -42,6 +49,7 @@ const Services = () => {
             title: t('services.items.2.title'),
             desc: t('services.items.2.desc'),
             icon: Layers,
+            image: spineSurgeryImg,
             gradient: "from-indigo-600/10 to-transparent",
             accent: "indigo"
         },
@@ -49,7 +57,7 @@ const Services = () => {
             title: t('services.items.3.title'),
             desc: t('services.items.3.desc'),
             icon: Scan,
-            image: kneeArthroscopyImg, // Keep this as it's a specific high-quality asset
+            image: kneeArthroscopyImg,
             gradient: "from-teal-600/10 to-transparent",
             accent: "teal"
         },
@@ -57,6 +65,7 @@ const Services = () => {
             title: t('services.items.4.title'),
             desc: t('services.items.4.desc'),
             icon: Hand,
+            image: handWristImg,
             gradient: "from-blue-700/10 to-transparent",
             accent: "blue"
         },
@@ -64,6 +73,7 @@ const Services = () => {
             title: t('services.items.5.title'),
             desc: t('services.items.5.desc'),
             icon: Footprints,
+            image: footAnkleImg,
             gradient: "from-sky-600/10 to-transparent",
             accent: "sky"
         },
@@ -71,6 +81,7 @@ const Services = () => {
             title: t('services.items.6.title'),
             desc: t('services.items.6.desc'),
             icon: Bandage,
+            image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&auto=format&fit=crop&q=60", // Orthopedic Trauma
             gradient: "from-emerald-600/10 to-transparent",
             accent: "emerald"
         },
@@ -78,6 +89,7 @@ const Services = () => {
             title: t('services.items.7.title'),
             desc: t('services.items.7.desc'),
             icon: HeartPulse,
+            image: "https://images.unsplash.com/photo-1576091160550-217359f49f4c?w=800&auto=format&fit=crop&q=60", // Physiotherapy
             gradient: "from-purple-600/10 to-transparent",
             accent: "purple"
         }
