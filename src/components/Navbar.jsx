@@ -46,7 +46,7 @@ const Navbar = () => {
         { id: 'services', name: 'Services', path: '/services', isRouterLink: true },
         { id: 'articles', name: 'Articles', path: '/articles', isRouterLink: true },
         { id: 'gallery', name: 'Gallery', path: '/gallery', isRouterLink: true },
-        { id: 'contact', name: 'Contact', target: 'contact', isRouterLink: false },
+        { id: 'contact', name: 'Contact', path: '/contact', isRouterLink: true },
     ];
 
     const languages = [
@@ -152,13 +152,13 @@ const Navbar = () => {
                             </AnimatePresence>
                         </div>
 
-                        <button
-                            onClick={() => handleNavigation('contact')}
+                        <RouterLink
+                            to="/contact"
                             className="bg-primary-600 text-white px-6 py-2.5 rounded-xl font-metabolic font-black text-[10px] uppercase tracking-widest hover:bg-primary-700 transition-all duration-300 shadow-premium hover:shadow-premium-hover hover:-translate-y-0.5 flex items-center group/btn"
                         >
                             <Calendar className="w-4 h-4 me-2 group-hover/btn:rotate-12 transition-transform" />
                             {t('nav.bookNow')}
-                        </button>
+                        </RouterLink>
                     </div>
 
                     <div className="md:hidden flex items-center">
@@ -234,12 +234,13 @@ const Navbar = () => {
                             </div>
 
                             <div className="w-full pt-8">
-                                <button
-                                    onClick={() => handleNavigation('contact')}
+                                <RouterLink
+                                    to="/contact"
+                                    onClick={() => setIsOpen(false)}
                                     className="block w-full bg-primary-600 text-white text-center py-4 rounded-xl font-metabolic font-bold shadow-xl shadow-primary-200 uppercase tracking-widest text-xs"
                                 >
                                     {t('nav.bookNow')}
-                                </button>
+                                </RouterLink>
                             </div>
                         </div>
                     </motion.div>
