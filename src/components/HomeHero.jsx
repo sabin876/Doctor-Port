@@ -60,21 +60,21 @@ const StatsRow = ({ trigger, stats }) => (
             <div key={i} className="flex flex-col">
                 <div className="flex items-center gap-2">
                     {stat.isGoogle ? (
-                        <span className="text-xl font-black text-white tracking-tight">Google</span>
+                        <span className="text-xl font-black text-slate-900 tracking-tight">Google</span>
                     ) : (
-                        <span className="text-2xl font-black text-white tracking-tight">
+                        <span className="text-2xl font-black text-slate-900 tracking-tight">
                             <AnimatedCounter value={stat.value} suffix={stat.suffix} trigger={trigger} />
                         </span>
                     )}
                     {stat.isStar && (
                         <div className="flex items-center">
-                            <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
-                            <span className="ml-1 text-xs font-bold text-white/60">5.0 RATED</span>
+                            <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
+                            <span className="ml-1 text-xs font-bold text-slate-400">5.0 RATED</span>
                         </div>
                     )}
                 </div>
                 {!stat.isStar && (
-                    <span className="text-[10px] text-white/40 font-black uppercase tracking-[0.2em] mt-1">
+                    <span className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mt-1">
                         {stat.label}
                     </span>
                 )}
@@ -167,19 +167,16 @@ const HomeHero = () => {
     return (
         <div
             id="home"
-            className="relative min-h-[95vh] flex items-center pt-28 pb-20 overflow-hidden"
-            style={{
-                background: 'linear-gradient(135deg, #020617 0%, #030712 100%)',
-            }}
+            className="relative min-h-[95vh] flex items-center pt-28 pb-20 overflow-hidden bg-white"
         >
             {/* ── Background Effects ── */}
             <div className="absolute inset-0 z-0 pointer-events-none">
-                <Orb className="w-[800px] h-[800px] bg-blue-600/10 -top-40 -left-60" delay={0} />
-                <Orb className="w-[600px] h-[600px] bg-cyan-500/10 bottom-0 -right-40" delay={4} />
+                <Orb className="w-[800px] h-[800px] bg-blue-400/5 -top-40 -left-60" delay={0} />
+                <Orb className="w-[600px] h-[600px] bg-cyan-400/5 bottom-0 -right-40" delay={4} />
                 <div
-                    className="absolute inset-0 opacity-[0.02]"
+                    className="absolute inset-0 opacity-[0.03]"
                     style={{
-                        backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
+                        backgroundImage: 'radial-gradient(circle, #334155 1px, transparent 1px)',
                         backgroundSize: '48px 48px',
                     }}
                 />
@@ -197,9 +194,9 @@ const HomeHero = () => {
                         {/* Mockup Badge */}
                         <motion.div
                             variants={itemVariants}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-full mb-8 bg-white/5 border border-white/10 w-fit backdrop-blur-sm"
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-full mb-8 bg-blue-50 border border-blue-100/50 w-fit backdrop-blur-sm"
                         >
-                            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]" />
                             <AnimatePresence mode="wait">
                                 <motion.span
                                     key={slide.badge}
@@ -207,7 +204,7 @@ const HomeHero = () => {
                                     initial="enter"
                                     animate="center"
                                     exit="exit"
-                                    className="text-white/60 text-[11px] font-bold tracking-[0.1em] uppercase"
+                                    className="text-blue-600 text-[11px] font-bold tracking-[0.1em] uppercase"
                                 >
                                     {slide.badge}
                                 </motion.span>
@@ -223,7 +220,7 @@ const HomeHero = () => {
                                         initial="enter"
                                         animate="center"
                                         exit="exit"
-                                        className="text-white block"
+                                        className="text-slate-900 block"
                                     >
                                         {slide.headline1}
                                     </motion.span>
@@ -237,7 +234,7 @@ const HomeHero = () => {
                                         exit="exit"
                                         className="text-transparent bg-clip-text inline-block"
                                         style={{
-                                            backgroundImage: 'linear-gradient(90deg, #38bdf8 0%, #60a5fa 100%)',
+                                            backgroundImage: 'linear-gradient(90deg, #0284c7 0%, #2563eb 100%)',
                                         }}
                                     >
                                         {slide.headline2}
@@ -253,7 +250,7 @@ const HomeHero = () => {
                                 initial="enter"
                                 animate="center"
                                 exit="exit"
-                                className="text-lg text-white/50 leading-relaxed mb-10 max-w-lg"
+                                className="text-lg text-slate-600 leading-relaxed mb-10 max-w-lg"
                             >
                                 {slide.description}
                             </motion.p>
@@ -274,7 +271,7 @@ const HomeHero = () => {
 
                             <RouterLink
                                 to="/services"
-                                className="group flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-black text-sm text-white border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-white/20 transition-all"
+                                className="group flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-black text-sm text-slate-600 border border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 transition-all shadow-sm"
                             >
                                 View Services
                                 <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -297,20 +294,20 @@ const HomeHero = () => {
                                 {/* Portrait Card Shell */}
                                 <CardItem
                                     translateZ={-20}
-                                    className="absolute inset-0 rounded-[2rem] bg-[#0c1322] border border-white/10 shadow-2xl overflow-hidden"
+                                    className="absolute inset-0 rounded-[2rem] bg-white border border-slate-100 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.12)] overflow-hidden"
                                 >
                                     <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 via-transparent to-cyan-500/5" />
                                 </CardItem>
 
                                 {/* Floating Success Badge */}
                                 <CardItem translateZ={80} className="absolute top-6 right-6 z-30">
-                                    <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-black/60 backdrop-blur-xl border border-white/10 shadow-2xl">
-                                        <div className="w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">
-                                            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                                    <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/90 backdrop-blur-xl border border-slate-100 shadow-xl">
+                                        <div className="w-7 h-7 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
+                                            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                                         </div>
                                         <div>
-                                            <p className="text-[8px] text-white/40 font-black tracking-widest leading-none">SUCCESS RATE</p>
-                                            <p className="text-white text-sm font-black mt-0.5">{slide.badgeValue}</p>
+                                            <p className="text-[8px] text-slate-400 font-black tracking-widest leading-none">SUCCESS RATE</p>
+                                            <p className="text-slate-900 text-sm font-black mt-0.5">{slide.badgeValue}</p>
                                         </div>
                                     </div>
                                 </CardItem>
@@ -340,8 +337,8 @@ const HomeHero = () => {
                                     className="absolute bottom-6 left-6 right-6"
                                 >
                                     <div className="flex flex-col">
-                                        <h3 className="text-xl font-bold text-white mb-0.5">Dr. Ulhas Sonar</h3>
-                                        <p className="text-cyan-400 text-xs font-semibold tracking-wide uppercase opacity-80">{slide.nameplateSub}</p>
+                                        <h3 className="text-xl font-bold text-slate-900 mb-0.5">Dr. Ulhas Sonar</h3>
+                                        <p className="text-blue-600 text-xs font-semibold tracking-wide uppercase opacity-80">{slide.nameplateSub}</p>
                                     </div>
                                 </CardItem>
                             </CardBody>
@@ -355,7 +352,7 @@ const HomeHero = () => {
 
             {/* Highlights Marquee */}
             {highlights.length > 0 && (
-                <div className="absolute bottom-0 left-0 w-full overflow-hidden bg-white/2 pt-3 pb-4 border-t border-white/5 backdrop-blur-xs z-20">
+                <div className="absolute bottom-0 left-0 w-full overflow-hidden bg-slate-50/50 pt-3 pb-4 border-t border-slate-100 backdrop-blur-xs z-20">
                     <motion.div
                         className="flex whitespace-nowrap"
                         animate={{ x: direction === "rtl" ? ["0%", "100%"] : ["-50%", "0%"] }}
@@ -370,8 +367,8 @@ const HomeHero = () => {
                         }}
                     >
                         {[...highlights, ...highlights, ...highlights].map((h, i) => (
-                            <div key={i} className="flex items-center text-white/30 mx-10 text-xs font-bold tracking-[0.1em] uppercase">
-                                <span className="w-1 h-1 rounded-full bg-cyan-500/50 mr-4" />
+                            <div key={i} className="flex items-center text-slate-400/80 mx-10 text-xs font-bold tracking-[0.1em] uppercase">
+                                <span className="w-1 h-1 rounded-full bg-blue-500/30 mr-4" />
                                 {h}
                             </div>
                         ))}

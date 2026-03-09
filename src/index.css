@@ -84,3 +84,24 @@ body {
   background: none !important;
   box-shadow: none !important;
 }
+
+@keyframes scan {
+
+  0%,
+  100% {
+    transform: translateY(-160px) opacity(0);
+  }
+
+  10%,
+  90% {
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(160px);
+  }
+}
+
+.animate-scan {
+  animation: scan 4s linear infinite;
+}
