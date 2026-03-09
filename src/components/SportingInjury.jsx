@@ -45,77 +45,51 @@ const SportingInjury = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="flex flex-col lg:flex-row items-center lg:items-start gap-16 xl:gap-28">
 
-                    {/* Left Side: Custom Video Card Layout */}
+                    {/* Left Side: Premium Instagram Frame */}
                     <motion.div
                         initial={{ opacity: 0, x: -60 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.9, ease: "easeOut" }}
-                        className="w-full lg:w-[540px] xl:w-[600px]"
+                        className="w-full lg:w-[480px] xl:w-[540px]"
                     >
-                        <div className="relative group overflow-hidden rounded-[2rem] shadow-2xl border border-white/20 bg-black aspect-[16/9]">
-                            {/* Background Image */}
-                            <img
-                                src="/assets/video-placeholder.png"
-                                alt="Knee Injury Treatment"
-                                className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
-                            />
+                        <motion.div
+                            animate={{
+                                y: [0, -12, 0],
+                            }}
+                            transition={{
+                                duration: 5,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                            className="group relative"
+                        >
+                            {/* High-Impact Decorative Glow */}
+                            <div className="absolute -inset-2 bg-gradient-to-r from-[#3a7e7a]/40 to-orange-400/40 rounded-3xl blur-3xl opacity-20 group-hover:opacity-50 transition duration-1000 group-hover:duration-500"></div>
 
-                            {/* Center Overlay Text & Play Button */}
-                            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                                {/* Large Text Overlay */}
-                                <div className="mb-4">
-                                    <h3 className="text-white text-4xl md:text-5xl font-black tracking-tighter uppercase drop-shadow-2xl">
-                                        KNEE<br />
-                                        <span className="text-5xl md:text-6xl">INJURIES</span>
-                                    </h3>
-                                    {/* Blue Horizontal Bar */}
-                                    <div className="w-full h-1.5 bg-[#3a7e7a] mt-4 rounded-full shadow-lg"></div>
-                                </div>
-
-                                {/* Center Play Button */}
-                                <motion.div
-                                    whileHover={{ scale: 1.1 }}
-                                    className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center cursor-pointer group-hover:bg-white/30 transition-all duration-300 shadow-2xl mt-4"
-                                >
-                                    <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center pl-1 shadow-inner">
-                                        <div className="w-0 h-0 border-t-[12px] border-t-transparent border-l-[20px] border-l-[#3a7e7a] border-b-[12px] border-b-transparent ml-1"></div>
+                            <div className="relative p-3 bg-white/90 backdrop-blur-2xl rounded-3xl shadow-[0_40px_80px_-20px_rgba(0,0,0,0.18)] border border-white/60 overflow-hidden">
+                                {/* Top Bar decoration */}
+                                <div className="flex items-center gap-2 mb-4 px-3">
+                                    <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                                    <div className="w-3 h-3 rounded-full bg-amber-400"></div>
+                                    <div className="w-3 h-3 rounded-full bg-emerald-400"></div>
+                                    <div className="ml-auto flex items-center gap-2">
+                                        <span className="text-[10px] font-black text-gray-500 tracking-widest uppercase">RECOVERY STREAM</span>
+                                        <div className="w-2 h-2 rounded-full bg-red-500 animate-ping"></div>
                                     </div>
-                                </motion.div>
-                            </div>
-
-                            {/* Bottom Control Bar (Simulated) */}
-                            <div className="absolute bottom-0 left-0 right-0 h-16 bg-black/90 backdrop-blur-lg flex items-center px-6 gap-6 text-white/90">
-                                {/* Play Icon */}
-                                <div className="p-1 cursor-pointer hover:text-white transition-colors">
-                                    <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[14px] border-l-white border-b-[8px] border-b-transparent"></div>
                                 </div>
 
-                                {/* Time Display */}
-                                <div className="text-[13px] font-mono tracking-tighter flex items-center gap-1.5">
-                                    <span>00:00</span>
-                                    <span className="text-white/40">/</span>
-                                    <span>03:36</span>
-                                </div>
-
-                                {/* Progress Bar */}
-                                <div className="flex-1 relative h-1.5 bg-white/20 rounded-full group/progress cursor-pointer">
-                                    <div className="absolute left-0 top-0 bottom-0 w-1/3 bg-[#3a7e7a] rounded-full"></div>
-                                    {/* Progress Handle */}
-                                    <div className="absolute left-1/3 top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg scale-0 group-hover/progress:scale-100 transition-transform"></div>
-                                </div>
-
-                                {/* Volume Icon */}
-                                <div className="cursor-pointer hover:text-white transition-colors">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
-                                </div>
-
-                                {/* Fullscreen Icon */}
-                                <div className="cursor-pointer hover:text-white transition-colors">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg>
+                                <div className="rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 flex justify-center items-center py-4">
+                                    <iframe
+                                        src="https://www.instagram.com/reel/DTijxQ3krcw/embed/"
+                                        className="w-full max-w-[400px] aspect-[9/14] border-0"
+                                        scrolling="no"
+                                        allowtransparency="true"
+                                        frameBorder="0"
+                                    ></iframe>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
                     </motion.div>
 
                     {/* Right Side: High-Impact Content */}
