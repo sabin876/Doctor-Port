@@ -72,10 +72,44 @@ const SportingInjury = () => {
             </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+                {/* CENTERED HEADER */}
+                <div className="text-center max-w-4xl mx-auto mb-20">
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-[#3a7e7a] text-[10px] font-black tracking-widest uppercase mb-6"
+                    >
+                        <Zap className="w-3 h-3 animate-pulse" />
+                        Elite Athlete Recovery
+                    </motion.div>
+
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-[0.95] tracking-tighter mb-8"
+                    >
+                        Suffering From A <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Sporting Injury</span>?
+                    </motion.h2>
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.1 }}
+                        className="text-lg md:text-xl text-slate-600 leading-relaxed font-medium mx-auto max-w-2xl"
+                    >
+                        Experience world-class orthopedic care tailored for professional recovery. We bridge the gap between initial trauma and peak performance.
+                    </motion.p>
+                </div>
+
+                <div className="flex flex-col lg:flex-row items-center lg:items-start gap-16 lg:gap-24">
 
                     {/* LEFT: Instagram Dashboard */}
-                    <div className="w-full lg:w-1/2 flex justify-center">
+                    <div className="w-full lg:w-[45%] flex justify-center order-2 lg:order-1">
                         <CardContainer containerClassName="py-0">
                             <CardBody className="relative bg-white/40 border border-white/60 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] rounded-[2.5rem] p-6 backdrop-blur-3xl w-[320px] md:w-[420px]">
                                 <CardItem translateZ={40} className="w-full flex justify-between items-center mb-6">
@@ -112,28 +146,14 @@ const SportingInjury = () => {
                         </CardContainer>
                     </div>
 
-                    {/* RIGHT: Content & Grid */}
-                    <div className="w-full lg:w-1/2">
+                    {/* RIGHT: Grid & CTA */}
+                    <div className="w-full lg:w-[55%] order-1 lg:order-2">
                         <motion.div
-                            initial={{ opacity: 0, x: 50 }}
+                            initial={{ opacity: 0, x: 30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8 }}
                         >
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-[#3a7e7a] text-[10px] font-black tracking-widest uppercase mb-6">
-                                <Zap className="w-3 h-3 animate-pulse" />
-                                Elite Athlete Recovery
-                            </div>
-
-                            <h2 className="text-5xl lg:text-7xl font-black text-slate-900 leading-[0.95] tracking-tighter mb-8">
-                                Suffering From A <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Sporting Injury</span>?
-                            </h2>
-
-                            <p className="text-lg text-slate-600 leading-relaxed mb-12 max-w-xl font-medium">
-                                Experience world-class orthopedic care tailored for professional recovery. We bridge the gap between initial trauma and peak performance.
-                            </p>
-
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-16">
                                 {solutions.map((item, index) => (
                                     <motion.div
@@ -149,7 +169,7 @@ const SportingInjury = () => {
                                 ))}
                             </div>
 
-                            <div className="flex flex-col sm:flex-row items-center gap-8">
+                            <div className="flex flex-col sm:flex-row items-center gap-8 bg-blue-50/50 p-8 rounded-3xl border border-blue-100/50">
                                 <RouterLink
                                     to="/contact"
                                     className="group relative w-full sm:w-auto px-10 py-5 bg-blue-600 text-white font-black text-sm uppercase tracking-widest rounded-2xl shadow-2xl shadow-blue-500/30 overflow-hidden flex items-center justify-center gap-3 active:scale-95 transition-all"
