@@ -1,17 +1,45 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Activity, Target, ShieldAlert, ArrowRight, Zap } from 'lucide-react';
+import { Activity, Target, ShieldAlert, ArrowRight, Zap, Star } from 'lucide-react';
+import { Link as RouterLink } from 'react-router-dom';
 import { CardContainer, CardBody, CardItem } from './ui/3d-card';
+
+const MedicalRadar = () => (
+    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40">
+        <svg viewBox="0 0 800 800" className="w-full h-full text-blue-500/10">
+            <motion.circle
+                cx="400" cy="400" r="300"
+                fill="none" stroke="currentColor" strokeWidth="0.5"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 2, repeat: Infinity, repeatType: "loop", ease: "linear" }}
+            />
+            <motion.circle
+                cx="400" cy="400" r="200"
+                fill="none" stroke="currentColor" strokeWidth="0.5"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 1.5, repeat: Infinity, repeatType: "loop", ease: "linear", delay: 0.5 }}
+            />
+            <motion.line
+                x1="400" y1="400" x2="400" y2="100"
+                stroke="currentColor" strokeWidth="1"
+                initial={{ rotate: 0 }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                style={{ originX: "400px", originY: "400px" }}
+            />
+        </svg>
+    </div>
+);
 
 const SportingInjury = () => {
     useEffect(() => {
-        // Load Instagram embed script
         const script = document.createElement('script');
         script.src = "//www.instagram.com/embed.js";
         script.async = true;
         document.body.appendChild(script);
 
-        // Process embed if script is already loaded
         if (window.instgrm) {
             window.instgrm.Embeds.process();
         }
@@ -24,157 +52,131 @@ const SportingInjury = () => {
     }, []);
 
     const solutions = [
-        { title: "ACL Injury", icon: <ShieldAlert className="w-5 h-5" />, color: "bg-blue-50 text-blue-600" },
-        { title: "Meniscus Injury", icon: <Target className="w-5 h-5" />, color: "bg-emerald-50 text-emerald-600" },
-        { title: "Cartilage Injury", icon: <Activity className="w-5 h-5" />, color: "bg-orange-50 text-orange-600" },
-        { title: "Knee Instability", icon: <Zap className="w-5 h-5" />, color: "bg-purple-50 text-purple-600" },
-        { title: "Ligament Injuries", icon: <ShieldAlert className="w-5 h-5" />, color: "bg-pink-50 text-pink-600" },
-        { title: "Sports Injuries/Rehab & Recovery", icon: <Activity className="w-5 h-5" />, color: "bg-amber-50 text-amber-600" },
-        { title: "Shoulder Impingement", icon: <Target className="w-5 h-5" />, color: "bg-indigo-50 text-indigo-600" },
-        { title: "Rotator Cuff Tear", icon: <Zap className="w-5 h-5" />, color: "bg-rose-50 text-rose-600" }
+        { title: "ACL Injury", icon: <ShieldAlert className="w-5 h-5" />, color: "bg-blue-600 shadow-blue-200" },
+        { title: "Meniscus Injury", icon: <Target className="w-5 h-5" />, color: "bg-emerald-600 shadow-emerald-200" },
+        { title: "Cartilage Injury", icon: <Activity className="w-5 h-5" />, color: "bg-orange-600 shadow-orange-200" },
+        { title: "Knee Instability", icon: <Zap className="w-5 h-5" />, color: "bg-purple-600 shadow-purple-200" },
+        { title: "Ligament Injuries", icon: <ShieldAlert className="w-5 h-5" />, color: "bg-pink-600 shadow-pink-200" },
+        { title: "Sports Rehab", icon: <Activity className="w-5 h-5" />, color: "bg-amber-600 shadow-amber-200" },
+        { title: "Shoulder Impingement", icon: <Target className="w-5 h-5" />, color: "bg-indigo-600 shadow-indigo-200" },
+        { title: "Rotator Cuff Tear", icon: <Zap className="w-5 h-5" />, color: "bg-rose-600 shadow-rose-200" }
     ];
 
     return (
-        <section className="relative py-28 overflow-hidden bg-white">
-            {/* Liquid Background Decorations */}
+        <section className="relative py-32 overflow-hidden bg-white">
+            <MedicalRadar />
+
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-                <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#3a7e7a]/5 rounded-full blur-[120px] animate-pulse"></div>
-                <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-orange-50/50 rounded-full blur-[100px]"></div>
-                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-1 bg-gradient-to-r from-transparent via-gray-100 to-transparent rotate-12"></div>
+                <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-[140px]"></div>
+                <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-cyan-50/30 rounded-full blur-[120px]"></div>
             </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="flex flex-col lg:flex-row items-center lg:items-start gap-16 xl:gap-28">
+                <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
 
-                    {/* Left Side: Premium 3D Instagram Card */}
-                    <div className="w-full lg:w-[480px] xl:w-[540px]">
-                        <CardContainer className="inter-var">
-                            <CardBody className="bg-white/90 relative group/card border-white/60 dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] w-auto h-auto rounded-3xl p-3 border shadow-[0_40px_80px_-20px_rgba(0,0,0,0.18)] backdrop-blur-2xl">
-                                {/* Medical Corner Brackets */}
-                                <div className="absolute top-6 left-6 w-8 h-8 border-t-2 border-l-2 border-[#3a7e7a]/40 rounded-tl-lg z-20"></div>
-                                <div className="absolute top-6 right-6 w-8 h-8 border-t-2 border-r-2 border-[#3a7e7a]/40 rounded-tr-lg z-20"></div>
-                                <div className="absolute bottom-6 left-6 w-8 h-8 border-b-2 border-l-2 border-[#3a7e7a]/40 rounded-bl-lg z-20"></div>
-                                <div className="absolute bottom-6 right-6 w-8 h-8 border-b-2 border-r-2 border-[#3a7e7a]/40 rounded-br-lg z-20"></div>
-
-                                {/* Digital Scanning Line */}
-                                <div className="absolute inset-x-8 top-1/2 h-[1px] bg-gradient-to-r from-transparent via-[#3a7e7a]/60 to-transparent z-20 animate-scan pointer-events-none"></div>
-
-                                {/* Status Dashboard Header */}
-                                <CardItem
-                                    translateZ="50"
-                                    className="flex items-center gap-3 mb-4 px-3 w-full"
-                                >
-                                    <div className="flex gap-1.5">
-                                        <div className="w-2.5 h-2.5 rounded-full bg-red-400 shadow-[0_0_8px_rgba(248,113,113,0.6)]"></div>
-                                        <div className="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
-                                        <div className="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
+                    {/* LEFT: Instagram Dashboard */}
+                    <div className="w-full lg:w-1/2 flex justify-center">
+                        <CardContainer containerClassName="py-0">
+                            <CardBody className="relative bg-white/40 border border-white/60 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] rounded-[2.5rem] p-6 backdrop-blur-3xl w-[320px] md:w-[420px]">
+                                <CardItem translateZ={40} className="w-full flex justify-between items-center mb-6">
+                                    <div className="flex gap-2">
+                                        <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                                        <div className="w-3 h-3 rounded-full bg-amber-400"></div>
+                                        <div className="w-3 h-3 rounded-full bg-emerald-400"></div>
                                     </div>
-                                    <div className="flex flex-col">
-                                        <span className="text-[10px] font-black text-[#3a7e7a] tracking-[0.2em] leading-none uppercase">ANALYSIS ACTIVE</span>
-                                        <span className="text-[8px] font-bold text-gray-400 tracking-widest mt-0.5 uppercase">SYSTEM STATUS: OPTIMAL</span>
-                                    </div>
-                                    <div className="ml-auto">
-                                        <div className="px-2 py-0.5 rounded bg-red-500/10 border border-red-500/20 flex items-center gap-1.5">
-                                            <span className="text-[9px] font-bold text-red-500 uppercase tracking-tighter">LIVE</span>
-                                            <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></div>
-                                        </div>
-                                    </div>
+                                    <div className="text-[10px] font-black tracking-widest text-[#3a7e7a]">HIGH-PERFORMANCE ANALYSIS</div>
                                 </CardItem>
 
-                                <CardItem
-                                    translateZ="100"
-                                    className="w-full mt-4"
-                                >
-                                    <div className="rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 flex justify-center items-center py-4 relative group">
-                                        <iframe
-                                            src="https://www.instagram.com/reel/DTijxQ3krcw/embed/"
-                                            className="w-full max-w-[400px] aspect-[9/14] border-0 relative z-10"
-                                            scrolling="no"
-                                            allowtransparency="true"
-                                            frameBorder="0"
-                                        ></iframe>
-
-                                        {/* Overlay Glow */}
-                                        <div className="absolute inset-0 bg-gradient-to-tr from-[#3a7e7a]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                                    </div>
+                                <CardItem translateZ={80} className="w-full relative overflow-hidden rounded-2xl bg-slate-900 aspect-[9/13.5] border border-white/20">
+                                    <iframe
+                                        src="https://www.instagram.com/reel/DTijxQ3krcw/embed/"
+                                        className="w-full h-full border-0 rounded-2xl"
+                                        scrolling="no"
+                                        allowtransparency="true"
+                                        frameBorder="0"
+                                    ></iframe>
+                                    <div className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-black/20 to-transparent pointer-events-none"></div>
                                 </CardItem>
 
-                                {/* Footer Stats */}
-                                <CardItem
-                                    translateZ="60"
-                                    className="flex justify-between items-center mt-6 px-4 py-3 bg-gray-50/50 rounded-xl border border-gray-100"
-                                >
-                                    <div className="flex flex-col">
-                                        <span className="text-[9px] text-gray-400 font-bold uppercase tracking-wider tabular-nums">Patient ID</span>
-                                        <span className="text-xs font-black text-gray-700">OR-9921-X</span>
+                                <CardItem translateZ={60} className="mt-8 grid grid-cols-2 gap-4">
+                                    <div className="bg-white/60 p-3 rounded-xl border border-white/40">
+                                        <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1">Success Rate</p>
+                                        <p className="text-lg font-black text-emerald-600">98.4%</p>
                                     </div>
-                                    <div className="h-8 w-[1px] bg-gray-200"></div>
-                                    <div className="flex flex-col items-end">
-                                        <span className="text-[9px] text-gray-400 font-bold uppercase tracking-wider">Recovery Rate</span>
-                                        <span className="text-xs font-black text-emerald-600">+94.2%</span>
+                                    <div className="bg-white/60 p-3 rounded-xl border border-white/40">
+                                        <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1">Patient State</p>
+                                        <p className="text-lg font-black text-blue-600">Stable</p>
                                     </div>
                                 </CardItem>
                             </CardBody>
                         </CardContainer>
                     </div>
 
-                    {/* Right Side: High-Impact Content */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 60 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
-                        className="flex-1 lg:pt-10"
-                    >
-                        <div className="relative mb-12">
-                            <motion.div
-                                initial={{ width: 0 }}
-                                whileInView={{ width: '4rem' }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 1, delay: 0.5 }}
-                                className="h-1.5 bg-[#3a7e7a] rounded-full mb-8"
-                            ></motion.div>
+                    {/* RIGHT: Content & Grid */}
+                    <div className="w-full lg:w-1/2">
+                        <motion.div
+                            initial={{ opacity: 0, x: 50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-[#3a7e7a] text-[10px] font-black tracking-widest uppercase mb-6">
+                                <Zap className="w-3 h-3 animate-pulse" />
+                                Elite Athlete Recovery
+                            </div>
 
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-montserrat text-[#222] font-black leading-[1.1] mb-8">
-                                Suffering A <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3a7e7a] via-[#4d9793] to-[#204a47]">Sporting Injury</span>?
+                            <h2 className="text-5xl lg:text-7xl font-black text-slate-900 leading-[0.95] tracking-tighter mb-8">
+                                Suffering From A <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Sporting Injury</span>?
                             </h2>
-                            <p className="text-gray-500 text-lg md:text-xl font-medium max-w-xl leading-relaxed">
-                                Experience world-class orthopaedic care tailored for high-performance recovery. We bridge the gap between injury and peak performance.
+
+                            <p className="text-lg text-slate-600 leading-relaxed mb-12 max-w-xl font-medium">
+                                Experience world-class orthopedic care tailored for professional recovery. We bridge the gap between initial trauma and peak performance.
                             </p>
-                        </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-14">
-                            {solutions.map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 15 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: 0.4 + (index * 0.1) }}
-                                    className="group flex items-center gap-4 p-4 rounded-2xl bg-gray-50/50 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-xl transition-all duration-500"
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-16">
+                                {solutions.map((item, index) => (
+                                    <motion.div
+                                        key={index}
+                                        whileHover={{ y: -5, scale: 1.02 }}
+                                        className="group flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-xl hover:border-blue-100 transition-all duration-300 cursor-default"
+                                    >
+                                        <div className={`w-12 h-12 rounded-xl ${item.color} flex items-center justify-center text-white shadow-lg transition-transform group-hover:rotate-12`}>
+                                            {item.icon}
+                                        </div>
+                                        <span className="font-bold text-slate-800 text-sm tracking-tight">{item.title}</span>
+                                    </motion.div>
+                                ))}
+                            </div>
+
+                            <div className="flex flex-col sm:flex-row items-center gap-8">
+                                <RouterLink
+                                    to="/contact"
+                                    className="group relative w-full sm:w-auto px-10 py-5 bg-blue-600 text-white font-black text-sm uppercase tracking-widest rounded-2xl shadow-2xl shadow-blue-500/30 overflow-hidden flex items-center justify-center gap-3 active:scale-95 transition-all"
                                 >
-                                    <div className={`w-12 h-12 rounded-xl ${item.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-sm`}>
-                                        {item.icon}
-                                    </div>
-                                    <span className="text-[#333] font-bold text-sm tracking-tight">{item.title}</span>
-                                </motion.div>
-                            ))}
-                        </div>
+                                    <span className="relative z-10 flex items-center gap-3">
+                                        Book Consultation
+                                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
+                                    </span>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                                </RouterLink>
 
-                        <div className="flex flex-col sm:flex-row items-center gap-8">
-                            <motion.button
-                                whileHover={{ scale: 1.05, boxShadow: '0 25px 50px -12px rgba(255, 123, 66, 0.4)' }}
-                                whileTap={{ scale: 0.95 }}
-                                className="group relative w-full sm:w-auto px-12 py-5 bg-gradient-to-br from-[#ff7b42] to-[#f97316] text-white font-black text-sm uppercase tracking-[0.2em] rounded-2xl shadow-2xl overflow-hidden"
-                            >
-                                <span className="relative z-10 flex items-center justify-center gap-3">
-                                    Get Appointment Now
-                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                </span>
-                                <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity"></div>
-                            </motion.button>
-                        </div>
-                    </motion.div>
+                                <div className="flex items-center gap-4">
+                                    <div className="flex -space-x-3">
+                                        {[1, 2, 3].map((i) => (
+                                            <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-200" />
+                                        ))}
+                                    </div>
+                                    <div className="text-left">
+                                        <div className="flex items-center gap-1">
+                                            {[1, 2, 3, 4, 5].map((i) => <Star key={i} className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />)}
+                                        </div>
+                                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">DR. RATED 5/5 Stars</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
                 </div>
             </div>
         </section>
