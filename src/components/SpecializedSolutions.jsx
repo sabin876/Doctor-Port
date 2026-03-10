@@ -2,24 +2,21 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import kneeArthroscopyImg from '../assets/knee-arthroscopy.png';
-import wristPainImg from '../assets/wrist-pain.png';
-import backPainImg from '../assets/back-pain.png';
-import footPainImg from '../assets/foot-pain.png';
-import elbowPainImg from '../assets/elbow-pain.png';
 import runnerKneeImg from '../assets/runner-knee-injury.png';
 import shoulderInjuryImg from '../assets/shoulder-sports-injury.png';
 import runnerAnkleImg from '../assets/runner-ankle-injury.png';
+import handWristInjuryImg from '../assets/hand-wrist-injury.png';
+import backNeckInjuryImg from '../assets/back-neck-injury.png';
 
 const solutions = [
     {
         title: "Hand & Wrist",
-        image: wristPainImg,
+        image: handWristInjuryImg,
         color: "bg-blue-50"
     },
     {
         title: "Back & Neck",
-        image: backPainImg,
+        image: backNeckInjuryImg,
         color: "bg-blue-50"
     },
     {
@@ -29,7 +26,7 @@ const solutions = [
     },
     {
         title: "Elbow",
-        image: elbowPainImg,
+        image: "https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?q=80&w=800&auto=format&fit=crop",
         color: "bg-blue-50"
     },
     {
@@ -39,7 +36,7 @@ const solutions = [
     },
     {
         title: "Hip & Thigh",
-        image: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?q=80&w=800&auto=format&fit=crop", // Placeholder
+        image: "https://images.unsplash.com/photo-1579126038374-606ec5286591?q=80&w=800&auto=format&fit=crop",
         color: "bg-blue-50"
     },
     {
