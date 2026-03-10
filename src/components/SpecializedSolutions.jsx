@@ -7,6 +7,9 @@ import wristPainImg from '../assets/wrist-pain.png';
 import backPainImg from '../assets/back-pain.png';
 import footPainImg from '../assets/foot-pain.png';
 import elbowPainImg from '../assets/elbow-pain.png';
+import runnerKneeImg from '../assets/runner-knee-injury.png';
+import shoulderInjuryImg from '../assets/shoulder-sports-injury.png';
+import runnerAnkleImg from '../assets/runner-ankle-injury.png';
 
 const solutions = [
     {
@@ -21,7 +24,7 @@ const solutions = [
     },
     {
         title: "Foot & Ankle",
-        image: footPainImg,
+        image: runnerAnkleImg,
         color: "bg-blue-50"
     },
     {
@@ -31,7 +34,7 @@ const solutions = [
     },
     {
         title: "Knee & Leg",
-        image: kneeArthroscopyImg,
+        image: runnerKneeImg,
         color: "bg-blue-50"
     },
     {
@@ -41,7 +44,7 @@ const solutions = [
     },
     {
         title: "Shoulder",
-        image: "https://images.unsplash.com/photo-1512678080530-7760d81faba6?q=80&w=800&auto=format&fit=crop", // Placeholder
+        image: shoulderInjuryImg,
         color: "bg-blue-50"
     }
 ];
