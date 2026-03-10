@@ -52,14 +52,11 @@ const SportingInjury = () => {
     }, []);
 
     const solutions = [
-        { title: "ACL Injury", icon: <ShieldAlert className="w-5 h-5" />, color: "bg-blue-600 shadow-blue-200" },
-        { title: "Meniscus Injury", icon: <Target className="w-5 h-5" />, color: "bg-emerald-600 shadow-emerald-200" },
-        { title: "Cartilage Injury", icon: <Activity className="w-5 h-5" />, color: "bg-orange-600 shadow-orange-200" },
-        { title: "Knee Instability", icon: <Zap className="w-5 h-5" />, color: "bg-purple-600 shadow-purple-200" },
-        { title: "Ligament Injuries", icon: <ShieldAlert className="w-5 h-5" />, color: "bg-pink-600 shadow-pink-200" },
-        { title: "Sports Rehab", icon: <Activity className="w-5 h-5" />, color: "bg-amber-600 shadow-amber-200" },
-        { title: "Shoulder Impingement", icon: <Target className="w-5 h-5" />, color: "bg-indigo-600 shadow-indigo-200" },
-        { title: "Rotator Cuff Tear", icon: <Zap className="w-5 h-5" />, color: "bg-rose-600 shadow-rose-200" }
+        "Hip labral tear",
+        "Hip Impingement",
+        "Anterior Cruciate Ligament Injury",
+        "Meniscal Tears",
+        "Patellofemoral Instability"
     ];
 
     return (
@@ -146,53 +143,58 @@ const SportingInjury = () => {
                         </CardContainer>
                     </div>
 
-                    {/* RIGHT: Grid & CTA */}
+                    {/* RIGHT: List & CTA */}
                     <div className="w-full lg:w-[55%] order-1 lg:order-2">
                         <motion.div
                             initial={{ opacity: 0, x: 30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8 }}
+                            className="bg-slate-50/50 p-8 md:p-12 rounded-[2.5rem] border border-slate-100 backdrop-blur-sm shadow-xl"
                         >
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-16">
+                            <h3 className="text-xl font-black text-slate-800 mb-8 uppercase tracking-tight italic text-left">Learn about possible solutions:</h3>
+
+                            <div className="space-y-6 mb-12 text-left">
                                 {solutions.map((item, index) => (
                                     <motion.div
                                         key={index}
-                                        whileHover={{ y: -5, scale: 1.02 }}
-                                        className="group flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-xl hover:border-blue-100 transition-all duration-300 cursor-default"
+                                        initial={{ opacity: 0, x: -10 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: index * 0.1 }}
+                                        className="flex items-center gap-4 group"
                                     >
-                                        <div className={`w-12 h-12 rounded-xl ${item.color} flex items-center justify-center text-white shadow-lg transition-transform group-hover:rotate-12`}>
-                                            {item.icon}
+                                        <div className="flex-shrink-0 w-6 h-6 rounded-md bg-[#3a7e7a]/10 flex items-center justify-center border border-[#3a7e7a]/20 group-hover:bg-[#3a7e7a] group-hover:text-white transition-all">
+                                            <svg className="w-4 h-4 text-[#3a7e7a] group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                            </svg>
                                         </div>
-                                        <span className="font-bold text-slate-800 text-sm tracking-tight">{item.title}</span>
+                                        <span className="font-bold text-slate-700 text-lg md:text-xl tracking-tight leading-none">{item}</span>
                                     </motion.div>
                                 ))}
                             </div>
 
-                            <div className="flex flex-col sm:flex-row items-center gap-8 bg-blue-50/50 p-8 rounded-3xl border border-blue-100/50">
+                            <div className="flex justify-start">
                                 <RouterLink
                                     to="/contact"
-                                    className="group relative w-full sm:w-auto px-10 py-5 bg-blue-600 text-white font-black text-sm uppercase tracking-widest rounded-2xl shadow-2xl shadow-blue-500/30 overflow-hidden flex items-center justify-center gap-3 active:scale-95 transition-all"
+                                    className="group relative inline-flex px-12 py-5 bg-[#ff6b35] text-white font-black text-lg uppercase tracking-widest rounded-2xl shadow-[0_20px_40px_-10px_rgba(255,107,53,0.4)] overflow-hidden items-center justify-center gap-3 active:scale-95 hover:scale-[1.02] transition-all"
                                 >
-                                    <span className="relative z-10 flex items-center gap-3">
-                                        Book Consultation
-                                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
-                                    </span>
+                                    <span className="relative z-10">BOOK A CONSULTATION</span>
+                                    <ArrowRight className="relative z-10 w-6 h-6 group-hover:translate-x-1.5 transition-transform" />
                                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                                 </RouterLink>
+                            </div>
 
-                                <div className="flex items-center gap-4">
-                                    <div className="flex -space-x-3">
-                                        {[1, 2, 3].map((i) => (
-                                            <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-200" />
-                                        ))}
+                            <div className="mt-12 pt-8 border-t border-slate-200/60 flex items-center gap-4">
+                                <div className="flex -space-x-3">
+                                    {[1, 2, 3].map((i) => (
+                                        <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-200" />
+                                    ))}
+                                </div>
+                                <div className="text-left">
+                                    <div className="flex items-center gap-1">
+                                        {[1, 2, 3, 4, 5].map((i) => <Star key={i} className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />)}
                                     </div>
-                                    <div className="text-left">
-                                        <div className="flex items-center gap-1">
-                                            {[1, 2, 3, 4, 5].map((i) => <Star key={i} className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />)}
-                                        </div>
-                                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">DR. RATED 5/5 Stars</p>
-                                    </div>
+                                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none mt-1">Highly Rated Ortho Surgeon</p>
                                 </div>
                             </div>
                         </motion.div>
