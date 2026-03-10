@@ -36,7 +36,7 @@ const solutions = [
     },
     {
         title: "Hip & Thigh",
-        image: "https://images.unsplash.com/photo-1579126038374-606ec5286591?q=80&w=800&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1594833245455-87127e997321?q=80&w=800&auto=format&fit=crop",
         color: "bg-blue-50"
     },
     {
