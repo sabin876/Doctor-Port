@@ -212,7 +212,7 @@ const HomeHero = () => {
                         </motion.div>
 
                         <motion.div variants={itemVariants} className="mb-8">
-                            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[100px] font-black leading-[0.85] tracking-tighter">
+                            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[85px] font-black leading-[0.85] tracking-tighter">
                                 <AnimatePresence mode="wait">
                                     <motion.span
                                         key={`h1-${slide.id}`}
