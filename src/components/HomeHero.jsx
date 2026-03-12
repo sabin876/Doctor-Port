@@ -55,14 +55,14 @@ const Orb = ({ className, delay = 0 }) => (
 
 /* ── New Stats row implementation to match mockup ── */
 const StatsRow = ({ trigger, stats }) => (
-    <div className="flex flex-wrap items-center gap-x-10 gap-y-4 pt-12">
+    <div className="flex flex-wrap items-center gap-x-6 md:gap-x-10 gap-y-6 pt-10 md:pt-12">
         {stats.map((stat, i) => (
             <div key={i} className="flex flex-col">
                 <div className="flex items-center gap-2">
                     {stat.isGoogle ? (
-                        <span className="text-xl font-black text-slate-900 tracking-tight">Google</span>
+                        <span className="text-lg md:text-xl font-black text-slate-900 tracking-tight">Google</span>
                     ) : (
-                        <span className="text-2xl font-black text-slate-900 tracking-tight">
+                        <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">
                             <AnimatedCounter value={stat.value} suffix={stat.suffix} trigger={trigger} />
                         </span>
                     )}
@@ -88,15 +88,15 @@ const slides = [
         id: 0,
         photo: doctorSurgery,
         photoStyle: 'h-[105%] w-auto object-cover object-center',
-        badge: 'Expert Orthopedic Surgeon in Dubai',
+        badge: 'FRCS (UK), FEBOT, MCh, PGDip Robotics, MBBS, MS',
         headline1: 'Restore Your',
         headline2: 'Active Life',
         description:
-            'Dr. Ulhas Sonar specializes in advanced joint replacement, sports injuries, and minimal invasive arthroscopy. Trust in care that goes beyond diagnosis.',
+            'With more than 15+ years of global experience across UK, India, Jersey Island and Dubai in trauma and orthopedic surgery. Delivering world-class care in knee, hip, shoulder and complex trauma.',
         badgeValue: '98%',
         nameplateSub: 'Orthopedic Specialist',
         stats: [
-            { value: '14', suffix: '+', label: 'YEARS EXP.' },
+            { value: '15', suffix: '+', label: 'YEARS EXP.' },
             { value: '5', suffix: 'k+', label: 'SURGERIES' },
             { isGoogle: true, isStar: true, label: '5.0 RATED' },
         ],
@@ -105,11 +105,11 @@ const slides = [
         id: 1,
         photo: doctorPortrait,
         photoStyle: 'h-[100%] w-auto object-contain object-bottom',
-        badge: 'Leading Specialist at Canadian Hospital',
+        badge: 'MBBS, MS Ortho, M Ch Ortho, FRCS (T&O)',
         headline1: 'Precision',
         headline2: 'Orthopedics',
         description:
-            'A fellow of the Royal College of Surgeons with over 15 years of global experience in complex trauma and robotic-assisted knee replacement.',
+            'A fellow of the Royal College of Surgeons with over 15 years of global experience. Specializing in robotic-assisted knee replacement and minimally invasive procedures.',
         badgeValue: '99.8%',
         nameplateSub: 'Orthopedic Surgeon',
         stats: [
@@ -167,17 +167,17 @@ const HomeHero = () => {
     return (
         <div
             id="home"
-            className="relative min-h-[95vh] flex items-center pt-28 pb-20 overflow-hidden bg-gradient-to-b from-slate-50 to-white"
+            className="relative min-h-[95vh] flex items-center pt-28 pb-20 overflow-hidden bg-gradient-to-b from-blue-50/80 via-white to-blue-50/50"
         >
             {/* ── Background Effects ── */}
             <div className="absolute inset-0 z-0 pointer-events-none">
-                <Orb className="w-[800px] h-[800px] bg-blue-400/5 -top-40 -left-60" delay={0} />
-                <Orb className="w-[600px] h-[600px] bg-cyan-400/5 bottom-0 -right-40" delay={4} />
+                <Orb className="w-[800px] h-[800px] bg-blue-400/10 -top-40 -left-60" delay={0} />
+                <Orb className="w-[600px] h-[600px] bg-cyan-400/10 bottom-0 -right-40" delay={4} />
                 <div
-                    className="absolute inset-0 opacity-[0.03]"
+                    className="absolute inset-0 opacity-[0.08]"
                     style={{
-                        backgroundImage: 'radial-gradient(circle, #334155 1px, transparent 1px)',
-                        backgroundSize: '48px 48px',
+                        backgroundImage: 'radial-gradient(circle at 2px 2px, #3b82f6 1.5px, transparent 0)',
+                        backgroundSize: '40px 40px',
                     }}
                 />
             </div>
@@ -194,9 +194,9 @@ const HomeHero = () => {
                         {/* Mockup Badge */}
                         <motion.div
                             variants={itemVariants}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-full mb-8 bg-blue-50 border border-blue-100/50 w-fit backdrop-blur-sm"
+                            className="flex items-center gap-2 px-4 py-2 rounded-full mb-6 bg-blue-50 border border-blue-100 shadow-[0_4px_12px_rgba(59,130,246,0.08)] w-fit backdrop-blur-md"
                         >
-                            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]" />
+                            <span className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)] animate-pulse" />
                             <AnimatePresence mode="wait">
                                 <motion.span
                                     key={slide.badge}
@@ -204,7 +204,7 @@ const HomeHero = () => {
                                     initial="enter"
                                     animate="center"
                                     exit="exit"
-                                    className="text-blue-600 text-[11px] font-bold tracking-[0.1em] uppercase"
+                                    className="text-blue-700 text-xs md:text-[13px] font-black tracking-[0.15em] uppercase"
                                 >
                                     {slide.badge}
                                 </motion.span>
@@ -212,7 +212,7 @@ const HomeHero = () => {
                         </motion.div>
 
                         <motion.div variants={itemVariants} className="mb-8">
-                            <h1 className="text-6xl md:text-8xl lg:text-[100px] font-black leading-[0.9] tracking-tighter">
+                            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[100px] font-black leading-[0.85] tracking-tighter">
                                 <AnimatePresence mode="wait">
                                     <motion.span
                                         key={`h1-${slide.id}`}
@@ -232,9 +232,9 @@ const HomeHero = () => {
                                         initial="enter"
                                         animate="center"
                                         exit="exit"
-                                        className="text-transparent bg-clip-text inline-block"
+                                        className="text-transparent bg-clip-text inline-block pb-3"
                                         style={{
-                                            backgroundImage: 'linear-gradient(90deg, #0284c7 0%, #2563eb 100%)',
+                                            backgroundImage: 'linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%)',
                                         }}
                                     >
                                         {slide.headline2}
@@ -250,7 +250,7 @@ const HomeHero = () => {
                                 initial="enter"
                                 animate="center"
                                 exit="exit"
-                                className="text-lg text-slate-600 leading-relaxed mb-10 max-w-lg"
+                                className="text-lg text-slate-600 leading-relaxed mb-10 max-w-xl font-medium"
                             >
                                 {slide.description}
                             </motion.p>
@@ -258,23 +258,23 @@ const HomeHero = () => {
 
                         <motion.div
                             variants={itemVariants}
-                            className="flex flex-col sm:flex-row gap-4"
+                            className="flex flex-col sm:flex-row gap-5"
                         >
                             <RouterLink
                                 to="/contact"
-                                className="group relative flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-black text-sm tracking-uppercase bg-blue-600 text-white shadow-lg shadow-blue-900/40 hover:scale-[1.02] active:scale-[0.98] transition-all overflow-hidden"
+                                className="group relative flex items-center justify-center gap-3 px-10 py-5 rounded-2xl font-black text-base tracking-wide bg-blue-600 text-white shadow-[0_20px_40px_-10px_rgba(37,99,235,0.4)] hover:shadow-[0_25px_50px_-12px_rgba(37,99,235,0.5)] hover:scale-[1.03] active:scale-[0.97] transition-all overflow-hidden"
                             >
-                                <Calendar className="w-4 h-4 transition-transform group-hover:rotate-12" />
+                                <Calendar className="w-5 h-5 transition-transform group-hover:rotate-12" />
                                 {language === 'EN' ? 'Book Appointment' : t.hero?.bookAppointment || 'Book Appointment'}
-                                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                             </RouterLink>
 
                             <RouterLink
                                 to="/services"
-                                className="group flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-black text-sm text-slate-600 border border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 transition-all shadow-sm"
+                                className="group flex items-center justify-center gap-3 px-10 py-5 rounded-2xl font-black text-base text-slate-700 border-2 border-slate-100 bg-white hover:bg-slate-50 hover:border-blue-100 transition-all shadow-sm"
                             >
                                 View Services
-                                <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                             </RouterLink>
                         </motion.div>
 
@@ -290,24 +290,24 @@ const HomeHero = () => {
                         className="flex items-center justify-center relative"
                     >
                         <CardContainer containerClassName="py-0">
-                            <CardBody className="relative w-[340px] h-[460px] md:w-[380px] md:h-[520px]">
+                            <CardBody className="relative w-[360px] h-[500px] md:w-[440px] md:h-[600px]">
                                 {/* Portrait Card Shell */}
                                 <CardItem
                                     translateZ={-20}
-                                    className="absolute inset-0 rounded-[2rem] bg-white border border-slate-100 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.12)] overflow-hidden"
+                                    className="absolute inset-0 rounded-[2.5rem] bg-white border border-slate-100 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] overflow-hidden"
                                 >
-                                    <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 via-transparent to-cyan-500/5" />
+                                    <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-transparent to-cyan-500/10" />
                                 </CardItem>
 
                                 {/* Floating Success Badge */}
-                                <CardItem translateZ={80} className="absolute top-6 right-6 z-30">
-                                    <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/90 backdrop-blur-xl border border-slate-100 shadow-xl">
-                                        <div className="w-7 h-7 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
-                                            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                                <CardItem translateZ={80} className="absolute top-6 right-6 md:top-8 md:right-8 z-30 scale-100 md:scale-110 origin-top-right">
+                                    <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-white/90 backdrop-blur-xl border border-white/50 shadow-2xl">
+                                        <div className="w-9 h-9 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
+                                            <CheckCircle2 className="w-5 h-5 text-emerald-600" />
                                         </div>
                                         <div>
-                                            <p className="text-[8px] text-slate-400 font-black tracking-widest leading-none">SUCCESS RATE</p>
-                                            <p className="text-slate-900 text-sm font-black mt-0.5">{slide.badgeValue}</p>
+                                            <p className="text-[10px] text-slate-400 font-black tracking-widest leading-none mb-1">SUCCESS RATE</p>
+                                            <p className="text-slate-900 text-lg font-black leading-none">{slide.badgeValue}</p>
                                         </div>
                                     </div>
                                 </CardItem>
@@ -315,18 +315,18 @@ const HomeHero = () => {
                                 {/* Doctor Image with Slide Transition */}
                                 <CardItem
                                     translateZ={40}
-                                    className="absolute inset-0 flex items-center justify-center pt-8 overflow-hidden rounded-[2rem]"
+                                    className="absolute inset-0 flex items-center justify-center pt-10 overflow-hidden rounded-[2.5rem]"
                                 >
                                     <AnimatePresence mode="wait">
                                         <motion.img
                                             key={`img-${slide.id}`}
                                             src={slide.photo}
                                             alt="Dr. Ulhas Sonar"
-                                            initial={{ opacity: 0, scale: 1.1 }}
+                                            initial={{ opacity: 0, scale: 1.15 }}
                                             animate={{ opacity: 1, scale: 1 }}
-                                            exit={{ opacity: 0, scale: 1.1 }}
-                                            transition={{ duration: 0.8, ease: "circOut" }}
-                                            className={`${slide.photoStyle} filter contrast-[1.05] brightness-90`}
+                                            exit={{ opacity: 0, scale: 1.15 }}
+                                            transition={{ duration: 0.9, ease: [0.23, 1, 0.32, 1] }}
+                                            className={`${slide.photoStyle} filter contrast-[1.05] brightness-95 drop-shadow-2xl`}
                                         />
                                     </AnimatePresence>
                                 </CardItem>
@@ -334,11 +334,14 @@ const HomeHero = () => {
                                 {/* Name & Info Overlay — Bottom of Card */}
                                 <CardItem
                                     translateZ={60}
-                                    className="absolute bottom-6 left-6 right-6"
+                                    className="absolute bottom-10 left-8 right-8"
                                 >
                                     <div className="flex flex-col">
-                                        <h3 className="text-xl font-bold text-slate-900 mb-0.5">Dr. Ulhas Sonar</h3>
-                                        <p className="text-blue-600 text-xs font-semibold tracking-wide uppercase opacity-80">{slide.nameplateSub}</p>
+                                        <h3 className="text-2xl font-black text-slate-900 mb-1">Dr. Ulhas Sonar</h3>
+                                        <div className="flex items-center gap-2">
+                                            <span className="w-8 h-[2px] bg-blue-600 rounded-full" />
+                                            <p className="text-blue-600 text-[13px] font-black tracking-widest uppercase opacity-90">{slide.nameplateSub}</p>
+                                        </div>
                                     </div>
                                 </CardItem>
                             </CardBody>

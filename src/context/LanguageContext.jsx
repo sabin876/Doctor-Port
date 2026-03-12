@@ -54,7 +54,7 @@ export const LanguageProvider = ({ children }) => {
             }
         }
 
-        return value || key;
+        return (value !== undefined && value !== null) ? value : key;
     };
 
     const value = {

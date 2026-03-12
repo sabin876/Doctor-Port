@@ -71,10 +71,10 @@ const About = () => {
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: 0.4, duration: 0.5 }}
-                                className="absolute bottom-8 start-8 z-20 bg-white/20 backdrop-blur-xl px-8 py-5 rounded-3xl shadow-2xl border border-white/30"
+                                className="absolute bottom-4 start-4 sm:bottom-8 sm:start-8 z-20 bg-white/20 backdrop-blur-xl px-5 py-3 sm:px-8 sm:py-5 rounded-3xl shadow-2xl border border-white/30"
                             >
-                                <p className="text-5xl font-extrabold text-white drop-shadow-lg">15+</p>
-                                <p className="text-sm font-bold text-white/90 mt-1">{t('about.experienceBadge')}</p>
+                                <p className="text-3xl sm:text-5xl font-extrabold text-white drop-shadow-lg">15+</p>
+                                <p className="text-[10px] sm:text-sm font-bold text-white/90 mt-1">{t('about.experienceBadge')}</p>
                             </motion.div>
                         </div>
                     </motion.div>

@@ -9,7 +9,7 @@ const FloatingContactButtons = () => {
     const whatsappNumber = "+971585865606"; // WhatsApp number
 
     return (
-        <div className="fixed end-6 bottom-6 z-50 flex flex-col gap-4">
+        <div className="fixed end-4 bottom-4 md:end-6 md:bottom-6 z-50 flex flex-col gap-3 md:gap-4">
             {/* WhatsApp Button */}
             <motion.a
                 href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`}
@@ -20,7 +20,7 @@ const FloatingContactButtons = () => {
                 initial={{ opacity: 0, x: isRtl ? -100 : 100 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="group relative w-14 h-14 bg-[#25D366] rounded-full shadow-lg hover:shadow-2xl flex items-center justify-center transition-all duration-300"
+                className="group relative w-12 h-12 md:w-14 md:h-14 bg-[#25D366] rounded-full shadow-lg hover:shadow-2xl flex items-center justify-center transition-all duration-300"
             >
                 {/* Pulse Animation */}
                 <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-20"></span>
@@ -42,7 +42,7 @@ const FloatingContactButtons = () => {
                 initial={{ opacity: 0, x: isRtl ? -100 : 100 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                className="group relative w-14 h-14 bg-primary-600 rounded-full shadow-lg hover:shadow-2xl flex items-center justify-center transition-all duration-300"
+                className="group relative w-12 h-12 md:w-14 md:h-14 bg-primary-600 rounded-full shadow-lg hover:shadow-2xl flex items-center justify-center transition-all duration-300"
             >
                 {/* Pulse Animation */}
                 <span className="absolute inset-0 rounded-full bg-primary-600 animate-ping opacity-20"></span>

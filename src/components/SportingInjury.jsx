@@ -60,7 +60,7 @@ const SportingInjury = () => {
     ];
 
     return (
-        <section className="relative py-32 overflow-hidden bg-white">
+        <section className="relative py-20 md:py-32 overflow-hidden bg-white">
             <MedicalRadar />
 
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -70,7 +70,7 @@ const SportingInjury = () => {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* CENTERED HEADER */}
-                <div className="text-center max-w-4xl mx-auto mb-20">
+                <div className="text-center max-w-4xl mx-auto mb-12 md:mb-20">
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -86,7 +86,7 @@ const SportingInjury = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-[0.95] tracking-tighter mb-8"
+                        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-[1.1] md:leading-[0.95] tracking-tight md:tracking-tighter mb-6 md:mb-8"
                     >
                         Suffering From A <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Sporting Injury</span>?

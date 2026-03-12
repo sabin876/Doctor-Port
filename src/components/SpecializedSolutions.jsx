@@ -36,7 +36,7 @@ const solutions = [
     },
     {
         title: "Hip & Thigh",
-        image: "https://images.unsplash.com/photo-1594833245455-87127e997321?q=80&w=800&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=800&auto=format&fit=crop",
         color: "bg-blue-50"
     },
     {
@@ -75,7 +75,7 @@ const SpecializedSolutions = () => {
                 </div>
 
                 {/* Solutions Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6 justify-center">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 md:gap-6 justify-center">
                     {solutions.map((item, index) => (
                         <motion.div
                             key={index}
@@ -105,7 +105,7 @@ const SpecializedSolutions = () => {
                                     </svg>
                                 </div>
                             </div>
-                            <h3 className="text-center font-bold text-[#0088cc] text-[12px] md:text-[13px] uppercase tracking-wider group-hover:text-[#006699] transition-colors leading-tight max-w-[110px]">
+                            <h3 className="text-center font-bold text-[#0088cc] text-[10px] sm:text-[12px] md:text-[13px] uppercase tracking-wider group-hover:text-[#006699] transition-colors leading-tight max-w-[110px]">
                                 {item.title}
                             </h3>
                         </motion.div>

@@ -91,21 +91,21 @@ const Navbar = () => {
             transition={{ duration: 0.5 }}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center h-20">
+                <div className="flex justify-between items-center h-16 md:h-20">
                     <div className="flex-shrink-0 flex items-center">
                         <div onClick={() => handleNavigation('home')} className="cursor-pointer flex items-center gap-3">
                             <motion.img
                                 src={logo}
                                 alt="Dr. Ulhas Sonar Logo"
-                                className="h-16 sm:h-20 w-auto object-contain"
+                                className="h-12 sm:h-16 md:h-20 w-auto object-contain"
                                 whileHover={{ scale: 1.05 }}
                                 transition={{ type: "spring", stiffness: 300 }}
                             />
                             <div className="flex flex-col">
-                                <span className="text-2xl font-metabolic font-extrabold tracking-tight text-primary-900 leading-none">
+                                <span className="text-lg sm:text-2xl font-metabolic font-extrabold tracking-tight text-primary-900 leading-none">
                                     {t('common.doctorName')}
                                 </span>
-                                <span className="text-[11px] font-metabolic uppercase tracking-[0.2em] font-medium text-primary-600">
+                                <span className="text-[9px] sm:text-[11px] font-metabolic uppercase tracking-[0.2em] font-medium text-primary-600">
                                     {t('common.specialty')}
                                 </span>
                             </div>
