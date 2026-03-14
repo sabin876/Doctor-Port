@@ -7,7 +7,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
 import doctorSurgery from '../assets/doctor-surgery.png';
-import doctorPortrait from '../assets/doctor-profile-2.png';
+import doctorPortrait from '../assets/doctor-profile.png';
 
 /* ── Animated number counter ── */
 const AnimatedCounter = ({ value, suffix, trigger }) => {
@@ -104,7 +104,7 @@ const slides = [
     {
         id: 1,
         photo: doctorPortrait,
-        photoStyle: 'h-[105%] w-auto object-cover object-center',
+        photoStyle: 'h-[100%] w-auto object-contain object-bottom',
         badge: 'MBBS, MS Ortho, M Ch Ortho, FRCS (T&O)',
         headline1: 'Precision',
         headline2: 'Orthopedics',
@@ -113,11 +113,9 @@ const slides = [
         badgeValue: '99.8%',
         nameplateSub: 'Orthopedic Surgeon',
         stats: [
-            { value: '15', suffix: '+', label: 'YEARS EXP.' },
-            { value: '6', suffix: '', label: 'PRESTIGIOUS QUALIFICATIONS ACROSS UK, EUROPE, INDIA' },
-            { value: '10', suffix: '+', label: 'RESEARCH & PUBLICATIONS' },
-            { value: '10', suffix: '+', label: 'PODIUM PRESENTATIONS' },
-            { value: '6', suffix: '+', label: 'MEDICAL AUDITS' },
+            { value: '15', suffix: '+', label: 'EXP. YEARS' },
+            { value: '6', suffix: '+', label: 'QUALIFICATIONS' },
+            { value: '5', suffix: '★', label: 'PATIENT RATING' },
         ],
     },
 ];
