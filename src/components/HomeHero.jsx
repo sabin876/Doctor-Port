@@ -370,7 +370,7 @@ const HomeHero = () => {
                         }}
                     >
                         {[...highlights, ...highlights, ...highlights].map((h, i) => (
-                            <div key={i} className="flex items-center text-slate-400/80 mx-10 text-xs font-bold tracking-[0.1em] uppercase">
+                            <div key={i} className="flex items-center text-blue-600 mx-10 text-xs font-bold tracking-[0.1em] uppercase">
                                 <span className="w-1 h-1 rounded-full bg-blue-500/30 mr-4" />
                                 {h}
                             </div>

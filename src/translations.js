@@ -36,6 +36,15 @@ export const translations = {
                 rating: "Rating"
             },
             highlights: [
+                "10+ research and publications",
+                "10+ Podium presentations",
+                "6+ medical audits",
+                "5-star ratings by patients",
+                "Excellent patient satisfaction",
+                "Exceptional surgical outcomes",
+                "Multiple awards",
+                "Brilliant success rate",
+                "Minimal complication rates",
                 "15+ years experience",
                 "6 prestigious qualifications across UK, Europe, India",
                 "10+ research and publications",
@@ -46,7 +55,19 @@ export const translations = {
                 "Exceptional surgical outcomes",
                 "Multiple awards",
                 "Brilliant success rate",
-                "Minimal complication rates"
+                "Minimal complication rates",
+                "15+ years experience",
+                "6 prestigious qualifications across UK, Europe, India",
+                "10+ research and publications",
+                "10+ Podium presentations",
+                "6+ medical audits",
+                "5-star ratings by patients",
+                "Excellent patient satisfaction",
+                "Exceptional surgical outcomes",
+                "Multiple awards",
+                "Brilliant success rate",
+                "Minimal complication rates",
+                "Memberships & Affiliations"
             ],
             slides: [
                 {
