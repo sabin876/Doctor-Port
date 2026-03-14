@@ -113,9 +113,11 @@ const slides = [
         badgeValue: '99.8%',
         nameplateSub: 'Orthopedic Surgeon',
         stats: [
-            { value: '15', suffix: '+', label: 'EXP. YEARS' },
-            { value: '6', suffix: '+', label: 'QUALIFICATIONS' },
-            { value: '5', suffix: '★', label: 'PATIENT RATING' },
+            { value: '15', suffix: '+', label: 'YEARS EXP.' },
+            { value: '6', suffix: '', label: 'PRESTIGIOUS QUALIFICATIONS ACROSS UK, EUROPE, INDIA' },
+            { value: '10', suffix: '+', label: 'RESEARCH & PUBLICATIONS' },
+            { value: '10', suffix: '+', label: 'PODIUM PRESENTATIONS' },
+            { value: '6', suffix: '+', label: 'MEDICAL AUDITS' },
         ],
     },
 ];
