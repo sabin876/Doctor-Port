@@ -104,7 +104,7 @@ const slides = [
     {
         id: 1,
         photo: doctorPortrait,
-        photoStyle: 'h-[100%] w-auto object-contain object-bottom',
+        photoStyle: 'h-[105%] w-auto object-cover object-center',
         badge: 'MBBS, MS Ortho, M Ch Ortho, FRCS (T&O)',
         headline1: 'Precision',
         headline2: 'Orthopedics',
