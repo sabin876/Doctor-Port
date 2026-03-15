@@ -7,6 +7,18 @@ const Affiliations = ({ lang = 'EN' }) => {
 
     const logos = [
         {
+            name: "Indian Orthopaedic Association",
+            src: "https://ioaindia.org/public/assets/images/IOAlogo.png"
+        },
+        {
+            name: "British Orthopaedic Association",
+            src: "https://www.boa.ac.uk/static/eeec4b84-35af-40f7-b3183c8ee2974b48/200x180_highestperformance__4a7c7e45a350/boa-final-identity-091018verticallockup-fullcolour042345281.png"
+        },
+        {
+            name: "Bombay Orthopaedic Society",
+            src: "https://bombayorth.in/images/logo.png"
+        },
+        {
             name: "Edge Hill University",
             src: "https://www.edgehill.ac.uk/wp-content/ehu-themes/ehu-wordpress-theme/resources/images/ehu_logo.webp"
         },
@@ -16,7 +28,7 @@ const Affiliations = ({ lang = 'EN' }) => {
         },
         {
             name: "General Medical Council",
-            src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/General_Medical_Council_logo.svg/502px-General_Medical_Council_logo.svg.png"
+            src: "https://s24098.pcdn.co/wp-content/uploads/2017/09/1-GMC.png"
         },
         {
             name: "EBOT",
@@ -64,13 +76,13 @@ const Affiliations = ({ lang = 'EN' }) => {
                 <motion.div
                     className="flex whitespace-nowrap py-6"
                     animate={{
-                        x: [0, -100 * logos.length],
+                        x: [0, -120 * logos.length],
                     }}
                     transition={{
                         x: {
                             repeat: Infinity,
                             repeatType: "loop",
-                            duration: 30,
+                            duration: 40,
                             ease: "linear",
                         },
                     }}
@@ -78,23 +90,26 @@ const Affiliations = ({ lang = 'EN' }) => {
                     {doubledLogos.map((logo, index) => (
                         <div
                             key={index}
-                            className="flex flex-col items-center justify-center mx-10 md:mx-16 group cursor-pointer"
+                            className="flex flex-col items-center justify-center mx-8 md:mx-12 group cursor-pointer"
                         >
-                            <div className="w-32 h-32 md:w-40 md:h-40 bg-white rounded-3xl shadow-sm border border-gray-50 flex items-center justify-center p-6 mb-4 transition-all duration-500 group-hover:shadow-xl group-hover:-translate-y-2 group-hover:border-primary-100">
+                            <div className="w-40 h-40 md:w-52 md:h-52 bg-white rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-50 flex items-center justify-center p-4 mb-6 transition-all duration-500 group-hover:shadow-[0_20px_50px_rgba(30,58,138,0.12)] group-hover:-translate-y-3 group-hover:border-primary-100 relative overflow-hidden">
+                                {/* Subtle Background Pattern or Glow */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-white to-gray-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                
                                 <img
                                     src={logo.src}
                                     alt={logo.name}
-                                    className="max-w-full max-h-full object-contain transition-all duration-500 group-hover:scale-110"
+                                    className="max-w-[85%] max-h-[85%] object-contain transition-all duration-500 group-hover:scale-110 relative z-10"
                                     onError={(e) => {
                                         e.target.style.display = 'none';
-                                        e.target.nextSibling.style.display = 'flex';
+                                        if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
                                     }}
                                 />
                                 <div className="hidden items-center justify-center w-full h-full text-center text-[10px] font-bold text-gray-400 bg-gray-50 rounded-xl px-2">
                                     {logo.name}
                                 </div>
                             </div>
-                            <span className="text-[10px] md:text-xs font-metabolic font-black text-gray-400 group-hover:text-primary-600 transition-colors duration-300 text-center max-w-[140px] whitespace-normal uppercase tracking-widest leading-tight">
+                            <span className="text-[10px] md:text-xs font-metabolic font-black text-gray-400 group-hover:text-primary-700 transition-colors duration-300 text-center max-w-[160px] whitespace-normal uppercase tracking-[0.15em] leading-tight">
                                 {logo.name}
                             </span>
                         </div>
@@ -102,8 +117,8 @@ const Affiliations = ({ lang = 'EN' }) => {
                 </motion.div>
 
                 {/* Gradient Masks for fade effect */}
-                <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
-                <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
+                <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-white to-transparent z-10"></div>
+                <div className="absolute inset-y-0 right-0 w-48 bg-gradient-to-l from-white to-transparent z-10"></div>
             </div>
         </section>
     );

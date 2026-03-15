@@ -143,6 +143,12 @@ export const translations = {
                     title: "Specialisation",
                     desc: "Upper Limb & Robotic Knee"
                 }
+            },
+            stats: {
+                experience: { value: "15+", label: "Years Experience" },
+                surgeries: { value: "5000+", label: "Successful Surgeries" },
+                patients: { value: "10k+", label: "Happy Patients" },
+                global: { value: "2+", label: "Global Specializations" }
             }
         },
         // Services Section
@@ -368,6 +374,12 @@ export const translations = {
                     title: "विशेषज्ञता",
                     desc: "अपर लिम्ब और रोबोटिक नी"
                 }
+            },
+            stats: {
+                experience: { value: "15+", label: "वर्षों का अनुभव" },
+                surgeries: { value: "5000+", label: "सफल सर्जरी" },
+                patients: { value: "10k+", label: "सुखी मरीज़" },
+                global: { value: "2+", label: "वैश्विक विशेषज्ञता" }
             }
         },
         services: {
@@ -589,6 +601,12 @@ export const translations = {
                     title: "التخصص",
                     desc: "الأطراف العلوية والركبة الروبوتية"
                 }
+            },
+            stats: {
+                experience: { value: "15+", label: "سنوات الخبرة" },
+                surgeries: { value: "5000+", label: "عمليات جراحية ناجحة" },
+                patients: { value: "10k+", label: "مريض سعيد" },
+                global: { value: "2+", label: "تخصصات عالمية" }
             }
         },
         services: {
