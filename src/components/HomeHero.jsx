@@ -167,7 +167,7 @@ const HomeHero = () => {
     return (
         <div
             id="home"
-            className="relative min-h-[95vh] flex items-center pt-28 pb-20 overflow-hidden bg-gradient-to-b from-blue-50/80 via-white to-blue-50/50"
+            className="relative min-h-[85vh] flex items-center pt-16 pb-16 overflow-hidden bg-gradient-to-b from-blue-50/80 via-white to-blue-50/50"
         >
             {/* ── Background Effects ── */}
             <div className="absolute inset-0 z-0 pointer-events-none">
