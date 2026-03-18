@@ -119,7 +119,7 @@ const Navbar = () => {
                                 <RouterLink
                                     key={link.name}
                                     to={link.path}
-                                    className="text-sm font-metabolic font-black transition-all duration-300 hover:text-primary-600 relative group text-primary-950 uppercase tracking-widest"
+                                    className="text-[15px] font-montserrat font-bold transition-all duration-300 hover:text-primary-600 relative group text-primary-950 uppercase tracking-widest"
                                 >
                                     {t(`nav.${link.id}`)}
                                     <span className={`absolute -bottom-1 ${isRtl ? 'end-0' : 'start-0'} w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full`}></span>
@@ -128,7 +128,7 @@ const Navbar = () => {
                                 <button
                                     key={link.id}
                                     onClick={() => handleNavigation(link.target, link.route)}
-                                    className="text-sm font-metabolic font-black transition-all duration-300 hover:text-primary-600 relative group text-primary-950 uppercase tracking-widest"
+                                    className="text-[15px] font-montserrat font-bold transition-all duration-300 hover:text-primary-600 relative group text-primary-950 uppercase tracking-widest"
                                 >
                                     {t(`nav.${link.id}`)}
                                     <span className={`absolute -bottom-1 ${isRtl ? 'end-0' : 'start-0'} w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full`}></span>
@@ -220,7 +220,7 @@ const Navbar = () => {
                                         <RouterLink
                                             to={link.path}
                                             onClick={() => setIsOpen(false)} // Close mobile menu on click
-                                            className="text-2xl font-metabolic font-bold text-gray-900 hover:text-primary-600 transition-colors uppercase tracking-widest"
+                                            className="text-[15px] font-montserrat font-bold text-gray-900 hover:text-primary-600 transition-colors uppercase tracking-widest"
                                         >
                                             {t(`nav.${link.id}`)}
                                         </RouterLink>
@@ -232,7 +232,7 @@ const Navbar = () => {
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: index * 0.1 }}
                                         onClick={() => handleNavigation(link.target, link.route)}
-                                        className="text-2xl font-metabolic font-bold text-gray-900 hover:text-primary-600 transition-colors uppercase tracking-widest"
+                                        className="text-[15px] font-montserrat font-bold text-gray-900 hover:text-primary-600 transition-colors uppercase tracking-widest"
                                     >
                                         {t(`nav.${link.id}`)}
                                     </motion.button>

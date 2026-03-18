@@ -84,7 +84,7 @@ const Hero = () => {
                             {t('hero.badge')}
                         </motion.div>
 
-                        <h1 className="text-6xl md:text-7xl lg:text-[100px] font-montserrat font-extrabold text-white leading-[1.05] mb-8 tracking-tighter">
+                        <h1 className="text-[40px] font-montserrat font-semibold text-white leading-[1.05] mb-8 tracking-tighter">
                             {t('hero.title')} <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-white animate-shimmer bg-[length:200%_auto]">
                                 {t('hero.subtitle')}
