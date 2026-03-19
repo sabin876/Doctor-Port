@@ -290,8 +290,27 @@ export const translations = {
                 surgery: "Surgery Planning"
             }
         },
+        publications: {
+            badge: "Scholarly Contributions",
+            title: "Research &",
+            titleHighlight: "Publications",
+            description: "Peer-reviewed articles and clinical research authored by Dr. Ulhas Sonar, contributing to the global advancement of orthopedic surgical practices.",
+            tabs: {
+                primary: "Primary Author",
+                collaborative: "Collaborative Work"
+            },
+            action: "Read Publication",
+            stats: {
+                papers: "Research Papers",
+                impact: "Global Impact",
+                journals: "Top Journals",
+                reviewed: "Peer Reviewed"
+            }
+        },
         footer: {
             desc: "Precise orthopaedic surgical care delivered with integrity, respect for patient rights, and an individualised medical evidence-based approach—restoring movement, function, and active lives.",
+            disclaimer: "Disclaimer: The information provided is an overview and not a substitute for professional help. If you're facing an emergency, please visit your nearest hospital.",
+            visitMeAt: "Visit Me At",
             nav: "Navigation",
             support: "Support",
             clinic: "Clinic Info",
@@ -517,8 +536,27 @@ export const translations = {
                 surgery: "सर्जरी योजना"
             }
         },
+        publications: {
+            badge: "विद्वतापूर्ण योगदान",
+            title: "अनुसंधान और",
+            titleHighlight: "प्रकाशन",
+            description: "डॉ. उल्हास सोनार द्वारा लिखित सहकर्मी-समीक्षित लेख और नैदानिक अनुसंधान, आर्थोपेडिक सर्जिकल प्रथाओं की वैश्विक उन्नति में योगदान दे रहे हैं।",
+            tabs: {
+                primary: "प्राथमिक लेखक",
+                collaborative: "सहयोगात्मक कार्य"
+            },
+            action: "प्रकाशन पढ़ें",
+            stats: {
+                papers: "शोध पत्र",
+                impact: "वैश्विक प्रभाव",
+                journals: "शीर्ष पत्रिकाएं",
+                reviewed: "सहकर्मी समीक्षा"
+            }
+        },
         footer: {
             desc: "सटीक आर्थोपेडिक सर्जिकल देखभाल जो पूर्ण निष्ठा, रोगी के अधिकारों के प्रति सम्मान और व्यक्तिगत चिकित्सा साक्ष्य-आधारित दृष्टिकोण के साथ प्रदान की जाती है—गतिशीलता, कार्यक्षमता और सक्रिय जीवन को पुनर्जीवित करती है।",
+            disclaimer: "अस्वीकरण: प्रदान की गई जानकारी एक अवलोकन है और पेशेवर मदद का विकल्प नहीं है। यदि आप आपात स्थिति का सामना कर रहे हैं, तो कृपया अपने निकटतम अस्पताल में जाएं।",
+            visitMeAt: "मुझसे यहाँ मिलें",
             nav: "नेविगेशन",
             support: "सहायता",
             clinic: "क्लीनिक की जानकारी",
@@ -744,8 +782,27 @@ export const translations = {
                 surgery: "تخطيط الجراحة"
             }
         },
+        publications: {
+            badge: "المساهمات العلمية",
+            title: "الأبحاث و",
+            titleHighlight: "المنشورات",
+            description: "مقالات محكمة وأبحاث سريرية من تأليف الدكتور أولهاس سونار، تساهم في التقدم العالمي لممارسات جراحة العظام.",
+            tabs: {
+                primary: "المؤلف الرئيسي",
+                collaborative: "العمل التعاوني"
+            },
+            action: "اقرأ المنشور",
+            stats: {
+                papers: "أوراق بحثية",
+                impact: "تأثير عالمي",
+                journals: "أرقى المجلات",
+                reviewed: "مراجعة الأقران"
+            }
+        },
         footer: {
             desc: "رعاية جراحية دقيقة للعظام تُقدم بنزاهة، واحترام لحقوق المريض، ونهج طبي مخصص قائم على الأدلة - لاستعادة الحركة والوظيفة والحياة النشطة.",
+            disclaimer: "إخلاء مسؤولية: المعلومات المقدمة هي نظرة عامة وليست بديلاً عن المساعدة المهنية. إذا كنت تواجه حالة طوارئ، فيرجى زيارة أقرب مستشفى.",
+            visitMeAt: "زرني في",
             nav: "التنقل",
             support: "الدعم",
             clinic: "معلومات العيادة",

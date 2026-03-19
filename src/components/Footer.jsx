@@ -11,6 +11,33 @@ const Footer = () => {
             <div className="absolute top-0 start-0 w-full h-px bg-gradient-to-r from-transparent via-primary-500/20 to-transparent"></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                {/* Visit Me At Section */}
+                <div className="flex flex-col items-center mb-20">
+                    <h3 className="text-white text-2xl font-montserrat font-black mb-8 tracking-tight">
+                        {t('footer.visitMeAt')}
+                    </h3>
+                    <div className="bg-white rounded-[2rem] p-6 md:p-8 flex items-center gap-6 shadow-2xl max-w-xl w-full">
+                        <div className="flex-shrink-0 w-20 h-20 md:w-24 md:h-24 relative">
+                            {/* Shield Icon Representation */}
+                            <div className="absolute inset-0 bg-[#c41e3a] rounded-xl flex items-center justify-center overflow-hidden">
+                                <div className="absolute inset-1 border-2 border-white/20 rounded-lg"></div>
+                                <svg className="w-12 h-12 text-white" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm0 16.91c-3.11-.94-5.5-4.47-5.5-8V6.44l5.5-2.06 5.5 2.06v2.41c0 3.53-2.39 7.06-5.5 8z"/>
+                                    <path d="M12 7l1.5 3h3l-2.5 2 1 3-3-2-3 2 1-3-2.5-1h3.1z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div className="flex flex-col">
+                            <span className="text-[#0a1e3b] text-lg md:text-xl font-black font-montserrat tracking-tight leading-tight mb-1">
+                                المستشفى الكندي التخصصي
+                            </span>
+                            <span className="text-[#0a1e3b] text-base md:text-lg font-bold font-montserrat tracking-tight leading-tight opacity-90">
+                                Canadian Specialist Hospital
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
                     <div className="col-span-1">
                         <div className="flex flex-col mb-8">
@@ -64,10 +91,19 @@ const Footer = () => {
                                 <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-blue-400 flex-shrink-0">
                                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                                 </div>
-                                <span className="text-gray-300">+971 55 105 3445</span>
+                                <div className="flex flex-col justify-center">
+                                    <span className="text-gray-300">+971 55 105 3445</span>
+                                    <span className="text-gray-500 text-[10px] font-medium tracking-wide mt-0.5">Visit me at Canadian Specialist Hospital</span>
+                                </div>
                             </li>
                         </ul>
                     </div>
+                </div>
+
+                <div className="mt-12 mb-8 p-6 bg-white/[0.02] border border-white/5 rounded-2xl">
+                    <p className="text-gray-400 text-[11px] leading-relaxed font-medium">
+                        {t('footer.disclaimer')}
+                    </p>
                 </div>
 
                 <div className="mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">

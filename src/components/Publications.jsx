@@ -158,12 +158,12 @@ const Publications = () => {
                     >
                         <GraduationCap className="w-4 h-4 text-blue-400" />
                         <span className="text-blue-300 text-xs font-bold uppercase tracking-[0.2em]">
-                            {t.publications.badge}
+                            {t('publications.badge')}
                         </span>
                     </motion.div>
 
                     <h2 className="text-5xl md:text-6xl font-extrabold text-white mb-6 font-montserrat leading-tight tracking-tight">
-                        {t.publications.title}{' '}
+                        {t('publications.title')}{' '}
                         <span
                             className="relative inline-block"
                             style={{
@@ -173,12 +173,12 @@ const Publications = () => {
                                 backgroundClip: 'text',
                             }}
                         >
-                            {t.publications.titleHighlight}
+                            {t('publications.titleHighlight')}
                         </span>
                     </h2>
 
                     <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
-                        {t.publications.description}
+                        {t('publications.description')}
                     </p>
                 </motion.div>
 
@@ -194,7 +194,7 @@ const Publications = () => {
                             }`}
                         >
                             <FileText className="w-4 h-4" />
-                            {t.publications.tabs.primary}
+                            {t('publications.tabs.primary')}
                         </button>
                         <button
                             onClick={() => setActiveTab('collaborative')}
@@ -205,7 +205,7 @@ const Publications = () => {
                             }`}
                         >
                             <Award className="w-4 h-4" />
-                            {t.publications.tabs.collaborative}
+                            {t('publications.tabs.collaborative')}
                         </button>
                     </div>
                 </div>
@@ -258,7 +258,7 @@ const Publications = () => {
                                         : 'bg-purple-600/10 hover:bg-purple-600'
                                     }`}
                                 >
-                                    <span>{t.publications.action}</span>
+                                    <span>{t('publications.action')}</span>
                                     <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                                 </a>
                             </div>
@@ -279,19 +279,19 @@ const Publications = () => {
                     <div className="inline-grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16">
                         <div className="text-center">
                             <p className="text-3xl font-extrabold text-white mb-1">10+</p>
-                            <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">{t.publications.stats.papers}</p>
+                            <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">{t('publications.stats.papers')}</p>
                         </div>
                         <div className="text-center">
                             <p className="text-3xl font-extrabold text-white mb-1">UK/India</p>
-                            <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">{t.publications.stats.impact}</p>
+                            <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">{t('publications.stats.impact')}</p>
                         </div>
                         <div className="text-center">
                             <p className="text-3xl font-extrabold text-white mb-1">JBJS</p>
-                            <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">{t.publications.stats.journals}</p>
+                            <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">{t('publications.stats.journals')}</p>
                         </div>
                         <div className="text-center">
                             <p className="text-3xl font-extrabold text-white mb-1">Peer</p>
-                            <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">{t.publications.stats.reviewed}</p>
+                            <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">{t('publications.stats.reviewed')}</p>
                         </div>
                     </div>
                 </motion.div>
