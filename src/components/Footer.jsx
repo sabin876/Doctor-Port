@@ -14,36 +14,6 @@ const Footer = () => {
             <div className="absolute top-20 -end-40 w-80 h-80 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                {/* Visit Me At Section */}
-                <div className="flex flex-col items-center mb-24 relative z-20">
-                    <h3 className="text-[13px] font-montserrat font-black uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
-                        {t('footer.visitMeAt')}
-                        <span className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-8 h-1 bg-primary-600 rounded-full"></span>
-                    </h3>
-                    <a href="https://csh.ae/" target="_blank" rel="noreferrer" className="group flex items-center gap-4 bg-white/95 hover:bg-white p-4 pr-10 rounded-2xl shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-primary-500/20">
-                        {/* Custom CSS representation of the Canadian Specialist Hospital logo */}
-                        <div className="relative w-16 h-16 bg-[#162758] rounded-[5px] border-2 border-[#d32f2f] flex justify-center flex-shrink-0">
-                            <svg className="absolute top-1 w-10 h-10 text-white fill-current" viewBox="0 0 24 24">
-                                <path d="M12 1.5L14 8h5l-4.5 4L16 19l-4-3-4 3 1.5-7L5 8h5l2-6.5z"/>
-                                <path className="fill-[#162758]" d="M11.5 13h1v8h-1v-8z"/>
-                            </svg>
-                            <div className="absolute bottom-1 w-full flex justify-between px-2.5">
-                                <span className="text-white text-[8px] font-black leading-none">C</span>
-                                <span className="text-white text-[8px] font-black leading-none">S</span>
-                                <span className="text-white text-[8px] font-black leading-none">H</span>
-                            </div>
-                        </div>
-                        <div className="flex flex-col border-l-2 border-gray-200 pl-4 py-1">
-                            <span className="text-[#162758] text-[20px] font-black font-montserrat tracking-tight leading-none mb-1 text-right" dir="rtl">
-                                المستشفى الكندي التخصصي
-                            </span>
-                            <span className="text-[#162758] text-[16px] font-bold font-montserrat tracking-tight leading-none">
-                                Canadian Specialist Hospital
-                            </span>
-                        </div>
-                    </a>
-                </div>
-
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
                     {/* Brand Column */}
                     <div className="lg:col-span-4 flex flex-col pt-2">
@@ -64,28 +34,59 @@ const Footer = () => {
                             {t('footer.desc')}
                         </p>
                         
-                        {/* Social Links */}
-                        <div className="flex gap-4">
-                            {[
-                                { Icon: Facebook, label: 'Facebook' },
-                                { Icon: Twitter, label: 'Twitter' },
-                                { Icon: Instagram, label: 'Instagram' },
-                                { Icon: Linkedin, label: 'LinkedIn' }
-                            ].map((social, index) => (
-                                <a 
-                                    key={index} 
-                                    href="#" 
-                                    aria-label={social.label}
-                                    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-primary-600 hover:text-white hover:border-primary-500 hover:-translate-y-1 transition-all duration-300 shadow-sm"
-                                >
-                                    <social.Icon size={18} strokeWidth={2} />
+                        {/* Social Links & Visit Link */}
+                        <div className="flex flex-col gap-8">
+                            <div className="flex gap-4">
+                                {[
+                                    { Icon: Facebook, label: 'Facebook' },
+                                    { Icon: Twitter, label: 'Twitter' },
+                                    { Icon: Instagram, label: 'Instagram' },
+                                    { Icon: Linkedin, label: 'LinkedIn' }
+                                ].map((social, index) => (
+                                    <a 
+                                        key={index} 
+                                        href="#" 
+                                        aria-label={social.label}
+                                        className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-primary-600 hover:text-white hover:border-primary-500 hover:-translate-y-1 transition-all duration-300 shadow-sm"
+                                    >
+                                        <social.Icon size={18} strokeWidth={2} />
+                                    </a>
+                                ))}
+                            </div>
+
+                            {/* Visit Me At Section (Realigned) */}
+                            <div>
+                                <h4 className="text-[12px] font-montserrat font-bold uppercase tracking-widest mb-4 text-blue-400">
+                                    {t('footer.visitMeAt')}
+                                </h4>
+                                <a href="https://csh.ae/" target="_blank" rel="noreferrer" className="group inline-flex items-center gap-4 bg-white/95 hover:bg-white p-3 pr-6 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-primary-500/10">
+                                    {/* Custom CSS representation of the Canadian Specialist Hospital logo */}
+                                    <div className="relative w-[3.25rem] h-[3.25rem] bg-[#162758] rounded shadow-sm border border-[#d32f2f] flex justify-center flex-shrink-0">
+                                        <svg className="absolute w-8 h-8 top-1 text-white fill-current" viewBox="0 0 24 24">
+                                            <path d="M12 1.5L14 8h5l-4.5 4L16 19l-4-3-4 3 1.5-7L5 8h5l2-6.5z"/>
+                                            <path className="fill-[#162758]" d="M11.5 13h1v8h-1v-8z"/>
+                                        </svg>
+                                        <div className="absolute bottom-1 w-full flex justify-between px-2">
+                                            <span className="text-white text-[7px] font-black leading-none">C</span>
+                                            <span className="text-white text-[7px] font-black leading-none">S</span>
+                                            <span className="text-white text-[7px] font-black leading-none">H</span>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col border-l border-gray-200 pl-4 py-0.5 max-w-[180px]">
+                                        <span className="text-[#162758] text-[15px] font-black font-montserrat tracking-tight leading-none mb-1 text-right" dir="rtl">
+                                            المستشفى الكندي التخصصي
+                                        </span>
+                                        <span className="text-[#162758] text-[12px] font-bold font-montserrat tracking-tight leading-none">
+                                            Canadian Specialist Hospital
+                                        </span>
+                                    </div>
                                 </a>
-                            ))}
+                            </div>
                         </div>
                     </div>
 
                     {/* Quick Links Column */}
-                    <div className="lg:col-span-2 lg:col-start-6">
+                    <div className="lg:col-span-2 lg:col-start-6 pt-2">
                         <h4 className="text-[13px] font-montserrat font-black uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
                             {t('footer.nav')}
                             <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
@@ -108,7 +109,7 @@ const Footer = () => {
                     </div>
 
                     {/* Support Links Column */}
-                    <div className="lg:col-span-2">
+                    <div className="lg:col-span-2 pt-2">
                         <h4 className="text-[13px] font-montserrat font-black uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
                             {t('footer.support')}
                             <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
@@ -131,7 +132,7 @@ const Footer = () => {
                     </div>
 
                     {/* Contact Info Column */}
-                    <div className="lg:col-span-3">
+                    <div className="lg:col-span-3 pt-2">
                         <h4 className="text-[13px] font-montserrat font-black uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
                             {t('footer.clinic')}
                             <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
