@@ -29,6 +29,8 @@ export const translations = {
             description: "With more than 15+ years of global experience across UK, India, Jersey Island and Dubai in trauma and orthopedic surgery with special interest in knee, hip, shoulder and complex trauma orthopedic surgery, Dr Sonar brings world class orthopedic care to Dubai.",
             bookAppointment: "Book Consult",
             exploreServices: "Explore Services",
+            title: "Restore Your Active Life",
+            subtitle: "and Precision Orthopedics",
             stats: {
                 years: "Years",
                 patients: "Patients",
@@ -344,8 +346,8 @@ export const translations = {
         },
         hero: {
             badge: "MBBS, MS, MRCS, MCh, FEBOT, FRCS, PGDip Robotics",
-            title: "बिना किसी",
-            subtitle: "सीमा के चलें",
+            title: "अपना सक्रिय जीवन पुनः प्राप्त करें",
+            subtitle: "और सटीक ऑर्थोपेडिक्स",
             description: "यूके, भारत, जर्सी द्वीप और दुबई में आघात और आर्थोपेडिक सर्जरी में 15+ वर्षों के वैश्विक अनुभव के साथ, डॉ. सोनार दुबई में विश्व स्तरीय आर्थोपेडिक देखभाल लाते हैं।",
             bookAppointment: "परामर्श बुक करें",
             learnMore: "सेवाएं देखें",
@@ -590,8 +592,8 @@ export const translations = {
         },
         hero: {
             badge: "MBBS, MS, MRCS, MCh, FEBOT, FRCS, PGDip Robotics",
-            title: "تحرك بدون",
-            subtitle: "قيود",
+            title: "استعد حياتك النشطة",
+            subtitle: "وجراحة العظام الدقيقة",
             description: "بخبرة عالمية تمتد لأكثر من 15 عامًا في المملكة المتحدة والهند وجزيرة جيرسي ودبي في جراحة الصدمات والعظام، يقدم الدكتور سونار رعاية عظام عالمية المستوى في دبي.",
             bookAppointment: "احجز استشارة",
             learnMore: "استكشف الخدمات",
