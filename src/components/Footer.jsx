@@ -1,93 +1,145 @@
 import logo from '../assets/logo.png';
 import { useLanguage } from '../context/LanguageContext';
+import { MapPin, Phone, Mail, Facebook, Twitter, Instagram, Linkedin, ChevronRight } from 'lucide-react';
 
 const Footer = () => {
     const { t } = useLanguage();
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="bg-primary-950 text-white pt-24 pb-12 relative overflow-hidden">
-            {/* Background Decoration */}
-            <div className="absolute top-0 start-0 w-full h-px bg-gradient-to-r from-transparent via-primary-500/20 to-transparent"></div>
+        <footer className="bg-[#040f25] text-white pt-24 pb-12 relative overflow-hidden border-t-[6px] border-primary-600">
+            {/* Background Decorations */}
+            <div className="absolute top-0 start-0 w-full h-[600px] bg-gradient-to-br from-primary-900/10 via-transparent to-transparent pointer-events-none"></div>
+            <div className="absolute -bottom-40 -start-40 w-96 h-96 bg-primary-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute top-20 -end-40 w-80 h-80 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
-                    <div className="col-span-1">
-                        <div className="flex flex-col mb-8">
-                            <div className="flex items-center gap-3 mb-4">
-                                <img src={logo} alt="Dr. Ulhas Sonar" className="h-12 w-auto brightness-0 invert opacity-90" />
-                                <div className="flex flex-col">
-                                    <span className="text-xl font-montserrat font-black tracking-tighter uppercase text-white leading-none">
-                                        {t('common.doctorName')}
-                                    </span>
-                                    <span className="text-blue-400 text-[9px] font-montserrat font-black uppercase tracking-[0.2em] mt-1">
-                                        {t('common.specialty')}
-                                    </span>
-                                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+                    {/* Brand Column */}
+                    <div className="lg:col-span-4 flex flex-col pt-2">
+                        <div className="flex items-center gap-4 mb-8">
+                            <div className="bg-white/5 p-3 rounded-2xl border border-white/10 shadow-lg backdrop-blur-sm">
+                                <img src={logo} alt="Dr. Ulhas Sonar" className="h-10 w-auto brightness-0 invert opacity-90" />
+                            </div>
+                            <div className="flex flex-col">
+                                <span className="text-xl md:text-2xl font-montserrat font-black tracking-tight text-white leading-none">
+                                    {t('common.doctorName')}
+                                </span>
+                                <span className="text-primary-400 text-[10px] font-montserrat font-bold uppercase tracking-[0.2em] mt-1.5 opacity-90">
+                                    {t('common.specialty')}
+                                </span>
                             </div>
                         </div>
-                        <p className="text-gray-400 text-sm leading-relaxed font-medium max-w-xs">
+                        <p className="text-gray-400 text-sm leading-loose font-medium max-w-sm mb-8">
                             {t('footer.desc')}
                         </p>
+                        
+                        {/* Social Links */}
+                        <div className="flex gap-4">
+                            {[
+                                { Icon: Facebook, label: 'Facebook' },
+                                { Icon: Twitter, label: 'Twitter' },
+                                { Icon: Instagram, label: 'Instagram' },
+                                { Icon: Linkedin, label: 'LinkedIn' }
+                            ].map((social, index) => (
+                                <a 
+                                    key={index} 
+                                    href="#" 
+                                    aria-label={social.label}
+                                    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-primary-600 hover:text-white hover:border-primary-500 hover:-translate-y-1 transition-all duration-300 shadow-sm"
+                                >
+                                    <social.Icon size={18} strokeWidth={2} />
+                                </a>
+                            ))}
+                        </div>
                     </div>
 
-                    <div>
-                        <h4 className="text-xs font-montserrat font-black uppercase tracking-[0.3em] mb-8 text-blue-400">{t('footer.nav')}</h4>
-                        <ul className="space-y-4 text-sm font-bold">
-                            <li><a href="#home" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>{t('nav.home')}</a></li>
-                            <li><a href="#about" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>{t('nav.about')}</a></li>
-                            <li><a href="#services" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>{t('nav.services')}</a></li>
-                            <li><a href="#testimonials" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>{t('nav.testimonials') || 'Testimonials'}</a></li>
+                    {/* Quick Links Column */}
+                    <div className="lg:col-span-2 lg:col-start-6">
+                        <h4 className="text-[13px] font-montserrat font-black uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
+                            {t('footer.nav')}
+                            <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
+                        </h4>
+                        <ul className="space-y-4 text-[15px] font-medium mt-4">
+                            {[
+                                { name: t('nav.home'), href: '#home' },
+                                { name: t('nav.about'), href: '#about' },
+                                { name: t('nav.services'), href: '#services' },
+                                { name: t('nav.testimonials') || 'Testimonials', href: '#testimonials' }
+                            ].map((link, idx) => (
+                                <li key={idx}>
+                                    <a href={link.href} className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center group">
+                                        <ChevronRight size={14} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-primary-500 transition-all duration-300 mr-2" />
+                                        <span>{link.name}</span>
+                                    </a>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
-                    <div>
-                        <h4 className="text-xs font-montserrat font-black uppercase tracking-[0.3em] mb-8 text-blue-400">{t('footer.support')}</h4>
-                        <ul className="space-y-4 text-sm font-bold">
-                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>{t('footer.patientResources')}</a></li>
-                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>{t('footer.articles')}</a></li>
-                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>{t('nav.faq')}</a></li>
-                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"><span className="w-0 group-hover:w-4 h-0.5 bg-blue-500 me-0 group-hover:me-2 transition-all"></span>{t('footer.privacy')}</a></li>
+                    {/* Support Links Column */}
+                    <div className="lg:col-span-2">
+                        <h4 className="text-[13px] font-montserrat font-black uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
+                            {t('footer.support')}
+                            <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
+                        </h4>
+                        <ul className="space-y-4 text-[15px] font-medium mt-4">
+                            {[
+                                t('footer.patientResources'),
+                                t('footer.articles'),
+                                t('nav.faq'),
+                                t('footer.privacy')
+                            ].map((item, idx) => (
+                                <li key={idx}>
+                                    <a href="#" className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center group">
+                                        <ChevronRight size={14} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-primary-500 transition-all duration-300 mr-2" />
+                                        <span>{item}</span>
+                                    </a>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
-                    <div>
-                        <h4 className="text-xs font-montserrat font-black uppercase tracking-[0.3em] mb-8 text-blue-400">{t('footer.clinic')}</h4>
-                        <ul className="space-y-6 text-sm font-bold">
-                            <li className="flex gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-blue-400 flex-shrink-0">
-                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                                </div>
-                                <span className="text-gray-300">Canadian Specialist Hospital, Dubai, UAE</span>
-                            </li>
-                            <li className="flex gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-blue-400 flex-shrink-0">
-                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                    {/* Contact Info Column */}
+                    <div className="lg:col-span-3">
+                        <h4 className="text-[13px] font-montserrat font-black uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
+                            {t('footer.clinic')}
+                            <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
+                        </h4>
+                        <ul className="space-y-6 mt-4">
+                            <li className="flex gap-4 group cursor-pointer">
+                                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 group-hover:bg-primary-600/20 group-hover:border-primary-500/30 flex items-center justify-center text-primary-400 group-hover:text-primary-300 transition-all duration-300 flex-shrink-0">
+                                    <MapPin size={22} strokeWidth={1.5} />
                                 </div>
                                 <div className="flex flex-col justify-center">
-                                    <span className="text-gray-300">+971 55 105 3445</span>
-                                    <span className="text-gray-500 text-[10px] font-medium tracking-wide mt-0.5">Visit me at Canadian Specialist Hospital</span>
+                                    <span className="text-gray-300 text-sm font-medium leading-relaxed group-hover:text-white transition-colors duration-300">
+                                        Canadian Specialist Hospital<br/>Dubai, UAE
+                                    </span>
+                                </div>
+                            </li>
+                            <li className="flex gap-4 group cursor-pointer">
+                                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 group-hover:bg-primary-600/20 group-hover:border-primary-500/30 flex items-center justify-center text-primary-400 group-hover:text-primary-300 transition-all duration-300 flex-shrink-0">
+                                    <Phone size={22} strokeWidth={1.5} />
+                                </div>
+                                <div className="flex flex-col justify-center">
+                                    <span className="text-white font-bold tracking-wide">+971 55 105 3445</span>
+                                    <span className="text-gray-500 text-[11px] font-medium uppercase tracking-wider mt-1">24/7 Emergency</span>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>
 
-
-                <div className="mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p className="text-gray-500 text-xs font-montserrat font-bold uppercase tracking-widest leading-none">&copy; {currentYear} {t('common.doctorName')}. {t('footer.rights')}</p>
-                    <div className="flex gap-8 font-montserrat font-black">
-                        {['FB', 'TW', 'IG', 'LI'].map(social => (
-                            <a key={social} href="#" className="text-gray-600 hover:text-white text-[10px] font-black tracking-widest transition-colors">{social}</a>
-                        ))}
+                {/* Bottom Bar */}
+                <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
+                    <p className="text-gray-500 text-[12px] font-montserrat font-semibold uppercase tracking-[0.15em]">
+                        &copy; {currentYear} <span className="text-gray-400">{t('common.doctorName')}</span>. {t('footer.rights')}
+                    </p>
+                    <div className="flex items-center gap-2">
+                        <span className="text-gray-600 text-[10px] font-montserrat font-bold uppercase tracking-widest">Designed for Excellence</span>
                     </div>
                 </div>
             </div>
-
-            {/* Decorative background circle */}
-            <div className="absolute -bottom-40 -start-40 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px]"></div>
         </footer>
     );
 };
