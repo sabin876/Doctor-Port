@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import {
     ChevronDown,
     ChevronUp,
@@ -190,14 +191,13 @@ const Services = () => {
                                         </p>
 
                                         <div className="mt-auto w-full">
-                                            <motion.button
-                                                whileHover={{ scale: 1.05 }}
-                                                whileTap={{ scale: 0.95 }}
-                                                className="w-full py-3.5 bg-primary-600 text-white text-[12px] font-black uppercase tracking-[0.2em] rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 shadow-sm hover:shadow-lg shadow-primary-200"
+                                            <Link
+                                                to={`/services/${index}`}
+                                                className="w-full py-3.5 bg-primary-600 text-white text-[12px] font-black uppercase tracking-[0.2em] rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 shadow-sm hover:shadow-lg hover:bg-primary-700 hover:scale-[1.02] active:scale-[0.98] shadow-primary-200"
                                             >
                                                 {t('services.viewDetails')}
                                                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                                            </motion.button>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>

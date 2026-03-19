@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import FloatingControls from './components/FloatingControls';
 import FloatingContactButtons from './components/FloatingContactButtons';
 import TopBar from './components/TopBar';
+import ServiceDetail from './components/ServiceDetail';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/:id" element={<ServiceDetail />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/articles/:id" element={<ArticleDetail />} />
