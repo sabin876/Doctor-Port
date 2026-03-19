@@ -133,7 +133,7 @@ const Services = () => {
                         {displayedServices.map((service, index) => (
                             <motion.div
                                 key={index}
-                                className="group relative h-[280px] rounded-[2rem] p-1 flex flex-col items-center text-center transition-all duration-500 overflow-hidden bg-white border border-gray-100 shadow-sm hover:shadow-xl"
+                                className="group relative h-[320px] rounded-[2rem] p-1 flex flex-col items-center text-center transition-all duration-500 overflow-hidden bg-white border border-gray-100 shadow-sm hover:shadow-xl"
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -30 }}
