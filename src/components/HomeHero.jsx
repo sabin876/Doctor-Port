@@ -90,7 +90,7 @@ const slides = [
         photoStyle: 'h-[105%] w-auto object-cover object-center',
         badge: 'FRCS (UK), FEBOT, MCh, PGDip Robotics, MBBS, MS',
         headline1: 'Restore Your',
-        headline2: 'Active Life',
+        headline2: 'Life',
         description:
             'With more than 15+ years of global experience across UK, India, Jersey Island and Dubai in trauma and orthopedic surgery. Delivering world-class care in knee, hip, shoulder and complex trauma.',
         badgeValue: '98%',
@@ -107,7 +107,7 @@ const slides = [
         photoStyle: 'h-[100%] w-auto object-contain object-bottom',
         badge: 'MBBS, MS Ortho, M Ch Ortho, FRCS (T&O)',
         headline1: 'Precision',
-        headline2: 'Orthopedics',
+        headline2: 'Ortho',
         description:
             'A fellow of the Royal College of Surgeons with over 15 years of global experience. Specializing in robotic-assisted knee replacement and minimally invasive procedures.',
         badgeValue: '99.8%',
@@ -220,7 +220,7 @@ const HomeHero = () => {
                                         initial="enter"
                                         animate="center"
                                         exit="exit"
-                                        className="text-slate-900 block"
+                                        className="text-slate-900 inline-block mr-3"
                                     >
                                         {slide.headline1}
                                     </motion.span>
