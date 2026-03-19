@@ -11,32 +11,7 @@ const Footer = () => {
             <div className="absolute top-0 start-0 w-full h-px bg-gradient-to-r from-transparent via-primary-500/20 to-transparent"></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                {/* Visit Me At Section */}
-                <div className="flex flex-col items-center mb-20">
-                    <h3 className="text-white text-2xl font-montserrat font-black mb-8 tracking-tight">
-                        {t('footer.visitMeAt')}
-                    </h3>
-                    <div className="bg-white rounded-[2rem] p-6 md:p-8 flex items-center gap-6 shadow-2xl max-w-xl w-full">
-                        <div className="flex-shrink-0 w-20 h-20 md:w-24 md:h-24 relative">
-                            {/* Shield Icon Representation */}
-                            <div className="absolute inset-0 bg-[#c41e3a] rounded-xl flex items-center justify-center overflow-hidden">
-                                <div className="absolute inset-1 border-2 border-white/20 rounded-lg"></div>
-                                <svg className="w-12 h-12 text-white" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm0 16.91c-3.11-.94-5.5-4.47-5.5-8V6.44l5.5-2.06 5.5 2.06v2.41c0 3.53-2.39 7.06-5.5 8z"/>
-                                    <path d="M12 7l1.5 3h3l-2.5 2 1 3-3-2-3 2 1-3-2.5-1h3.1z" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div className="flex flex-col">
-                            <span className="text-[#0a1e3b] text-lg md:text-xl font-black font-montserrat tracking-tight leading-tight mb-1">
-                                المستشفى الكندي التخصصي
-                            </span>
-                            <span className="text-[#0a1e3b] text-base md:text-lg font-bold font-montserrat tracking-tight leading-tight opacity-90">
-                                Canadian Specialist Hospital
-                            </span>
-                        </div>
-                    </div>
-                </div>
+
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
                     <div className="col-span-1">
