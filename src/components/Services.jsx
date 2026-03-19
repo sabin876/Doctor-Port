@@ -186,9 +186,11 @@ const Services = () => {
                                             {service.title}
                                         </h3>
 
-                                        <p className={`${service.image ? 'text-white/90' : 'text-gray-600'} text-sm font-medium leading-relaxed mb-10 flex-grow transition-colors`}>
-                                            {service.desc}
-                                        </p>
+                                        {!service.image && (
+                                            <p className="text-gray-600 text-sm font-medium leading-relaxed mb-10 flex-grow transition-colors">
+                                                {service.desc}
+                                            </p>
+                                        )}
 
                                         <div className="mt-auto w-full">
                                             <Link
