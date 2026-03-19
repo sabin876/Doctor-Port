@@ -100,11 +100,6 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="mt-12 mb-8 p-6 bg-white/[0.02] border border-white/5 rounded-2xl">
-                    <p className="text-gray-400 text-[11px] leading-relaxed font-medium">
-                        {t('footer.disclaimer')}
-                    </p>
-                </div>
 
                 <div className="mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-gray-500 text-xs font-montserrat font-bold uppercase tracking-widest leading-none">&copy; {currentYear} {t('common.doctorName')}. {t('footer.rights')}</p>
