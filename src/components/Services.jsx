@@ -48,8 +48,8 @@ const Services = () => {
         {
             title: t('services.items.2.title'),
             desc: t('services.items.2.desc'),
-            icon: Layers,
-            image: spineSurgeryImg,
+            icon: Cpu,
+            image: null,
             gradient: "from-indigo-600/10 to-transparent",
             accent: "indigo"
         },
@@ -64,16 +64,16 @@ const Services = () => {
         {
             title: t('services.items.4.title'),
             desc: t('services.items.4.desc'),
-            icon: Hand,
-            image: handWristImg,
+            icon: Layers,
+            image: null,
             gradient: "from-blue-700/10 to-transparent",
             accent: "blue"
         },
         {
             title: t('services.items.5.title'),
             desc: t('services.items.5.desc'),
-            icon: Footprints,
-            image: footAnkleImg,
+            icon: Stethoscope,
+            image: null,
             gradient: "from-sky-600/10 to-transparent",
             accent: "sky"
         },

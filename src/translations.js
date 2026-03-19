@@ -163,36 +163,36 @@ export const translations = {
             showLess: "Show Less",
             items: [
                 {
-                    title: "Joint Replacement",
-                    desc: "Advanced total and partial replacement for knee and hip joints using precision techniques."
+                    title: "Total/Partial Joint Replacement",
+                    desc: "Joint replacement surgery is a procedure where a damaged joint is replaced with an artificial implant. It relieves pain, restores function, and improves quality of life."
                 },
                 {
-                    title: "Sports Medicine",
-                    desc: "Comprehensive care for athletic injuries, including ACL reconstruction and ligament repair."
+                    title: "Sports / ACL Injury Management",
+                    desc: "Prevention, diagnosis, treatment, and rehabilitation of sports injuries to restore the athlete’s strength, mobility, and performance while minimizing injury risk."
                 },
                 {
-                    title: "Spine Surgery",
-                    desc: "Specialized treatment for neck and back conditions, from disc issues to complex spinal trauma."
+                    title: "Robotic / Computer Assisted Surgery",
+                    desc: "A cutting-edge approach that enhances surgical precision, allows for better implant alignment, and contributes to improved outcomes and faster recovery."
                 },
                 {
-                    title: "Arthroscopic Surgery",
-                    desc: "Minimally invasive keyhole procedures for faster recovery in joint-related issues."
+                    title: "Knee and Shoulder Arthroscopy",
+                    desc: "Minimally invasive procedure used to diagnose and treat joint problems using an arthroscope, allowing for necessary treatments through tiny incisions."
                 },
                 {
-                    title: "Hand and Wrist",
-                    desc: "Expert treatment for carpal tunnel, fractures, and complex hand/wrist deformities."
+                    title: "Deformity Corrections / Osteotomies",
+                    desc: "Surgically reshaping or realigning bones to restore proper function and structure of joints. Relieves pain, improves mobility, and delays joint replacement."
                 },
                 {
-                    title: "Foot and Ankle",
-                    desc: "Specialized care for deformities, sports injuries, and complex trauma of the foot/ankle."
+                    title: "Joint Preservation / Regeneration",
+                    desc: "Minimally invasive treatments like PRP therapy and stem cell injections designed to repair damaged cartilage, reduce pain, and promote long-term joint health."
                 },
                 {
-                    title: "Orthopedic Trauma",
-                    desc: "Emergency care and surgical repair for complex fractures and severe bone injuries."
+                    title: "Fractures and Trauma Care",
+                    desc: "Immediate and long-term treatment of broken bones. Includes proper diagnosis, immobilization, and surgical intervention if needed for full recovery."
                 },
                 {
-                    title: "Physiotherapy",
-                    desc: "Expert rehabilitation programs designed to restore mobility and strength after surgery."
+                    title: "Physiotherapy and Rehabilitation",
+                    desc: "Post-surgical structured rehabilitation programs designed to restore movement, strength, and function personalized based on patient health and recovery goals."
                 }
             ]
         },
@@ -412,36 +412,36 @@ export const translations = {
             showLess: "कम दिखाएं",
             items: [
                 {
-                    title: "जोड़ प्रतिस्थापन (Joint Replacement)",
-                    desc: "सटीक तकनीकों का उपयोग करके घुटने और कूल्हे के जोड़ों के लिए उन्नत पूर्ण और आंशिक प्रतिस्थापन।"
+                    title: "पूर्ण/आंशिक जोड़ प्रतिस्थापन",
+                    desc: "जोड़ प्रतिस्थापन सर्जरी एक प्रक्रिया है जिसमें क्षतिग्रस्त जोड़ को कृत्रिम प्रत्यारोपण से बदला जाता है। यह दर्द से राहत देता है और जीवन की गुणवत्ता में सुधार करता है।"
                 },
                 {
-                    title: "स्पोर्ट्स मेडिसิน (Sports Medicine)",
-                    desc: "ACL पुनर्निर्माण और लिगामेंट मरम्मत सहित एथलेटिक चोटों के लिए व्यापक देखभाल।"
+                    title: "खेल / एसीएल चोट प्रबंधन",
+                    desc: "एथलीट की ताकत और गतिशीलता को बहाल करने के लिए खेल की चोटों की रोकथाम, निदान, उपचार और पुनर्वास।"
                 },
                 {
-                    title: "रीढ़ की सर्जरी (Spine Surgery)",
-                    desc: "डिस्क की समस्याओं से लेकर जटिल रीढ़ की चोटों तक, गर्दन और पीठ की स्थितियों के लिए विशेष उपचार।"
+                    title: "रोबोटिक / कंप्यूटर असिस्टेड सर्जरी",
+                    desc: "एक अत्याधुनिक दृष्टिकोण जो सर्जिकल सटीकता को बढ़ाता है, बेहतर प्रत्यारोपण संरेखण की अनुमति देता है, और तेजी से रिकवरी में योगदान देता है।"
                 },
                 {
-                    title: "आर्थ्रोस्कोपिक सर्जरी (Arthroscopic Surgery)",
-                    desc: "जोड़ों से संबंधित समस्याओं में तेजी से रिकवरी के लिए न्यूनतम आक्रामक कीहोल प्रक्रियाएं।"
+                    title: "घुटने और कंधे की आर्थ्रोस्कोपी",
+                    desc: "आर्थ्रोस्कोप का उपयोग करके संयुक्त समस्याओं के निदान और उपचार के लिए कम से कम आक्रामक प्रक्रिया।"
                 },
                 {
-                    title: "हाथ और कलाई (Hand and Wrist)",
-                    desc: "कार्पल टनेल, फ्रैक्चर और जटिल हाथ/कलाई की विकृतियों के लिए विशेषज्ञ उपचार।।"
+                    title: "विकृति सुधार / ओस्टियोटॉमी",
+                    desc: "जोड़ों के उचित कार्य और संरचना को बहाल करने के लिए हड्डियों को शल्य चिकित्सा द्वारा फिर से आकार देना या संरेखित करना।"
                 },
                 {
-                    title: "पैर और टखना (Foot and Ankle)",
-                    desc: "पैर/टखने की विकृतियों, खेल की चोटों और जटिल आघात के लिए विशेष देखभाल।"
+                    title: "संयुक्त संरक्षण / उत्थान",
+                    desc: "क्षतिग्रस्त उपास्थि की मरम्मत, दर्द को कम करने और दीर्घकालिक संयुक्त स्वास्थ्य को बढ़ावा देने के लिए डिज़ाइन किए गए पीआरपी थेरेपी और स्टेम सेल इंजेक्शन।"
                 },
                 {
-                    title: "आर्थोपेडिक आघात (Orthopedic Trauma)",
-                    desc: "जटिल फ्रैक्चर और गंभीर हड्डियों की चोटों के लिए आपातकालीन देखभाल और सर्जिकल मरम्मत।"
+                    title: "फ्रैक्चर और आघात देखभाल",
+                    desc: "टूटी हुई हड्डियों का तत्काल और दीर्घकालिक उपचार। पूर्ण सुधार के लिए उचित निदान, स्थिरीकरण और शल्य चिकित्सा हस्तक्षेप शामिल है।"
                 },
                 {
-                    title: "फिजियोथेरेपी (Physiotherapy)",
-                    desc: "सर्जरी के बाद गतिशीलता और ताकत बहाल करने के लिए डिज़ाइन किए गए विशेषज्ञ पुनर्वास कार्यक्रम।"
+                    title: "फिजियोथेरेपी और पुनर्वास",
+                    desc: "सर्जरी के बाद गतिशीलता, ताकत और कार्य को बहाल करने के लिए डिज़ाइन किए गए संरचित पुनर्वास कार्यक्रम।"
                 }
             ]
         },
@@ -658,36 +658,36 @@ export const translations = {
             showLess: "عرض أقل",
             items: [
                 {
-                    title: "استبدال المفاصل",
-                    desc: "استبدال كلي وجزئي متقدم لمفاصل الركبة والورك باستخدام تقنيات دقيقة."
+                    title: "استبدال المفاصل الكلي/الجزئي",
+                    desc: "جراحة استبدال المفاصل هي إجراء يتم فيه استبدال المفصل التالف بغرسة صناعية لتخفيف الألم واستعادة الوظيفة."
                 },
                 {
-                    title: "الطب الرياضي",
-                    desc: "رعاية شاملة للإصابات الرياضية، بما في ذلك إعادة بناء الرباط الصليبي وإصلاح الأربطة."
+                    title: "إدارة الإصابات الرياضية",
+                    desc: "الوقاية والتشخيص والعلاج وإعادة التأهيل للإصابات الرياضية لاستعادة قوة الرياضي وحركته وتقليل المخاطر."
                 },
                 {
-                    title: "جراحة العمود الفقري",
-                    desc: "علاج متخصص لحالات الرقبة والظهر، من مشاكل الديسك إلى إصابات العمود الفقري المعقدة."
+                    title: "الجراحة بمساعدة الروبوت/الكمبيوتر",
+                    desc: "نهج متطور يعزز الدقة الجراحية ويسمح بمحاذاة أفضل للغرسة ويسرع عملية الشفاء."
                 },
                 {
-                    title: "الجراحة بالمنظار",
-                    desc: "إجراءات ثقب المفتاح طفيفة التوغل لتعافي أسرع في المشاكل المتعلقة بالمفاصل."
+                    title: "تنظير الركبة والكتف",
+                    desc: "إجراء طفيف التوغل يستخدم لتشخيص وعلاج مشاكل المفاصل باستخدام منظار المفصل من خلال شقوق صغيرة."
                 },
                 {
-                    title: "اليد والمعصم",
-                    desc: "علاج خبير لنفق الرسغ والكسور وتشوهات اليد والمعصم المعقدة."
+                    title: "تصحيح التشوهات / قطع العظم",
+                    desc: "إعادة تشكيل أو إعادة محاذاة العظام جراحيًا لاستعادة وظيفتها وهيكلها المناسب لتخفيف الألم وتأخير استبدال المفصل."
                 },
                 {
-                    title: "القدم والكاحل",
-                    desc: "رعاية متخصصة للتشوهات والإصابات الرياضية والإصابات المعقدة للقدم والكاحل."
+                    title: "الحفاظ على المفاصل وتجديدها",
+                    desc: "علاجات طفيفة التوغل مثل العلاج بالبلازما الغنية بالصفائح الدموية وحقن الخلايا الجذعية لإصلاح الغضاريف التالفة."
                 },
                 {
-                    title: "إصابات العظام",
-                    desc: "الرعاية الطارئة والإصلاح الجراحي للكسور المعقدة وإصابات العظام الشديدة."
+                    title: "رعاية الكسور والصدمات",
+                    desc: "العلاج الفوري وطويل الأمد للعظام المكسورة، يشمل التشخيص السليم والتثبيت والتدخل الجراحي إذا لزم الأمر."
                 },
                 {
-                    title: "العلاج الطبيعي",
-                    desc: "برامج إعادة تأهيل خبيرة مصممة لاستعادة الحركة والقوة بعد الجراحة."
+                    title: "العلاج الطبيعي والتأهيل",
+                    desc: "برامج إعادة التأهيل المنظمة بعد الجراحة والمصممة لاستعادة الحركة والقوة والوظيفة بناءً على صحة المريض."
                 }
             ]
         },
