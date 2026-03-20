@@ -299,10 +299,8 @@ export const translations = {
             title: "Research &",
             titleHighlight: "Publications",
             description: "Peer-reviewed articles and clinical research authored by Dr. Ulhas Sonar, contributing to the global advancement of orthopedic surgical practices.",
-            tabs: {
-                primary: "Primary Author",
-                collaborative: "Collaborative Work"
-            },
+            firstAuthor: "1st Author",
+            secondAuthor: "2nd Author",
             action: "Read Publication",
             stats: {
                 papers: "Research Papers",
@@ -547,10 +545,8 @@ export const translations = {
             title: "अनुसंधान और",
             titleHighlight: "प्रकाशन",
             description: "डॉ. उल्हास सोनार द्वारा लिखित सहकर्मी-समीक्षित लेख और नैदानिक अनुसंधान, आर्थोपेडिक सर्जिकल प्रथाओं की वैश्विक उन्नति में योगदान दे रहे हैं।",
-            tabs: {
-                primary: "प्राथमिक लेखक",
-                collaborative: "सहयोगात्मक कार्य"
-            },
+            firstAuthor: "प्रथम लेखक",
+            secondAuthor: "सहयोगी लेखक",
             action: "प्रकाशन पढ़ें",
             stats: {
                 papers: "शोध पत्र",
@@ -795,10 +791,8 @@ export const translations = {
             title: "الأبحاث و",
             titleHighlight: "المنشورات",
             description: "مقالات محكمة وأبحاث سريرية من تأليف الدكتور أولهاس سونار، تساهم في التقدم العالمي لممارسات جراحة العظام.",
-            tabs: {
-                primary: "المؤلف الرئيسي",
-                collaborative: "العمل التعاوني"
-            },
+            firstAuthor: "المؤلف الأول",
+            secondAuthor: "المؤلف المشارك",
             action: "اقرأ المنشور",
             stats: {
                 papers: "أوراق بحثية",
