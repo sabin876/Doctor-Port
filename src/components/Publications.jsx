@@ -98,8 +98,11 @@ const Publications = () => {
         <section
             ref={sectionRef}
             id="publications"
-            className="py-24 bg-[#0a1628]"
+            className="pb-32 bg-white relative overflow-hidden"
         >
+            {/* Subtle Gradient Background Element */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[300px] bg-gradient-to-b from-slate-50 to-transparent pointer-events-none" />
+
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 
                 {/* Section Header */}
@@ -109,19 +112,19 @@ const Publications = () => {
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.7 }}
                 >
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 bg-blue-500/10 border border-blue-500/20">
-                        <GraduationCap className="w-4 h-4 text-blue-400" />
-                        <span className="text-blue-300 text-[10px] font-bold uppercase tracking-[0.2em]">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 bg-blue-50 border border-blue-100 shadow-sm">
+                        <GraduationCap className="w-4 h-4 text-blue-600" />
+                        <span className="text-blue-700 text-[10px] font-black uppercase tracking-[0.2em]">
                             {t('publications.badge')}
                         </span>
                     </div>
 
-                    <h2 className="text-4xl md:text-5xl font-black text-white mb-6 font-montserrat tracking-tight leading-tight">
+                    <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 font-montserrat tracking-tight leading-tight">
                         {t('publications.title')}{' '}
-                        <span className="text-blue-500">{t('publications.titleHighlight')}</span>
+                        <span className="text-blue-600">{t('publications.titleHighlight')}</span>
                     </h2>
 
-                    <p className="text-gray-400 text-base max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-slate-500 text-lg max-w-2xl mx-auto leading-relaxed">
                         {t('publications.description')}
                     </p>
                 </motion.div>
@@ -134,9 +137,13 @@ const Publications = () => {
                         variants={cardVariants}
                         initial="hidden"
                         animate={isInView ? "visible" : ""}
-                        className="bg-[#f0f4f8] rounded-[32px] p-8 md:p-10 shadow-2xl relative overflow-hidden"
+                        className="bg-white rounded-[40px] p-8 md:p-12 shadow-[0_20px_60px_-15px_rgba(30,58,138,0.08)] border border-blue-50/50 relative overflow-hidden group hover:shadow-[0_40px_80px_-20px_rgba(30,58,138,0.12)] transition-all duration-500"
                     >
-                        <h3 className="text-[#162758] text-3xl font-montserrat font-black mb-10 tracking-tight">
+                        {/* Card Accent */}
+                        <div className="absolute top-0 left-0 w-2 h-full bg-blue-600/10 group-hover:bg-blue-600/20 transition-colors" />
+
+                        <h3 className="text-[#162758] text-3xl font-montserrat font-black mb-10 tracking-tight flex items-center gap-4">
+                            <span className="w-10 h-1 bg-blue-600/20 rounded-full" />
                             {t('publications.firstAuthor')}
                         </h3>
                         
@@ -144,17 +151,19 @@ const Publications = () => {
                             {primaryPublications.map((pub, index) => (
                                 <div 
                                     key={pub.id} 
-                                    className={`${index !== 0 ? 'border-t border-gray-300/60' : ''} py-6 first:pt-0 last:pb-0`}
+                                    className={`${index !== 0 ? 'border-t border-slate-100' : ''} py-8 first:pt-0 last:pb-0`}
                                 >
                                     <a 
                                         href={pub.link} 
                                         target="_blank" 
                                         rel="noopener noreferrer"
-                                        className="flex gap-4 group transition-all duration-300"
+                                        className="flex gap-6 group/item transition-all duration-300"
                                     >
-                                        <Link size={16} className="text-gray-400 mt-1.5 flex-shrink-0 group-hover:text-[#162758] transition-colors" />
-                                        <span className="text-[#162758] text-[15px] font-semibold leading-relaxed group-hover:underline decor-2 underline-offset-4 decoration-[#162758]/30">
-                                            {pub.title}. {pub.journal}, {pub.details}
+                                        <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center flex-shrink-0 group-hover/item:bg-blue-600 group-hover/item:text-white transition-all duration-300">
+                                            <Link size={16} className="text-slate-400 group-hover/item:text-white" />
+                                        </div>
+                                        <span className="text-slate-800 text-[16px] font-semibold leading-relaxed group-hover/item:text-blue-600 transition-colors decoration-2 underline-offset-8">
+                                            {pub.title}. <span className="text-blue-600/80 group-hover/item:text-blue-700 font-bold">{pub.journal}</span>, {pub.details}
                                         </span>
                                     </a>
                                 </div>
@@ -168,9 +177,13 @@ const Publications = () => {
                         initial="hidden"
                         animate={isInView ? "visible" : ""}
                         transition={{ delay: 0.2 }}
-                        className="bg-[#f0f4f8] rounded-[32px] p-8 md:p-10 shadow-2xl relative overflow-hidden"
+                        className="bg-white rounded-[40px] p-8 md:p-12 shadow-[0_20px_60px_-15px_rgba(30,58,138,0.08)] border border-blue-50/50 relative overflow-hidden group hover:shadow-[0_40px_80px_-20px_rgba(30,58,138,0.12)] transition-all duration-500"
                     >
-                        <h3 className="text-[#162758] text-3xl font-montserrat font-black mb-10 tracking-tight">
+                        {/* Card Accent */}
+                        <div className="absolute top-0 left-0 w-2 h-full bg-indigo-600/10 group-hover:bg-indigo-600/20 transition-colors" />
+
+                        <h3 className="text-[#162758] text-3xl font-montserrat font-black mb-10 tracking-tight flex items-center gap-4">
+                            <span className="w-10 h-1 bg-indigo-600/20 rounded-full" />
                             {t('publications.secondAuthor')}
                         </h3>
                         
@@ -178,17 +191,19 @@ const Publications = () => {
                             {collaborativePublications.map((pub, index) => (
                                 <div 
                                     key={pub.id} 
-                                    className={`${index !== 0 ? 'border-t border-gray-300/60' : ''} py-6 first:pt-0 last:pb-0`}
+                                    className={`${index !== 0 ? 'border-t border-slate-100' : ''} py-8 first:pt-0 last:pb-0`}
                                 >
                                     <a 
                                         href={pub.link} 
                                         target="_blank" 
                                         rel="noopener noreferrer"
-                                        className="flex gap-4 group transition-all duration-300"
+                                        className="flex gap-6 group/item transition-all duration-300"
                                     >
-                                        <Link size={16} className="text-gray-400 mt-1.5 flex-shrink-0 group-hover:text-[#162758] transition-colors" />
-                                        <span className="text-[#162758] text-[15px] font-semibold leading-relaxed group-hover:underline decor-2 underline-offset-4 decoration-[#162758]/30">
-                                            {pub.title}. {pub.journal}, {pub.details}
+                                        <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center flex-shrink-0 group-hover/item:bg-indigo-600 group-hover/item:text-white transition-all duration-300">
+                                            <Link size={16} className="text-slate-400 group-hover/item:text-white" />
+                                        </div>
+                                        <span className="text-slate-800 text-[16px] font-semibold leading-relaxed group-hover/item:text-indigo-600 transition-colors decoration-2 underline-offset-8">
+                                            {pub.title}. <span className="text-indigo-600/80 group-hover/item:text-indigo-700 font-bold">{pub.journal}</span>, {pub.details}
                                         </span>
                                     </a>
                                 </div>
@@ -199,26 +214,27 @@ const Publications = () => {
 
                 {/* Bottom Stats simplified */}
                 <motion.div
-                    className="mt-20 pt-12 border-t border-white/5 flex flex-wrap justify-center gap-12 md:gap-24"
+                    className="mt-20 pt-12 border-t border-slate-100 flex flex-wrap justify-center gap-16 md:gap-32"
                     initial={{ opacity: 0 }}
                     animate={isInView ? { opacity: 1 } : {}}
                     transition={{ delay: 0.5 }}
                 >
-                    <div className="text-center">
-                        <p className="text-2xl font-black text-white mb-1">10+</p>
-                        <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">{t('publications.stats.papers')}</p>
+                    <div className="text-center group">
+                        <p className="text-4xl font-black text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">10+</p>
+                        <p className="text-[10px] text-slate-400 uppercase tracking-widest font-black">{t('publications.stats.papers')}</p>
                     </div>
-                    <div className="text-center">
-                        <p className="text-2xl font-black text-white mb-1">UK/India</p>
-                        <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">{t('publications.stats.impact')}</p>
+                    <div className="text-center group">
+                        <p className="text-4xl font-black text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">UK/India</p>
+                        <p className="text-[10px] text-slate-400 uppercase tracking-widest font-black">{t('publications.stats.impact')}</p>
                     </div>
-                    <div className="text-center">
-                        <p className="text-2xl font-black text-white mb-1">JBJS</p>
-                        <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">{t('publications.stats.journals')}</p>
+                    <div className="text-center group">
+                        <p className="text-4xl font-black text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">JBJS</p>
+                        <p className="text-[10px] text-slate-400 uppercase tracking-widest font-black">{t('publications.stats.journals')}</p>
                     </div>
                 </motion.div>
             </div>
         </section>
+
     );
 };
 

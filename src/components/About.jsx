@@ -119,13 +119,12 @@ const About = () => {
                     {/* Content Section */}
                     <div className={isRtl ? 'text-right' : 'text-left'}>
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0, x: isRtl ? -20 : 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="inline-flex items-center space-x-2 mb-8"
+                            className="text-blue-700 text-[10px] md:text-[11px] font-black uppercase tracking-[0.25em] mb-8 max-w-xl leading-relaxed opacity-80"
                         >
-                            <span className="w-12 h-[2px] bg-blue-600 rounded-full"></span>
-                            <span className="text-blue-600 text-xs font-black uppercase tracking-[0.3em]">{t('about.badge')}</span>
+                            {t('about.badge')}
                         </motion.div>
 
                         <motion.h2
@@ -133,7 +132,7 @@ const About = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 }}
-                            className="text-4xl md:text-6xl font-montserrat font-extrabold text-blue-900 mb-10 leading-[1.1] tracking-tight"
+                            className="text-5xl md:text-7xl font-montserrat font-black text-slate-900 mb-10 leading-[1.05] tracking-tight"
                         >
                             {t('about.title')} <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">{t('about.titleHighlight')}</span> {t('about.titleEnd')}
@@ -144,12 +143,13 @@ const About = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.2 }}
-                            className="space-y-6 mb-12"
+                            className="space-y-8 mb-16"
                         >
-                            <p className="text-xl text-gray-600 leading-relaxed font-medium">
+                            <p className="text-xl md:text-2xl text-slate-700 leading-relaxed font-semibold">
                                 {t('about.description1')}
                             </p>
-                            <p className="text-lg text-gray-500 leading-relaxed">
+                            <div className="w-20 h-1.5 bg-blue-600/20 rounded-full" />
+                            <p className="text-lg text-slate-500 leading-relaxed font-medium">
                                 {t('about.description2')}
                             </p>
                         </motion.div>
