@@ -14,7 +14,9 @@ export const translations = {
             contact: "Contact",
             bookNow: "Get Appointment",
             selectLanguage: "Select Language",
-            affiliations: "Memberships & Affiliations"
+            affiliations: "Memberships & Affiliations",
+            testimonials: "Testimonials",
+            faq: "FAQ"
         },
         // TopBar
         topBar: {
@@ -336,7 +338,9 @@ export const translations = {
             contact: "Contact",
             bookNow: "Get Appointment",
             selectLanguage: "भाषा चुनें",
-            affiliations: "सदस्यता और संबद्धता"
+            affiliations: "सदस्यता और संबद्धता",
+            testimonials: "प्रशंसापत्र",
+            faq: "सामान्य प्रश्न"
         },
         topBar: {
             phone: "हमें कॉल करें",
@@ -582,7 +586,9 @@ export const translations = {
             contact: "Contact",
             bookNow: "Get Appointment",
             selectLanguage: "اختر اللغة",
-            affiliations: "العضويات والانتسابات المهنية"
+            affiliations: "العضويات والانتسابات المهنية",
+            testimonials: "توصيات المرضى",
+            faq: "الأسئلة الشائعة"
         },
         topBar: {
             phone: "اتصل بنا",
