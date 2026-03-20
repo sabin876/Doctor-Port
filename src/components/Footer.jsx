@@ -34,54 +34,23 @@ const Footer = () => {
                             {t('footer.desc')}
                         </p>
                         
-                        {/* Social Links & Visit Link */}
-                        <div className="flex flex-col gap-8">
-                            <div className="flex gap-4">
-                                {[
-                                    { Icon: Facebook, label: 'Facebook' },
-                                    { Icon: Twitter, label: 'Twitter' },
-                                    { Icon: Instagram, label: 'Instagram' },
-                                    { Icon: Linkedin, label: 'LinkedIn' }
-                                ].map((social, index) => (
-                                    <a 
-                                        key={index} 
-                                        href="#" 
-                                        aria-label={social.label}
-                                        className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-primary-600 hover:text-white hover:border-primary-500 hover:-translate-y-1 transition-all duration-300 shadow-sm"
-                                    >
-                                        <social.Icon size={18} strokeWidth={2} />
-                                    </a>
-                                ))}
-                            </div>
-
-                            {/* Visit Me At Section (Realigned) */}
-                            <div>
-                                <h4 className="text-[12px] font-montserrat font-bold uppercase tracking-widest mb-4 text-blue-400">
-                                    {t('footer.visitMeAt')}
-                                </h4>
-                                <a href="https://csh.ae/" target="_blank" rel="noreferrer" className="group inline-flex items-center gap-4 bg-white/95 hover:bg-white p-3 pr-6 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-primary-500/10">
-                                    {/* Custom CSS representation of the Canadian Specialist Hospital logo */}
-                                    <div className="relative w-[3.25rem] h-[3.25rem] bg-[#162758] rounded shadow-sm border border-[#d32f2f] flex justify-center flex-shrink-0">
-                                        <svg className="absolute w-8 h-8 top-1 text-white fill-current" viewBox="0 0 24 24">
-                                            <path d="M12 1.5L14 8h5l-4.5 4L16 19l-4-3-4 3 1.5-7L5 8h5l2-6.5z"/>
-                                            <path className="fill-[#162758]" d="M11.5 13h1v8h-1v-8z"/>
-                                        </svg>
-                                        <div className="absolute bottom-1 w-full flex justify-between px-2">
-                                            <span className="text-white text-[7px] font-black leading-none">C</span>
-                                            <span className="text-white text-[7px] font-black leading-none">S</span>
-                                            <span className="text-white text-[7px] font-black leading-none">H</span>
-                                        </div>
-                                    </div>
-                                    <div className="flex flex-col border-l border-gray-200 pl-4 py-0.5 max-w-[180px]">
-                                        <span className="text-[#162758] text-[15px] font-black font-montserrat tracking-tight leading-none mb-1 text-right" dir="rtl">
-                                            المستشفى الكندي التخصصي
-                                        </span>
-                                        <span className="text-[#162758] text-[12px] font-bold font-montserrat tracking-tight leading-none">
-                                            Canadian Specialist Hospital
-                                        </span>
-                                    </div>
+                        {/* Social Links */}
+                        <div className="flex gap-4">
+                            {[
+                                { Icon: Facebook, label: 'Facebook' },
+                                { Icon: Twitter, label: 'Twitter' },
+                                { Icon: Instagram, label: 'Instagram' },
+                                { Icon: Linkedin, label: 'LinkedIn' }
+                            ].map((social, index) => (
+                                <a 
+                                    key={index} 
+                                    href="#" 
+                                    aria-label={social.label}
+                                    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-primary-600 hover:text-white hover:border-primary-500 hover:-translate-y-1 transition-all duration-300 shadow-sm"
+                                >
+                                    <social.Icon size={18} strokeWidth={2} />
                                 </a>
-                            </div>
+                            ))}
                         </div>
                     </div>
 
@@ -137,7 +106,7 @@ const Footer = () => {
                             {t('footer.clinic')}
                             <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
                         </h4>
-                        <ul className="space-y-6 mt-4">
+                        <ul className="space-y-6 mt-4 mb-10">
                             <li className="flex gap-4 group cursor-pointer">
                                 <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 group-hover:bg-primary-600/20 group-hover:border-primary-500/30 flex items-center justify-center text-primary-400 group-hover:text-primary-300 transition-all duration-300 flex-shrink-0">
                                     <MapPin size={22} strokeWidth={1.5} />
@@ -158,6 +127,35 @@ const Footer = () => {
                                 </div>
                             </li>
                         </ul>
+
+                        {/* Visit Me At Section (Realigned to Right/Contact Column) */}
+                        <div className="pt-2">
+                            <h4 className="text-[12px] font-montserrat font-bold uppercase tracking-widest mb-4 text-blue-400">
+                                {t('footer.visitMeAt')}
+                            </h4>
+                            <a href="https://csh.ae/" target="_blank" rel="noreferrer" className="group inline-flex items-center gap-4 bg-white/95 hover:bg-white p-3 pr-6 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-primary-500/10">
+                                {/* Custom CSS representation of the Canadian Specialist Hospital logo */}
+                                <div className="relative w-[3.25rem] h-[3.25rem] bg-[#162758] rounded shadow-sm border border-[#d32f2f] flex justify-center flex-shrink-0">
+                                    <svg className="absolute w-8 h-8 top-1 text-white fill-current" viewBox="0 0 24 24">
+                                        <path d="M12 1.5L14 8h5l-4.5 4L16 19l-4-3-4 3 1.5-7L5 8h5l2-6.5z"/>
+                                        <path className="fill-[#162758]" d="M11.5 13h1v8h-1v-8z"/>
+                                    </svg>
+                                    <div className="absolute bottom-1 w-full flex justify-between px-2">
+                                        <span className="text-white text-[7px] font-black leading-none">C</span>
+                                        <span className="text-white text-[7px] font-black leading-none">S</span>
+                                        <span className="text-white text-[7px] font-black leading-none">H</span>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col border-l border-gray-200 pl-4 py-0.5 max-w-[180px]">
+                                    <span className="text-[#162758] text-[15px] font-black font-montserrat tracking-tight leading-none mb-1 text-right" dir="rtl">
+                                        المستشفى الكندي التخصصي
+                                    </span>
+                                    <span className="text-[#162758] text-[12px] font-bold font-montserrat tracking-tight leading-none">
+                                        Canadian Specialist Hospital
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
