@@ -62,10 +62,10 @@ const Footer = () => {
                         </h4>
                         <ul className="space-y-4 text-[15px] font-medium mt-4">
                             {[
-                                { name: t('nav.home'), href: '#home' },
-                                { name: t('nav.about'), href: '#about' },
-                                { name: t('nav.services'), href: '#services' },
-                                { name: t('nav.testimonials') || 'Testimonials', href: '#testimonials' }
+                                { name: t('nav.home'), href: '/' },
+                                { name: t('nav.about'), href: '/#about' },
+                                { name: t('nav.services'), href: '/#services' },
+                                { name: t('nav.testimonials') || 'Testimonials', href: '/#testimonials' }
                             ].map((link, idx) => (
                                 <li key={idx}>
                                     <a href={link.href} className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center group">
@@ -85,15 +85,15 @@ const Footer = () => {
                         </h4>
                         <ul className="space-y-4 text-[15px] font-medium mt-4">
                             {[
-                                t('footer.patientResources'),
-                                t('footer.articles'),
-                                t('nav.faq'),
-                                t('footer.privacy')
+                                { name: t('footer.patientResources'), href: '/#publications' },
+                                { name: t('footer.articles'), href: '/articles' },
+                                { name: t('nav.faq'), href: '/#faq' },
+                                { name: t('footer.privacy'), href: '#' }
                             ].map((item, idx) => (
                                 <li key={idx}>
-                                    <a href="#" className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center group">
+                                    <a href={item.href} className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center group">
                                         <ChevronRight size={14} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-primary-500 transition-all duration-300 mr-2" />
-                                        <span>{item}</span>
+                                        <span>{item.name}</span>
                                     </a>
                                 </li>
                             ))}

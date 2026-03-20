@@ -1,5 +1,7 @@
 import HomeHero from './HomeHero';
 import Affiliations from './Affiliations';
+import About from './About';
+import Publications from './Publications';
 import SpecializedSolutions from './SpecializedSolutions';
 import SportingInjury from './SportingInjury';
 import WhyChooseUs from './WhyChooseUs';
@@ -11,9 +13,10 @@ const Home = () => {
         <main>
             <HomeHero />
             <Affiliations />
+            <About />
+            <Publications />
             <SpecializedSolutions />
             <SportingInjury />
-            {/* <WhyChooseUs /> */}
             <Testimonials />
             <FAQ />
         </main>
