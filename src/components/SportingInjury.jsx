@@ -60,13 +60,21 @@ const SportingInjury = () => {
     ];
 
     return (
-        <section className="relative py-20 md:py-32 overflow-hidden bg-white">
-            <MedicalRadar />
-
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-                <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-[140px]"></div>
-                <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-cyan-50/30 rounded-full blur-[120px]"></div>
+        <section className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-b from-blue-50/80 via-white to-blue-50/50">
+            {/* ── Background Effects (from Hero) ── */}
+            <div className="absolute inset-0 z-0 pointer-events-none">
+                <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-blue-400/10 rounded-full blur-[140px]"></div>
+                <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-cyan-400/10 rounded-full blur-[120px]"></div>
+                <div
+                    className="absolute inset-0 opacity-[0.08]"
+                    style={{
+                        backgroundImage: 'radial-gradient(circle at 2px 2px, #3b82f6 1.5px, transparent 0)',
+                        backgroundSize: '40px 40px',
+                    }}
+                />
             </div>
+
+            <MedicalRadar />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* CENTERED HEADER */}
@@ -86,7 +94,7 @@ const SportingInjury = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-[1.1] md:leading-[0.95] tracking-tight md:tracking-tighter mb-6 md:mb-8"
+                        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-montserrat font-normal text-slate-900 leading-[1.1] md:leading-[0.95] tracking-tight md:tracking-tighter mb-6 md:mb-8"
                     >
                         Suffering From A <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Sporting Injury</span>?
@@ -128,76 +136,66 @@ const SportingInjury = () => {
                                     ></iframe>
                                     <div className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-black/20 to-transparent pointer-events-none"></div>
                                 </CardItem>
-
-                                <CardItem translateZ={60} className="mt-8 grid grid-cols-2 gap-4">
-                                    <div className="bg-white/60 p-3 rounded-xl border border-white/40">
-                                        <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1">Success Rate</p>
-                                        <p className="text-lg font-black text-emerald-600">98.4%</p>
-                                    </div>
-                                    <div className="bg-white/60 p-3 rounded-xl border border-white/40">
-                                        <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1">Patient State</p>
-                                        <p className="text-lg font-black text-blue-600">Stable</p>
-                                    </div>
-                                </CardItem>
                             </CardBody>
                         </CardContainer>
                     </div>
 
-                    {/* RIGHT: List & CTA */}
-                    <div className="w-full lg:w-[55%] order-1 lg:order-2">
-                        <motion.div
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                            className="bg-slate-50/50 p-8 md:p-12 rounded-[2.5rem] border border-slate-100 backdrop-blur-sm shadow-xl"
-                        >
-                            <h3 className="text-xl font-black text-slate-800 mb-8 uppercase tracking-tight italic text-left">Learn about possible solutions:</h3>
+            {/* RIGHT: List & CTA */}
+            <div className="w-full lg:w-[55%] order-1 lg:order-2">
+                <motion.div
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="pt-4"
+                >
+                    <h3 className="text-xl font-black text-slate-800 mb-8 uppercase tracking-tight italic text-left">
+                        Learn about possible solutions:
+                    </h3>
 
-                            <div className="space-y-6 mb-12 text-left">
-                                {solutions.map((item, index) => (
-                                    <motion.div
-                                        key={index}
-                                        initial={{ opacity: 0, x: -10 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        transition={{ delay: index * 0.1 }}
-                                        className="flex items-center gap-4 group"
-                                    >
-                                        <div className="flex-shrink-0 w-6 h-6 rounded-md bg-[#3a7e7a]/10 flex items-center justify-center border border-[#3a7e7a]/20 group-hover:bg-[#3a7e7a] group-hover:text-white transition-all">
-                                            <svg className="w-4 h-4 text-[#3a7e7a] group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        </div>
-                                        <span className="font-bold text-slate-700 text-lg md:text-xl tracking-tight leading-none">{item}</span>
-                                    </motion.div>
-                                ))}
-                            </div>
-
-                            <div className="flex justify-start">
-                                <RouterLink
-                                    to="/contact"
-                                    className="group relative inline-flex px-12 py-5 bg-[#ff6b35] text-white font-black text-lg uppercase tracking-widest rounded-2xl shadow-[0_20px_40px_-10px_rgba(255,107,53,0.4)] overflow-hidden items-center justify-center gap-3 active:scale-95 hover:scale-[1.02] transition-all"
-                                >
-                                    <span className="relative z-10">BOOK A CONSULTATION</span>
-                                    <ArrowRight className="relative z-10 w-6 h-6 group-hover:translate-x-1.5 transition-transform" />
-                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                                </RouterLink>
-                            </div>
-
-                            <div className="mt-12 pt-8 border-t border-slate-200/60 flex items-center gap-4">
-                                <div className="flex -space-x-3">
-                                    {[1, 2, 3].map((i) => (
-                                        <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-200" />
-                                    ))}
+                    <div className="space-y-4 mb-12 text-left">
+                        {[
+                            {
+                                title: "Hip labral tear",
+                                desc: "Advanced minimally invasive repair techniques to heal cartilage tears and restore smooth hip joint movement."
+                            },
+                            {
+                                title: "Hip Impingement",
+                                desc: "Specialized arthroscopic treatments designed to reshape bone, relieve pain, and restore your full range of active mobility."
+                            },
+                            {
+                                title: "Anterior Cruciate Ligament Injury",
+                                desc: "Complete reconstructive and accelerated rehabilitation programs to get you back on the field safely and stronger."
+                            },
+                            {
+                                title: "Meniscal Tears",
+                                desc: "Customized conservative and surgical options focused on preserving joint health, reducing pain, and improving function."
+                            },
+                            {
+                                title: "Patellofemoral Instability",
+                                desc: "Targeted strengthening and stabilization procedures to correct kneecap tracking and provide lasting, reliable relief."
+                            }
+                        ].map((item, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.1 }}
+                                className="flex items-start gap-4 group bg-white border border-slate-100 p-5 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+                            >
+                                <div className="flex-shrink-0 mt-1">
+                                    <svg className="w-6 h-6 text-blue-600 transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
                                 </div>
-                                <div className="text-left">
-                                    <div className="flex items-center gap-1">
-                                        {[1, 2, 3, 4, 5].map((i) => <Star key={i} className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />)}
-                                    </div>
-                                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none mt-1">Highly Rated Ortho Surgeon</p>
+                                <div>
+                                    <h4 className="font-bold text-slate-800 text-lg tracking-tight mb-1 group-hover:text-blue-600 transition-colors">{item.title}</h4>
+                                    <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
                                 </div>
-                            </div>
-                        </motion.div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.div>
                     </div>
                 </div>
             </div>

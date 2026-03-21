@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { translations } from '../translations';
+import gmcLogo from '../assets/gmc-logo.svg';
+import ebotLogo from '../assets/ebot-logo.png';
 
 const Affiliations = ({ lang = 'EN' }) => {
     const t = translations[lang].nav;
@@ -28,11 +30,11 @@ const Affiliations = ({ lang = 'EN' }) => {
         },
         {
             name: "General Medical Council",
-            src: "https://s24098.pcdn.co/wp-content/uploads/2017/09/1-GMC.png"
+            src: gmcLogo
         },
         {
             name: "EBOT",
-            src: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Ebot-logo.png"
+            src: ebotLogo
         },
         {
             name: "Dubai Health Authority",

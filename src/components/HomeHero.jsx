@@ -55,33 +55,37 @@ const Orb = ({ className, delay = 0 }) => (
 
 /* ── New Stats row implementation to match mockup ── */
 const StatsRow = ({ trigger, stats }) => (
-    <div className="flex flex-wrap items-center gap-x-6 md:gap-x-10 gap-y-6 pt-10 md:pt-12">
+    <div className="grid grid-cols-3 gap-x-6 gap-y-4 pt-8 md:pt-10">
         {stats.map((stat, i) => (
             <div key={i} className="flex flex-col">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5">
                     {stat.isGoogle ? (
-                        <span className="text-lg md:text-xl font-black text-slate-900 tracking-tight">Google</span>
+                        <div className="flex items-center gap-1">
+                            <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
+                            <span className="text-lg font-black text-blue-600 tracking-tight">5.0</span>
+                        </div>
                     ) : (
-                        <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">
+                        <span className="text-lg md:text-xl font-black text-blue-600 tracking-tight">
                             <AnimatedCounter value={stat.value} suffix={stat.suffix} trigger={trigger} />
                         </span>
                     )}
-                    {stat.isStar && (
-                        <div className="flex items-center">
-                            <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
-                            <span className="ml-1 text-xs font-bold text-slate-400">5.0 RATED</span>
-                        </div>
-                    )}
                 </div>
-                {!stat.isStar && (
-                    <span className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mt-1">
-                        {stat.label}
-                    </span>
-                )}
+                <span className="text-[9px] text-slate-400 font-black uppercase tracking-[0.15em] mt-0.5 leading-tight">
+                    {stat.label}
+                </span>
             </div>
         ))}
     </div>
 );
+
+const allStats = [
+    { value: '15', suffix: '+', label: 'YEARS EXP.' },
+    { value: '6', suffix: '', label: 'GLOBAL QUALIFICATIONS (UK, EU, IN)' },
+    { value: '10', suffix: '+', label: 'RESEARCH & PUBLICATIONS' },
+    { value: '6', suffix: '+', label: 'CLINICAL AUDITS' },
+    { value: '10', suffix: '+', label: 'PODIUM PRESENTATIONS' },
+    { isGoogle: true, isStar: true, label: 'EXCEPTIONAL OUTCOMES & AWARDS' },
+];
 
 const slides = [
     {
@@ -95,11 +99,7 @@ const slides = [
             'With more than 15+ years of global experience across UK, India, Jersey Island and Dubai in trauma and orthopedic surgery. Delivering world-class care in knee, hip, shoulder and complex trauma.',
         badgeValue: '98%',
         nameplateSub: 'Orthopedic Specialist',
-        stats: [
-            { value: '15', suffix: '+', label: 'YEARS EXP.' },
-            { value: '5', suffix: 'k+', label: 'SURGERIES' },
-            { isGoogle: true, isStar: true, label: '5.0 RATED' },
-        ],
+        stats: allStats,
     },
     {
         id: 1,
@@ -112,11 +112,7 @@ const slides = [
             'A fellow of the Royal College of Surgeons with over 15 years of global experience. Specializing in robotic-assisted knee replacement and minimally invasive procedures.',
         badgeValue: '99.8%',
         nameplateSub: 'Orthopedic Surgeon',
-        stats: [
-            { value: '15', suffix: '+', label: 'EXP. YEARS' },
-            { value: '6', suffix: '+', label: 'QUALIFICATIONS' },
-            { value: '5', suffix: '★', label: 'PATIENT RATING' },
-        ],
+        stats: allStats,
     },
 ];
 
@@ -167,7 +163,7 @@ const HomeHero = () => {
     return (
         <div
             id="home"
-            className="relative min-h-[85vh] flex items-center pt-16 pb-16 overflow-hidden bg-gradient-to-b from-blue-50/80 via-white to-blue-50/50"
+            className="relative min-h-[85vh] flex items-start pt-2 pb-16 overflow-hidden bg-gradient-to-b from-blue-50/80 via-white to-blue-50/50"
         >
             {/* ── Background Effects ── */}
             <div className="absolute inset-0 z-0 pointer-events-none">
@@ -212,7 +208,7 @@ const HomeHero = () => {
                         </motion.div>
 
                         <motion.div variants={itemVariants} className="mb-8">
-                            <h1 className="text-[40px] font-montserrat font-semibold leading-[0.85] tracking-tighter">
+                                <h1 className="text-[46px] md:text-[58px] font-montserrat font-black leading-[0.88] tracking-tighter">
                                 <AnimatePresence mode="wait">
                                     <motion.span
                                         key={`h1-${slide.id}`}
@@ -352,32 +348,6 @@ const HomeHero = () => {
                     </motion.div>
                 </motion.div>
             </div>
-
-            {/* Highlights Marquee */}
-            {highlights.length > 0 && (
-                <div className="absolute bottom-0 left-0 w-full overflow-hidden bg-slate-50/50 pt-3 pb-4 border-t border-slate-100 backdrop-blur-xs z-20">
-                    <motion.div
-                        className="flex whitespace-nowrap"
-                        animate={{ x: direction === "rtl" ? ["0%", "100%"] : ["-50%", "0%"] }}
-                        initial={{ x: "0%" }}
-                        transition={{
-                            x: {
-                                repeat: Infinity,
-                                repeatType: "loop",
-                                duration: 80,
-                                ease: "linear",
-                            },
-                        }}
-                    >
-                        {[...highlights, ...highlights, ...highlights].map((h, i) => (
-                            <div key={i} className="flex items-center text-blue-600 mx-10 text-xs font-bold tracking-[0.1em] uppercase">
-                                <span className="w-1 h-1 rounded-full bg-blue-500/30 mr-4" />
-                                {h}
-                            </div>
-                        ))}
-                    </motion.div>
-                </div>
-            )}
         </div>
     );
 };

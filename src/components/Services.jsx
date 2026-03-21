@@ -133,54 +133,60 @@ const Services = () => {
                         {displayedServices.map((service, index) => (
                             <motion.div
                                 key={index}
-                                className="group relative h-[320px] rounded-[2rem] p-1 flex flex-col items-center text-center transition-all duration-500 overflow-hidden bg-white border border-gray-100 shadow-sm hover:shadow-xl"
+                                className="group relative h-[400px] rounded-[2rem] overflow-hidden flex flex-col justify-end border border-gray-100 shadow-md hover:shadow-2xl transition-all duration-500 bg-gray-900"
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -30 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                                whileHover={{
-                                    y: -8,
-                                    scale: 1.01,
-                                }}
                             >
-                                {/* Full Card Background Image */}
+                                {/* Full Background Image */}
                                 {service.image && (
                                     <div className="absolute inset-0 z-0">
-                                        <div className="absolute inset-0 bg-black/50 z-10 group-hover:bg-black/30 transition-colors duration-500" />
                                         <img
                                             src={service.image}
                                             alt={service.title}
-                                            className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
+                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
                                         />
+                                        {/* Gradient Overlay */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent transition-opacity duration-500 group-hover:from-black/90 group-hover:via-black/70 group-hover:to-black/20" />
                                     </div>
                                 )}
 
                                 {/* Card Border Glow */}
-                                <div className="absolute inset-0 rounded-[2.5rem] border border-white/20 group-hover:border-primary-300 transition-colors duration-500 pointer-events-none z-20" />
+                                <div className="absolute inset-0 rounded-[2rem] border-2 border-white/10 group-hover:border-primary-500/50 transition-colors duration-500 pointer-events-none z-20" />
 
-                                {/* Content Container */}
-                                <div className="relative z-30 flex flex-col h-full items-center p-6 w-full justify-between transition-transform duration-500">
-                                    <div className="flex-grow flex items-center justify-center">
-                                        <h3 className="text-[17px] font-montserrat font-black text-white shadow-sm uppercase tracking-widest leading-snug drop-shadow-md px-2">
-                                            {service.title}
-                                        </h3>
-                                    </div>
-
-                                    <div className="w-full mt-auto">
-                                        <Link
-                                            to={`/services/${index}`}
-                                            className="w-full py-3.5 bg-primary-600 text-white text-[12px] font-black uppercase tracking-[0.2em] rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 shadow-sm hover:shadow-lg hover:bg-primary-700 hover:scale-[1.02] active:scale-[0.98] shadow-primary-200"
-                                        >
-                                            {t('services.viewDetails')}
-                                            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                                        </Link>
-                                    </div>
+                                {/* Floating Icon */}
+                                <div className="absolute top-6 right-6 w-14 h-14 rounded-full backdrop-blur-md bg-white/10 border border-white/20 flex items-center justify-center text-white z-30 group-hover:bg-primary-600 transition-colors duration-500 shadow-lg">
+                                    <service.icon className="w-6 h-6" />
                                 </div>
 
-                                {/* Shine Pass-through */}
-                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none">
-                                    <div className="absolute w-[200%] h-full top-0 left-[-150%] bg-gradient-to-r from-transparent via-white/40 to-transparent -rotate-45 group-hover:left-[100%] transition-all duration-1000 ease-in-out"></div>
+                                {/* Content Container */}
+                                <div className="relative z-30 p-8 flex flex-col justify-end">
+                                    <div className="transform transition-transform duration-500 group-hover:-translate-y-2">
+                                        <h3 className="text-xl md:text-2xl font-montserrat font-black text-white mb-3 leading-tight drop-shadow-md">
+                                            {service.title}
+                                        </h3>
+                                        
+                                        {/* Description expands on hover using grid-rows */}
+                                        <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
+                                            <div className="overflow-hidden">
+                                                <p className="text-gray-200 text-sm leading-relaxed mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                                                    {service.desc}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <Link
+                                            to={`/services/${index}`}
+                                            className="inline-flex items-center gap-3 text-white font-bold text-sm tracking-wider uppercase hover:text-primary-300 transition-colors"
+                                        >
+                                            {t('services.viewDetails')}
+                                            <div className="w-8 h-8 rounded-full bg-primary-600 flex items-center justify-center group-hover:bg-primary-500 transition-colors">
+                                                <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                                            </div>
+                                        </Link>
+                                    </div>
                                 </div>
                             </motion.div>
                         ))}

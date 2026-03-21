@@ -49,6 +49,21 @@ const solutions = [
 const SpecializedSolutions = () => {
     const { language } = useLanguage();
     const isRtl = language === 'AR';
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 30 },
+        show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } }
+    };
+
     return (
         <section className="py-20 bg-white relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -75,20 +90,23 @@ const SpecializedSolutions = () => {
                 </div>
 
                 {/* Solutions Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 md:gap-6 justify-center">
+                <motion.div 
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 md:gap-6 justify-center"
+                >
                     {solutions.map((item, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            variants={itemVariants}
                             className="group cursor-pointer flex flex-col items-center"
                         >
                             <div className="relative w-full aspect-square mb-6 rounded-[2rem] overflow-hidden bg-[#f0f7ff] group-hover:shadow-2xl group-hover:shadow-blue-200/50 transition-all duration-500">
                                 <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
                                 <img
-                                    src={item.image}
+                                    src={item.title === 'Hip & Thigh' ? 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop' : item.image}
                                     alt={item.title}
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
@@ -110,7 +128,7 @@ const SpecializedSolutions = () => {
                             </h3>
                         </motion.div>
                     ))}
-                </div>
+                </motion.div>
 
                 {/* Footer Link */}
                 <motion.div
@@ -118,11 +136,11 @@ const SpecializedSolutions = () => {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.8 }}
-                    className="mt-16 text-center"
+                    className="mt-16 text-center flex justify-center"
                 >
                     <Link
                         to="/services"
-                        className="inline-flex items-center gap-2 text-[#0088cc] font-bold text-sm uppercase tracking-widest hover:text-[#006699] transition-colors group"
+                        className="group flex items-center justify-center gap-3 px-10 py-4 rounded-xl font-black text-sm tracking-[0.15em] uppercase bg-[#0088cc] text-white hover:bg-[#006699] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 w-fit"
                     >
                         View All Services & Treatments
                         <ArrowRight className={`w-5 h-5 transition-transform group-hover:${isRtl ? '-translate-x-1' : 'translate-x-1'}`} />

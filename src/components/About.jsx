@@ -75,103 +75,131 @@ const About = () => {
     ];
 
     return (
-        <section id="about" className="pt-32 pb-32 bg-white overflow-hidden relative">
-            {/* Abstract Background Orbs */}
-            <div className="absolute top-0 end-0 -me-40 -mt-40 w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-[100px] pointer-events-none"></div>
-            <div className="absolute bottom-0 start-0 -ms-40 -mb-40 w-[600px] h-[600px] bg-purple-50/50 rounded-full blur-[100px] pointer-events-none"></div>
+        <section id="about" className="pt-16 pb-20 bg-white overflow-hidden relative">
+            {/* Elegant Background Elements */}
+            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-[500px] h-[500px] bg-blue-50/40 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-[500px] h-[500px] bg-indigo-50/40 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-[0.02] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
-                    {/* Image Section - Enhanced Container */}
-                    <motion.div
-                        className="mb-20 lg:mb-0 relative"
-                        initial={{ opacity: 0, x: isRtl ? 60 : -60 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                    >
-                        <div className="relative group">
-                            {/* Decorative Background Frame */}
-                            <div className="absolute -inset-4 bg-gradient-to-tr from-blue-100 to-purple-100 rounded-[3.5rem] transform -rotate-3 group-hover:rotate-0 transition-transform duration-700 pointer-events-none"></div>
+                <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+                    
+                    {/* Image Section - Premium Canvas Style */}
+                    <div className="lg:col-span-5 relative">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                            className="relative"
+                        >
+                            {/* Artistic Background Plates */}
+                            <div className="absolute -inset-6 bg-blue-50 rounded-[4rem] transform rotate-3 -z-10"></div>
+                            <div className="absolute -inset-6 border-2 border-indigo-100 rounded-[4rem] transform -rotate-2 -z-10"></div>
                             
-                            <div className="relative rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-8 border-white bg-gray-50 aspect-[4/5] md:aspect-auto">
+                            {/* Main Portrait Container */}
+                            <div className="relative rounded-[3.5rem] overflow-hidden shadow-premium group bg-slate-200">
                                 <img
                                     src={doctorProfileImg}
-                                    alt="Dr. Ulhas Sonar"
-                                    className="w-full h-full object-cover transform transition-transform duration-1000 group-hover:scale-110"
+                                    alt={t('common.doctorName')}
+                                    className="w-full h-full object-cover transform transition-transform duration-[2s] group-hover:scale-105"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-700"></div>
+                                
+                                {/* Inner Border Overlay */}
+                                <div className="absolute inset-4 border border-white/20 rounded-[2.5rem] pointer-events-none"></div>
                             </div>
 
-                            {/* Floating Experience Badge */}
+                            {/* Floating Glass Experience Badge */}
                             <motion.div
-                                initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                                transition={{ delay: 0.5, duration: 0.6 }}
-                                className="absolute -bottom-6 -end-6 md:bottom-12 md:-end-12 z-20 bg-white p-6 md:p-8 rounded-[2.5rem] shadow-2xl border border-gray-100 text-center min-w-[160px]"
+                                initial={{ opacity: 0, x: 30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.6, duration: 0.8 }}
+                                className="absolute -bottom-8 -right-4 md:-bottom-10 md:-right-10 z-20 bg-white/80 backdrop-blur-xl p-8 rounded-[2.5rem] shadow-glass border border-white/50 text-center min-w-[180px]"
                             >
-                                <p className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-indigo-600 mb-1">15+</p>
-                                <p className="text-xs md:text-sm font-bold text-gray-500 uppercase tracking-widest">{t('about.experienceBadge')}</p>
+                                <div className="relative">
+                                    <p className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-indigo-700 mb-1">15+</p>
+                                    <div className="absolute -top-2 -right-2 w-4 h-4 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_15px_rgba(52,211,153,0.5)]"></div>
+                                </div>
+                                <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] leading-tight">
+                                    {t('about.experienceBadge')}
+                                </p>
                             </motion.div>
-                        </div>
-                    </motion.div>
+                        </motion.div>
+                    </div>
 
                     {/* Content Section */}
-                    <div className={isRtl ? 'text-right' : 'text-left'}>
+                    <div className={`lg:col-span-7 ${isRtl ? 'text-right' : 'text-left'}`}>
+                        {/* Credentials Badge */}
                         <motion.div
-                            initial={{ opacity: 0, x: isRtl ? -20 : 20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-blue-700 text-[10px] md:text-[11px] font-black uppercase tracking-[0.25em] mb-8 max-w-xl leading-relaxed opacity-80"
+                            className="inline-flex items-center gap-3 mb-8"
                         >
-                            {t('about.badge')}
+                            <span className="w-12 h-[1px] bg-blue-600/30"></span>
+                            <span className="text-blue-600 text-[11px] font-black uppercase tracking-[0.3em] opacity-90">
+                                {t('about.badge').split(',').slice(0, 3).join(',')}...
+                            </span>
                         </motion.div>
 
+                        {/* Title with Custom Highlight */}
                         <motion.h2
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
-                            className="text-5xl md:text-7xl font-montserrat font-black text-slate-900 mb-10 leading-[1.05] tracking-tight"
+                            transition={{ delay: 0.2 }}
+                            className="text-5xl md:text-[5.5rem] font-montserrat font-black text-slate-900 mb-10 leading-[0.95] tracking-tight"
                         >
                             {t('about.title')} <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">{t('about.titleHighlight')}</span> {t('about.titleEnd')}
+                            <span className="relative inline-block mt-2">
+                                <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-700">
+                                    {t('about.titleHighlight')}
+                                </span>
+                                <motion.span 
+                                    initial={{ width: 0 }}
+                                    whileInView={{ width: '100%' }}
+                                    transition={{ delay: 0.8, duration: 1 }}
+                                    className="absolute bottom-4 left-0 h-[30%] bg-blue-100/60 -z-10 rounded-sm"
+                                ></motion.span>
+                            </span>
+                            <span className="text-slate-900"> {t('about.titleEnd')}</span>
                         </motion.h2>
 
+                        {/* Description Blocks */}
                         <motion.div
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: 0.2 }}
-                            className="space-y-8 mb-16"
+                            transition={{ delay: 0.3 }}
+                            className="space-y-8 mb-16 max-w-2xl"
                         >
-                            <p className="text-xl md:text-2xl text-slate-700 leading-relaxed font-semibold">
-                                {t('about.description1')}
+                            <p className="text-2xl md:text-3xl text-slate-700 leading-tight font-light italic border-l-4 border-blue-600/20 pl-6">
+                                "{t('about.description1').split('.')[0]}."
                             </p>
-                            <div className="w-20 h-1.5 bg-blue-600/20 rounded-full" />
                             <p className="text-lg text-slate-500 leading-relaxed font-medium">
                                 {t('about.description2')}
                             </p>
                         </motion.div>
 
-                        {/* Qualifications Grid - Redesigned */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        {/* Qualifications Grid */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                             {qualifications.map((item, index) => (
                                 <motion.div
                                     key={index}
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: 0.3 + (index * 0.1) }}
-                                    className="group p-6 rounded-3xl bg-gray-50 border border-transparent hover:border-blue-100 hover:bg-white hover:shadow-xl transition-all duration-500"
+                                    transition={{ duration: 0.5, delay: 0.4 + (index * 0.1) }}
+                                    className="group p-5 rounded-[2rem] bg-slate-50 border border-slate-100 hover:border-blue-200 hover:bg-white hover:shadow-premium transition-all duration-500"
                                 >
-                                    <div className="flex items-center gap-5">
-                                        <div className={`w-14 h-14 rounded-2xl ${item.iconBg} ${item.iconColor} flex items-center justify-center group-hover:scale-110 transition-transform duration-500`}>
-                                            <item.icon className="w-7 h-7" />
+                                    <div className="flex items-center gap-4">
+                                        <div className={`w-12 h-12 rounded-xl ${item.iconBg} ${item.iconColor} flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-sm`}>
+                                            <item.icon className="w-6 h-6" />
                                         </div>
                                         <div>
-                                            <h4 className="text-lg font-bold text-gray-900 mb-1">{item.title}</h4>
-                                            <p className="text-sm text-gray-500 font-medium">{item.desc}</p>
+                                            <h4 className="text-base font-bold text-slate-900 mb-0.5">{item.title}</h4>
+                                            <p className="text-xs text-slate-500 font-bold uppercase tracking-wider opacity-70">{item.desc}</p>
                                         </div>
                                     </div>
                                 </motion.div>
@@ -180,30 +208,34 @@ const About = () => {
                     </div>
                 </div>
 
-                {/* Statistics Row - New Feature */}
+                {/* Statistics Plate - Modern Integration */}
                 <motion.div
-                    initial={{ opacity: 0, y: 50 }}
+                    initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                    className="mt-32 grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12"
+                    transition={{ duration: 1, delay: 0.6 }}
+                    className="mt-12 p-8 md:p-12 rounded-[3rem] bg-gradient-to-tr from-slate-50 to-white border border-slate-100 shadow-premium relative overflow-hidden"
                 >
-                    {stats.map((stat, index) => (
-                        <div key={index} className="text-center group">
-                            <div className={`mx-auto w-16 h-16 rounded-2xl ${stat.bg} ${stat.color} flex items-center justify-center mb-6 group-hover:translate-y-[-5px] transition-transform duration-300`}>
-                                <stat.icon className="w-8 h-8" />
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-blue-100/20 rounded-full blur-3xl -mr-32 -mt-32"></div>
+                    
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
+                        {stats.map((stat, index) => (
+                            <div key={index} className="text-center group">
+                                <div className={`mx-auto w-14 h-14 rounded-xl ${stat.bg} ${stat.color} flex items-center justify-center mb-6 group-hover:rotate-[10deg] transition-transform duration-500`}>
+                                    <stat.icon className="w-7 h-7" />
+                                </div>
+                                <h3 className="text-4xl md:text-5xl font-black text-slate-900 mb-2 tracking-tighter">
+                                    {stat.value}
+                                </h3>
+                                <p className="text-[10px] md:text-xs text-slate-400 font-black uppercase tracking-[0.2em]">{stat.label}</p>
                             </div>
-                            <h3 className="text-3xl md:text-5xl font-black text-blue-950 mb-2 tracking-tight">
-                                {stat.value}
-                            </h3>
-                            <p className="text-sm md:text-base text-gray-500 font-bold uppercase tracking-widest">{stat.label}</p>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </motion.div>
             </div>
         </section>
     );
+
 };
 
 export default About;
-

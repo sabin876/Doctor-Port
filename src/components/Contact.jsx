@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Facebook, Linkedin, Instagram, Youtube, Twitter, Send, Activity, ShieldCheck, Zap } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -5,6 +6,10 @@ import { useLanguage } from '../context/LanguageContext';
 const Contact = () => {
     const { language, t } = useLanguage();
     const isRtl = language === 'AR';
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <section id="contact" className="relative py-24 bg-white overflow-hidden">
             {/* Orthopedic Background Animation */}
