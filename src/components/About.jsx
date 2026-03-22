@@ -1,6 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Award, Globe, GraduationCap, CheckCircle, Users, Activity, UserCheck, Compass } from 'lucide-react';
+import {
+    GraduationCap, Briefcase, Award, BookOpen,
+    HeartHandshake, FlaskConical, ShieldCheck, Star
+} from 'lucide-react';
 import doctorProfileImg from '../assets/doctor-profile.png';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -8,235 +11,243 @@ const About = () => {
     const { language, t } = useLanguage();
     const isRtl = language === 'AR';
 
-    const qualifications = [
-        {
-            icon: Globe,
-            title: t('about.qualifications.global.title'),
-            desc: t('about.qualifications.global.desc'),
-            iconBg: "bg-blue-50",
-            iconColor: "text-blue-600"
-        },
+    /* ── Qualification cards (like the reference: Education / Experience / Certifications / Publications) ── */
+    const qualCards = [
         {
             icon: GraduationCap,
-            title: t('about.qualifications.training.title'),
-            desc: t('about.qualifications.training.desc'),
-            iconBg: "bg-indigo-50",
-            iconColor: "text-indigo-600"
+            title: 'Education',
+            items: [
+                'MBBS – B J Medical College, Pune',
+                'MS (Ortho) – Postgraduate training, India',
+                'MCh Upper Limb Surgery – Wrightington, UK',
+            ],
+            color: 'text-blue-700',
+            bg: 'bg-blue-50',
+            border: 'border-blue-100',
+        },
+        {
+            icon: Briefcase,
+            title: 'Experience',
+            items: [
+                '15+ years in Orthopaedic Surgery',
+                'NHS Consultant – UK hospitals',
+                'Surgeon – Dubai (current)',
+            ],
+            color: 'text-indigo-700',
+            bg: 'bg-indigo-50',
+            border: 'border-indigo-100',
         },
         {
             icon: Award,
-            title: t('about.qualifications.fellowships.title'),
-            desc: t('about.qualifications.fellowships.desc'),
-            iconBg: "bg-purple-50",
-            iconColor: "text-purple-600"
+            title: 'Certifications',
+            items: [
+                'FRCS (T&O) – Royal College of Surgeons, England',
+                'FEBOT – European Board, Switzerland',
+                'MRCS (England)',
+                'PG Dip – Robotic-Assisted TKR, Glasgow',
+            ],
+            color: 'text-blue-700',
+            bg: 'bg-blue-50',
+            border: 'border-blue-100',
         },
         {
-            icon: CheckCircle,
-            title: t('about.qualifications.specialisation.title'),
-            desc: t('about.qualifications.specialisation.desc'),
-            iconBg: "bg-emerald-50",
-            iconColor: "text-emerald-600"
-        }
+            icon: BookOpen,
+            title: 'Publications',
+            items: [
+                '10+ peer-reviewed research papers',
+                'Published in JBJS, BMJ, BJH Medicine',
+                'Presenter at international conferences',
+            ],
+            color: 'text-indigo-700',
+            bg: 'bg-indigo-50',
+            border: 'border-indigo-100',
+        },
     ];
 
-    const stats = [
+    /* ── Core Values ── */
+    const values = [
         {
-            icon: UserCheck,
-            value: t('about.stats.experience.value'),
-            label: t('about.stats.experience.label'),
-            color: "text-blue-600",
-            bg: "bg-blue-50"
+            icon: HeartHandshake,
+            title: 'Patient-Centred Care',
+            desc: 'Every decision is guided by what is best for the patient — respecting their goals, concerns, and unique circumstances.',
         },
         {
-            icon: Activity,
-            value: t('about.stats.surgeries.value'),
-            label: t('about.stats.surgeries.label'),
-            color: "text-indigo-600",
-            bg: "bg-indigo-50"
+            icon: FlaskConical,
+            title: 'Evidence-Based Practice',
+            desc: 'Treatment plans are grounded in the latest clinical research and surgical innovations for the best possible outcomes.',
         },
         {
-            icon: Users,
-            value: t('about.stats.patients.value'),
-            label: t('about.stats.patients.label'),
-            color: "text-purple-600",
-            bg: "bg-purple-50"
+            icon: ShieldCheck,
+            title: 'Patient Safety & Rights',
+            desc: 'A passionate advocate for patient safety, transparency, and the right to access the highest standard of orthopaedic care.',
         },
         {
-            icon: Compass,
-            value: t('about.stats.global.value'),
-            label: t('about.stats.global.label'),
-            color: "text-emerald-600",
-            bg: "bg-emerald-50"
-        }
+            icon: Star,
+            title: 'Surgical Excellence',
+            desc: 'Combining robotic precision with years of global experience to deliver consistently superior surgical results.',
+        },
     ];
+
+    const fadeUp = (delay = 0) => ({
+        initial: { opacity: 0, y: 24 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true },
+        transition: { duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] },
+    });
 
     return (
-        <section id="about" className="py-20 md:py-28 bg-white overflow-hidden relative">
-            {/* Soft background blobs */}
-            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-50/60 rounded-full blur-[100px] pointer-events-none -z-0" />
-            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-50/60 rounded-full blur-[100px] pointer-events-none -z-0" />
+        <section
+            id="about"
+            className="bg-gradient-to-b from-[#f0f6ff] via-white to-[#f0f6ff] overflow-hidden"
+            dir={isRtl ? 'rtl' : 'ltr'}
+        >
+            {/* ════════════════════════════════════════
+                BLOCK 1 — Centred Header
+            ════════════════════════════════════════ */}
+            <div className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 text-center max-w-3xl mx-auto">
+                <motion.p
+                    {...fadeUp(0)}
+                    className="text-blue-600 text-[11px] font-black uppercase tracking-[0.3em] mb-4"
+                >
+                    {t('about.badge')}
+                </motion.p>
 
+                <motion.h2
+                    {...fadeUp(0.08)}
+                    className="font-montserrat font-black text-[#0f2756] text-4xl md:text-5xl leading-tight mb-5"
+                >
+                    {t('about.title')}{' '}
+                    <span className="text-blue-600">{t('about.titleHighlight')}</span>
+                </motion.h2>
 
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <motion.p
+                    {...fadeUp(0.16)}
+                    className="text-slate-500 text-base md:text-lg leading-relaxed"
+                >
+                    {t('about.credentials')}
+                </motion.p>
+            </div>
 
-                <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${isRtl ? 'direction-rtl' : ''}`}>
+            {/* ════════════════════════════════════════
+                BLOCK 2 — Image + Bio (2-col)
+            ════════════════════════════════════════ */}
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+                <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
-                    {/* ── Image Column ── */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                        className="relative"
-                    >
-                        {/* Decorative plate behind image */}
-                        <div className="absolute -inset-4 bg-blue-50 rounded-3xl rotate-2 -z-10" />
-                        <div className="absolute -inset-4 border-2 border-indigo-100/70 rounded-3xl -rotate-1 -z-10" />
-
-                        {/* Portrait */}
-                        <div className="relative rounded-2xl overflow-hidden shadow-xl group bg-slate-100">
+                    {/* Image */}
+                    <motion.div {...fadeUp(0)} className="relative">
+                        <div className="rounded-2xl overflow-hidden shadow-lg bg-slate-100">
                             <img
                                 src={doctorProfileImg}
                                 alt={t('common.doctorName')}
-                                className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-[1.03]"
+                                className="w-full h-auto object-cover"
                             />
-                            {/* Subtle gradient overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 via-transparent to-transparent" />
                         </div>
-
-                        {/* Experience floating badge */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.5, duration: 0.6 }}
-                            className="absolute -bottom-6 -right-4 md:-right-8 bg-white/90 backdrop-blur-md border border-slate-100 shadow-lg rounded-2xl px-5 py-4 text-center min-w-[140px]"
-                        >
-                            <p className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-indigo-700 leading-tight">
-                                15+
-                            </p>
-                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1 leading-tight">
+                        {/* 15+ badge */}
+                        <div className="absolute bottom-4 right-4 bg-white border border-slate-100 shadow-md rounded-xl px-4 py-3 text-center">
+                            <p className="text-2xl font-black text-blue-700 leading-none">15+</p>
+                            <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1">
                                 {t('about.experienceBadge')}
                             </p>
-                            <div className="absolute top-2 right-2 w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse" />
-                        </motion.div>
+                        </div>
                     </motion.div>
 
-                    {/* ── Content Column ── */}
-                    <div className={isRtl ? 'text-right' : 'text-left'}>
-
-                        {/* Badge */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="inline-flex items-center gap-2 mb-4"
-                        >
-                            <span className="w-6 h-[2px] bg-blue-600 rounded-full" />
-                            <span className="text-blue-600 text-xs font-bold uppercase tracking-widest">
-                                {t('about.badge')}
-                            </span>
-                        </motion.div>
-
-                        {/* Heading */}
-                        <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1, duration: 0.7 }}
-                            className="text-4xl md:text-5xl font-montserrat font-black text-slate-900 leading-tight tracking-tight mb-3"
-                        >
-                            {t('about.title')}{' '}
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-                                {t('about.titleHighlight')}
-                            </span>{' '}
-                            {t('about.titleEnd')}
-                        </motion.h2>
-
-                        {/* Credentials */}
-                        <motion.p
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.15 }}
-                            className="text-xs md:text-sm text-slate-400 font-semibold tracking-wide mb-6 leading-relaxed"
-                        >
-                            {t('about.credentials')}
-                        </motion.p>
-
-                        {/* Description */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 15 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.2 }}
-                            className="space-y-4 mb-10"
-                        >
-                            <p className="text-slate-600 text-lg leading-relaxed border-l-4 border-blue-200 pl-4">
-                                {t('about.description1')}
-                            </p>
-                            <p className="text-slate-500 text-base leading-relaxed">
-                                {t('about.description2')}
-                            </p>
-                        </motion.div>
-
-                        {/* Qualifications Grid */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            {qualifications.map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 15 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: 0.3 + index * 0.08 }}
-                                    className="flex items-center gap-3 p-4 rounded-xl bg-slate-50 border border-slate-100 hover:border-blue-200 hover:bg-white hover:shadow-md transition-all duration-300 group"
-                                >
-                                    <div className={`flex-shrink-0 w-10 h-10 rounded-lg ${item.iconBg} ${item.iconColor} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                                        <item.icon className="w-5 h-5" />
-                                    </div>
-                                    <div>
-                                        <h4 className="text-sm font-bold text-slate-800 leading-tight">{item.title}</h4>
-                                        <p className="text-[11px] text-slate-400 font-semibold uppercase tracking-wider mt-0.5">{item.desc}</p>
-                                    </div>
-                                </motion.div>
-                            ))}
+                    {/* Bio */}
+                    <motion.div {...fadeUp(0.1)} className="pt-2">
+                        <h3 className="font-montserrat font-bold text-[#0f2756] text-2xl md:text-3xl mb-5">
+                            A Distinguished Orthopaedic Surgeon
+                        </h3>
+                        <div className="space-y-4 text-slate-600 text-[15px] leading-relaxed">
+                            <p>{t('about.description1')}</p>
+                            <p>{t('about.description2')}</p>
                         </div>
+                    </motion.div>
+                </div>
+            </div>
+
+            {/* ════════════════════════════════════════
+                BLOCK 3 — Qualification Cards (4-col)
+            ════════════════════════════════════════ */}
+            <div className="bg-white py-16 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    {qualCards.map((card, i) => (
+                        <motion.div
+                            key={i}
+                            {...fadeUp(i * 0.1)}
+                            className={`bg-white border ${card.border} rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300`}
+                        >
+                            {/* Icon */}
+                            <div className={`w-11 h-11 rounded-xl ${card.bg} ${card.color} flex items-center justify-center mb-4`}>
+                                <card.icon className="w-5 h-5" />
+                            </div>
+                            {/* Title */}
+                            <h4 className={`font-montserrat font-bold text-base mb-3 ${card.color}`}>
+                                {card.title}
+                            </h4>
+                            {/* Bullet list */}
+                            <ul className="space-y-2">
+                                {card.items.map((item, j) => (
+                                    <li key={j} className="flex items-start gap-2 text-slate-500 text-[13px] leading-snug">
+                                        <span className={`mt-[5px] w-1.5 h-1.5 rounded-full flex-shrink-0 ${card.color.replace('text-', 'bg-')}`} />
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
+
+            {/* ════════════════════════════════════════
+                BLOCK 4 — Core Values
+            ════════════════════════════════════════ */}
+            <div className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#f0f6ff] to-white">
+                <div className="max-w-6xl mx-auto">
+                    {/* Header */}
+                    <motion.div {...fadeUp(0)} className="text-center mb-10">
+                        <h3 className="font-montserrat font-black text-[#0f2756] text-3xl md:text-4xl mb-3">
+                            My Core Values
+                        </h3>
+                        <p className="text-slate-500 text-base">
+                            The principles that guide every patient interaction
+                        </p>
+                    </motion.div>
+
+                    {/* Cards */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        {values.map((v, i) => (
+                            <motion.div
+                                key={i}
+                                {...fadeUp(i * 0.1)}
+                                className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex gap-4"
+                            >
+                                <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center">
+                                    <v.icon className="w-5 h-5" />
+                                </div>
+                                <div>
+                                    <h4 className="font-montserrat font-bold text-blue-700 text-[15px] mb-1">{v.title}</h4>
+                                    <p className="text-slate-500 text-sm leading-relaxed">{v.desc}</p>
+                                </div>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
+            </div>
 
-                {/* ── Stats Cards ── */}
-                <div className="mt-16 md:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+            {/* ════════════════════════════════════════
+                BLOCK 5 — Stats Bar
+            ════════════════════════════════════════ */}
+            <div className="bg-white border-t border-slate-100 py-12 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
                     {[
-                        { ...stats[0], gradient: "from-blue-500 to-cyan-400",    gradientText: "from-blue-600 to-cyan-500" },
-                        { ...stats[1], gradient: "from-indigo-500 to-blue-500",  gradientText: "from-indigo-600 to-blue-500" },
-                        { ...stats[2], gradient: "from-purple-500 to-indigo-500",gradientText: "from-purple-600 to-indigo-500" },
-                        { ...stats[3], gradient: "from-emerald-500 to-teal-400", gradientText: "from-emerald-600 to-teal-500" },
-                    ].map((stat, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.15 * index }}
-                            className="relative group bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden p-6 md:p-8 text-center"
-                        >
-                            {/* Colored top accent bar */}
-                            <div className={`absolute top-0 inset-x-0 h-1 bg-gradient-to-r ${stat.gradient} rounded-t-2xl`} />
-
-                            {/* Icon */}
-                            <div className={`mx-auto mb-4 w-11 h-11 rounded-xl ${stat.bg} ${stat.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                                <stat.icon className="w-5 h-5" />
-                            </div>
-
-                            {/* Value */}
-                            <h3 className={`text-4xl md:text-5xl font-black tracking-tight mb-1 text-transparent bg-clip-text bg-gradient-to-br ${stat.gradientText}`}>
-                                {stat.value}
-                            </h3>
-
-                            {/* Label */}
-                            <p className="text-[10px] md:text-xs text-slate-400 font-bold uppercase tracking-widest mt-1">
-                                {stat.label}
-                            </p>
+                        { value: '15+', label: t('about.stats.experience.label') },
+                        { value: '5000+', label: t('about.stats.surgeries.label') },
+                        { value: '10k+', label: t('about.stats.patients.label') },
+                        { value: '4', label: t('about.stats.global.label') },
+                    ].map((s, i) => (
+                        <motion.div key={i} {...fadeUp(i * 0.1)}>
+                            <p className="font-montserrat font-black text-4xl md:text-5xl text-[#0f2756] mb-1">{s.value}</p>
+                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{s.label}</p>
                         </motion.div>
                     ))}
                 </div>
