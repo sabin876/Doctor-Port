@@ -256,7 +256,7 @@ const HomeHero = () => {
                         >
                             <RouterLink
                                 to="/contact"
-                                className="group relative flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl font-montserrat font-black text-sm tracking-wide bg-blue-600 text-white shadow-[0_20px_40px_-10px_rgba(37,99,235,0.4)] hover:shadow-[0_25px_50px_-12px_rgba(37,99,235,0.5)] hover:scale-[1.03] active:scale-[0.97] transition-all overflow-hidden"
+                                className="group relative flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-montserrat font-black text-[13px] tracking-wide bg-blue-600 text-white shadow-[0_20px_40px_-10px_rgba(37,99,235,0.4)] hover:shadow-[0_25px_50px_-12px_rgba(37,99,235,0.5)] hover:scale-[1.03] active:scale-[0.97] transition-all overflow-hidden"
                             >
                                 <Calendar className="w-4 h-4 transition-transform group-hover:rotate-12" />
                                 {t('hero.bookAppointment')}
@@ -265,10 +265,10 @@ const HomeHero = () => {
 
                             <RouterLink
                                 to="/services"
-                                className="group flex items-center justify-center gap-3 px-10 py-5 rounded-2xl font-black text-base text-slate-700 border-2 border-slate-100 bg-white hover:bg-slate-50 hover:border-blue-100 transition-all shadow-sm"
+                                className="group flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-black text-sm text-slate-700 border-2 border-slate-100 bg-white hover:bg-slate-50 hover:border-blue-100 transition-all shadow-sm"
                             >
                                 {t('hero.exploreServices')}
-                                <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                                <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                             </RouterLink>
                         </motion.div>
 
@@ -342,10 +342,10 @@ const HomeHero = () => {
                                 {/* Name & Info Overlay — Bottom of Card */}
                                 <CardItem
                                     translateZ={60}
-                                    className="absolute bottom-10 left-8 right-8"
+                                    className="absolute bottom-6 left-6 z-30"
                                 >
-                                    <div className="flex flex-col">
-                                        <h3 className="text-2xl font-black text-slate-900 mb-1">Dr. Ulhas Sonar</h3>
+                                    <div className="flex flex-col bg-white/95 backdrop-blur-md px-4 py-2 rounded-xl shadow-lg border border-white/50 w-fit">
+                                        <h3 className="text-xl font-black text-slate-900 mb-0.5">Dr. Ulhas Sonar</h3>
                                         <div className="flex items-center gap-2">
                                             <span className="w-8 h-[2px] bg-blue-600 rounded-full" />
                                             <p className="text-blue-600 text-[13px] font-black tracking-widest uppercase opacity-90">{slide.nameplateSub}</p>
