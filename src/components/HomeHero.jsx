@@ -256,9 +256,9 @@ const HomeHero = () => {
                         >
                             <RouterLink
                                 to="/contact"
-                                className="group relative flex items-center justify-center gap-3 px-10 py-5 rounded-2xl font-montserrat font-black text-base tracking-wide bg-blue-600 text-white shadow-[0_20px_40px_-10px_rgba(37,99,235,0.4)] hover:shadow-[0_25px_50px_-12px_rgba(37,99,235,0.5)] hover:scale-[1.03] active:scale-[0.97] transition-all overflow-hidden"
+                                className="group relative flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl font-montserrat font-black text-sm tracking-wide bg-blue-600 text-white shadow-[0_20px_40px_-10px_rgba(37,99,235,0.4)] hover:shadow-[0_25px_50px_-12px_rgba(37,99,235,0.5)] hover:scale-[1.03] active:scale-[0.97] transition-all overflow-hidden"
                             >
-                                <Calendar className="w-5 h-5 transition-transform group-hover:rotate-12" />
+                                <Calendar className="w-4 h-4 transition-transform group-hover:rotate-12" />
                                 {t('hero.bookAppointment')}
                                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                             </RouterLink>
@@ -298,7 +298,7 @@ const HomeHero = () => {
                         className="flex items-center justify-center relative"
                     >
                         <CardContainer containerClassName="py-0">
-                            <CardBody className="relative w-[360px] h-[500px] md:w-[440px] md:h-[600px]">
+                                <CardBody className="relative w-[360px] h-[430px] md:w-[440px] md:h-[520px]">
                                 {/* Portrait Card Shell */}
                                 <CardItem
                                     translateZ={-20}
