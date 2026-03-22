@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Star, ChevronLeft, ChevronRight, CheckCircle2, ExternalLink } from 'lucide-react';
+import { Star, ChevronLeft, ChevronRight, CheckCircle2, ExternalLink, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const GOOGLE_REVIEWS_URL = "https://www.google.com/maps/place/Dr.+Ulhas+Sonar/@25.1972159,55.2727911,17z/data=!4m8!3m7!1s0xcd49d19fa816340b:0xf2cdecb2b78caee4!8m2!3d25.1972159!4d55.275366!9m1!1b1";
@@ -248,6 +248,22 @@ const Testimonials = () => {
                         />
                     ))}
                 </div>
+
+                {/* Personalized Solution CTA */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="text-center"
+                >
+                    <a
+                        href="#personalized-solutions"
+                        className="inline-flex items-center gap-2 px-8 py-3 bg-white text-blue-600 border border-blue-200 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-blue-50 transition-all shadow-sm"
+                    >
+                        Inspired by these stories? <span className="underline decoration-2 underline-offset-4 ms-1">Get Your Personalized Solution</span>
+                        <ArrowRight className="w-4 h-4" />
+                    </a>
+                </motion.div>
 
             </div>
 

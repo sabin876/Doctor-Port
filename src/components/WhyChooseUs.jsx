@@ -2,34 +2,34 @@ import { ShieldCheck, Zap, Heart, UserCheck } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const WhyChooseUs = () => {
-    const { language } = useLanguage();
+    const { t, language } = useLanguage();
     const isRtl = language === 'AR';
     const features = [
         {
-            title: "Expert Care",
-            desc: "14+ years of complex orthopaedic care experience and surgical precision.",
+            title: t('whyChoose.features.0.title'),
+            desc: t('whyChoose.features.0.desc'),
             icon: ShieldCheck,
             color: "text-blue-600",
             bg: "bg-blue-100"
         },
         {
-            title: "Advanced Technology",
-            desc: "Using the latest medical technologies and techniques for optimal surgical outcomes.",
+            title: t('whyChoose.features.1.title'),
+            desc: t('whyChoose.features.1.desc'),
             icon: Zap,
             color: "text-yellow-600",
             bg: "bg-yellow-100"
         },
         {
-            title: "Quick Recovery",
-            desc: "Specialized minimally invasive techniques for faster healing and reduced hospital stays.",
+            title: t('whyChoose.features.2.title'),
+            desc: t('whyChoose.features.2.desc'),
             icon: Heart,
             color: "text-red-600",
             bg: "bg-red-100"
         },
         {
-            title: "Personalized Care",
-            desc: "Each treatment plan is carefully tailored to address your specific needs and conditions.",
-            icon: UserCheck, // Changed from User to UserCheck for variety
+            title: t('whyChoose.features.3.title'),
+            desc: t('whyChoose.features.3.desc'),
+            icon: UserCheck,
             color: "text-green-600",
             bg: "bg-green-100"
         }
@@ -47,7 +47,7 @@ const WhyChooseUs = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         className="inline-block px-4 py-1.5 mb-4 rounded-full bg-primary-50 text-primary-600 text-xs font-black uppercase tracking-[0.2em]"
                     >
-                        Why Choose Dr. Ulhas
+                        {t('whyChoose.badge')}
                     </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -55,8 +55,8 @@ const WhyChooseUs = () => {
                         transition={{ duration: 0.5 }}
                         className="text-4xl md:text-5xl font-montserrat font-extrabold text-blue-900 mb-6 tracking-tight"
                     >
-                        Why Trust Your Care to <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Dr. Ulhas Sonar?</span>
+                        {t('whyChoose.title')} <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">{t('whyChoose.titleHighlight')}</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -64,7 +64,7 @@ const WhyChooseUs = () => {
                         transition={{ duration: 0.5, delay: 0.1 }}
                         className="text-gray-500 max-w-2xl mx-auto text-lg font-medium"
                     >
-                        Pioneering advanced orthopedic solutions with a patient-first approach in the heart of Dubai.
+                        {t('whyChoose.description')}
                     </motion.p>
                 </div>
 
@@ -100,14 +100,14 @@ const WhyChooseUs = () => {
                         <div>
                             <div className="w-12 h-1.5 bg-blue-500 mb-8 rounded-full"></div>
                             <h3 className="text-4xl md:text-5xl font-black text-white mb-8 tracking-tighter uppercase italic leading-[1.1]">
-                                World-Class Orthopedics <br />
-                                <span className="text-blue-400">In The Heart of UAE</span>
+                                {t('whyChoose.banner.title')} <br />
+                                <span className="text-blue-400">{t('whyChoose.banner.titleHighlight')}</span>
                             </h3>
                             <p className="text-xl text-blue-100/80 mb-10 font-medium leading-relaxed max-w-xl">
-                                Leveraging international expertise and cutting-edge technology to restore your mobility and enhance your quality of life.
+                                {t('whyChoose.banner.description')}
                             </p>
                             <a href="#contact" className="inline-flex items-center bg-white text-primary-950 font-black py-4 px-10 rounded-2xl hover:bg-blue-50 transition-all hover:scale-105 shadow-xl">
-                                Start Your Recovery
+                                {t('whyChoose.banner.button')}
                                 <Zap className="ms-2 w-5 h-5 fill-primary-950 text-primary-950" />
                             </a>
                         </div>

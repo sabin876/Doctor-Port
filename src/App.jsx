@@ -14,28 +14,59 @@ import FloatingContactButtons from './components/FloatingContactButtons';
 import TopBar from './components/TopBar';
 import ServiceDetail from './components/ServiceDetail';
 
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+  componentDidCatch(error, errorInfo) {
+    console.error("ErrorBoundary caught an error", error, errorInfo);
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ padding: 20, color: 'red', border: '2px solid red', margin: 20 }}>
+          <h1>Something went wrong.</h1>
+          <pre>{this.state.error?.toString()}</pre>
+          <p>Check console for more details.</p>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 function App() {
   return (
-    <Router>
-      <div className="min-h-screen bg-white font-sans text-gray-800">
-        <TopBar />
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/services/:id" element={<ServiceDetail />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/articles" element={<Articles />} />
-          <Route path="/articles/:id" element={<ArticleDetail />} />
-          <Route path="/gallery" element={<Gallery />} />
-        </Routes>
-        <Footer />
-        <FloatingContactButtons />
-      </div>
-    </Router>
-    // <div style={{ padding: 20 }}><h1>App Component Loaded</h1></div>
+    <ErrorBoundary>
+      <Router>
+        <div className="min-h-screen bg-white font-sans text-gray-800">
+          <TopBar />
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/services/:id" element={<ServiceDetail />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/articles" element={<Articles />} />
+            <Route path="/articles/:id" element={<ArticleDetail />} />
+            <Route path="/gallery" element={<Gallery />} />
+          </Routes>
+          <Footer />
+          <FloatingContactButtons />
+        </div>
+      </Router>
+    </ErrorBoundary>
   );
 }
 
+
+
+
+
 export default App;
+

@@ -3,214 +3,283 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronLeft, Calendar, User, Clock, Share2, Tag, ArrowRight } from 'lucide-react';
 
-const articles = {
-    'knee-replacement-signs': {
-        title: "Alignment concept: Total Knee Replacement",
-        date: "March 9, 2026",
+export const articles = {
+    'causes-of-knee-pain': {
+        title: "Understanding Common Causes of Knee Pain",
+        metaTitle: "Common Causes of Knee Pain – From Sports Injuries to Arthritis",
+        metaDescription: "Learn about the most common causes of knee pain, from acute sports injuries to chronic conditions like arthritis, and how to identify them.",
+        date: "March 21, 2026",
         author: "Dr. Ulhas Sonar",
         category: "Knee Health",
-        image: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=1200&auto=format&fit=crop",
+        image: "/images/blog/knee-causes.png",
         readTime: "5 min read",
         content: `
-            <p>Total Knee Arthroplasty (TKA) has undergone a major evolution—from focusing on generic mechanical alignment to modern, personalized alignment strategies. Dr. Ulhas Sonar, a globally trained orthopedic surgeon, shares insights into how understanding joint anatomy and using technology can lead to better surgical outcomes.</p>
-            
-            <h3>From Mechanical to Personalized Alignment</h3>
-            <p>Traditional mechanical alignment aimed to achieve a neutral 180° hip-knee-ankle (HKA) axis. While it offers good implant survival, it doesn’t reflect natural limb variations and may compromise function in some patients. Studies have shown many people naturally fall outside the “neutral” alignment range.</p>
-            
-            <h3>Newer Concepts: Kinematic, Inverse Kinematic & Functional Alignment</h3>
-            <p>Modern alignment techniques—like Kinematic Alignment (KA) and Inverse KA—strive to replicate the patient’s pre-arthritic anatomy by resurfacing bone and preserving soft tissue. Restricted KA adds safety limits to avoid overloading implants, while Functional Alignment uses robotic systems to balance implants around native soft-tissue tension in real-time.</p>
-
-            <h3>The Role of Technology</h3>
-            <p>With robotic-assisted systems and computer navigation, surgeons can now plan precise resections, adjust for gap balancing, and reduce soft-tissue damage. This shift improves patient satisfaction, functional scores, and may reduce revision risks over time.</p>
-            
-            <h3>Conclusion:</h3>
-            <p>The future of knee replacement is personalized. By understanding individual anatomy and combining it with cutting-edge surgical tools, TKA outcomes are becoming more functional, durable, and patient-friendly than ever.</p>
+            <p>Knee pain is a common complaint that affects people of all ages. Understanding the underlying cause is the first step toward effective treatment. Whether it's a sudden injury or a gradual onset of discomfort, identifying the source is crucial.</p>
+            <h3>Common Causes in Young Adults</h3>
+            <p>In younger, active individuals, knee pain is often related to sports or overuse. Conditions like <strong>patellofemoral pain syndrome</strong> or ligament tears are frequent. If you've been active lately, you might notice <a href="/articles/knee-pain-gym-sports">knee pain after gym or sports</a>, which could indicate anything from simple strain to a more serious injury.</p>
+            <h3>Age-Related Wear and Tear</h3>
+            <p>As we age, degenerative changes like <strong>osteoarthritis</strong> become more common. This occurs when the protective cartilage that cushions the ends of your bones wears down over time. It's often helpful to understand the <a href="/articles/causes-of-knee-pain">causes of knee pain in young adults</a> versus older populations to tailor the recovery plan.</p>
+            <h3>When to Seek Help</h3>
+            <p>Persistent pain, swelling, or instability should not be ignored. Many patients ask <a href="/articles/when-to-get-mri-knee">when knee pain needs MRI</a> to rule out internal structural damage. Furthermore, understanding the <a href="/articles/continuing-sports-risks">continuing sports with knee pain risks</a> can prevent long-term joint damage.</p>
         `
     },
-    'shoulder-steroid-injection': {
-        title: "Steroid Injection for Shoulder Pain: What You Should Know",
-        date: "June 17, 2024",
+    'knee-pain-gym-sports': {
+        title: "Knee Pain After Gym or Sports in Working Professionals: Ligament Injury or Cartilage Damage?",
+        metaTitle: "Knee Pain After Gym or Sports in Working Professionals – Ligament vs Cartilage Injury",
+        metaDescription: "Knee pain after gym or sports is common in working professionals. Learn how to distinguish ligament injury from cartilage damage, warning signs, and management options.",
+        date: "March 21, 2026",
         author: "Dr. Ulhas Sonar",
-        category: "Shoulder Care",
-        image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=1200&auto=format&fit=crop",
-        readTime: "4 min read",
+        category: "Sports Medicine",
+        image: "/images/blog/gym-injury.png",
+        readTime: "10 min read",
         content: `
-            <p>Shoulder pain — especially from conditions like rotator cuff inflammation or bursitis — can limit your daily life. One effective treatment used by orthopedic specialists is a steroid injection into the subacromial space of the shoulder. This can help reduce pain and inflammation and may also assist in diagnosing the root cause of your discomfort.</p>
-            
-            <h3>Why Is It Done?</h3>
-            <p>Steroid injections serve two main purposes:</p>
+            <p>Knee pain following gym workouts or sports activity is a frequent complaint among active adults and working professionals. This is particularly common in individuals who combine prolonged desk-based work with recreational sports, gym training, or weekend athletic activity. While delayed muscle soreness is expected after exercise, knee pain associated with swelling, instability, or mechanical symptoms may indicate underlying joint injury.</p>
+            <p>In working professionals, knee pain is often underestimated or self-managed due to work commitments, travel, or limited time for rehabilitation. Continuing activity without proper evaluation can lead to worsening symptoms, prolonged recovery, and secondary joint damage. Differentiating between ligament injury, cartilage damage, and overload-related pain is essential for appropriate management.</p>
+
+            <h3>Why knee pain after gym or sports is common in working professionals</h3>
+            <p>Several factors contribute to the high incidence of post-exercise knee pain in this group:</p>
             <ul>
-                <li><strong>Diagnosis:</strong> The amount and duration of pain relief after the injection help your doctor confirm whether the shoulder pain is coming from inflammation in the subacromial space.</li>
-                <li><strong>Pain Relief:</strong> Many patients experience significant relief, sometimes lasting for several months. However, responses can vary — some may notice only mild improvement, while others may not benefit at all.</li>
+                <li>Prolonged sitting leading to reduced flexibility and neuromuscular control</li>
+                <li>Irregular training patterns (weekend sports or sporadic gym sessions)</li>
+                <li>Sudden increases in training intensity or load</li>
+                <li>Inadequate recovery due to work schedules</li>
+                <li>Limited time for structured rehabilitation</li>
             </ul>
-            
-            <h3>What Happens During the Procedure?</h3>
+            <p>This combination places increased stress on the knee joint when physical activity resumes, particularly during high-load or impact exercises.</p>
+
+            <h3>Understanding post-exercise knee pain</h3>
+            <p>Not all knee pain after gym or sports represents structural injury. Broadly, post-exercise knee pain can be divided into:</p>
             <ul>
-                <li>The injection is done in a clinical setting with full sterile precautions.</li>
-                <li>A mixture of steroid and local anesthetic is injected into the subacromial space (just above the rotator cuff).</li>
-                <li>A small dressing is applied; no cuts or stitches are needed.</li>
-                <li>You can remove the dressing after 48 hours.</li>
-            </ul>
-            
-            <h3>Are There Any Risks?</h3>
-            <p>Like any procedure, steroid injections carry a few risks:</p>
-            <ul>
-                <li>Temporary pain or swelling (steroid flare)</li>
-                <li>Bleeding or bruising</li>
-                <li>No relief from pain</li>
-                <li>Allergic reactions or anaphylaxis</li>
-                <li>Skin changes (e.g., lightening of skin, fat loss at the site)</li>
-                <li>Tendon weakening (if used repeatedly)</li>
-                <li>Rare but serious risk of infection</li>
+                <li><strong>Overload-related pain:</strong> Occurs when training load exceeds joint capacity. Common when resuming gym after inactivity or increasing weights too quickly.</li>
+                <li><strong>Ligament injury:</strong> Usually sudden pivoting, twisting, or awkward landing. Common in sports like football or badminton.</li>
+                <li><strong>Meniscal or cartilage injury:</strong> Often follows twisting with the knee flexed or deep squatting under load.</li>
             </ul>
 
-            <h3>What to Do After the Injection</h3>
-            <ul>
-                <li>Rest your shoulder and avoid heavy lifting for a few days.</li>
-                <li>Apply ice packs to reduce swelling.</li>
-                <li>Keep the shoulder moving gently — do not stop all motion.</li>
-                <li>Monitor for signs of infection: redness, severe pain, fever, or reduced movement.</li>
-            </ul>
-            <p>If any concerning symptoms appear, contact your doctor immediately. Early infections respond well to antibiotics, but delayed treatment may require surgery.</p>
+            <h3>Ligament vs Cartilage: How to tell the difference?</h3>
+            <p><strong>Ligament injuries</strong> often present with sudden swelling (within hours) and a feeling of instability or "giving way." <strong>Meniscal/Cartilage injuries</strong> may have delayed swelling and mechanical symptoms like locking or catching.</p>
+            
+            <p>For more details, see our <a href="/articles/meniscus-tear-vs-strain">meniscus vs strain guide</a> or check out <a href="/articles/when-to-get-mri-knee">when you need an MRI</a>.</p>
+
+            <h3>When to seek evaluation</h3>
+            <p>Clinical assessment is advisable if you experience recurrent swelling, instability, locking, or pain persisting beyond 2-3 weeks. Early diagnosis is key to avoiding secondary joint damage.</p>
+
+            <div class="mt-8 pt-8 border-t border-gray-200">
+                <p class="text-sm font-bold text-gray-900">Author: Dr. Ulhas Sonar</p>
+                <p class="text-xs text-gray-500 mt-2 leading-relaxed">
+                    Dr. Ulhas Sonar is a UK-trained orthopedic surgeon specializing in sports injuries, joint preservation, and joint replacement surgery. He holds FRCS (England) and has completed over a decade of structured orthopedic training within the NHS. He is European Board certified (EBOT) and holds a diploma in robotic orthopedic surgery. Currently practicing in Dubai, he is also pursuing further training in regenerative medicine, with a focus on evolving biologic treatments in orthopedics.
+                </p>
+            </div>
         `
     },
-    'knee-steroid-injection': {
-        title: "Steroid Injections for Knee Pain: What You Need to Know",
-        date: "March 12, 2024",
+    'when-to-get-mri-knee': {
+        title: "When Knee Pain Needs a Scan: Understanding MRI, X-rays, and Decision-Making",
+        metaTitle: "When Knee Pain Needs a Scan – MRI, X-rays and Clinical Decision-Making Explained",
+        metaDescription: "When should knee pain be investigated with MRI or X-ray? A detailed clinical guide for active adults and working professionals on symptoms, red flags, imaging, and decision-making.",
+        date: "March 21, 2026",
         author: "Dr. Ulhas Sonar",
-        category: "Pain Management",
-        image: "https://images.unsplash.com/photo-1581594632702-52c1cb8d799d?w=1200&auto=format&fit=crop",
-        readTime: "4 min read",
+        category: "Diagnostics",
+        image: "/images/blog/mri-scan.png",
+        readTime: "12 min read",
         content: `
-            <p>Chronic knee pain caused by arthritis or inflammation can significantly affect daily life. One of the commonly used treatments for relief is a steroid injection into the knee joint. These injections can provide both pain relief and help in confirming the diagnosis, especially when symptoms are unclear.</p>
+            <p>Knee pain is one of the most common musculoskeletal complaints in active adults and working professionals. It affects individuals across a broad spectrum, from those who participate in football, padel, badminton, running, gym training, and recreational sport to those whose main strain arises from long working hours, prolonged sitting, frequent commuting, and irregular exercise patterns. In many patients, the central question arises early: <strong>does this knee pain need a scan?</strong></p>
             
-            <h3>Why Are Steroid Injections Used?</h3>
-            <p>The effects vary from person to person. Some patients experience no relief, while others benefit for several months.</p>
-            <p>Steroid injections serve two main goals:</p>
-            <ul>
-                <li><strong>Diagnostic Tool:</strong> The response to the injection helps your doctor confirm the source of the pain.</li>
-                <li><strong>Pain Relief:</strong> It can reduce inflammation and discomfort, with relief ranging from temporary to long-lasting.</li>
-            </ul>
-            
-            <h3>How Is It Done?</h3>
-            <p>The procedure is quick and typically done in a clinic setting:</p>
-            <ul>
-                <li>The area is cleaned using sterile precautions.</li>
-                <li>A fine needle is inserted into the joint to deliver a mix of steroid and local anesthetic.</li>
-                <li>A small dressing is applied, which can be removed after 48 hours.</li>
-            </ul>
-            <p>There are no cuts or stitches, and it’s usually well tolerated.</p>
+            <p>Imaging, and MRI in particular, is often seen as the definitive way to identify the exact source of pain. However, the clinical reality is more nuanced. Not every painful knee requires immediate imaging, and not every MRI changes treatment. Understanding when a scan is important, useful, and sometimes time-sensitive is key to effective management.</p>
 
-            <h3>What Are the Risks?</h3>
-            <p>As with any procedure, there are some potential risks, including:</p>
-            <ul>
-                <li>Pain or swelling after injection (a flare-up)</li>
-                <li>Bleeding or bruising</li>
-                <li>Infection (rare but serious if it occurs)</li>
-                <li>Allergic reaction</li>
-                <li>Skin changes (e.g., lightening of skin, fat loss at the site)</li>
-                <li>Tendon weakening or delayed side effects</li>
-            </ul>
-            
-            <h3>Post-Injection Care</h3>
-            <p>To ensure the best results:</p>
-            <ul>
-                <li>Rest the knee and avoid heavy activities for a few days.</li>
-                <li>Ice the area for 1–2 days.</li>
-                <li>Maintain normal knee movement (don't stop walking unless advised).</li>
-                <li>Watch for warning signs like redness, fever, or worsening pain.</li>
-            </ul>
-            <p>If you notice signs of infection or feel unwell, contact your doctor immediately. Early infections are treatable with antibiotics, while late or severe cases might need surgery.</p>
+            <h3>Why the question of imaging comes up so often</h3>
+            <p>One common reason is fear of missing a structural injury, particularly after <a href="/articles/knee-pain-gym-sports">injury types after gym</a> or twisting injuries in sports. Another is the modern expectation of rapid answers. Working professionals often prefer a quick, definitive explanation to structure exercise around their commitments. However, the central clinical question is whether the scan will provide information that meaningfully changes the treatment pathway.</p>
+
+            <h3>Clinical assessment comes before imaging</h3>
+            <p>A careful history and physical examination often provide most of the information needed to decide whether imaging is necessary. The examiner looks at the pattern of onset, the mechanism of injury (e.g., a twist vs. gradual load), and mechanical symptoms like locking or instability. If you're unsure about the <a href="/articles/causes-of-knee-pain">common causes of knee pain</a>, clinical assessment is the first step. Imaging follows the clinical question; it is not a substitute for it.</p>
+
+            <h3>Understanding what X-rays actually show</h3>
+            <p>X-rays remain a highly useful first-line investigation. They are excellent for identifying fractures, malalignment, degenerative changes (arthritis), and loose bodies. In younger active patients, weight-bearing X-rays can reveal patterns of chronic overload that MRI might miss. A normal X-ray also helps narrow the diagnostic field.</p>
+
+            <h3>What MRI adds</h3>
+            <p>MRI is the investigation of choice for soft tissue structures like ligaments, menisci, and cartilage. It is particularly valuable when there is suspicion of an ACL injury, a meniscus tear, or unexplained persistent pain despite appropriate initial treatment. However, it should be used when the clinician has a focused reason for requesting it, rather than as a general "screening" tool.</p>
+
+            <h3>Why not every knee pain needs immediate MRI</h3>
+            <p>Many knee presentations, especially gym-related overload issues in young adults, improve with time and structured rehabilitation. Immediate MRI in low-risk situations may identify minor signal changes or incidental findings that are not the true source of pain, leading to unnecessary anxiety or over-medicalisation.</p>
+
+            <h3>When knee pain clearly does need imaging</h3>
+            <p>Imaging is indicated when there has been a significant injury mechanism (like a twist with immediate swelling), recurrent mechanical symptoms (locking or catching), or when instability/giving way is reported. It is also warranted if symptoms fail to improve after an adequate period of appropriate treatment. Understanding <a href="/articles/continuing-sports-risks">why ignoring pain is risky</a> is essential; a timely scan can prevent long-term joint damage.</p>
+
+            <h3>Red flags and urgent scenarios</h3>
+            <p>Certain presentations require prompt investigation: acute inability to bear weight after trauma, marked swelling within hours of an injury (suggesting a hemarthrosis), fever or redness (raising concern for infection), and persistent night pain.</p>
+
+            <h3>Clinical Scenarios: Active Adults & Professionals</h3>
+            <p>For a desk professional with gradual-onset pain and no swelling, rehabilitation is often the first step. Conversely, for a football player with a twisting injury and swelling, MRI is relevant to plan surgical or return-to-sport strategies. Functional demand matters as much as the scan finding itself.</p>
+
+            <h3>Incidental MRI findings & Decision-making</h3>
+            <p>MRI is highly sensitive, often showing minor wear or signal changes even in asymptomatic people. This is why we treat the patient, not the scan. Imaging has its greatest value when it answers a question that changes the treatment plan, such as choosing between surgery and conservative care for a meniscus tear.</p>
+
+            <h3>Summary</h3>
+            <p>Knee pain is common, but scanning decisions should be based on a structured clinical framework. While X-rays assess bone and alignment, MRI clarifies soft tissue structures. Ideally, scans support good clinical decision-making, ensuring we protect long-term joint health while avoiding unnecessary interventions.</p>
+
+            <div class="mt-8 pt-8 border-t border-gray-200">
+                <p class="text-sm font-bold text-gray-900">Author: Dr. Ulhas Sonar</p>
+                <p class="text-xs text-gray-500 mt-2 leading-relaxed">
+                    Dr. Ulhas Sonar is a UK-trained orthopedic surgeon specializing in sports injuries, joint preservation, and joint replacement surgery. He holds FRCS (England) and has completed over a decade of structured orthopedic training within the NHS. He is European Board certified (EBOT) and holds a diploma in robotic orthopedic surgery. Currently practicing in Dubai, he is also pursuing further training in regenerative medicine, with a focus on evolving biologic treatments in orthopedics.
+                </p>
+            </div>
         `
     },
-    'personalized-knee-alignment': {
-        title: "Alignment concept: Total Knee Replacement",
-        date: "May 20, 2024",
+    'continuing-sports-risks': {
+        title: "Continuing Sports with Knee Pain in Working Professionals: Risks and Mistakes",
+        metaTitle: "Continuing Sports With Knee Pain in Working Professionals – Risks and Mistakes",
+        metaDescription: "Continuing sports with knee pain is common in active adults and working professionals. Learn risks, common mistakes, warning signs, and safer management strategies.",
+        date: "March 21, 2026",
         author: "Dr. Ulhas Sonar",
-        category: "Innovations",
-        image: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=1200&auto=format&fit=crop",
+        category: "Injury Prevention",
+        image: "/images/blog/sports-risks.png",
+        readTime: "12 min read",
+        content: `
+            <p>Continuing sports or gym activity despite knee pain is a common and often underestimated problem among active adults and working professionals. While some minor symptoms may resolve with rest, ignoring unresolved pain can lead to progression of injury, prolonged recovery, and secondary joint damage. Differentiating between benign <a href="/articles/knee-pain-gym-sports">injury vs overload</a> is critical for long-term health.</p>
+
+            <h3>Why professionals often continue sports despite knee pain</h3>
+            <p>Lifestyle factors like fitness goals, stress management, and limited time windows for exercise often drive individuals to "push through" symptoms. A common mistake is attributing joint-related pain—often felt deep within the knee or along the joint line—to routine muscle soreness. In desk-based professionals, the lack of pain during the workday further contributes to underestimating the injury.</p>
+
+            <h3>Understanding knee pain patterns</h3>
+            <p>Pain arising from different mechanisms carries different risks:</p>
+            <ul>
+                <li><strong>Overload-related pain:</strong> Usually gradual onset, linked to training errors or sudden increases in intensity.</li>
+                <li><strong>Mechanical pain (Meniscal/Cartilage):</strong> Suggested by joint locking, catching, or pain during twisting and squatting.</li>
+                <li><strong>Instability-related pain (Ligament):</strong> Characterized by the knee "giving way" or a loss of confidence during turning.</li>
+            </ul>
+
+            <h3>Common mistakes and cumulative load</h3>
+            <p>Many professionals ignore swelling or use medication to mask symptoms, allowing them to continue activity while a structural injury worsens. In modern lifestyles, the cumulative load from prolonged sitting, stair climbing, and travel-related strain also contributes significantly to joint stress. Resuming high-impact sport without identifying the <a href="/articles/causes-of-knee-pain">underlying causes of knee pain</a> then becomes the "tipping point" for injury.</p>
+
+            <h3>The risks of "playing through"</h3>
+            <p>Continuing activity with unresolved pain poses several risks: small meniscal tears may enlarge and become unrepairable; repeated instability episodes from ligament damage lead to rapid joint deterioration; and chronic overload accelerates cartilage wear. This not only impacts your sporting goals but can eventually limit daily function, such as climbing stairs or standing during travel.</p>
+
+            <h3>When to seek evaluation</h3>
+            <p>If you experience recurrent swelling, locking, catching, or a sense of the knee "giving way," activity should be stopped and a clinical assessment performed. Understanding <a href="/articles/when-to-get-mri-knee">when to get an MRI</a> or X-ray is vital to define the pathology and prevent long-term joint health issues.</p>
+
+            <h3>Summary</h3>
+            <p>Ignoring knee pain increases the risk of progression and long-term joint damage. A structured approach involving early evaluation, activity modification, and targeted rehabilitation is essential for active professionals to maintain both their sporting performance and their daily functional capacity.</p>
+
+            <div class="mt-8 pt-8 border-t border-gray-200">
+                <p class="text-sm font-bold text-gray-900">Author: Dr. Ulhas Sonar</p>
+                <p class="text-xs text-gray-500 mt-2 leading-relaxed">
+                    Dr. Ulhas Sonar is a UK-trained orthopedic surgeon specializing in sports injuries, joint preservation, and joint replacement surgery. He holds FRCS (England) and has completed over a decade of structured orthopedic training within the NHS. He is European Board certified (EBOT) and holds a diploma in robotic orthopedic surgery. Currently practicing in Dubai, he is also pursuing further training in regenerative medicine, with a focus on evolving biologic treatments in orthopedics.
+                </p>
+            </div>
+        `
+    },
+    'anterior-knee-pain-office': {
+        title: "Anterior Knee Pain (Patellofemoral Pain) in Office Workers",
+        date: "March 21, 2026",
+        author: "Dr. Ulhas Sonar",
+        category: "Ergonomics",
+        image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1200&auto=format&fit=crop",
+        readTime: "5 min read",
+        content: `
+            <p>Many office workers experience a dull ache at the front of the knee, often called "movie-goer's knee" or patellofemoral pain. This condition is frequently linked to long periods of sitting with knees bent.</p>
+            <h3>The Impact of Sedentary Work</h3>
+            <p>Sitting for hours increases the pressure on the patella (kneecap) against the femur. This can lead to irritation of the cartilage and subsequent pain when standing up or climbing stairs.</p>
+            <h3>Ergonomic Solutions</h3>
+            <p>Adjusting your chair height and ensuring your feet rest flat on the floor can help. Alternating between sitting and standing is also beneficial to keep the joints mobile and reduce sustained pressure.</p>
+        `
+    },
+    'meniscus-tear-vs-strain': {
+        title: "Meniscus Tear vs. Muscle Strain – How to Tell them Apart",
+        date: "March 21, 2026",
+        author: "Dr. Ulhas Sonar",
+        category: "Diagnosis",
+        image: "https://images.unsplash.com/photo-1576091160550-217359f4ecf8?w=1200&auto=format&fit=crop",
         readTime: "6 min read",
         content: `
-            <p>Total Knee Arthroplasty (TKA) has undergone a major evolution—from focusing on generic mechanical alignment to modern, personalized alignment strategies. Dr. Ulhas Sonar shares insights into how understanding joint anatomy and using technology can lead to better surgical outcomes.</p>
-            
-            <h3>From Mechanical to Personalized Alignment</h3>
-            <p>Traditional mechanical alignment aimed to achieve a neutral 180° hip-knee-ankle axis. While it offers good implant survival, it doesn’t reflect natural limb variations. Modern alignment techniques—like Kinematic Alignment (KA)—strive to replicate the patient’s pre-arthritic anatomy by resurfacing bone and preserving soft tissue.</p>
-            
-            <h3>The Role of Technology</h3>
-            <p>With robotic-assisted systems and computer navigation, surgeons can now plan precise resections, adjust for gap balancing, and reduce soft-tissue damage. This shift improves patient satisfaction, functional scores, and may reduce revision risks over time.</p>
+            <p>Not all knee pains are the same. Distinguishing between a meniscus tear and a simple muscle strain is crucial for choosing the right treatment and recovery timeline.</p>
+            <h3>Symptom Comparison</h3>
+            <p>A <strong>meniscus tear</strong> often involves clicking, locking, or sharp pain along the joint line. In contrast, a <strong>muscle strain</strong> (like a hamstring or quad pull) usually feels like a dull ache or tightness in the soft tissue surrounding the joint.</p>
+            <h3>Recovery Timelines</h3>
+            <p>Strains typically improve with rest and gentle stretching over 2-3 weeks. A meniscus tear may require more formal physical therapy or even surgical intervention if it causes mechanical symptoms. Consulting a specialist is the only way to get a definitive diagnosis.</p>
         `
     },
-    'tkr-implant-evolution': {
-        title: "The Evolution of TKR Implants",
-        date: "March 9, 2026",
+    'knee-pain-exercises-desk': {
+        title: "Best Exercises for Knee Pain (Desk Professionals)",
+        date: "March 21, 2026",
         author: "Dr. Ulhas Sonar",
-        category: "Surgery",
-        image: "https://images.unsplash.com/photo-1628595351029-c2bf17511435?w=1200&auto=format&fit=crop",
+        category: "Rehabilitation",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&auto=format&fit=crop",
+        readTime: "4 min read",
+        content: `
+            <p>If you're stuck at a desk all day, your knees can pay the price. Fortunately, there are several simple exercises you can do without even leaving your chair to keep your knees healthy and pain-free.</p>
+            <h3>Seated Leg Extensions</h3>
+            <p>Simply straighten your leg while sitting and hold for 5 seconds. This strengthens the quadriceps, which are vital for supporting the knee joint.</p>
+            <h3>Ankle Pumps and Glute Squeezes</h3>
+            <p>Keeping blood flowing and engaging the muscles around the hip can take significant pressure off the knees. Aim to perform these movements every hour to combat the stiffness of prolonged sitting.</p>
+        `
+    },
+    'knee-pain-travel-flights': {
+        title: "Managing Knee Pain During Travel and Long Flights",
+        date: "March 21, 2026",
+        author: "Dr. Ulhas Sonar",
+        category: "Lifestyle",
+        image: "https://images.unsplash.com/photo-1436491865332-7a61a109c0f5?w=1200&auto=format&fit=crop",
         readTime: "5 min read",
         content: `
-            <p>Total Knee Replacement (TKR) implants have come a long way from the early days of hinge prostheses to today’s advanced, patient-specific systems. In this blog, Dr. Ulhas Sonar, a UK-trained orthopedic surgeon, provides a concise overview of how TKR implant design has evolved to enhance stability, longevity, and patient satisfaction.</p>
-            
-            <h3>From Hinges to Modularity</h3>
-            <p>Early implants like the Walldius hinge and McIntosh designs were simple and rigid. Over time, the need for anatomical movement and joint stability led to innovations like the Total Condylar Prosthesis and femoral rollback mechanisms, improving function and wear resistance.</p>
-            
-            <h3>Design Philosophies</h3>
-            <p>Modern implants are designed around concepts of modularity, constraint, and stability. Options now range from cruciate-retaining (CR) to posterior-stabilized (PS), and more constrained or hinged models — each suited for different anatomical and clinical needs.</p>
-            
-            <h3>Key Advancements</h3>
-            <ul>
-                <li>Mobile-bearing designs reduce wear and enhance mobility.</li>
-                <li>Highly congruent liners and rotating-hinge systems improve patellar tracking and soft tissue balance.</li>
-                <li>Patient-specific instrumentation (PSI) allows for more personalized and precise alignment.</li>
-            </ul>
-
-            <h3>Data-Driven Choices</h3>
-            <p>UK NJR (National Joint Registry) data supports newer designs like PFC Sigma (Depuy), NexGen (Zimmer), and Triathlon (Stryker) for their improved outcomes in flexibility, longevity, and anatomical compatibility.</p>
-
-            <h3>Conclusion:</h3>
-            <p>The evolution of TKR implants reflects a shift toward personalization, functionality, and surgical flexibility. With a range of implant types tailored to individual cases, modern knee replacements offer better outcomes and quicker recoveries than ever before.</p>
+            <p>Traveling, especially on long-haul flights, can be a nightmare for those with chronic knee pain or stiffness. The cramped quarters and lack of movement are major contributors to joint distress.</p>
+            <h3>Tips for the Air</h3>
+            <p>Choose an aisle seat if possible to allow for easier stretching. Hydration is also key, as it keeps your joint tissues healthy and reduces the risk of overall stiffness.</p>
+            <h3>Post-Flight Recovery</h3>
+            <p>Once you land, take a brisk walk to "lubricate" the joints. Gentle stretching of the quads and hamstrings can help reset your body after hours of being in a fixed position.</p>
         `
     },
-    'tkr-surgical-steps': {
-        title: "Steps in Total Knee Replacement",
-        date: "March 9, 2026",
+    'knee-pain-pillar': {
+        title: "Knee Pain in Professionals: The Ultimate Specialist Guide",
+        metaTitle: "Knee Pain in Young Adults & Working Professionals – Causes, MRI, Treatment Guide",
+        metaDescription: "A complete clinical guide to knee pain in young adults and working professionals. Understand causes, gym injuries, MRI decisions, and safe return to sports.",
+        date: "March 21, 2026",
         author: "Dr. Ulhas Sonar",
-        category: "Education",
-        image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=1200&auto=format&fit=crop",
-        readTime: "7 min read",
+        category: "Pillar Page",
+        image: "/images/blog/knee-pillar.png",
+        readTime: "15 min read",
         content: `
-            <p>Total Knee Replacement (TKR) is a complex yet highly rewarding procedure aimed at restoring mobility and relieving chronic pain in patients with severe knee arthritis or injury. Dr. Ulhas Sonar, a British-Indian orthopedic surgeon with global training, outlines a step-by-step guide to modern TKR, emphasizing precision, alignment, and patient-specific care.</p>
+            <p>Knee pain is one of the most frequently encountered musculoskeletal complaints in young adults and working professionals. It is increasingly seen in individuals who combine prolonged desk-based work with intermittent participation in gym training, running, recreational sports, or weekend athletic activity. This combination of sedentary work patterns and sudden physical loading creates a unique environment where the knee is repeatedly exposed to demands that may exceed its capacity to adapt.</p>
             
-            <h3>Pre-operative Evaluation</h3>
-            <p>The process begins with a thorough clinical examination, including assessment of skin condition, deformity correction, ligament stability, and range of motion. X-rays—ideally long-leg views—help assess bone quality and alignment.</p>
+            <p>This guide provides a structured, clinically grounded approach to understanding knee pain in this population. It explains common causes, patterns of injury, the role of imaging, and practical decision-making relevant to both active individuals and working professionals.</p>
+
+            <h3>Why Knee Pain Is Increasing in Working Professionals</h3>
+            <p>Modern working environments often involve prolonged sitting, reduced baseline conditioning, and limited time for consistent physical activity. Many individuals compensate for this with high-intensity workouts performed within restricted time windows. Key factors include reduced gluteal activation and sudden increases in gym training or running volume. These factors combine to increase joint stress and make the knee more susceptible to both overload and structural injury.</p>
+
+            <h3>Understanding Different Types of Knee Pain</h3>
+            <p>Knee pain is a symptom, not a diagnosis. Recognising the pattern is key:</p>
             <ul>
-                <li>A popping sound or sensation at injury</li>
-                <li>Swelling within hours</li>
-                <li>Instability — "giving way" feeling when walking</li>
+                <li><strong>Overload-Related Pain:</strong> Gradual onset, activity-related, and often linked to sudden training changes or <a href="/articles/knee-pain-gym-sports">gym-related strain</a>.</li>
+                <li><strong>Ligament Injury:</strong> Sudden onset after twisting or pivoting, often with swelling and instability.</li>
+                <li><strong>Meniscal and Cartilage Injury:</strong> Characterised by joint-line pain, deep aching, and mechanical symptoms like catching or locking.</li>
             </ul>
 
-            <h3>Positioning & Preparation</h3>
-            <p>Patients are positioned supine, and a strict sterile protocol is followed with double prep, antibiotics, and theater discipline to minimize infection risk.</p>
-            
-            <h3>Key Surgical Goals</h3>
-            <p>The technical objectives include achieving proper alignment, restoring joint line, balancing ligaments, and ensuring smooth patella tracking.</p>
+            <h3>When Knee Pain Needs Imaging</h3>
+            <p>The decision to perform imaging depends on whether it will influence diagnosis or management. While X-rays assess bone structure and alignment, MRI is the gold standard for soft tissue like ligaments and menisci. However, understanding <a href="/articles/when-to-get-mri-knee">when knee pain needs MRI</a> is vital, as early MRI in low-risk cases can identify incidental findings that don't correlate with symptoms.</p>
 
-            <h3>The Surgical Technique</h3>
-            <ul>
-                <li><strong>Approach:</strong> Most commonly via the medial parapatellar approach.</li>
-                <li><strong>Femur First:</strong> Involves removing osteophytes, using intramedullary alignment, and making accurate femoral cuts.</li>
-                <li><strong>Tibia Preparation:</strong> Typically done using extramedullary referencing, ensuring proper slope and varus/valgus alignment.</li>
-                <li><strong>Trialing & Balancing:</strong> Components are trialed to check fit, gaps, and tracking before final fixation.</li>
-                <li><strong>Patella & Cementation:</strong> Patella is prepared, and components are cemented with careful handling.</li>
-            </ul>
+            <h3>Continuing Sports with Knee Pain: Risks</h3>
+            <p>Continuing activity despite unresolved pain is common among professionals. While mild overload symptoms may improve with modification, ignoring structural pathology increases the risk of secondary injuries. Understanding <a href="/articles/continuing-sports-risks">why ignoring knee pain is risky</a> is essential; repeated cycles of activity without completion of rehabilitation can contribute to chronic symptoms.</p>
 
-            <h3>Flexion & Extension Gap Management</h3>
-            <p>Fine-tuning is done through balancing soft tissues and adjusting cuts. Scenarios like tight flexion or extension gaps are managed with augmentations or component adjustments.</p>
+            <h3>Common Mistakes in Management</h3>
+            <p>Playing through pain, ignoring recurrent swelling, and using medication to mask symptoms are frequent errors. Returning to sport without completing structured rehabilitation leaves the joint vulnerable to recurrence. A structured approach involving activity modification, load management, and physiotherapy is the foundation of long-term knee health.</p>
 
-            <h3>Closure</h3>
-            <p>The surgery concludes with layered closure in flexion, using appropriate dressings to support healing.</p>
+            <div class="mt-12 bg-gray-50 p-6 rounded-xl border border-gray-100">
+                <h3 class="text-xl font-bold text-gray-900 mb-6">Expert FAQ: Knee Pain Management</h3>
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="font-bold text-gray-900">When should knee pain be investigated with MRI?</h4>
+                        <p class="text-gray-600 mt-1">MRI is indicated when knee pain is associated with swelling, instability, locking, or when symptoms persist despite appropriate rehabilitation.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900">Is knee pain after gym always serious?</h4>
+                        <p class="text-gray-600 mt-1">No. Most cases are due to overload. However, swelling, instability, or mechanical symptoms suggest structural injury.</p>
+                    </div>
+                </div>
+            </div>
 
-            <h3>Conclusion:</h3>
-            <p>TKR is a technical procedure, but with the right approach, attention to detail, and patient-specific planning, excellent outcomes are achievable. Dr. Ulhas Sonar’s systematic method ensures both new and experienced surgeons understand the balance between mechanics and clinical decision-making.</p>
+            <div class="mt-8 pt-8 border-t border-gray-200">
+                <p class="text-sm font-bold text-gray-900">Author: Dr. Ulhas Sonar</p>
+                <p class="text-xs text-gray-500 mt-2 leading-relaxed">
+                    Dr. Ulhas Sonar is a UK-trained orthopedic surgeon specializing in sports injuries, joint preservation, and joint replacement surgery. He holds FRCS (England) and has completed over a decade of structured orthopedic training within the NHS. He is European Board certified (EBOT) and holds a diploma in robotic orthopedic surgery. Currently practicing in Dubai, he is also pursuing further training in regenerative medicine, with a focus on evolving biologic treatments in orthopedics.
+                </p>
+            </div>
         `
     }
 };
@@ -222,7 +291,57 @@ const ArticleDetail = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, [id]);
+        if (article) {
+            document.title = article.metaTitle || `${article.title} | Dr. Ulhas Sonar`;
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) {
+                metaDesc.setAttribute('content', article.metaDescription || article.title);
+            } else {
+                const meta = document.createElement('meta');
+                meta.name = "description";
+                meta.content = article.metaDescription || article.title;
+                document.head.appendChild(meta);
+            }
+
+            // Inject JSON-LD
+            if (id === 'knee-pain-pillar') {
+                const scriptText = {
+                    "@context": "https://schema.org",
+                    "@type": "MedicalWebPage",
+                    "name": "Knee Pain in Young Adults and Working Professionals",
+                    "description": "Comprehensive guide to knee pain causes, MRI, treatment, and sports injuries.",
+                    "author": { "@type": "Person", "name": "Dr Ulhas Sonar" },
+                    "mainEntity": [
+                        {
+                            "@type": "Question",
+                            "name": "When should knee pain be investigated with MRI?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "MRI is recommended when knee pain is associated with swelling, instability, locking, or persistent symptoms despite rehabilitation."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "Is knee pain after gym serious?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Most cases are due to overload, but swelling or instability may indicate structural injury."
+                            }
+                        }
+                    ]
+                };
+                const script = document.createElement('script');
+                script.type = 'application/ld+json';
+                script.id = 'json-ld-schema';
+                script.text = JSON.stringify(scriptText);
+                document.head.appendChild(script);
+                return () => {
+                    const existingScript = document.getElementById('json-ld-schema');
+                    if (existingScript) document.head.removeChild(existingScript);
+                };
+            }
+        }
+    }, [id, article]);
 
     if (!article) {
         return (

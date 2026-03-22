@@ -1,6 +1,6 @@
 import logo from '../assets/logo.png';
 import { useLanguage } from '../context/LanguageContext';
-import { MapPin, Phone, Mail, Facebook, Twitter, Instagram, Linkedin, ChevronRight } from 'lucide-react';
+import { MapPin, Phone, Mail, Youtube, Twitter, Linkedin, ChevronRight } from 'lucide-react';
 
 const Footer = () => {
     const { t } = useLanguage();
@@ -31,20 +31,20 @@ const Footer = () => {
                             </div>
                         </div>
                         <p className="text-gray-400 text-sm leading-loose font-medium max-w-sm mb-8">
-                            {t('footer.desc')}
+                            Precise orthopaedic surgical care delivered with integrity, respect for patient rights, and an individualised medical evidence-based approach—restoring movement, function, and active lives.
                         </p>
                         
                         {/* Social Links */}
                         <div className="flex gap-4">
                             {[
-                                { Icon: Facebook, label: 'Facebook' },
-                                { Icon: Twitter, label: 'Twitter' },
-                                { Icon: Instagram, label: 'Instagram' },
-                                { Icon: Linkedin, label: 'LinkedIn' }
+                                { Icon: Youtube, label: 'YouTube', href: 'https://www.youtube.com/@orthopaedictutorials2135' },
+                                { Icon: Twitter, label: 'X (Twitter)', href: 'https://x.com/jointsurgeon' },
+                                { Icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/ulhassonarortho' }
                             ].map((social, index) => (
                                 <a 
                                     key={index} 
-                                    href="#" 
+                                    href={social.href} 
+                                    target="_blank" rel="noreferrer"
                                     aria-label={social.label}
                                     className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-primary-600 hover:text-white hover:border-primary-500 hover:-translate-y-1 transition-all duration-300 shadow-sm"
                                 >
@@ -113,7 +113,7 @@ const Footer = () => {
                                 </div>
                                 <div className="flex flex-col justify-center">
                                     <span className="text-gray-300 text-sm font-medium leading-relaxed group-hover:text-white transition-colors duration-300">
-                                        Canadian Specialist Hospital<br/>Dubai, UAE
+                                        {t('footer.hospitalName')}<br/>Dubai, UAE
                                     </span>
                                 </div>
                             </li>
@@ -123,7 +123,7 @@ const Footer = () => {
                                 </div>
                                 <div className="flex flex-col justify-center">
                                     <span className="text-white font-bold tracking-wide">+971 55 105 3445</span>
-                                    <span className="text-gray-500 text-[11px] font-medium uppercase tracking-wider mt-1">24/7 Emergency</span>
+                                    <span className="text-gray-500 text-[11px] font-medium uppercase tracking-wider mt-1">{t('footer.emergency')}</span>
                                 </div>
                             </li>
                         </ul>

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Activity } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import runnerKneeImg from '../assets/runner-knee-injury.png';
 import shoulderInjuryImg from '../assets/shoulder-sports-injury.png';
@@ -8,47 +8,125 @@ import runnerAnkleImg from '../assets/runner-ankle-injury.png';
 import handWristInjuryImg from '../assets/hand-wrist-injury.png';
 import backNeckInjuryImg from '../assets/back-neck-injury.png';
 
-const solutions = [
-    {
-        title: "Hand & Wrist",
-        image: handWristInjuryImg,
-        color: "bg-blue-50"
-    },
-    {
-        title: "Back & Neck",
-        image: backNeckInjuryImg,
-        color: "bg-blue-50"
-    },
-    {
-        title: "Foot & Ankle",
-        image: runnerAnkleImg,
-        color: "bg-blue-50"
-    },
-    {
-        title: "Elbow",
-        image: "https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?q=80&w=800&auto=format&fit=crop",
-        color: "bg-blue-50"
-    },
-    {
-        title: "Knee & Leg",
-        image: runnerKneeImg,
-        color: "bg-blue-50"
-    },
-    {
-        title: "Hip & Thigh",
-        image: "https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=800&auto=format&fit=crop",
-        color: "bg-blue-50"
-    },
-    {
-        title: "Shoulder",
-        image: shoulderInjuryImg,
-        color: "bg-blue-50"
-    }
-];
+const OrthoAnimation = () => (
+    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        {/* Animated grid dots */}
+        <div className="absolute inset-0 opacity-[0.02]"
+            style={{
+                backgroundImage: 'radial-gradient(circle at 2px 2px, #0088cc 2px, transparent 0)',
+                backgroundSize: '48px 48px'
+            }}
+        />
+        <svg viewBox="0 0 1200 800" className="w-full h-full text-blue-500/10 absolute inset-0">
+            {/* Animated spine / joints representation */}
+            <motion.path
+                d="M 150 100 Q 250 300 150 500 T 150 900"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="4"
+                strokeDasharray="10 20"
+                animate={{
+                    strokeDashoffset: [0, 100]
+                }}
+                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+            />
+            {/* Floating connecting nodes */}
+            {[0, 1, 2].map((i) => (
+                <motion.circle
+                    key={i}
+                    cx={150 + Math.sin(i) * 50}
+                    cy={200 + i * 200}
+                    r="8"
+                    fill="#0088cc"
+                    className="opacity-30"
+                    animate={{ scale: [1, 2, 1], opacity: [0.2, 0.6, 0.2] }}
+                    transition={{ duration: 3, repeat: Infinity, delay: i }}
+                />
+            ))}
+            
+            {/* Right side animated curve */}
+            <motion.path
+                d="M 1100 0 C 1200 200 1000 400 1100 800"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 6, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+            />
+        </svg>
 
-const SpecializedSolutions = () => {
-    const { language } = useLanguage();
+        {/* Floating Icons */}
+        <motion.div
+            animate={{
+                y: [0, -30, 0],
+                rotate: [0, 10, 0]
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-[30%] right-[15%] opacity-[0.04] text-[#0088cc]"
+        >
+            <Activity strokeWidth={1} size={180} />
+        </motion.div>
+
+        {/* Medical Crosses */}
+        <motion.div
+            animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.02, 0.05, 0.02],
+                rotate: [0, 90]
+            }}
+            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+            className="absolute bottom-[20%] left-[10%] text-[#0088cc] w-40 h-40"
+        >
+            <svg viewBox="0 0 100 100" fill="currentColor">
+                <path d="M40 0h20v40h40v20H60v40H40V60H0V40h40V0z"/>
+            </svg>
+        </motion.div>
+    </div>
+);
+
+const PersonalizedSolutions = () => {
+    const { t, language } = useLanguage();
     const isRtl = language === 'AR';
+
+    const solutions = [
+        {
+            title: t('personalizedSolutions.items.0.title'),
+            image: handWristInjuryImg,
+            color: "bg-blue-50"
+        },
+        {
+            title: t('personalizedSolutions.items.1.title'),
+            image: backNeckInjuryImg,
+            color: "bg-blue-50"
+        },
+        {
+            title: t('personalizedSolutions.items.2.title'),
+            image: runnerAnkleImg,
+            color: "bg-blue-50"
+        },
+        {
+            title: t('personalizedSolutions.items.3.title'),
+            image: "https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?q=80&w=800&auto=format&fit=crop",
+            color: "bg-blue-50"
+        },
+        {
+            title: t('personalizedSolutions.items.4.title'),
+            image: runnerKneeImg,
+            color: "bg-blue-50"
+        },
+        {
+            title: t('personalizedSolutions.items.5.title'),
+            image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop",
+            color: "bg-blue-50"
+        },
+        {
+            title: t('personalizedSolutions.items.6.title'),
+            image: shoulderInjuryImg,
+            color: "bg-blue-50"
+        }
+    ];
+
     const containerVariants = {
         hidden: { opacity: 0 },
         show: {
@@ -65,8 +143,9 @@ const SpecializedSolutions = () => {
     };
 
     return (
-        <section className="py-20 bg-white relative overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="personalized-solutions" className="py-20 bg-white relative overflow-hidden">
+            <OrthoAnimation />
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Header Section */}
                 <div className="text-center mb-16">
                     <motion.h2
@@ -76,7 +155,7 @@ const SpecializedSolutions = () => {
                         transition={{ duration: 0.6 }}
                         className="text-4xl md:text-5xl lg:text-5xl font-montserrat text-[#333] mb-6 font-extrabold tracking-tight"
                     >
-                        Personalized solutions for every orthopedic need
+                        {t('personalizedSolutions.title')}
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -85,7 +164,7 @@ const SpecializedSolutions = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="text-[#555] max-w-2xl mx-auto text-sm md:text-md"
                     >
-                        FOI physicians provide a responsive, personalized care plan for any musculoskeletal injury or condition.
+                        {t('personalizedSolutions.description')}
                     </motion.p>
                 </div>
 
@@ -106,7 +185,7 @@ const SpecializedSolutions = () => {
                             <div className="relative w-full aspect-square mb-6 rounded-[2rem] overflow-hidden bg-[#f0f7ff] group-hover:shadow-2xl group-hover:shadow-blue-200/50 transition-all duration-500">
                                 <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
                                 <img
-                                    src={item.title === 'Hip & Thigh' ? 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop' : item.image}
+                                    src={item.image}
                                     alt={item.title}
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
@@ -142,21 +221,16 @@ const SpecializedSolutions = () => {
                         to="/services"
                         className="group flex items-center justify-center gap-3 px-10 py-4 rounded-xl font-black text-sm tracking-[0.15em] uppercase bg-[#0088cc] text-white hover:bg-[#006699] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 w-fit"
                     >
-                        View All Services & Treatments
+                        {t('personalizedSolutions.viewAll')}
                         <ArrowRight className={`w-5 h-5 transition-transform group-hover:${isRtl ? '-translate-x-1' : 'translate-x-1'}`} />
                     </Link>
                 </motion.div>
+
             </div>
 
-            {/* Background Decorative Curves */}
-            <div className="absolute top-0 end-0 -z-10 w-1/3 h-full overflow-hidden opacity-10">
-                <svg viewBox="0 0 200 600" className="w-full h-full text-[#0077b6]">
-                    <path d="M200 0 Q 50 300 200 600" fill="none" stroke="currentColor" strokeWidth="2" />
-                    <path d="M250 50 Q 100 350 250 650" fill="none" stroke="currentColor" strokeWidth="2" />
-                </svg>
-            </div>
+
         </section>
     );
 };
 
-export default SpecializedSolutions;
+export default PersonalizedSolutions;

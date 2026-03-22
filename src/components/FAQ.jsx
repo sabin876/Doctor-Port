@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, HelpCircle } from 'lucide-react';
+import { ChevronDown, HelpCircle, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const FAQ = () => {
@@ -115,6 +115,14 @@ const FAQ = () => {
                     <p className="text-gray-500 font-medium">
                         Still have questions? <a href="#contact" className="text-blue-600 font-bold hover:underline">Contact our clinic</a> for more details.
                     </p>
+                    <div className="mt-8">
+                        <a
+                            href="#personalized-solutions"
+                            className="inline-flex items-center gap-2 px-8 py-3 bg-blue-50 text-blue-700 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-blue-100 transition-all border border-blue-100/50"
+                        >
+                            Or Get Your Personalized Solution <ArrowRight className="w-4 h-4" />
+                        </a>
+                    </div>
                 </motion.div>
             </div>
         </section>

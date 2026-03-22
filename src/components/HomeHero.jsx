@@ -78,50 +78,48 @@ const StatsRow = ({ trigger, stats }) => (
     </div>
 );
 
-const allStats = [
-    { value: '15', suffix: '+', label: 'YEARS EXP.' },
-    { value: '6', suffix: '', label: 'GLOBAL QUALIFICATIONS (UK, EU, IN)' },
-    { value: '10', suffix: '+', label: 'RESEARCH & PUBLICATIONS' },
-    { value: '6', suffix: '+', label: 'CLINICAL AUDITS' },
-    { value: '10', suffix: '+', label: 'PODIUM PRESENTATIONS' },
-    { isGoogle: true, isStar: true, label: 'EXCEPTIONAL OUTCOMES & AWARDS' },
-];
-
-const slides = [
-    {
-        id: 0,
-        photo: doctorSurgery,
-        photoStyle: 'h-[105%] w-auto object-cover object-center',
-        badge: 'FRCS (UK), FEBOT, MCh, PGDip Robotics, MBBS, MS',
-        headline1: 'Restore Your',
-        headline2: 'Life',
-        description:
-            'With more than 15+ years of global experience across UK, India, Jersey Island and Dubai in trauma and orthopedic surgery. Delivering world-class care in knee, hip, shoulder and complex trauma.',
-        badgeValue: '98%',
-        nameplateSub: 'Orthopedic Specialist',
-        stats: allStats,
-    },
-    {
-        id: 1,
-        photo: doctorPortrait,
-        photoStyle: 'h-[100%] w-auto object-contain object-bottom',
-        badge: 'MBBS, MS Ortho, M Ch Ortho, FRCS (T&O)',
-        headline1: 'Precision',
-        headline2: 'Ortho',
-        description:
-            'A fellow of the Royal College of Surgeons with over 15 years of global experience. Specializing in robotic-assisted knee replacement and minimally invasive procedures.',
-        badgeValue: '99.8%',
-        nameplateSub: 'Orthopedic Surgeon',
-        stats: allStats,
-    },
-];
-
 const SLIDE_DURATION = 8000;
 
 const HomeHero = () => {
-    const { language } = useLanguage();
-    const t = translations[language];
-    const highlights = t.hero?.highlights || [];
+    const { t, language } = useLanguage();
+
+    const allStats = [
+        { value: '15', suffix: '+', label: t('hero.stats.exp') },
+        { value: '6', suffix: '', label: t('hero.stats.qualifications') },
+        { value: '10', suffix: '+', label: t('hero.stats.research') },
+        { value: '6', suffix: '+', label: t('hero.stats.audits') },
+        { value: '10', suffix: '+', label: t('hero.stats.podium') },
+        { isGoogle: true, isStar: true, label: t('hero.stats.outcomes') },
+    ];
+
+    const slides = [
+        {
+            id: 0,
+            photo: doctorSurgery,
+            photoStyle: 'h-[105%] w-auto object-cover object-center',
+            badge: t('hero.slides.0.badge'),
+            headline1: t('hero.slides.0.headline1'),
+            headline2: t('hero.slides.0.headline2'),
+            description: t('hero.slides.0.description'),
+            badgeValue: '98%',
+            nameplateSub: t('hero.slides.0.nameplateSub'),
+            stats: allStats,
+        },
+        {
+            id: 1,
+            photo: doctorPortrait,
+            photoStyle: 'h-[100%] w-auto object-contain object-bottom',
+            badge: t('hero.slides.1.badge'),
+            headline1: t('hero.slides.1.headline1'),
+            headline2: t('hero.slides.1.headline2'),
+            description: t('hero.slides.1.description'),
+            badgeValue: '99.8%',
+            nameplateSub: t('hero.slides.1.nameplateSub'),
+            stats: allStats,
+        },
+    ];
+
+    const highlights = t('hero.highlights') || [];
 
     const [activeSlide, setActiveSlide] = useState(0);
     const [direction, setDirection] = useState(1);
@@ -258,10 +256,10 @@ const HomeHero = () => {
                         >
                             <RouterLink
                                 to="/contact"
-                                className="group relative flex items-center justify-center gap-3 px-10 py-5 rounded-2xl font-black text-base tracking-wide bg-blue-600 text-white shadow-[0_20px_40px_-10px_rgba(37,99,235,0.4)] hover:shadow-[0_25px_50px_-12px_rgba(37,99,235,0.5)] hover:scale-[1.03] active:scale-[0.97] transition-all overflow-hidden"
+                                className="group relative flex items-center justify-center gap-3 px-10 py-5 rounded-2xl font-montserrat font-black text-base tracking-wide bg-blue-600 text-white shadow-[0_20px_40px_-10px_rgba(37,99,235,0.4)] hover:shadow-[0_25px_50px_-12px_rgba(37,99,235,0.5)] hover:scale-[1.03] active:scale-[0.97] transition-all overflow-hidden"
                             >
                                 <Calendar className="w-5 h-5 transition-transform group-hover:rotate-12" />
-                                {language === 'EN' ? 'Book Appointment' : t.hero?.bookAppointment || 'Book Appointment'}
+                                {t('hero.bookAppointment')}
                                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                             </RouterLink>
 
@@ -269,9 +267,23 @@ const HomeHero = () => {
                                 to="/services"
                                 className="group flex items-center justify-center gap-3 px-10 py-5 rounded-2xl font-black text-base text-slate-700 border-2 border-slate-100 bg-white hover:bg-slate-50 hover:border-blue-100 transition-all shadow-sm"
                             >
-                                View Services
+                                {t('hero.exploreServices')}
                                 <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                             </RouterLink>
+                        </motion.div>
+
+                        {/* Personalized Solution CTA */}
+                        <motion.div
+                            variants={itemVariants}
+                            className="mt-6 ps-2"
+                        >
+                            <a
+                                href="#personalized-solutions"
+                                className="flex items-center gap-2 text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors group italic"
+                            >
+                                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                                Looking for a personalized solution? <span className="underline decoration-1 underline-offset-2">Click here to learn more</span>
+                            </a>
                         </motion.div>
 
                         {/* Updated Stats Row */}

@@ -122,7 +122,7 @@ const Contact = () => {
                         <ContactCard
                             icon={<Phone className="w-6 h-6" />}
                             title={t('contact.cards.call.title')}
-                            content="+971 54 703 3311"
+                            content="+971 55 105 3445"
                             subContent={t('contact.cards.call.sub')}
                             delay={0.3}
                             color="bg-blue-50 text-blue-600"
@@ -130,12 +130,12 @@ const Contact = () => {
                         <ContactCard
                             icon={<Mail className="w-6 h-6" />}
                             title={t('contact.cards.email.title')}
-                            content="info@corx.ae"
+                            content="Kneeshoulderhip@gmail.com"
                             subContent={t('contact.cards.email.sub')}
                             delay={0.4}
                             color="bg-indigo-50 text-indigo-600"
                             isLink={true}
-                            href="mailto:info@corx.ae"
+                            href="mailto:Kneeshoulderhip@gmail.com"
                         />
                         <ContactCard
                             icon={<MapPin className="w-6 h-6" />}
@@ -160,11 +160,9 @@ const Contact = () => {
                         >
                             <h3 className="text-sm font-bold text-gray-900 mb-6 uppercase tracking-wider">{t('contact.cards.social')}</h3>
                             <div className="flex flex-wrap gap-4">
-                                <SocialLink href="https://www.facebook.com/people/Ulhas-Sonar/pfbid02t9HgyN1ngXRHdmXqhjjRku4dc4bJCMb6TL69rrePPSL4WSP3yqUvUnCA8tmPv3Lhl/" icon={<Facebook size={20} />} />
-                                <SocialLink href="https://twitter.com/jointsurgeon" icon={<Twitter size={20} />} />
-                                <SocialLink href="https://www.instagram.com/drulhassonar/" icon={<Instagram size={20} />} />
-                                <SocialLink href="https://www.linkedin.com/in/ULHASSONARORTHO" icon={<Linkedin size={20} />} />
-                                <SocialLink href="https://www.youtube.com/channel/UCGKiDKbBw_8j2gmN7lgHRTQ" icon={<Youtube size={20} />} />
+                                <SocialLink href="https://www.youtube.com/@orthopaedictutorials2135" icon={<Youtube size={20} />} />
+                                <SocialLink href="https://x.com/jointsurgeon" icon={<Twitter size={20} />} />
+                                <SocialLink href="https://linkedin.com/in/ulhassonarortho" icon={<Linkedin size={20} />} />
                             </div>
                         </motion.div>
                     </div>
@@ -187,10 +185,10 @@ const Contact = () => {
                         <h3 className="text-3xl font-extrabold text-gray-900 mb-8 tracking-tight">{t('contact.form.title')}</h3>
                         <form className="space-y-5 relative z-10">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                <InputField label={t('contact.form.name')} type="text" placeholder="e.g. John Doe" />
-                                <InputField label={t('contact.form.email')} type="email" placeholder="e.g. john@example.com" />
+                                <InputField label={t('contact.form.name')} type="text" placeholder={t('contact.form.namePlaceholder')} />
+                                <InputField label={t('contact.form.email')} type="email" placeholder={t('contact.form.emailPlaceholder')} />
                             </div>
-                            <InputField label={t('contact.form.phone')} type="tel" placeholder="+971..." />
+                            <InputField label={t('contact.form.phone')} type="tel" placeholder={t('contact.form.phonePlaceholder')} />
                             <div>
                                 <label className="block text-[11px] font-bold text-gray-700 mb-2 uppercase tracking-wide">{t('contact.form.medicalInquiry')}</label>
                                 <textarea

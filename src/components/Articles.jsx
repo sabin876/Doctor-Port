@@ -2,68 +2,100 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { User, Calendar, ArrowRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+
 
 const articlesData = [
     {
-        id: 'knee-replacement-signs',
-        title: "Alignment concept: Total Knee Replacement",
-        excerpt: "Total Knee Arthroplasty (TKA) has undergone a major evolution—from focusing on generic mechanical alignment to modern, personalized alignment strategies.",
+        id: 'causes-of-knee-pain',
+        title: "Understanding Common Causes of Knee Pain",
+        excerpt: "Knee pain affects people of all ages. Whether it's a sports injury or arthritis, understanding the underlying cause is the first step toward effective treatment.",
         category: "Knee Health",
         categoryColor: "bg-blue-100 text-blue-700",
-        image: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=800&h=600&fit=crop",
+        image: "/images/blog/knee-causes.png",
         author: "Dr. Ulhas Sonar",
-        date: "March 9, 2026"
+        date: "March 21, 2026"
     },
     {
-        id: 'tkr-implant-evolution',
-        title: "The Evolution of TKR Implants",
-        excerpt: "Total Knee Replacement (TKR) implants have come a long way from the early days of hinge prostheses to today’s advanced, patient-specific systems.",
-        category: "Surgery",
-        categoryColor: "bg-indigo-100 text-indigo-700",
-        image: "https://images.unsplash.com/photo-1628595351029-c2bf17511435?w=800&h=600&fit=crop",
+        id: 'knee-pain-gym-sports',
+        title: "Knee Pain After Gym or Sports in Working Professionals: Ligament Injury or Cartilage Damage?",
+        excerpt: "Knee pain after gym or sports is common in working professionals. Learn how to distinguish ligament injury from cartilage damage, warning signs, and management options.",
+        category: "Sports Medicine",
+        categoryColor: "bg-orange-100 text-orange-700",
+        image: "/images/blog/gym-injury.png",
         author: "Dr. Ulhas Sonar",
-        date: "March 9, 2026"
+        date: "March 21, 2026"
     },
     {
-        id: 'tkr-surgical-steps',
-        title: "Steps in Total Knee Replacement",
-        excerpt: "Total Knee Replacement (TKR) is a complex yet highly rewarding procedure aimed at restoring mobility and relieving chronic pain in patients with severe knee arthritis or injury.",
-        category: "Education",
-        categoryColor: "bg-emerald-100 text-emerald-700",
-        image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=800&h=600&fit=crop",
-        author: "Dr. Ulhas Sonar",
-        date: "March 9, 2026"
-    },
-    {
-        id: 'shoulder-steroid-injection',
-        title: "Steroid Injection for Shoulder Pain: What You Should Know",
-        excerpt: "Shoulder pain — especially from conditions like rotator cuff inflammation or bursitis — can limit your daily life. One effective treatment used by orthopedic specialists is a steroid injection into the subacromial space of the shoulder.",
-        category: "Shoulder Care",
-        categoryColor: "bg-teal-100 text-teal-700",
-        image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&h=600&fit=crop",
-        author: "Dr. Ulhas Sonar",
-        date: "June 17, 2024"
-    },
-    {
-        id: 'knee-steroid-injection',
-        title: "Steroid Injections for Knee Pain: What You Need to Know",
-        excerpt: "Chronic knee pain caused by arthritis or inflammation can significantly affect daily life. One of the commonly used treatments for relief is a steroid injection into the knee joint.",
-        category: "Pain Management",
+        id: 'when-to-get-mri-knee',
+        title: "When Knee Pain Needs a Scan: Understanding MRI, X-rays, and Decision-Making",
+        excerpt: "When should knee pain be investigated with MRI or X-ray? A detailed clinical guide for active adults on symptoms, red flags, and imaging decisions.",
+        category: "Diagnostics",
         categoryColor: "bg-purple-100 text-purple-700",
-        image: "https://images.unsplash.com/photo-1581594632702-52c1cb8d799d?w=800&h=600&fit=crop",
+        image: "/images/blog/mri-scan.png",
         author: "Dr. Ulhas Sonar",
-        date: "March 12, 2024"
+        date: "March 21, 2026"
     },
     {
-        id: 'personalized-knee-alignment',
-        title: "Alignment concept: Total Knee Replacement",
-        excerpt: "A shift from one-size-fits-all. Explore how personalized alignment strategies and joint anatomy understanding lead to better surgical outcomes.",
-        category: "Innovations",
-        categoryColor: "bg-cyan-100 text-cyan-700",
-        image: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=800&h=600&fit=crop",
+        id: 'continuing-sports-risks',
+        title: "Continuing Sports with Knee Pain in Working Professionals: Risks and Mistakes",
+        excerpt: "Is it safe to play through knee pain? Learn the common mistakes, long-term risks, and safer management strategies for active adults balancing work and sport.",
+        category: "Injury Prevention",
+        categoryColor: "bg-red-100 text-red-700",
+        image: "/images/blog/sports-risks.png",
         author: "Dr. Ulhas Sonar",
-        date: "May 20, 2024"
-    }
+        date: "March 21, 2026"
+    },
+    {
+        id: 'anterior-knee-pain-office',
+        title: "Anterior Knee Pain in Office Workers",
+        excerpt: "Long hours at a desk can lead to 'theater sign' pain. Learn simple ergonomic fixes and lifestyle adjustments for office-based knee pain.",
+        category: "Ergonomics",
+        categoryColor: "bg-teal-100 text-teal-700",
+        image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800&h=600&fit=crop",
+        author: "Dr. Ulhas Sonar",
+        date: "March 21, 2026"
+    },
+    {
+        id: 'meniscus-tear-vs-strain',
+        title: "Meniscus Tear vs. Muscle Strain – How to Tell",
+        excerpt: "Is it a sharp joint line pain or a soft tissue ache? Compare the symptoms and recovery timelines for these common knee injuries.",
+        category: "Diagnosis",
+        categoryColor: "bg-emerald-100 text-emerald-700",
+        image: "https://images.unsplash.com/photo-1576091160550-217359f4ecf8?w=800&h=600&fit=crop",
+        author: "Dr. Ulhas Sonar",
+        date: "March 21, 2026"
+    },
+    {
+        id: 'knee-pain-exercises-desk',
+        title: "Best Exercises for Knee Pain (Desk Professionals)",
+        excerpt: "Keep your joints moving with these simple stretches and strengthening exercises you can perform right at your workstation.",
+        category: "Rehabilitation",
+        categoryColor: "bg-cyan-100 text-cyan-700",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop",
+        author: "Dr. Ulhas Sonar",
+        date: "March 21, 2026"
+    },
+    {
+        id: 'knee-pain-travel-flights',
+        title: "Managing Knee Pain During Travel and Flights",
+        excerpt: "Long-haul travel can cause joint stiffness and discomfort. Use these expert tips for staying comfortable on your next journey.",
+        category: "Lifestyle",
+        categoryColor: "bg-indigo-100 text-indigo-700",
+        image: "https://images.unsplash.com/photo-1436491865332-7a61a109c0f5?w=800&h=600&fit=crop",
+        author: "Dr. Ulhas Sonar",
+        date: "March 21, 2026"
+    },
+    {
+        id: 'knee-pain-pillar',
+        title: "Knee Pain in Professionals: The Ultimate Specialist Guide",
+        excerpt: "A complete clinical guide to knee pain for active adults. Understand causes, gym injuries, MRI decisions, and safe return to sports.",
+        category: "Pillar Page",
+        categoryColor: "bg-blue-100 text-blue-700",
+        image: "/images/blog/knee-pillar.png",
+        author: "Dr. Ulhas Sonar",
+        date: "March 21, 2026"
+    },
 ];
 
 const container = {
@@ -82,6 +114,8 @@ const item = {
 };
 
 const Articles = () => {
+    const { t } = useLanguage();
+
     return (
         <div className="pt-24 pb-16 min-h-screen bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -93,7 +127,7 @@ const Articles = () => {
                         animate={{ opacity: 1, y: 0 }}
                         className="inline-block px-4 py-1.5 mb-6 rounded-full bg-primary-50 text-primary-600 text-xs font-black uppercase tracking-[0.2em]"
                     >
-                        Medical Insights
+                        {t('articles.badge')}
                     </motion.div>
                     <motion.h1
                         initial={{ opacity: 0, y: -20 }}
@@ -101,10 +135,10 @@ const Articles = () => {
                         transition={{ duration: 0.5 }}
                         className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight"
                     >
-                        Expert <span className="text-primary-600">Orthopedic</span> Articles
+                        {t('articles.title')} <span className="text-primary-600">{t('articles.titleHighlight')}</span>
                     </motion.h1>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                        Stay informed with the latest insights on orthopedic health, treatments, and surgical innovations from Dr. Ulhas Sonar.
+                        {t('articles.description')}
                     </p>
                 </div>
 
@@ -115,7 +149,7 @@ const Articles = () => {
                     animate="show"
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
-                    {articlesData.slice(0, 3).map((article) => (
+                    {articlesData.map((article) => (
                         <motion.div
                             key={article.id}
                             variants={item}

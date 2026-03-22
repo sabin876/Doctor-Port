@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import { motion } from 'framer-motion';
 import { Activity, Target, ShieldAlert, ArrowRight, Zap, Star } from 'lucide-react';
 import { Link as RouterLink } from 'react-router-dom';
@@ -34,6 +35,7 @@ const MedicalRadar = () => (
 );
 
 const SportingInjury = () => {
+    const { t } = useLanguage();
     useEffect(() => {
         const script = document.createElement('script');
         script.src = "//www.instagram.com/embed.js";
@@ -51,13 +53,7 @@ const SportingInjury = () => {
         };
     }, []);
 
-    const solutions = [
-        "Hip labral tear",
-        "Hip Impingement",
-        "Anterior Cruciate Ligament Injury",
-        "Meniscal Tears",
-        "Patellofemoral Instability"
-    ];
+    const medicalDashboardLabel = t('sportingInjury.dashboard');
 
     return (
         <section className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-b from-blue-50/80 via-white to-blue-50/50">
@@ -86,7 +82,7 @@ const SportingInjury = () => {
                         className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-[#3a7e7a] text-[10px] font-black tracking-widest uppercase mb-6"
                     >
                         <Zap className="w-3 h-3 animate-pulse" />
-                        Elite Athlete Recovery
+                        {t('sportingInjury.badge')}
                     </motion.div>
 
                     <motion.h2
@@ -96,8 +92,8 @@ const SportingInjury = () => {
                         transition={{ duration: 0.8 }}
                         className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-montserrat font-normal text-slate-900 leading-[1.1] md:leading-[0.95] tracking-tight md:tracking-tighter mb-6 md:mb-8"
                     >
-                        Suffering From A <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Sporting Injury</span>?
+                        {t('sportingInjury.title')} <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">{t('sportingInjury.titleHighlight')}</span>{t('sportingInjury.titleEnd')}
                     </motion.h2>
 
                     <motion.p
@@ -107,7 +103,7 @@ const SportingInjury = () => {
                         transition={{ duration: 0.8, delay: 0.1 }}
                         className="text-lg md:text-xl text-slate-600 leading-relaxed font-medium mx-auto max-w-2xl"
                     >
-                        Experience world-class orthopedic care tailored for professional recovery. We bridge the gap between initial trauma and peak performance.
+                        {t('sportingInjury.description')}
                     </motion.p>
                 </div>
 
@@ -123,7 +119,7 @@ const SportingInjury = () => {
                                         <div className="w-3 h-3 rounded-full bg-amber-400"></div>
                                         <div className="w-3 h-3 rounded-full bg-emerald-400"></div>
                                     </div>
-                                    <div className="text-[10px] font-black tracking-widest text-[#3a7e7a]">HIGH-PERFORMANCE ANALYSIS</div>
+                                    <div className="text-[10px] font-black tracking-widest text-[#3a7e7a]">{medicalDashboardLabel}</div>
                                 </CardItem>
 
                                 <CardItem translateZ={80} className="w-full relative overflow-hidden rounded-2xl bg-slate-900 aspect-[9/13.5] border border-white/20">
@@ -150,32 +146,11 @@ const SportingInjury = () => {
                     className="pt-4"
                 >
                     <h3 className="text-xl font-black text-slate-800 mb-8 uppercase tracking-tight italic text-left">
-                        Learn about possible solutions:
+                        {t('sportingInjury.learnMore')}
                     </h3>
 
                     <div className="space-y-4 mb-12 text-left">
-                        {[
-                            {
-                                title: "Hip labral tear",
-                                desc: "Advanced minimally invasive repair techniques to heal cartilage tears and restore smooth hip joint movement."
-                            },
-                            {
-                                title: "Hip Impingement",
-                                desc: "Specialized arthroscopic treatments designed to reshape bone, relieve pain, and restore your full range of active mobility."
-                            },
-                            {
-                                title: "Anterior Cruciate Ligament Injury",
-                                desc: "Complete reconstructive and accelerated rehabilitation programs to get you back on the field safely and stronger."
-                            },
-                            {
-                                title: "Meniscal Tears",
-                                desc: "Customized conservative and surgical options focused on preserving joint health, reducing pain, and improving function."
-                            },
-                            {
-                                title: "Patellofemoral Instability",
-                                desc: "Targeted strengthening and stabilization procedures to correct kneecap tracking and provide lasting, reliable relief."
-                            }
-                        ].map((item, index) => (
+                        {t('sportingInjury.items').map((item, index) => (
                             <motion.div
                                 key={index}
                                 initial={{ opacity: 0, y: 10 }}
@@ -195,7 +170,10 @@ const SportingInjury = () => {
                             </motion.div>
                         ))}
                     </div>
+
+
                 </motion.div>
+
                     </div>
                 </div>
             </div>

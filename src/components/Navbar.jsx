@@ -77,8 +77,8 @@ const Navbar = () => {
 
     const languages = [
         { code: 'EN', name: 'English', flag: 'https://flagcdn.com/w20/gb.png' },
-        { code: 'AR', name: 'Arabic', flag: 'https://flagcdn.com/w20/ae.png' },
-        { code: 'HI', name: 'Hindi', flag: 'https://flagcdn.com/w20/in.png' }
+        { code: 'AR', name: 'العربية', flag: 'https://flagcdn.com/w20/ae.png' },
+        { code: 'HI', name: 'हिन्दी', flag: 'https://flagcdn.com/w20/in.png' }
     ];
 
     const currentLang = languages.find(l => l.code === lang) || languages[0];
@@ -92,7 +92,7 @@ const Navbar = () => {
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16 md:h-20">
-                    <div className="flex-shrink-0 flex items-center lg:-ml-8">
+                    <div className="flex-shrink-0 flex items-center -ml-2 lg:-ml-12">
                         <div onClick={() => handleNavigation('home')} className="cursor-pointer flex items-center gap-3">
                             <motion.img
                                 src={logo}
@@ -119,7 +119,7 @@ const Navbar = () => {
                                 <RouterLink
                                     key={link.name}
                                     to={link.path}
-                                    className="text-[15px] font-montserrat font-bold transition-all duration-300 hover:text-primary-600 relative group text-primary-950 uppercase tracking-widest"
+                                    className="text-[13px] font-montserrat font-bold transition-all duration-300 hover:text-primary-600 relative group text-primary-950 uppercase tracking-widest"
                                 >
                                     {t(`nav.${link.id}`)}
                                     <span className={`absolute -bottom-1 ${isRtl ? 'end-0' : 'start-0'} w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full`}></span>
@@ -128,7 +128,7 @@ const Navbar = () => {
                                 <button
                                     key={link.id}
                                     onClick={() => handleNavigation(link.target, link.route)}
-                                    className="text-[15px] font-montserrat font-bold transition-all duration-300 hover:text-primary-600 relative group text-primary-950 uppercase tracking-widest"
+                                    className="text-[13px] font-montserrat font-bold transition-all duration-300 hover:text-primary-600 relative group text-primary-950 uppercase tracking-widest"
                                 >
                                     {t(`nav.${link.id}`)}
                                     <span className={`absolute -bottom-1 ${isRtl ? 'end-0' : 'start-0'} w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full`}></span>
@@ -136,38 +136,44 @@ const Navbar = () => {
                             )
                         ))}
 
-                        {/* Language Selector */}
-                        <div className="relative">
+                        {/* Language Selector Dropdown Button */}
+                        <div className="relative group/lang">
                             <button
                                 onClick={() => setIsLangOpen(!isLangOpen)}
-                                className="flex items-center gap-2.5 text-gray-700 hover:text-primary-600 transition-colors font-medium text-[15px]"
+                                onMouseEnter={() => setIsLangOpen(true)}
+                                className="flex items-center gap-x-2 transition-all duration-300 hover:text-primary-600 group py-2"
                             >
                                 <img
                                     src={currentLang.flag}
                                     alt={currentLang.name}
-                                    className="w-5 h-auto rounded-sm shadow-sm"
+                                    className="w-4 h-auto rounded-sm opacity-80 group-hover:opacity-100 transition-opacity"
                                 />
-                                <span className="font-metabolic font-bold">{currentLang.name}</span>
-                                <ChevronDown className={`w-3.5 h-3.5 text-gray-400 transition-transform duration-300 ${isLangOpen ? 'rotate-180' : ''}`} />
+                                <span className="font-montserrat font-bold text-primary-950 group-hover:text-primary-600 text-[13px] tracking-widest">
+                                    Lan
+                                </span>
+                                <ChevronDown className={`w-3 h-3 text-gray-400 transition-transform duration-500 ${isLangOpen ? 'rotate-180 text-primary-600' : ''}`} />
                             </button>
 
                             <AnimatePresence>
                                 {isLangOpen && (
                                     <motion.div
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: 10 }}
-                                        className="absolute end-0 mt-4 w-44 bg-white border border-gray-100 rounded-2xl shadow-premium overflow-hidden z-50 p-1"
+                                        initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                                        exit={{ opacity: 0, y: 15, scale: 0.95 }}
+                                        onMouseLeave={() => setIsLangOpen(false)}
+                                        className="absolute end-0 mt-3 w-48 bg-white border border-gray-100 rounded-2xl shadow-premium-hover overflow-hidden z-50 p-2"
                                     >
+                                        <div className="mb-2 px-3 py-1.5 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] border-b border-gray-50 pb-2">
+                                            {t('nav.selectLanguage')}
+                                        </div>
                                         {languages.map((l) => (
                                             <button
                                                 key={l.code}
                                                 onClick={() => {
-                                                    const code = l.code;
-                                                    setLanguage(code);
+                                                    setLanguage(l.code);
                                                     setIsLangOpen(false);
                                                 }}
-                                                className={`w-full flex items-center gap-3 px-4 py-3 text-sm font-metabolic font-medium rounded-xl transition-colors ${lang === l.code ? 'bg-primary-50 text-blue-600' : 'text-gray-600 hover:bg-gray-50'}`}
+                                                className={`w-full flex items-center gap-3 px-4 py-3 text-[14px] font-metabolic font-bold rounded-xl transition-all duration-200 ${lang === l.code ? 'bg-primary-50 text-primary-600 shadow-sm ring-1 ring-primary-100' : 'text-gray-600 hover:bg-gray-50 hover:pl-5'}`}
                                             >
                                                 <img src={l.flag} alt={l.name} className="w-5 h-auto rounded-sm shadow-sm" />
                                                 <span>{l.name}</span>
@@ -180,7 +186,7 @@ const Navbar = () => {
 
                         <button
                             onClick={() => handleNavigation('contact-form', '/contact')}
-                            className="bg-primary-600 text-white px-6 py-2.5 rounded-xl font-metabolic font-black text-[10px] uppercase tracking-widest hover:bg-primary-700 transition-all duration-300 shadow-premium hover:shadow-premium-hover hover:-translate-y-0.5 flex items-center group/btn"
+                            className="bg-primary-600 text-white px-6 py-2.5 rounded-xl font-montserrat font-black text-[10px] uppercase tracking-widest hover:bg-primary-700 transition-all duration-300 shadow-premium hover:shadow-premium-hover hover:-translate-y-0.5 flex items-center group/btn"
                         >
                             <Calendar className="w-4 h-4 me-2 group-hover/btn:rotate-12 transition-transform" />
                             {t('nav.bookNow')}
@@ -220,7 +226,7 @@ const Navbar = () => {
                                         <RouterLink
                                             to={link.path}
                                             onClick={() => setIsOpen(false)} // Close mobile menu on click
-                                            className="text-[15px] font-montserrat font-bold text-gray-900 hover:text-primary-600 transition-colors uppercase tracking-widest"
+                                            className="text-[13px] font-montserrat font-bold text-gray-900 hover:text-primary-600 transition-colors uppercase tracking-widest"
                                         >
                                             {t(`nav.${link.id}`)}
                                         </RouterLink>
@@ -232,7 +238,7 @@ const Navbar = () => {
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: index * 0.1 }}
                                         onClick={() => handleNavigation(link.target, link.route)}
-                                        className="text-[15px] font-montserrat font-bold text-gray-900 hover:text-primary-600 transition-colors uppercase tracking-widest"
+                                        className="text-[13px] font-montserrat font-bold text-gray-900 hover:text-primary-600 transition-colors uppercase tracking-widest"
                                     >
                                         {t(`nav.${link.id}`)}
                                     </motion.button>
@@ -244,17 +250,17 @@ const Navbar = () => {
                                 <p className="text-[10px] uppercase tracking-widest font-metabolic font-black text-gray-400">{t('nav.selectLanguage')}</p>
                                 <div className="flex flex-wrap justify-center gap-4">
                                     {languages.map((l) => (
-                                        <button
-                                            key={l.code}
-                                            onClick={() => {
-                                                const code = l.code;
-                                                setLanguage(code);
-                                                setIsOpen(false);
-                                            }}
-                                            className={`px-6 py-2 rounded-xl text-sm font-metabolic font-black transition-all ${lang === l.code ? 'bg-primary-600 text-white shadow-lg' : 'bg-gray-100 text-gray-600'}`}
-                                        >
-                                            {l.name}
-                                        </button>
+                                            <button
+                                                key={l.code}
+                                                onClick={() => {
+                                                    setLanguage(l.code);
+                                                    setIsOpen(false);
+                                                }}
+                                                className={`px-4 py-2 text-[13px] font-montserrat font-bold transition-all duration-300 flex items-center gap-2 ${lang === l.code ? 'text-primary-600' : 'text-gray-600 hover:text-primary-600'}`}
+                                            >
+                                                <img src={l.flag} alt={l.name} className="w-4 h-auto rounded-sm" />
+                                                {l.name}
+                                            </button>
                                     ))}
                                 </div>
                             </div>
@@ -262,7 +268,7 @@ const Navbar = () => {
                             <div className="w-full pt-8">
                                 <button
                                     onClick={() => handleNavigation('contact-form', '/contact')}
-                                    className="block w-full bg-primary-600 text-white text-center py-4 rounded-xl font-metabolic font-bold shadow-xl shadow-primary-200 uppercase tracking-widest text-xs"
+                                    className="block w-full bg-primary-600 text-white text-center py-4 rounded-xl font-montserrat font-bold shadow-xl shadow-primary-200 uppercase tracking-widest text-xs"
                                 >
                                     {t('nav.bookNow')}
                                 </button>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
+    ArrowRight,
     ChevronDown,
     ChevronUp,
     Activity,
@@ -11,8 +12,7 @@ import {
     Cpu,
     HeartPulse,
     Bandage,
-    Stethoscope,
-    ArrowRight
+    Stethoscope
 } from 'lucide-react';
 
 import { useLanguage } from '../context/LanguageContext';
@@ -106,13 +106,6 @@ const Services = () => {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-16">
-                    <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        className="inline-block px-4 py-1.5 mb-4 rounded-full bg-primary-50 text-primary-700 text-[11px] font-bold uppercase tracking-[0.2em]"
-                    >
-                        {t('services.badge')}
-                    </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -218,6 +211,22 @@ const Services = () => {
                             </>
                         )}
                     </motion.button>
+                </motion.div>
+
+                {/* Personalized Solution CTA */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="mt-12 text-center"
+                >
+                    <a
+                        href="#personalized-solutions"
+                        className="inline-flex items-center gap-2 text-primary-600 font-black text-sm uppercase tracking-widest hover:text-primary-700 transition-colors group"
+                    >
+                        Need a more tailored approach? <span className="underline decoration-2 underline-offset-4">Get Your Personalized Solution</span>
+                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    </a>
                 </motion.div>
             </div>
         </section>

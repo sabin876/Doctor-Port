@@ -4,322 +4,273 @@ export const translations = {
             doctorName: "Dr. Ulhas Sonar",
             specialty: "Orthopedic Surgeon"
         },
-        // Navbar
+        topBar: {
+            phone: "Call",
+            email: "Email",
+            location: "Location",
+            locationValue: "DIP, Dubai, UAE"
+        },
         nav: {
             home: "Home",
-            about: "About",
-            services: "Services",
+            about: "About Us",
+            services: "Expertise",
             articles: "Articles",
             gallery: "Gallery",
             contact: "Contact",
-            bookNow: "Get Appointment",
-            selectLanguage: "Select Language",
-            affiliations: "Memberships & Affiliations",
-            testimonials: "Testimonials",
-            faq: "FAQ"
-        },
-        // TopBar
-        topBar: {
-            phone: "Call Us",
-            email: "Email",
-            location: "Location",
-            locationValue: "Canadian Specialist Hospital, Dubai"
-        },
-        // Hero Section
-        hero: {
-            badge: "MBBS, MS, MRCS, MCh, FEBOT, FRCS, PGDip Robotics",
-            description: "With more than 15+ years of global experience across UK, India, Jersey Island and Dubai in trauma and orthopedic surgery with special interest in knee, hip, shoulder and complex trauma orthopedic surgery, Dr Sonar brings world class orthopedic care to Dubai.",
+            testimonials: "Reviews",
+            faq: "FAQ",
+            bookNow: "Book Appointment",
             bookAppointment: "Book Consult",
             exploreServices: "Explore Services",
-            title: "Restore Your Active Life",
-            subtitle: "and Precision Orthopedics",
-            stats: {
-                years: "Years",
-                patients: "Patients",
-                surgeries: "Surgeries",
-                rating: "Rating"
-            },
+            selectLanguage: "Select Language",
+            awards: "Awards",
+            affiliations: "Memberships & Affiliations"
+        },
+        hero: {
+            badge: "Expert Orthopedic Care",
+            title: "Restore Your",
+            titleHighlight: "Active Life",
+            description: "Advanced orthopedic solutions for joint replacement, sports injuries, and complex trauma. World-class care tailored to your recovery.",
+            bookAppointment: "Book Appointment",
+            exploreServices: "Explore Services",
             highlights: [
-                "10+ research and publications",
-                "10+ Podium presentations",
-                "6+ medical audits",
-                "5-star ratings by patients",
-                "Excellent patient satisfaction",
-                "Exceptional surgical outcomes",
-                "Multiple awards",
-                "Brilliant success rate",
-                "Minimal complication rates",
-                "15+ years experience",
-                "6 prestigious qualifications across UK, Europe, India",
-                "10+ research and publications",
-                "10+ Podium presentations",
-                "6+ medical audits",
-                "5-star ratings by patients",
-                "Excellent patient satisfaction",
-                "Exceptional surgical outcomes",
-                "Multiple awards",
-                "Brilliant success rate",
-                "Minimal complication rates",
-                "15+ years experience",
-                "6 prestigious qualifications across UK, Europe, India",
-                "10+ research and publications",
-                "10+ Podium presentations",
-                "6+ medical audits",
-                "5-star ratings by patients",
-                "Excellent patient satisfaction",
-                "Exceptional surgical outcomes",
-                "Multiple awards",
-                "Brilliant success rate",
-                "Minimal complication rates",
-                "Memberships & Affiliations"
+                "15+ Years Global Experience",
+                "Advanced Robotic Surgery",
+                "UK & European Certified",
+                "Complex Trauma Specialist",
+                "Personalized Recovery Plans",
+                "State-of-the-art Facilities"
             ],
+            stats: {
+                exp: "YEARS EXP.",
+                qualifications: "GLOBAL QUALIFICATIONS (UK, EU, IN)",
+                research: "RESEARCH & PUBLICATIONS",
+                audits: "CLINICAL AUDITS",
+                podium: "PODIUM PRESENTATIONS",
+                outcomes: "EXCEPTIONAL OUTCOMES & AWARDS"
+            },
             slides: [
                 {
-                    heading_top: "Restore Your",
-                    heading_bottom: "Active Life",
-                    description: "Dr. Ulhas Sonar specializes in advanced joint replacement, sports injuries, and minimal invasive arthroscopy. Trust in care that goes beyond diagnosis."
+                    badge: "FRCS (UK), FEBOT, MCh, PGDip Robotics, MBBS, MS",
+                    headline1: "Restore Your",
+                    headline2: "Life",
+                    description: "With more than 15+ years of global experience across UK, India, Jersey Island and Dubai in trauma and orthopedic surgery. Delivering world-class care in knee, hip, shoulder and complex trauma.",
+                    nameplateSub: "Orthopedic Specialist"
                 },
                 {
-                    heading_top: "Expert Orthopedic",
-                    heading_bottom: "Care",
-                    description: "Global expertise in upper limb and robotic-assisted knee surgery. Specialized in helping you return to your active life."
-                },
-                {
-                    heading_top: "Recovery Focused",
-                    heading_bottom: "Excellence",
-                    description: "Personalized orthopedic treatments tailored to your lifestyle. Combining innovation with compassionate patient care."
+                    badge: "MBBS, MS Ortho, M Ch Ortho, FRCS (T&O)",
+                    headline1: "Precision",
+                    headline2: "Ortho",
+                    description: "A fellow of the Royal College of Surgeons with over 15 years of global experience. Specializing in robotic-assisted knee replacement and minimally invasive procedures.",
+                    nameplateSub: "Orthopedic Surgeon"
                 }
             ]
         },
-        // Specialized Solutions
-        specializedSolutions: {
-            title: "Personalized solutions for every orthopedic need",
-            description: "FOI physicians provide a responsive, personalized care plan for any musculoskeletal injury or condition.",
-            viewAll: "View All Services & Treatments",
-            items: [
-                { title: "Hand & Wrist" },
-                { title: "Back & Neck" },
-                { title: "Foot & Ankle" },
-                { title: "Elbow" },
-                { title: "Knee & Leg" },
-                { title: "Hip & Thigh" },
-                { title: "Shoulder" }
-            ]
-        },
-        // Sporting Injury
-        sportingInjury: {
-            title: "Have You Suffered A",
-            titleHighlight: "Sporting Injury",
-            titleEnd: "To The Hip Or Knee?",
-            learnMore: "Learn about possible solutions:",
-            bookBtn: "Book A Consultation",
-            solutions: [
-                "Hip labral tear",
-                "Hip Impingement",
-                "Anterior Cruciate Ligament Injury",
-                "Meniscal Tears",
-                "Patellofemoral Instability"
-            ]
-        },
-        // About Section
         about: {
-            badge: "MBBS, MS (Ortho), MRCS (England), MCh Upper Limb Surgeries (Wrightington, UK), FEBOT (Switzerland), FRCS (T&O) UK, PG Dip in Computer and Robotics Assisted TKR(Glasgow, UK)",
-            title: "Your Orthopaedic",
-            titleHighlight: "Surgeon",
-            titleEnd: "in Dubai",
-            description1: "Dr. Ulhas Sonar is a British Indian orthopedic surgeon with extensive global experience across the UK, India, Jersey Island, and Dubai. A graduate of B J Medical College, Pune, he began his career as an Assistant Professor in India before pursuing advanced training in the UK at prestigious institutions like Wrightington Hospital and Golden Jubilee Hospital.",
-            description2: "He is a fellow of the Royal College of Surgeons (England) as well as European Board of Orthopaedics and Traumatology (Switzerland), and holds an MCh Super Specialisation in Upper Limb Surgery along with a PG Diploma in Computer and Robotic-Assisted Total Knee Replacement. Committed to evidence-based, patient-centred care, Dr. Ulhas is also an accomplished researcher, educator, and passionate advocate for patient safety and rights.",
-            experienceBadge: "Years Experience",
+            badge: "FRCS (UK), FEBOT, MCh, PGDip Robotics, MBBS, MS",
+            title: "World-Class",
+            titleHighlight: "Expertise",
+            titleEnd: "In Orthopedics",
+            experienceBadge: "Years of global experience",
+            description1: "Dr. Ulhas Sonar is a distinguished British-Indian Orthopedic Surgeon with over 15 years of global experience across the UK, Europe, India, and the UAE.",
+            description2: "Specializing in robotic-assisted joint replacements and complex trauma, he combines surgical precision with a patient-centered approach to restore mobility and transform lives.",
             qualifications: {
                 global: {
-                    title: "Global Expertise",
-                    desc: "UK, India, Jersey & Dubai"
+                    title: "Global Experience",
+                    desc: "UK, EUROPE, INDIA, UAE"
                 },
                 training: {
-                    title: "Advanced Training",
-                    desc: "Wrightington & Golden Jubilee"
+                    title: "Structured Training",
+                    desc: "10+ YEARS IN UK (NHS)"
                 },
                 fellowships: {
-                    title: "Fellowships",
-                    desc: "FRCS (England), EBOT"
+                    title: "Expert Fellowships",
+                    desc: "ROBOTICS & JOINT REPLACEMENT"
                 },
                 specialisation: {
                     title: "Specialisation",
-                    desc: "Upper Limb & Robotic Knee"
+                    desc: "COMPLEX TRAUMA & SPORTS"
                 }
             },
             stats: {
-                experience: { value: "15+", label: "Years Experience" },
-                surgeries: { value: "5000+", label: "Successful Surgeries" },
-                patients: { value: "10k+", label: "Happy Patients" },
-                global: { value: "2+", label: "Global Specializations" }
+                experience: { value: "15+", label: "YEARS EXP." },
+                surgeries: { value: "5000+", label: "SURGERIES" },
+                patients: { value: "10k+", label: "HAPPY PATIENTS" },
+                global: { value: "4", label: "COUNTRIES" }
             }
         },
-        // Services Section
         services: {
-            badge: "Medical Specializations",
-            title: "Our Specialized",
+            badge: "Specialized Care",
+            title: "Our Orthopedic",
             titleHighlight: "Services",
-            titleEnd: "",
-            description: "Comprehensive care using the latest surgical and non-surgical advancements for your mobility and health.",
-            viewDetails: "Learn More",
+            titleEnd: "& Expertise",
+            description: "Providing a full spectrum of advanced orthopedic treatments designed for optimal recovery.",
+            viewDetails: "View Details",
             showMore: "Show More Services",
             showLess: "Show Less",
             items: [
                 {
-                    title: "Total/Partial Joint Replacement",
-                    desc: "Joint replacement surgery is a procedure where a damaged joint is replaced with an artificial implant. It relieves pain, restores function, and improves quality of life."
+                    title: "Joint Replacement",
+                    desc: "Advanced total and partial replacement for knee and hip using the latest techniques."
                 },
                 {
-                    title: "Sports / ACL Injury Management",
-                    desc: "Prevention, diagnosis, treatment, and rehabilitation of sports injuries to restore the athlete’s strength, mobility, and performance while minimizing injury risk."
+                    title: "Sports Medicine",
+                    desc: "Comprehensive care for athletes, from injury prevention to advanced surgical repair."
                 },
                 {
-                    title: "Robotic / Computer Assisted Surgery",
-                    desc: "A cutting-edge approach that enhances surgical precision, allows for better implant alignment, and contributes to improved outcomes and faster recovery."
+                    title: "Robotic Surgery",
+                    desc: "Precision-guided orthopedic procedures for faster recovery and better outcomes."
                 },
                 {
-                    title: "Knee and Shoulder Arthroscopy",
-                    desc: "Minimally invasive procedure used to diagnose and treat joint problems using an arthroscope, allowing for necessary treatments through tiny incisions."
+                    title: "Arthroscopy",
+                    desc: "Minimally invasive keyhole surgery for joint diagnosis and treatment."
                 },
                 {
-                    title: "Deformity Corrections / Osteotomies",
-                    desc: "Surgically reshaping or realigning bones to restore proper function and structure of joints. Relieves pain, improves mobility, and delays joint replacement."
+                    title: "Deformity Correction",
+                    desc: "Specialized treatment for limb alignment and structural orthopedic issues."
                 },
                 {
-                    title: "Joint Preservation / Regeneration",
-                    desc: "Minimally invasive treatments like PRP therapy and stem cell injections designed to repair damaged cartilage, reduce pain, and promote long-term joint health."
+                    title: "Consultation",
+                    desc: "In-depth clinical evaluation and personalized treatment planning."
                 },
                 {
-                    title: "Fractures and Trauma Care",
-                    desc: "Immediate and long-term treatment of broken bones. Includes proper diagnosis, immobilization, and surgical intervention if needed for full recovery."
+                    title: "Orthopedic Trauma",
+                    desc: "Expert management of complex fractures and emergency musculoskeletal injuries."
                 },
                 {
-                    title: "Physiotherapy and Rehabilitation",
-                    desc: "Post-surgical structured rehabilitation programs designed to restore movement, strength, and function personalized based on patient health and recovery goals."
+                    title: "Physiotherapy",
+                    desc: "Integrated rehabilitation to ensure complete recovery and long-term joint health."
                 }
             ]
         },
-        // FAQ Section
-        faq: {
-            badge: "Patient Clarifications",
-            title: "Common Questions",
+        personalizedSolutions: {
+            title: "Personalized Solutions",
+            description: "Targeted treatments for specific orthopedic conditions to get you back to your best.",
+            viewAll: "View All Solutions",
+            items: [
+                { title: "Hand & Wrist" },
+                { title: "Back & Neck" },
+                { title: "Foot & Ankle" },
+                { title: "Shoulder" },
+                { title: "Knee" },
+                { title: "Hip" },
+                { title: "Sports Injuries" }
+            ]
+        },
+        sportingInjury: {
+            badge: "Sports Injury Clinic",
+            title: "Suffering from a",
+            titleHighlight: "sporting injury?",
+            titleEnd: "",
+            description: "Don't let pain keep you on the sidelines. We offer expert diagnosis and advanced treatments for athletes of all levels.",
+            dashboard: "MEDICAL DASHBOARD",
+            learnMore: "LEARN MORE ABOUT SPORTS RECOVERY",
             items: [
                 {
-                    question: "What conditions typically require joint replacement surgery?",
-                    answer: "Severe arthritis, cartilage loss, or deformities not responsive to conservative treatments, often in knee and hip joints."
+                    title: "ACL Reconstruction",
+                    desc: "Advanced ligament repair to restore knee stability and strength."
                 },
                 {
-                    question: "How long does recovery take after knee or hip replacement?",
-                    answer: "Recovery after knee or hip replacement usually takes 6–12 weeks for basic mobility, with full recovery often requiring 6–12 months."
+                    title: "Meniscus Repair",
+                    desc: "Precision surgery to preserve knee cushioning and prevent future issues."
                 },
                 {
-                    question: "Benefits of arthroscopic surgery over open surgery?",
-                    answer: "Arthroscopic surgery offers smaller incisions, less pain, faster recovery, and lower infection risk compared to open surgery."
+                    title: "Shoulder Instability",
+                    desc: "Treatment for dislocations and chronic shoulder weakness."
                 },
                 {
-                    question: "Can I get a second opinion before surgery?",
-                    answer: "Yes, seeking a second opinion before surgery is encouraged to confirm your diagnosis and explore all treatment options."
-                },
-                {
-                    question: "How are sports injuries treated?",
-                    answer: "Sports injuries are treated based on severity, often involving rest, physical therapy, medications, or surgery if necessary."
+                    title: "Ligament Injuries",
+                    desc: "Comprehensive care for ankle, wrist, and multi-ligament knee injuries."
                 }
             ]
         },
-        // Testimonials
-        testimonials: {
-            title: "What Our Patients Say",
-            reviewButton: "Write a Review on Google"
-        },
-        // Contact Section
-        contact: {
-            badge: "Get In Touch",
-            title: "Start Your Recovery",
-            titleHighlight: "Journey",
-            description: "Take the first step towards a pain-free life. Our team is ready to assist you with world-class expertise.",
-            cards: {
-                call: {
-                    title: "Call Support",
-                    sub: "Direct line for appointments & queries"
-                },
-                email: {
-                    title: "Email Us",
-                    sub: "For official records and detailed questions"
-                },
-                visit: {
-                    title: "Visit Clinic",
-                    content: "Office 303, Royal Class Building",
-                    sub: "DIP, Dubai, UAE"
-                },
-                social: "Connect With Us"
-            },
-            form: {
-                title: "Send A Private Message",
-                name: "Your Name",
-                email: "Your Email",
-                phone: "Phone Number",
-                medicalInquiry: "Medical Inquiry",
-                placeholder: "Describe your condition briefly...",
-                submit: "Send Message"
-            }
-        },
-        appointment: {
-            badge: "Direct Access",
-            title: "Book Your Appointment Today",
-            description: "Scheduling a consultation is the first step towards recovery. Dr. Ulhas Sonar is here to answer your questions and provide a clear path forward.",
-            quick: { title: "Quick Availability", desc: "We prioritize urgent cases and new patients." },
-            second: { title: "Second Opinions", desc: "Complimentary discussion for surgery confirmations." },
-            step1: "Personal Details",
-            step2: "Appointment Preferences",
-            step3: "Confirmation",
-            stepOf: "Step",
-            stepOfTotal: "of 3",
-            name: "Full Name",
-            email: "Email Address",
-            phone: "Phone Number",
-            type: "Consultation Type",
-            date: "Preferred Date (Optional)",
-            message: "How can we help?",
-            next: "Next Step",
-            back: "Back",
-            review: "Review",
-            almostDone: "Almost Done!",
-            confirmMsg: "Please verify your details before submitting. We'll contact you at",
-            confirm: "Confirm Appointment",
-            types: {
-                initial: "Initial Consultation",
-                second: "Second Opinion (Free)",
-                followup: "Follow-up",
-                surgery: "Surgery Planning"
-            }
-        },
         publications: {
-            badge: "Scholarly Contributions",
+            badge: "Academic Excellence",
             title: "Research &",
             titleHighlight: "Publications",
-            description: "Peer-reviewed articles and clinical research authored by Dr. Ulhas Sonar, contributing to the global advancement of orthopedic surgical practices.",
-            firstAuthor: "1st Author",
-            secondAuthor: "2nd Author",
-            action: "Read Publication",
+            description: "Clinical contributions and published research in leading international orthopedic journals.",
+            firstAuthor: "Lead Author",
+            secondAuthor: "Collaborative Research",
             stats: {
-                papers: "Research Papers",
-                impact: "Global Impact",
-                journals: "Top Journals",
-                reviewed: "Peer Reviewed"
+                papers: "PEER REVIEWED PAPERS",
+                impact: "GLOBAL CLINICAL IMPACT",
+                journals: "TOP-TIER JOURNALS"
             }
         },
-        footer: {
-            desc: "Precise orthopaedic surgical care delivered with integrity, respect for patient rights, and an individualised medical evidence-based approach—restoring movement, function, and active lives.",
-            disclaimer: "Disclaimer: The information provided is an overview and not a substitute for professional help. If you're facing an emergency, please visit your nearest hospital.",
-            visitMeAt: "Visit Me At",
-            nav: "Navigation",
-            support: "Support",
-            clinic: "Clinic Info",
-            rights: "Crafted for Precision.",
-            patientResources: "Patient Resources",
-            articles: "Articles",
-            privacy: "Privacy"
+        articles: {
+            badge: "Medical Insights",
+            title: "Expert Orthopedic",
+            titleHighlight: "Articles",
+            description: "Stay informed with the latest insights on orthopedic health, treatments, and surgical innovations.",
+            readMore: "Read Full Article",
+            viewAll: "View All Articles"
+        },
+        testimonials: {
+            badge: "Patient Reviews",
+            title: "What Our Patients Say",
+            description: "Real stories from patients who restored their mobility and life through our care.",
+            items: [
+                {
+                    name: "James Wilson",
+                    role: "Professional Athlete",
+                    content: "Dr. Sonar's expertise in robotic surgery is unmatched. I was back on the field sooner than expected."
+                },
+                {
+                    name: "Sarah Ahmed",
+                    role: "Grandmother",
+                    content: "My hip replacement has given me a new lease on life. I can finally play with my grandkids again."
+                }
+            ]
+        },
+        faq: {
+            badge: "Help Center",
+            title: "Frequently Asked Questions",
+            items: [
+                {
+                    question: "What is robotic-assisted surgery?",
+                    answer: "It is a precision-guided technique that allows the surgeon to perform joint replacements with higher accuracy, leading to better outcomes."
+                },
+                {
+                    question: "How long is the recovery period?",
+                    answer: "Recovery varies by procedure, but most patients return to normal activities within 6 to 12 weeks with proper physical therapy."
+                },
+                {
+                    question: "Do you treat sports injuries?",
+                    answer: "Yes, we specialize in ACL repairs, meniscus treatments, and all types of athletic musculoskeletal injuries."
+                },
+                {
+                    question: "Where is the clinic located?",
+                    answer: "Our main consultation rooms are located in Dubai, within premium medical facilities."
+                },
+                {
+                    question: "Is second opinion available?",
+                    answer: "Yes, we encourage patients to seek second opinions for complex orthopedic cases to ensure confidence in their treatment."
+                }
+            ]
+        },
+        contact: {
+            badge: "Contact Us",
+            title: "Book Your",
+            titleHighlight: "Consultation",
+            description: "Take the first step towards recovery. Connect with our expert team today.",
+            form: {
+                title: "Send a message",
+                name: "Your Name",
+                namePlaceholder: "Enter your full name",
+                email: "Email Address",
+                emailPlaceholder: "yourname@email.com",
+                phone: "Phone Number",
+                phonePlaceholder: "+971 -- --- ----",
+                medicalInquiry: "Inquiry Type",
+                placeholder: "How can we help you today?",
+                submit: "Request Appointment"
+            },
+            info: {
+                call: "Call Us",
+                email: "Email Support",
+                visit: "Visit Clinic",
+                hours: "Mon-Sat: 9am - 7pm"
+            }
         }
     },
     HI: {
@@ -327,491 +278,547 @@ export const translations = {
             doctorName: "डॉ. उल्हास सोनार",
             specialty: "आर्थोपेडिक सर्जन"
         },
-        nav: {
-            home: "Home",
-            about: "About",
-            services: "Services",
-            articles: "Articles",
-            gallery: "Gallery",
-            contact: "Contact",
-            bookNow: "Get Appointment",
-            selectLanguage: "भाषा चुनें",
-            affiliations: "सदस्यता और संबद्धता",
-            testimonials: "प्रशंसापत्र",
-            faq: "सामान्य प्रश्न"
-        },
         topBar: {
-            phone: "हमें कॉल करें",
+            phone: "कॉल करें",
             email: "ईमेल",
             location: "स्थान",
-            locationValue: "कैनेडियन स्पेशलिस्ट अस्पताल, दुबई"
+            locationValue: "DIP, दुबई, यूएई"
+        },
+        nav: {
+            home: "होम",
+            about: "हमारे बारे में",
+            services: "विशेषज्ञता",
+            articles: "लेख",
+            gallery: "गैलरी",
+            contact: "संपर्क",
+            testimonials: "समीक्षाएं",
+            faq: "सामान्य प्रश्न",
+            bookNow: "अपॉइंटमेंट बुक करें",
+            bookAppointment: "परामर्श बुक करें",
+            exploreServices: "सेवाएं देखें",
+            selectLanguage: "भाषा चुनें",
+            awards: "पुरस्कार",
+            affiliations: "सदस्यता और संबद्धता"
         },
         hero: {
-            badge: "MBBS, MS, MRCS, MCh, FEBOT, FRCS, PGDip Robotics",
-            title: "अपना सक्रिय जीवन पुनः प्राप्त करें",
-            subtitle: "और सटीक ऑर्थोपेडिक्स",
-            description: "यूके, भारत, जर्सी द्वीप और दुबई में आघात और आर्थोपेडिक सर्जरी में 15+ वर्षों के वैश्विक अनुभव के साथ, डॉ. सोनार दुबई में विश्व स्तरीय आर्थोपेडिक देखभाल लाते हैं।",
-            bookAppointment: "परामर्श बुक करें",
-            learnMore: "सेवाएं देखें",
-            stats: {
-                experience: "वर्ष विशेषज्ञ",
-                surgeries: "सफल ऑपरेशन",
-                rating: "रोगी स्कोर"
-            },
+            badge: "विशेषज्ञ आर्थोपेडिक देखभाल",
+            title: "अपने",
+            titleHighlight: "सक्रिय जीवन को",
+            description: "जोड़ प्रतिस्थापन, खेल की चोटों और जटिल ट्रॉमा के लिए उन्नत आर्थोपेडिक समाधान। आपकी रिकवरी के लिए विश्वस्तरीय देखभाल।",
+            bookAppointment: "अपॉइंटमेंट बुक करें",
+            exploreServices: "सेवाएं देखें",
             highlights: [
-                "15+ वर्षों का अनुभव",
-                "यूके, यूरोप, भारत में 6 प्रतिष्ठित योग्यताएं",
-                "10+ शोध और प्रकाशन",
-                "10+ पोडियम प्रस्तुतियां",
-                "6+ मेडिकल ऑडिट",
-                "मरीजों द्वारा 5-स्टार रेटिंग",
-                "उत्कृष्ट रोगी संतुष्टि",
-                "असाधारण सर्जिकल परिणाम",
-                "कई पुरस्कार",
-                "शानदार सफलता दर",
-                "न्यूनतम जटिलता दर"
+                "15+ वर्षों का वैश्विक अनुभव",
+                "उन्नत रोबोटिक सर्जरी",
+                "यूके और यूरोपीय प्रमाणित",
+                "जटिल ट्रॉमा विशेषज्ञ",
+                "व्यक्तिगत रिकवरी योजनाएं",
+                "अत्याधुनिक सुविधाएं"
             ],
+            stats: {
+                exp: "वर्षों का अनुभव",
+                qualifications: "वैश्विक योग्यताएं (UK, EU, IN)",
+                research: "अनुसंधान और प्रकाशन",
+                audits: "नैदानिक ऑडिट",
+                podium: "पोडियम प्रस्तुतियां",
+                outcomes: "असाधारण परिणाम और पुरस्कार"
+            },
+            slides: [
+                {
+                    badge: "FRCS (UK), FEBOT, MCh, PGDip Robotics, MBBS, MS",
+                    headline1: "अपने जीवन को",
+                    headline2: "बहाल करें",
+                    description: "ट्रॉमा और आर्थोपेडिक सर्जरी में यूके, भारत, जर्सी आइलैंड और दुबई में 15+ वर्षों के वैश्विक अनुभव के साथ। घुटने, कूल्हे, कंधे और जटिल ट्रॉमा में विश्व स्तरीय देखभाल प्रदान करना।",
+                    nameplateSub: "आर्थोपेडिक विशेषज्ञ"
+                },
+                {
+                    badge: "MBBS, MS Ortho, M Ch Ortho, FRCS (T&O)",
+                    headline1: "सटीक",
+                    headline2: "आर्थो",
+                    description: "15 वर्षों से अधिक के वैश्विक अनुभव के साथ रॉयल कॉलेज ऑफ सर्जन्स के फेलो। रोबोटिक-सहायता प्राप्त घुटना प्रतिस्थापन और न्यूनतम आक्रामक प्रक्रियाओं में विशेषज्ञता।",
+                    nameplateSub: "आर्थोपेडिक सर्जन"
+                }
+            ]
         },
         about: {
-            badge: "डॉ. उल्हास के बारे में",
-            title: "दुबई में आपके आर्थोपेडिक",
-            titleHighlight: "सर्जन",
-            titleEnd: "",
-            description1: "डॉ. उल्हास सोनार एक ब्रिटिश भारतीय आर्थोपेडिक सर्जन हैं जिनके पास यूके, भारत, जर्सी द्वीप और दुबई में व्यापक वैश्विक अनुभव है। बी जे मेडिकल कॉलेज, पुणे के स्नातक, उन्होंने यूके में राइटिंगटन अस्पताल और गोल्डन जुबली अस्पताल जैसे प्रतिष्ठित संस्थानों में उन्नत प्रशिक्षण प्राप्त करने से पहले भारत में सहायक प्रोफेसर के रूप में अपना करियर शुरू किया।",
-            description2: "वह रॉयल कॉलेज ऑफ सर्जन्स (इंग्लैंड) के साथ-साथ यूरोपियन बोर्ड ऑफ ऑर्थोपेडिक्स एंड ट्रुमेटोलॉजी (स्विट्जरलैंड) के फेलो हैं, और उनके पास अपर लिम्ब सर्जरी में एमसीएच सुपर स्पेशलाइजेशन के साथ-साथ कंप्यूटर और रोबोटिक-असिस्टेड टोटल नी रिप्लेसमेंट में पीजी डिप्लोमा है। साक्ष्य-आधारित, रोगी-केंद्रित देखभाल के लिए प्रतिबद्ध, डॉ. उल्हास एक कुशल शोधकर्ता, शिक्षक और रोगी सुरक्षा और अधिकारों के लिए भावुक वकील भी हैं।",
-            experienceBadge: "वर्षों का अनुभव",
+            badge: "FRCS (UK), FEBOT, MCh, PGDip Robotics, MBBS, MS",
+            title: "आर्थोपेडिक्स में",
+            titleHighlight: "विश्वस्तरीय",
+            titleEnd: "विशेषज्ञता",
+            experienceBadge: "वर्षों का वैश्विक अनुभव",
+            description1: "डॉ. उल्हास सोनार एक प्रतिष्ठित ब्रिटिश-भारतीय आर्थोपेडिक सर्जन हैं, जिनके पास यूके, यूरोप, भारत और यूएई में 15 वर्षों से अधिक का वैश्विक अनुभव है।",
+            description2: "रोबोटिक-सहायता प्राप्त जोड़ प्रतिस्थापन और जटिल ट्रॉमा में विशेषज्ञता रखते हुए, वे गतिशीलता को बहाल करने और जीवन को बदलने के लिए शल्य चिकित्सा सटीकता के साथ रोगी-केंद्रित दृष्टिकोण अपनाते हैं।",
             qualifications: {
                 global: {
-                    title: "वैश्विक विशेषज्ञता",
-                    desc: "यूके, भारत, जर्सी और दुबई"
+                    title: "वैश्विक अनुभव",
+                    desc: "यूके, यूरोप, भारत, यूएई"
                 },
                 training: {
-                    title: "उन्नत प्रशिक्षण",
-                    desc: "राइटिंगटन और गोल्डन जुबली"
+                    title: "संरचित प्रशिक्षण",
+                    desc: "यूके (NHS) में 10+ वर्ष"
                 },
                 fellowships: {
-                    title: "फेलोशिप",
-                    desc: "FRCS (इंग्लैंड), EBOT"
+                    title: "विशेषज्ञ फेलोशिप",
+                    desc: "रोबोटिक्स और जोड़ प्रतिस्थापन"
                 },
                 specialisation: {
                     title: "विशेषज्ञता",
-                    desc: "अपर लिम्ब और रोबोटिक नी"
+                    desc: "जटिल ट्रॉमा और खेल चिकित्सा"
                 }
             },
             stats: {
                 experience: { value: "15+", label: "वर्षों का अनुभव" },
-                surgeries: { value: "5000+", label: "सफल सर्जरी" },
-                patients: { value: "10k+", label: "सुखी मरीज़" },
-                global: { value: "2+", label: "वैश्विक विशेषज्ञता" }
+                surgeries: { value: "5000+", label: "सर्जरी" },
+                patients: { value: "10k+", label: "संतुष्ट मरीज़" },
+                global: { value: "4", label: "देश" }
             }
         },
         services: {
-            badge: "चिकित्सा विशेषज्ञता",
-            title: "हमारी विशेष",
+            badge: "विशेषज्ञ देखभाल",
+            title: "हमारी आर्थोपेडिक",
             titleHighlight: "सेवाएं",
-            titleEnd: "",
-            description: "आपकी गतिशीलता और स्वास्थ्य के लिए नवीनतम सर्जिकल और गैर-सर्जिकल प्रगति का उपयोग करते हुए व्यापक देखभाल।",
-            viewDetails: "और जानें",
+            titleEnd: "और विशेषज्ञता",
+            description: "इष्टतम रिकवरी के लिए डिज़ाइन किए गए उन्नत आर्थोपेडिक उपचारों का एक पूर्ण स्पेक्ट्रम प्रदान करना।",
+            viewDetails: "विवरण देखें",
             showMore: "अधिक सेवाएं दिखाएं",
             showLess: "कम दिखाएं",
             items: [
                 {
-                    title: "पूर्ण/आंशिक जोड़ प्रतिस्थापन",
-                    desc: "जोड़ प्रतिस्थापन सर्जरी एक प्रक्रिया है जिसमें क्षतिग्रस्त जोड़ को कृत्रिम प्रत्यारोपण से बदला जाता है। यह दर्द से राहत देता है और जीवन की गुणवत्ता में सुधार करता है।"
+                    title: "जोड़ प्रतिस्थापन",
+                    desc: "नवीनतम तकनीकों का उपयोग करके घुटने और कूल्हे के लिए उन्नत कुल और आंशिक प्रतिस्थापन।"
                 },
                 {
-                    title: "खेल / एसीएल चोट प्रबंधन",
-                    desc: "एथलीट की ताकत और गतिशीलता को बहाल करने के लिए खेल की चोटों की रोकथाम, निदान, उपचार और पुनर्वास।"
+                    title: "स्पोर्ट्स मेडिसिन",
+                    desc: "एथलीटों के लिए चोट की रोकथाम से लेकर उन्नत सर्जिकल मरम्मत तक व्यापक देखभाल।"
                 },
                 {
-                    title: "रोबोटिक / कंप्यूटर असिस्टेड सर्जरी",
-                    desc: "एक अत्याधुनिक दृष्टिकोण जो सर्जिकल सटीकता को बढ़ाता है, बेहतर प्रत्यारोपण संरेखण की अनुमति देता है, और तेजी से रिकवरी में योगदान देता है।"
+                    title: "रोबोटिक सर्जरी",
+                    desc: "तेज़ी से रिकवरी और बेहतर परिणामों के लिए सटीकता-निर्देशित आर्थोपेडिक प्रक्रियाएं।"
                 },
                 {
-                    title: "घुटने और कंधे की आर्थ्रोस्कोपी",
-                    desc: "आर्थ्रोस्कोप का उपयोग करके संयुक्त समस्याओं के निदान और उपचार के लिए कम से कम आक्रामक प्रक्रिया।"
+                    title: "आर्थ्रोस्कोपी",
+                    desc: "जोड़ों के निदान और उपचार के लिए न्यूनतम आक्रामक कीहोल सर्जरी।"
                 },
                 {
-                    title: "विकृति सुधार / ओस्टियोटॉमी",
-                    desc: "जोड़ों के उचित कार्य और संरचना को बहाल करने के लिए हड्डियों को शल्य चिकित्सा द्वारा फिर से आकार देना या संरेखित करना।"
+                    title: "विकृति सुधार",
+                    desc: "अंग संरेखण और संरचनात्मक आर्थोपेडिक मुद्दों के लिए विशेष उपचार।"
                 },
                 {
-                    title: "संयुक्त संरक्षण / उत्थान",
-                    desc: "क्षतिग्रस्त उपास्थि की मरम्मत, दर्द को कम करने और दीर्घकालिक संयुक्त स्वास्थ्य को बढ़ावा देने के लिए डिज़ाइन किए गए पीआरपी थेरेपी और स्टेम सेल इंजेक्शन।"
+                    title: "परामर्श",
+                    desc: "गहन नैदानिक मूल्यांकन और व्यक्तिगत उपचार योजना।"
                 },
                 {
-                    title: "फ्रैक्चर और आघात देखभाल",
-                    desc: "टूटी हुई हड्डियों का तत्काल और दीर्घकालिक उपचार। पूर्ण सुधार के लिए उचित निदान, स्थिरीकरण और शल्य चिकित्सा हस्तक्षेप शामिल है।"
+                    title: "आर्थोपेडिक ट्रॉमा",
+                    desc: "जटिल फ्रैक्चर और आपातकालीन मस्कुलोस्केलेटल चोटों का विशेषज्ञ प्रबंधन।"
                 },
                 {
-                    title: "फिजियोथेरेपी और पुनर्वास",
-                    desc: "सर्जरी के बाद गतिशीलता, ताकत और कार्य को बहाल करने के लिए डिज़ाइन किए गए संरचित पुनर्वास कार्यक्रम।"
+                    title: "फिजियोथेरेपी",
+                    desc: "पूर्ण रिकवरी और दीर्घकालिक जोड़ स्वास्थ्य सुनिश्चित करने के लिए एकीकृत पुनर्वास।"
+                }
+            ]
+        },
+        personalizedSolutions: {
+            title: "व्यक्तिगत समाधान",
+            description: "आपको आपके सर्वश्रेष्ठ स्तर पर वापस लाने के लिए विशिष्ट आर्थोपेडिक स्थितियों के लिए लक्षित उपचार।",
+            viewAll: "सभी समाधान देखें",
+            items: [
+                { title: "हाथ और कलाई" },
+                { title: "पीठ और गर्दन" },
+                { title: "पैर और टखने" },
+                { title: "कंधा" },
+                { title: "घुटना" },
+                { title: "कूल्हा" },
+                { title: "खेल की चोटें" }
+            ]
+        },
+        sportingInjury: {
+            badge: "स्पोर्ट्स इंजरी क्लिनिक",
+            title: "क्या आप",
+            titleHighlight: "खेल की चोट",
+            titleEnd: "से परेशान हैं?",
+            description: "दर्द को आपको साइडलाइन पर न रखने दें। हम सभी स्तरों के एथलीटों के लिए विशेषज्ञ निदान और उन्नत उपचार प्रदान करते हैं।",
+            dashboard: "मेडिकल डैशबोर्ड",
+            learnMore: "स्पोर्ट्स रिकवरी के बारे में और जानें",
+            items: [
+                {
+                    title: "ACL पुनर्निर्माण",
+                    desc: "घुटने की स्थिरता और मजबूती बहाल करने के लिए उन्नत लिगामेंट मरम्मत।"
+                },
+                {
+                    title: "मेनिस्कस मरम्मत",
+                    desc: "घुटने की कुशनिंग को बनाए रखने और भविष्य की समस्याओं को रोकने के लिए सटीक सर्जरी।"
+                },
+                {
+                    title: "कंधे की अस्थिरता",
+                    desc: "डिस्लोकेशन और पुराने कंधे की कमजोरी का उपचार।"
+                },
+                {
+                    title: "लिगामेंट की चोटें",
+                    desc: "टखने, कलाई और घुटने की लिगामेंट चोटों के लिए व्यापक देखभाल।"
+                }
+            ]
+        },
+        publications: {
+            badge: "अकादमिक उत्कृष्टता",
+            title: "अनुसंधान और",
+            titleHighlight: "प्रकाशन",
+            description: "प्रमुख अंतरराष्ट्रीय आर्थोपेडिक पत्रिकाओं में नैदानिक योगदान और प्रकाशित शोध।",
+            firstAuthor: "मुख्य लेखक",
+            secondAuthor: "सहयोगात्मक अनुसंधान",
+            stats: {
+                papers: "पीयर रिव्यूड पेपर्स",
+                impact: "वैश्विक नैदानिक प्रभाव",
+                journals: "शीर्ष स्तरीय पत्रिकाएं"
+            }
+        },
+        articles: {
+            badge: "चिकित्सा अंतर्दृष्टि",
+            title: "विशेषज्ञ आर्थोपेडिक",
+            titleHighlight: "लेख",
+            description: "आर्थोपेडिक स्वास्थ्य, उपचार और सर्जिकल नवाचारों पर नवीनतम अंतर्दृष्टि के साथ सूचित रहें।",
+            readMore: "पूरा लेख पढ़ें",
+            viewAll: "सभी लेख देखें"
+        },
+        testimonials: {
+            badge: "रोगी समीक्षाएं",
+            title: "हमारे मरीज़ क्या कहते हैं",
+            description: "उन रोगियों की वास्तविक कहानियाँ जिन्होंने हमारे माध्यम से अपनी गतिशीलता और जीवन को वापस पाया।",
+            items: [
+                {
+                    name: "जेम्स विल्सन",
+                    role: "पेशेवर एथलीट",
+                    content: "रोबोटिक सर्जरी में डॉ. सोनार की विशेषज्ञता बेजोड़ है। मैं उम्मीद से जल्दी मैदान पर वापस आ गया।"
+                },
+                {
+                    name: "सारा अहमद",
+                    role: "दादी",
+                    content: "मेरे हिप रिप्लेसमेंट ने मुझे जीवन का एक नया आधार दिया है। मैं आखिरकार अपने पोते-पोतियों के साथ खेल सकती हूँ।"
                 }
             ]
         },
         faq: {
-            badge: "रोगी स्पष्टीकरण",
-            title: "सामान्य प्रश्न",
+            badge: "सहायता केंद्र",
+            title: "अक्सर पूछे जाने वाले प्रश्न",
             items: [
                 {
-                    question: "किन स्थितियों में आमतौर पर जोड़ प्रत्यारोपण (Joint Replacement) सर्जरी की आवश्यकता होती है?",
-                    answer: "गंभीर गठिया, उपास्थि (cartilage) का नुकसान, या रूढ़िवादी उपचारों के प्रति उत्तरदायी नहीं होने वाली विकृतियां, जो अक्सर घुटने और कूल्हे के जोड़ों में होती हैं।"
+                    question: "रोबोटिक-सहायता प्राप्त सर्जरी क्या है?",
+                    answer: "यह एक सटीकता-निर्देशित तकनीक है जो सर्जन को उच्च सटीकता के साथ जोड़ प्रतिस्थापन करने की अनुमति देती है, जिससे बेहतर परिणाम मिलते हैं।"
                 },
                 {
-                    question: "घुटने या कूल्हे के प्रतिस्थापन के बाद रिकवरी में कितना समय लगता है?",
-                    answer: "घुटने या कूल्हे के प्रतिस्थापन के बाद रिकवरी में आमतौर पर बुनियादी गतिशीलता के लिए 6-12 सप्ताह लगते हैं, और पूर्ण रिकवरी के लिए अक्सर 6-12 महीने की आवश्यकता होती है।"
+                    question: "रिकवरी की अवधि कितनी लंबी है?",
+                    answer: "रिकवरी प्रक्रिया के आधार पर भिन्न होती है, लेकिन अधिकांश रोगी उचित फिजियोथेरेपी के साथ 6 से 12 सप्ताह के भीतर सामान्य गतिविधियों में लौट आते हैं।"
                 },
                 {
-                    question: "ओपन सर्जरी की तुलना में आर्थ्रोस्कोपिक सर्जरी के क्या लाभ हैं?",
-                    answer: "ओपन सर्जरी की तुलना में आर्थ्रोस्कोपिक सर्जरी में छोटे चीरे, कम दर्द, तेजी से रिकवरी और संक्रमण का जोखिम कम होता है।"
+                    question: "क्या आप खेल की चोटों का इलाज करते हैं?",
+                    answer: "हाँ, हम ACL मरम्मत, मेनिस्कस उपचार और सभी प्रकार की एथलेटिक चोटों में विशेषज्ञ हैं।"
                 },
                 {
-                    question: "क्या मैं सर्जरी से पहले दूसरी राय ले सकता हूँ?",
-                    answer: "हाँ, सर्जरी से पहले दूसरी राय लेने के लिए प्रोत्साहित किया जाता है ताकि आपके निदान की पुष्टि हो सके और सभी उपचार विकल्पों का पता लगाया जा सके।"
+                    question: "क्लिनिक कहाँ स्थित है?",
+                    answer: "हमारे मुख्य परामर्श कक्ष दुबई में प्रीमियम चिकित्सा सुविधाओं के भीतर स्थित हैं।"
                 },
                 {
-                    question: "खेल की चोटों का इलाज कैसे किया जाता है?",
-                    answer: "खेल की चोटों का इलाज गंभीरता के आधार पर किया जाता है, जिसमें अक्सर आराम, भौतिक चिकित्सा, दवाएं, या यदि आवश्यक हो तो सर्जरी शामिल होती है।"
+                    question: "क्या दूसरी राय उपलब्ध है?",
+                    answer: "हाँ, हम मरीजों को उनके उपचार में विश्वास सुनिश्चित करने के लिए जटिल मामलों के लिए दूसरी राय लेने के लिए प्रोत्साहित करते हैं।"
                 }
             ]
         },
-        testimonials: {
-            title: "हमारे मरीज क्या कहते हैं",
-            reviewButton: "Google पर समीक्षा लिखें"
-        },
         contact: {
-            badge: "संपर्क में रहें",
-            title: "अपनी रिकवरी",
-            titleHighlight: "यात्रा शुरू करें",
-            description: "दर्द मुक्त जीवन की ओर पहला कदम उठाएं। हमारी टीम विश्व स्तरीय विशेषज्ञता के साथ आपकी सहायता के लिए तैयार है।",
-            cards: {
-                call: {
-                    title: "कॉल सपोर्ट",
-                    sub: "अपॉइंटमेंट और प्रश्नों के लिए सीधी लाइन"
-                },
-                email: {
-                    title: "हमें ईमेल करें",
-                    sub: "आ आधिकारिक रिकॉर्ड और विस्तृत प्रश्नों के लिए"
-                },
-                visit: {
-                    title: "क्लीनिक पर आएं",
-                    content: "कार्यालय 303, रॉयल क्लास बिल्डिंग",
-                    sub: "DIP, दुबई, यूएई"
-                },
-                social: "हमसे जुड़ें"
-            },
+            badge: "संपर्क करें",
+            title: "अपना",
+            titleHighlight: "परामर्श बुक करें",
+            description: "रिकवरी की ओर पहला कदम उठाएं। आज ही हमारी विशेषज्ञ टीम से जुड़ें।",
             form: {
-                title: "एक निजी संदेश भेजें",
+                title: "संदेश भेजें",
                 name: "आपका नाम",
-                email: "आपका ईमेल",
+                namePlaceholder: "अपना पूरा नाम दर्ज करें",
+                email: "ईमेल पता",
+                emailPlaceholder: "yourname@email.com",
                 phone: "फोन नंबर",
-                medicalInquiry: "चिकित्सा पूछताछ",
-                placeholder: "अपनी स्थिति का संक्षेप में वर्णन करें...",
-                submit: "संदेश भेजें"
+                phonePlaceholder: "+971 -- --- ----",
+                medicalInquiry: "पूछताछ का प्रकार",
+                placeholder: "हम आज आपकी कैसे मदद कर सकते हैं?",
+                submit: "अपॉइंटमेंट का अनुरोध करें"
+            },
+            info: {
+                call: "हमें कॉल करें",
+                email: "ईमेल सहायता",
+                visit: "क्लिनिक पर आएं",
+                hours: "सोम-शनि: सुबह 9 बजे - शाम 7 बजे"
             }
-        },
-        appointment: {
-            badge: "सीधी पहुंच",
-            title: "आज ही अपॉइंटमेंट बुक करें",
-            description: "परामर्श शेड्यूल करना रिकवरी की दिशा में पहला कदम है। डॉ. उल्हास सोनार आपके सवालों के जवाब देने और आगे का स्पष्ट रास्ता बताने के लिए यहां हैं।",
-            quick: { title: "त्वरित उपलब्धता", desc: "हम तत्काल मामलों और नए रोगियों को प्राथमिकता देते हैं।" },
-            second: { title: "दूसरी राय", desc: "सर्जरी की पुष्टि के लिए निःशुल्क चर्चा।" },
-            step1: "व्यक्तिगत विवरण",
-            step2: "अपॉइंटमेंट प्राथमिकताएं",
-            step3: "पुष्टिकरण",
-            stepOf: "चरण",
-            stepOfTotal: "में से 3",
-            name: "पूरा नाम",
-            email: "ईमेल पता",
-            phone: "फोन नंबर",
-            type: "परामर्श प्रकार",
-            date: "पसंदीदा तारीख (वैकल्पिक)",
-            message: "हम कैसे मदद कर सकते हैं?",
-            next: "अगला चरण",
-            back: "वापस",
-            review: "समीक्षा करें",
-            almostDone: "लगभग हो गया!",
-            confirmMsg: "सबमिट करने से पहले अपना विवरण सत्यापित करें। हम आपसे संपर्क करेंगे",
-            confirm: "अपॉइंटमेंट की पुष्टि करें",
-            types: {
-                initial: "प्रारंभिक परामर्श",
-                second: "दूसरी राय (निःशुल्क)",
-                followup: "फॉलो-अप",
-                surgery: "सर्जरी योजना"
-            }
-        },
-        publications: {
-            badge: "विद्वतापूर्ण योगदान",
-            title: "अनुसंधान और",
-            titleHighlight: "प्रकाशन",
-            description: "डॉ. उल्हास सोनार द्वारा लिखित सहकर्मी-समीक्षित लेख और नैदानिक अनुसंधान, आर्थोपेडिक सर्जिकल प्रथाओं की वैश्विक उन्नति में योगदान दे रहे हैं।",
-            firstAuthor: "प्रथम लेखक",
-            secondAuthor: "सहयोगी लेखक",
-            action: "प्रकाशन पढ़ें",
-            stats: {
-                papers: "शोध पत्र",
-                impact: "वैश्विक प्रभाव",
-                journals: "शीर्ष पत्रिकाएं",
-                reviewed: "सहकर्मी समीक्षा"
-            }
-        },
-        footer: {
-            desc: "सटीक आर्थोपेडिक सर्जिकल देखभाल जो पूर्ण निष्ठा, रोगी के अधिकारों के प्रति सम्मान और व्यक्तिगत चिकित्सा साक्ष्य-आधारित दृष्टिकोण के साथ प्रदान की जाती है—गतिशीलता, कार्यक्षमता और सक्रिय जीवन को पुनर्जीवित करती है।",
-            disclaimer: "अस्वीकरण: प्रदान की गई जानकारी एक अवलोकन है और पेशेवर मदद का विकल्प नहीं है। यदि आप आपात स्थिति का सामना कर रहे हैं, तो कृपया अपने निकटतम अस्पताल में जाएं।",
-            visitMeAt: "मुझसे यहाँ मिलें",
-            nav: "नेविगेशन",
-            support: "सहायता",
-            clinic: "क्लीनिक की जानकारी",
-            rights: "सटीकता के लिए तैयार।",
-            patientResources: "रोगी संसाधन",
-            articles: "लेख",
-            privacy: "गोपनीयता"
         }
     },
     AR: {
         common: {
             doctorName: "د. أولهاس سونار",
-            specialty: "جراح عظام"
-        },
-        nav: {
-            home: "Home",
-            about: "About",
-            services: "Services",
-            articles: "Articles",
-            gallery: "معرض الصور",
-            contact: "Contact",
-            bookNow: "Get Appointment",
-            selectLanguage: "اختر اللغة",
-            affiliations: "العضويات والانتسابات المهنية",
-            testimonials: "توصيات المرضى",
-            faq: "الأسئلة الشائعة"
+            specialty: "جراح العظام والمفاصل"
         },
         topBar: {
             phone: "اتصل بنا",
             email: "البريد الإلكتروني",
             location: "الموقع",
-            locationValue: "المستشفى الكندي التخصصي، دبي"
+            locationValue: "مجمع دبي للاستثمار، دبي، الإمارات"
+        },
+        nav: {
+            home: "الرئيسية",
+            about: "عن الطبيب",
+            services: "الخبرات",
+            articles: "المقالات",
+            gallery: "المعرض",
+            contact: "اتصل بنا",
+            testimonials: "آراء المرضى",
+            faq: "الأسئلة الشائعة",
+            bookNow: "احجز موعداً",
+            bookAppointment: "احجز استشارة",
+            exploreServices: "استكشف الخدمات",
+            selectLanguage: "اختر اللغة",
+            awards: "الجوائز",
+            affiliations: "العضويات والانتسابات"
         },
         hero: {
-            badge: "MBBS, MS, MRCS, MCh, FEBOT, FRCS, PGDip Robotics",
-            title: "استعد حياتك النشطة",
-            subtitle: "وجراحة العظام الدقيقة",
-            description: "بخبرة عالمية تمتد لأكثر من 15 عامًا في المملكة المتحدة والهند وجزيرة جيرسي ودبي في جراحة الصدمات والعظام، يقدم الدكتور سونار رعاية عظام عالمية المستوى في دبي.",
-            bookAppointment: "احجز استشارة",
-            learnMore: "استكشف الخدمات",
-            stats: {
-                experience: "خبير سنوات",
-                surgeries: "عمليات ناجحة",
-                rating: "تقييم المرضى"
-            },
+            badge: "رعاية عظام متخصصة",
+            title: "استعد",
+            titleHighlight: "حياتك النشطة",
+            description: "حلول عظام متقدمة لاستبدال المفاصل، وإصابات الرياضة، والحالات المعقدة. رعاية عالمية المستوى مصممة لتعافيك.",
+            bookAppointment: "احجز موعداً",
+            exploreServices: "استكشف الخدمات",
             highlights: [
-                "أكثر من 15 عاماً من الخبرة",
-                "6 مؤهلات مرموقة في المملكة المتحدة وأوروبا والهند",
-                "أكثر من 10 أبحاث ومنشورات",
-                "أكثر من 10 عروض تقديمية",
-                "أكثر من 6 عمليات تدقيق طبي",
-                "تقييم 5 نجوم من قبل المرضى",
-                "رضا ممتاز للمرضى",
-                "نتائج جراحية استثنائية",
-                "جوائز متعددة",
-                "معدل نجاح رائع",
-                "معدلات مضاعفات منخفضة جداً"
+                "خبرة عالمية تزيد عن 15 عاماً",
+                "جراحة روبوتية متقدمة",
+                "معتمد في المملكة المتحدة وأوروبا",
+                "متخصص في حالات الكسور المعقدة",
+                "خطط تعافٍ مخصصة",
+                "مرافق طبية متطورة"
             ],
+            stats: {
+                exp: "سنوات الخبرة",
+                qualifications: "مؤهلات عالمية (UK, EU, IN)",
+                research: "الأبحاث والمنشورات",
+                audits: "التدقيق السريري",
+                podium: "عروض تقديمية",
+                outcomes: "نتائج وجوائز استثنائية"
+            },
+            slides: [
+                {
+                    badge: "FRCS (UK), FEBOT, MCh, PGDip Robotics, MBBS, MS",
+                    headline1: "استعد",
+                    headline2: "حياتك",
+                    description: "مع أكثر من 15 عاماً من الخبرة العالمية في المملكة المتحدة والهند وجزيرة جيرسي ودبي في جراحة العظام والصدمات. تقديم رعاية عالمية المستوى للركبة والورك والكتف.",
+                    nameplateSub: "أخصائي جراحة العظام"
+                },
+                {
+                    badge: "MBBS, MS Ortho, M Ch Ortho, FRCS (T&O)",
+                    headline1: "دقة",
+                    headline2: "العظام",
+                    description: "زميل الكلية الملكية للجراحين مع خبرة عالمية تزيد عن 15 عاماً. متخصص في استبدال الركبة بمساعدة الروبوت والإجراءات طفيفة التوغل.",
+                    nameplateSub: "جراح عظام"
+                }
+            ]
         },
         about: {
-            badge: "عن الدكتور أولهاس",
-            title: "جراح العظام الخاص بك",
-            titleHighlight: "في دبي",
-            titleEnd: "",
-            description1: "الدكتور أولهاس سونار هو جراح عظام هندي بريطاني يتمتع بخبرة عالمية واسعة في المملكة المتحدة والهند وجزيرة جيرسي ودبي. تخرج من كلية بي جي الطبية في بونا، وبدأ حياته المهنية كأستاذ مساعد في الهند قبل متابعة تدريبه المتقدم في المملكة المتحدة في مؤسسات مرموقة مثل مستشفى رايتنجتون ومستشفى اليوبيل الذهبي.",
-            description2: "وهو زميل كلية الجراحين الملكية (إنجلترا) وكذلك المجلس الأوروبي لجراحة العظام والكسور (سويسرا)، وحاصل على تخصص عالي (MCh) في جراحة الأطراف العلوية بالإضافة إلى دبلوم دراسات عليا في استبدال الركبة الكلي بمساعدة الكمبيوتر والروبوت. يلتزم الدكتور أولهاس بالرعاية القائمة على الأدلة والتي تركز على المريض، وهو أيضًا باحث ومعلم بارز ومدافع شغوف عن سلامة المرضى وحقوقهم.",
-            experienceBadge: "سنوات الخبرة",
+            badge: "FRCS (UK), FEBOT, MCh, PGDip Robotics, MBBS, MS",
+            title: "خبرة عالمية",
+            titleHighlight: "في جراحة",
+            titleEnd: "العظام والمفاصل",
+            experienceBadge: "سنوات من الخبرة العالمية",
+            description1: "الدكتور أولهاس سونار جراح عظام بريطاني هندي متميز يتمتع بخبرة تزيد عن 15 عاماً في بريطانيا وأوروبا والهند والإمارات.",
+            description2: "متخصص في استبدال المفاصل بمساعدة الروبوت والحالات المعقدة، ويجمع بين الدقة الجراحية والنهج المتمحور حول المريض لاستعادة الحركة وتغيير الحياة.",
             qualifications: {
                 global: {
-                    title: "الخبرة العالمية",
-                    desc: "المملكة المتحدة، الهند، جيرسي ودبي"
+                    title: "خبرة عالمية",
+                    desc: "بريطانيا، أوروبا، الهند، الإمارات"
                 },
                 training: {
-                    title: "التدريب المتقدم",
-                    desc: "رايتنجتون واليوبيل الذهبي"
+                    title: "تدريب منظم",
+                    desc: "أكثر من 10 سنوات في بريطانيا (NHS)"
                 },
                 fellowships: {
-                    title: "الزمالات",
-                    desc: "FRCS (إنجلترا)، EBOT"
+                    title: "زمالات تخصصية",
+                    desc: "الروبوت واستبدال المفاصل"
                 },
                 specialisation: {
                     title: "التخصص",
-                    desc: "الأطراف العلوية والركبة الروبوتية"
+                    desc: "الكسور المعقدة والطب الرياضي"
                 }
             },
             stats: {
-                experience: { value: "15+", label: "سنوات الخبرة" },
-                surgeries: { value: "5000+", label: "عمليات جراحية ناجحة" },
-                patients: { value: "10k+", label: "مريض سعيد" },
-                global: { value: "2+", label: "تخصصات عالمية" }
+                experience: { value: "+15", label: "سنوات الخبرة" },
+                surgeries: { value: "+5000", label: "عملية جراحية" },
+                patients: { value: "+10k", label: "مريض سعيد" },
+                global: { value: "4", label: "دول" }
             }
         },
         services: {
-            badge: "التخصصات الطبية",
-            title: "خدماتنا",
-            titleHighlight: "المتخصصة",
-            titleEnd: "",
-            description: "رعاية شاملة باستخدام أحدث التطورات الجراحية وغير الجراحية لحركتك وصحتك.",
-            viewDetails: "اعرف المزيد",
+            badge: "رعاية متخصصة",
+            title: "خدماتنا و",
+            titleHighlight: "تخصصاتنا",
+            titleEnd: "في العظام",
+            description: "تقديم مجموعة كاملة من علاجات العظام المتقدمة المصممة لتحقيق التعافي الأمثل.",
+            viewDetails: "عرض التفاصيل",
             showMore: "عرض المزيد من الخدمات",
             showLess: "عرض أقل",
             items: [
                 {
-                    title: "استبدال المفاصل الكلي/الجزئي",
-                    desc: "جراحة استبدال المفاصل هي إجراء يتم فيه استبدال المفصل التالف بغرسة صناعية لتخفيف الألم واستعادة الوظيفة."
+                    title: "استبدال المفاصل",
+                    desc: "استبدال الركبة والورك الكلي والجزئي المتقدم باستخدام أحدث التقنيات."
                 },
                 {
-                    title: "إدارة الإصابات الرياضية",
-                    desc: "الوقاية والتشخيص والعلاج وإعادة التأهيل للإصابات الرياضية لاستعادة قوة الرياضي وحركته وتقليل المخاطر."
+                    title: "الطب الرياضي",
+                    desc: "رعاية شاملة للرياضيين، من الوقاية من الإصابات إلى الإصلاح الجراحي المتقدم."
                 },
                 {
-                    title: "الجراحة بمساعدة الروبوت/الكمبيوتر",
-                    desc: "نهج متطور يعزز الدقة الجراحية ويسمح بمحاذاة أفضل للغرسة ويسرع عملية الشفاء."
+                    title: "الجراحة الروبوتية",
+                    desc: "إجراءات عظام موجهة بدقة لتعافٍ أسرع ونتائج أفضل."
                 },
                 {
-                    title: "تنظير الركبة والكتف",
-                    desc: "إجراء طفيف التوغل يستخدم لتشخيص وعلاج مشاكل المفاصل باستخدام منظار المفصل من خلال شقوق صغيرة."
+                    title: "جراحة المنظار",
+                    desc: "جراحة ثقب المفتاح طفيفة التوغل لتشخيص وعلاج المفاصل."
                 },
                 {
-                    title: "تصحيح التشوهات / قطع العظم",
-                    desc: "إعادة تشكيل أو إعادة محاذاة العظام جراحيًا لاستعادة وظيفتها وهيكلها المناسب لتخفيف الألم وتأخير استبدال المفصل."
+                    title: "تصحيح التشوهات",
+                    desc: "علاج متخصص لمحاذاة الأطراف والمشاكل الهيكلية للعظام."
                 },
                 {
-                    title: "الحفاظ على المفاصل وتجديدها",
-                    desc: "علاجات طفيفة التوغل مثل العلاج بالبلازما الغنية بالصفائح الدموية وحقن الخلايا الجذعية لإصلاح الغضاريف التالفة."
+                    title: "الاستشارات",
+                    desc: "تقييم سريري متعمق وتخطيط شخصي للعلاج."
                 },
                 {
-                    title: "رعاية الكسور والصدمات",
-                    desc: "العلاج الفوري وطويل الأمد للعظام المكسورة، يشمل التشخيص السليم والتثبيت والتدخل الجراحي إذا لزم الأمر."
+                    title: "صدمات العظام",
+                    desc: "إدارة متخصصة للكسور المعقدة وإصابات الجهاز العضلي الهيكلي الطارئة."
                 },
                 {
-                    title: "العلاج الطبيعي والتأهيل",
-                    desc: "برامج إعادة التأهيل المنظمة بعد الجراحة والمصممة لاستعادة الحركة والقوة والوظيفة بناءً على صحة المريض."
+                    title: "العلاج الطبيعي",
+                    desc: "إعادة تأهيل متكاملة لضمان التعافي الكامل وصحة المفاصل على المدى الطويل."
+                }
+            ]
+        },
+        personalizedSolutions: {
+            title: "حلول مخصصة",
+            description: "علاجات مستهدفة لحالات العظام المحددة لإعادتك إلى أفضل حالاتك.",
+            viewAll: "عرض جميع الحلول",
+            items: [
+                { title: "اليد والمعصم" },
+                { title: "الظهر والرقبة" },
+                { title: "القدم والكاحل" },
+                { title: "الكتف" },
+                { title: "الركبة" },
+                { title: "الورك" },
+                { title: "إصابات الرياضة" }
+            ]
+        },
+        sportingInjury: {
+            badge: "عيادة إصابات الرياضة",
+            title: "هل تعاني من",
+            titleHighlight: "إصابة رياضية؟",
+            titleEnd: "",
+            description: "لا تدع الألم يمنعك من المشاركة. نقدم تشخيصاً متخصصاً وعلاجات متقدمة للرياضيين من جميع المستويات.",
+            dashboard: "لوحة التحكم الطبية",
+            learnMore: "اعرف المزيد عن التعافي الرياضي",
+            items: [
+                {
+                    title: "إعادة بناء الرباط الصليبي",
+                    desc: "إصلاح الأربطة المتقدم لاستعادة استقرار وقوة الركبة."
+                },
+                {
+                    title: "إصلاح الغضروف",
+                    desc: "جراحة دقيقة للحفاظ على وسادة الركبة ومنع المشاكل المستقبلية."
+                },
+                {
+                    title: "عدم استقرار الكتف",
+                    desc: "علاج الخلع وضعف الكتف المزمن."
+                },
+                {
+                    title: "إصابات الأربطة",
+                    desc: "رعاية شاملة لإصابات الكاحل والمعصم وأربطة الركبة المتعددة."
+                }
+            ]
+        },
+        publications: {
+            badge: "التميز الأكاديمي",
+            title: "الأبحاث و",
+            titleHighlight: "المنشورات",
+            description: "المساهمات السريرية والأبحاث المنشورة في المجلات الدولية الرائدة لجراحة العظام.",
+            firstAuthor: "مؤلف رئيسي",
+            secondAuthor: "أبحاث تعاونية",
+            stats: {
+                papers: "أوراق بحثية محكمة",
+                impact: "تأثير سريري عالمي",
+                journals: "مجلات من الدرجة الأولى"
+            }
+        },
+        articles: {
+            badge: "رؤى طبية",
+            title: "مقالات العظام",
+            titleHighlight: "المتخصصة",
+            description: "ابق على اطلاع بأحدث الرؤى حول صحة العظام وعلاجاتها وابتكاراتها الجراحية.",
+            readMore: "اقرأ المقال كاملاً",
+            viewAll: "عرض جميع المقالات"
+        },
+        testimonials: {
+            badge: "آراء المرضى",
+            title: "ماذا يقول مرضانا",
+            description: "قصص حقيقية من مرضى استعادوا حركتهم وحياتهم من خلال رعايتنا.",
+            items: [
+                {
+                    name: "جيمس ويلسون",
+                    role: "رياضي محترف",
+                    content: "خبرة الدكتور سونار في الجراحة الروبوتية لا تُعلى عليها. عدت إلى الملعب في وقت أقصر من المتوقع."
+                },
+                {
+                    name: "سارة أحمد",
+                    role: "جدة",
+                    content: "استبدال الورك منحني حياة جديدة. أستطيع أخيراً اللعب مع أحفادي مرة أخرى."
                 }
             ]
         },
         faq: {
-            badge: "توضيحات للمرضى",
-            title: "أسئلة شائعة",
+            badge: "مركز المساعدة",
+            title: "الأسئلة الشائعة",
             items: [
                 {
-                    question: "ما هي الحالات التي تتطلب عادة جراحة استبدال المفاصل؟",
-                    answer: "التهاب المفاصل الحاد، فقدان الغضروف، أو التشوهات التي لا تستجيب للعلاجات التحفظية، غالباً في مفاصل الركبة والورك."
+                    question: "ما هي الجراحة بمساعدة الروبوت؟",
+                    answer: "هي تقنية موجهة بدقة تتيح للجراح إجراء استبدال المفاصل بدقة أعلى، مما يؤدي لنتائج أفضل."
                 },
                 {
-                    question: "كم من الوقت يستغرق التعافي بعد استبدال الركبة أو الورك؟",
-                    answer: "يستغرق التعافي بعد استبدال الركبة أو الورك عادة من 6 إلى 12 أسبوعًا للحركة الأساسية، مع تعافي كامل يتطلب غالبًا من 6 إلى 12 شهرًا."
+                    question: "كم تستغرق فترة التعافي؟",
+                    answer: "تختلف الفترة حسب الإجراء، لكن معظم المرضى يعودون لأنشطتهم الطبيعية خلال 6 إلى 12 أسبوعاً."
                 },
                 {
-                    question: "ما هي فوائد الجراحة بالمنظار مقارنة بالجراحة المفتوحة؟",
-                    answer: "توفر الجراحة بالمنظار شقوقًا أصغر وألمًا أقل وتعافيًا أسرع ومخاطر عدوى أقل مقارنة بالجراحة المفتوحة."
+                    question: "هل تعالجون إصابات الرياضة؟",
+                    answer: "نعم، نحن متخصصون في إصلاح الرباط الصليبي وعلاجات الغضروف وجميع إصابات الرياضة."
                 },
                 {
-                    question: "هل يمكنني الحصول على رأي ثانٍ قبل الجراحة؟",
-                    answer: "نعم، يُشجع على الحصول على رأي ثانٍ قبل الجراحة لتأكيد تشخيصك واستكشاف جميع خيارات العلاج."
+                    question: "أين تقع العيادة؟",
+                    answer: "تقع غرف الاستشارة الرئيسية لدينا في دبي، ضمن مرافق طبية متميزة."
                 },
                 {
-                    question: "كيف يتم علاج الإصابات الرياضية؟",
-                    answer: "يتم علاج الإصابات الرياضية بناءً على شدتها، وغالبًا ما تتضمن الراحة والعلاج الطبيعي والأدوية أو الجراحة إذا لزم الأمر."
+                    question: "هل يتوفر رأي طبي ثانٍ؟",
+                    answer: "نعم، نشجع المرضى على طلب رأي ثانٍ للحالات المعقدة لضمان الثقة في علاجهم."
                 }
             ]
         },
-        testimonials: {
-            title: "ماذا يقول مرضانا",
-            reviewButton: "اكتب مراجعة على Google"
-        },
         contact: {
-            badge: "ابق على تواصل",
-            title: "ابدأ رحلة",
-            titleHighlight: "التعافي",
-            description: "اتخذ الخطوة الأولى نحو حياة خالية من الألم. فريقنا مستعد لمساعدتك بخبرة عالمية.",
-            cards: {
-                call: {
-                    title: "دعم مخصص",
-                    sub: "خط مباشر للمواعيد والاستفسارات"
-                },
-                email: {
-                    title: "راسلنا",
-                    sub: "للسجلات الرسمية والأسئلة التفصيلية"
-                },
-                visit: {
-                    title: "زيارة العيادة",
-                    content: "مكتب 303، مبنى رويال كلاس",
-                    sub: "مجمع دبي للاستثمار، دبي، الإمارات"
-                },
-                social: "تواصل معنا"
-            },
+            badge: "تواصل معنا",
+            title: "احجز",
+            titleHighlight: "استشارتك",
+            description: "اتخذ الخطوة الأولى نحو التعافي. تواصل مع فريقنا الخبير اليوم.",
             form: {
-                title: "إرسال رسالة خاصة",
+                title: "أرسل رسالة",
                 name: "اسمك",
-                email: "بريدك الإلكتروني",
+                namePlaceholder: "أدخل اسمك الكامل",
+                email: "البريد الإلكتروني",
+                emailPlaceholder: "yourname@email.com",
                 phone: "رقم الهاتف",
-                medicalInquiry: "استفسار طبي",
-                placeholder: "صف حالتك بإيجاز...",
-                submit: "إرسال الرسالة"
+                phonePlaceholder: "+971 -- --- ----",
+                medicalInquiry: "نوع الاستفسار",
+                placeholder: "كيف يمكننا مساعدتك اليوم؟",
+                submit: "طلب موعد"
+            },
+            info: {
+                call: "اتصل بنا",
+                email: "الدعم عبر البريد",
+                visit: "زيارة العيادة",
+                hours: "الاثنين-السبت: 9 صباحاً - 7 مساءً"
             }
-        },
-        appointment: {
-            badge: "وصول مباشر",
-            title: "احجز موعدك اليوم",
-            description: "جدولة استشارة هي الخطوة الأولى نحو التعافي. الدكتور أولهاس سونار هنا للإجابة على أسئلتك وتوفير مسار واضح للأمام.",
-            quick: { title: "توافر سريع", desc: "نعطي الأولوية للحالات العاجلة والمرضى الجدد." },
-            second: { title: "الآراء الثانية", desc: "نقاش مجاني لتأكيد الجراحات." },
-            step1: "التفاصيل الشخصية",
-            step2: "تفضيلات الموعد",
-            step3: "التأكيد",
-            stepOf: "الخطوة",
-            stepOfTotal: "من 3",
-            name: "الاسم الكامل",
-            email: "البريد الإلكتروني",
-            phone: "رقم الهاتف",
-            type: "نوع الاستشارة",
-            date: "التاريخ المفضل (اختياري)",
-            message: "كيف يمكننا مساعدتك؟",
-            next: "الخطوة التالية",
-            back: "رجوع",
-            review: "مراجعة",
-            almostDone: "اقتربنا!",
-            confirmMsg: "يرجى التحقق من تفاصيلك قبل الإرسال. سنتواصل معك على",
-            confirm: "تأكيد الموعد",
-            types: {
-                initial: "استشارة أولية",
-                second: "رأي ثانٍ (مجاناً)",
-                followup: "متابعة",
-                surgery: "تخطيط الجراحة"
-            }
-        },
-        publications: {
-            badge: "المساهمات العلمية",
-            title: "الأبحاث و",
-            titleHighlight: "المنشورات",
-            description: "مقالات محكمة وأبحاث سريرية من تأليف الدكتور أولهاس سونار، تساهم في التقدم العالمي لممارسات جراحة العظام.",
-            firstAuthor: "المؤلف الأول",
-            secondAuthor: "المؤلف المشارك",
-            action: "اقرأ المنشور",
-            stats: {
-                papers: "أوراق بحثية",
-                impact: "تأثير عالمي",
-                journals: "أرقى المجلات",
-                reviewed: "مراجعة الأقران"
-            }
-        },
-        footer: {
-            desc: "رعاية جراحية دقيقة للعظام تُقدم بنزاهة، واحترام لحقوق المريض، ونهج طبي مخصص قائم على الأدلة - لاستعادة الحركة والوظيفة والحياة النشطة.",
-            disclaimer: "إخلاء مسؤولية: المعلومات المقدمة هي نظرة عامة وليست بديلاً عن المساعدة المهنية. إذا كنت تواجه حالة طوارئ، فيرجى زيارة أقرب مستشفى.",
-            visitMeAt: "زرني في",
-            nav: "التنقل",
-            support: "الدعم",
-            clinic: "معلومات العيادة",
-            rights: "صمم من أجل الدقة.",
-            patientResources: "موارد المرضى",
-            articles: "مقالات",
-            privacy: "الخصوصية"
         }
     }
 };

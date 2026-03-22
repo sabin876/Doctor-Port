@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Facebook, Linkedin, Instagram } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Youtube, Twitter } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const TopBar = () => {
@@ -9,14 +9,14 @@ const TopBar = () => {
 
                 {/* Contact Info & Address */}
                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 md:gap-6 opacity-95 w-full md:w-auto text-center md:text-left">
-                    <a href="tel:+971547033311" className="flex items-center gap-1.5 hover:text-white/80 transition-colors">
+                    <a href="tel:+971551053445" className="flex items-center gap-1.5 hover:text-white/80 transition-colors">
                         <Phone className="w-3.5 h-3.5" />
-                        <span className="whitespace-nowrap">{t('topBar.phone')}: +971 54 703 3311</span>
+                        <span className="whitespace-nowrap">{t('topBar.phone')}: +971 55 105 3445</span>
                     </a>
 
-                    <a href="mailto:info@corx.ae" className="hidden lg:flex items-center gap-1.5 hover:text-white/80 transition-colors">
+                    <a href="mailto:Kneeshoulderhip@gmail.com" className="hidden lg:flex items-center gap-1.5 hover:text-white/80 transition-colors">
                         <Mail className="w-3.5 h-3.5" />
-                        <span>{t('topBar.email')}: info@corx.ae</span>
+                        <span>{t('topBar.email')}: Kneeshoulderhip@gmail.com</span>
                     </a>
 
                     <div className="hidden sm:flex items-center gap-1.5 font-montserrat">
@@ -27,14 +27,14 @@ const TopBar = () => {
 
                 {/* Social Icons */}
                 <div className="hidden md:flex items-center gap-4 ps-6 border-s border-white/10 ms-6">
-                    <a href="#" className="hover:text-white/80 transition-colors">
-                        <Facebook className="w-4 h-4" />
+                    <a href="https://www.youtube.com/@orthopaedictutorials2135" target="_blank" rel="noreferrer" className="hover:text-white/80 transition-colors">
+                        <Youtube className="w-4 h-4" />
                     </a>
-                    <a href="#" className="hover:text-white/80 transition-colors">
+                    <a href="https://linkedin.com/in/ulhassonarortho" target="_blank" rel="noreferrer" className="hover:text-white/80 transition-colors">
                         <Linkedin className="w-4 h-4" />
                     </a>
-                    <a href="#" className="hover:text-white/80 transition-colors">
-                        <Instagram className="w-4 h-4" />
+                    <a href="https://x.com/jointsurgeon" target="_blank" rel="noreferrer" className="hover:text-white/80 transition-colors">
+                        <Twitter className="w-4 h-4" />
                     </a>
                 </div>
             </div>

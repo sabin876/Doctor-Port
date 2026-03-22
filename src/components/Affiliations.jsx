@@ -1,11 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { translations } from '../translations';
+import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import gmcLogo from '../assets/gmc-logo.svg';
 import ebotLogo from '../assets/ebot-logo.png';
 
-const Affiliations = ({ lang = 'EN' }) => {
-    const t = translations[lang].nav;
+const Affiliations = () => {
+    const { language, t: translate } = useLanguage();
+    const t = translate('nav');
 
     const logos = [
         {
@@ -58,7 +60,7 @@ const Affiliations = ({ lang = 'EN' }) => {
     const doubledLogos = [...logos, ...logos];
 
     return (
-        <section className="py-16 bg-white overflow-hidden border-y border-gray-100">
+        <section className="py-16 overflow-hidden border-y border-gray-100 bg-gradient-to-b from-blue-50/80 via-white to-blue-50/50">
             <div className="container mx-auto px-4 mb-12">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -122,6 +124,8 @@ const Affiliations = ({ lang = 'EN' }) => {
                 <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-white to-transparent z-10"></div>
                 <div className="absolute inset-y-0 right-0 w-48 bg-gradient-to-l from-white to-transparent z-10"></div>
             </div>
+
+
         </section>
     );
 };

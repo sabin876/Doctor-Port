@@ -42,15 +42,29 @@ export const LanguageProvider = ({ children }) => {
 
     const t = (key) => {
         const keys = key.split('.');
-        // Always use English as the source for Google Translate to work with
-        // This ensures the DOM starts with English and Google handles the translation
-        let value = translations['EN'];
-
+        
+        // Try to get translation in current language, fallback to English
+        let value = translations[language];
+        
+        // If language or keys are missing in the current language, fallback to EN
         for (const k of keys) {
             if (value && typeof value === 'object') {
                 value = value[k];
             } else {
-                return key; // Return key if translation not found
+                value = undefined;
+                break;
+            }
+        }
+
+        // Final fallback to English if not found in current language
+        if (value === undefined || value === null) {
+            value = translations['EN'];
+            for (const k of keys) {
+                if (value && typeof value === 'object') {
+                    value = value[k];
+                } else {
+                    return key; 
+                }
             }
         }
 
