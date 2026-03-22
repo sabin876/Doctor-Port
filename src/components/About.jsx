@@ -76,20 +76,8 @@ const About = () => {
             <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-50/60 rounded-full blur-[100px] pointer-events-none -z-0" />
             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-50/60 rounded-full blur-[100px] pointer-events-none -z-0" />
 
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-                {/* Section Label */}
-                <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="flex items-center gap-3 mb-4"
-                >
-                    <span className="w-8 h-[2px] bg-blue-600 rounded-full" />
-                    <span className="text-blue-600 text-xs font-bold uppercase tracking-widest">
-                        {t('nav.about')}
-                    </span>
-                </motion.div>
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
                 <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${isRtl ? 'direction-rtl' : ''}`}>
 
@@ -137,13 +125,26 @@ const About = () => {
                     {/* ── Content Column ── */}
                     <div className={isRtl ? 'text-right' : 'text-left'}>
 
+                        {/* Badge */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="inline-flex items-center gap-2 mb-4"
+                        >
+                            <span className="w-6 h-[2px] bg-blue-600 rounded-full" />
+                            <span className="text-blue-600 text-xs font-bold uppercase tracking-widest">
+                                {t('about.badge')}
+                            </span>
+                        </motion.div>
+
                         {/* Heading */}
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.1, duration: 0.7 }}
-                            className="text-4xl md:text-5xl font-montserrat font-black text-slate-900 leading-tight tracking-tight mb-5"
+                            className="text-4xl md:text-5xl font-montserrat font-black text-slate-900 leading-tight tracking-tight mb-3"
                         >
                             {t('about.title')}{' '}
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
@@ -151,6 +152,17 @@ const About = () => {
                             </span>{' '}
                             {t('about.titleEnd')}
                         </motion.h2>
+
+                        {/* Credentials */}
+                        <motion.p
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.15 }}
+                            className="text-xs md:text-sm text-slate-400 font-semibold tracking-wide mb-6 leading-relaxed"
+                        >
+                            {t('about.credentials')}
+                        </motion.p>
 
                         {/* Description */}
                         <motion.div
@@ -192,28 +204,42 @@ const About = () => {
                     </div>
                 </div>
 
-                {/* ── Stats Bar ── */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="mt-16 md:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 p-8 md:p-10 rounded-2xl bg-gradient-to-br from-slate-50 to-white border border-slate-100 shadow-sm"
-                >
-                    {stats.map((stat, index) => (
-                        <div key={index} className="text-center group">
-                            <div className={`mx-auto w-12 h-12 rounded-xl ${stat.bg} ${stat.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                                <stat.icon className="w-6 h-6" />
+                {/* ── Stats Cards ── */}
+                <div className="mt-16 md:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+                    {[
+                        { ...stats[0], gradient: "from-blue-500 to-cyan-400",    gradientText: "from-blue-600 to-cyan-500" },
+                        { ...stats[1], gradient: "from-indigo-500 to-blue-500",  gradientText: "from-indigo-600 to-blue-500" },
+                        { ...stats[2], gradient: "from-purple-500 to-indigo-500",gradientText: "from-purple-600 to-indigo-500" },
+                        { ...stats[3], gradient: "from-emerald-500 to-teal-400", gradientText: "from-emerald-600 to-teal-500" },
+                    ].map((stat, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.15 * index }}
+                            className="relative group bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden p-6 md:p-8 text-center"
+                        >
+                            {/* Colored top accent bar */}
+                            <div className={`absolute top-0 inset-x-0 h-1 bg-gradient-to-r ${stat.gradient} rounded-t-2xl`} />
+
+                            {/* Icon */}
+                            <div className={`mx-auto mb-4 w-11 h-11 rounded-xl ${stat.bg} ${stat.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                                <stat.icon className="w-5 h-5" />
                             </div>
-                            <h3 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-1">
+
+                            {/* Value */}
+                            <h3 className={`text-4xl md:text-5xl font-black tracking-tight mb-1 text-transparent bg-clip-text bg-gradient-to-br ${stat.gradientText}`}>
                                 {stat.value}
                             </h3>
-                            <p className="text-[10px] md:text-[11px] text-slate-400 font-bold uppercase tracking-widest">
+
+                            {/* Label */}
+                            <p className="text-[10px] md:text-xs text-slate-400 font-bold uppercase tracking-widest mt-1">
                                 {stat.label}
                             </p>
-                        </div>
+                        </motion.div>
                     ))}
-                </motion.div>
+                </div>
             </div>
         </section>
     );

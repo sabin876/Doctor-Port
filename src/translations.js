@@ -67,29 +67,30 @@ export const translations = {
             ]
         },
         about: {
-            badge: "FRCS (UK), FEBOT, MCh, PGDip Robotics, MBBS, MS",
-            title: "World-Class",
-            titleHighlight: "Expertise",
-            titleEnd: "In Orthopedics",
+            badge: "Your Orthopaedic Surgeon in Dubai",
+            credentials: "MBBS, MS (Ortho), MRCS (England), MCh Upper Limb Surgeries (Wrightington, UK), FEBOT (Switzerland), FRCS (T&O) UK, PG Dip in Computer & Robotics Assisted TKR (Glasgow, UK)",
+            title: "About",
+            titleHighlight: "Dr. Ulhas Sonar",
+            titleEnd: "",
             experienceBadge: "Years of global experience",
-            description1: "Dr. Ulhas Sonar is a distinguished British-Indian Orthopedic Surgeon with over 15 years of global experience across the UK, Europe, India, and the UAE.",
-            description2: "Specializing in robotic-assisted joint replacements and complex trauma, he combines surgical precision with a patient-centered approach to restore mobility and transform lives.",
+            description1: "Dr. Ulhas Sonar is a British Indian orthopedic surgeon with extensive global experience across the UK, India, Jersey Island, and Dubai. A graduate of B J Medical College, Pune, he began his career as an Assistant Professor in India before pursuing advanced training in the UK at prestigious institutions like Wrightington Hospital and Golden Jubilee Hospital.",
+            description2: "He is a Fellow of the Royal College of Surgeons (England) and the European Board of Orthopaedics and Traumatology (Switzerland), and holds an MCh Super Specialisation in Upper Limb Surgery along with a PG Diploma in Computer and Robotic-Assisted Total Knee Replacement. Committed to evidence-based, patient-centred care, Dr. Ulhas is also an accomplished researcher, educator, and passionate advocate for patient safety and rights.",
             qualifications: {
                 global: {
                     title: "Global Experience",
-                    desc: "UK, EUROPE, INDIA, UAE"
+                    desc: "UK, INDIA, JERSEY ISLAND, UAE"
                 },
                 training: {
-                    title: "Structured Training",
-                    desc: "10+ YEARS IN UK (NHS)"
+                    title: "Advanced Training",
+                    desc: "WRIGHTINGTON & GOLDEN JUBILEE, UK"
                 },
                 fellowships: {
                     title: "Expert Fellowships",
-                    desc: "ROBOTICS & JOINT REPLACEMENT"
+                    desc: "FRCS (ENG) & FEBOT (SWITZERLAND)"
                 },
                 specialisation: {
                     title: "Specialisation",
-                    desc: "COMPLEX TRAUMA & SPORTS"
+                    desc: "UPPER LIMB & ROBOTIC TKR"
                 }
             },
             stats: {
