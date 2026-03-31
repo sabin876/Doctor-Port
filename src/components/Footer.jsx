@@ -1,4 +1,5 @@
-import logo from '../assets/logo.png';
+import gmcLogo from '../assets/gmc-logo-navbar.png';
+import ebotLogo from '../assets/ebot-logo-navbar.png';
 import { useLanguage } from '../context/LanguageContext';
 import { MapPin, Phone, Mail, Youtube, Twitter, Linkedin, ChevronRight } from 'lucide-react';
 
@@ -18,8 +19,9 @@ const Footer = () => {
                     {/* Brand Column */}
                     <div className="lg:col-span-4 flex flex-col pt-2">
                         <div className="flex items-center gap-4 mb-8">
-                            <div className="bg-white/5 p-3 rounded-2xl border border-white/10 shadow-lg backdrop-blur-sm">
-                                <img src={logo} alt="Dr. Ulhas Sonar" className="h-10 w-auto brightness-0 invert opacity-90" />
+                            <div className="flex gap-3 bg-white/5 p-2.5 rounded-2xl border border-white/10 shadow-lg backdrop-blur-sm">
+                                <img src={gmcLogo} alt="General Medical Council" className="h-8 w-auto brightness-0 invert opacity-90" />
+                                <img src={ebotLogo} alt="EBOT" className="h-8 w-auto brightness-0 invert opacity-90" />
                             </div>
                             <div className="flex flex-col">
                                 <span className="text-xl md:text-2xl font-montserrat font-black tracking-tight text-white leading-none">

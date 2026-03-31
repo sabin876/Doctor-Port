@@ -3,7 +3,8 @@ import { Link as ScrollLink, scroller } from 'react-scroll';
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Calendar, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import logo from '../assets/logo.png';
+import gmcLogo from '../assets/gmc-logo-navbar.png';
+import ebotLogo from '../assets/ebot-logo-navbar.png';
 
 
 import { useLanguage } from '../context/LanguageContext';
@@ -94,13 +95,22 @@ const Navbar = () => {
                 <div className="flex justify-between items-center h-16 md:h-20">
                     <div className="flex-shrink-0 flex items-center -ml-2 lg:-ml-12">
                         <div onClick={() => handleNavigation('home')} className="cursor-pointer flex items-center gap-3">
-                            <motion.img
-                                src={logo}
-                                alt="Dr. Ulhas Sonar Logo"
-                                className="h-12 sm:h-16 md:h-20 w-auto object-contain"
-                                whileHover={{ scale: 1.05 }}
-                                transition={{ type: "spring", stiffness: 300 }}
-                            />
+                            <div className="flex items-center gap-2 sm:gap-3">
+                                <motion.img
+                                    src={gmcLogo}
+                                    alt="General Medical Council Logo"
+                                    className="h-10 sm:h-14 md:h-16 w-auto object-contain"
+                                    whileHover={{ scale: 1.05 }}
+                                    transition={{ type: "spring", stiffness: 300 }}
+                                />
+                                <motion.img
+                                    src={ebotLogo}
+                                    alt="EBOT Logo"
+                                    className="h-10 sm:h-14 md:h-16 w-auto object-contain"
+                                    whileHover={{ scale: 1.05 }}
+                                    transition={{ type: "spring", stiffness: 300 }}
+                                />
+                            </div>
                             <div className="flex flex-col">
                                 <span className="text-lg sm:text-2xl font-metabolic font-extrabold tracking-tight text-primary-900 leading-none">
                                     {t('common.doctorName')}

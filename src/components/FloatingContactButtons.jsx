@@ -5,8 +5,8 @@ import { useLanguage } from '../context/LanguageContext';
 const FloatingContactButtons = () => {
     const { language } = useLanguage();
     const isRtl = language === 'AR';
-    const phoneNumber = "+971585865606"; // Dr. Ulhas's phone number
-    const whatsappNumber = "+971585865606"; // WhatsApp number
+    const phoneNumber = "+971551053445"; // Dr. Ulhas's phone number
+    const whatsappNumber = "+971551053445"; // WhatsApp number
 
     return (
         <div className="fixed end-4 bottom-4 md:end-6 md:bottom-6 z-50 flex flex-col gap-3 md:gap-4">
