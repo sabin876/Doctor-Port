@@ -7,6 +7,10 @@ import shoulderInjuryImg from '../assets/shoulder-sports-injury.png';
 import runnerAnkleImg from '../assets/runner-ankle-injury.png';
 import handWristInjuryImg from '../assets/hand-wrist-injury.png';
 import backNeckInjuryImg from '../assets/back-neck-injury.png';
+import kneeArthroscopyImg from '../assets/knee-pain-patient.png';
+import sportsMedicineImg from '../assets/sports-medicine-bg.png';
+import shoulderPainImg from '../assets/shoulder-pain-patient.png';
+import hipPainImg from '../assets/hip-pain-patient.png';
 
 const OrthoAnimation = () => (
     <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -89,40 +93,41 @@ const PersonalizedSolutions = () => {
     const { t, language } = useLanguage();
     const isRtl = language === 'AR';
 
+    // Ordered: Knee, Sports Injuries, Shoulder, Foot & Ankle, Back & Neck, Hip, Hand & Wrist
     const solutions = [
         {
-            title: t('personalizedSolutions.items.0.title'),
-            image: handWristInjuryImg,
+            title: t('personalizedSolutions.items.4.title'), // Knee
+            image: kneeArthroscopyImg,
             color: "bg-blue-50"
         },
         {
-            title: t('personalizedSolutions.items.1.title'),
-            image: backNeckInjuryImg,
+            title: t('personalizedSolutions.items.6.title'), // Sports Injuries
+            image: sportsMedicineImg,
             color: "bg-blue-50"
         },
         {
-            title: t('personalizedSolutions.items.2.title'),
+            title: t('personalizedSolutions.items.3.title'), // Shoulder
+            image: shoulderPainImg,
+            color: "bg-blue-50"
+        },
+        {
+            title: t('personalizedSolutions.items.2.title'), // Foot & Ankle
             image: runnerAnkleImg,
             color: "bg-blue-50"
         },
         {
-            title: t('personalizedSolutions.items.3.title'),
-            image: "https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?q=80&w=800&auto=format&fit=crop",
+            title: t('personalizedSolutions.items.1.title'), // Back & Neck
+            image: backNeckInjuryImg,
             color: "bg-blue-50"
         },
         {
-            title: t('personalizedSolutions.items.4.title'),
-            image: runnerKneeImg,
+            title: t('personalizedSolutions.items.5.title'), // Hip
+            image: hipPainImg,
             color: "bg-blue-50"
         },
         {
-            title: t('personalizedSolutions.items.5.title'),
-            image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop",
-            color: "bg-blue-50"
-        },
-        {
-            title: t('personalizedSolutions.items.6.title'),
-            image: shoulderInjuryImg,
+            title: t('personalizedSolutions.items.0.title'), // Hand & Wrist
+            image: handWristInjuryImg,
             color: "bg-blue-50"
         }
     ];

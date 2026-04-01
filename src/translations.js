@@ -266,6 +266,22 @@ export const translations = {
                 placeholder: "How can we help you today?",
                 submit: "Request Appointment"
             },
+            cards: {
+                call: {
+                    title: "Call Us",
+                    sub: "Available for urgent inquiries"
+                },
+                email: {
+                    title: "Email Support",
+                    sub: "Response within 24 hours"
+                },
+                visit: {
+                    title: "Visit Clinic",
+                    content: "DIP 1, Dubai, UAE",
+                    sub: "Monday - Saturday: 9am - 7pm"
+                },
+                social: "Follow Our Updates"
+            },
             info: {
                 call: "Call Us",
                 email: "Email Support",
@@ -540,6 +556,22 @@ export const translations = {
                 placeholder: "हम आज आपकी कैसे मदद कर सकते हैं?",
                 submit: "अपॉइंटमेंट का अनुरोध करें"
             },
+            cards: {
+                call: {
+                    title: "हमें कॉल करें",
+                    sub: "तत्काल पूछताछ के लिए उपलब्ध"
+                },
+                email: {
+                    title: "ईमेल सहायता",
+                    sub: "24 घंटे के भीतर जवाब"
+                },
+                visit: {
+                    title: "क्लिनिक पर आएं",
+                    content: "डीआईपी 1, दुबई, यूएई",
+                    sub: "सोमवार - शनिवार: सुबह 9 बजे - शाम 7 बजे"
+                },
+                social: "हमारे अपडेट का पालन करें"
+            },
             info: {
                 call: "हमें कॉल करें",
                 email: "ईमेल सहायता",
@@ -813,6 +845,22 @@ export const translations = {
                 medicalInquiry: "نوع الاستفسار",
                 placeholder: "كيف يمكننا مساعدتك اليوم؟",
                 submit: "طلب موعد"
+            },
+            cards: {
+                call: {
+                    title: "اتصل بنا",
+                    sub: "متاح للاستفسارات العاجلة"
+                },
+                email: {
+                    title: "الدعم عبر البريد",
+                    sub: "الرد خلال 24 ساعة"
+                },
+                visit: {
+                    title: "زيارة العيادة",
+                    content: "مجمع دبي للاستثمار 1، دبي",
+                    sub: "الاثنين - السبت: 9 صباحاً - 7 مساءً"
+                },
+                social: "تابع تحديثاتنا"
             },
             info: {
                 call: "اتصل بنا",
