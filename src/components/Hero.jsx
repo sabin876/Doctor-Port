@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence, animate } from 'framer-motion';
 import { CardContainer, CardBody, CardItem } from './ui/3d-card';
 import { useLanguage } from '../context/LanguageContext';
-import doctorImg from '../assets/hero-slide-1.webp'; 
+import doctorImg from '../assets/doctor-hero.jpeg'; 
 import slide1 from '../assets/hero-bg-1.webp';
 import slide2 from '../assets/hero-bg-2.webp';
 import slide3 from '../assets/hero-bg-3.webp';
