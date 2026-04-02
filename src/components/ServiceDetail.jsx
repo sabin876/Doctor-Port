@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import Breadcrumbs from './ui/Breadcrumbs';
 
 // Import images
 import kneeArthroscopyImg from '../assets/knee-arthroscopy.png';
@@ -14,12 +15,12 @@ import footAnkleImg from '../assets/foot-ankle-bg.png';
 
 const extendedDescriptions = {
     "Total/Partial Joint Replacement": {
-        content: `Joint replacement surgery is a medical procedure where a damaged joint, such as the knee, hip, or shoulder, is replaced with an artificial implant. It is usually recommended for people with severe joint pain, arthritis, or injury that limits mobility and daily function. The surgery relieves pain, restores function, and improves quality of life.`,
+        content: `Joint replacement surgery is a medical procedure where a damaged joint, such as the knee, hip, or shoulder, is replaced with an artificial implant. It is usually recommended for people with severe joint pain, arthritis, or injury that limits mobility and daily function. The surgery relieves pain, restores function, and improves quality of life. For more insights on joint damage, see our article on <a href='/articles/causes-of-knee-pain' class='text-primary-600 underline font-semibold'>the common causes of knee pain</a>.`,
         features: ["Knee Replacement for Arthritis", "Shoulder Replacement for Athletes", "Hip Replacement Surgeries"],
         image: jointReplacementImg
     },
     "Sports / ACL Injury Management": {
-        content: `Sports injury management involves the prevention, diagnosis, treatment, and rehabilitation of injuries caused during physical activities. It focuses on restoring the athlete’s strength, mobility, and performance while minimizing the risk of future injuries.`,
+        content: `Sports injury management involves the prevention, diagnosis, treatment, and rehabilitation of injuries caused during physical activities. It focuses on restoring the athlete’s strength, mobility, and performance while minimizing the risk of future injuries. Often faced with <a href='/articles/knee-pain-gym-sports' class='text-primary-600 underline font-semibold'>gym or sports related knee pain</a>, it's crucial to identify if it's a ligament or cartilage issue early on.`,
         features: ["Hamstring Strain in Runners", "Tennis Elbow in Racquet Sports", "Meniscus Tears & ACL Injuries"],
         image: sportsMedicineImg
     },
@@ -29,7 +30,7 @@ const extendedDescriptions = {
         image: null
     },
     "Knee and Shoulder Arthroscopy": {
-        content: `Arthroscopic surgery is a minimally invasive procedure used to diagnose and treat joint problems. It involves inserting a small camera, called an arthroscope, into the joint through a tiny incision. Surgeons can view the joint on a screen and perform necessary treatments using miniature instruments.`,
+        content: `Arthroscopic surgery is a minimally invasive procedure used to diagnose and treat joint problems. It involves inserting a small camera, called an arthroscope, into the joint through a tiny incision. Surgeons can view the joint on a screen and perform necessary treatments using miniature instruments. Learn to distinguish different pains in our <a href='/articles/meniscus-tear-vs-strain' class='text-primary-600 underline font-semibold'>Meniscus Tear vs Muscle Strain guide</a>.`,
         features: ["Knee Arthroscopy for Meniscus Tear", "Ankle Arthroscopy for Ligament Damage", "Shoulder Rotation Cuff Repair"],
         image: kneeArthroscopyImg
     },
@@ -49,7 +50,7 @@ const extendedDescriptions = {
         image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&auto=format&fit=crop&q=80"
     },
     "Physiotherapy and Rehabilitation": {
-        content: `Post-surgical physiotherapy planning is essential for a patient’s full recovery after an operation. It involves designing a structured rehabilitation program to restore movement, strength, and function in the affected area. The plan is personalized based on the type of surgery, patient health, and recovery goals.`,
+        content: `Post-surgical physiotherapy planning is essential for a patient’s full recovery after an operation. It involves designing a structured rehabilitation program to restore movement, strength, and function in the affected area. The plan is personalized based on the type of surgery, patient health, and recovery goals. Many patients can also benefit from <a href='/articles/knee-pain-exercises-desk' class='text-primary-600 underline font-semibold'>simple desk exercises</a> for preventative joint care building into their routine.`,
         features: ["Rehabilitation after Knee Replacement", "Physiotherapy after Spinal Surgery", "Sports Injury Recovery Plans"],
         image: "https://images.unsplash.com/photo-1576091160550-217359f49f4c?w=1200&auto=format&fit=crop&q=80"
     }
@@ -87,7 +88,15 @@ const ServiceDetail = () => {
     const image = details.image || "https://images.unsplash.com/photo-1581594632702-52c1cb8d799d?w=1200&auto=format&fit=crop&q=80"; // fallback
 
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-gray-50">
+            <div className="bg-white border-b border-gray-100">
+                <Breadcrumbs items={[
+                    { name: t('nav.home'), path: '/' },
+                    { name: t('nav.services'), path: '/services' },
+                    { name: serviceTitle }
+                ]} />
+            </div>
+
             {/* Hero Section */}
             <div className="relative h-[40vh] md:h-[50vh] min-h-[300px] w-full overflow-hidden bg-primary-950">
                 <img
@@ -131,9 +140,20 @@ const ServiceDetail = () => {
                     <div className="lg:col-span-2">
                         <div className="prose prose-lg prose-primary max-w-none">
                             <h2 className="text-2xl font-bold font-montserrat text-gray-900 mb-6">Overview</h2>
-                            <p className="text-gray-600 leading-relaxed text-lg mb-8">
-                                {details.content || serviceDesc}
-                            </p>
+                            <div 
+                                className="text-gray-600 leading-relaxed text-lg mb-8 space-y-4"
+                                dangerouslySetInnerHTML={{ __html: details.content || serviceDesc }}
+                                onClick={(e) => {
+                                    if (e.target.tagName === 'A') {
+                                        const href = e.target.getAttribute('href');
+                                        if (href && href.startsWith('/')) {
+                                            e.preventDefault();
+                                            navigate(href);
+                                            window.scrollTo(0, 0);
+                                        }
+                                    }
+                                }}
+                            />
                             
                             <h3 className="text-xl font-bold font-montserrat text-gray-900 mt-12 mb-6">Key Focus Areas</h3>
                             <div className="space-y-4">

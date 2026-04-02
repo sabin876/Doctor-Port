@@ -168,15 +168,21 @@ const Contact = () => {
                         
                         <div className="relative z-10">
                             <h3 className="text-4xl font-metabolic font-black text-primary-950 mb-10 tracking-tight">{t('contact.form.title')}</h3>
-                            <form className="space-y-6">
-                                <div className="grid md:grid-cols-2 gap-6">
-                                    <InputField label={t('contact.form.name')} type="text" placeholder={t('contact.form.namePlaceholder')} />
-                                    <InputField label={t('contact.form.email')} type="email" placeholder={t('contact.form.emailPlaceholder')} />
-                                </div>
-                                <InputField label={t('contact.form.phone')} type="tel" placeholder={t('contact.form.phonePlaceholder')} />
+                            <form 
+                                className="space-y-6"
+                                onSubmit={(e) => {
+                                    e.preventDefault();
+                                    // Simulation of successful submission
+                                    window.location.href = '/thank-you';
+                                }}
+                            >
+                                <InputField label={t('contact.form.name')} type="text" placeholder={t('contact.form.namePlaceholder')} required />
+                                <InputField label={t('contact.form.phone')} type="tel" placeholder={t('contact.form.phonePlaceholder')} required />
+                                
                                 <div className="space-y-3">
                                     <label className="block text-[10px] font-black text-primary-900 uppercase tracking-widest ml-1">{t('contact.form.medicalInquiry')}</label>
                                     <textarea
+                                        required
                                         className="w-full px-6 py-5 rounded-[1.5rem] border border-gray-100 focus:border-primary-400 focus:ring-[6px] focus:ring-primary-50 transition-all outline-none bg-gray-50/50 text-primary-950 placeholder-gray-400 font-medium text-sm h-40 resize-none shadow-inner"
                                         placeholder={t('contact.form.placeholder')}
                                     ></textarea>

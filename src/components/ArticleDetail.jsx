@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ChevronLeft, Calendar, User, Clock, Share2, Tag, ArrowRight } from 'lucide-react';
-
+import { ChevronLeft, Calendar, User, Clock, Share2, Tag, ArrowRight, Activity } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import Breadcrumbs from './ui/Breadcrumbs';
 export const articles = {
     'causes-of-knee-pain': {
         title: "Understanding Common Causes of Knee Pain",
@@ -21,7 +22,8 @@ export const articles = {
             <p>As we age, degenerative changes like <strong>osteoarthritis</strong> become more common. This occurs when the protective cartilage that cushions the ends of your bones wears down over time. It's often helpful to understand the <a href="/articles/causes-of-knee-pain">causes of knee pain in young adults</a> versus older populations to tailor the recovery plan.</p>
             <h3>When to Seek Help</h3>
             <p>Persistent pain, swelling, or instability should not be ignored. Many patients ask <a href="/articles/when-to-get-mri-knee">when knee pain needs MRI</a> to rule out internal structural damage. Furthermore, understanding the <a href="/articles/continuing-sports-risks">continuing sports with knee pain risks</a> can prevent long-term joint damage.</p>
-        `
+        `,
+        relatedServiceIds: [0, 1, 3]
     },
     'knee-pain-gym-sports': {
         title: "Knee Pain After Gym or Sports in Working Professionals: Ligament Injury or Cartilage Damage?",
@@ -69,7 +71,8 @@ export const articles = {
                     Dr. Ulhas Sonar is a UK-trained orthopedic surgeon specializing in sports injuries, joint preservation, and joint replacement surgery. He holds FRCS (England) and has completed over a decade of structured orthopedic training within the NHS. He is European Board certified (EBOT) and holds a diploma in robotic orthopedic surgery. Currently practicing in Dubai, he is also pursuing further training in regenerative medicine, with a focus on evolving biologic treatments in orthopedics.
                 </p>
             </div>
-        `
+        `,
+        relatedServiceIds: [1, 3]
     },
     'when-to-get-mri-knee': {
         title: "When Knee Pain Needs a Scan: Understanding MRI, X-rays, and Decision-Making",
@@ -121,7 +124,8 @@ export const articles = {
                     Dr. Ulhas Sonar is a UK-trained orthopedic surgeon specializing in sports injuries, joint preservation, and joint replacement surgery. He holds FRCS (England) and has completed over a decade of structured orthopedic training within the NHS. He is European Board certified (EBOT) and holds a diploma in robotic orthopedic surgery. Currently practicing in Dubai, he is also pursuing further training in regenerative medicine, with a focus on evolving biologic treatments in orthopedics.
                 </p>
             </div>
-        `
+        `,
+        relatedServiceIds: [5, 6]
     },
     'continuing-sports-risks': {
         title: "Continuing Sports with Knee Pain in Working Professionals: Risks and Mistakes",
@@ -164,7 +168,8 @@ export const articles = {
                     Dr. Ulhas Sonar is a UK-trained orthopedic surgeon specializing in sports injuries, joint preservation, and joint replacement surgery. He holds FRCS (England) and has completed over a decade of structured orthopedic training within the NHS. He is European Board certified (EBOT) and holds a diploma in robotic orthopedic surgery. Currently practicing in Dubai, he is also pursuing further training in regenerative medicine, with a focus on evolving biologic treatments in orthopedics.
                 </p>
             </div>
-        `
+        `,
+        relatedServiceIds: [1, 7]
     },
     'anterior-knee-pain-office': {
         title: "Anterior Knee Pain (Patellofemoral Pain) in Office Workers",
@@ -179,7 +184,8 @@ export const articles = {
             <p>Sitting for hours increases the pressure on the patella (kneecap) against the femur. This can lead to irritation of the cartilage and subsequent pain when standing up or climbing stairs.</p>
             <h3>Ergonomic Solutions</h3>
             <p>Adjusting your chair height and ensuring your feet rest flat on the floor can help. Alternating between sitting and standing is also beneficial to keep the joints mobile and reduce sustained pressure.</p>
-        `
+        `,
+        relatedServiceIds: [3, 7]
     },
     'meniscus-tear-vs-strain': {
         title: "Meniscus Tear vs. Muscle Strain – How to Tell them Apart",
@@ -194,7 +200,8 @@ export const articles = {
             <p>A <strong>meniscus tear</strong> often involves clicking, locking, or sharp pain along the joint line. In contrast, a <strong>muscle strain</strong> (like a hamstring or quad pull) usually feels like a dull ache or tightness in the soft tissue surrounding the joint.</p>
             <h3>Recovery Timelines</h3>
             <p>Strains typically improve with rest and gentle stretching over 2-3 weeks. A meniscus tear may require more formal physical therapy or even surgical intervention if it causes mechanical symptoms. Consulting a specialist is the only way to get a definitive diagnosis.</p>
-        `
+        `,
+        relatedServiceIds: [1, 3]
     },
     'knee-pain-exercises-desk': {
         title: "Best Exercises for Knee Pain (Desk Professionals)",
@@ -209,7 +216,8 @@ export const articles = {
             <p>Simply straighten your leg while sitting and hold for 5 seconds. This strengthens the quadriceps, which are vital for supporting the knee joint.</p>
             <h3>Ankle Pumps and Glute Squeezes</h3>
             <p>Keeping blood flowing and engaging the muscles around the hip can take significant pressure off the knees. Aim to perform these movements every hour to combat the stiffness of prolonged sitting.</p>
-        `
+        `,
+        relatedServiceIds: [5, 7]
     },
     'knee-pain-travel-flights': {
         title: "Managing Knee Pain During Travel and Long Flights",
@@ -224,7 +232,8 @@ export const articles = {
             <p>Choose an aisle seat if possible to allow for easier stretching. Hydration is also key, as it keeps your joint tissues healthy and reduces the risk of overall stiffness.</p>
             <h3>Post-Flight Recovery</h3>
             <p>Once you land, take a brisk walk to "lubricate" the joints. Gentle stretching of the quads and hamstrings can help reset your body after hours of being in a fixed position.</p>
-        `
+        `,
+        relatedServiceIds: [5, 7]
     },
     'knee-pain-pillar': {
         title: "Knee Pain in Professionals: The Ultimate Specialist Guide",
@@ -280,13 +289,15 @@ export const articles = {
                     Dr. Ulhas Sonar is a UK-trained orthopedic surgeon specializing in sports injuries, joint preservation, and joint replacement surgery. He holds FRCS (England) and has completed over a decade of structured orthopedic training within the NHS. He is European Board certified (EBOT) and holds a diploma in robotic orthopedic surgery. Currently practicing in Dubai, he is also pursuing further training in regenerative medicine, with a focus on evolving biologic treatments in orthopedics.
                 </p>
             </div>
-        `
+        `,
+        relatedServiceIds: [0, 1, 3]
     }
 };
 
 const ArticleDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const { t } = useLanguage();
     const article = articles[id];
 
     useEffect(() => {
@@ -355,7 +366,15 @@ const ArticleDetail = () => {
     }
 
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-gray-50">
+            <div className="bg-white border-b border-gray-100">
+                <Breadcrumbs items={[
+                    { name: 'Home', path: '/' },
+                    { name: 'Articles', path: '/articles' },
+                    { name: article.title }
+                ]} />
+            </div>
+
             {/* Hero Section */}
             <div className="relative h-[40vh] md:h-[60vh] min-h-[300px] w-full overflow-hidden">
                 <img
@@ -431,6 +450,30 @@ const ArticleDetail = () => {
                                 dangerouslySetInnerHTML={{ __html: article.content }}
                             />
                         </article>
+
+                        {/* Relevant Treatments Section */}
+                        {article.relatedServiceIds && article.relatedServiceIds.length > 0 && (
+                            <div className="mt-12 md:mt-16 pt-8 border-t border-gray-100">
+                                <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                                    <Activity className="w-6 h-6 text-primary-600" /> Relevant Treatments
+                                </h3>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    {article.relatedServiceIds.map((serviceIndex) => (
+                                        <Link
+                                            key={serviceIndex}
+                                            to={`/services/${serviceIndex}`}
+                                            className="group flex flex-col p-5 bg-white border border-gray-100 rounded-2xl hover:border-primary-200 hover:shadow-lg transition-all duration-300"
+                                        >
+                                            <span className="text-sm font-bold text-gray-900 mb-2 line-clamp-2">{t(`services.items.${serviceIndex}.title`)}</span>
+                                            <div className="flex items-center justify-between text-primary-600 group-hover:text-primary-700 font-medium text-sm mt-auto">
+                                                <span>View details</span>
+                                                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                                            </div>
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
 
                         {/* Practical CTA */}
                         <div className="mt-12 md:mt-16 p-6 md:p-8 rounded-3xl bg-gray-50 border border-gray-100 flex flex-col md:flex-row items-center justify-between gap-6">

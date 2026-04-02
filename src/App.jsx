@@ -14,6 +14,8 @@ import FloatingContactButtons from './components/FloatingContactButtons';
 import TopBar from './components/TopBar';
 import ServiceDetail from './components/ServiceDetail';
 import CanonicalTag from './components/CanonicalTag';
+import ThankYou from './components/ThankYou';
+import { HelmetProvider } from 'react-helmet-async';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -42,27 +44,30 @@ class ErrorBoundary extends React.Component {
 
 function App() {
   return (
-    <ErrorBoundary>
-      <Router>
-        <div className="min-h-screen bg-white font-sans text-gray-800">
-          <CanonicalTag />
-          <TopBar />
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/services/:id" element={<ServiceDetail />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/articles" element={<Articles />} />
-            <Route path="/articles/:id" element={<ArticleDetail />} />
-            <Route path="/gallery" element={<Gallery />} />
-          </Routes>
-          <Footer />
-          <FloatingContactButtons />
-        </div>
-      </Router>
-    </ErrorBoundary>
+    <HelmetProvider>
+      <ErrorBoundary>
+        <Router>
+          <div className="min-h-screen bg-white font-sans text-gray-800">
+            <CanonicalTag />
+            <TopBar />
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/services/:id" element={<ServiceDetail />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/articles" element={<Articles />} />
+              <Route path="/articles/:id" element={<ArticleDetail />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/thank-you" element={<ThankYou />} />
+            </Routes>
+            <Footer />
+            <FloatingContactButtons />
+          </div>
+        </Router>
+      </ErrorBoundary>
+    </HelmetProvider>
   );
 }
 

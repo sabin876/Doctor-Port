@@ -2,6 +2,7 @@ import React from 'react';
 import Services from './Services';
 import FAQ from './FAQ';
 import { useLanguage } from '../context/LanguageContext';
+import Breadcrumbs from './ui/Breadcrumbs';
 
 const ServicesPage = () => {
     const { t } = useLanguage();
@@ -13,7 +14,13 @@ const ServicesPage = () => {
     }));
 
     return (
-        <main className="pt-20">
+        <main className="pt-20 bg-gray-50 min-h-screen">
+            <div className="bg-white border-b border-gray-100">
+                <Breadcrumbs items={[
+                    { name: t('nav.home'), path: '/' },
+                    { name: t('nav.services') }
+                ]} />
+            </div>
             <Services />
             <FAQ 
                 title={t('faq_services.title')} 

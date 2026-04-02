@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { User, Calendar, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import FAQ from './FAQ';
-
+import Breadcrumbs from './ui/Breadcrumbs';
 
 const articlesData = [
     {
@@ -118,8 +118,15 @@ const Articles = () => {
     const { t } = useLanguage();
 
     return (
-        <div className="pt-24 pb-16 min-h-screen bg-gray-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="pt-20 min-h-screen bg-gray-50">
+            <div className="bg-white border-b border-gray-100">
+                <Breadcrumbs items={[
+                    { name: 'Home', path: '/' },
+                    { name: 'Articles' }
+                ]} />
+            </div>
+            
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-8">
 
                 {/* Header Section */}
                 <div className="text-center mb-16">

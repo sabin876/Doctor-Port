@@ -13,7 +13,7 @@ export const translations = {
         nav: {
             home: "Home",
             about: "About Us",
-            services: "Expertise",
+            services: "Services",
             articles: "Articles",
             gallery: "Gallery",
             contact: "Contact",
@@ -344,7 +344,7 @@ export const translations = {
         nav: {
             home: "होम",
             about: "हमारे बारे में",
-            services: "विशेषज्ञता",
+            services: "सेवाएं",
             articles: "लेख",
             gallery: "गैलरी",
             contact: "संपर्क",
@@ -674,7 +674,7 @@ export const translations = {
         nav: {
             home: "الرئيسية",
             about: "عن الطبيب",
-            services: "الخبرات",
+            services: "خدماتنا",
             articles: "المقالات",
             gallery: "المعرض",
             contact: "اتصل بنا",

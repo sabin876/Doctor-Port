@@ -13,6 +13,8 @@ const Navbar = () => {
     const isRtl = lang === 'AR';
     const [isOpen, setIsOpen] = useState(false);
     const [isLangOpen, setIsLangOpen] = useState(false);
+    const [isServicesOpen, setIsServicesOpen] = useState(false);
+    const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -69,10 +71,20 @@ const Navbar = () => {
     const navLinks = [
         { id: 'home', name: 'Home', target: 'home', isRouterLink: false },
         { id: 'about', name: 'About', path: '/about', isRouterLink: true },
-        { id: 'services', name: 'Services', path: '/services', isRouterLink: true },
+        { id: 'services', name: 'Services', path: '/services', isRouterLink: true, hasDropdown: true },
         { id: 'articles', name: 'Articles', path: '/articles', isRouterLink: true },
         { id: 'gallery', name: 'Gallery', path: '/gallery', isRouterLink: true },
         { id: 'contact', name: 'Contact', target: 'contact-form', route: '/contact', isRouterLink: false },
+    ];
+
+    const dropdownServices = [
+        { id: 'arthroscopy', name: t('footer.serviceLinks.arthroscopy'), path: '/services/3' },
+        { id: 'sportsMedicine', name: t('footer.serviceLinks.sportsMedicine'), path: '/services/1' },
+        { id: 'roboticSurgery', name: t('footer.serviceLinks.roboticSurgery'), path: '/services/2' },
+        { id: 'jointReplacement', name: t('footer.serviceLinks.jointReplacement'), path: '/services/0' },
+        { id: 'deformityCorrection', name: t('footer.serviceLinks.deformityCorrection'), path: '/services/4' },
+        { id: 'physiotherapy', name: t('footer.serviceLinks.physiotherapy'), path: '/services/7' },
+        { id: 'more', name: t('footer.serviceLinks.more'), path: '/services' },
     ];
 
     const languages = [
@@ -115,7 +127,45 @@ const Navbar = () => {
                     {/* Desktop Menu */}
                     <div className="hidden md:flex items-center gap-x-8">
                         {navLinks.map((link) => (
-                            link.isRouterLink ? (
+                            link.hasDropdown ? (
+                                <div 
+                                    key={link.id} 
+                                    className="relative group/services"
+                                    onMouseEnter={() => setIsServicesOpen(true)}
+                                    onMouseLeave={() => setIsServicesOpen(false)}
+                                >
+                                    <button
+                                        className="flex items-center gap-1 text-[13px] font-montserrat font-bold transition-all duration-300 hover:text-primary-600 relative group text-primary-950 uppercase tracking-widest py-2"
+                                    >
+                                        {t(`nav.${link.id}`)}
+                                        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${isServicesOpen ? 'rotate-180 text-primary-600' : 'text-gray-400'}`} />
+                                        <span className={`absolute -bottom-1 ${isRtl ? 'end-0' : 'start-0'} w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover/services:w-full`}></span>
+                                    </button>
+
+                                    <AnimatePresence>
+                                        {isServicesOpen && (
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                exit={{ opacity: 0, y: 15, scale: 0.95 }}
+                                                className={`absolute ${isRtl ? 'end-0' : 'start-0'} mt-3 w-64 bg-white border border-gray-100 rounded-2xl shadow-premium-hover overflow-hidden z-50 p-2`}
+                                            >
+                                                {dropdownServices.map((service) => (
+                                                    <RouterLink
+                                                        key={service.id}
+                                                        to={service.path}
+                                                        onClick={() => setIsServicesOpen(false)}
+                                                        className="flex items-center justify-between w-full px-4 py-3 text-[12px] font-montserrat font-bold rounded-xl transition-all duration-200 text-gray-700 hover:bg-primary-50 hover:text-primary-600 hover:pl-5 group/item"
+                                                    >
+                                                        <span>{service.name}</span>
+                                                        <ChevronDown className={`w-3 h-3 ${isRtl ? 'rotate-90' : '-rotate-90'} opacity-0 group-hover/item:opacity-100 transition-all`} />
+                                                    </RouterLink>
+                                                ))}
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+                            ) : link.isRouterLink ? (
                                 <RouterLink
                                     key={link.name}
                                     to={link.path}
@@ -216,7 +266,38 @@ const Navbar = () => {
                     >
                         <div className="flex flex-col items-center py-12 space-y-8 px-6">
                             {navLinks.map((link, index) => (
-                                link.isRouterLink ? (
+                                link.hasDropdown ? (
+                                    <div key={link.id} className="w-full flex flex-col items-center">
+                                        <button
+                                            onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                                            className="flex items-center gap-2 text-[13px] font-montserrat font-bold text-gray-900 hover:text-primary-600 transition-colors uppercase tracking-widest"
+                                        >
+                                            {t(`nav.${link.id}`)}
+                                            <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isMobileServicesOpen ? 'rotate-180' : ''}`} />
+                                        </button>
+                                        <AnimatePresence>
+                                            {isMobileServicesOpen && (
+                                                <motion.div
+                                                    initial={{ height: 0, opacity: 0 }}
+                                                    animate={{ height: 'auto', opacity: 1 }}
+                                                    exit={{ height: 0, opacity: 0 }}
+                                                    className="overflow-hidden flex flex-col items-center mt-4 space-y-4 w-full bg-gray-50/50 rounded-2xl py-4"
+                                                >
+                                                    {dropdownServices.map((service) => (
+                                                        <RouterLink
+                                                            key={service.id}
+                                                            to={service.path}
+                                                            onClick={() => setIsOpen(false)}
+                                                            className="text-[12px] font-montserrat font-bold text-gray-600 hover:text-primary-600 transition-colors uppercase tracking-widest"
+                                                        >
+                                                            {service.name}
+                                                        </RouterLink>
+                                                    ))}
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </div>
+                                ) : link.isRouterLink ? (
                                     <motion.div
                                         key={link.name}
                                         initial={{ opacity: 0, y: 20 }}
