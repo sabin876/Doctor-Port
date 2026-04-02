@@ -13,6 +13,7 @@ import FloatingControls from './components/FloatingControls';
 import FloatingContactButtons from './components/FloatingContactButtons';
 import TopBar from './components/TopBar';
 import ServiceDetail from './components/ServiceDetail';
+import CanonicalTag from './components/CanonicalTag';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -44,6 +45,7 @@ function App() {
     <ErrorBoundary>
       <Router>
         <div className="min-h-screen bg-white font-sans text-gray-800">
+          <CanonicalTag />
           <TopBar />
           <Navbar />
           <Routes>
