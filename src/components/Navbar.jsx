@@ -3,7 +3,7 @@ import { Link as ScrollLink, scroller } from 'react-scroll';
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Calendar, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo.webp';
 
 
 import { useLanguage } from '../context/LanguageContext';
@@ -175,7 +175,7 @@ const Navbar = () => {
                                                 }}
                                                 className={`w-full flex items-center gap-3 px-4 py-3 text-[14px] font-metabolic font-bold rounded-xl transition-all duration-200 ${lang === l.code ? 'bg-primary-50 text-primary-600 shadow-sm ring-1 ring-primary-100' : 'text-gray-600 hover:bg-gray-50 hover:pl-5'}`}
                                             >
-                                                <img src={l.flag} alt={l.name} className="w-5 h-auto rounded-sm shadow-sm" />
+                                                <img src={l.flag} alt={l.name} loading="lazy" decoding="async" className="w-5 h-auto rounded-sm shadow-sm" />
                                                 <span>{l.name}</span>
                                             </button>
                                         ))}
@@ -258,7 +258,7 @@ const Navbar = () => {
                                                 }}
                                                 className={`px-4 py-2 text-[13px] font-montserrat font-bold transition-all duration-300 flex items-center gap-2 ${lang === l.code ? 'text-primary-600' : 'text-gray-600 hover:text-primary-600'}`}
                                             >
-                                                <img src={l.flag} alt={l.name} className="w-4 h-auto rounded-sm" />
+                                                <img src={l.flag} alt={l.name} loading="lazy" decoding="async" className="w-4 h-auto rounded-sm" />
                                                 {l.name}
                                             </button>
                                     ))}

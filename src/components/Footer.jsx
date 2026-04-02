@@ -1,5 +1,5 @@
-import gmcLogo from '../assets/gmc-logo-navbar.png';
-import ebotLogo from '../assets/ebot-logo-navbar.png';
+import gmcLogo from '../assets/gmc-logo-navbar.webp';
+import ebotLogo from '../assets/ebot-logo-navbar.webp';
 import { useLanguage } from '../context/LanguageContext';
 import { MapPin, Phone, Mail, Youtube, Twitter, Linkedin, ChevronRight } from 'lucide-react';
 

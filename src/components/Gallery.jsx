@@ -2,14 +2,14 @@ import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { X, ZoomIn, Images, Award, Users, Microscope, ChevronLeft, ChevronRight } from 'lucide-react';
 
-import surgerImg from '../assets/gallery-surgery-room.png';
-import consultImg from '../assets/gallery-consultation.png';
-import awardsImg from '../assets/gallery-awards.png';
-import confImg from '../assets/gallery-conference.png';
-import heroSlide1 from '../assets/hero-slide-1.png';
-import heroSlide2 from '../assets/hero-slide-2.png';
-import kneeArthro from '../assets/knee-arthroscopy.png';
-import doctorProfile from '../assets/doctor-profile.png';
+import surgerImg from '../assets/gallery-surgery-room.webp';
+import consultImg from '../assets/gallery-consultation.webp';
+import awardsImg from '../assets/gallery-awards.webp';
+import confImg from '../assets/gallery-conference.webp';
+import heroSlide1 from '../assets/hero-slide-1.webp';
+import heroSlide2 from '../assets/hero-slide-2.webp';
+import kneeArthro from '../assets/knee-arthroscopy.webp';
+import doctorProfile from '../assets/doctor-profile.webp';
 
 const galleryItems = [
     {
@@ -208,6 +208,8 @@ const Gallery = () => {
                                 <img
                                     src={item.src}
                                     alt={item.title}
+                                    loading="lazy"
+                                    decoding="async"
                                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
 

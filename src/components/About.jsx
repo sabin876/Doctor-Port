@@ -4,7 +4,7 @@ import {
     GraduationCap, Briefcase, Award, BookOpen,
     HeartHandshake, FlaskConical, ShieldCheck, Star
 } from 'lucide-react';
-import doctorProfileImg from '../assets/doctor-profile.png';
+import doctorProfileImg from '../assets/doctor-profile.webp';
 import { useLanguage } from '../context/LanguageContext';
 
 const About = () => {
@@ -140,6 +140,8 @@ const About = () => {
                             <img
                                 src={doctorProfileImg}
                                 alt={t('common.doctorName')}
+                                loading="lazy"
+                                decoding="async"
                                 className="w-full h-auto object-cover"
                             />
                         </div>

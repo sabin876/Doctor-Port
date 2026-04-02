@@ -16,12 +16,12 @@ import {
 } from 'lucide-react';
 
 import { useLanguage } from '../context/LanguageContext';
-import kneeArthroscopyImg from '../assets/knee-arthroscopy.png';
-import jointReplacementImg from '../assets/joint-replacement-bg.png';
-import sportsMedicineImg from '../assets/sports-medicine-bg.png';
-import spineSurgeryImg from '../assets/spine-surgery-bg.png';
-import handWristImg from '../assets/hand-wrist-bg.png';
-import footAnkleImg from '../assets/foot-ankle-bg.png';
+import kneeArthroscopyImg from '../assets/knee-arthroscopy.webp';
+import jointReplacementImg from '../assets/joint-replacement-bg.webp';
+import sportsMedicineImg from '../assets/sports-medicine-bg.webp';
+import spineSurgeryImg from '../assets/spine-surgery-bg.webp';
+import handWristImg from '../assets/hand-wrist-bg.webp';
+import footAnkleImg from '../assets/foot-ankle-bg.webp';
 
 const Services = () => {
     const { t } = useLanguage();
@@ -139,6 +139,8 @@ const Services = () => {
                                         <img
                                             src={service.image}
                                             alt={service.title}
+                                            loading="lazy"
+                                            decoding="async"
                                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
                                         />
                                         {/* Gradient Overlay */}

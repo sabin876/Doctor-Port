@@ -2,10 +2,10 @@ import React from 'react';
 import { motion, AnimatePresence, animate } from 'framer-motion';
 import { CardContainer, CardBody, CardItem } from './ui/3d-card';
 import { useLanguage } from '../context/LanguageContext';
-import doctorImg from '../assets/hero-slide-1.png'; // Reverted to previous photo
-import slide1 from '../assets/hero-bg-1.png';
-import slide2 from '../assets/hero-bg-2.jpg';
-import slide3 from '../assets/hero-bg-3.jpg';
+import doctorImg from '../assets/hero-slide-1.webp'; 
+import slide1 from '../assets/hero-bg-1.webp';
+import slide2 from '../assets/hero-bg-2.webp';
+import slide3 from '../assets/hero-bg-3.webp';
 
 const AnimatedCounter = ({ value, suffix }) => {
     const [count, setCount] = React.useState(0);
@@ -166,6 +166,8 @@ const Hero = () => {
                                         <img
                                             src={doctorImg}
                                             alt="Dr. Ulhas Sonar"
+                                            loading="lazy"
+                                            decoding="async"
                                             className="w-full h-full object-cover rounded-[2rem] hover:scale-110 transition-transform duration-1000"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
@@ -205,7 +207,7 @@ const Hero = () => {
                                         <div className="flex -space-x-3">
                                             {[1, 2, 3].map(i => (
                                                 <div key={i} className="w-8 h-8 rounded-full border-2 border-primary-900 bg-gray-200 overflow-hidden">
-                                                    <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="Patient" />
+                                                    <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="Patient" loading="lazy" decoding="async" />
                                                 </div>
                                             ))}
                                         </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import gmcLogo from '../assets/gmc-logo.svg';
-import ebotLogo from '../assets/ebot-logo.png';
+import ebotLogo from '../assets/ebot-logo.webp';
 
 const Affiliations = () => {
     const { language, t: translate } = useLanguage();
@@ -116,6 +116,8 @@ const Affiliations = () => {
                                 <img
                                     src={logo.src}
                                     alt={logo.name}
+                                    loading="lazy"
+                                    decoding="async"
                                     className="max-w-full max-h-full object-contain transition-all duration-700 group-hover/card:scale-110 relative z-10 filter group-hover/card:drop-shadow-lg"
                                     onError={(e) => {
                                         e.target.style.display = 'none';

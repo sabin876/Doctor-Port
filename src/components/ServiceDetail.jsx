@@ -93,6 +93,8 @@ const ServiceDetail = () => {
                 <img
                     src={image}
                     alt={serviceTitle}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover opacity-40 mix-blend-overlay"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent flex flex-col justify-end">
