@@ -7,7 +7,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
 import doctorSurgery from '../assets/doctor-surgery.png';
-import doctorPortrait from '../assets/doctor-profile-2.png';
+import doctorPortrait from '../assets/doctor-hero.jpeg';
 
 /* ── Animated number counter ── */
 const AnimatedCounter = ({ value, suffix, trigger }) => {
