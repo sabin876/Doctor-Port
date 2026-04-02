@@ -114,7 +114,7 @@ const Footer = () => {
                         <ul className="space-y-4 text-[15px] font-medium mt-4">
                             {[
                                 { name: t('footer.patientResources'), href: '/#publications' },
-                                { name: t('footer.articles'), href: '/articles' },
+                                { name: t('footer.articles'), href: '/blog' },
                                 { name: t('nav.faq'), href: '/#faq' },
                                 { name: t('footer.privacy'), href: '#' }
                             ].map((item, idx) => (

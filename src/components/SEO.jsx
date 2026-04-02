@@ -16,7 +16,12 @@ const SEO = ({
   const siteName = 'Dr. Ulhas | Expert Orthopedic Surgeon';
   const domain = 'orthopedic-specialist.com';
   const baseUrl = `https://${domain}`;
-  const fullUrl = url ? (url.startsWith('https') ? url : `${baseUrl}${url}`) : baseUrl;
+  let fullUrl = url ? (url.startsWith('https') ? url : `${baseUrl}${url}`) : baseUrl;
+  
+  // Ensure the URL ends with a trailing slash for consistency
+  if (!fullUrl.endsWith('/')) {
+    fullUrl += '/';
+  }
   
   const formattedTitle = title ? (title.includes('Dr. Ulhas') ? title : `${title} | Dr. Ulhas`) : siteName;
   const defaultDesc = "Expert orthopedic care specializing in joint replacement, sports injuries, and comprehensive rehabilitation with Dr. Ulhas.";

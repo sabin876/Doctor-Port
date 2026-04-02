@@ -123,12 +123,12 @@ const Articles = () => {
             <SEO 
                 title="Orthopedic Articles & Insights | Dr. Ulhas"
                 description="Read the latest articles on orthopedic conditions, treatments, and recovery from Dr. Ulhas Sonar."
-                url="/articles"
+                url="/blog"
             />
             <div className="bg-white border-b border-gray-100">
                 <Breadcrumbs items={[
                     { name: 'Home', path: '/' },
-                    { name: 'Articles' }
+                    { name: 'Blog' }
                 ]} />
             </div>
             
@@ -171,7 +171,7 @@ const Articles = () => {
                             className="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col"
                         >
                             <Link
-                                to={`/articles/${article.id}`}
+                                to={`/blog/${article.id}`}
                                 className="flex flex-col h-full"
                             >
                                 {/* Image Container */}

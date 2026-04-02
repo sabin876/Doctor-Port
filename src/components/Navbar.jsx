@@ -72,7 +72,7 @@ const Navbar = () => {
         { id: 'home', name: 'Home', target: 'home', isRouterLink: false },
         { id: 'about', name: 'About', path: '/about', isRouterLink: true },
         { id: 'services', name: 'Services', path: '/services', isRouterLink: true, hasDropdown: true },
-        { id: 'articles', name: 'Articles', path: '/articles', isRouterLink: true },
+        { id: 'articles', name: 'Articles', path: '/blog', isRouterLink: true },
         { id: 'gallery', name: 'Gallery', path: '/gallery', isRouterLink: true },
         { id: 'contact', name: 'Contact', target: 'contact-form', route: '/contact', isRouterLink: false },
     ];

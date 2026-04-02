@@ -16,12 +16,12 @@ import footAnkleImg from '../assets/foot-ankle-bg.png';
 
 const extendedDescriptions = {
     "Total/Partial Joint Replacement": {
-        content: `Joint replacement surgery is a medical procedure where a damaged joint, such as the knee, hip, or shoulder, is replaced with an artificial implant. It is usually recommended for people with severe joint pain, arthritis, or injury that limits mobility and daily function. The surgery relieves pain, restores function, and improves quality of life. For more insights on joint damage, see our article on <a href='/articles/causes-of-knee-pain' class='text-primary-600 underline font-semibold'>the common causes of knee pain</a>.`,
+        content: `Joint replacement surgery is a medical procedure where a damaged joint, such as the knee, hip, or shoulder, is replaced with an artificial implant. It is usually recommended for people with severe joint pain, arthritis, or injury that limits mobility and daily function. The surgery relieves pain, restores function, and improves quality of life. For more insights on joint damage, see our article on <a href='/blog/causes-of-knee-pain' class='text-primary-600 underline font-semibold'>the common causes of knee pain</a>.`,
         features: ["Knee Replacement for Arthritis", "Shoulder Replacement for Athletes", "Hip Replacement Surgeries"],
         image: jointReplacementImg
     },
     "Sports / ACL Injury Management": {
-        content: `Sports injury management involves the prevention, diagnosis, treatment, and rehabilitation of injuries caused during physical activities. It focuses on restoring the athlete’s strength, mobility, and performance while minimizing the risk of future injuries. Often faced with <a href='/articles/knee-pain-gym-sports' class='text-primary-600 underline font-semibold'>gym or sports related knee pain</a>, it's crucial to identify if it's a ligament or cartilage issue early on.`,
+        content: `Sports injury management involves the prevention, diagnosis, treatment, and rehabilitation of injuries caused during physical activities. It focuses on restoring the athlete’s strength, mobility, and performance while minimizing the risk of future injuries. Often faced with <a href='/blog/knee-pain-gym-sports' class='text-primary-600 underline font-semibold'>gym or sports related knee pain</a>, it's crucial to identify if it's a ligament or cartilage issue early on.`,
         features: ["Hamstring Strain in Runners", "Tennis Elbow in Racquet Sports", "Meniscus Tears & ACL Injuries"],
         image: sportsMedicineImg
     },
@@ -31,7 +31,7 @@ const extendedDescriptions = {
         image: null
     },
     "Knee and Shoulder Arthroscopy": {
-        content: `Arthroscopic surgery is a minimally invasive procedure used to diagnose and treat joint problems. It involves inserting a small camera, called an arthroscope, into the joint through a tiny incision. Surgeons can view the joint on a screen and perform necessary treatments using miniature instruments. Learn to distinguish different pains in our <a href='/articles/meniscus-tear-vs-strain' class='text-primary-600 underline font-semibold'>Meniscus Tear vs Muscle Strain guide</a>.`,
+        content: `Arthroscopic surgery is a minimally invasive procedure used to diagnose and treat joint problems. It involves inserting a small camera, called an arthroscope, into the joint through a tiny incision. Surgeons can view the joint on a screen and perform necessary treatments using miniature instruments. Learn to distinguish different pains in our <a href='/blog/meniscus-tear-vs-strain' class='text-primary-600 underline font-semibold'>Meniscus Tear vs Muscle Strain guide</a>.`,
         features: ["Knee Arthroscopy for Meniscus Tear", "Ankle Arthroscopy for Ligament Damage", "Shoulder Rotation Cuff Repair"],
         image: kneeArthroscopyImg
     },
@@ -51,7 +51,7 @@ const extendedDescriptions = {
         image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&auto=format&fit=crop&q=80"
     },
     "Physiotherapy and Rehabilitation": {
-        content: `Post-surgical physiotherapy planning is essential for a patient’s full recovery after an operation. It involves designing a structured rehabilitation program to restore movement, strength, and function in the affected area. The plan is personalized based on the type of surgery, patient health, and recovery goals. Many patients can also benefit from <a href='/articles/knee-pain-exercises-desk' class='text-primary-600 underline font-semibold'>simple desk exercises</a> for preventative joint care building into their routine.`,
+        content: `Post-surgical physiotherapy planning is essential for a patient’s full recovery after an operation. It involves designing a structured rehabilitation program to restore movement, strength, and function in the affected area. The plan is personalized based on the type of surgery, patient health, and recovery goals. Many patients can also benefit from <a href='/blog/knee-pain-exercises-desk' class='text-primary-600 underline font-semibold'>simple desk exercises</a> for preventative joint care building into their routine.`,
         features: ["Rehabilitation after Knee Replacement", "Physiotherapy after Spinal Surgery", "Sports Injury Recovery Plans"],
         image: "https://images.unsplash.com/photo-1576091160550-217359f49f4c?w=1200&auto=format&fit=crop&q=80"
     }

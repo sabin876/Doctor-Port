@@ -18,11 +18,11 @@ export const articles = {
         content: `
             <p>Knee pain is a common complaint that affects people of all ages. Understanding the underlying cause is the first step toward effective treatment. Whether it's a sudden injury or a gradual onset of discomfort, identifying the source is crucial.</p>
             <h3>Common Causes in Young Adults</h3>
-            <p>In younger, active individuals, knee pain is often related to sports or overuse. Conditions like <strong>patellofemoral pain syndrome</strong> or ligament tears are frequent. If you've been active lately, you might notice <a href="/articles/knee-pain-gym-sports">knee pain after gym or sports</a>, which could indicate anything from simple strain to a more serious injury.</p>
+            <p>In younger, active individuals, knee pain is often related to sports or overuse. Conditions like <strong>patellofemoral pain syndrome</strong> or ligament tears are frequent. If you've been active lately, you might notice <a href="/blog/knee-pain-gym-sports">knee pain after gym or sports</a>, which could indicate anything from simple strain to a more serious injury.</p>
             <h3>Age-Related Wear and Tear</h3>
-            <p>As we age, degenerative changes like <strong>osteoarthritis</strong> become more common. This occurs when the protective cartilage that cushions the ends of your bones wears down over time. It's often helpful to understand the <a href="/articles/causes-of-knee-pain">causes of knee pain in young adults</a> versus older populations to tailor the recovery plan.</p>
+            <p>As we age, degenerative changes like <strong>osteoarthritis</strong> become more common. This occurs when the protective cartilage that cushions the ends of your bones wears down over time. It's often helpful to understand the <a href="/blog/causes-of-knee-pain">causes of knee pain in young adults</a> versus older populations to tailor the recovery plan.</p>
             <h3>When to Seek Help</h3>
-            <p>Persistent pain, swelling, or instability should not be ignored. Many patients ask <a href="/articles/when-to-get-mri-knee">when knee pain needs MRI</a> to rule out internal structural damage. Furthermore, understanding the <a href="/articles/continuing-sports-risks">continuing sports with knee pain risks</a> can prevent long-term joint damage.</p>
+            <p>Persistent pain, swelling, or instability should not be ignored. Many patients ask <a href="/blog/when-to-get-mri-knee">when knee pain needs MRI</a> to rule out internal structural damage. Furthermore, understanding the <a href="/blog/continuing-sports-risks">continuing sports with knee pain risks</a> can prevent long-term joint damage.</p>
         `,
         relatedServiceIds: [0, 1, 3]
     },
@@ -61,7 +61,7 @@ export const articles = {
             <h3>Ligament vs Cartilage: How to tell the difference?</h3>
             <p><strong>Ligament injuries</strong> often present with sudden swelling (within hours) and a feeling of instability or "giving way." <strong>Meniscal/Cartilage injuries</strong> may have delayed swelling and mechanical symptoms like locking or catching.</p>
             
-            <p>For more details, see our <a href="/articles/meniscus-tear-vs-strain">meniscus vs strain guide</a> or check out <a href="/articles/when-to-get-mri-knee">when you need an MRI</a>.</p>
+            <p>For more details, see our <a href="/blog/meniscus-tear-vs-strain">meniscus vs strain guide</a> or check out <a href="/blog/when-to-get-mri-knee">when you need an MRI</a>.</p>
 
             <h3>When to seek evaluation</h3>
             <p>Clinical assessment is advisable if you experience recurrent swelling, instability, locking, or pain persisting beyond 2-3 weeks. Early diagnosis is key to avoiding secondary joint damage.</p>
@@ -90,10 +90,10 @@ export const articles = {
             <p>Imaging, and MRI in particular, is often seen as the definitive way to identify the exact source of pain. However, the clinical reality is more nuanced. Not every painful knee requires immediate imaging, and not every MRI changes treatment. Understanding when a scan is important, useful, and sometimes time-sensitive is key to effective management.</p>
 
             <h3>Why the question of imaging comes up so often</h3>
-            <p>One common reason is fear of missing a structural injury, particularly after <a href="/articles/knee-pain-gym-sports">injury types after gym</a> or twisting injuries in sports. Another is the modern expectation of rapid answers. Working professionals often prefer a quick, definitive explanation to structure exercise around their commitments. However, the central clinical question is whether the scan will provide information that meaningfully changes the treatment pathway.</p>
+            <p>One common reason is fear of missing a structural injury, particularly after <a href="/blog/knee-pain-gym-sports">injury types after gym</a> or twisting injuries in sports. Another is the modern expectation of rapid answers. Working professionals often prefer a quick, definitive explanation to structure exercise around their commitments. However, the central clinical question is whether the scan will provide information that meaningfully changes the treatment pathway.</p>
 
             <h3>Clinical assessment comes before imaging</h3>
-            <p>A careful history and physical examination often provide most of the information needed to decide whether imaging is necessary. The examiner looks at the pattern of onset, the mechanism of injury (e.g., a twist vs. gradual load), and mechanical symptoms like locking or instability. If you're unsure about the <a href="/articles/causes-of-knee-pain">common causes of knee pain</a>, clinical assessment is the first step. Imaging follows the clinical question; it is not a substitute for it.</p>
+            <p>A careful history and physical examination often provide most of the information needed to decide whether imaging is necessary. The examiner looks at the pattern of onset, the mechanism of injury (e.g., a twist vs. gradual load), and mechanical symptoms like locking or instability. If you're unsure about the <a href="/blog/causes-of-knee-pain">common causes of knee pain</a>, clinical assessment is the first step. Imaging follows the clinical question; it is not a substitute for it.</p>
 
             <h3>Understanding what X-rays actually show</h3>
             <p>X-rays remain a highly useful first-line investigation. They are excellent for identifying fractures, malalignment, degenerative changes (arthritis), and loose bodies. In younger active patients, weight-bearing X-rays can reveal patterns of chronic overload that MRI might miss. A normal X-ray also helps narrow the diagnostic field.</p>
@@ -105,7 +105,7 @@ export const articles = {
             <p>Many knee presentations, especially gym-related overload issues in young adults, improve with time and structured rehabilitation. Immediate MRI in low-risk situations may identify minor signal changes or incidental findings that are not the true source of pain, leading to unnecessary anxiety or over-medicalisation.</p>
 
             <h3>When knee pain clearly does need imaging</h3>
-            <p>Imaging is indicated when there has been a significant injury mechanism (like a twist with immediate swelling), recurrent mechanical symptoms (locking or catching), or when instability/giving way is reported. It is also warranted if symptoms fail to improve after an adequate period of appropriate treatment. Understanding <a href="/articles/continuing-sports-risks">why ignoring pain is risky</a> is essential; a timely scan can prevent long-term joint damage.</p>
+            <p>Imaging is indicated when there has been a significant injury mechanism (like a twist with immediate swelling), recurrent mechanical symptoms (locking or catching), or when instability/giving way is reported. It is also warranted if symptoms fail to improve after an adequate period of appropriate treatment. Understanding <a href="/blog/continuing-sports-risks">why ignoring pain is risky</a> is essential; a timely scan can prevent long-term joint damage.</p>
 
             <h3>Red flags and urgent scenarios</h3>
             <p>Certain presentations require prompt investigation: acute inability to bear weight after trauma, marked swelling within hours of an injury (suggesting a hemarthrosis), fever or redness (raising concern for infection), and persistent night pain.</p>
@@ -138,7 +138,7 @@ export const articles = {
         image: "/images/blog/sports-risks.png",
         readTime: "12 min read",
         content: `
-            <p>Continuing sports or gym activity despite knee pain is a common and often underestimated problem among active adults and working professionals. While some minor symptoms may resolve with rest, ignoring unresolved pain can lead to progression of injury, prolonged recovery, and secondary joint damage. Differentiating between benign <a href="/articles/knee-pain-gym-sports">injury vs overload</a> is critical for long-term health.</p>
+            <p>Continuing sports or gym activity despite knee pain is a common and often underestimated problem among active adults and working professionals. While some minor symptoms may resolve with rest, ignoring unresolved pain can lead to progression of injury, prolonged recovery, and secondary joint damage. Differentiating between benign <a href="/blog/knee-pain-gym-sports">injury vs overload</a> is critical for long-term health.</p>
 
             <h3>Why professionals often continue sports despite knee pain</h3>
             <p>Lifestyle factors like fitness goals, stress management, and limited time windows for exercise often drive individuals to "push through" symptoms. A common mistake is attributing joint-related pain—often felt deep within the knee or along the joint line—to routine muscle soreness. In desk-based professionals, the lack of pain during the workday further contributes to underestimating the injury.</p>
@@ -152,13 +152,13 @@ export const articles = {
             </ul>
 
             <h3>Common mistakes and cumulative load</h3>
-            <p>Many professionals ignore swelling or use medication to mask symptoms, allowing them to continue activity while a structural injury worsens. In modern lifestyles, the cumulative load from prolonged sitting, stair climbing, and travel-related strain also contributes significantly to joint stress. Resuming high-impact sport without identifying the <a href="/articles/causes-of-knee-pain">underlying causes of knee pain</a> then becomes the "tipping point" for injury.</p>
+            <p>Many professionals ignore swelling or use medication to mask symptoms, allowing them to continue activity while a structural injury worsens. In modern lifestyles, the cumulative load from prolonged sitting, stair climbing, and travel-related strain also contributes significantly to joint stress. Resuming high-impact sport without identifying the <a href="/blog/causes-of-knee-pain">underlying causes of knee pain</a> then becomes the "tipping point" for injury.</p>
 
             <h3>The risks of "playing through"</h3>
             <p>Continuing activity with unresolved pain poses several risks: small meniscal tears may enlarge and become unrepairable; repeated instability episodes from ligament damage lead to rapid joint deterioration; and chronic overload accelerates cartilage wear. This not only impacts your sporting goals but can eventually limit daily function, such as climbing stairs or standing during travel.</p>
 
             <h3>When to seek evaluation</h3>
-            <p>If you experience recurrent swelling, locking, catching, or a sense of the knee "giving way," activity should be stopped and a clinical assessment performed. Understanding <a href="/articles/when-to-get-mri-knee">when to get an MRI</a> or X-ray is vital to define the pathology and prevent long-term joint health issues.</p>
+            <p>If you experience recurrent swelling, locking, catching, or a sense of the knee "giving way," activity should be stopped and a clinical assessment performed. Understanding <a href="/blog/when-to-get-mri-knee">when to get an MRI</a> or X-ray is vital to define the pathology and prevent long-term joint health issues.</p>
 
             <h3>Summary</h3>
             <p>Ignoring knee pain increases the risk of progression and long-term joint damage. A structured approach involving early evaluation, activity modification, and targeted rehabilitation is essential for active professionals to maintain both their sporting performance and their daily functional capacity.</p>
@@ -309,8 +309,8 @@ const ArticleDetail = () => {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center p-4">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">Article Not Found</h2>
-                <Link to="/articles" className="text-primary-600 font-bold flex items-center gap-2">
-                    <ChevronLeft className="w-5 h-5" /> Back to Articles
+                <Link to="/blog" className="text-primary-600 font-bold flex items-center gap-2">
+                    <ChevronLeft className="w-5 h-5" /> Back to Blog
                 </Link>
             </div>
         );
@@ -350,7 +350,7 @@ const ArticleDetail = () => {
             <SEO 
                 title={article.metaTitle || `${article.title} | Dr. Ulhas Sonar`}
                 description={article.metaDescription || article.title}
-                url={`/articles/${id}`}
+                url={`/blog/${id}`}
                 type="article"
                 schemaList={schemaList}
                 twitterLabel1="Written by"
@@ -361,7 +361,7 @@ const ArticleDetail = () => {
             <div className="bg-white border-b border-gray-100">
                 <Breadcrumbs items={[
                     { name: 'Home', path: '/' },
-                    { name: 'Articles', path: '/articles' },
+                    { name: 'Articles', path: '/blog' },
                     { name: article.title }
                 ]} />
             </div>
@@ -408,7 +408,7 @@ const ArticleDetail = () => {
 
                 {/* Back Button */}
                 <button
-                    onClick={() => navigate('/articles')}
+                    onClick={() => navigate('/blog')}
                     className="absolute top-6 left-6 md:top-8 md:left-8 p-2.5 md:p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all z-20"
                 >
                     <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
@@ -494,7 +494,7 @@ const ArticleDetail = () => {
                             .map(([key, item]) => (
                                 <Link
                                     key={key}
-                                    to={`/articles/${key}`}
+                                    to={`/blog/${key}`}
                                     className="group bg-white p-6 rounded-2xl border border-gray-100 hover:border-primary-200 hover:shadow-lg transition-all"
                                 >
                                     <span className="text-[10px] font-bold text-primary-600 uppercase tracking-widest block mb-2">{item.category}</span>
@@ -504,10 +504,10 @@ const ArticleDetail = () => {
                     </div>
                     <div className="mt-12 flex justify-center">
                         <button
-                            onClick={() => navigate('/articles')}
+                            onClick={() => navigate('/blog')}
                             className="text-primary-600 font-bold flex items-center gap-2 hover:underline"
                         >
-                            <ArrowRight className="w-5 h-5 rotate-180" /> View All Articles
+                            <ArrowRight className="w-5 h-5 rotate-180" /> View All Blog Posts
                         </button>
                     </div>
                 </div>
