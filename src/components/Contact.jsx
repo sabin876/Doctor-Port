@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Youtube, Twitter, Linkedin, Send, Activity, ShieldCheck, Zap, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import SEO from './SEO';
 
 const Contact = () => {
     const { language, t } = useLanguage();
@@ -13,6 +14,11 @@ const Contact = () => {
 
     return (
         <section id="contact" className="relative py-32 bg-white overflow-hidden">
+            <SEO 
+                title="Contact Dr. Ulhas | Book an Appointment"
+                description="Get in touch with Dr. Ulhas for expert orthopedic consultations in Dubai. Find our clinic location, contact numbers, and book your appointment today."
+                url="/contact"
+            />
             {/* Ultra-Premium Background Elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
                 {/* Medical Precision Grid */}

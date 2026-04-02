@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from './SEO';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { User, Calendar, ArrowRight } from 'lucide-react';
@@ -119,6 +120,11 @@ const Articles = () => {
 
     return (
         <div className="pt-20 min-h-screen bg-gray-50">
+            <SEO 
+                title="Orthopedic Articles & Insights | Dr. Ulhas"
+                description="Read the latest articles on orthopedic conditions, treatments, and recovery from Dr. Ulhas Sonar."
+                url="/articles"
+            />
             <div className="bg-white border-b border-gray-100">
                 <Breadcrumbs items={[
                     { name: 'Home', path: '/' },

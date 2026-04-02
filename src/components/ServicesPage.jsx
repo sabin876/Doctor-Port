@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from './SEO';
 import Services from './Services';
 import FAQ from './FAQ';
 import { useLanguage } from '../context/LanguageContext';
@@ -15,6 +16,11 @@ const ServicesPage = () => {
 
     return (
         <main className="pt-20 bg-gray-50 min-h-screen">
+            <SEO 
+                title="Orthopedic Services & Treatments | Dr. Ulhas"
+                description="Explore our specialized orthopedic services including joint replacement, sports injury management, and arthroscopy."
+                url="/services"
+            />
             <div className="bg-white border-b border-gray-100">
                 <Breadcrumbs items={[
                     { name: t('nav.home'), path: '/' },

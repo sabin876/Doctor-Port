@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ChevronLeft, Calendar, User, Clock, Share2, Tag, ArrowRight, Activity } from 'lucide-react';
+import { Clock, Calendar, ArrowLeft, ChevronLeft, Share2, Tag, PlayCircle, Activity, User, ShieldCheck, FileText, Bookmark, Share, Award } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import Breadcrumbs from './ui/Breadcrumbs';
+import SEO from './SEO';
 export const articles = {
     'causes-of-knee-pain': {
         title: "Understanding Common Causes of Knee Pain",
@@ -302,57 +303,7 @@ const ArticleDetail = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        if (article) {
-            document.title = article.metaTitle || `${article.title} | Dr. Ulhas Sonar`;
-            const metaDesc = document.querySelector('meta[name="description"]');
-            if (metaDesc) {
-                metaDesc.setAttribute('content', article.metaDescription || article.title);
-            } else {
-                const meta = document.createElement('meta');
-                meta.name = "description";
-                meta.content = article.metaDescription || article.title;
-                document.head.appendChild(meta);
-            }
-
-            // Inject JSON-LD
-            if (id === 'knee-pain-pillar') {
-                const scriptText = {
-                    "@context": "https://schema.org",
-                    "@type": "MedicalWebPage",
-                    "name": "Knee Pain in Young Adults and Working Professionals",
-                    "description": "Comprehensive guide to knee pain causes, MRI, treatment, and sports injuries.",
-                    "author": { "@type": "Person", "name": "Dr Ulhas Sonar" },
-                    "mainEntity": [
-                        {
-                            "@type": "Question",
-                            "name": "When should knee pain be investigated with MRI?",
-                            "acceptedAnswer": {
-                                "@type": "Answer",
-                                "text": "MRI is recommended when knee pain is associated with swelling, instability, locking, or persistent symptoms despite rehabilitation."
-                            }
-                        },
-                        {
-                            "@type": "Question",
-                            "name": "Is knee pain after gym serious?",
-                            "acceptedAnswer": {
-                                "@type": "Answer",
-                                "text": "Most cases are due to overload, but swelling or instability may indicate structural injury."
-                            }
-                        }
-                    ]
-                };
-                const script = document.createElement('script');
-                script.type = 'application/ld+json';
-                script.id = 'json-ld-schema';
-                script.text = JSON.stringify(scriptText);
-                document.head.appendChild(script);
-                return () => {
-                    const existingScript = document.getElementById('json-ld-schema');
-                    if (existingScript) document.head.removeChild(existingScript);
-                };
-            }
-        }
-    }, [id, article]);
+    }, [id]);
 
     if (!article) {
         return (
@@ -365,8 +316,48 @@ const ArticleDetail = () => {
         );
     }
 
+    const schemaList = [];
+    if (id === 'knee-pain-pillar') {
+        schemaList.push({
+            "@context": "https://schema.org",
+            "@type": "MedicalWebPage",
+            "name": "Knee Pain in Young Adults and Working Professionals",
+            "description": "Comprehensive guide to knee pain causes, MRI, treatment, and sports injuries.",
+            "author": { "@type": "Person", "name": "Dr Ulhas Sonar" },
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "When should knee pain be investigated with MRI?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "MRI is recommended when knee pain is associated with swelling, instability, locking, or persistent symptoms despite rehabilitation."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Is knee pain after gym serious?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Most cases are due to overload, but swelling or instability may indicate structural injury."
+                    }
+                }
+            ]
+        });
+    }
+
     return (
         <div className="min-h-screen bg-gray-50">
+            <SEO 
+                title={article.metaTitle || `${article.title} | Dr. Ulhas Sonar`}
+                description={article.metaDescription || article.title}
+                url={`/articles/${id}`}
+                type="article"
+                schemaList={schemaList}
+                twitterLabel1="Written by"
+                twitterData1={article.author || "Dr. Ulhas Sonar"}
+                twitterLabel2="Time to read"
+                twitterData2={article.readTime || "5 min read"}
+            />
             <div className="bg-white border-b border-gray-100">
                 <Breadcrumbs items={[
                     { name: 'Home', path: '/' },

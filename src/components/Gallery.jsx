@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { X, ZoomIn, Images, Award, Users, Microscope, ChevronLeft, ChevronRight } from 'lucide-react';
+import SEO from './SEO';
 
 import surgerImg from '../assets/gallery-surgery-room.webp';
 import consultImg from '../assets/gallery-consultation.webp';
@@ -114,6 +115,11 @@ const Gallery = () => {
                 background: 'linear-gradient(160deg, #f8faff 0%, #eef2ff 50%, #f0f9ff 100%)',
             }}
         >
+            <SEO 
+                title="Photo Gallery | Dr. Ulhas Sonar"
+                description="Explore Dr. Ulhas' gallery featuring state-of-the-art clinic facilities, joint replacement surgeries, awards, and conferences."
+                url="/gallery"
+            />
             {/* Decorative blobs */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-200/30 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/2" />
             <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-200/30 rounded-full blur-[120px] pointer-events-none translate-y-1/2 -translate-x-1/2" />

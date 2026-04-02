@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ChevronLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import Breadcrumbs from './ui/Breadcrumbs';
+import SEO from './SEO';
 
 // Import images
 import kneeArthroscopyImg from '../assets/knee-arthroscopy.png';
@@ -88,7 +89,13 @@ const ServiceDetail = () => {
     const image = details.image || "https://images.unsplash.com/photo-1581594632702-52c1cb8d799d?w=1200&auto=format&fit=crop&q=80"; // fallback
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gray-50 pt-20">
+            <SEO 
+                title={`${serviceTitle} | Dr. Ulhas Sonar`}
+                description={serviceDesc}
+                url={`/services/${id}`}
+                image={image}
+            />
             <div className="bg-white border-b border-gray-100">
                 <Breadcrumbs items={[
                     { name: t('nav.home'), path: '/' },

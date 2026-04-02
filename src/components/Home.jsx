@@ -1,3 +1,4 @@
+import SEO from './SEO';
 import HomeHero from './HomeHero';
 
 import Affiliations from './Affiliations';
@@ -9,6 +10,7 @@ import FAQ from './FAQ';
 const Home = () => {
     return (
         <main>
+            <SEO title="Dr. Ulhas | Expert Orthopedic Surgeon" url="/" />
             <HomeHero />
 
             <Affiliations />
