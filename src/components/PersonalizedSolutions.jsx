@@ -226,7 +226,7 @@ const PersonalizedSolutions = () => {
                 >
                     <Link
                         to="/services"
-                        className="group flex items-center justify-center gap-3 px-10 py-4 rounded-xl font-black text-sm tracking-[0.15em] uppercase bg-[#0088cc] text-white hover:bg-[#006699] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 w-fit"
+                        className="group flex items-center justify-center gap-2 font-black text-sm tracking-[0.15em] uppercase text-[#0088cc] hover:text-[#006699] transition-colors duration-300 w-fit"
                     >
                         {t('personalizedSolutions.viewAll')}
                         <ArrowRight className={`w-5 h-5 transition-transform group-hover:${isRtl ? '-translate-x-1' : 'translate-x-1'}`} />
