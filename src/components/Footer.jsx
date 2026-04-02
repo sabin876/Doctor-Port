@@ -56,8 +56,34 @@ const Footer = () => {
                         </div>
                     </div>
 
+                    {/* Services Column */}
+                    <div className="lg:col-span-2 pt-2">
+                        <h4 className="text-[13px] font-montserrat font-black uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
+                            {t('footer.services')}
+                            <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
+                        </h4>
+                        <ul className="space-y-4 text-[15px] font-medium mt-4">
+                            {[
+                                { name: t('footer.serviceLinks.arthroscopy'), href: '/services/arthroscopy' },
+                                { name: t('footer.serviceLinks.sportsMedicine'), href: '/services/sports-medicine' },
+                                { name: t('footer.serviceLinks.roboticSurgery'), href: '/services/robotic-surgery' },
+                                { name: t('footer.serviceLinks.jointReplacement'), href: '/services/joint-replacement' },
+                                { name: t('footer.serviceLinks.deformityCorrection'), href: '/services/deformity-correction' },
+                                { name: t('footer.serviceLinks.physiotherapy'), href: '/services/physiotherapy' },
+                                { name: t('footer.serviceLinks.more'), href: '/services' }
+                            ].map((service, idx) => (
+                                <li key={idx}>
+                                    <a href={service.href} className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center group">
+                                        <ChevronRight size={14} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-primary-500 transition-all duration-300 mr-2" />
+                                        <span className="whitespace-nowrap">{service.name}</span>
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
                     {/* Quick Links Column */}
-                    <div className="lg:col-span-2 lg:col-start-6 pt-2">
+                    <div className="lg:col-span-2 pt-2">
                         <h4 className="text-[13px] font-montserrat font-black uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
                             {t('footer.nav')}
                             <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
@@ -103,7 +129,7 @@ const Footer = () => {
                     </div>
 
                     {/* Contact Info Column */}
-                    <div className="lg:col-span-3 pt-2">
+                    <div className="lg:col-span-2 pt-2">
                         <h4 className="text-[13px] font-montserrat font-black uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
                             {t('footer.clinic')}
                             <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>

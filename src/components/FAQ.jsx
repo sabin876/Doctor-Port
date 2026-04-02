@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, CheckCircle2 } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import faqImage from '../assets/FAQ.png';
+import faqImage from '../assets/FAQ.webp';
 
-const FAQ = () => {
+const FAQ = ({ title, description, items }) => {
     const { t } = useLanguage();
     const [openIndex, setOpenIndex] = useState(0);
 
-    const faqs = [
+    const defaultFaqs = [
         {
             question: t('faq.items.0.question'),
             answer: t('faq.items.0.answer')
@@ -31,6 +31,10 @@ const FAQ = () => {
         }
     ];
 
+    const faqs = items || defaultFaqs;
+    const displayTitle = title || t('faq.title') || "Asked Frequently Questions";
+    const displayDescription = description || t('faq.description') || "Non cum cras felis lacus sociosqu, risus porttitor suspendisse.";
+
     return (
         <section id="faq" className="py-24 bg-gray-50/30 font-sans">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,7 +46,7 @@ const FAQ = () => {
                         viewport={{ once: true }}
                         className="text-4xl md:text-5xl font-bold text-[#0A1A44] mb-4 tracking-tight"
                     >
-                        Asked Frequently Questions
+                        {displayTitle}
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -51,7 +55,7 @@ const FAQ = () => {
                         transition={{ delay: 0.1 }}
                         className="text-gray-500 max-w-2xl mx-auto text-lg"
                     >
-                        Non cum cras felis lacus sociosqu, risus porttitor suspendisse. Sociis mauris inceptos non fermentum
+                        {displayDescription}
                     </motion.p>
                 </div>
 
@@ -103,7 +107,7 @@ const FAQ = () => {
                         ))}
                     </div>
 
-                    {/* Right Column: Doctor Image */}
+                    {/* Right Column: Illustration Image */}
                     <div className="w-full lg:w-1/2 relative flex justify-center items-center mt-12 lg:mt-0">
                         <motion.img 
                             initial={{ opacity: 0, y: 50 }}
@@ -112,6 +116,8 @@ const FAQ = () => {
                             transition={{ delay: 0.2 }}
                             src={faqImage} 
                             alt="FAQ Illustration" 
+                            loading="lazy"
+                            decoding="async"
                             className="w-full max-w-md h-auto rounded-3xl shadow-xl object-cover"
                         />
                     </div>

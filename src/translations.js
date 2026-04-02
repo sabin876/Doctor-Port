@@ -226,6 +226,7 @@ export const translations = {
         faq: {
             badge: "Help Center",
             title: "Frequently Asked Questions",
+            description: "Common questions about our care, robotic surgery, and orthopedic treatments in Dubai.",
             items: [
                 {
                     question: "What is robotic-assisted surgery?",
@@ -288,6 +289,45 @@ export const translations = {
                 visit: "Visit Clinic",
                 hours: "Mon-Sat: 9am - 7pm"
             }
+        },
+        footer: {
+            nav: "Quick Links",
+            support: "Support",
+            clinic: "Clinic Location",
+            hospitalName: "Canadian Specialist Hospital",
+            emergency: "Emergency",
+            visitMeAt: "Visit Me At",
+            rights: "All Rights Reserved",
+            patientResources: "Patient Resources",
+            articles: "Articles",
+            privacy: "Privacy Policy",
+            services: "Services",
+            serviceLinks: {
+                arthroscopy: "Arthroscopy",
+                sportsMedicine: "Sports Medicine",
+                roboticSurgery: "Robotic Surgery",
+                jointReplacement: "Joint Replacement",
+                deformityCorrection: "Deformity Correction",
+                physiotherapy: "Physiotherapy",
+                more: "More"
+            }
+        },
+        faq_services: {
+            title: "Services FAQ",
+            description: "Common questions about our orthopedic procedures and specialized care plans.",
+            items: [
+                { question: "Do you offer robotic joint replacement?", answer: "Yes, we specialize in advanced robotic-assisted total and partial knee replacements for superior precision." },
+                { question: "What is the typical recovery for arthroscopy?", answer: "Most patients return to light activities within a few days, though full athletic recovery may take 6-12 weeks." },
+                { question: "Are physiotherapy services available?", answer: "We provide integrated rehabilitation plans through our partner facilities to ensure complete recovery." }
+            ]
+        },
+        faq_articles: {
+            title: "Learning Center FAQ",
+            description: "Information about our medical insights, blog updates, and research initiatives.",
+            items: [
+                { question: "How often are new articles published?", answer: "We share new medical insights and clinical research updates every few weeks to keep our patients informed." },
+                { question: "Can I suggest a topic for the blog?", answer: "Absolutely! We welcome patient inquiries and often address common concerns in our detailed medical articles." }
+            ]
         }
     },
     HI: {
@@ -516,6 +556,7 @@ export const translations = {
         faq: {
             badge: "सहायता केंद्र",
             title: "अक्सर पूछे जाने वाले प्रश्न",
+            description: "दुबई में हमारी देखभाल, रोबोटिक सर्जरी और आर्थोपेडिक उपचारों के बारे में सामान्य प्रश्न।",
             items: [
                 {
                     question: "रोबोटिक-सहायता प्राप्त सर्जरी क्या है?",
@@ -578,6 +619,45 @@ export const translations = {
                 visit: "क्लिनिक पर आएं",
                 hours: "सोम-शनि: सुबह 9 बजे - शाम 7 बजे"
             }
+        },
+        footer: {
+            nav: "त्वरित संपर्क",
+            support: "सहायता",
+            clinic: "क्लिनिक का स्थान",
+            hospitalName: "कैनेडियन स्पेशलिस्ट अस्पताल",
+            emergency: "आपातकालीन",
+            visitMeAt: "मुझसे मिलें",
+            rights: "सर्वाधिकार सुरक्षित",
+            patientResources: "रोगी संसाधन",
+            articles: "लेख",
+            privacy: "गोपनीयता नीति",
+            services: "हमारी सेवाएं",
+            serviceLinks: {
+                arthroscopy: "आर्थ्रोस्कोपी",
+                sportsMedicine: "स्पोर्ट्स मेडिसिन",
+                roboticSurgery: "रोबोटिक सर्जरी",
+                jointReplacement: "जोड़ प्रतिस्थापन",
+                deformityCorrection: "विकृति सुधार",
+                physiotherapy: "फिजियोथेरेपी",
+                more: "अधिक"
+            }
+        },
+        faq_services: {
+            title: "सेवाएं सामान्य प्रश्न",
+            description: "हमारी आर्थोपेडिक प्रक्रियाओं और विशिष्ट देखभाल योजनाओं के बारे में सामान्य प्रश्न।",
+            items: [
+                { question: "क्या आप रोबोटिक जोड़ प्रतिस्थापन की पेशकश करते हैं?", answer: "हाँ, हम बेहतर सटीकता के लिए उन्नत रोबोटिक-सहायता प्राप्त कुल और आंशिक घुटने के प्रतिस्थापन में विशेषज्ञ हैं।" },
+                { question: "आर्थ्रोस्कोपी के लिए सामान्य रिकवरी क्या है?", answer: "अधिकांश रोगी कुछ ही दिनों में हल्की गतिविधियों में लौट आते हैं, हालांकि पूर्ण रिकवरी में 6-12 सप्ताह लग सकते हैं।" },
+                { question: "क्या फिजियोथेरेपी सेवाएं उपलब्ध हैं?", answer: "हम पूर्ण रिकवरी सुनिश्चित करने के लिए अपनी भागीदार सुविधाओं के माध्यम से एकीकृत पुनर्वास योजनाएं प्रदान करते हैं।" }
+            ]
+        },
+        faq_articles: {
+            title: "सीखने का केंद्र सामान्य प्रश्न",
+            description: "हमारी चिकित्सा अंतर्दृष्टि, ब्लॉग अपडेट और अनुसंधान पहलों के बारे में जानकारी।",
+            items: [
+                { question: "नए लेख कितनी बार प्रकाशित होते हैं?", answer: "हम अपने रोगियों को सूचित रखने के लिए हर कुछ हफ्तों में नई चिकित्सा अंतर्दृष्टि और नैदानिक अनुसंधान अपडेट साझा करते हैं।" },
+                { question: "क्या मैं ब्लॉग के लिए कोई विषय सुझा सकता हूँ?", answer: "बिल्कुल! हम रोगी पूछताछ का स्वागत करते हैं और अक्सर अपने विस्तृत चिकित्सा लेखों में सामान्य चिंताओं का समाधान करते हैं।" }
+            ]
         }
     },
     AR: {
@@ -806,6 +886,7 @@ export const translations = {
         faq: {
             badge: "مركز المساعدة",
             title: "الأسئلة الشائعة",
+            description: "أسئلة شائعة حول رعايتنا، والجراحة الروبوتية، وعلاجات العظام في دبي.",
             items: [
                 {
                     question: "ما هي الجراحة بمساعدة الروبوت؟",
@@ -868,6 +949,45 @@ export const translations = {
                 visit: "زيارة العيادة",
                 hours: "الاثنين-السبت: 9 صباحاً - 7 مساءً"
             }
+        },
+        footer: {
+            nav: "روابط سريعة",
+            support: "الدعم",
+            clinic: "موقع العيادة",
+            hospitalName: "المستشفى الكندي التخصصي",
+            emergency: "الطوارئ",
+            visitMeAt: "قم بزيارتي في",
+            rights: "جميع الحقوق محفوظة",
+            patientResources: "مصادر المريض",
+            articles: "المقالات",
+            privacy: "سياسة الخصوصية",
+            services: "خدماتنا",
+            serviceLinks: {
+                arthroscopy: "جراحة المنظار",
+                sportsMedicine: "الطب الرياضي",
+                roboticSurgery: "الجراحة الروبوتية",
+                jointReplacement: "استبدال المفاصل",
+                deformityCorrection: "تصحيح التشوهات",
+                physiotherapy: "العلاج الطبيعي",
+                more: "المزيد"
+            }
+        },
+        faq_services: {
+            title: "الأسئلة الشائعة للخدمات",
+            description: "أسئلة شائعة حول إجراءات العظام وخطط الرعاية المتخصصة لدينا.",
+            items: [
+                { question: "هل تقدمون استبدال المفاصل الروبوتي؟", answer: "نعم، نحن متخصصون في استبدال الركبة الكلي والجزئي المتقدم بمساعدة الروبوت لدقة فائقة." },
+                { question: "ما هي فترة التعافي بعد جراحة المنظار؟", answer: "يعود معظم المرضى للأنشطة الخفيفة في غضون أيام قليلة، بينما قد يستغرق التعافي الرياضي الكامل 6-12 أسبوعاً." },
+                { question: "هل تتوفر خدمات العلاج الطبيعي؟", answer: "نحن نقدم خطط تأهيل متكاملة لضمان التعافي الكامل." }
+            ]
+        },
+        faq_articles: {
+            title: "مركز التعلم - الأسئلة الشائعة",
+            description: "معلومات حول رؤيتنا الطبية وتحديثات المدونة ومبادرات الأبحاث.",
+            items: [
+                { question: "كم مرة يتم نشر مقالات جديدة؟", answer: "نشارك رؤى طبية وتحديثات أبحاث سريرية جديدة كل بضعة أسابيع لإبقاء مرضانا على اطلاع." },
+                { question: "هل يمكنني اقتراح موضوع للمدونة؟", answer: "بالتأكيد! نرحب باستفسارات المرضى وغالباً ما نعالج الاهتمامات الشائعة في مقالاتنا الطبية المفصلة." }
+            ]
         }
     }
 };
