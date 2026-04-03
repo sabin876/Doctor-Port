@@ -13,8 +13,8 @@ const Contact = () => {
     }, []);
 
     return (
-        <section id="contact" className="relative py-32 bg-white overflow-hidden">
-            <SEO 
+        <main id="contact" className="relative py-32 bg-white overflow-hidden">
+            <SEO
                 title="Contact Dr. Ulhas | Book an Appointment"
                 description="Get in touch with Dr. Ulhas for expert orthopedic consultations in Dubai. Find our clinic location, contact numbers, and book your appointment today."
                 url="/contact"
@@ -51,15 +51,15 @@ const Contact = () => {
 
                 {/* Floating Medical Icons - Subtle Accent */}
                 <div className="absolute inset-0">
-                    <motion.div 
-                        animate={{ y: [0, -15, 0], opacity: [0.03, 0.07, 0.03] }} 
+                    <motion.div
+                        animate={{ y: [0, -15, 0], opacity: [0.03, 0.07, 0.03] }}
                         transition={{ duration: 6, repeat: Infinity }}
                         className="absolute top-[20%] right-[10%] text-primary-600"
                     >
                         <Activity size={180} strokeWidth={0.5} />
                     </motion.div>
-                    <motion.div 
-                        animate={{ y: [0, 15, 0], opacity: [0.03, 0.07, 0.03] }} 
+                    <motion.div
+                        animate={{ y: [0, 15, 0], opacity: [0.03, 0.07, 0.03] }}
                         transition={{ duration: 8, repeat: Infinity, delay: 1 }}
                         className="absolute bottom-[20%] left-[5%] text-primary-400"
                     >
@@ -80,7 +80,7 @@ const Contact = () => {
                         {t('contact.badge')}
                     </motion.div>
 
-                    <motion.h2
+                    <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -88,7 +88,7 @@ const Contact = () => {
                         className="text-5xl md:text-6xl font-metabolic font-black text-primary-950 mb-8 tracking-tighter leading-[1.1]"
                     >
                         {t('contact.title')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">{t('contact.titleHighlight')}</span>
-                    </motion.h2>
+                    </motion.h1>
 
                     <div className="max-w-2xl mx-auto">
                         <motion.p
@@ -171,10 +171,10 @@ const Contact = () => {
                         className="bg-white rounded-[3.5rem] p-10 md:p-14 shadow-[0_30px_100px_-20px_rgba(30,58,138,0.1)] border border-gray-100 relative overflow-hidden group lg:sticky lg:top-32 order-1 lg:order-2"
                     >
                         <div className="absolute top-0 right-0 w-80 h-80 bg-primary-50/40 rounded-full blur-[80px] -mr-40 -mt-40 pointer-events-none group-hover:bg-primary-100/50 transition-colors duration-1000"></div>
-                        
+
                         <div className="relative z-10">
                             <h3 className="text-4xl font-metabolic font-black text-primary-950 mb-10 tracking-tight">{t('contact.form.title')}</h3>
-                            <form 
+                            <form
                                 className="space-y-6"
                                 onSubmit={(e) => {
                                     e.preventDefault();
@@ -184,7 +184,7 @@ const Contact = () => {
                             >
                                 <InputField label={t('contact.form.name')} type="text" placeholder={t('contact.form.namePlaceholder')} required />
                                 <InputField label={t('contact.form.phone')} type="tel" placeholder={t('contact.form.phonePlaceholder')} required />
-                                
+
                                 <div className="space-y-3">
                                     <label className="block text-[10px] font-black text-primary-900 uppercase tracking-widest ml-1">{t('contact.form.medicalInquiry')}</label>
                                     <textarea
@@ -228,7 +228,7 @@ const Contact = () => {
                     ></iframe>
                 </div>
             </motion.div>
-        </section>
+        </main>
     );
 };
 

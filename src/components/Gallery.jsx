@@ -108,14 +108,14 @@ const Gallery = () => {
     const nextImage = () => setLightbox((prev) => (prev + 1) % filtered.length);
 
     return (
-        <section
+        <main
             ref={sectionRef}
             className="min-h-screen py-24 relative overflow-hidden"
             style={{
                 background: 'linear-gradient(160deg, #f8faff 0%, #eef2ff 50%, #f0f9ff 100%)',
             }}
         >
-            <SEO 
+            <SEO
                 title="Photo Gallery | Dr. Ulhas Sonar"
                 description="Explore Dr. Ulhas' gallery featuring state-of-the-art clinic facilities, joint replacement surgeries, awards, and conferences."
                 url="/gallery"
@@ -182,8 +182,8 @@ const Gallery = () => {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.97 }}
                                 className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ${isActive
-                                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-200'
-                                        : 'bg-white text-gray-600 border border-gray-200 hover:border-blue-300 hover:text-blue-600'
+                                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-200'
+                                    : 'bg-white text-gray-600 border border-gray-200 hover:border-blue-300 hover:text-blue-600'
                                     }`}
                             >
                                 <Icon className="w-3.5 h-3.5" />
@@ -313,7 +313,7 @@ const Gallery = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </section>
+        </main>
     );
 };
 

@@ -106,12 +106,12 @@ const Services = () => {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-16">
-                    <motion.h2
+                    <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         className="text-4xl md:text-5xl font-montserrat font-extrabold text-gray-900 mb-6 tracking-tight">
                         {t('services.title')} <span className="text-primary-600">{t('services.titleHighlight')}</span> {t('services.titleEnd')}
-                    </motion.h2>
+                    </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -162,7 +162,7 @@ const Services = () => {
                                         <h3 className="text-xl md:text-2xl font-montserrat font-black text-white mb-3 leading-tight drop-shadow-md">
                                             {service.title}
                                         </h3>
-                                        
+
                                         {/* Description expands on hover using grid-rows */}
                                         <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
                                             <div className="overflow-hidden">

@@ -112,13 +112,13 @@ const About = () => {
                     {t('about.badge')}
                 </motion.p>
 
-                <motion.h2
+                <motion.h1
                     {...fadeUp(0.08)}
                     className="font-montserrat font-black text-[#0f2756] text-4xl md:text-5xl leading-tight mb-5"
                 >
                     {t('about.title')}{' '}
                     <span className="text-blue-600">{t('about.titleHighlight')}</span>
-                </motion.h2>
+                </motion.h1>
 
                 <motion.p
                     {...fadeUp(0.16)}
@@ -156,9 +156,9 @@ const About = () => {
 
                     {/* Bio */}
                     <motion.div {...fadeUp(0.1)} className="pt-2">
-                        <h3 className="font-montserrat font-bold text-[#0f2756] text-2xl md:text-3xl mb-5">
+                        <h2 className="font-montserrat font-bold text-[#0f2756] text-2xl md:text-3xl mb-5">
                             A Distinguished Orthopaedic Surgeon
-                        </h3>
+                        </h2>
                         <div className="space-y-4 text-slate-600 text-[15px] leading-relaxed">
                             <p>{t('about.description1')}</p>
                             <p>{t('about.description2')}</p>
@@ -183,9 +183,9 @@ const About = () => {
                                 <card.icon className="w-5 h-5" />
                             </div>
                             {/* Title */}
-                            <h4 className={`font-montserrat font-bold text-base mb-3 ${card.color}`}>
+                            <h3 className={`font-montserrat font-bold text-base mb-3 ${card.color}`}>
                                 {card.title}
-                            </h4>
+                            </h3>
                             {/* Bullet list */}
                             <ul className="space-y-2">
                                 {card.items.map((item, j) => (
@@ -207,9 +207,9 @@ const About = () => {
                 <div className="max-w-6xl mx-auto">
                     {/* Header */}
                     <motion.div {...fadeUp(0)} className="text-center mb-10">
-                        <h3 className="font-montserrat font-black text-[#0f2756] text-3xl md:text-4xl mb-3">
+                        <h2 className="font-montserrat font-black text-[#0f2756] text-3xl md:text-4xl mb-3">
                             My Core Values
-                        </h3>
+                        </h2>
                         <p className="text-slate-500 text-base">
                             The principles that guide every patient interaction
                         </p>
@@ -227,7 +227,7 @@ const About = () => {
                                     <v.icon className="w-5 h-5" />
                                 </div>
                                 <div>
-                                    <h4 className="font-montserrat font-bold text-blue-700 text-[15px] mb-1">{v.title}</h4>
+                                    <h3 className="font-montserrat font-bold text-blue-700 text-[15px] mb-1">{v.title}</h3>
                                     <p className="text-slate-500 text-sm leading-relaxed">{v.desc}</p>
                                 </div>
                             </motion.div>

@@ -119,8 +119,8 @@ const Articles = () => {
     const { t } = useLanguage();
 
     return (
-        <div className="pt-20 min-h-screen bg-gray-50">
-            <SEO 
+        <main className="pt-20 min-h-screen bg-gray-50">
+            <SEO
                 title="Orthopedic Articles & Insights | Dr. Ulhas"
                 description="Read the latest articles on orthopedic conditions, treatments, and recovery from Dr. Ulhas Sonar."
                 url="/blog"
@@ -131,7 +131,7 @@ const Articles = () => {
                     { name: 'Blog' }
                 ]} />
             </div>
-            
+
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-8">
 
                 {/* Header Section */}
@@ -220,11 +220,11 @@ const Articles = () => {
                         </motion.div>
                     ))}
                 </motion.div>
-                
+
                 {/* FAQ Section */}
                 <div className="mt-24">
-                    <FAQ 
-                        title={t('faq_articles.title')} 
+                    <FAQ
+                        title={t('faq_articles.title')}
                         description={t('faq_articles.description')}
                         items={[0, 1].map(i => ({
                             question: t(`faq_articles.items.${i}.question`),
@@ -253,7 +253,7 @@ const Articles = () => {
                     </Link>
                 </motion.div>
             </div>
-        </div>
+        </main>
     );
 };
 
