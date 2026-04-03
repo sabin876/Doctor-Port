@@ -3,19 +3,19 @@ import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { X, ZoomIn, Images, Award, Users, Microscope, ChevronLeft, ChevronRight } from 'lucide-react';
 import SEO from './SEO';
 
-import surgerImg from '../assets/gallery-surgery-room.webp';
-import consultImg from '../assets/gallery-consultation.webp';
-import awardsImg from '../assets/gallery-awards.webp';
-import confImg from '../assets/gallery-conference.webp';
-import heroSlide1 from '../assets/hero-slide-1.webp';
-import heroSlide2 from '../assets/hero-slide-2.webp';
-import kneeArthro from '../assets/knee-arthroscopy.webp';
-import doctorProfile from '../assets/doctor-profile.webp';
+import gallery1 from '../assets/Gallery 1.webp';
+import gallery2 from '../assets/Gallery 2.webp';
+import gallery3 from '../assets/Gallery 3.webp';
+import gallery4 from '../assets/Gallery 4.webp';
+import gallery5 from '../assets/Gallery 5.webp';
+import gallery6 from '../assets/Gallery 6.webp';
+import gallery7 from '../assets/Gallery 7.webp';
+import gallery8 from '../assets/Gallery 8.webp';
 
 const galleryItems = [
     {
         id: 1,
-        src: surgerImg,
+        src: gallery1,
         category: 'Clinic',
         title: 'State-of-the-Art Operating Theatre',
         desc: 'Advanced surgical suite equipped with robotic-assisted systems for precision orthopedic procedures.',
@@ -23,7 +23,7 @@ const galleryItems = [
     },
     {
         id: 2,
-        src: consultImg,
+        src: gallery2,
         category: 'Consultation',
         title: 'Patient Consultation',
         desc: 'Dr. Ulhas Sonar reviewing imaging with a patient to discuss the best treatment pathway.',
@@ -31,7 +31,7 @@ const galleryItems = [
     },
     {
         id: 3,
-        src: heroSlide1,
+        src: gallery3,
         category: 'Surgery',
         title: 'Joint Replacement Surgery',
         desc: 'Total knee replacement procedure delivering precision outcomes and faster recovery.',
@@ -39,7 +39,7 @@ const galleryItems = [
     },
     {
         id: 4,
-        src: awardsImg,
+        src: gallery4,
         category: 'Awards',
         title: 'Excellence in Orthopedic Surgery',
         desc: 'Recognised for outstanding contributions to orthopedic care and surgical innovation.',
@@ -47,7 +47,7 @@ const galleryItems = [
     },
     {
         id: 5,
-        src: kneeArthro,
+        src: gallery5,
         category: 'Surgery',
         title: 'Knee Arthroscopy',
         desc: 'Minimally invasive knee arthroscopy restoring joint function and mobility.',
@@ -55,7 +55,7 @@ const galleryItems = [
     },
     {
         id: 6,
-        src: confImg,
+        src: gallery6,
         category: 'Conference',
         title: 'International Orthopedic Conference',
         desc: 'Presenting cutting-edge research on TKR alignment concepts to an international audience.',
@@ -63,7 +63,7 @@ const galleryItems = [
     },
     {
         id: 7,
-        src: heroSlide2,
+        src: gallery7,
         category: 'Clinic',
         title: 'Modern Clinic Facilities',
         desc: 'World-class outpatient facilities designed for patient comfort and clinical excellence.',
@@ -71,7 +71,7 @@ const galleryItems = [
     },
     {
         id: 8,
-        src: doctorProfile,
+        src: gallery8,
         category: 'About',
         title: 'Dr. Ulhas Sonar',
         desc: 'British-Indian orthopedic surgeon with 15+ years of global experience in joint replacement and sports medicine.',
