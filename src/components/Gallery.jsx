@@ -11,6 +11,7 @@ import gallery5 from '../assets/Gallery 5.webp';
 import gallery6 from '../assets/Gallery 6.webp';
 import gallery7 from '../assets/Gallery 7.webp';
 import gallery8 from '../assets/Gallery 8.webp';
+import gallery9 from '../assets/Gallery 9.webp';
 
 const galleryItems = [
     {
@@ -75,6 +76,14 @@ const galleryItems = [
         category: 'About',
         title: 'Dr. Ulhas Sonar',
         desc: 'British-Indian orthopedic surgeon with 15+ years of global experience in joint replacement and sports medicine.',
+        span: 'col-span-1 row-span-1',
+    },
+    {
+        id: 9,
+        src: gallery9,
+        category: 'Clinic',
+        title: 'Advanced Care',
+        desc: 'Dedicated to providing the highest standard of specialized orthopedic treatments for our patients.',
         span: 'col-span-1 row-span-1',
     },
 ];
