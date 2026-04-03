@@ -8,12 +8,30 @@
   <title>Dr. Ulhas Sonar | Orthopaedic Surgeon Dubai</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Montserrat:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Montserrat:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet" />
 
+  <meta name="description"
+    content="Expert orthopedic care specializing in joint replacement, sports injuries, and comprehensive rehabilitation with Dr. Ulhas Sonar in Dubai." />
+  <meta name="keywords"
+    content="Orthopaedic Surgeon Dubai, Knee Replacement, Sports Injuries, Joint Surgery, Dr. Ulhas Sonar" />
+  <link rel="canonical" href="https://orthopedic-specialist.com/" />
   <!-- Critical CSS: above-the-fold styles inlined to avoid render-blocking flash -->
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
     body {
       font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       background: #ffffff;
@@ -21,11 +39,21 @@
       overflow-x: hidden;
       min-height: 100vh;
     }
-    #root { min-height: 100vh; }
+
+    #root {
+      min-height: 100vh;
+    }
+
     /* Prevent layout shift during font load */
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       font-family: 'Montserrat', 'Plus Jakarta Sans', system-ui, sans-serif;
     }
+
     /* Navbar skeleton to prevent CLS */
     nav {
       position: sticky;
@@ -35,11 +63,13 @@
       border-bottom: 1px solid #f3f4f6;
       min-height: 64px;
     }
+
     /* Image lazy-load fade-in */
     img[loading="lazy"] {
       opacity: 0;
       transition: opacity 0.3s ease;
     }
+
     img[loading="lazy"].loaded {
       opacity: 1;
     }
@@ -47,7 +77,25 @@
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <!-- SEO Bot Fallback: This is instantly replaced by React on load -->
+    <header>
+      <h1>Dr. Ulhas Sonar | Orthopaedic Surgeon Dubai</h1>
+      <h2>Expert Orthopedic Care, Joint Replacement & Sports Medicine</h2>
+    </header>
+    <main>
+      <p>Welcome to the clinic of Dr. Ulhas Sonar, a leading orthopedic surgeon in Dubai prioritizing joint
+        preservation, replacements, and advanced sports injury treatments.</p>
+      <img src="/src/assets/logo.png" alt="Dr. Ulhas Sonar Orthopedic Clinic Logo" />
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/services">Services</a>
+        <a href="/blog">Articles</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </main>
+  </div>
   <div id="google_translate_element" style="display:none"></div>
 
   <!-- Google Translate: deferred so it doesn't block page render -->
