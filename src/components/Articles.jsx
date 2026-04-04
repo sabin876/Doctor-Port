@@ -14,7 +14,7 @@ const articlesData = [
         excerpt: "Knee pain affects people of all ages. Whether it's a sports injury or arthritis, understanding the underlying cause is the first step toward effective treatment.",
         category: "Knee Health",
         categoryColor: "bg-blue-100 text-blue-700",
-        image: "/images/blog/knee-causes.webp",
+        image: "/images/blog/knee-causes.png",
         author: "Dr. Ulhas Sonar",
         date: "March 21, 2026"
     },
@@ -24,7 +24,7 @@ const articlesData = [
         excerpt: "Knee pain after gym or sports is common in working professionals. Learn how to distinguish ligament injury from cartilage damage, warning signs, and management options.",
         category: "Sports Medicine",
         categoryColor: "bg-orange-100 text-orange-700",
-        image: "/images/blog/gym-injury.webp",
+        image: "/images/blog/gym-injury.png",
         author: "Dr. Ulhas Sonar",
         date: "March 21, 2026"
     },
@@ -34,7 +34,7 @@ const articlesData = [
         excerpt: "When should knee pain be investigated with MRI or X-ray? A detailed clinical guide for active adults on symptoms, red flags, and imaging decisions.",
         category: "Diagnostics",
         categoryColor: "bg-purple-100 text-purple-700",
-        image: "/images/blog/mri-scan.webp",
+        image: "/images/blog/mri-scan.png",
         author: "Dr. Ulhas Sonar",
         date: "March 21, 2026"
     },
@@ -44,7 +44,7 @@ const articlesData = [
         excerpt: "Is it safe to play through knee pain? Learn the common mistakes, long-term risks, and safer management strategies for active adults balancing work and sport.",
         category: "Injury Prevention",
         categoryColor: "bg-red-100 text-red-700",
-        image: "/images/blog/sports-risks.webp",
+        image: "/images/blog/sports-risks.png",
         author: "Dr. Ulhas Sonar",
         date: "March 21, 2026"
     },
@@ -94,7 +94,7 @@ const articlesData = [
         excerpt: "A complete clinical guide to knee pain for active adults. Understand causes, gym injuries, MRI decisions, and safe return to sports.",
         category: "Pillar Page",
         categoryColor: "bg-blue-100 text-blue-700",
-        image: "/images/blog/knee-pillar.webp",
+        image: "/images/blog/knee-pillar.png",
         author: "Dr. Ulhas Sonar",
         date: "March 21, 2026"
     },

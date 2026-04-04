@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Clock, Calendar, ArrowLeft, ChevronLeft, Share2, Tag, PlayCircle, Activity, User, ShieldCheck, FileText, Bookmark, Share, Award } from 'lucide-react';
+import { Clock, Calendar, ArrowLeft, ChevronLeft, Share2, Tag, PlayCircle, Activity, User, ShieldCheck, FileText, Bookmark, Share, Award, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import Breadcrumbs from './ui/Breadcrumbs';
 import SEO from './SEO';
