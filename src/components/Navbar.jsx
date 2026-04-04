@@ -198,9 +198,7 @@ const Navbar = () => {
                                     alt={currentLang.name}
                                     className="w-4 h-auto rounded-sm opacity-80 group-hover:opacity-100 transition-opacity"
                                 />
-                                <span className="font-montserrat font-bold text-primary-950 group-hover:text-primary-600 text-[13px] tracking-widest">
-                                    Lan
-                                </span>
+
                                 <ChevronDown className={`w-3 h-3 text-gray-400 transition-transform duration-500 ${isLangOpen ? 'rotate-180 text-primary-600' : ''}`} />
                             </button>
 
