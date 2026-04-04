@@ -183,31 +183,26 @@ const PersonalizedSolutions = () => {
                         <motion.div
                             key={index}
                             variants={itemVariants}
-                            className="group cursor-pointer flex flex-col items-center"
+                            className="group cursor-pointer flex flex-col items-center w-full"
                         >
-                            <div className="relative w-full aspect-square mb-6 rounded-[2rem] overflow-hidden bg-[#f0f7ff] group-hover:shadow-2xl group-hover:shadow-blue-200/50 transition-all duration-500">
-                                <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                            <div className="relative w-full aspect-square mb-6 rounded-[2.5rem] overflow-hidden bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100/50 group-hover:shadow-[0_20px_40px_-15px_rgba(0,136,204,0.15)] group-hover:-translate-y-2 transition-all duration-500 ease-out">
+                                {/* Ambient Glow */}
+                                <div className="absolute inset-0 bg-gradient-to-tr from-[#0088cc]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 pointer-events-none mix-blend-overlay"></div>
+                                
                                 <img
                                     src={item.image}
                                     alt={item.title}
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 filter group-hover:brightness-105"
                                 />
-                                {/* Blue curve overlay like in the image */}
-                                <div className="absolute inset-0 pointer-events-none p-4 z-20">
-                                    <svg viewBox="0 0 100 100" className="w-full h-full opacity-20 group-hover:opacity-60 transition-all duration-500">
-                                        <path
-                                            d="M10 90 Q 50 10 90 90"
-                                            fill="none"
-                                            stroke="#0088cc"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                        />
-                                    </svg>
-                                </div>
+                                
+                                {/* Glassy Inner Border */}
+                                <div className="absolute inset-0 rounded-[2.5rem] border-[3px] border-white/40 z-20 pointer-events-none mix-blend-overlay group-hover:border-white/60 transition-colors duration-500"></div>
                             </div>
-                            <h3 className="text-center font-bold text-[#0088cc] text-[10px] sm:text-[12px] md:text-[13px] uppercase tracking-wider group-hover:text-[#006699] transition-colors leading-tight max-w-[110px]">
+
+                            <h3 className="text-center font-bold text-gray-800 text-xs sm:text-sm md:text-[15px] group-hover:text-[#0088cc] transition-colors duration-300 leading-snug w-full px-2">
                                 {item.title}
                             </h3>
+                            <div className="h-0.5 w-6 bg-gray-200 mt-3 group-hover:bg-[#0088cc] group-hover:w-12 transition-all duration-300 rounded-full"></div>
                         </motion.div>
                     ))}
                 </motion.div>
