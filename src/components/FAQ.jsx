@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import faqImage from '../assets/FAQ.webp';
+import faqImage from '../assets/Doctor Photo.webp';
 
 const FAQ = ({ title, description, items }) => {
     const { t } = useLanguage();

@@ -1,7 +1,6 @@
 import React from 'react';
 import SEO from './SEO';
 import Services from './Services';
-import FAQ from './FAQ';
 import { useLanguage } from '../context/LanguageContext';
 import Breadcrumbs from './ui/Breadcrumbs';
 
@@ -28,11 +27,6 @@ const ServicesPage = () => {
                 ]} />
             </div>
             <Services />
-            <FAQ 
-                title={t('faq_services.title')} 
-                description={t('faq_services.description')}
-                items={serviceFaqs}
-            />
         </main>
     );
 };

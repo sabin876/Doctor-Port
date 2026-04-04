@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { X, ZoomIn, Images, Award, Users, Microscope, ChevronLeft, ChevronRight } from 'lucide-react';
 import SEO from './SEO';
 
-import gallery1 from '../assets/Gallery 1.webp';
+import gallery1 from '../assets/9.webp';
 import gallery2 from '../assets/Gallery 2.webp';
 import gallery3 from '../assets/Gallery 3.webp';
 import gallery4 from '../assets/Gallery 4.webp';
@@ -12,6 +12,13 @@ import gallery6 from '../assets/Gallery 6.webp';
 import gallery7 from '../assets/Gallery 7.webp';
 import gallery8 from '../assets/Gallery 8.webp';
 import gallery9 from '../assets/Gallery 9.webp';
+import kneeImg from '../assets/knee.webp';
+import shoulderImg from '../assets/Shoulder.webp';
+import hipImg from '../assets/Hip.webp';
+import backNeckImg from '../assets/Back and Neck.webp';
+import sportsImg from '../assets/sports injury.webp';
+import handWristImg from '../assets/hand and wist.webp';
+import kneeAnkleImg from '../assets/knee and angle.webp';
 
 const galleryItems = [
     {
@@ -84,6 +91,62 @@ const galleryItems = [
         category: 'Clinic',
         title: 'Advanced Care',
         desc: 'Dedicated to providing the highest standard of specialized orthopedic treatments for our patients.',
+        span: 'col-span-1 row-span-1',
+    },
+    {
+        id: 10,
+        src: kneeImg,
+        category: 'Clinic',
+        title: 'Knee Assessment',
+        desc: 'Detailed examination of knee joint function to determine optimal treatment paths.',
+        span: 'col-span-1 row-span-1',
+    },
+    {
+        id: 11,
+        src: shoulderImg,
+        category: 'Clinic',
+        title: 'Shoulder Specialist Care',
+        desc: 'Expert diagnosis and management of complex shoulder injuries and conditions.',
+        span: 'col-span-1 row-span-1',
+    },
+    {
+        id: 12,
+        src: hipImg,
+        category: 'Clinic',
+        title: 'Hip Joint Excellence',
+        desc: 'Specialized care for hip-related discomfort and joint replacement solutions.',
+        span: 'col-span-1 row-span-1',
+    },
+    {
+        id: 13,
+        src: backNeckImg,
+        category: 'Clinic',
+        title: 'Spine & Neck Care',
+        desc: 'Comprehensive assessment of back and neck conditions for personalized recovery.',
+        span: 'col-span-1 row-span-1',
+    },
+    {
+        id: 14,
+        src: sportsImg,
+        category: 'Surgery',
+        title: 'Sports Injury Recovery',
+        desc: 'Advanced surgical techniques restoring athletes to their peak performance.',
+        span: 'col-span-1 row-span-1',
+    },
+    {
+        id: 15,
+        src: handWristImg,
+        category: 'Clinic',
+        title: 'Hand & Wrist Expertise',
+        desc: 'Precise treatment for delicate hand and wrist orthopedic requirements.',
+        span: 'col-span-1 row-span-1',
+    },
+    {
+        id: 16,
+        src: kneeAnkleImg,
+        category: 'Surgery',
+        title: 'Combined Joint Care',
+        desc: 'holistic approach to complex lower limb orthopedic procedures.',
         span: 'col-span-1 row-span-1',
     },
 ];

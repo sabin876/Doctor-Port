@@ -5,7 +5,6 @@ import Affiliations from './Affiliations';
 import PersonalizedSolutions from './PersonalizedSolutions';
 import SportingInjury from './SportingInjury';
 import Testimonials from './Testimonials';
-import FAQ from './FAQ';
 
 const Home = () => {
     return (
@@ -17,7 +16,6 @@ const Home = () => {
             <PersonalizedSolutions />
             <SportingInjury />
             <Testimonials />
-            <FAQ />
         </main>
     );
 };

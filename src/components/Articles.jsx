@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { User, Calendar, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import FAQ from './FAQ';
 import Breadcrumbs from './ui/Breadcrumbs';
 
 const articlesData = [
@@ -221,17 +220,6 @@ const Articles = () => {
                     ))}
                 </motion.div>
 
-                {/* FAQ Section */}
-                <div className="mt-24">
-                    <FAQ
-                        title={t('faq_articles.title')}
-                        description={t('faq_articles.description')}
-                        items={[0, 1].map(i => ({
-                            question: t(`faq_articles.items.${i}.question`),
-                            answer: t(`faq_articles.items.${i}.answer`)
-                        }))}
-                    />
-                </div>
 
                 {/* CTA Section */}
                 <motion.div

@@ -14,6 +14,7 @@ import FloatingContactButtons from './components/FloatingContactButtons';
 import TopBar from './components/TopBar';
 import ServiceDetail from './components/ServiceDetail';
 import ThankYou from './components/ThankYou';
+import FAQ from './components/FAQ';
 import { HelmetProvider } from 'react-helmet-async';
 
 class ErrorBoundary extends React.Component {
@@ -60,6 +61,7 @@ function App() {
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/thank-you" element={<ThankYou />} />
             </Routes>
+            <FAQ />
             <Footer />
             <FloatingContactButtons />
           </div>
