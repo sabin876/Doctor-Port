@@ -1,58 +1,28 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
-import gmcLogo from '../assets/gmc-logo.svg';
-import ebotLogo from '../assets/ebot-logo.webp';
+import logo1 from '../assets/Logo 1.webp';
+import logo2 from '../assets/Logo2.webp';
+import logo3 from '../assets/logo 3.webp';
+import logo4 from '../assets/logo 4.webp';
+import logo5 from '../assets/logo 5.webp';
+import logo6 from '../assets/logo 6.webp';
+import logo7 from '../assets/logo 7.webp';
+import logo8 from '../assets/logo 8.webp';
 
 const Affiliations = () => {
     const { language, t: translate } = useLanguage();
     const t = translate('nav');
 
     const logos = [
-        {
-            name: "General Medical Council",
-            src: gmcLogo
-        },
-        {
-            name: "EBOT",
-            src: ebotLogo
-        },
-        {
-            name: "Indian Orthopaedic Association",
-            src: "https://ioaindia.org/public/assets/images/IOAlogo.png"
-        },
-        {
-            name: "British Orthopaedic Association",
-            src: "https://www.boa.ac.uk/static/eeec4b84-35af-40f7-b3183c8ee2974b48/200x180_highestperformance__4a7c7e45a350/boa-final-identity-091018verticallockup-fullcolour042345281.png"
-        },
-        {
-            name: "Bombay Orthopaedic Society",
-            src: "https://bombayorth.in/images/logo.png"
-        },
-        {
-            name: "Edge Hill University",
-            src: "https://www.edgehill.ac.uk/wp-content/ehu-themes/ehu-wordpress-theme/resources/images/ehu_logo.webp"
-        },
-        {
-            name: "Royal College of Surgeons",
-            src: "https://www.rcseng.ac.uk/-/media/Images/RCS/System/royal-college-of-surgeons-of-england-logo-v2-transparent.png"
-        },
-        {
-            name: "Dubai Health Authority",
-            src: "https://www.dha.gov.ae/img/assets/DHALOGO60.svg"
-        },
-        {
-            name: "ISKSAA",
-            src: "https://isksaa.com/images/logo.png"
-        },
-        {
-            name: "Maharashtra Medical Council",
-            src: "https://www.maharashtramedicalcouncil.in/assets/img/mmc_logo.png"
-        },
-        {
-            name: "CAOS UK",
-            src: "https://images.squarespace-cdn.com/content/v1/5d3f5a3b9412990001748a14/1568375829409-QKLOP7XRB54QL1IXSKQM/logo.jpg"
-        }
+        { name: "", src: logo1 },
+        { name: "", src: logo2 },
+        { name: "", src: logo3 },
+        { name: "", src: logo4 },
+        { name: "", src: logo5 },
+        { name: "", src: logo6 },
+        { name: "", src: logo7 },
+        { name: "", src: logo8 },
     ];
 
     // Duplicate logos for infinite loop
@@ -116,21 +86,17 @@ const Affiliations = () => {
                                 <img
                                     src={logo.src}
                                     alt={logo.name}
-                                    loading="lazy"
-                                    decoding="async"
                                     className="max-w-full max-h-full object-contain transition-all duration-700 group-hover/card:scale-110 relative z-10 filter group-hover/card:drop-shadow-lg"
-                                    onError={(e) => {
-                                        e.target.style.display = 'none';
-                                        if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
-                                    }}
                                 />
                                 <div className="hidden items-center justify-center w-full h-full text-center text-[10px] font-bold text-gray-400 bg-gray-50/50 rounded-xl px-2">
                                     {logo.name}
                                 </div>
                             </div>
-                            <span className="text-[11px] md:text-[12px] font-metabolic font-black text-gray-400 group-hover/card:text-primary-800 transition-colors duration-500 text-center max-w-[180px] whitespace-normal uppercase tracking-[0.2em] leading-tight">
-                                {logo.name}
-                            </span>
+                            {logo.name && (
+                                <span className="text-[11px] md:text-[12px] font-metabolic font-black text-gray-400 group-hover/card:text-primary-800 transition-colors duration-500 text-center max-w-[180px] whitespace-normal uppercase tracking-[0.2em] leading-tight">
+                                    {logo.name}
+                                </span>
+                            )}
                         </div>
                     ))}
                 </motion.div>
