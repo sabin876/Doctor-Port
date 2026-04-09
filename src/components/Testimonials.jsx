@@ -117,31 +117,39 @@ const Testimonials = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             animate={{
-                                boxShadow: ["0px 10px 20px rgba(234, 67, 53, 0.1)", "0px 15px 30px rgba(234, 67, 53, 0.2)", "0px 10px 20px rgba(234, 67, 53, 0.1)"]
+                                boxShadow: ["0px 10px 30px rgba(66, 133, 244, 0.1)", "0px 15px 40px rgba(66, 133, 244, 0.2)", "0px 10px 30px rgba(66, 133, 244, 0.1)"]
                             }}
                             transition={{
                                 duration: 3,
                                 repeat: Infinity,
                                 ease: "easeInOut"
                             }}
-                            whileHover={{ scale: 1.05, boxShadow: "0px 20px 40px rgba(234, 67, 53, 0.3)" }}
+                            whileHover={{ scale: 1.05, boxShadow: "0px 20px 50px rgba(66, 133, 244, 0.3)" }}
                             whileTap={{ scale: 0.95 }}
-                            className="px-8 py-3.5 bg-white border-2 border-[#ea4335] text-gray-800 font-bold rounded-2xl transition-all duration-300 flex items-center gap-3 group relative overflow-hidden"
+                            className="px-8 py-3.5 bg-white border border-gray-200 text-gray-800 font-bold rounded-2xl transition-all duration-500 flex items-center gap-3 group relative overflow-hidden"
                         >
-                            <div className="absolute top-0 start-0 w-full h-1 flex">
+                            {/* Subtle Google-colored TOP EDGE with a slight gradient blur */}
+                            <div className="absolute top-0 start-0 w-full h-1.5 flex opacity-90 group-hover:h-2 transition-all duration-300">
                                 <div className="flex-1 h-full bg-[#4285f4]"></div>
                                 <div className="flex-1 h-full bg-[#ea4335]"></div>
                                 <div className="flex-1 h-full bg-[#fbbc05]"></div>
                                 <div className="flex-1 h-full bg-[#34a853]"></div>
                             </div>
-                            <svg className="w-5 h-5 group-hover:rotate-12 transition-transform" viewBox="0 0 24 24">
-                                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
-                                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
-                                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" />
-                                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
-                            </svg>
-                            <span className="bg-gradient-to-r from-[#4285f4] via-[#ea4335] to-[#fbbc05] bg-clip-text text-transparent">{t('testimonials.reviewButton')}</span>
-                            <ChevronRight className={`w-5 h-5 text-gray-400 group-hover:${isRtl ? '-translate-x-1' : 'translate-x-1'} group-hover:text-[#34a853] transition-all`} />
+
+                            <div className="w-6 h-6 flex items-center justify-center p-0.5 bg-white rounded-full shadow-sm border border-gray-50 group-hover:rotate-12 transition-transform duration-500">
+                                <svg className="w-full h-full" viewBox="0 0 24 24">
+                                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+                                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" />
+                                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+                                </svg>
+                            </div>
+
+                            <span className="bg-gradient-to-r from-[#4285f4] via-[#ea4335] to-[#fbbc05] bg-clip-text text-transparent font-extrabold text-[15px] tracking-tight whitespace-nowrap">
+                                {t('testimonials.reviewButton')}
+                            </span>
+                            
+                            <ChevronRight className={`w-5 h-5 text-gray-300 group-hover:${isRtl ? '-translate-x-1' : 'translate-x-1'} group-hover:text-[#34a853] transition-all duration-300`} />
                         </motion.a>
                     </div>
                 </motion.div>

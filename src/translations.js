@@ -210,6 +210,7 @@ export const translations = {
             badge: "Patient Reviews",
             title: "What Our Patients Say",
             description: "Real stories from patients who restored their mobility and life through our care.",
+            reviewButton: "Write a Review on Google",
             items: [
                 {
                     name: "James Wilson",
@@ -540,6 +541,7 @@ export const translations = {
             badge: "रोगी समीक्षाएं",
             title: "हमारे मरीज़ क्या कहते हैं",
             description: "उन रोगियों की वास्तविक कहानियाँ जिन्होंने हमारे माध्यम से अपनी गतिशीलता और जीवन को वापस पाया।",
+            reviewButton: "गूगल पर समीक्षा लिखें",
             items: [
                 {
                     name: "जेम्स विल्सन",
@@ -870,6 +872,7 @@ export const translations = {
             badge: "آراء المرضى",
             title: "ماذا يقول مرضانا",
             description: "قصص حقيقية من مرضى استعادوا حركتهم وحياتهم من خلال رعايتنا.",
+            reviewButton: "اكتب مراجعة على جوجل",
             items: [
                 {
                     name: "جيمس ويلسون",
