@@ -177,7 +177,7 @@ export const articles = {
         date: "March 21, 2026",
         author: "Dr. Ulhas Sonar",
         category: "Ergonomics",
-        image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1200&auto=format&fit=crop",
+        image: "/images/blog/office-knee-pain.png",
         readTime: "5 min read",
         content: `
             <p>Many office workers experience a dull ache at the front of the knee, often called "movie-goer's knee" or patellofemoral pain. This condition is frequently linked to long periods of sitting with knees bent.</p>
@@ -193,7 +193,7 @@ export const articles = {
         date: "March 21, 2026",
         author: "Dr. Ulhas Sonar",
         category: "Diagnosis",
-        image: "https://images.unsplash.com/photo-1576091160550-217359f4ecf8?w=1200&auto=format&fit=crop",
+        image: "/images/blog/meniscus-vs-strain.png",
         readTime: "6 min read",
         content: `
             <p>Not all knee pains are the same. Distinguishing between a meniscus tear and a simple muscle strain is crucial for choosing the right treatment and recovery timeline.</p>
@@ -209,7 +209,7 @@ export const articles = {
         date: "March 21, 2026",
         author: "Dr. Ulhas Sonar",
         category: "Rehabilitation",
-        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&auto=format&fit=crop",
+        image: "/images/blog/desk-exercises.png",
         readTime: "4 min read",
         content: `
             <p>If you're stuck at a desk all day, your knees can pay the price. Fortunately, there are several simple exercises you can do without even leaving your chair to keep your knees healthy and pain-free.</p>
@@ -225,7 +225,7 @@ export const articles = {
         date: "March 21, 2026",
         author: "Dr. Ulhas Sonar",
         category: "Lifestyle",
-        image: "https://images.unsplash.com/photo-1436491865332-7a61a109c0f5?w=1200&auto=format&fit=crop",
+        image: "/images/blog/travel-knee.png",
         readTime: "5 min read",
         content: `
             <p>Traveling, especially on long-haul flights, can be a nightmare for those with chronic knee pain or stiffness. The cramped quarters and lack of movement are major contributors to joint distress.</p>

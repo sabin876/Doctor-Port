@@ -53,7 +53,7 @@ const articlesData = [
         excerpt: "Long hours at a desk can lead to 'theater sign' pain. Learn simple ergonomic fixes and lifestyle adjustments for office-based knee pain.",
         category: "Ergonomics",
         categoryColor: "bg-teal-100 text-teal-700",
-        image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800&h=600&fit=crop",
+        image: "/images/blog/office-knee-pain.png",
         author: "Dr. Ulhas Sonar",
         date: "March 21, 2026"
     },
@@ -63,7 +63,7 @@ const articlesData = [
         excerpt: "Is it a sharp joint line pain or a soft tissue ache? Compare the symptoms and recovery timelines for these common knee injuries.",
         category: "Diagnosis",
         categoryColor: "bg-emerald-100 text-emerald-700",
-        image: "https://images.unsplash.com/photo-1576091160550-217359f4ecf8?w=800&h=600&fit=crop",
+        image: "/images/blog/meniscus-vs-strain.png",
         author: "Dr. Ulhas Sonar",
         date: "March 21, 2026"
     },
@@ -73,7 +73,7 @@ const articlesData = [
         excerpt: "Keep your joints moving with these simple stretches and strengthening exercises you can perform right at your workstation.",
         category: "Rehabilitation",
         categoryColor: "bg-cyan-100 text-cyan-700",
-        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop",
+        image: "/images/blog/desk-exercises.png",
         author: "Dr. Ulhas Sonar",
         date: "March 21, 2026"
     },
@@ -83,7 +83,7 @@ const articlesData = [
         excerpt: "Long-haul travel can cause joint stiffness and discomfort. Use these expert tips for staying comfortable on your next journey.",
         category: "Lifestyle",
         categoryColor: "bg-indigo-100 text-indigo-700",
-        image: "https://images.unsplash.com/photo-1436491865332-7a61a109c0f5?w=800&h=600&fit=crop",
+        image: "/images/blog/travel-knee.png",
         author: "Dr. Ulhas Sonar",
         date: "March 21, 2026"
     },
