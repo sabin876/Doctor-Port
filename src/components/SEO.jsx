@@ -18,9 +18,11 @@ const SEO = ({
   const baseUrl = `https://${domain}`;
   let fullUrl = url ? (url.startsWith('https') ? url : `${baseUrl}${url}`) : baseUrl;
 
-  // Ensure the URL ends with a trailing slash for consistency
-  if (!fullUrl.endsWith('/')) {
-    fullUrl += '/';
+  // Ensure the URL does NOT end with a trailing slash for consistency (unless it's exactly the base URL)
+  if (fullUrl.endsWith('/') && fullUrl !== baseUrl && fullUrl !== baseUrl + '/') {
+    fullUrl = fullUrl.slice(0, -1);
+  } else if (fullUrl === baseUrl + '/') {
+    fullUrl = baseUrl;
   }
 
   const formattedTitle = title ? (title.includes('Dr. Ulhas') ? title : `${title} | Dr. Ulhas`) : siteName;

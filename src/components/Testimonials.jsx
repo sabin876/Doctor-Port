@@ -60,50 +60,19 @@ const testimonials = [
 const Testimonials = () => {
     const { language, t } = useLanguage();
     const isRtl = language === 'AR';
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [isPaused, setIsPaused] = useState(false);
-    const scrollRef = useRef(null);
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 768);
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
-
-    // Auto-slide logic
-    useEffect(() => {
-        if (isPaused) return;
-
-        const timer = setInterval(() => {
-            setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-        }, 5000);
-
-        return () => clearInterval(timer);
-    }, [isPaused]);
-
-    const next = () => {
-        setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    };
-
-    const prev = () => {
-        setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-    };
+    const doubledTestimonials = [...testimonials, ...testimonials];
 
     return (
         <section
             id="testimonials"
             className="py-24 bg-gray-50/50 text-gray-900 overflow-hidden relative"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
         >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-[100vw] mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-12"
+                    className="text-center mb-12 px-4"
                 >
                     <h2 className="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight text-blue-900">
                         {t('testimonials.title')}
@@ -154,32 +123,28 @@ const Testimonials = () => {
                     </div>
                 </motion.div>
 
-                <div className="relative group/nav">
-                    {/* Navigation Arrows */}
-                    <button
-                        onClick={prev}
-                        className="absolute start-0 top-1/2 -translate-y-1/2 -translate-x-6 z-10 p-3 rounded-full bg-white/90 hover:bg-white shadow-xl border border-gray-100 transition-all opacity-0 group-hover/nav:opacity-100 hidden lg:block text-blue-600"
-                    >
-                        <ChevronLeft className="w-6 h-6" />
-                    </button>
-                    <button
-                        onClick={next}
-                        className="absolute end-0 top-1/2 -translate-y-1/2 translate-x-6 z-10 p-3 rounded-full bg-white/90 hover:bg-white shadow-xl border border-gray-100 transition-all opacity-0 group-hover/nav:opacity-100 hidden lg:block text-blue-600"
-                    >
-                        <ChevronRight className="w-6 h-6" />
-                    </button>
-
-                    {/* Carousel Container */}
-                    <div className="flex gap-6 overflow-hidden pt-4">
+                <div className="relative group/marquee px-4">
+                    {/* Carousel Container - Seamless Infinite Marquee */}
+                    <div className="flex overflow-hidden py-4">
                         <motion.div
-                            className="flex gap-6 w-full"
-                            animate={{ x: isRtl ? (isMobile ? `${currentIndex * 100}%` : `${currentIndex * (100 / 3.4)}%`) : (isMobile ? `-${currentIndex * 100}%` : `-${currentIndex * (100 / 3.4)}%`) }}
-                            transition={{ type: "spring", stiffness: 300, damping: 35 }}
+                            className="flex gap-6"
+                            animate={{ 
+                                x: isRtl ? [0, 400 * testimonials.length] : [0, -400 * testimonials.length] 
+                            }}
+                            transition={{ 
+                                x: {
+                                    repeat: Infinity,
+                                    repeatType: "loop",
+                                    duration: 60,
+                                    ease: "linear"
+                                }
+                            }}
+                            whileHover={{ transition: { duration: 120 } }} // Slow down on hover for readability
                         >
-                            {testimonials.map((testimonial, index) => (
-                                <motion.div
+                            {doubledTestimonials.map((testimonial, index) => (
+                                <div
                                     key={index}
-                                    className="min-w-full md:min-w-[calc(28.5%-1.5rem)] flex flex-col"
+                                    className="w-[300px] md:w-[400px] shrink-0 flex flex-col"
                                 >
                                     {/* Testimonial Card */}
                                     <div className="w-full bg-white p-6 md:p-7 rounded-[2rem] border border-gray-200/60 shadow-xl shadow-gray-200/40 relative h-full flex flex-col hover:border-blue-400/50 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 group cursor-pointer" onClick={() => window.open(testimonial.googleUrl, '_blank', 'noopener,noreferrer')}>
@@ -239,22 +204,14 @@ const Testimonials = () => {
                                             Read on Google
                                         </div>
                                     </div>
-                                </motion.div>
+                                </div>
                             ))}
                         </motion.div>
                     </div>
-                </div>
 
-                {/* Dots Navigation */}
-                <div className="flex justify-center gap-2.5 mt-12 mb-12">
-                    {testimonials.map((_, i) => (
-                        <button
-                            key={i}
-                            onClick={() => setCurrentIndex(i)}
-                            className={`h-2 rounded-full transition-all duration-500 ${currentIndex === i ? 'bg-blue-600 w-10' : 'bg-gray-200 w-2 hover:bg-gray-300'
-                                }`}
-                        />
-                    ))}
+                    {/* Gradient Masks for seamless edge fade */}
+                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-gray-50/50 via-gray-50/30 to-transparent z-10 pointer-events-none"></div>
+                    <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-gray-50/50 via-gray-50/30 to-transparent z-10 pointer-events-none"></div>
                 </div>
 
                 {/* Personalized Solution CTA */}
@@ -262,7 +219,7 @@ const Testimonials = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center"
+                    className="text-center mt-20"
                 >
                     <a
                         href="#personalized-solutions"
@@ -272,7 +229,6 @@ const Testimonials = () => {
                         <ArrowRight className="w-4 h-4" />
                     </a>
                 </motion.div>
-
             </div>
 
             {/* Subtle Background Blobs */}

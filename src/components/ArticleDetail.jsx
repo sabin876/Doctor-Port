@@ -13,7 +13,7 @@ export const articles = {
         date: "March 21, 2026",
         author: "Dr. Ulhas Sonar",
         category: "Knee Health",
-        image: "/images/blog/knee-causes.png",
+        image: "/images/blog/causes-of-knee-pain.png",
         readTime: "5 min read",
         content: `
             <p>Knee pain is a common complaint that affects people of all ages. Understanding the underlying cause is the first step toward effective treatment. Whether it's a sudden injury or a gradual onset of discomfort, identifying the source is crucial.</p>
@@ -33,7 +33,7 @@ export const articles = {
         date: "March 21, 2026",
         author: "Dr. Ulhas Sonar",
         category: "Sports Medicine",
-        image: "/images/blog/gym-injury.png",
+        image: "/images/blog/knee-pain-gym-sports.png",
         readTime: "10 min read",
         content: `
             <p>Knee pain following gym workouts or sports activity is a frequent complaint among active adults and working professionals. This is particularly common in individuals who combine prolonged desk-based work with recreational sports, gym training, or weekend athletic activity. While delayed muscle soreness is expected after exercise, knee pain associated with swelling, instability, or mechanical symptoms may indicate underlying joint injury.</p>
@@ -82,7 +82,7 @@ export const articles = {
         date: "March 21, 2026",
         author: "Dr. Ulhas Sonar",
         category: "Diagnostics",
-        image: "/images/blog/mri-scan.png",
+        image: "/images/blog/when-to-get-mri-knee.png",
         readTime: "12 min read",
         content: `
             <p>Knee pain is one of the most common musculoskeletal complaints in active adults and working professionals. It affects individuals across a broad spectrum, from those who participate in football, padel, badminton, running, gym training, and recreational sport to those whose main strain arises from long working hours, prolonged sitting, frequent commuting, and irregular exercise patterns. In many patients, the central question arises early: <strong>does this knee pain need a scan?</strong></p>
@@ -135,7 +135,7 @@ export const articles = {
         date: "March 21, 2026",
         author: "Dr. Ulhas Sonar",
         category: "Injury Prevention",
-        image: "/images/blog/sports-risks.png",
+        image: "/images/blog/continuing-sports-risks.png",
         readTime: "12 min read",
         content: `
             <p>Continuing sports or gym activity despite knee pain is a common and often underestimated problem among active adults and working professionals. While some minor symptoms may resolve with rest, ignoring unresolved pain can lead to progression of injury, prolonged recovery, and secondary joint damage. Differentiating between benign <a href="/blog/knee-pain-gym-sports">injury vs overload</a> is critical for long-term health.</p>
@@ -177,7 +177,7 @@ export const articles = {
         date: "March 21, 2026",
         author: "Dr. Ulhas Sonar",
         category: "Ergonomics",
-        image: "/images/blog/office-knee-pain.png",
+        image: "/images/blog/anterior-knee-pain-office.png",
         readTime: "5 min read",
         content: `
             <p>Many office workers experience a dull ache at the front of the knee, often called "movie-goer's knee" or patellofemoral pain. This condition is frequently linked to long periods of sitting with knees bent.</p>
@@ -193,7 +193,7 @@ export const articles = {
         date: "March 21, 2026",
         author: "Dr. Ulhas Sonar",
         category: "Diagnosis",
-        image: "/images/blog/meniscus-vs-strain.png",
+        image: "/images/blog/meniscus-tear-vs-strain.png",
         readTime: "6 min read",
         content: `
             <p>Not all knee pains are the same. Distinguishing between a meniscus tear and a simple muscle strain is crucial for choosing the right treatment and recovery timeline.</p>
@@ -209,7 +209,7 @@ export const articles = {
         date: "March 21, 2026",
         author: "Dr. Ulhas Sonar",
         category: "Rehabilitation",
-        image: "/images/blog/desk-exercises.png",
+        image: "/images/blog/knee-pain-exercises-desk.png",
         readTime: "4 min read",
         content: `
             <p>If you're stuck at a desk all day, your knees can pay the price. Fortunately, there are several simple exercises you can do without even leaving your chair to keep your knees healthy and pain-free.</p>
@@ -225,7 +225,7 @@ export const articles = {
         date: "March 21, 2026",
         author: "Dr. Ulhas Sonar",
         category: "Lifestyle",
-        image: "/images/blog/travel-knee.png",
+        image: "/images/blog/knee-pain-travel-flights.png",
         readTime: "5 min read",
         content: `
             <p>Traveling, especially on long-haul flights, can be a nightmare for those with chronic knee pain or stiffness. The cramped quarters and lack of movement are major contributors to joint distress.</p>
@@ -243,7 +243,7 @@ export const articles = {
         date: "March 21, 2026",
         author: "Dr. Ulhas Sonar",
         category: "Pillar Page",
-        image: "/images/blog/knee-pillar.png",
+        image: "/images/blog/knee-pain-pillar.png",
         readTime: "15 min read",
         content: `
             <p>Knee pain is one of the most frequently encountered musculoskeletal complaints in young adults and working professionals. It is increasingly seen in individuals who combine prolonged desk-based work with intermittent participation in gym training, running, recreational sports, or weekend athletic activity. This combination of sedentary work patterns and sudden physical loading creates a unique environment where the knee is repeatedly exposed to demands that may exceed its capacity to adapt.</p>

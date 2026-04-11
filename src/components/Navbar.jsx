@@ -83,8 +83,7 @@ const Navbar = () => {
         { id: 'roboticSurgery', name: t('footer.serviceLinks.roboticSurgery'), path: '/services/2' },
         { id: 'jointReplacement', name: t('footer.serviceLinks.jointReplacement'), path: '/services/0' },
         { id: 'deformityCorrection', name: t('footer.serviceLinks.deformityCorrection'), path: '/services/4' },
-        { id: 'physiotherapy', name: t('footer.serviceLinks.physiotherapy'), path: '/services/7' },
-        { id: 'more', name: t('footer.serviceLinks.more'), path: '/services' },
+        { id: 'physiotherapy', name: t('footer.serviceLinks.physiotherapy'), path: '/services/7' }
     ];
 
     const languages = [
@@ -134,13 +133,15 @@ const Navbar = () => {
                                     onMouseEnter={() => setIsServicesOpen(true)}
                                     onMouseLeave={() => setIsServicesOpen(false)}
                                 >
-                                    <button
+                                    <RouterLink
+                                        to={link.path}
+                                        onClick={() => setIsServicesOpen(false)}
                                         className="flex items-center gap-1 text-[13px] font-montserrat font-bold transition-all duration-300 hover:text-primary-600 relative group text-primary-950 uppercase tracking-widest py-2"
                                     >
                                         {t(`nav.${link.id}`)}
                                         <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${isServicesOpen ? 'rotate-180 text-primary-600' : 'text-gray-400'}`} />
                                         <span className={`absolute -bottom-1 ${isRtl ? 'end-0' : 'start-0'} w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover/services:w-full`}></span>
-                                    </button>
+                                    </RouterLink>
 
                                     <AnimatePresence>
                                         {isServicesOpen && (
@@ -269,13 +270,24 @@ const Navbar = () => {
                             {navLinks.map((link, index) => (
                                 link.hasDropdown ? (
                                     <div key={link.id} className="w-full flex flex-col items-center">
-                                        <button
-                                            onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                                            className="flex items-center gap-2 text-[13px] font-montserrat font-bold text-gray-900 hover:text-primary-600 transition-colors uppercase tracking-widest"
-                                        >
-                                            {t(`nav.${link.id}`)}
-                                            <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isMobileServicesOpen ? 'rotate-180' : ''}`} />
-                                        </button>
+                                        <div className="flex items-center justify-center gap-2">
+                                            <RouterLink
+                                                to={link.path}
+                                                onClick={() => setIsOpen(false)}
+                                                className="text-[13px] font-montserrat font-bold text-gray-900 hover:text-primary-600 transition-colors uppercase tracking-widest"
+                                            >
+                                                {t(`nav.${link.id}`)}
+                                            </RouterLink>
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    setIsMobileServicesOpen(!isMobileServicesOpen);
+                                                }}
+                                                className="p-1 focus:outline-none"
+                                            >
+                                                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isMobileServicesOpen ? 'rotate-180 text-primary-600' : 'text-gray-900'}`} />
+                                            </button>
+                                        </div>
                                         <AnimatePresence>
                                             {isMobileServicesOpen && (
                                                 <motion.div

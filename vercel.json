@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "trailingSlash": false,
   "headers": [
     {
       "comment": "HTML — always revalidate, never cache stale content",
