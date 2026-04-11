@@ -6,100 +6,9 @@ import { Link } from 'react-router-dom';
 import { User, Calendar, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import Breadcrumbs from './ui/Breadcrumbs';
-import { articles } from './ArticleDetail';
+import { articlesList } from '../constants/articlesData';
 
-const articlesData = [
-    {
-        id: 'causes-of-knee-pain',
-        title: "Understanding Common Causes of Knee Pain",
-        excerpt: "Knee pain affects people of all ages. Whether it's a sports injury or arthritis, understanding the underlying cause is the first step toward effective treatment.",
-        category: "Knee Health",
-        categoryColor: "bg-blue-100 text-blue-700",
-        image: articles['causes-of-knee-pain'].image,
-        author: "Dr. Ulhas Sonar",
-        date: "March 21, 2026"
-    },
-    {
-        id: 'knee-pain-gym-sports',
-        title: "Knee Pain After Gym or Sports in Working Professionals: Ligament Injury or Cartilage Damage?",
-        excerpt: "Knee pain after gym or sports is common in working professionals. Learn how to distinguish ligament injury from cartilage damage, warning signs, and management options.",
-        category: "Sports Medicine",
-        categoryColor: "bg-orange-100 text-orange-700",
-        image: articles['knee-pain-gym-sports'].image,
-        author: "Dr. Ulhas Sonar",
-        date: "March 21, 2026"
-    },
-    {
-        id: 'when-to-get-mri-knee',
-        title: "When Knee Pain Needs a Scan: Understanding MRI, X-rays, and Decision-Making",
-        excerpt: "When should knee pain be investigated with MRI or X-ray? A detailed clinical guide for active adults on symptoms, red flags, and imaging decisions.",
-        category: "Diagnostics",
-        categoryColor: "bg-purple-100 text-purple-700",
-        image: articles['when-to-get-mri-knee'].image,
-        author: "Dr. Ulhas Sonar",
-        date: "March 21, 2026"
-    },
-    {
-        id: 'continuing-sports-risks',
-        title: "Continuing Sports with Knee Pain in Working Professionals: Risks and Mistakes",
-        excerpt: "Is it safe to play through knee pain? Learn the common mistakes, long-term risks, and safer management strategies for active adults balancing work and sport.",
-        category: "Injury Prevention",
-        categoryColor: "bg-red-100 text-red-700",
-        image: articles['continuing-sports-risks'].image,
-        author: "Dr. Ulhas Sonar",
-        date: "March 21, 2026"
-    },
-    {
-        id: 'anterior-knee-pain-office',
-        title: "Anterior Knee Pain in Office Workers",
-        excerpt: "Long hours at a desk can lead to 'theater sign' pain. Learn simple ergonomic fixes and lifestyle adjustments for office-based knee pain.",
-        category: "Ergonomics",
-        categoryColor: "bg-teal-100 text-teal-700",
-        image: articles['anterior-knee-pain-office'].image,
-        author: "Dr. Ulhas Sonar",
-        date: "March 21, 2026"
-    },
-    {
-        id: 'meniscus-tear-vs-strain',
-        title: "Meniscus Tear vs. Muscle Strain – How to Tell",
-        excerpt: "Is it a sharp joint line pain or a soft tissue ache? Compare the symptoms and recovery timelines for these common knee injuries.",
-        category: "Diagnosis",
-        categoryColor: "bg-emerald-100 text-emerald-700",
-        image: articles['meniscus-tear-vs-strain'].image,
-        author: "Dr. Ulhas Sonar",
-        date: "March 21, 2026"
-    },
-    {
-        id: 'knee-pain-exercises-desk',
-        title: "Best Exercises for Knee Pain (Desk Professionals)",
-        excerpt: "Keep your joints moving with these simple stretches and strengthening exercises you can perform right at your workstation.",
-        category: "Rehabilitation",
-        categoryColor: "bg-cyan-100 text-cyan-700",
-        image: articles['knee-pain-exercises-desk'].image,
-        author: "Dr. Ulhas Sonar",
-        date: "March 21, 2026"
-    },
-    {
-        id: 'knee-pain-travel-flights',
-        title: "Managing Knee Pain During Travel and Flights",
-        excerpt: "Long-haul travel can cause joint stiffness and discomfort. Use these expert tips for staying comfortable on your next journey.",
-        category: "Lifestyle",
-        categoryColor: "bg-indigo-100 text-indigo-700",
-        image: articles['knee-pain-travel-flights'].image,
-        author: "Dr. Ulhas Sonar",
-        date: "March 21, 2026"
-    },
-    {
-        id: 'knee-pain-pillar',
-        title: "Knee Pain in Professionals: The Ultimate Specialist Guide",
-        excerpt: "A complete clinical guide to knee pain for active adults. Understand causes, gym injuries, MRI decisions, and safe return to sports.",
-        category: "Pillar Page",
-        categoryColor: "bg-blue-100 text-blue-700",
-        image: articles['knee-pain-pillar'].image,
-        author: "Dr. Ulhas Sonar",
-        date: "March 21, 2026"
-    },
-];
+// Articles data is now imported from constants/articlesData.js
 
 const container = {
     hidden: { opacity: 0 },
@@ -118,6 +27,7 @@ const item = {
 
 const Articles = () => {
     const { t } = useLanguage();
+    console.log('Articles articlesList:', articlesList);
 
     return (
         <main className="pt-20 min-h-screen bg-gray-50">
@@ -165,7 +75,7 @@ const Articles = () => {
                     animate="show"
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
-                    {articlesData.map((article) => (
+                    {articlesList.map((article) => (
                         <motion.div
                             key={article.id}
                             variants={item}
