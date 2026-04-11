@@ -1,21 +1,24 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './components/Home';
-import AboutPage from './components/AboutPage';
-import Contact from './components/Contact';
-import ServicesPage from './components/ServicesPage';
-import Articles from './components/Articles';
-import ArticleDetail from './components/ArticleDetail';
-import Gallery from './components/Gallery';
-import Footer from './components/Footer';
-import FloatingControls from './components/FloatingControls';
-import FloatingContactButtons from './components/FloatingContactButtons';
-import TopBar from './components/TopBar';
-import ServiceDetail from './components/ServiceDetail';
-import ThankYou from './components/ThankYou';
-import FAQ from './components/FAQ';
 import { HelmetProvider } from 'react-helmet-async';
+
+// Global layout components
+import Navbar from './components/Navbar';
+import TopBar from './components/TopBar';
+import Footer from './components/Footer';
+import FloatingContactButtons from './components/FloatingContactButtons';
+import FAQ from './components/FAQ';
+
+// Lazy loaded page components
+const Home = React.lazy(() => import('./components/Home'));
+const AboutPage = React.lazy(() => import('./components/AboutPage'));
+const Contact = React.lazy(() => import('./components/Contact'));
+const ServicesPage = React.lazy(() => import('./components/ServicesPage'));
+const ServiceDetail = React.lazy(() => import('./components/ServiceDetail'));
+const Articles = React.lazy(() => import('./components/Articles'));
+const ArticleDetail = React.lazy(() => import('./components/ArticleDetail'));
+const Gallery = React.lazy(() => import('./components/Gallery'));
+const ThankYou = React.lazy(() => import('./components/ThankYou'));
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -50,17 +53,19 @@ function App() {
           <div className="min-h-screen bg-white font-sans text-gray-800">
             <TopBar />
             <Navbar />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/services/:id" element={<ServiceDetail />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/blog" element={<Articles />} />
-              <Route path="/blog/:id" element={<ArticleDetail />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/thank-you" element={<ThankYou />} />
-            </Routes>
+            <React.Suspense fallback={<div className="min-h-screen flex items-center justify-center text-primary-600 font-bold">Loading...</div>}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/services" element={<ServicesPage />} />
+                <Route path="/services/:id" element={<ServiceDetail />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/blog" element={<Articles />} />
+                <Route path="/blog/:id" element={<ArticleDetail />} />
+                <Route path="/gallery" element={<Gallery />} />
+                <Route path="/thank-you" element={<ThankYou />} />
+              </Routes>
+            </React.Suspense>
             <FAQ />
             <Footer />
             <FloatingContactButtons />

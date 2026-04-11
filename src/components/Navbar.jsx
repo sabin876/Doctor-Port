@@ -111,6 +111,8 @@ const Navbar = () => {
                                     className="h-10 sm:h-12 md:h-14 w-auto object-contain"
                                     whileHover={{ scale: 1.05 }}
                                     transition={{ type: "spring", stiffness: 300 }}
+                                    width="200"
+                                    height="56"
                                 />
                             <div className="flex flex-col">
                                 <span className="text-lg sm:text-2xl font-metabolic font-extrabold tracking-tight text-primary-900 leading-none">
