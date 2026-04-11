@@ -47,7 +47,7 @@ const Affiliations = () => {
                     <span className="inline-block px-3 py-1 mb-4 text-[9px] font-bold tracking-[0.3em] text-primary-600 uppercase bg-primary-50/50 rounded-full border border-primary-100/50 backdrop-blur-sm">
                         Professional Excellence
                     </span>
-                    <h2 className="text-2xl md:text-3xl font-metabolic font-medium text-primary-950 uppercase tracking-tighter leading-none mb-4">
+                    <h2 className="text-xl md:text-2xl font-metabolic font-medium text-primary-950 uppercase tracking-tighter leading-none mb-4">
                         {t?.affiliations || "Memberships & Affiliations"}
                     </h2>
                     <div className="flex items-center justify-center gap-2">

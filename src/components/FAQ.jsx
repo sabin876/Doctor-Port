@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import faqImage from '../assets/Doctor Photo.webp';
+import faqImage from '../assets/FAQ Pic.jpeg';
 
 const FAQ = ({ title, description, items }) => {
     const { t } = useLanguage();
@@ -118,7 +118,7 @@ const FAQ = ({ title, description, items }) => {
                             alt="FAQ Illustration" 
                             loading="lazy"
                             decoding="async"
-                            className="w-full max-w-md h-auto rounded-3xl shadow-xl object-cover"
+                            className="w-full max-w-lg h-auto rounded-3xl shadow-xl object-cover"
                         />
                     </div>
                 </div>

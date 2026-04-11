@@ -169,7 +169,6 @@ export const translations = {
             titleHighlight: "sporting injury?",
             titleEnd: "",
             description: "Don't let pain keep you on the sidelines. We offer expert diagnosis and advanced treatments for athletes of all levels.",
-            dashboard: "MEDICAL DASHBOARD",
             learnMore: "LEARN MORE ABOUT SPORTS RECOVERY",
             items: [
                 {
@@ -504,8 +503,7 @@ export const translations = {
             title: "क्या आप",
             titleHighlight: "खेल की चोट",
             titleEnd: "से परेशान हैं?",
-            description: "दर्द को आपको साइडलाइन पर न रखने दें। हम सभी स्तरों के एथलीटों के लिए विशेषज्ञ निदान और उन्नत उपचार प्रदान करते हैं।",
-            dashboard: "मेडिकल डैशबोर्ड",
+            description: "दर्द को आपको साइडलाइन पर न रखने दें। हम सभी स्तरों के एثलीटों के लिए विशेषज्ञ निदान और उन्नत उपचार प्रदान करते हैं।",
             learnMore: "स्पोर्ट्स रिकवरी के बारे में और जानें",
             items: [
                 {
@@ -841,7 +839,6 @@ export const translations = {
             titleHighlight: "إصابة رياضية؟",
             titleEnd: "",
             description: "لا تدع الألم يمنعك من المشاركة. نقدم تشخيصاً متخصصاً وعلاجات متقدمة للرياضيين من جميع المستويات.",
-            dashboard: "لوحة التحكم الطبية",
             learnMore: "اعرف المزيد عن التعافي الرياضي",
             items: [
                 {
