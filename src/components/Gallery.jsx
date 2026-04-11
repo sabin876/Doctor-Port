@@ -191,6 +191,7 @@ const Gallery = () => {
                 title="Photo Gallery | Dr. Ulhas Sonar"
                 description="Explore Dr. Ulhas' gallery featuring state-of-the-art clinic facilities, joint replacement surgeries, awards, and conferences."
                 url="/gallery"
+                image={gallery1}
             />
             {/* Decorative blobs */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-200/30 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/2" />

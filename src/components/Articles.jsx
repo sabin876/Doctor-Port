@@ -1,5 +1,6 @@
 import React from 'react';
 import SEO from './SEO';
+import heroImg from '../assets/doctor-surgery.webp';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { User, Calendar, ArrowRight } from 'lucide-react';
@@ -123,6 +124,7 @@ const Articles = () => {
                 title="Orthopedic Articles & Insights | Dr. Ulhas"
                 description="Read the latest articles on orthopedic conditions, treatments, and recovery from Dr. Ulhas Sonar."
                 url="/blog"
+                image={heroImg}
             />
             <div className="bg-white border-b border-gray-100">
                 <Breadcrumbs items={[

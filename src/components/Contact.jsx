@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Youtube, Twitter, Linkedin, Send, Activity, ShieldCheck, Zap, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from './SEO';
+import logo from '../assets/logo.webp';
 
 const Contact = () => {
     const { language, t } = useLanguage();
@@ -18,6 +19,7 @@ const Contact = () => {
                 title="Contact Dr. Ulhas | Book an Appointment"
                 description="Get in touch with Dr. Ulhas for expert orthopedic consultations in Dubai. Find our clinic location, contact numbers, and book your appointment today."
                 url="/contact"
+                image={logo}
             />
             {/* Ultra-Premium Background Elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">

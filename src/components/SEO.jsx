@@ -17,6 +17,9 @@ const SEO = ({
   const domain = 'orthopedic-specialist.com';
   const baseUrl = `https://${domain}`;
   let fullUrl = url ? (url.startsWith('https') ? url : `${baseUrl}${url}`) : baseUrl;
+  
+  // Ensure image is an absolute URL for social scrapers
+  const absoluteImage = image.startsWith('http') ? image : `${baseUrl}${image.startsWith('/') ? '' : '/'}${image}`;
 
   // Ensure the URL does NOT end with a trailing slash for consistency (unless it's exactly the base URL)
   if (fullUrl.endsWith('/') && fullUrl !== baseUrl && fullUrl !== baseUrl + '/') {
@@ -55,7 +58,7 @@ const SEO = ({
       <meta property="og:url" content={fullUrl} />
 
       {/* 14. Meta- og: image */}
-      <meta property="og:image" content={image} />
+      <meta property="og:image" content={absoluteImage} />
 
       {/* 25. og:site_name */}
       <meta property="og:site_name" content={siteName} />
@@ -64,7 +67,7 @@ const SEO = ({
       <meta property="og:locale" content="en_US" />
 
       {/* 26. og:secure_url */}
-      <meta property="og:image:secure_url" content={image} />
+      <meta property="og:image:secure_url" content={absoluteImage} />
 
       {/* 27. og:image:width */}
       <meta property="og:image:width" content="1200" />
@@ -89,7 +92,7 @@ const SEO = ({
       <meta name="twitter:description" content={description || defaultDesc} />
 
       {/* 20. twitter:image */}
-      <meta name="twitter:image" content={image} />
+      <meta name="twitter:image" content={absoluteImage} />
 
       {/* 31. twitter:site */}
       <meta name="twitter:site" content="@DrUlhasOrtho" />
@@ -113,7 +116,7 @@ const SEO = ({
             "@context": "https://schema.org",
             "@type": "Physician",
             "name": "Dr. Ulhas Sonar",
-            "image": image,
+            "image": absoluteImage,
             "@id": baseUrl,
             "url": baseUrl,
             "telephone": "+971551053445",

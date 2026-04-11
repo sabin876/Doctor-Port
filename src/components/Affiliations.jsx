@@ -15,14 +15,14 @@ const Affiliations = () => {
     const t = translate('nav');
 
     const logos = [
-        { name: "", src: logo1 },
-        { name: "", src: logo2 },
-        { name: "", src: logo3 },
-        { name: "", src: logo4 },
-        { name: "", src: logo5 },
-        { name: "", src: logo6 },
-        { name: "", src: logo7 },
-        { name: "", src: logo8 },
+        { name: "AO Trauma", src: logo1 },
+        { name: "Indian Orthopaedic Association", src: logo2 },
+        { name: "Emirates Medical Association", src: logo3 },
+        { name: "Royal College of Surgeons", src: logo4 },
+        { name: "European Board of Orthopaedics", src: logo5 },
+        { name: "General Medical Council", src: logo6 },
+        { name: "SICOT", src: logo7 },
+        { name: "Dubai Health Authority", src: logo8 },
     ];
 
     // Duplicate logos for infinite loop

@@ -351,6 +351,7 @@ const ArticleDetail = () => {
                 title={article.metaTitle || `${article.title} | Dr. Ulhas Sonar`}
                 description={article.metaDescription || article.title}
                 url={`/blog/${id}`}
+                image={article.image}
                 type="article"
                 schemaList={schemaList}
                 twitterLabel1="Written by"

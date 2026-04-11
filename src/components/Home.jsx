@@ -1,4 +1,5 @@
 import SEO from './SEO';
+import heroImg from '../assets/hero-bg-1.webp';
 import HomeHero from './HomeHero';
 
 import Affiliations from './Affiliations';
@@ -9,7 +10,7 @@ import Testimonials from './Testimonials';
 const Home = () => {
     return (
         <main>
-            <SEO title="Dr. Ulhas | Expert Orthopedic Surgeon" url="/" />
+            <SEO title="Dr. Ulhas | Expert Orthopedic Surgeon" url="/" image={heroImg} />
             <HomeHero />
 
             <Affiliations />

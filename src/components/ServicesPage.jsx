@@ -3,6 +3,7 @@ import SEO from './SEO';
 import Services from './Services';
 import { useLanguage } from '../context/LanguageContext';
 import Breadcrumbs from './ui/Breadcrumbs';
+import heroImg from '../assets/joint-replacement-bg.webp';
 
 const ServicesPage = () => {
     const { t } = useLanguage();
@@ -19,6 +20,7 @@ const ServicesPage = () => {
                 title="Orthopedic Services & Treatments | Dr. Ulhas"
                 description="Explore our specialized orthopedic services including joint replacement, sports injury management, and arthroscopy."
                 url="/services"
+                image={heroImg}
             />
             <div className="bg-white border-b border-gray-100">
                 <Breadcrumbs items={[
