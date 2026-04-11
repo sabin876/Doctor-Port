@@ -76,7 +76,7 @@ const Contact = () => {
                         initial={{ opacity: 0, y: -10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-primary-50 border border-primary-100 text-primary-700 text-[10px] font-black uppercase tracking-[0.3em] backdrop-blur-md"
+                        className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-primary-50 border border-primary-100 text-primary-700 text-[10px] font-normal uppercase tracking-[0.3em] backdrop-blur-md"
                     >
                         <Zap size={12} className="fill-primary-600" />
                         {t('contact.badge')}
@@ -87,7 +87,7 @@ const Contact = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="text-5xl md:text-6xl font-metabolic font-black text-primary-950 mb-8 tracking-tighter leading-[1.1]"
+                        className="text-5xl md:text-6xl font-metabolic font-normal text-primary-950 mb-8 tracking-tighter leading-[1.1]"
                     >
                         {t('contact.title')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">{t('contact.titleHighlight')}</span>
                     </motion.h1>
@@ -98,7 +98,7 @@ const Contact = () => {
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: 0.2 }}
-                            className="text-xl text-gray-500 font-medium leading-relaxed"
+                            className="text-xl text-gray-500 font-normal leading-relaxed"
                         >
                             {t('contact.description')}
                         </motion.p>
@@ -149,10 +149,10 @@ const Contact = () => {
                         >
                             <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
                                 <div>
-                                    <h3 className="text-xs font-black text-primary-950 mb-2 uppercase tracking-[0.2em]">
+                                    <h3 className="text-xs font-normal text-primary-950 mb-2 uppercase tracking-[0.2em]">
                                         {t('contact.cards.social')}
                                     </h3>
-                                    <p className="text-sm text-gray-400 font-medium whitespace-nowrap">Join our medical community</p>
+                                    <p className="text-sm text-gray-400 font-normal whitespace-nowrap">Join our medical community</p>
                                 </div>
                                 <div className="flex gap-4">
                                     <SocialLink href="https://www.youtube.com/@orthopaedictutorials2135" icon={<Youtube size={20} />} />
@@ -175,7 +175,7 @@ const Contact = () => {
                         <div className="absolute top-0 right-0 w-80 h-80 bg-primary-50/40 rounded-full blur-[80px] -mr-40 -mt-40 pointer-events-none group-hover:bg-primary-100/50 transition-colors duration-1000"></div>
 
                         <div className="relative z-10">
-                            <h3 className="text-4xl font-metabolic font-black text-primary-950 mb-10 tracking-tight">{t('contact.form.title')}</h3>
+                            <h3 className="text-4xl font-metabolic font-normal text-primary-950 mb-10 tracking-tight">{t('contact.form.title')}</h3>
                             <form
                                 className="space-y-6"
                                 onSubmit={(e) => {
@@ -188,7 +188,7 @@ const Contact = () => {
                                 <InputField label={t('contact.form.phone')} type="tel" placeholder={t('contact.form.phonePlaceholder')} required />
 
                                 <div className="space-y-3">
-                                    <label className="block text-[10px] font-black text-primary-900 uppercase tracking-widest ml-1">{t('contact.form.medicalInquiry')}</label>
+                                    <label className="block text-[10px] font-normal text-primary-900 uppercase tracking-widest ml-1">{t('contact.form.medicalInquiry')}</label>
                                     <textarea
                                         required
                                         className="w-full px-6 py-5 rounded-[1.5rem] border border-gray-100 focus:border-primary-400 focus:ring-[6px] focus:ring-primary-50 transition-all outline-none bg-gray-50/50 text-primary-950 placeholder-gray-400 font-medium text-sm h-40 resize-none shadow-inner"
@@ -197,7 +197,7 @@ const Contact = () => {
                                 </div>
                                 <button
                                     type="submit"
-                                    className="w-full group flex items-center justify-center gap-3 py-5 px-8 bg-primary-600 text-white font-bold text-xs uppercase tracking-[0.2em] rounded-2xl shadow-xl shadow-primary-200 hover:bg-primary-700 hover:shadow-2xl hover:shadow-primary-300 active:scale-95 transition-all duration-300"
+                                    className="w-full group flex items-center justify-center gap-3 py-5 px-8 bg-primary-600 text-white font-normal text-xs uppercase tracking-[0.2em] rounded-2xl shadow-xl shadow-primary-200 hover:bg-primary-700 hover:shadow-2xl hover:shadow-primary-300 active:scale-95 transition-all duration-300"
                                 >
                                     {t('contact.form.submit')}
                                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -247,15 +247,15 @@ const ContactCard = ({ icon, title, content, subContent, delay, color, isLink, h
             {icon}
         </div>
         <div>
-            <h4 className="text-[11px] font-black text-primary-900 mb-2 uppercase tracking-[0.2em] opacity-50">{title}</h4>
+            <h4 className="text-[11px] font-normal text-primary-900 mb-2 uppercase tracking-[0.2em] opacity-50">{title}</h4>
             {isLink ? (
-                <a href={href} className="text-xl font-bold text-gray-950 hover:text-primary-600 transition-colors block mb-1">
+                <a href={href} className="text-xl font-normal text-gray-950 hover:text-primary-600 transition-colors block mb-1">
                     {content}
                 </a>
             ) : (
-                <p className="text-xl font-bold text-gray-950 mb-1 leading-tight">{content}</p>
+                <p className="text-xl font-normal text-gray-950 mb-1 leading-tight">{content}</p>
             )}
-            <p className="text-xs text-gray-400 font-bold tracking-tight">{subContent}</p>
+            <p className="text-xs text-gray-400 font-normal tracking-tight">{subContent}</p>
         </div>
     </motion.div>
 );
@@ -273,7 +273,7 @@ const SocialLink = ({ href, icon }) => (
 
 const InputField = ({ label, type, placeholder }) => (
     <div className="space-y-3">
-        <label className="block text-[10px] font-black text-primary-900 uppercase tracking-widest ml-1 leading-none">{label}</label>
+        <label className="block text-[10px] font-normal text-primary-900 uppercase tracking-widest ml-1 leading-none">{label}</label>
         <input
             type={type}
             placeholder={placeholder}
