@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { User, Calendar, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import Breadcrumbs from './ui/Breadcrumbs';
+import { articles } from './ArticleDetail';
 
 const articlesData = [
     {
@@ -14,7 +15,7 @@ const articlesData = [
         excerpt: "Knee pain affects people of all ages. Whether it's a sports injury or arthritis, understanding the underlying cause is the first step toward effective treatment.",
         category: "Knee Health",
         categoryColor: "bg-blue-100 text-blue-700",
-        image: "/images/blog/causes-of-knee-pain.png",
+        image: articles['causes-of-knee-pain'].image,
         author: "Dr. Ulhas Sonar",
         date: "March 21, 2026"
     },
@@ -24,7 +25,7 @@ const articlesData = [
         excerpt: "Knee pain after gym or sports is common in working professionals. Learn how to distinguish ligament injury from cartilage damage, warning signs, and management options.",
         category: "Sports Medicine",
         categoryColor: "bg-orange-100 text-orange-700",
-        image: "/images/blog/knee-pain-gym-sports.png",
+        image: articles['knee-pain-gym-sports'].image,
         author: "Dr. Ulhas Sonar",
         date: "March 21, 2026"
     },
@@ -34,7 +35,7 @@ const articlesData = [
         excerpt: "When should knee pain be investigated with MRI or X-ray? A detailed clinical guide for active adults on symptoms, red flags, and imaging decisions.",
         category: "Diagnostics",
         categoryColor: "bg-purple-100 text-purple-700",
-        image: "/images/blog/when-to-get-mri-knee.png",
+        image: articles['when-to-get-mri-knee'].image,
         author: "Dr. Ulhas Sonar",
         date: "March 21, 2026"
     },
@@ -44,7 +45,7 @@ const articlesData = [
         excerpt: "Is it safe to play through knee pain? Learn the common mistakes, long-term risks, and safer management strategies for active adults balancing work and sport.",
         category: "Injury Prevention",
         categoryColor: "bg-red-100 text-red-700",
-        image: "/images/blog/continuing-sports-risks.png",
+        image: articles['continuing-sports-risks'].image,
         author: "Dr. Ulhas Sonar",
         date: "March 21, 2026"
     },
@@ -54,7 +55,7 @@ const articlesData = [
         excerpt: "Long hours at a desk can lead to 'theater sign' pain. Learn simple ergonomic fixes and lifestyle adjustments for office-based knee pain.",
         category: "Ergonomics",
         categoryColor: "bg-teal-100 text-teal-700",
-        image: "/images/blog/anterior-knee-pain-office.png",
+        image: articles['anterior-knee-pain-office'].image,
         author: "Dr. Ulhas Sonar",
         date: "March 21, 2026"
     },
@@ -64,7 +65,7 @@ const articlesData = [
         excerpt: "Is it a sharp joint line pain or a soft tissue ache? Compare the symptoms and recovery timelines for these common knee injuries.",
         category: "Diagnosis",
         categoryColor: "bg-emerald-100 text-emerald-700",
-        image: "/images/blog/meniscus-tear-vs-strain.png",
+        image: articles['meniscus-tear-vs-strain'].image,
         author: "Dr. Ulhas Sonar",
         date: "March 21, 2026"
     },
@@ -74,7 +75,7 @@ const articlesData = [
         excerpt: "Keep your joints moving with these simple stretches and strengthening exercises you can perform right at your workstation.",
         category: "Rehabilitation",
         categoryColor: "bg-cyan-100 text-cyan-700",
-        image: "/images/blog/knee-pain-exercises-desk.png",
+        image: articles['knee-pain-exercises-desk'].image,
         author: "Dr. Ulhas Sonar",
         date: "March 21, 2026"
     },
@@ -84,7 +85,7 @@ const articlesData = [
         excerpt: "Long-haul travel can cause joint stiffness and discomfort. Use these expert tips for staying comfortable on your next journey.",
         category: "Lifestyle",
         categoryColor: "bg-indigo-100 text-indigo-700",
-        image: "/images/blog/knee-pain-travel-flights.png",
+        image: articles['knee-pain-travel-flights'].image,
         author: "Dr. Ulhas Sonar",
         date: "March 21, 2026"
     },
@@ -94,7 +95,7 @@ const articlesData = [
         excerpt: "A complete clinical guide to knee pain for active adults. Understand causes, gym injuries, MRI decisions, and safe return to sports.",
         category: "Pillar Page",
         categoryColor: "bg-blue-100 text-blue-700",
-        image: "/images/blog/knee-pain-pillar.png",
+        image: articles['knee-pain-pillar'].image,
         author: "Dr. Ulhas Sonar",
         date: "March 21, 2026"
     },
