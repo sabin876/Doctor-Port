@@ -1,11 +1,87 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import {
     GraduationCap, Briefcase, Award, BookOpen,
     HeartHandshake, FlaskConical, ShieldCheck, Star
 } from 'lucide-react';
 import doctorProfileImg from '../assets/faq-pic.jpeg';
 import { useLanguage } from '../context/LanguageContext';
+
+
+/* ── 3D Doctor Card ── */
+const DoctorCard = ({ img, altText, experienceBadge }) => {
+    const ref = React.useRef(null);
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [12, -12]), { stiffness: 200, damping: 20 });
+    const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-12, 12]), { stiffness: 200, damping: 20 });
+    const glowX  = useTransform(x, [-0.5, 0.5], ['0%', '100%']);
+    const glowY  = useTransform(y, [-0.5, 0.5], ['0%', '100%']);
+
+    const handleMouseMove = (e) => {
+        const rect = ref.current.getBoundingClientRect();
+        x.set((e.clientX - rect.left) / rect.width - 0.5);
+        y.set((e.clientY - rect.top)  / rect.height - 0.5);
+    };
+    const handleMouseLeave = () => { x.set(0); y.set(0); };
+
+    return (
+        <motion.div
+            ref={ref}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+                perspective: 1000,
+                transformStyle: 'preserve-3d',
+            }}
+            className="relative"
+        >
+            {/* Floating glow behind card */}
+            <motion.div
+                animate={{ scale: [1, 1.04, 1], opacity: [0.5, 0.8, 0.5] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute inset-0 rounded-2xl bg-blue-400/20 blur-2xl -z-10 scale-105"
+            />
+
+            <motion.div
+                style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+                className="relative rounded-2xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(14,94,200,0.35)] bg-slate-100"
+            >
+                <img
+                    src={img}
+                    alt={altText}
+                    loading="eager"
+                    decoding="auto"
+                    className="w-full h-[520px] object-cover object-top"
+                />
+
+                {/* Shine overlay following cursor */}
+                <motion.div
+                    style={{
+                        background: `radial-gradient(circle at ${glowX} ${glowY}, rgba(255,255,255,0.18) 0%, transparent 70%)`,
+                    }}
+                    className="absolute inset-0 pointer-events-none"
+                />
+
+                {/* 15+ badge — floats slightly in z */}
+                <div
+                    style={{ transform: 'translateZ(30px)' }}
+                    className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm border border-slate-100 shadow-lg rounded-xl px-4 py-3 text-center"
+                >
+                    <p className="text-2xl font-normal text-blue-700 leading-none">15+</p>
+                    <p className="text-[9px] font-normal text-slate-400 uppercase tracking-widest mt-1">
+                        {experienceBadge}
+                    </p>
+                </div>
+            </motion.div>
+        </motion.div>
+    );
+};
 
 const About = () => {
     const { language, t } = useLanguage();
@@ -134,25 +210,8 @@ const About = () => {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
                 <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
-                    {/* Image */}
-                    <motion.div {...fadeUp(0)} className="relative">
-                        <div className="rounded-2xl overflow-hidden shadow-lg bg-slate-100">
-                            <img
-                                src={doctorProfileImg}
-                                alt={t('common.doctorName')}
-                                loading="lazy"
-                                decoding="async"
-                                className="w-full h-auto object-cover"
-                            />
-                        </div>
-                        {/* 15+ badge */}
-                        <div className="absolute bottom-4 right-4 bg-white border border-slate-100 shadow-md rounded-xl px-4 py-3 text-center">
-                            <p className="text-2xl font-normal text-blue-700 leading-none">15+</p>
-                            <p className="text-[9px] font-normal text-slate-400 uppercase tracking-widest mt-1">
-                                {t('about.experienceBadge')}
-                            </p>
-                        </div>
-                    </motion.div>
+                    {/* 3D Image Card */}
+                    <DoctorCard img={doctorProfileImg} altText={t('common.doctorName')} experienceBadge={t('about.experienceBadge')} />
 
                     {/* Bio */}
                     <motion.div {...fadeUp(0.1)} className="pt-2">

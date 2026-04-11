@@ -3,7 +3,6 @@ import SEO from './SEO';
 import doctorImg from '../assets/faq-pic.jpeg';
 import About from './About';
 import Publications from './Publications';
-import SportingInjury from './SportingInjury';
 import Breadcrumbs from './ui/Breadcrumbs';
 
 const AboutPage = () => {
@@ -23,7 +22,6 @@ const AboutPage = () => {
             </div>
             <About />
             <Publications />
-            <SportingInjury />
         </main>
     );
 };
