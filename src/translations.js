@@ -158,6 +158,11 @@ export const translations = {
                 { title: "Sports Injuries" }
             ]
         },
+        ctaBanner: {
+            title: "Struggling with Joint or Back Pain?",
+            subtitle: "Get expert orthopedic care today.",
+            button: "Book Appointment Now"
+        },
         sportingInjury: {
             badge: "Sports Injury Clinic",
             title: "Suffering from a",
@@ -489,6 +494,11 @@ export const translations = {
                 { title: "खेल की चोटें" }
             ]
         },
+        ctaBanner: {
+            title: "क्या आप जोड़ों या पीठ के दर्द से परेशान हैं?",
+            subtitle: "आज ही विशेषज्ञ ऑर्थोपेडिक देखभाल प्राप्त करें।",
+            button: "अभी अपॉइंटमेंट बुक करें"
+        },
         sportingInjury: {
             badge: "स्पोर्ट्स इंजरी क्लिनिक",
             title: "क्या आप",
@@ -819,6 +829,11 @@ export const translations = {
                 { title: "الورك" },
                 { title: "إصابات الرياضة" }
             ]
+        },
+        ctaBanner: {
+            title: "هل تعاني من آلام المفاصل أو الظهر؟",
+            subtitle: "احصل على رعاية متخصصة في العظام اليوم.",
+            button: "احجز موعدك الآن"
         },
         sportingInjury: {
             badge: "عيادة إصابات الرياضة",

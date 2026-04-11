@@ -4,6 +4,7 @@ import HomeHero from './HomeHero';
 
 import Affiliations from './Affiliations';
 import PersonalizedSolutions from './PersonalizedSolutions';
+import CTABanner from './CTABanner';
 import SportingInjury from './SportingInjury';
 import Testimonials from './Testimonials';
 
@@ -15,6 +16,7 @@ const Home = () => {
 
             <Affiliations />
             <PersonalizedSolutions />
+            <CTABanner />
             <SportingInjury />
             <Testimonials />
         </main>
