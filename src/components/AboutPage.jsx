@@ -1,6 +1,6 @@
 import React from 'react';
 import SEO from './SEO';
-import doctorImg from '../assets/doctor-profile.webp';
+import doctorImg from '../assets/faq-pic.jpeg';
 import About from './About';
 import Publications from './Publications';
 import SportingInjury from './SportingInjury';

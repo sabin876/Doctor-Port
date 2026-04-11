@@ -4,7 +4,7 @@ import {
     GraduationCap, Briefcase, Award, BookOpen,
     HeartHandshake, FlaskConical, ShieldCheck, Star
 } from 'lucide-react';
-import doctorProfileImg from '../assets/doctor-profile.webp';
+import doctorProfileImg from '../assets/faq-pic.jpeg';
 import { useLanguage } from '../context/LanguageContext';
 
 const About = () => {
