@@ -107,14 +107,14 @@ const About = () => {
             <div className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 text-center max-w-3xl mx-auto">
                 <motion.p
                     {...fadeUp(0)}
-                    className="text-blue-600 text-[11px] font-black uppercase tracking-[0.3em] mb-4"
+                    className="text-blue-600 text-[11px] font-normal uppercase tracking-[0.3em] mb-4"
                 >
                     {t('about.badge')}
                 </motion.p>
 
                 <motion.h1
                     {...fadeUp(0.08)}
-                    className="font-montserrat font-black text-[#0f2756] text-4xl md:text-5xl leading-tight mb-5"
+                    className="font-montserrat font-normal text-[#0f2756] text-4xl md:text-5xl leading-tight mb-5"
                 >
                     {t('about.title')}{' '}
                     <span className="text-blue-600">{t('about.titleHighlight')}</span>
@@ -147,8 +147,8 @@ const About = () => {
                         </div>
                         {/* 15+ badge */}
                         <div className="absolute bottom-4 right-4 bg-white border border-slate-100 shadow-md rounded-xl px-4 py-3 text-center">
-                            <p className="text-2xl font-black text-blue-700 leading-none">15+</p>
-                            <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1">
+                            <p className="text-2xl font-normal text-blue-700 leading-none">15+</p>
+                            <p className="text-[9px] font-normal text-slate-400 uppercase tracking-widest mt-1">
                                 {t('about.experienceBadge')}
                             </p>
                         </div>
@@ -156,7 +156,7 @@ const About = () => {
 
                     {/* Bio */}
                     <motion.div {...fadeUp(0.1)} className="pt-2">
-                        <h2 className="font-montserrat font-bold text-[#0f2756] text-2xl md:text-3xl mb-5">
+                        <h2 className="font-montserrat font-normal text-[#0f2756] text-2xl md:text-3xl mb-5">
                             A Distinguished Orthopaedic Surgeon
                         </h2>
                         <div className="space-y-4 text-slate-600 text-[15px] leading-relaxed">
@@ -183,7 +183,7 @@ const About = () => {
                                 <card.icon className="w-5 h-5" />
                             </div>
                             {/* Title */}
-                            <h3 className={`font-montserrat font-bold text-base mb-3 ${card.color}`}>
+                            <h3 className={`font-montserrat font-normal text-base mb-3 ${card.color}`}>
                                 {card.title}
                             </h3>
                             {/* Bullet list */}
@@ -207,7 +207,7 @@ const About = () => {
                 <div className="max-w-6xl mx-auto">
                     {/* Header */}
                     <motion.div {...fadeUp(0)} className="text-center mb-10">
-                        <h2 className="font-montserrat font-black text-[#0f2756] text-3xl md:text-4xl mb-3">
+                        <h2 className="font-montserrat font-normal text-[#0f2756] text-3xl md:text-4xl mb-3">
                             My Core Values
                         </h2>
                         <p className="text-slate-500 text-base">
@@ -227,7 +227,7 @@ const About = () => {
                                     <v.icon className="w-5 h-5" />
                                 </div>
                                 <div>
-                                    <h3 className="font-montserrat font-bold text-blue-700 text-[15px] mb-1">{v.title}</h3>
+                                    <h3 className="font-montserrat font-normal text-blue-700 text-[15px] mb-1">{v.title}</h3>
                                     <p className="text-slate-500 text-sm leading-relaxed">{v.desc}</p>
                                 </div>
                             </motion.div>
@@ -248,8 +248,8 @@ const About = () => {
                         { value: '4', label: t('about.stats.global.label') },
                     ].map((s, i) => (
                         <motion.div key={i} {...fadeUp(i * 0.1)}>
-                            <p className="font-montserrat font-black text-4xl md:text-5xl text-[#0f2756] mb-1">{s.value}</p>
-                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{s.label}</p>
+                            <p className="font-montserrat font-normal text-4xl md:text-5xl text-[#0f2756] mb-1">{s.value}</p>
+                            <p className="text-[10px] font-normal text-slate-400 uppercase tracking-widest">{s.label}</p>
                         </motion.div>
                     ))}
                 </div>
