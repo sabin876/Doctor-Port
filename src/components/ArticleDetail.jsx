@@ -80,14 +80,18 @@ const ArticleDetail = () => {
             </div>
 
             {/* Hero Section */}
-            <div className="relative h-[40vh] md:h-[60vh] min-h-[300px] w-full overflow-hidden">
-                <img
-                    src={article.image}
-                    alt={article.title}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover"
-                />
+            <div className="relative h-[40vh] md:h-[60vh] min-h-[300px] w-full overflow-hidden bg-gray-200">
+                {article.image && (
+                    <img
+                        src={article.image}
+                        alt={article.title}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                            console.error(`Failed to load article detail image: ${article.image}`);
+                            e.target.style.display = 'none';
+                        }}
+                    />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end">
                     <div className="max-w-4xl mx-auto px-6 pb-12 w-full">
                         <motion.div

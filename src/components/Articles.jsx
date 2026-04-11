@@ -27,7 +27,18 @@ const item = {
 
 const Articles = () => {
     const { t } = useLanguage();
-    console.log('Articles articlesList:', articlesList);
+    
+    // Debug logging to catch missing or malformed image paths
+    console.log('Articles Component Init');
+    console.log('articlesList raw:', articlesList);
+    
+    // Filter to ensure we only try to render valid articles
+    const validArticles = articlesList.filter(article => {
+        if (!article.image) {
+            console.warn(`Article missing image path: ${article.id}`);
+        }
+        return true; // We render anyway to see the grey placeholder and debug
+    });
 
     return (
         <main className="pt-20 min-h-screen bg-gray-50">
@@ -88,13 +99,21 @@ const Articles = () => {
                             >
                                 {/* Image Container */}
                                 <div className="relative h-56 overflow-hidden bg-gray-200">
-                                    <img
-                                        src={article.image}
-                                        alt={article.title}
-                                        loading="lazy"
-                                        decoding="async"
-                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                    />
+                                    {article.image ? (
+                                        <img
+                                            src={article.image}
+                                            alt={article.title}
+                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                            onError={(e) => {
+                                                console.error(`Failed to load image for ${article.id}: ${article.image}`);
+                                                e.target.style.display = 'none';
+                                            }}
+                                        />
+                                    ) : (
+                                        <div className="w-full h-full flex items-center justify-center text-gray-400 text-[10px] p-4 text-center">
+                                            Topic: {article.title}
+                                        </div>
+                                    )}
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                                     {/* Category Tag */}
