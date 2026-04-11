@@ -156,7 +156,7 @@ const PersonalizedSolutions = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="text-4xl md:text-5xl lg:text-5xl font-montserrat text-[#333] mb-6 font-extrabold tracking-tight"
+                        className="text-4xl md:text-5xl lg:text-5xl font-montserrat text-[#333] mb-6 font-medium tracking-tight"
                     >
                         {t('personalizedSolutions.title')}
                     </motion.h2>
