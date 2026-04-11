@@ -1,12 +1,12 @@
-const causesImg = new URL('../assets/article_causes_knee.png', import.meta.url).href;
-const gymImg = new URL('../assets/article_gym_sports.png', import.meta.url).href;
-const mriImg = new URL('../assets/article_mri_scan.png', import.meta.url).href;
-const risksImg = new URL('../assets/article_sports_risk.png', import.meta.url).href;
-const officeImg = new URL('../assets/article_office_pain.png', import.meta.url).href;
-const tearImg = new URL('../assets/article_meniscus_tear.png', import.meta.url).href;
-const exercisesImg = new URL('../assets/article_desk_exercise.png', import.meta.url).href;
-const travelImg = new URL('../assets/article_travel_flight.png', import.meta.url).href;
-const pillarImg = new URL('../assets/article_pillar_guide.png', import.meta.url).href;
+import causesImg from '../assets/article_causes_knee.png';
+import gymImg from '../assets/article_gym_sports.png';
+import mriImg from '../assets/article_mri_scan.png';
+import risksImg from '../assets/article_sports_risk.png';
+import officeImg from '../assets/article_office_pain.png';
+import tearImg from '../assets/article_meniscus_tear.png';
+import exercisesImg from '../assets/article_desk_exercise.png';
+import travelImg from '../assets/article_travel_flight.png';
+import pillarImg from '../assets/article_pillar_guide.png';
 
 export const articles = {
     'causes-of-knee-pain': {
