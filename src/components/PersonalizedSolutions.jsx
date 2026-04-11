@@ -146,7 +146,7 @@ const PersonalizedSolutions = () => {
     };
 
     return (
-        <section id="personalized-solutions" className="py-20 bg-white relative overflow-hidden">
+        <section id="personalized-solutions" className="pt-4 pb-20 bg-white relative overflow-hidden">
             <OrthoAnimation />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Header Section */}
