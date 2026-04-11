@@ -78,12 +78,12 @@ const Navbar = () => {
     ];
 
     const dropdownServices = [
-        { id: 'arthroscopy', name: t('footer.serviceLinks.arthroscopy'), path: '/services/3' },
-        { id: 'sportsMedicine', name: t('footer.serviceLinks.sportsMedicine'), path: '/services/1' },
-        { id: 'roboticSurgery', name: t('footer.serviceLinks.roboticSurgery'), path: '/services/2' },
-        { id: 'jointReplacement', name: t('footer.serviceLinks.jointReplacement'), path: '/services/0' },
-        { id: 'deformityCorrection', name: t('footer.serviceLinks.deformityCorrection'), path: '/services/4' },
-        { id: 'physiotherapy', name: t('footer.serviceLinks.physiotherapy'), path: '/services/7' }
+        { id: 'arthroscopy', name: t('footer.serviceLinks.arthroscopy'), path: '/services/arthroscopy' },
+        { id: 'sportsMedicine', name: t('footer.serviceLinks.sportsMedicine'), path: '/services/sports-medicine' },
+        { id: 'roboticSurgery', name: t('footer.serviceLinks.roboticSurgery'), path: '/services/robotic-surgery' },
+        { id: 'jointReplacement', name: t('footer.serviceLinks.jointReplacement'), path: '/services/joint-pain-treatment' },
+        { id: 'deformityCorrection', name: t('footer.serviceLinks.deformityCorrection'), path: '/services/deformity-correction' },
+        { id: 'physiotherapy', name: t('footer.serviceLinks.physiotherapy'), path: '/services/physiotherapy' }
     ];
 
     const languages = [

@@ -54,7 +54,51 @@ const extendedDescriptions = {
         content: `Post-surgical physiotherapy planning is essential for a patient’s full recovery after an operation. It involves designing a structured rehabilitation program to restore movement, strength, and function in the affected area. The plan is personalized based on the type of surgery, patient health, and recovery goals. Many patients can also benefit from <a href='/blog/knee-pain-exercises-desk' class='text-primary-600 underline font-semibold'>simple desk exercises</a> for preventative joint care building into their routine.`,
         features: ["Rehabilitation after Knee Replacement", "Physiotherapy after Spinal Surgery", "Sports Injury Recovery Plans"],
         image: "https://images.unsplash.com/photo-1576091160550-217359f49f4c?w=1200&auto=format&fit=crop&q=80"
+    },
+    // Dynamically added stand-alone services based on specific URL request overrides
+    "Knee Surgery": {
+        content: `Knee surgery encompasses a range of specialized procedures to treat injuries, arthritis, and structural issues. We expertly perform everything from minimally invasive arthroscopy for meniscus tears and ACL reconstruction to partial and total knee replacement surgery for severe joint deterioration.`,
+        features: ["Robotic Knee Replacement", "ACL & Meniscus Repair", "Cartilage Preservation"],
+        image: kneeArthroscopyImg
+    },
+    "Hip Surgery": {
+        content: `Hip surgery focuses on alleviating severe hip pain and restoring function lost to trauma, or degenerative conditions like osteoarthritis. Our procedures include minimally invasive hip arthroscopy, resurfacing, and advanced total hip replacement using state-of-the-art implants for long-lasting mobility.`,
+        features: ["Total Hip Replacement", "Hip Resurfacing", "Trauma & Fracture Fixation"],
+        image: jointReplacementImg
+    },
+    "Shoulder Surgery": {
+        content: `From rotator cuff tears to recurrent dislocations and advanced shoulder arthritis, our shoulder surgeries are designed to eliminate pain and restore a full range of motion. We specialize in both arthroscopic repairs and complex shoulder joint replacement surgeries for active individuals.`,
+        features: ["Rotator Cuff Repair", "Shoulder Arthroscopy", "Shoulder Replacement"],
+        image: sportsMedicineImg
     }
+};
+
+const serviceSlugs = [
+    'joint-pain-treatment',
+    'sports-medicine',
+    'robotic-surgery',
+    'arthroscopy',
+    'deformity-correction',
+    'consultation',
+    'orthopedic-trauma',
+    'physiotherapy',
+    'knee-surgery',
+    'hip-surgery',
+    'shoulder-surgery'
+];
+
+const slugMap = {
+    'joint-pain-treatment': 0,
+    'sports-medicine': 1,
+    'robotic-surgery': 2,
+    'arthroscopy': 3,
+    'deformity-correction': 4,
+    'consultation': 5,
+    'orthopedic-trauma': 6,
+    'physiotherapy': 7,
+    'knee-surgery': 8,
+    'hip-surgery': 9,
+    'shoulder-surgery': 10
 };
 
 const ServiceDetail = () => {
@@ -66,12 +110,21 @@ const ServiceDetail = () => {
         window.scrollTo(0, 0);
     }, [id]);
 
-    const serviceIndex = parseInt(id, 10);
-    const serviceTitle = t(`services.items.${serviceIndex}.title`);
-    const serviceDesc = t(`services.items.${serviceIndex}.desc`);
+    let serviceIndex = parseInt(id, 10);
+    if (isNaN(serviceIndex)) {
+        serviceIndex = slugMap[id];
+    }
     
+    // Explicit title fallbacks for the new standalone SEO pages
+    let serviceTitle = t(`services.items.${serviceIndex}.title`);
+    let serviceDesc = t(`services.items.${serviceIndex}.desc`);
+    
+    if (serviceIndex === 8) { serviceTitle = "Knee Surgery"; serviceDesc = "Advanced surgical and arthroscopic treatments for knee injuries and arthritis." }
+    if (serviceIndex === 9) { serviceTitle = "Hip Surgery"; serviceDesc = "Comprehensive hip joint preservation, resurfacing, and total replacement." }
+    if (serviceIndex === 10) { serviceTitle = "Shoulder Surgery"; serviceDesc = "Specialized surgical repair for rotator cuff, impingement, and shoulder arthritis." }
+
     // Fallbacks in case translation isn't found
-    if (!serviceTitle || isNaN(serviceIndex) || serviceIndex < 0 || serviceIndex > 7) {
+    if (!serviceTitle || isNaN(serviceIndex) || serviceIndex < 0 || serviceIndex > 10) {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center p-4">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">Service Not Found</h2>
@@ -205,10 +258,10 @@ const ServiceDetail = () => {
                                         return (
                                             <Link 
                                                 key={index}
-                                                to={`/services/${index}`} className="group block"
+                                                to={`/services/${serviceSlugs[index]}`} className="group block"
                                             >
                                                 <h5 className="font-bold text-gray-600 group-hover:text-primary-600 transition-colors line-clamp-2 leading-snug">
-                                                    {t(`services.items.${index}.title`)}
+                                                    {index === 8 ? "Knee Surgery" : index === 9 ? "Hip Surgery" : index === 10 ? "Shoulder Surgery" : t(`services.items.${index}.title`)}
                                                 </h5>
                                             </Link>
                                         );
