@@ -7,6 +7,7 @@ const Appointment = () => {
     const { language, t } = useLanguage();
     const isRtl = language === 'AR';
     const [step, setStep] = useState(1);
+    const [submitted, setSubmitted] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -28,6 +29,42 @@ const Appointment = () => {
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setSubmitted(true);
+    };
+
+    if (submitted) {
+        return (
+            <section id="appointment" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="max-w-xl mx-auto bg-white rounded-3xl shadow-2xl p-12 text-center"
+                    >
+                        <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center text-green-600 mx-auto mb-8">
+                            <CheckCircle size={48} />
+                        </div>
+                        <h3 className="text-3xl font-bold text-gray-900 mb-4">{t('appointment.successTitle') || 'Request Received!'}</h3>
+                        <p className="text-xl text-gray-600 mb-10">
+                            {t('appointment.successMsg') || 'Thank you for your request. Our team will contact you shortly to confirm your appointment.'}
+                        </p>
+                        <button 
+                            onClick={() => {
+                                setSubmitted(false);
+                                setStep(1);
+                            }}
+                            className="bg-primary-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-primary-700 transition-all shadow-lg hover:shadow-primary-500/40"
+                        >
+                            {t('appointment.bookAnother') || 'Book Another Appointment'}
+                        </button>
+                    </motion.div>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section id="appointment" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
@@ -108,7 +145,7 @@ const Appointment = () => {
                             <p className="text-sm text-gray-500">{t('appointment.stepOf')} {step} {t('appointment.stepOfTotal')}</p>
                         </div>
 
-                        <form onSubmit={(e) => e.preventDefault()}>
+                        <form onSubmit={handleSubmit}>
                             <AnimatePresence mode='wait'>
                                 {step === 1 && (
                                     <motion.div
@@ -171,10 +208,10 @@ const Appointment = () => {
                                             <textarea name="message" value={formData.message} onChange={handleChange} rows="3" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="Briefly describe your pain or condition..."></textarea>
                                         </div>
                                         <div className="flex gap-4 mt-4">
-                                            <button onClick={handleBack} className="w-1/3 bg-gray-100 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-colors">
+                                            <button type="button" onClick={handleBack} className="w-1/3 bg-gray-100 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-colors">
                                                 {t('appointment.back')}
                                             </button>
-                                            <button onClick={handleNext} className="w-2/3 bg-primary-600 text-white py-3 rounded-xl font-semibold hover:bg-primary-700 transition-colors flex items-center justify-center">
+                                            <button type="button" onClick={handleNext} className="w-2/3 bg-primary-600 text-white py-3 rounded-xl font-semibold hover:bg-primary-700 transition-colors flex items-center justify-center">
                                                 {t('appointment.review')} <ChevronRight size={18} className="ms-2" />
                                             </button>
                                         </div>
@@ -198,10 +235,10 @@ const Appointment = () => {
                                         </p>
 
                                         <div className="flex gap-4">
-                                            <button onClick={handleBack} className="w-1/3 bg-gray-100 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-colors">
+                                            <button type="button" onClick={handleBack} className="w-1/3 bg-gray-100 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-colors">
                                                 {t('appointment.back')}
                                             </button>
-                                            <button className="w-2/3 bg-primary-600 text-white py-3 rounded-xl font-semibold hover:bg-primary-700 transition-colors shadow-lg hover:shadow-primary-500/40">
+                                            <button type="submit" className="w-2/3 bg-primary-600 text-white py-3 rounded-xl font-semibold hover:bg-primary-700 transition-colors shadow-lg hover:shadow-primary-500/40">
                                                 {t('appointment.confirm')}
                                             </button>
                                         </div>
