@@ -182,7 +182,7 @@ const Services = () => {
                                                 'physiotherapy'
                                             ];
                                             return (
-                                                <Link
+                                                <RouterLink
                                                     to={`/services/${serviceSlugs[index]}`}
                                                     className="inline-flex items-center gap-3 text-white font-medium text-sm tracking-wider uppercase hover:text-primary-300 transition-colors"
                                                 >
@@ -190,7 +190,7 @@ const Services = () => {
                                                     <div className="w-8 h-8 rounded-full bg-primary-600 flex items-center justify-center group-hover:bg-primary-500 transition-colors">
                                                         <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
                                                     </div>
-                                                </Link>
+                                                </RouterLink>
                                             );
                                         })()}
                                     </div>
