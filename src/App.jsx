@@ -8,6 +8,7 @@ import TopBar from './components/TopBar';
 import Footer from './components/Footer';
 import FloatingContactButtons from './components/FloatingContactButtons';
 import FAQ from './components/FAQ';
+import TrailingSlashRedirect from './components/ui/TrailingSlashRedirect';
 
 // Lazy loaded page components
 const Home = React.lazy(() => import('./components/Home'));
@@ -50,6 +51,7 @@ function App() {
     <HelmetProvider>
       <ErrorBoundary>
         <Router>
+          <TrailingSlashRedirect />
           <div className="min-h-screen bg-white font-sans text-gray-800">
             <TopBar />
             <Navbar />
