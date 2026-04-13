@@ -3,150 +3,135 @@ import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { X, ZoomIn, Images, Award, Users, Microscope, ChevronLeft, ChevronRight } from 'lucide-react';
 import SEO from './SEO';
 
-import gallery1 from '../assets/9.webp';
-import gallery2 from '../assets/Gallery 2.webp';
-import gallery3 from '../assets/Gallery 3.webp';
-import gallery4 from '../assets/Gallery 4.webp';
-import gallery5 from '../assets/Gallery 5.webp';
-import gallery6 from '../assets/Gallery 6.webp';
-import gallery7 from '../assets/Gallery 7.webp';
-import gallery8 from '../assets/Gallery 8.webp';
-import gallery9 from '../assets/Gallery 9.webp';
-import kneeImg from '../assets/knee.webp';
-import shoulderImg from '../assets/Shoulder.webp';
-import hipImg from '../assets/Hip.webp';
-import backNeckImg from '../assets/Back and Neck.webp';
-import sportsImg from '../assets/sports injury.webp';
-import handWristImg from '../assets/hand and wist.webp';
-import kneeAnkleImg from '../assets/knee and angle.webp';
+
 
 const galleryItems = [
     {
         id: 1,
-        src: gallery1,
-        category: 'Clinic',
-        title: 'State-of-the-Art Operating Theatre',
-        desc: 'Advanced surgical suite equipped with robotic-assisted systems for precision orthopedic procedures.',
+        src: '/images/gallery/gallery_1.webp',
+        category: 'About',
+        title: 'Patient Testimonials',
+        desc: 'Exceptional patient satisfaction and positive feedback from those who have undergone treatment with Dr. Ulhas.',
         span: 'col-span-2 row-span-2',
     },
     {
         id: 2,
-        src: gallery2,
-        category: 'Consultation',
-        title: 'Patient Consultation',
-        desc: 'Dr. Ulhas Sonar reviewing imaging with a patient to discuss the best treatment pathway.',
+        src: '/images/gallery/gallery_2.webp',
+        category: 'Awards',
+        title: 'Excellence Recognition',
+        desc: 'Dr. Ulhas Sonar receiving recognition for outstanding clinical contributions and surgical excellence.',
         span: 'col-span-1 row-span-1',
     },
     {
         id: 3,
-        src: gallery3,
-        category: 'Surgery',
-        title: 'Joint Replacement Surgery',
-        desc: 'Total knee replacement procedure delivering precision outcomes and faster recovery.',
+        src: '/images/gallery/gallery_3.webp',
+        category: 'Awards',
+        title: 'Clinical Excellence Award',
+        desc: 'Honouring the dedication to patient care and surgical innovation in the field of orthopedics.',
         span: 'col-span-1 row-span-1',
     },
     {
         id: 4,
-        src: gallery4,
-        category: 'Awards',
-        title: 'Excellence in Orthopedic Surgery',
-        desc: 'Recognised for outstanding contributions to orthopedic care and surgical innovation.',
+        src: '/images/gallery/gallery_4.webp',
+        category: 'Clinic',
+        title: 'Our Dedicated Team',
+        desc: 'A cohesive team of healthcare professionals committed to delivering world-class orthopedic care.',
         span: 'col-span-1 row-span-2',
     },
     {
         id: 5,
-        src: gallery5,
+        src: '/images/gallery/gallery_5.webp',
         category: 'Surgery',
-        title: 'Knee Arthroscopy',
-        desc: 'Minimally invasive knee arthroscopy restoring joint function and mobility.',
+        title: 'Advanced Surgical Precision',
+        desc: 'Intra-operative perspective showcasing the meticulous approach to joint preservation and replacement.',
         span: 'col-span-1 row-span-1',
     },
     {
         id: 6,
-        src: gallery6,
-        category: 'Conference',
-        title: 'International Orthopedic Conference',
-        desc: 'Presenting cutting-edge research on TKR alignment concepts to an international audience.',
+        src: '/images/gallery/gallery_6.webp',
+        category: 'Clinic',
+        title: 'Team Collaboration',
+        desc: 'Regular clinical meetings and team celebrations to ensure excellence in patient care pathways.',
         span: 'col-span-1 row-span-1',
     },
     {
         id: 7,
-        src: gallery7,
+        src: '/images/gallery/gallery_7.webp',
         category: 'Clinic',
-        title: 'Modern Clinic Facilities',
-        desc: 'World-class outpatient facilities designed for patient comfort and clinical excellence.',
+        title: 'Team Social Engagement',
+        desc: 'Fostering strong professional relationships through social events and team-building activities.',
         span: 'col-span-1 row-span-1',
     },
     {
         id: 8,
-        src: gallery8,
-        category: 'About',
-        title: 'Dr. Ulhas Sonar',
-        desc: 'British-Indian orthopedic surgeon with 15+ years of global experience in joint replacement and sports medicine.',
+        src: '/images/gallery/gallery_8.webp',
+        category: 'Clinic',
+        title: 'Professional Growth',
+        desc: 'Celebrating milestones and collective achievements in our journey of clinical excellence.',
         span: 'col-span-1 row-span-1',
     },
     {
         id: 9,
-        src: gallery9,
-        category: 'Clinic',
-        title: 'Advanced Care',
-        desc: 'Dedicated to providing the highest standard of specialized orthopedic treatments for our patients.',
+        src: '/images/gallery/gallery_9.webp',
+        category: 'Conference',
+        title: 'Global Orthopedic Networking',
+        desc: 'Exchanging knowledge and surgical concepts with international colleagues at global conferences.',
         span: 'col-span-1 row-span-1',
     },
     {
         id: 10,
-        src: kneeImg,
+        src: '/images/gallery/kneeassessment.webp',
         category: 'Clinic',
-        title: 'Knee Assessment',
-        desc: 'Detailed examination of knee joint function to determine optimal treatment paths.',
+        title: 'Comprehensive Knee Assessment',
+        desc: 'Detailed examination focusing on biomechanics and joint health for personalized recovery.',
         span: 'col-span-1 row-span-1',
     },
     {
         id: 11,
-        src: shoulderImg,
+        src: '/images/gallery/shoulderassessment.webp',
         category: 'Clinic',
-        title: 'Shoulder Specialist Care',
-        desc: 'Expert diagnosis and management of complex shoulder injuries and conditions.',
+        title: 'Shoulder Mobility Care',
+        desc: 'Expert assessment and management of rotator cuff injuries and shoulder instability.',
         span: 'col-span-1 row-span-1',
     },
     {
         id: 12,
-        src: hipImg,
+        src: '/images/gallery/hipassessment.webp',
         category: 'Clinic',
-        title: 'Hip Joint Excellence',
-        desc: 'Specialized care for hip-related discomfort and joint replacement solutions.',
+        title: 'Hip Preservation Strategies',
+        desc: 'Specialized interventions designed to preserve the joint and delay degenerative changes.',
         span: 'col-span-1 row-span-1',
     },
     {
         id: 13,
-        src: backNeckImg,
+        src: '/images/gallery/spineassessment.webp',
         category: 'Clinic',
-        title: 'Spine & Neck Care',
-        desc: 'Comprehensive assessment of back and neck conditions for personalized recovery.',
+        title: 'Spine & Back Health',
+        desc: 'Multidisciplinary approach to managing chronic back pain and spinal conditions.',
         span: 'col-span-1 row-span-1',
     },
     {
         id: 14,
-        src: sportsImg,
+        src: '/images/gallery/sportsrecovery.webp',
         category: 'Surgery',
-        title: 'Sports Injury Recovery',
-        desc: 'Advanced surgical techniques restoring athletes to their peak performance.',
+        title: 'Elite Sports Recovery',
+        desc: 'Advanced surgical and biological treatments to return athletes to their peak performance.',
         span: 'col-span-1 row-span-1',
     },
     {
         id: 15,
-        src: handWristImg,
+        src: '/images/gallery/handwristcare.webp',
         category: 'Clinic',
-        title: 'Hand & Wrist Expertise',
-        desc: 'Precise treatment for delicate hand and wrist orthopedic requirements.',
+        title: 'Hand & Wrist Precision',
+        desc: 'Delicate care for carpal tunnel, tendon injuries, and arthritic hand conditions.',
         span: 'col-span-1 row-span-1',
     },
     {
         id: 16,
-        src: kneeAnkleImg,
+        src: '/images/gallery/combinedjoint.webp',
         category: 'Surgery',
-        title: 'Combined Joint Care',
-        desc: 'holistic approach to complex lower limb orthopedic procedures.',
+        title: 'Combined Limb Procedures',
+        desc: 'Holistic surgical management of complex lower limb injuries and deformities.',
         span: 'col-span-1 row-span-1',
     },
 ];
@@ -191,7 +176,7 @@ const Gallery = () => {
                 title="Photo Gallery | Dr. Ulhas Sonar"
                 description="Explore Dr. Ulhas' gallery featuring state-of-the-art clinic facilities, joint replacement surgeries, awards, and conferences."
                 url="/gallery"
-                image={gallery1}
+                image="/images/gallery/gallery_1.webp"
             />
             {/* Decorative blobs */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-200/30 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/2" />

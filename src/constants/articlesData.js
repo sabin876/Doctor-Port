@@ -286,16 +286,16 @@ export const articles = {
             <h3>Understanding Different Types of Knee Pain</h3>
             <p>Knee pain is a symptom, not a diagnosis. Recognising the pattern is key:</p>
             <ul>
-                <li><strong>Overload-Related Pain:</strong> Gradual onset, activity-related, and often linked to sudden training changes or <a href="/articles/knee-pain-gym-sports">gym-related strain</a>.</li>
+                <li><strong>Overload-Related Pain:</strong> Gradual onset, activity-related, and often linked to sudden training changes or <a href="/blog/knee-pain-gym-sports">gym-related strain</a>.</li>
                 <li><strong>Ligament Injury:</strong> Sudden onset after twisting or pivoting, often with swelling and instability.</li>
                 <li><strong>Meniscal and Cartilage Injury:</strong> Characterised by joint-line pain, deep aching, and mechanical symptoms like catching or locking.</li>
             </ul>
 
             <h3>When Knee Pain Needs Imaging</h3>
-            <p>The decision to perform imaging depends on whether it will influence diagnosis or management. While X-rays assess bone structure and alignment, MRI is the gold standard for soft tissue like ligaments and menisci. However, understanding <a href="/articles/when-to-get-mri-knee">when knee pain needs MRI</a> is vital, as early MRI in low-risk cases can identify incidental findings that don't correlate with symptoms.</p>
+            <p>The decision to perform imaging depends on whether it will influence diagnosis or management. While X-rays assess bone structure and alignment, MRI is the gold standard for soft tissue like ligaments and menisci. However, understanding <a href="/blog/when-to-get-mri-knee">when knee pain needs MRI</a> is vital, as early MRI in low-risk cases can identify incidental findings that don't correlate with symptoms.</p>
 
             <h3>Continuing Sports with Knee Pain: Risks</h3>
-            <p>Continuing activity despite unresolved pain is common among professionals. While mild overload symptoms may improve with modification, ignoring structural pathology increases the risk of secondary injuries. Understanding <a href="/articles/continuing-sports-risks">why ignoring knee pain is risky</a> is essential; repeated cycles of activity without completion of rehabilitation can contribute to chronic symptoms.</p>
+            <p>Continuing activity despite unresolved pain is common among professionals. While mild overload symptoms may improve with modification, ignoring structural pathology increases the risk of secondary injuries. Understanding <a href="/blog/continuing-sports-risks">why ignoring knee pain is risky</a> is essential; repeated cycles of activity without completion of rehabilitation can contribute to chronic symptoms.</p>
 
             <h3>Common Mistakes in Management</h3>
             <p>Playing through pain, ignoring recurrent swelling, and using medication to mask symptoms are frequent errors. Returning to sport without completing structured rehabilitation leaves the joint vulnerable to recurrence. A structured approach involving activity modification, load management, and physiotherapy is the foundation of long-term knee health.</p>

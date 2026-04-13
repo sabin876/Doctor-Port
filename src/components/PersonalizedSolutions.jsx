@@ -199,7 +199,7 @@ const PersonalizedSolutions = () => {
                                 <div className="absolute inset-0 rounded-[2.5rem] border-[3px] border-white/40 z-20 pointer-events-none mix-blend-overlay group-hover:border-white/60 transition-colors duration-500"></div>
                             </div>
 
-                            <h3 className="text-center font-bold text-gray-800 text-xs sm:text-sm md:text-[15px] group-hover:text-[#0088cc] transition-colors duration-300 leading-snug w-full px-2">
+                            <h3 className="text-center font-medium text-gray-800 text-xs sm:text-sm md:text-[15px] group-hover:text-[#0088cc] transition-colors duration-300 leading-snug w-full px-2">
                                 {item.title}
                             </h3>
                             <div className="h-0.5 w-6 bg-gray-200 mt-3 group-hover:bg-[#0088cc] group-hover:w-12 transition-all duration-300 rounded-full"></div>
@@ -217,7 +217,7 @@ const PersonalizedSolutions = () => {
                 >
                     <Link
                         to="/services"
-                        className="group flex items-center justify-center gap-2 font-black text-sm tracking-[0.15em] uppercase text-[#0088cc] hover:text-[#006699] transition-colors duration-300 w-fit"
+                        className="group flex items-center justify-center gap-2 font-bold text-sm tracking-[0.15em] uppercase text-[#0088cc] hover:text-[#006699] transition-colors duration-300 w-fit"
                     >
                         {t('personalizedSolutions.viewAll')}
                         <ArrowRight className={`w-5 h-5 transition-transform group-hover:${isRtl ? '-translate-x-1' : 'translate-x-1'}`} />

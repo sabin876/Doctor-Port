@@ -1,5 +1,6 @@
 import gmcLogo from '../assets/gmc-logo-navbar.webp';
 import ebotLogo from '../assets/ebot-logo-navbar.webp';
+import { Link as RouterLink } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { MapPin, Phone, Mail, Youtube, Twitter, Linkedin, ChevronRight } from 'lucide-react';
 
@@ -73,10 +74,10 @@ const Footer = () => {
                                 { name: t('footer.serviceLinks.more'), href: '/services' }
                             ].map((service, idx) => (
                                 <li key={idx}>
-                                    <a href={service.href} className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center group">
+                                    <RouterLink to={service.href} className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center group">
                                         <ChevronRight size={14} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-primary-500 transition-all duration-300 mr-2" />
                                         <span className="whitespace-nowrap">{service.name}</span>
-                                    </a>
+                                    </RouterLink>
                                 </li>
                             ))}
                         </ul>
@@ -96,10 +97,10 @@ const Footer = () => {
                                 { name: t('nav.testimonials') || 'Testimonials', href: '/#testimonials' }
                             ].map((link, idx) => (
                                 <li key={idx}>
-                                    <a href={link.href} className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center group">
+                                    <RouterLink to={link.href} className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center group">
                                         <ChevronRight size={14} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-primary-500 transition-all duration-300 mr-2" />
                                         <span>{link.name}</span>
-                                    </a>
+                                    </RouterLink>
                                 </li>
                             ))}
                         </ul>
@@ -119,10 +120,10 @@ const Footer = () => {
                                 { name: t('footer.privacy'), href: '#' }
                             ].map((item, idx) => (
                                 <li key={idx}>
-                                    <a href={item.href} className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center group">
+                                    <RouterLink to={item.href} className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center group">
                                         <ChevronRight size={14} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-primary-500 transition-all duration-300 mr-2" />
                                         <span>{item.name}</span>
-                                    </a>
+                                    </RouterLink>
                                 </li>
                             ))}
                         </ul>

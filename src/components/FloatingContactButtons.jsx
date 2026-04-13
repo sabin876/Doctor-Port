@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
 import { Phone, MessageCircle, Calendar } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
 const FloatingContactButtons = () => {
     const { language, t } = useLanguage();
+    const navigate = useNavigate();
     const isRtl = language === 'AR';
     const phoneNumber = "+971551053445";
     const whatsappNumber = "+971551053445";
@@ -14,7 +16,7 @@ const FloatingContactButtons = () => {
         if (contactForm) {
             contactForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else {
-            window.location.href = '/contact';
+            navigate('/contact');
         }
     };
 

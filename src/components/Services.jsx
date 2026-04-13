@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import {
     ArrowRight,
     ChevronDown,
@@ -109,7 +109,7 @@ const Services = () => {
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-5xl font-montserrat font-extrabold text-gray-900 mb-6 tracking-tight">
+                        className="text-4xl md:text-5xl font-montserrat font-bold text-gray-900 mb-6 tracking-tight">
                         {t('services.title')} <span className="text-primary-600">{t('services.titleHighlight')}</span> {t('services.titleEnd')}
                     </motion.h1>
                     <motion.p
@@ -126,7 +126,7 @@ const Services = () => {
                         {displayedServices.map((service, index) => (
                             <motion.div
                                 key={index}
-                                className="group relative h-[400px] rounded-[2rem] overflow-hidden flex flex-col justify-end border border-gray-100 shadow-md hover:shadow-2xl transition-all duration-500 bg-gray-900"
+                                className="group relative h-[400px] rounded-[2rem] overflow-hidden flex flex-col justify-end border border-gray-100 shadow-md hover:shadow-2xl transition-all duration-500 bg-slate-800"
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -30 }}
@@ -134,19 +134,17 @@ const Services = () => {
                                 transition={{ duration: 0.6, delay: index * 0.1 }}
                             >
                                 {/* Full Background Image */}
-                                {service.image && (
-                                    <div className="absolute inset-0 z-0">
-                                        <img
-                                            src={service.image}
-                                            alt={service.title}
-                                            loading="lazy"
-                                            decoding="async"
-                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
-                                        />
-                                        {/* Gradient Overlay */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent transition-opacity duration-500 group-hover:from-black/90 group-hover:via-black/70 group-hover:to-black/20" />
-                                    </div>
-                                )}
+                                        <div className="absolute inset-0 z-10">
+                                            <img
+                                                src={service.image}
+                                                alt={service.title}
+                                                loading="lazy"
+                                                decoding="async"
+                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                            />
+                                            {/* Gradient Overlay - adjusted for extreme clarity */}
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent transition-all duration-500 group-hover:from-black/70 group-hover:via-black/20" />
+                                        </div>
 
                                 {/* Card Border Glow */}
                                 <div className="absolute inset-0 rounded-[2rem] border-2 border-white/10 group-hover:border-primary-500/50 transition-colors duration-500 pointer-events-none z-20" />
@@ -159,7 +157,7 @@ const Services = () => {
                                 {/* Content Container */}
                                 <div className="relative z-30 p-8 flex flex-col justify-end">
                                     <div className="transform transition-transform duration-500 group-hover:-translate-y-2">
-                                        <h3 className="text-xl md:text-2xl font-montserrat font-black text-white mb-3 leading-tight drop-shadow-md">
+                                        <h3 className="text-xl md:text-2xl font-montserrat font-semibold text-white mb-3 leading-tight drop-shadow-md">
                                             {service.title}
                                         </h3>
 
@@ -186,7 +184,7 @@ const Services = () => {
                                             return (
                                                 <Link
                                                     to={`/services/${serviceSlugs[index]}`}
-                                                    className="inline-flex items-center gap-3 text-white font-bold text-sm tracking-wider uppercase hover:text-primary-300 transition-colors"
+                                                    className="inline-flex items-center gap-3 text-white font-medium text-sm tracking-wider uppercase hover:text-primary-300 transition-colors"
                                                 >
                                                     {t('services.viewDetails')}
                                                     <div className="w-8 h-8 rounded-full bg-primary-600 flex items-center justify-center group-hover:bg-primary-500 transition-colors">
@@ -213,7 +211,7 @@ const Services = () => {
                         onClick={() => setShowAll(!showAll)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="group flex items-center gap-3 px-10 py-5 bg-white border-2 border-primary-600 text-primary-600 rounded-[2rem] font-bold text-sm uppercase tracking-[0.2em] hover:bg-primary-600 hover:text-white transition-all duration-300 shadow-xl"
+                        className="group flex items-center gap-3 px-10 py-5 bg-white border-2 border-primary-600 text-primary-600 rounded-[2rem] font-medium text-sm uppercase tracking-[0.2em] hover:bg-primary-600 hover:text-white transition-all duration-300 shadow-xl"
                     >
                         {showAll ? (
                             <>
@@ -236,13 +234,20 @@ const Services = () => {
                     viewport={{ once: true }}
                     className="mt-12 text-center"
                 >
-                    <a
-                        href="#personalized-solutions"
-                        className="inline-flex items-center gap-2 text-primary-600 font-black text-sm uppercase tracking-widest hover:text-primary-700 transition-colors group"
+                    <RouterLink
+                        to="/"
+                        onClick={() => {
+                            // Small delay to ensure navigation completes
+                            setTimeout(() => {
+                                const element = document.getElementById('personalized-solutions');
+                                if (element) element.scrollIntoView({ behavior: 'smooth' });
+                            }, 100);
+                        }}
+                        className="inline-flex items-center gap-2 text-primary-600 font-bold text-sm uppercase tracking-widest hover:text-primary-700 transition-colors group"
                     >
                         Need a more tailored approach? <span className="underline decoration-2 underline-offset-4">Get Your Personalized Solution</span>
                         <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                    </a>
+                    </RouterLink>
                 </motion.div>
             </div>
         </section>

@@ -16,12 +16,12 @@ import footAnkleImg from '../assets/foot-ankle-bg.png';
 
 const extendedDescriptions = {
     "Total/Partial Joint Replacement": {
-        content: `Joint replacement surgery is a medical procedure where a damaged joint, such as the knee, hip, or shoulder, is replaced with an artificial implant. It is usually recommended for people with severe joint pain, arthritis, or injury that limits mobility and daily function. The surgery relieves pain, restores function, and improves quality of life. For more insights on joint damage, see our article on <a href='/blog/causes-of-knee-pain' class='text-primary-600 underline font-semibold'>the common causes of knee pain</a>.`,
+        content: `Joint replacement surgery is a medical procedure where a damaged joint, such as the knee, hip, or shoulder, is replaced with an artificial implant. It is usually recommended for people with severe joint pain, arthritis, or injury that limits mobility and daily function. The surgery relieves pain, restores function, and improves quality of life. For more insights on joint damage, see our article on <a href='/blog/causes-of-knee-pain' class='text-primary-600 underline font-medium'>the common causes of knee pain</a>.`,
         features: ["Knee Replacement for Arthritis", "Shoulder Replacement for Athletes", "Hip Replacement Surgeries"],
         image: jointReplacementImg
     },
     "Sports / ACL Injury Management": {
-        content: `Sports injury management involves the prevention, diagnosis, treatment, and rehabilitation of injuries caused during physical activities. It focuses on restoring the athlete’s strength, mobility, and performance while minimizing the risk of future injuries. Often faced with <a href='/blog/knee-pain-gym-sports' class='text-primary-600 underline font-semibold'>gym or sports related knee pain</a>, it's crucial to identify if it's a ligament or cartilage issue early on.`,
+        content: `Sports injury management involves the prevention, diagnosis, treatment, and rehabilitation of injuries caused during physical activities. It focuses on restoring the athlete’s strength, mobility, and performance while minimizing the risk of future injuries. Often faced with <a href='/blog/knee-pain-gym-sports' class='text-primary-600 underline font-medium'>gym or sports related knee pain</a>, it's crucial to identify if it's a ligament or cartilage issue early on.`,
         features: ["Hamstring Strain in Runners", "Tennis Elbow in Racquet Sports", "Meniscus Tears & ACL Injuries"],
         image: sportsMedicineImg
     },
@@ -31,7 +31,7 @@ const extendedDescriptions = {
         image: null
     },
     "Knee and Shoulder Arthroscopy": {
-        content: `Arthroscopic surgery is a minimally invasive procedure used to diagnose and treat joint problems. It involves inserting a small camera, called an arthroscope, into the joint through a tiny incision. Surgeons can view the joint on a screen and perform necessary treatments using miniature instruments. Learn to distinguish different pains in our <a href='/blog/meniscus-tear-vs-strain' class='text-primary-600 underline font-semibold'>Meniscus Tear vs Muscle Strain guide</a>.`,
+        content: `Arthroscopic surgery is a minimally invasive procedure used to diagnose and treat joint problems. It involves inserting a small camera, called an arthroscope, into the joint through a tiny incision. Surgeons can view the joint on a screen and perform necessary treatments using miniature instruments. Learn to distinguish different pains in our <a href='/blog/meniscus-tear-vs-strain' class='text-primary-600 underline font-medium'>Meniscus Tear vs Muscle Strain guide</a>.`,
         features: ["Knee Arthroscopy for Meniscus Tear", "Ankle Arthroscopy for Ligament Damage", "Shoulder Rotation Cuff Repair"],
         image: kneeArthroscopyImg
     },
@@ -51,7 +51,7 @@ const extendedDescriptions = {
         image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&auto=format&fit=crop&q=80"
     },
     "Physiotherapy and Rehabilitation": {
-        content: `Post-surgical physiotherapy planning is essential for a patient’s full recovery after an operation. It involves designing a structured rehabilitation program to restore movement, strength, and function in the affected area. The plan is personalized based on the type of surgery, patient health, and recovery goals. Many patients can also benefit from <a href='/blog/knee-pain-exercises-desk' class='text-primary-600 underline font-semibold'>simple desk exercises</a> for preventative joint care building into their routine.`,
+        content: `Post-surgical physiotherapy planning is essential for a patient’s full recovery after an operation. It involves designing a structured rehabilitation program to restore movement, strength, and function in the affected area. The plan is personalized based on the type of surgery, patient health, and recovery goals. Many patients can also benefit from <a href='/blog/knee-pain-exercises-desk' class='text-primary-600 underline font-medium'>simple desk exercises</a> for preventative joint care building into their routine.`,
         features: ["Rehabilitation after Knee Replacement", "Physiotherapy after Spinal Surgery", "Sports Injury Recovery Plans"],
         image: "https://images.unsplash.com/photo-1576091160550-217359f49f4c?w=1200&auto=format&fit=crop&q=80"
     },
@@ -128,7 +128,7 @@ const ServiceDetail = () => {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center p-4">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">Service Not Found</h2>
-                <Link to="/services" className="text-primary-600 font-bold flex items-center gap-2">
+                <Link to="/services" className="text-primary-600 font-medium flex items-center gap-2">
                     <ChevronLeft className="w-5 h-5" /> Back to Services
                 </Link>
             </div>
@@ -173,10 +173,10 @@ const ServiceDetail = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}
                         >
-                            <span className="inline-block px-3 py-1 rounded-full bg-primary-500/20 border border-primary-500/30 text-primary-300 text-[10px] font-bold uppercase tracking-wider mb-6">
+                            <span className="inline-block px-3 py-1 rounded-full bg-primary-500/20 border border-primary-500/30 text-primary-300 text-[10px] font-medium uppercase tracking-wider mb-6">
                                 Specialized Treatment
                             </span>
-                            <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight font-montserrat tracking-tight">
+                            <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight font-montserrat tracking-tight">
                                 {serviceTitle}
                             </h1>
                         </motion.div>
@@ -189,7 +189,7 @@ const ServiceDetail = () => {
                     className="absolute top-24 left-6 md:left-8 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all z-20 group flex items-center gap-2 pe-5"
                 >
                     <ChevronLeft className="w-5 h-5" /> 
-                    <span className="text-xs font-bold tracking-widest uppercase">Back</span>
+                    <span className="text-xs font-semibold tracking-widest uppercase">Back</span>
                 </button>
             </div>
 
@@ -199,7 +199,7 @@ const ServiceDetail = () => {
                     {/* Main Content */}
                     <div className="lg:col-span-2">
                         <div className="prose prose-lg prose-primary max-w-none">
-                            <h2 className="text-2xl font-bold font-montserrat text-gray-900 mb-6">Overview</h2>
+                            <h2 className="text-2xl font-semibold font-montserrat text-gray-900 mb-6">Overview</h2>
                             <div 
                                 className="text-gray-600 leading-relaxed text-lg mb-8 space-y-4"
                                 dangerouslySetInnerHTML={{ __html: details.content || serviceDesc }}
@@ -215,14 +215,14 @@ const ServiceDetail = () => {
                                 }}
                             />
                             
-                            <h3 className="text-xl font-bold font-montserrat text-gray-900 mt-12 mb-6">Key Focus Areas</h3>
+                            <h3 className="text-xl font-semibold font-montserrat text-gray-900 mt-12 mb-6">Key Focus Areas</h3>
                             <div className="space-y-4">
                                 {details.features && details.features.map((feature, idx) => (
                                     <div key={idx} className="flex items-start gap-4 p-4 rounded-2xl bg-gray-50 border border-gray-100">
                                         <div className="mt-1">
                                             <CheckCircle2 className="w-5 h-5 text-primary-500" />
                                         </div>
-                                        <p className="font-semibold text-gray-700 m-0">{feature}</p>
+                                        <p className="font-medium text-gray-700 m-0">{feature}</p>
                                     </div>
                                 ))}
                             </div>
@@ -233,12 +233,12 @@ const ServiceDetail = () => {
                             <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/20 rounded-full blur-[80px]"></div>
                             <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
                                 <div>
-                                    <h3 className="text-2xl font-black font-montserrat mb-2">Need a Consultation?</h3>
+                                    <h3 className="text-2xl font-bold font-montserrat mb-2">Need a Consultation?</h3>
                                     <p className="text-primary-100">Schedule an appointment with Dr. Ulhas to discuss your specific condition and treatment options.</p>
                                 </div>
                                 <Link
                                     to="/contact"
-                                    className="w-full md:w-auto px-8 py-4 bg-white text-primary-900 rounded-xl text-center font-black uppercase tracking-widest text-sm hover:bg-gray-50 transition-all flex items-center justify-center gap-2 whitespace-nowrap shadow-lg shadow-black/20"
+                                    className="w-full md:w-auto px-8 py-4 bg-white text-primary-900 rounded-xl text-center font-bold uppercase tracking-widest text-sm hover:bg-gray-50 transition-all flex items-center justify-center gap-2 whitespace-nowrap shadow-lg shadow-black/20"
                                 >
                                     Book Visit <ArrowRight className="w-4 h-4" />
                                 </Link>
@@ -250,7 +250,7 @@ const ServiceDetail = () => {
                     <div className="lg:col-span-1">
                         <div className="sticky top-32">
                             <div className="p-8 rounded-3xl bg-gray-50 border border-gray-100 mb-8">
-                                <h4 className="text-sm font-black font-montserrat text-gray-900 uppercase tracking-widest mb-6 border-b border-gray-200 pb-4">Other Services</h4>
+                                <h4 className="text-sm font-bold font-montserrat text-gray-900 uppercase tracking-widest mb-6 border-b border-gray-200 pb-4">Other Services</h4>
                                 <div className="space-y-4">
                                     {Object.keys(extendedDescriptions).map((key, index) => {
                                         if (index === serviceIndex) return null;
@@ -260,14 +260,14 @@ const ServiceDetail = () => {
                                                 key={index}
                                                 to={`/services/${serviceSlugs[index]}`} className="group block"
                                             >
-                                                <h5 className="font-bold text-gray-600 group-hover:text-primary-600 transition-colors line-clamp-2 leading-snug">
+                                                <h5 className="font-semibold text-gray-600 group-hover:text-primary-600 transition-colors line-clamp-2 leading-snug">
                                                     {index === 8 ? "Knee Surgery" : index === 9 ? "Hip Surgery" : index === 10 ? "Shoulder Surgery" : t(`services.items.${index}.title`)}
                                                 </h5>
                                             </Link>
                                         );
                                     }).slice(0, 5)}
                                 </div>
-                                <Link to="/services" className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-primary-600 hover:text-primary-700 transition-colors">
+                                <Link to="/services" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary-600 hover:text-primary-700 transition-colors">
                                     View All Services <ArrowRight className="w-4 h-4" />
                                 </Link>
                             </div>

@@ -55,7 +55,7 @@ const articlePages = [
   { slug: 'knee-pain-exercises-desk',  priority: '0.7',  title: 'Best Exercises for Knee Pain (Desk Professionals)' },
   { slug: 'knee-pain-travel-flights',  priority: '0.7',  title: 'Managing Knee Pain During Travel and Long Flights' },
 ].map(a => ({
-  path: `/articles/${a.slug}`,
+  path: `/blog/${a.slug}`,
   changefreq: 'monthly',
   priority: a.priority,
   comment: a.title,
