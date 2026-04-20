@@ -37,9 +37,9 @@ const MedicalRadar = () => (
 const SportingInjury = () => {
     const { t } = useLanguage();
     useEffect(() => {
-        // TikTok Embed Script
+        // Instagram Embed Script
         const script = document.createElement('script');
-        script.src = "https://www.tiktok.com/embed.js";
+        script.src = "//www.instagram.com/embed.js";
         script.async = true;
         document.body.appendChild(script);
 
@@ -119,14 +119,13 @@ const SportingInjury = () => {
                                     <div className="text-[10px] font-black tracking-widest text-[#3a7e7a]">{medicalDashboardLabel}</div>
                                 </CardItem>
 
-                                <CardItem translateZ={80} className="w-full relative overflow-hidden rounded-2xl bg-white aspect-[9/13.5] border border-white/20">
+                                <CardItem translateZ={80} className="w-full relative overflow-hidden rounded-2xl bg-white border border-white/20 flex justify-center">
                                     <blockquote 
-                                        className="tiktok-embed w-full h-full" 
-                                        cite="https://www.tiktok.com/@dr.ulhas.orthoped/video/7630138762676178194" 
-                                        data-video-id="7630138762676178194" 
-                                        style={{ maxWidth: '605px', minWidth: '325px' }}
+                                        className="instagram-media" 
+                                        data-instgrm-permalink="https://www.instagram.com/reel/DTijxQ3krcw/?utm_source=ig_embed&amp;utm_campaign=loading" 
+                                        data-instgrm-version="14" 
+                                        style={{ background: '#FFF', border: '0', borderRadius: '3px', margin: '0', maxWidth: '540px', minWidth: '326px', padding: '0', width: '100%' }}
                                     > 
-                                        <section> </section> 
                                     </blockquote>
                                 </CardItem>
                             </CardBody>
