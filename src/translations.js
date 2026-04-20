@@ -333,6 +333,133 @@ export const translations = {
                 { question: "How often are new articles published?", answer: "We share new medical insights and clinical research updates every few weeks to keep our patients informed." },
                 { question: "Can I suggest a topic for the blog?", answer: "Absolutely! We welcome patient inquiries and often address common concerns in our detailed medical articles." }
             ]
+        },
+        physioHome: {
+            seo: {
+                title: "Physiotherapy Home Services in Dubai | DHA Licensed Experts",
+                description: "Get expert physiotherapy services in Dubai with home visits by DHA-licensed professionals. Personalized treatment for pain relief, recovery, and mobility. Book now."
+            },
+            hero: {
+                title: "Physiotherapy Services in Dubai | Home Physiotherapy & Rehabilitation Care",
+                description: "Struggling with pain, stiffness, or difficulty moving? Our physiotherapy services in Dubai are designed to help you recover safely and regain confidence in your daily activities. Whether you need treatment at home, in your hotel, or at your workplace, we provide structured and professional care tailored to your condition."
+            },
+            features: [
+                "DHA-licensed physiotherapists for home visits across Dubai.",
+                "Physiotherapy at home, hotel, or office – flexible and convenient.",
+                "Personalized treatment plans for faster and safe recovery.",
+                "Suitable for post-surgery, injury, elderly care, and chronic pain.",
+                "Affordable and Transparent price with no hidden prices."
+            ],
+            ctas: {
+                call: "Call us Now",
+                whatsapp: "WhatsApp Now"
+            },
+            conditions: {
+                title: "Conditions Managed with Physiotherapy Services",
+                description: "Physiotherapy plays an important role in managing a wide range of conditions. Common problems treated include:",
+                items: [
+                    "Back and neck pain",
+                    "Knee pain and joint stiffness",
+                    "Shoulder pain and limited movement",
+                    "Sports injuries and muscle strains",
+                    "Robotic Surgery Support",
+                    "Arthritis and age-related joint issues",
+                    "Deformity Corrections Support",
+                    "Hip Joint Replacement Rehabilitation"
+                ],
+                footer: "Early treatment often leads to faster recovery and prevents long-term complications."
+            },
+            benefits: {
+                title: "Benefits of Physiotherapy Treatment With Dr. Ulhas",
+                description: "Physiotherapy with Dr. Ulhas is focused on restoring movement, reducing pain, and helping you return to your daily activities with confidence.",
+                items: [
+                    "Reduction in pain and inflammation",
+                    "Improved movement and flexibility",
+                    "Faster recovery after injury or surgery",
+                    "Better strength and stability",
+                    "Reduced dependence on medications"
+                ],
+                footer: "With the right treatment plan, most patients notice gradual but steady improvement."
+            },
+            expertTreatment: {
+                title: "Expert Home Treatment with Dr. Ulhas Sonar",
+                description: "Dr. Ulhas provides the physiotherapy services for individuals of all ages from pediatric to geriatric care, with proper care and concerns.",
+                categories: [
+                    "Post-Surgical Patients",
+                    "Athletes",
+                    "Elder Patients",
+                    "Chronic Care Patients",
+                    "Neurological Condition Patients",
+                    "Musculoskeletal Patients"
+                ]
+            },
+            ctaBanner: {
+                title: "Start Your Recovery Today with Expert Physiotherapy in Dubai",
+                subtitle: "Advanced care focused on faster recovery, strength, and long-term results"
+            },
+            whyChoose: {
+                title: "Why Choose Our Physiotherapy Services in Dubai",
+                description: "Choosing the right physiotherapy service is important for both safety and results. Our approach is based on clinical experience and structured care:",
+                items: [
+                    "Treatment guided by orthopaedic specialist expertise",
+                    "Individual attention with one-to-one sessions",
+                    "Clear diagnosis and targeted treatment planning",
+                    "Focus on long-term recovery, not temporary relief",
+                    "Availability of both clinic-based and home physiotherapy services"
+                ],
+                footer: "Every patient is assessed carefully, and treatment is adapted as recovery progresses."
+            },
+            expectations: {
+                title: "What to Expect from Your Physiotherapy Session?",
+                description: "Your physiotherapy session is structured to ensure safe, effective, and consistent recovery.",
+                steps: [
+                    {
+                        title: "Initial Assessment",
+                        desc: "Your condition, pain areas, and movement are carefully assessed to understand the root cause and plan the right treatment."
+                    },
+                    {
+                        title: "Treatment Session",
+                        desc: "You will receive hands-on therapy along with guided exercises focused on reducing pain and improving mobility."
+                    },
+                    {
+                        title: "Progress Monitoring",
+                        desc: "Your improvement is reviewed regularly, and your treatment plan is adjusted to ensure steady recovery."
+                    }
+                ]
+            },
+            faqs: {
+                title: "Frequently Asked Questions",
+                items: [
+                    {
+                        q: "How much does physiotherapy cost in Dubai?",
+                        a: "The cost depends on the type of treatment and number of sessions required. Flexible packages are available to make treatment more affordable."
+                    },
+                    {
+                        q: "Is physiotherapy at home effective?",
+                        a: "Yes, home physiotherapy is equally effective when delivered by qualified professionals. It also improves convenience and consistency."
+                    },
+                    {
+                        q: "How many physiotherapy sessions will I need?",
+                        a: "This depends on your condition. Some patients improve within a few sessions, while others may require a structured rehabilitation program."
+                    },
+                    {
+                        q: "Do you provide physiotherapy for elderly patients at home?",
+                        a: "Yes, home physiotherapy is commonly used for elderly patients to improve mobility, balance, and strength safely."
+                    },
+                    {
+                        q: "Can I get same-day physiotherapy service in Dubai?",
+                        a: "Same-day appointments may be available depending on schedule and location."
+                    },
+                    {
+                        q: "Are the physiotherapists certified for home visits in Dubai?",
+                        a: "Yes, all physiotherapists providing home visits are DHA-licensed and qualified to deliver treatment in Dubai. Each session follows clinical standards with proper assessment, structured treatment, and ongoing monitoring to ensure safe and effective care at home."
+                    },
+                    {
+                        q: "Is physiotherapy at home cheaper than a clinic visit?",
+                        a: "Home physiotherapy may have slightly higher per-session cost due to travel and convenience, but it often provides better value through personalized care, time savings, and improved treatment consistency. Flexible packages are available to make home physiotherapy accessible and cost-effective."
+                    }
+                ]
+            }
         }
     },
     HI: {

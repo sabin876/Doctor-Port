@@ -15,6 +15,7 @@ import CanonicalTag from './components/CanonicalTag';
 const Home = React.lazy(() => import('./components/Home'));
 const AboutPage = React.lazy(() => import('./components/AboutPage'));
 const Contact = React.lazy(() => import('./components/Contact'));
+const PhysiotherapyHomeService = React.lazy(() => import('./components/PhysiotherapyHomeService'));
 const ServicesPage = React.lazy(() => import('./components/ServicesPage'));
 const ServiceDetail = React.lazy(() => import('./components/ServiceDetail'));
 const Articles = React.lazy(() => import('./components/Articles'));
@@ -62,6 +63,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/services" element={<ServicesPage />} />
+                <Route path="/services/physiotherapy-home-services" element={<PhysiotherapyHomeService />} />
                 <Route path="/services/:id" element={<ServiceDetail />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/blog" element={<Articles />} />

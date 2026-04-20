@@ -90,7 +90,7 @@ const Services = () => {
             desc: t('services.items.7.desc'),
             icon: HeartPulse,
             image: "https://images.unsplash.com/photo-1576091160550-217359f49f4c?w=800&auto=format&fit=crop&q=60", // Physiotherapy
-            slug: 'physiotherapy',
+            slug: 'physiotherapy-home-services',
             gradient: "from-purple-600/10 to-transparent",
             accent: "purple"
         }

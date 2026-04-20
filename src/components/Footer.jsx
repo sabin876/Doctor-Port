@@ -95,7 +95,7 @@ const Footer = () => {
                                 { name: t('footer.serviceLinks.roboticSurgery'), href: '/services/robotic-surgery' },
                                 { name: t('footer.serviceLinks.jointReplacement'), href: '/services/joint-pain-treatment' },
                                 { name: t('footer.serviceLinks.deformityCorrection'), href: '/services/deformity-correction' },
-                                { name: t('footer.serviceLinks.physiotherapy'), href: '/services/physiotherapy' },
+                                { name: t('footer.serviceLinks.physiotherapy'), href: '/services/physiotherapy-home-services' },
                                 { name: t('footer.serviceLinks.more'), href: '/services' }
                             ].map((service, idx) => (
                                 <li key={idx}>
