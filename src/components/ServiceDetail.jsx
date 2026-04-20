@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -106,14 +106,17 @@ const ServiceDetail = () => {
     const navigate = useNavigate();
     const { t } = useLanguage();
     
+    // Redirect old numerical IDs to the new slug-based URLs
+    const numericalId = parseInt(id, 10);
+    if (!isNaN(numericalId) && numericalId >= 0 && numericalId < serviceSlugs.length) {
+        return <Navigate to={`/services/${serviceSlugs[numericalId]}`} replace />;
+    }
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [id]);
 
-    let serviceIndex = parseInt(id, 10);
-    if (isNaN(serviceIndex)) {
-        serviceIndex = slugMap[id];
-    }
+    let serviceIndex = slugMap[id];
     
     // Explicit title fallbacks for the new standalone SEO pages
     let serviceTitle = t(`services.items.${serviceIndex}.title`);

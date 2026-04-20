@@ -24,22 +24,26 @@ const staticPages = [
   { path: '/gallery', changefreq: 'monthly', priority: '0.6' },
 ];
 
-// ─── SERVICES (index-based IDs, 0–7) ────────────────────────────────────────
-const serviceNames = [
-  'Total/Partial Joint Replacement',
-  'Sports / ACL Injury Management',
-  'Robotic / Computer Assisted Surgery',
-  'Knee and Shoulder Arthroscopy',
-  'Deformity Corrections / Osteotomies',
-  'Joint Preservation / Regeneration',
-  'Fractures and Trauma Care',
-  'Physiotherapy and Rehabilitation',
+// ─── SERVICES ────────────────────────────────────────
+const servicesList = [
+  { slug: 'joint-pain-treatment', name: 'Total/Partial Joint Replacement' },
+  { slug: 'sports-medicine', name: 'Sports / ACL Injury Management' },
+  { slug: 'robotic-surgery', name: 'Robotic / Computer Assisted Surgery' },
+  { slug: 'arthroscopy', name: 'Knee and Shoulder Arthroscopy' },
+  { slug: 'deformity-correction', name: 'Deformity Corrections / Osteotomies' },
+  { slug: 'consultation', name: 'Joint Preservation / Regeneration' },
+  { slug: 'orthopedic-trauma', name: 'Fractures and Trauma Care' },
+  { slug: 'physiotherapy-home-services', name: 'Physiotherapy and Rehabilitation' },
+  { slug: 'knee-surgery', name: 'Knee Surgery' },
+  { slug: 'hip-surgery', name: 'Hip Surgery' },
+  { slug: 'shoulder-surgery', name: 'Shoulder Surgery' }
 ];
-const servicePages = serviceNames.map((_, idx) => ({
-  path: `/services/${idx}`,
+
+const servicePages = servicesList.map((service) => ({
+  path: `/services/${service.slug}`,
   changefreq: 'monthly',
   priority: '0.85',
-  comment: serviceNames[idx],
+  comment: service.name,
 }));
 
 // ─── ARTICLES / BLOG ─────────────────────────────────────────────────────────
