@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import FloatingContactButtons from './components/FloatingContactButtons';
 import FAQ from './components/FAQ';
 import TrailingSlashRedirect from './components/ui/TrailingSlashRedirect';
+import CanonicalTag from './components/CanonicalTag';
 
 // Lazy loaded page components
 const Home = React.lazy(() => import('./components/Home'));
@@ -52,6 +53,7 @@ function App() {
       <ErrorBoundary>
         <Router>
           <TrailingSlashRedirect />
+          <CanonicalTag />
           <div className="min-h-screen bg-white font-sans text-gray-800">
             <TopBar />
             <Navbar />
