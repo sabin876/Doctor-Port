@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Linkedin, Youtube, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Youtube, Instagram, Facebook, Twitter } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const TopBar = () => {
@@ -35,6 +35,17 @@ const TopBar = () => {
                     </a>
                     <a href="https://x.com/jointsurgeon" target="_blank" rel="noreferrer" className="hover:text-white/80 transition-colors">
                         <Twitter className="w-4 h-4" />
+                    </a>
+                    <a href="https://www.instagram.com/drulhasortho.1/" target="_blank" rel="noreferrer" className="hover:text-white/80 transition-colors">
+                        <Instagram className="w-4 h-4" />
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61585848005137" target="_blank" rel="noreferrer" className="hover:text-white/80 transition-colors">
+                        <Facebook className="w-4 h-4" />
+                    </a>
+                    <a href="https://www.tiktok.com/@dr.ulhas.orthoped" target="_blank" rel="noreferrer" className="hover:text-white/80 transition-colors">
+                        <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                            <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.43V16c0 4.13-3.41 7.55-7.61 7.5-4.65-.05-8.1-4.73-6.93-9.18 1.13-4.32 6.1-6.19 9.81-3.51.02 1.83.02 3.67 0 5.5-.06-.06-.11-.13-.17-.19-1.48-1.57-4.17-1.38-5.35.39-1.28 1.92-.12 4.73 2.18 4.73 2.14.02 3.96-1.74 3.96-3.88V.02z"/>
+                        </svg>
                     </a>
                 </div>
             </div>

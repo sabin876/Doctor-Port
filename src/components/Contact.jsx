@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Youtube, Twitter, Linkedin, Send, Activity, ShieldCheck, Zap, ArrowRight } from 'lucide-react';
+import { Phone, Mail, MapPin, Youtube, Instagram, Linkedin, Facebook, Twitter, Send, Activity, ShieldCheck, Zap, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from './SEO';
 import logo from '../assets/logo.webp';
@@ -139,26 +139,71 @@ const Contact = () => {
                             />
                         </div>
 
-                        {/* Social Presence */}
+                        {/* Social Presence - Unique Redesign */}
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: 0.5 }}
-                            className="bg-gray-50/50 backdrop-blur-xl rounded-[3rem] p-10 border border-gray-100/80 shadow-sm"
+                            transition={{ delay: 0.5, duration: 0.8 }}
+                            className="bg-white rounded-[3.5rem] p-8 md:p-12 shadow-[0_20px_80px_-20px_rgba(30,58,138,0.05)] border border-gray-100 relative overflow-hidden"
                         >
-                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
-                                <div>
-                                    <h3 className="text-xs font-normal text-primary-950 mb-2 uppercase tracking-[0.2em]">
-                                        {t('contact.cards.social')}
-                                    </h3>
-                                    <p className="text-sm text-gray-400 font-normal whitespace-nowrap">Join our medical community</p>
-                                </div>
-                                <div className="flex gap-4">
-                                    <SocialLink href="https://www.youtube.com/@orthopaedictutorials2135" icon={<Youtube size={20} />} />
-                                    <SocialLink href="https://x.com/jointsurgeon" icon={<Twitter size={20} />} />
-                                    <SocialLink href="https://linkedin.com/in/ulhassonarortho" icon={<Linkedin size={20} />} />
-                                </div>
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-primary-50/30 rounded-full blur-[60px] -mr-32 -mt-32 pointer-events-none"></div>
+                            
+                            <div className="relative z-10 mb-10 text-center md:text-start">
+                                <h3 className="text-[10px] font-black text-primary-950 mb-3 uppercase tracking-[0.3em] opacity-80">
+                                    {t('contact.cards.social')}
+                                </h3>
+                                <div className="h-1 w-12 bg-primary-600 rounded-full mb-4 mx-auto md:mx-0"></div>
+                                <p className="text-xl font-metabolic font-normal text-slate-800 tracking-tight">Connect with Dr. Ulhas sonar on <br className="hidden md:block" /> your favorite platforms</p>
+                            </div>
+
+                            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                                <SocialCard 
+                                    href="https://www.youtube.com/@orthopaedictutorials2135" 
+                                    icon={<Youtube size={24} />} 
+                                    label="YouTube" 
+                                    color="hover:bg-[#FF0000]"
+                                    delay={0.1}
+                                />
+                                <SocialCard 
+                                    href="https://www.instagram.com/drulhasortho.1/" 
+                                    icon={<Instagram size={24} />} 
+                                    label="Instagram" 
+                                    color="hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888]"
+                                    delay={0.2}
+                                />
+                                <SocialCard 
+                                    href="https://x.com/jointsurgeon" 
+                                    icon={<Twitter size={24} />} 
+                                    label="X" 
+                                    color="hover:bg-black"
+                                    delay={0.3}
+                                />
+                                <SocialCard 
+                                    href="https://linkedin.com/in/ulhassonarortho" 
+                                    icon={<Linkedin size={24} />} 
+                                    label="LinkedIn" 
+                                    color="hover:bg-[#0077B5]"
+                                    delay={0.4}
+                                />
+                                <SocialCard 
+                                    href="https://www.facebook.com/profile.php?id=61585848005137" 
+                                    icon={<Facebook size={24} />} 
+                                    label="Facebook" 
+                                    color="hover:bg-[#1877F2]"
+                                    delay={0.5}
+                                />
+                                <SocialCard 
+                                    href="https://www.tiktok.com/@dr.ulhas.orthoped" 
+                                    icon={
+                                        <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                                            <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.43V16c0 4.13-3.41 7.55-7.61 7.5-4.65-.05-8.1-4.73-6.93-9.18 1.13-4.32 6.1-6.19 9.81-3.51.02 1.83.02 3.67 0 5.5-.06-.06-.11-.13-.17-.19-1.48-1.57-4.17-1.38-5.35.39-1.28 1.92-.12 4.73 2.18 4.73 2.14.02 3.96-1.74 3.96-3.88V.02z"/>
+                                        </svg>
+                                    } 
+                                    label="TikTok" 
+                                    color="hover:bg-[#000000]"
+                                    delay={0.6}
+                                />
                             </div>
                         </motion.div>
                     </div>
@@ -170,7 +215,7 @@ const Contact = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, type: "spring", damping: 20 }}
-                        className="bg-white rounded-[3.5rem] p-10 md:p-14 shadow-[0_30px_100px_-20px_rgba(30,58,138,0.1)] border border-gray-100 relative overflow-hidden group lg:sticky lg:top-32 order-1 lg:order-2"
+                        className="bg-white rounded-[4rem] p-10 md:p-14 shadow-[0_40px_120px_-30px_rgba(30,58,138,0.12)] border border-gray-100 relative overflow-hidden group lg:sticky lg:top-32 order-1 lg:order-2"
                     >
                         <div className="absolute top-0 right-0 w-80 h-80 bg-primary-50/40 rounded-full blur-[80px] -mr-40 -mt-40 pointer-events-none group-hover:bg-primary-100/50 transition-colors duration-1000"></div>
 
@@ -191,13 +236,13 @@ const Contact = () => {
                                     <label className="block text-[10px] font-normal text-primary-900 uppercase tracking-widest ml-1">{t('contact.form.medicalInquiry')}</label>
                                     <textarea
                                         required
-                                        className="w-full px-6 py-5 rounded-[1.5rem] border border-gray-100 focus:border-primary-400 focus:ring-[6px] focus:ring-primary-50 transition-all outline-none bg-gray-50/50 text-primary-950 placeholder-gray-400 font-medium text-sm h-40 resize-none shadow-inner"
+                                        className="w-full px-6 py-5 rounded-[2rem] border border-gray-100 focus:border-primary-400 focus:ring-[6px] focus:ring-primary-50 transition-all outline-none bg-gray-50/50 text-primary-950 placeholder-gray-400 font-medium text-sm h-40 resize-none shadow-inner"
                                         placeholder={t('contact.form.placeholder')}
                                     ></textarea>
                                 </div>
                                 <button
                                     type="submit"
-                                    className="w-full group flex items-center justify-center gap-3 py-5 px-8 bg-primary-600 text-white font-normal text-xs uppercase tracking-[0.2em] rounded-2xl shadow-xl shadow-primary-200 hover:bg-primary-700 hover:shadow-2xl hover:shadow-primary-300 active:scale-95 transition-all duration-300"
+                                    className="w-full group flex items-center justify-center gap-3 py-6 px-8 bg-primary-600 text-white font-normal text-xs uppercase tracking-[0.25em] rounded-2xl shadow-xl shadow-primary-200 hover:bg-primary-700 hover:shadow-2xl hover:shadow-primary-300 active:scale-95 transition-all duration-300"
                                 >
                                     {t('contact.form.submit')}
                                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -260,15 +305,25 @@ const ContactCard = ({ icon, title, content, subContent, delay, color, isLink, h
     </motion.div>
 );
 
-const SocialLink = ({ href, icon }) => (
-    <a
+const SocialCard = ({ href, icon, label, color, delay }) => (
+    <motion.a
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-14 h-14 bg-white/80 backdrop-blur-md hover:bg-primary-600 text-primary-900/40 hover:text-white rounded-2xl flex items-center justify-center transition-all duration-500 hover:scale-110 shadow-sm border border-gray-100 hover:border-transparent hover:shadow-xl hover:shadow-primary-100"
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay, duration: 0.5 }}
+        className={`group relative flex flex-col items-center justify-center p-6 bg-gray-50/50 border border-gray-100 rounded-[2rem] transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 overflow-hidden`}
     >
-        {icon}
-    </a>
+        <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${color}`}></div>
+        <div className="relative z-10 text-primary-900/60 group-hover:text-white transition-all duration-500 mb-2 scale-110 group-hover:scale-125">
+            {icon}
+        </div>
+        <span className="relative z-10 text-[9px] font-black uppercase tracking-[0.2em] text-primary-950/40 group-hover:text-white/90 transition-colors duration-500">
+            {label}
+        </span>
+    </motion.a>
 );
 
 const InputField = ({ label, type, placeholder }) => (

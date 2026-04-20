@@ -1,17 +1,29 @@
 import gmcLogo from '../assets/gmc-logo-navbar.webp';
 import ebotLogo from '../assets/ebot-logo-navbar.webp';
+import logo from '../assets/logo.webp';
 import { Link as RouterLink } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
-import { MapPin, Phone, Mail, Youtube, Twitter, Linkedin, ChevronRight } from 'lucide-react';
+import { MapPin, Phone, Mail, Youtube, Instagram, Linkedin, Facebook, Twitter, ChevronRight } from 'lucide-react';
+
+const TikTokIcon = ({ size = 18 }) => (
+    <svg 
+        width={size} 
+        height={size} 
+        viewBox="0 0 24 24" 
+        fill="currentColor"
+    >
+        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.43V16c0 4.13-3.41 7.55-7.61 7.5-4.65-.05-8.1-4.73-6.93-9.18 1.13-4.32 6.1-6.19 9.81-3.51.02 1.83.02 3.67 0 5.5-.06-.06-.11-.13-.17-.19-1.48-1.57-4.17-1.38-5.35.39-1.28 1.92-.12 4.73 2.18 4.73 2.14.02 3.96-1.74 3.96-3.88V.02z"/>
+    </svg>
+);
 
 const Footer = () => {
     const { t } = useLanguage();
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="bg-[#040f25] text-white pt-24 pb-12 relative overflow-hidden border-t-[6px] border-primary-600">
+        <footer className="bg-[#04122d] text-white pt-24 pb-12 relative overflow-hidden border-t-[6px] border-primary-600 font-sans">
             {/* Background Decorations */}
-            <div className="absolute top-0 start-0 w-full h-[600px] bg-gradient-to-br from-primary-900/10 via-transparent to-transparent pointer-events-none"></div>
+            <div className="absolute top-0 start-0 w-full h-[600px] bg-gradient-to-br from-primary-900/20 via-transparent to-transparent pointer-events-none"></div>
             <div className="absolute -bottom-40 -start-40 w-96 h-96 bg-primary-600/10 rounded-full blur-[120px] pointer-events-none"></div>
             <div className="absolute top-20 -end-40 w-80 h-80 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
 
@@ -19,18 +31,28 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
                     {/* Brand Column */}
                     <div className="lg:col-span-4 flex flex-col pt-2">
-                        <div className="flex items-center gap-4 mb-8">
-                            <div className="flex gap-3 bg-white/5 p-2.5 rounded-2xl border border-white/10 shadow-lg backdrop-blur-sm">
-                                <img src={gmcLogo} alt="General Medical Council" className="h-8 w-auto brightness-0 invert opacity-90" />
-                                <img src={ebotLogo} alt="EBOT" className="h-8 w-auto brightness-0 invert opacity-90" />
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-xl md:text-2xl font-montserrat font-black tracking-tight text-white leading-none">
-                                    {t('common.doctorName')}
-                                </span>
-                                <span className="text-primary-400 text-[10px] font-montserrat font-bold uppercase tracking-[0.2em] mt-1.5 opacity-90">
-                                    {t('common.specialty')}
-                                </span>
+                        {/* Primary Brand Identity */}
+                        <div className="flex flex-col mb-8">
+                            <RouterLink to="/" className="flex items-center gap-4 group mb-6">
+                                <div className="bg-white p-2.5 rounded-2xl shadow-xl shadow-black/20 group-hover:scale-105 transition-transform duration-500">
+                                    <img src={logo} alt="Dr. Ulhas Sonar" className="h-12 w-auto" />
+                                </div>
+                                <div className="flex flex-col">
+                                    <span className="text-xl md:text-2xl font-montserrat font-black tracking-tight text-white leading-tight uppercase">
+                                        {t('common.doctorName')}
+                                    </span>
+                                    <span className="text-primary-400 text-[10px] font-montserrat font-bold uppercase tracking-[0.25em] mt-1 opacity-90">
+                                        {t('common.specialty')}
+                                    </span>
+                                </div>
+                            </RouterLink>
+
+                            <div className="flex gap-4 items-center">
+                                <div className="flex gap-3 bg-white/5 p-2 rounded-xl border border-white/10 backdrop-blur-sm grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+                                    <img src={gmcLogo} alt="General Medical Council" className="h-6 w-auto brightness-0 invert" />
+                                    <img src={ebotLogo} alt="EBOT" className="h-6 w-auto brightness-0 invert" />
+                                </div>
+                                <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent"></div>
                             </div>
                         </div>
                         <p className="text-gray-400 text-sm leading-loose font-medium max-w-sm mb-8">
@@ -41,8 +63,11 @@ const Footer = () => {
                         <div className="flex gap-4">
                             {[
                                 { Icon: Youtube, label: 'YouTube', href: 'https://www.youtube.com/@orthopaedictutorials2135' },
+                                { Icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/drulhasortho.1/' },
                                 { Icon: Twitter, label: 'X (Twitter)', href: 'https://x.com/jointsurgeon' },
-                                { Icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/ulhassonarortho' }
+                                { Icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/ulhassonarortho' },
+                                { Icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61585848005137' },
+                                { Icon: TikTokIcon, label: 'TikTok', href: 'https://www.tiktok.com/@dr.ulhas.orthoped' }
                             ].map((social, index) => (
                                 <a 
                                     key={index} 

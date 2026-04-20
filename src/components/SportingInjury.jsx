@@ -37,14 +37,11 @@ const MedicalRadar = () => (
 const SportingInjury = () => {
     const { t } = useLanguage();
     useEffect(() => {
+        // TikTok Embed Script
         const script = document.createElement('script');
-        script.src = "//www.instagram.com/embed.js";
+        script.src = "https://www.tiktok.com/embed.js";
         script.async = true;
         document.body.appendChild(script);
-
-        if (window.instgrm) {
-            window.instgrm.Embeds.process();
-        }
 
         return () => {
             if (document.body.contains(script)) {
@@ -109,7 +106,7 @@ const SportingInjury = () => {
 
                 <div className="flex flex-col lg:flex-row items-center lg:items-start gap-16 lg:gap-24">
 
-                    {/* LEFT: Instagram Dashboard */}
+                    {/* LEFT: TikTok Dashboard */}
                     <div className="w-full lg:w-[45%] flex justify-center order-2 lg:order-1">
                         <CardContainer containerClassName="py-0">
                             <CardBody className="relative bg-white/40 border border-white/60 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] rounded-[2.5rem] p-6 backdrop-blur-3xl w-[320px] md:w-[420px]">
@@ -122,15 +119,15 @@ const SportingInjury = () => {
                                     <div className="text-[10px] font-black tracking-widest text-[#3a7e7a]">{medicalDashboardLabel}</div>
                                 </CardItem>
 
-                                <CardItem translateZ={80} className="w-full relative overflow-hidden rounded-2xl bg-slate-900 aspect-[9/13.5] border border-white/20">
-                                    <iframe
-                                        src="https://www.instagram.com/reel/DTijxQ3krcw/embed/"
-                                        className="w-full h-full border-0 rounded-2xl"
-                                        scrolling="no"
-                                        allowtransparency="true"
-                                        frameBorder="0"
-                                    ></iframe>
-                                    <div className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-black/20 to-transparent pointer-events-none"></div>
+                                <CardItem translateZ={80} className="w-full relative overflow-hidden rounded-2xl bg-white aspect-[9/13.5] border border-white/20">
+                                    <blockquote 
+                                        className="tiktok-embed w-full h-full" 
+                                        cite="https://www.tiktok.com/@dr.ulhas.orthoped/video/7630138762676178194" 
+                                        data-video-id="7630138762676178194" 
+                                        style={{ maxWidth: '605px', minWidth: '325px' }}
+                                    > 
+                                        <section> </section> 
+                                    </blockquote>
                                 </CardItem>
                             </CardBody>
                         </CardContainer>
