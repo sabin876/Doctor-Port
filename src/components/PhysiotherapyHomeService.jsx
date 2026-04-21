@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, MessageCircle, CheckCircle2, ArrowRight, Activity, ShieldCheck, Zap, HeartPulse, ClipboardCheck, Users, HelpCircle, ChevronDown, ChevronUp } from 'lucide-react';
+import { Phone, MessageCircle, CheckCircle2, ArrowRight, Activity, ShieldCheck, Zap, HeartPulse, ClipboardCheck, Users, HelpCircle, ChevronDown, ChevronUp, Home, Star } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from './SEO';
 import Breadcrumbs from './ui/Breadcrumbs';
+import physioIllustration from '../assets/physio-illustration.png';
 
 const PhysiotherapyHomeService = () => {
     const { t, language } = useLanguage();
@@ -38,75 +39,116 @@ const PhysiotherapyHomeService = () => {
                 <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-blue-50/40 rounded-full blur-[120px] -ml-40 -mb-40"></div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-24">
-                {/* Hero Section */}
-                <div className="text-center mb-24">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16 lg:py-24">
+                {/* Redesigned Hero Section - 2 Columns */}
+                <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
+                    {/* Left Column: Content & Features */}
                     <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-primary-50 border border-primary-100 text-primary-700 text-[10px] font-bold uppercase tracking-[0.3em]"
-                    >
-                        <Zap size={12} className="fill-primary-600" />
-                        DHA Licensed Experts
-                    </motion.div>
-
-                    <motion.h1 
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, x: isRtl ? 40 : -40 }}
+                        whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="text-4xl md:text-6xl font-metabolic font-normal text-primary-950 mb-8 tracking-tighter leading-[1.1] max-w-5xl mx-auto"
                     >
-                        {content.hero.title}
-                    </motion.h1>
-
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-xl text-gray-500 font-normal leading-relaxed max-w-3xl mx-auto mb-12"
-                    >
-                        {content.hero.description}
-                    </motion.p>
-
-                    {/* Dual Action Buttons */}
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a 
-                            href="tel:+971551053445"
-                            className="w-full sm:w-auto group flex items-center justify-center gap-3 py-5 px-10 bg-primary-600 text-white font-normal text-xs uppercase tracking-[0.2em] rounded-2xl shadow-xl shadow-primary-200 hover:bg-primary-700 hover:shadow-2xl hover:shadow-primary-300 active:scale-95 transition-all duration-300"
+                        <motion.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-primary-50 border border-primary-100 text-primary-700 text-[10px] font-black uppercase tracking-[0.3em]"
                         >
-                            <Phone size={18} />
-                            {content.ctas.call}
-                        </a>
-                        <a 
-                            href="https://wa.me/971551053445"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full sm:w-auto group flex items-center justify-center gap-3 py-5 px-10 bg-white text-emerald-600 border border-emerald-100 font-normal text-xs uppercase tracking-[0.2em] rounded-2xl shadow-lg hover:bg-emerald-50 hover:border-emerald-200 hover:shadow-xl active:scale-95 transition-all duration-300"
-                        >
-                            <MessageCircle size={18} />
-                            {content.ctas.whatsapp}
-                        </a>
-                    </div>
-                </div>
-
-                {/* Sub-Features Grid */}
-                <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4 mb-32">
-                    {content.features.map((feature, idx) => (
-                        <motion.div 
-                            key={idx}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: idx * 0.1 }}
-                            className="p-6 bg-gray-50/50 backdrop-blur-sm border border-gray-100 rounded-3xl text-center flex flex-col items-center justify-center hover:bg-white hover:shadow-lg transition-all duration-500"
-                        >
-                            <ShieldCheck size={24} className="text-primary-600 mb-4" />
-                            <p className="text-xs font-semibold text-gray-700 leading-relaxed uppercase tracking-tight">{feature}</p>
+                            <Zap size={12} className="fill-primary-600" />
+                            DHA Licensed Experts
                         </motion.div>
-                    ))}
+
+                        <h1 className="text-4xl md:text-6xl font-black text-primary-950 mb-6 tracking-tighter leading-[1.05]">
+                            {content.hero.title}
+                        </h1>
+
+                        <p className="text-lg md:text-xl text-gray-500 font-medium leading-relaxed mb-10 max-w-2xl">
+                            {content.hero.description}
+                        </p>
+
+                        {/* Feature Highlights Grid (2x2) */}
+                        <div className="grid sm:grid-cols-2 gap-4 mb-10">
+                            {[
+                                { icon: ShieldCheck, text: content.features[0] },
+                                { icon: Home, text: content.features[1] },
+                                { icon: Users, text: content.features[2] },
+                                { icon: Star, text: content.features[4] } // Using "Transparent pricing"
+                            ].map((feature, idx) => (
+                                <div key={idx} className="flex items-center gap-4 p-4 bg-gray-50/80 backdrop-blur-sm border border-gray-100 rounded-2xl hover:bg-white hover:shadow-md transition-all duration-300">
+                                    <div className="w-10 h-10 rounded-xl bg-white text-primary-600 flex items-center justify-center shadow-sm flex-shrink-0">
+                                        <feature.icon size={20} strokeWidth={2.5} />
+                                    </div>
+                                    <span className="text-xs font-bold text-gray-700 leading-tight">
+                                        {feature.text}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Dual Action Buttons */}
+                        <div className="flex flex-col sm:flex-row items-center gap-4">
+                            <a 
+                                href="tel:+971551053445"
+                                className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-[#003B73] text-white font-black text-[11px] uppercase tracking-[0.2em] rounded-2xl shadow-xl shadow-primary-200 hover:bg-[#002B55] hover:shadow-2xl hover:shadow-primary-300 active:scale-95 transition-all duration-300"
+                            >
+                                <Phone size={18} />
+                                {content.ctas.call}
+                            </a>
+                            <a 
+                                href="https://wa.me/971551053445"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-[#25D366] text-white font-black text-[11px] uppercase tracking-[0.2em] rounded-2xl shadow-lg shadow-emerald-100 hover:bg-[#1eb954] hover:shadow-xl active:scale-95 transition-all duration-300"
+                            >
+                                <MessageCircle size={18} />
+                                {content.ctas.whatsapp}
+                            </a>
+                        </div>
+                    </motion.div>
+
+                    {/* Right Column: Illustration & Floating Card */}
+                    <motion.div
+                        initial={{ opacity: 0, x: isRtl ? -40 : 40 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="relative"
+                    >
+                        {/* Illustration Container */}
+                        <div className="relative p-4 md:p-8 rounded-[4rem] bg-gradient-to-br from-primary-50 to-white border border-primary-50 shadow-2xl overflow-hidden group">
+                            <motion.img 
+                                initial={{ scale: 1.1, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                transition={{ duration: 1.5 }}
+                                src={physioIllustration} 
+                                alt="Physiotherapy Services" 
+                                className="w-full h-auto relative z-10 group-hover:scale-105 transition-transform duration-700"
+                            />
+                            
+                            {/* Decorative Blobs */}
+                            <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-200/20 rounded-full blur-[80px]"></div>
+                            <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-emerald-200/20 rounded-full blur-[80px]"></div>
+                        </div>
+
+                        {/* Floating Experience Card */}
+                        <motion.div 
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.5, duration: 0.8 }}
+                            className="absolute -bottom-6 -left-6 md:left-0 md:-bottom-10 max-w-[280px] p-6 bg-white/90 backdrop-blur-xl border border-white rounded-[2rem] shadow-2xl z-20"
+                        >
+                            <div className="flex items-start gap-4">
+                                <div className="w-12 h-12 rounded-2xl bg-primary-100 text-primary-700 flex items-center justify-center flex-shrink-0 animate-pulse">
+                                    <Home size={24} />
+                                </div>
+                                <div>
+                                    <h4 className="text-sm font-black text-primary-950 mb-1 leading-tight">Home, hotel, or office visits</h4>
+                                    <p className="text-[10px] text-gray-500 font-bold leading-relaxed">Professional physiotherapy tailored to your schedule and condition.</p>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </motion.div>
                 </div>
 
                 {/* Conditions Managed */}
