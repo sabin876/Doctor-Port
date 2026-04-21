@@ -28,7 +28,7 @@ const Footer = () => {
             <div className="absolute top-20 -end-40 w-80 h-80 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12 gap-y-12 gap-x-8 mb-16">
                     {/* Brand Column */}
                     <div className="lg:col-span-4 flex flex-col pt-2">
                         {/* Primary Brand Identity */}
@@ -162,49 +162,52 @@ const Footer = () => {
                         </h4>
                         <ul className="space-y-6 mt-4 mb-10">
                             <li className="flex gap-4 group cursor-pointer">
-                                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 group-hover:bg-primary-600/20 group-hover:border-primary-500/30 flex items-center justify-center text-primary-400 group-hover:text-primary-300 transition-all duration-300 flex-shrink-0">
+                                <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 group-hover:bg-primary-600/30 group-hover:border-primary-500/40 flex items-center justify-center text-primary-400 group-hover:text-primary-300 transition-all duration-300 flex-shrink-0 shadow-lg shadow-black/20">
                                     <MapPin size={22} strokeWidth={1.5} />
                                 </div>
-                                <div className="flex flex-col justify-center">
-                                    <span className="text-gray-300 text-sm font-medium leading-relaxed group-hover:text-white transition-colors duration-300">
-                                        {t('footer.hospitalName')}<br/>Dubai, UAE
+                                <div className="flex flex-col">
+                                    <span className="text-gray-300 text-sm font-semibold leading-relaxed group-hover:text-white transition-colors duration-300">
+                                        {t('footer.hospitalName')}
                                     </span>
+                                    <span className="text-gray-500 text-xs mt-0.5">Dubai, UAE</span>
                                 </div>
                             </li>
                             <li className="flex gap-4 group cursor-pointer">
-                                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 group-hover:bg-primary-600/20 group-hover:border-primary-500/30 flex items-center justify-center text-primary-400 group-hover:text-primary-300 transition-all duration-300 flex-shrink-0">
+                                <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 group-hover:bg-primary-600/30 group-hover:border-primary-500/40 flex items-center justify-center text-primary-400 group-hover:text-primary-300 transition-all duration-300 flex-shrink-0 shadow-lg shadow-black/20">
                                     <Phone size={22} strokeWidth={1.5} />
                                 </div>
                                 <div className="flex flex-col justify-center">
-                                    <span className="text-white font-bold tracking-wide">+971 55 105 3445</span>
-                                    <span className="text-gray-500 text-[11px] font-medium uppercase tracking-wider mt-1">{t('footer.emergency')}</span>
+                                    <span className="text-white font-black tracking-tight whitespace-nowrap text-lg">+971 55 105 3445</span>
+                                    <span className="text-primary-500 text-[10px] font-black uppercase tracking-[0.2em] mt-0.5">{t('footer.emergency')}</span>
                                 </div>
                             </li>
                         </ul>
 
-                        {/* Visit Me At Section (Realigned to Right/Contact Column) */}
-                        <div className="pt-2">
-                            <h4 className="text-[12px] font-montserrat font-bold uppercase tracking-widest mb-4 text-blue-400">
+                        {/* Visit Me At Section - Enhanced Design */}
+                        <div className="pt-4 border-t border-white/5 mt-4">
+                            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] mb-5 text-primary-500">
                                 {t('footer.visitMeAt')}
                             </h4>
-                            <a href="https://csh.ae/" target="_blank" rel="noreferrer" className="group inline-flex items-center gap-4 bg-white/95 hover:bg-white p-3 pr-6 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-primary-500/10">
-                                {/* Custom CSS representation of the Canadian Specialist Hospital logo */}
-                                <div className="relative w-[3.25rem] h-[3.25rem] bg-[#162758] rounded shadow-sm border border-[#d32f2f] flex justify-center flex-shrink-0">
-                                    <svg className="absolute w-8 h-8 top-1 text-white fill-current" viewBox="0 0 24 24">
-                                        <path d="M12 1.5L14 8h5l-4.5 4L16 19l-4-3-4 3 1.5-7L5 8h5l2-6.5z"/>
-                                        <path className="fill-[#162758]" d="M11.5 13h1v8h-1v-8z"/>
+                            <a 
+                                href="https://csh.ae/" 
+                                target="_blank" 
+                                rel="noreferrer" 
+                                className="group flex items-center gap-4 bg-white/[0.98] hover:bg-white p-3.5 pr-6 rounded-[1.5rem] shadow-2xl transition-all duration-500 hover:-translate-y-1.5 hover:shadow-primary-500/20 active:scale-95"
+                            >
+                                {/* Professional SVG Shield Logo Representation */}
+                                <div className="relative w-14 h-14 bg-[#1a2b5b] rounded-2xl shadow-inner flex items-center justify-center flex-shrink-0 overflow-hidden border-2 border-[#1a2b5b]">
+                                    <svg className="w-10 h-10 text-white" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 2L4 8V18C4 26.5 10.5 34.5 20 38C29.5 34.5 36 26.5 36 18V8L20 2Z" fill="currentColor" fillOpacity="0.15"/>
+                                        <path d="M20 4L6 9.25V18C6 25.5 11.5 32.5 20 35.5C28.5 32.5 34 25.5 34 18V9.25L20 4Z" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M20 12V26M13 19H27" stroke="white" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
                                     </svg>
-                                    <div className="absolute bottom-1 w-full flex justify-between px-2">
-                                        <span className="text-white text-[7px] font-black leading-none">C</span>
-                                        <span className="text-white text-[7px] font-black leading-none">S</span>
-                                        <span className="text-white text-[7px] font-black leading-none">H</span>
-                                    </div>
+                                    <div className="absolute inset-0 bg-gradient-to-tr from-primary-600/20 to-transparent pointer-events-none"></div>
                                 </div>
-                                <div className="flex flex-col border-l border-gray-200 pl-4 py-0.5 max-w-[180px]">
-                                    <span className="text-[#162758] text-[15px] font-black font-montserrat tracking-tight leading-none mb-1 text-right" dir="rtl">
+                                <div className="flex flex-col border-l border-gray-100 pl-4 py-0.5 min-w-0">
+                                    <span className="text-[#1a2b5b] text-[13px] font-black font-montserrat tracking-tight leading-tight mb-1 truncate text-right" dir="rtl">
                                         المستشفى الكندي التخصصي
                                     </span>
-                                    <span className="text-[#162758] text-[12px] font-bold font-montserrat tracking-tight leading-none">
+                                    <span className="text-[#1a2b5b] text-[11px] font-bold font-montserrat tracking-tighter leading-tight truncate">
                                         Canadian Specialist Hospital
                                     </span>
                                 </div>
