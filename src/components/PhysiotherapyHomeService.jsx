@@ -142,7 +142,7 @@ const PhysiotherapyHomeService = () => {
                     >
                         <div className="aspect-square rounded-[4rem] overflow-hidden shadow-2xl relative">
                             <img 
-                                src="https://images.unsplash.com/photo-1576091160550-217359f49f4c?w=1200&auto=format&fit=crop&q=80" 
+                                src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=1200&auto=format&fit=crop&q=80" 
                                 alt="Physiotherapy session" 
                                 className="w-full h-full object-cover"
                             />
