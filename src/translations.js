@@ -314,6 +314,8 @@ export const translations = {
                 jointReplacement: "Joint Replacement",
                 deformityCorrection: "Deformity Correction",
                 physiotherapy: "Physiotherapy",
+                consultation: "Consultation",
+                orthopedicTrauma: "Orthopedic Trauma",
                 more: "More"
             }
         },
@@ -777,6 +779,8 @@ export const translations = {
                 jointReplacement: "जोड़ प्रतिस्थापन",
                 deformityCorrection: "विकृति सुधार",
                 physiotherapy: "फिजियोथेरेपी",
+                consultation: "परामर्श",
+                orthopedicTrauma: "आर्थोपेडिक ट्रॉमा",
                 more: "अधिक"
             }
         },
@@ -1186,6 +1190,8 @@ export const translations = {
                 jointReplacement: "استبدال المفاصل",
                 deformityCorrection: "تصحيح التشوهات",
                 physiotherapy: "العلاج الطبيعي",
+                consultation: "الاستشارات",
+                orthopedicTrauma: "صدمات العظام",
                 more: "المزيد"
             }
         },
