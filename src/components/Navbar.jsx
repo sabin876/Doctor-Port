@@ -83,7 +83,7 @@ const Navbar = () => {
         { id: 'roboticSurgery', name: t('footer.serviceLinks.roboticSurgery'), path: '/services/robotic-surgery' },
         { id: 'jointReplacement', name: t('footer.serviceLinks.jointReplacement'), path: '/services/joint-pain-treatment' },
         { id: 'deformityCorrection', name: t('footer.serviceLinks.deformityCorrection'), path: '/services/deformity-correction' },
-        { id: 'physiotherapy', name: t('footer.serviceLinks.physiotherapy'), path: '/services/physiotherapy' }
+        { id: 'physiotherapy', name: t('footer.serviceLinks.physiotherapy'), path: '/services/physiotherapy-home-services' }
     ];
 
     const languages = [
