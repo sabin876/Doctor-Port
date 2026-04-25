@@ -155,6 +155,10 @@ const Contact = () => {
             {/* Full Width Map Section */}
             <div className="w-full relative grid lg:grid-cols-2">
                 <div className="h-[400px] lg:h-[500px] w-full relative">
+                    <div className="absolute top-6 left-6 z-10 bg-white/90 backdrop-blur-sm px-5 py-2.5 rounded-2xl shadow-lg border border-gray-100 flex items-center gap-3">
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#10b981] animate-pulse"></div>
+                        <span className="font-bold text-[#1e293b] text-sm tracking-wide">Dubai Clinic</span>
+                    </div>
                     <iframe
                         title="Dubai Medical Center Location"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.2612745339667!2d55.3371900150117!3d25.26180998386629!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5ccf5777bd37%3A0x60037a5999092b71!2sCanadian%20Specialist%20Hospital!5e0!3m2!1sen!2sae!4v1655976541012!5m2!1sen!2sae"
@@ -167,6 +171,10 @@ const Contact = () => {
                     ></iframe>
                 </div>
                 <div className="h-[400px] lg:h-[500px] w-full relative">
+                    <div className="absolute top-6 left-6 z-10 bg-white/90 backdrop-blur-sm px-5 py-2.5 rounded-2xl shadow-lg border border-gray-100 flex items-center gap-3">
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#10b981] animate-pulse"></div>
+                        <span className="font-bold text-[#1e293b] text-sm tracking-wide">Pune Clinic (India)</span>
+                    </div>
                     <iframe
                         title="Pune Medical Center Location"
                         src="https://maps.google.com/maps?q=SUNSHINE+CHILDRENS+CLINIC+KONDHWA,+Pune&t=&z=14&ie=UTF8&iwloc=&output=embed"
