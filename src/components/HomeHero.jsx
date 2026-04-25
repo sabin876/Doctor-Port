@@ -272,19 +272,7 @@ const HomeHero = () => {
                             </RouterLink>
                         </motion.div>
 
-                        {/* Personalized Solution CTA */}
-                        <motion.div
-                            variants={itemVariants}
-                            className="mt-6 ps-2"
-                        >
-                            <a
-                                href="#personalized-solutions"
-                                className="flex items-center gap-2 text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors group italic"
-                            >
-                                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-                                Looking for a personalized solution? <span className="underline decoration-1 underline-offset-2">Click here to learn more</span>
-                            </a>
-                        </motion.div>
+
 
                         {/* Updated Stats Row */}
                         <motion.div variants={itemVariants}>

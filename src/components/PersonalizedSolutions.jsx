@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Activity } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import runnerAnkleImg from '../assets/knee and angle.webp';
-import handWristInjuryImg from '../assets/hand and wist.webp';
-import backNeckInjuryImg from '../assets/Back and Neck.webp';
-import kneeArthroscopyImg from '../assets/knee.webp';
-import sportsMedicineImg from '../assets/sports injury.webp';
-import shoulderPainImg from '../assets/Shoulder.webp';
-import hipPainImg from '../assets/Hip.webp';
+import runnerAnkleImg from '../assets/runner-ankle-injury.webp';
+import handWristInjuryImg from '../assets/hand-wrist-injury.webp';
+import backNeckInjuryImg from '../assets/back-neck-injury.webp';
+import kneeArthroscopyImg from '../assets/knee-arthroscopy.webp';
+import sportsMedicineImg from '../assets/shoulder-sports-injury.webp';
+import shoulderPainImg from '../assets/shoulder-pain-patient.webp';
+import hipPainImg from '../assets/hip-pain-patient.webp';
 
 const OrthoAnimation = () => (
     <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">

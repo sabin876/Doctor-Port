@@ -38,24 +38,18 @@ const Footer = () => {
                                     <img src={logo} alt="Dr. Ulhas Sonar" className="h-12 w-auto" />
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-xl md:text-2xl font-montserrat font-black tracking-tight text-white leading-tight uppercase">
+                                    <span className="text-xl md:text-2xl font-montserrat font-normal tracking-tight text-white leading-tight uppercase">
                                         {t('common.doctorName')}
                                     </span>
-                                    <span className="text-primary-400 text-[10px] font-montserrat font-bold uppercase tracking-[0.25em] mt-1 opacity-90">
+                                    <span className="text-primary-400 text-[10px] font-montserrat font-normal uppercase tracking-[0.25em] mt-1 opacity-90">
                                         {t('common.specialty')}
                                     </span>
                                 </div>
                             </RouterLink>
 
-                            <div className="flex gap-4 items-center">
-                                <div className="flex gap-3 bg-white/5 p-2 rounded-xl border border-white/10 backdrop-blur-sm grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-                                    <img src={gmcLogo} alt="General Medical Council" className="h-6 w-auto brightness-0 invert" />
-                                    <img src={ebotLogo} alt="EBOT" className="h-6 w-auto brightness-0 invert" />
-                                </div>
-                                <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent"></div>
-                            </div>
+
                         </div>
-                        <p className="text-gray-400 text-sm leading-loose font-medium max-w-sm mb-8">
+                        <p className="text-gray-400 text-sm leading-loose font-normal max-w-sm mb-8">
                             Precise orthopaedic surgical care delivered with integrity, respect for patient rights, and an individualised medical evidence-based approach—restoring movement, function, and active lives.
                         </p>
                         
@@ -84,11 +78,11 @@ const Footer = () => {
 
                     {/* Services Column */}
                     <div className="lg:col-span-2 pt-2">
-                        <h4 className="text-[13px] font-montserrat font-black uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
+                        <h4 className="text-[13px] font-montserrat font-normal uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
                             {t('footer.services')}
                             <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
                         </h4>
-                        <ul className="space-y-4 text-[15px] font-medium mt-4">
+                        <ul className="space-y-4 text-[15px] font-normal mt-4">
                             {[
                                 { name: t('footer.serviceLinks.arthroscopy'), href: '/services/arthroscopy' },
                                 { name: t('footer.serviceLinks.sportsMedicine'), href: '/services/sports-medicine' },
@@ -110,11 +104,11 @@ const Footer = () => {
 
                     {/* Quick Links Column */}
                     <div className="lg:col-span-2 pt-2">
-                        <h4 className="text-[13px] font-montserrat font-black uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
+                        <h4 className="text-[13px] font-montserrat font-normal uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
                             {t('footer.nav')}
                             <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
                         </h4>
-                        <ul className="space-y-4 text-[15px] font-medium mt-4">
+                        <ul className="space-y-4 text-[15px] font-normal mt-4">
                             {[
                                 { name: t('nav.home'), href: '/' },
                                 { name: t('nav.about'), href: '/#about' },
@@ -133,11 +127,11 @@ const Footer = () => {
 
                     {/* Support Links Column */}
                     <div className="lg:col-span-2 pt-2">
-                        <h4 className="text-[13px] font-montserrat font-black uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
+                        <h4 className="text-[13px] font-montserrat font-normal uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
                             {t('footer.support')}
                             <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
                         </h4>
-                        <ul className="space-y-4 text-[15px] font-medium mt-4">
+                        <ul className="space-y-4 text-[15px] font-normal mt-4">
                             {[
                                 { name: t('footer.patientResources'), href: '/#publications' },
                                 { name: t('footer.articles'), href: '/blog' },
@@ -156,7 +150,7 @@ const Footer = () => {
 
                     {/* Contact Info Column */}
                     <div className="lg:col-span-2 pt-2">
-                        <h4 className="text-[13px] font-montserrat font-black uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
+                        <h4 className="text-[13px] font-montserrat font-normal uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
                             {t('footer.clinic')}
                             <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
                         </h4>
@@ -166,7 +160,7 @@ const Footer = () => {
                                     <MapPin size={22} strokeWidth={1.5} />
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-gray-300 text-sm font-semibold leading-relaxed group-hover:text-white transition-colors duration-300">
+                                    <span className="text-gray-300 text-sm font-normal leading-relaxed group-hover:text-white transition-colors duration-300">
                                         {t('footer.hospitalName')}
                                     </span>
                                     <span className="text-gray-500 text-xs mt-0.5">Dubai, UAE</span>
@@ -177,15 +171,15 @@ const Footer = () => {
                                     <Phone size={22} strokeWidth={1.5} />
                                 </div>
                                 <div className="flex flex-col justify-center">
-                                    <span className="text-white font-black tracking-tight whitespace-nowrap text-lg">+971 55 105 3445</span>
-                                    <span className="text-primary-500 text-[10px] font-black uppercase tracking-[0.2em] mt-0.5">{t('footer.emergency')}</span>
+                                    <span className="text-white font-normal tracking-tight whitespace-nowrap text-lg">+971 55 105 3445</span>
+                                    <span className="text-primary-500 text-[10px] font-normal uppercase tracking-[0.2em] mt-0.5">{t('footer.emergency')}</span>
                                 </div>
                             </li>
                         </ul>
 
                         {/* Visit Me At Section - Enhanced Design */}
                         <div className="pt-4 border-t border-white/5 mt-4">
-                            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] mb-5 text-primary-500">
+                            <h4 className="text-[10px] font-normal uppercase tracking-[0.3em] mb-5 text-primary-500">
                                 {t('footer.visitMeAt')}
                             </h4>
                             <a 
@@ -204,10 +198,10 @@ const Footer = () => {
                                     <div className="absolute inset-0 bg-gradient-to-tr from-primary-600/20 to-transparent pointer-events-none"></div>
                                 </div>
                                 <div className="flex flex-col border-l border-gray-100 pl-4 py-0.5 min-w-0">
-                                    <span className="text-[#1a2b5b] text-[13px] font-black font-montserrat tracking-tight leading-tight mb-1 truncate text-right" dir="rtl">
+                                    <span className="text-[#1a2b5b] text-[13px] font-normal font-montserrat tracking-tight leading-tight mb-1 truncate text-right" dir="rtl">
                                         المستشفى الكندي التخصصي
                                     </span>
-                                    <span className="text-[#1a2b5b] text-[11px] font-bold font-montserrat tracking-tighter leading-tight truncate">
+                                    <span className="text-[#1a2b5b] text-[11px] font-normal font-montserrat tracking-tighter leading-tight truncate">
                                         Canadian Specialist Hospital
                                     </span>
                                 </div>
@@ -218,11 +212,11 @@ const Footer = () => {
 
                 {/* Bottom Bar */}
                 <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p className="text-gray-500 text-[12px] font-montserrat font-semibold uppercase tracking-[0.15em]">
+                    <p className="text-gray-500 text-[12px] font-montserrat font-normal uppercase tracking-[0.15em]">
                         &copy; {currentYear} <span className="text-gray-400">{t('common.doctorName')}</span>. {t('footer.rights')}
                     </p>
                     <div className="flex items-center gap-2">
-                        <span className="text-gray-600 text-[10px] font-montserrat font-bold uppercase tracking-widest">Designed for Excellence</span>
+                        <span className="text-gray-600 text-[10px] font-montserrat font-normal uppercase tracking-widest">Designed for Excellence</span>
                     </div>
                 </div>
             </div>
