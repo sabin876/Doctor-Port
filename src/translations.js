@@ -355,17 +355,18 @@ export const translations = {
                 whatsapp: "WhatsApp Now"
             },
             conditions: {
-                title: "Conditions Managed with Physiotherapy Services",
-                description: "Physiotherapy plays an important role in managing a wide range of conditions. Common problems treated include:",
+                badge: "Conditions managed with physiotherapy services",
+                title: "Professional care for common pain, stiffness, and movement problems",
+                description: "Physiotherapy plays an important role in managing a wide range of conditions. Early treatment often leads to faster recovery and helps prevent long-term complications.",
                 items: [
-                    "Back and neck pain",
-                    "Knee pain and joint stiffness",
-                    "Shoulder pain and limited movement",
-                    "Sports injuries and muscle strains",
-                    "Robotic Surgery Support",
-                    "Arthritis and age-related joint issues",
-                    "Deformity Corrections Support",
-                    "Hip Joint Replacement Rehabilitation"
+                    { title: "Back and neck pain", desc: "Targeted rehabilitation for stiffness, postural pain, muscular spasm, and reduced function." },
+                    { title: "Knee pain and stiffness", desc: "Structured therapy to improve joint movement, strength, and confidence during walking and activity." },
+                    { title: "Shoulder pain", desc: "Focused treatment for pain, weakness, and limited shoulder movement during daily activities." },
+                    { title: "Sports injuries", desc: "Recovery programs for muscle strains, soft tissue injury, overuse problems, and return to activity." },
+                    { title: "Arthritis care", desc: "Gentle, progressive treatment to reduce pain, improve movement, and support long-term joint health." },
+                    { title: "Post-surgical rehabilitation", desc: "Planned recovery support after orthopaedic procedures with mobility and strengthening progression." },
+                    { title: "Deformity correction support", desc: "Rehabilitation care to improve alignment-related movement patterns and functional recovery." },
+                    { title: "Hip joint replacement recovery", desc: "Stepwise physiotherapy focused on strength, balance, walking confidence, and safe independence." }
                 ],
                 footer: "Early treatment often leads to faster recovery and prevents long-term complications."
             },
@@ -817,18 +818,20 @@ export const translations = {
                 whatsapp: "अभी व्हाट्सएप करें"
             },
             conditions: {
-                title: "फिजियोथेरेपी द्वारा प्रबंधित स्थितियां",
-                description: "फिजियोथेरेपी कई स्थितियों के प्रबंधन में महत्वपूर्ण भूमिका निभाती है:",
+                badge: "फिजियोथेरेपी सेवाओं के साथ प्रबंधन की जाने वाली स्थितियां",
+                title: "सामान्य दर्द, जकड़न और गतिविधि समस्याओं के लिए पेशेवर देखभाल",
+                description: "फिजियोथेरेपी स्थितियों की एक विस्तृत श्रृंखला के प्रबंधन में महत्वपूर्ण भूमिका निभाती है। शीघ्र उपचार अक्सर तेजी से रिकवरी की ओर ले जाता है।",
                 items: [
-                    "पीठ और गर्दन का दर्द",
-                    "घुटने का दर्द और जकड़न",
-                    "कंधे का दर्द",
-                    "खेल की चोटें",
-                    "रोबोटिक सर्जरी रिकवरी",
-                    "गठिया",
-                    "विकृति सुधार सहायता",
-                    "कूल्हा प्रतिस्थापन पुनर्वास"
-                ]
+                    { title: "पीठ और गर्दन का दर्द", desc: "जकड़न, मस्कुलर स्पैम और कम कार्यक्षमता के लिए लक्षित पुनर्वास।" },
+                    { title: "घुटने का दर्द और जकड़न", desc: "जोड़ों की गति, ताकत और चलने के दौरान आत्मविश्वास में सुधार के लिए संरचित थेरेपी।" },
+                    { title: "कंधे का दर्द", desc: "दैनिक गतिविधियों के दौरान दर्द, कमजोरी और सीमित कंधे की गति के लिए केंद्रित उपचार।" },
+                    { title: "खेल की चोटें", desc: "मांसपेशियों के खिंचाव, कोमल ऊतकों की चोट और गतिविधि पर वापसी के लिए रिकवरी कार्यक्रम।" },
+                    { title: "गठिया देखभाल", desc: "दर्द कम करने, गति में सुधार और दीर्घकालिक जोड़ स्वास्थ्य के लिए सौम्य उपचार।" },
+                    { title: "सर्जरी के बाद पुनर्वास", desc: "गतिशीलता और मजबूती के साथ ऑर्थोपेडिक प्रक्रियाओं के बाद योजनाबद्ध रिकवरी सहायता।" },
+                    { title: "विकृति सुधार सहायता", desc: "संरेखण-संबंधी गतिविधि पैटर्न और कार्यात्मक रिकवरी में सुधार के लिए देखभाल।" },
+                    { title: "हिप जॉइंट रिप्लेसमेंट रिकवरी", desc: "ताकत, संतुलन और चलने के आत्मविश्वास पर केंद्रित चरणबद्ध फिजियोथेरेपी।" }
+                ],
+                footer: "शीघ्र उपचार अक्सर तेजी से रिकवरी की ओर ले जाता है और दीर्घकालिक जटिलताओं को रोकता है।"
             },
             benefits: {
                 title: "डॉ. उल्हास के साथ फिजियोथेरेपी के लाभ",
@@ -1202,6 +1205,43 @@ export const translations = {
                 { question: "كم مرة يتم نشر مقالات جديدة؟", answer: "نشارك رؤى طبية وتحديثات أبحاث سريرية جديدة كل بضعة أسابيع لإبقاء مرضانا على اطلاع." },
                 { question: "هل يمكنني اقتراح موضوع للمدونة؟", answer: "بالتأكيد! نرحب باستفسارات المرضى وغالباً ما نعالج الاهتمامات الشائعة في مقالاتنا الطبية المفصلة." }
             ]
+        },
+        physioHome: {
+            seo: {
+                title: "خدمات العلاج الطبيعي المنزلي في دبي | خبراء مرخصون من هيئة الصحة بدبي",
+                description: "احصل على خدمات علاج طبيعي خبيرة في دبي مع زيارات منزلية من قبل محترفين مرخصين من هيئة الصحة بدبي. علاج مخصص لتخفيف الآلام والتعافي والحركة. احجز الآن."
+            },
+            hero: {
+                title: "خدمات العلاج الطبيعي في دبي | العلاج الطبيعي المنزلي ورعاية التأهيل",
+                description: "هل تعاني من الألم أو التيبس أو صعوبة الحركة؟ تم تصميم خدمات العلاج الطبيعي لدينا في دبي لمساعدتك على التعافي بأمان واستعادة الثقة في أنشطتك اليومية. سواء كنت بحاجة إلى العلاج في المنزل أو في الفندق أو في مكان عملك، فنحن نقدم رعاية منظمة ومهنية مصممة خصيصاً لحالتك."
+            },
+            features: [
+                "أخصائيو علاج طبيعي مرخصون من هيئة الصحة بدبي للزيارات المنزلية في جميع أنحاء دبي.",
+                "علاج طبيعي في المنزل أو الفندق أو المكتب – مرن ومريح.",
+                "خطط علاج مخصصة لتعافي أسرع وآمن.",
+                "مناسب لما بعد الجراحة والإصابات ورعاية المسنين والآلام المزمنة.",
+                "أسعار شفافة وبأسعار معقولة بدون تكاليف مخفية."
+            ],
+            ctas: {
+                call: "اتصل بنا الآن",
+                whatsapp: "واتساب الآن"
+            },
+            conditions: {
+                badge: "الحالات التي يتم علاجها بخدمات العلاج الطبيعي",
+                title: "رعاية مهنية لآلام الظهر والمفاصل ومشاكل الحركة",
+                description: "يلعب العلاج الطبيعي دوراً مهماً في إدارة مجموعة واسعة من الحالات. غالباً ما يؤدي العلاج المبكر إلى تعافٍ أسرع ويساعد في منع المضاعفات طويلة المدى.",
+                items: [
+                    { title: "آلام الظهر والرقبة", desc: "إعادة تأهيل مستهدفة للتصلب وآلام القوام والتشنج العضلي وضعف الوظيفة." },
+                    { title: "آلام الركبة وتيبسها", desc: "علاج منظم لتحسين حركة المفاصل وقوتها والثقة أثناء المشي والنشاط." },
+                    { title: "آلام الكتف", desc: "علاج مركز للألم والضعف وحركة الكتف المحدودة أثناء الأنشطة اليومية." },
+                    { title: "الإصابات الرياضية", desc: "برامج تعافي لإصابات العضلات وإصابات الأنسجة الرخوة ومشاكل الإجهاد المفرط والعودة للنشاط." },
+                    { title: "رعاية التهاب المفاصل", desc: "علاج لطيف وتدريجي لتقليل الألم وتحسين الحركة ودعم صحة المفاصل على المدى الطويل." },
+                    { title: "إعادة التأهيل بعد الجراحة", desc: "دعم تعافٍ مخطط له بعد عمليات العظام مع تعزيز الحركة والمقاومة." },
+                    { title: "دعم تصحيح التشوهات", desc: "رعاية تأهيلية لتحسين أنماط الحركة المتعلقة بالمحاذاة والتعافي الوظيفي." },
+                    { title: "التعافي من استبدال مفصل الورك", desc: "علاج طبيعي تدريجي يركز على القوة والتوازن والثقة في المشي والاستقلال الآمن." }
+                ],
+                footer: "غالباً ما يؤدي العلاج المبكر إلى تعافٍ أسرع ويمنع المضاعفات طويلة المدى."
+            }
         }
     }
 };

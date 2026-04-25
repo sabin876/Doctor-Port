@@ -1,6 +1,7 @@
 import React from 'react';
 import SEO from './SEO';
 import Services from './Services';
+import FAQ from './FAQ';
 import { useLanguage } from '../context/LanguageContext';
 import Breadcrumbs from './ui/Breadcrumbs';
 import heroImg from '../assets/joint-replacement-bg.webp';
@@ -29,6 +30,7 @@ const ServicesPage = () => {
                 ]} />
             </div>
             <Services />
+            <FAQ />
         </main>
     );
 };

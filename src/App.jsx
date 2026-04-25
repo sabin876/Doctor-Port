@@ -7,7 +7,6 @@ import Navbar from './components/Navbar';
 import TopBar from './components/TopBar';
 import Footer from './components/Footer';
 import FloatingContactButtons from './components/FloatingContactButtons';
-import FAQ from './components/FAQ';
 import TrailingSlashRedirect from './components/ui/TrailingSlashRedirect';
 import CanonicalTag from './components/CanonicalTag';
 
@@ -72,7 +71,7 @@ function App() {
                 <Route path="/thank-you" element={<ThankYou />} />
               </Routes>
             </React.Suspense>
-            <FAQ />
+
             <Footer />
             <FloatingContactButtons />
           </div>
