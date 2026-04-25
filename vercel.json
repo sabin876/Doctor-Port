@@ -3,7 +3,7 @@
   "trailingSlash": false,
   "headers": [
     {
-      "comment": "HTML — always revalidate, never cache stale content",
+
       "source": "/(.*).html",
       "headers": [
         {
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "comment": "JS & CSS — immutable (content-hashed filenames), 1 year cache",
+
       "source": "/assets/(.*)",
       "headers": [
         {
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "comment": "Images in public/images — 30 day cache",
+
       "source": "/images/(.*)",
       "headers": [
         {
@@ -33,7 +33,7 @@
       ]
     },
     {
-      "comment": "Fonts — immutable, 1 year cache",
+
       "source": "/(.*).woff2",
       "headers": [
         {
@@ -43,7 +43,7 @@
       ]
     },
     {
-      "comment": "Sitemap — 24hr cache",
+
       "source": "/sitemap.xml",
       "headers": [
         {
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "comment": "Robots.txt — 24hr cache",
+
       "source": "/robots.txt",
       "headers": [
         {
@@ -63,7 +63,7 @@
       ]
     },
     {
-      "comment": "Security headers — applied globally",
+
       "source": "/(.*)",
       "headers": [
         {
