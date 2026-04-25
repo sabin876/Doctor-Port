@@ -955,7 +955,7 @@ const ServiceDetail = () => {
                     viewport={{ once: true }}
                     className="max-w-7xl mx-auto px-4 mb-24 font-montserrat"
                 >
-                    <div className="bg-blue-50 rounded-[3.5rem] p-12 md:p-20 shadow-[0_30px_70px_rgba(0,0,0,0.06)] border border-blue-100 text-center relative overflow-hidden group">
+                    <div className="bg-blue-50 rounded-[3.5rem] p-8 sm:p-12 md:p-20 shadow-[0_30px_70px_rgba(0,0,0,0.06)] border border-blue-100 text-center relative overflow-hidden group">
                         {/* Decorative Background Elements */}
                         <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-50/50 rounded-full blur-[100px] group-hover:bg-blue-100/50 transition-colors duration-700"></div>
                         <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-emerald-50/50 rounded-full blur-[100px] group-hover:bg-emerald-100/50 transition-colors duration-700"></div>

@@ -286,7 +286,7 @@ const HomeHero = () => {
                         className="flex items-center justify-center relative"
                     >
                         <CardContainer containerClassName="py-0">
-                                <CardBody className="relative w-[360px] h-[430px] md:w-[440px] md:h-[520px]">
+                                <CardBody className="relative w-full max-w-[360px] h-[430px] md:max-w-[440px] md:h-[520px]">
                                 {/* Portrait Card Shell */}
                                 <CardItem
                                     translateZ={-20}

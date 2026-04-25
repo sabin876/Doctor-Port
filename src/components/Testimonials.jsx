@@ -144,7 +144,7 @@ const Testimonials = () => {
                             {doubledTestimonials.map((testimonial, index) => (
                                 <div
                                     key={index}
-                                    className="w-[300px] md:w-[400px] shrink-0 flex flex-col"
+                                    className="w-[280px] sm:w-[300px] md:w-[400px] shrink-0 flex flex-col"
                                 >
                                     {/* Testimonial Card */}
                                     <div className="w-full bg-white p-6 md:p-7 rounded-[2rem] border border-gray-200/60 shadow-xl shadow-gray-200/40 relative h-full flex flex-col hover:border-blue-400/50 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 group cursor-pointer" onClick={() => window.open(testimonial.googleUrl, '_blank', 'noopener,noreferrer')}>

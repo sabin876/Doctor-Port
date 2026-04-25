@@ -42,7 +42,7 @@ const Appointment = () => {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="max-w-xl mx-auto bg-white rounded-3xl shadow-2xl p-12 text-center"
+                        className="max-w-xl mx-auto bg-white rounded-3xl shadow-2xl p-8 sm:p-12 text-center"
                     >
                         <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center text-green-600 mx-auto mb-8">
                             <CheckCircle size={48} />

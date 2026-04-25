@@ -109,7 +109,7 @@ const SportingInjury = () => {
                     {/* LEFT: TikTok Dashboard */}
                     <div className="w-full lg:w-[45%] flex justify-center order-2 lg:order-1">
                         <CardContainer containerClassName="py-0">
-                            <CardBody className="relative bg-white/40 border border-white/60 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] rounded-[2.5rem] p-6 backdrop-blur-3xl w-[320px] md:w-[420px]">
+                            <CardBody className="relative bg-white/40 border border-white/60 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] rounded-[2.5rem] p-6 backdrop-blur-3xl w-[280px] sm:w-[320px] md:w-[420px]">
                                 <CardItem translateZ={40} className="w-full flex justify-between items-center mb-6">
                                     <div className="flex gap-2">
                                         <div className="w-3 h-3 rounded-full bg-red-400"></div>
