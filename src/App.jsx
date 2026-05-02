@@ -21,6 +21,7 @@ const Articles = React.lazy(() => import('./components/Articles'));
 const ArticleDetail = React.lazy(() => import('./components/ArticleDetail'));
 const Gallery = React.lazy(() => import('./components/Gallery'));
 const ThankYou = React.lazy(() => import('./components/ThankYou'));
+const SocialLinksPage = React.lazy(() => import('./components/SocialLinksPage'));
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -55,25 +56,32 @@ function App() {
           <TrailingSlashRedirect />
           <CanonicalTag />
           <div className="min-h-screen bg-white font-sans text-gray-800">
-            <TopBar />
-            <Navbar />
             <React.Suspense fallback={<div className="min-h-screen flex items-center justify-center text-primary-600 font-bold">Loading...</div>}>
               <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/services" element={<ServicesPage />} />
-                <Route path="/services/physiotherapy-home-services" element={<PhysiotherapyHomeService />} />
-                <Route path="/services/:id" element={<ServiceDetail />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/blog" element={<Articles />} />
-                <Route path="/blog/:id" element={<ArticleDetail />} />
-                <Route path="/gallery" element={<Gallery />} />
-                <Route path="/thank-you" element={<ThankYou />} />
+                {/* Main App Routes with Header/Footer */}
+                <Route path="*" element={
+                  <>
+                    <TopBar />
+                    <Navbar />
+                    <Routes>
+                      <Route path="/" element={<Home />} />
+                      <Route path="/social-media" element={<SocialLinksPage />} />
+                      <Route path="/about" element={<AboutPage />} />
+                      <Route path="/services" element={<ServicesPage />} />
+                      <Route path="/services/physiotherapy-home-services" element={<PhysiotherapyHomeService />} />
+                      <Route path="/services/:id" element={<ServiceDetail />} />
+                      <Route path="/contact" element={<Contact />} />
+                      <Route path="/blog" element={<Articles />} />
+                      <Route path="/blog/:id" element={<ArticleDetail />} />
+                      <Route path="/gallery" element={<Gallery />} />
+                      <Route path="/thank-you" element={<ThankYou />} />
+                    </Routes>
+                    <Footer />
+                    <FloatingContactButtons />
+                  </>
+                } />
               </Routes>
             </React.Suspense>
-
-            <Footer />
-            <FloatingContactButtons />
           </div>
         </Router>
       </ErrorBoundary>
