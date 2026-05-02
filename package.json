@@ -7,7 +7,7 @@
     "dev": "vite",
     "sitemap": "node scripts/generate-sitemap.mjs",
     "convert-images": "node scripts/convert-to-webp.mjs",
-    "build": "node scripts/generate-sitemap.mjs && vite build",
+    "build": "node scripts/generate-sitemap.mjs && vite build && node -e \"require('fs').copyFileSync('dist/index.html', 'dist/404.html')\"",
     "lint": "eslint .",
     "preview": "vite preview"
   },
