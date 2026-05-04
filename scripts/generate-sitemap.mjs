@@ -22,6 +22,7 @@ const staticPages = [
   { path: '/contact', changefreq: 'monthly', priority: '0.8' },
   { path: '/articles',changefreq: 'weekly',  priority: '0.8' },
   { path: '/gallery', changefreq: 'monthly', priority: '0.6' },
+  { path: '/social-media', changefreq: 'monthly', priority: '0.7' },
 ];
 
 // ─── SERVICES ────────────────────────────────────────

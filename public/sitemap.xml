@@ -46,6 +46,13 @@
     <priority>0.6</priority>
   </url>
 
+  <url>
+    <loc>https://drulhasorthopedic.com/social-media</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Total/Partial Joint Replacement -->
   <url>
     <loc>https://drulhasorthopedic.com/services/joint-pain-treatment</loc>
