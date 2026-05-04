@@ -58,6 +58,9 @@ function App() {
           <div className="min-h-screen bg-white font-sans text-gray-800">
             <React.Suspense fallback={<div className="min-h-screen flex items-center justify-center text-primary-600 font-bold">Loading...</div>}>
               <Routes>
+                {/* Standalone Social Media Page (No Navbar/Footer) */}
+                <Route path="/social-media" element={<SocialLinksPage />} />
+
                 {/* Main App Routes with Header/Footer */}
                 <Route path="*" element={
                   <>
@@ -65,7 +68,6 @@ function App() {
                     <Navbar />
                     <Routes>
                       <Route path="/" element={<Home />} />
-                      <Route path="/social-media" element={<SocialLinksPage />} />
                       <Route path="/about" element={<AboutPage />} />
                       <Route path="/services" element={<ServicesPage />} />
                       <Route path="/services/physiotherapy-home-services" element={<PhysiotherapyHomeService />} />
