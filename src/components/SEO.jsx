@@ -14,7 +14,7 @@ const SEO = ({
   twitterData2
 }) => {
   const siteName = 'Dr. Ulhas | Expert Orthopedic Surgeon';
-  const domain = 'orthopedic-specialist.com';
+  const domain = 'drulhasorthopedic.com';
   const baseUrl = `https://${domain}`;
   let fullUrl = url ? (url.startsWith('https') ? url : `${baseUrl}${url}`) : baseUrl;
   

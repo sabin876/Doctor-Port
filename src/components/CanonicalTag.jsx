@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-const BASE_URL = 'https://orthopedic-specialist.com';
+const BASE_URL = 'https://drulhasorthopedic.com';
 
 /**
  * CanonicalTag

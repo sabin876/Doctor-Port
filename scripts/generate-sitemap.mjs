@@ -11,7 +11,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const BASE_URL = 'https://orthopedic-specialist.com';
+const BASE_URL = 'https://drulhasorthopedic.com';
 const TODAY    = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
 
 // ─── STATIC / CORE PAGES ────────────────────────────────────────────────────
