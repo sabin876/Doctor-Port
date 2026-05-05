@@ -37,24 +37,16 @@ const SocialLinksPage = () => {
             textColor: 'text-white'
         },
         {
-            title: 'Call India Clinic (1)',
-            subtitle: '904920041 (India)',
-            url: `tel:${indiaPhone1}`,
+            title: 'Call India Clinic',
             icon: Phone,
-            bgClass: 'bg-gradient-to-r from-blue-600 to-blue-800',
+            bgClass: 'bg-gradient-to-r from-blue-600 to-blue-900',
             hoverClass: 'hover:shadow-blue-600/40',
             iconBg: 'bg-white/20',
-            textColor: 'text-white'
-        },
-        {
-            title: 'Call India Clinic (2)',
-            subtitle: '9049200061 (India)',
-            url: `tel:${indiaPhone2}`,
-            icon: Phone,
-            bgClass: 'bg-gradient-to-r from-blue-700 to-blue-900',
-            hoverClass: 'hover:shadow-blue-700/40',
-            iconBg: 'bg-white/20',
-            textColor: 'text-white'
+            textColor: 'text-white',
+            sublinks: [
+                { label: '904920041', url: `tel:${indiaPhone1}` },
+                { label: '9049200061', url: `tel:${indiaPhone2}` }
+            ]
         },
         {
             title: 'WhatsApp Consultation',
@@ -234,31 +226,60 @@ const SocialLinksPage = () => {
                 >
                     {contactLinks.map((link, index) => {
                         const Icon = link.icon;
+                        const isMulti = !!link.sublinks;
+                        
                         return (
-                            <motion.a
+                            <motion.div
                                 key={index}
                                 variants={itemVariants}
                                 whileHover={{ scale: 1.02, y: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                                href={link.url}
-                                target={link.url.startsWith('/') || link.url.startsWith('tel:') ? '_self' : '_blank'}
-                                rel={link.url.startsWith('/') || link.url.startsWith('tel:') ? '' : 'noopener noreferrer'}
+                                whileTap={isMulti ? {} : { scale: 0.98 }}
                                 className={`group flex items-center p-4 rounded-2xl shadow-lg transition-all duration-300 ${link.bgClass} ${link.hoverClass} overflow-hidden relative`}
                             >
                                 <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-300"></div>
+                                
+                                {/* For single links, make the whole card clickable */}
+                                {!isMulti && (
+                                    <a 
+                                        href={link.url}
+                                        target={link.url.startsWith('/') || link.url.startsWith('tel:') ? '_self' : '_blank'}
+                                        rel={link.url.startsWith('/') || link.url.startsWith('tel:') ? '' : 'noopener noreferrer'}
+                                        className="absolute inset-0 z-20"
+                                        aria-label={link.title}
+                                    />
+                                )}
+
                                 <div className={`flex-shrink-0 w-12 h-12 rounded-xl ${link.iconBg} flex items-center justify-center backdrop-blur-sm shadow-inner relative z-10`}>
                                     <Icon className={`w-6 h-6 ${link.textColor}`} />
                                 </div>
                                 <div className="ml-4 flex flex-col flex-grow relative z-10">
                                     <span className={`font-bold ${link.textColor} text-base md:text-lg tracking-tight`}>{link.title}</span>
-                                    {link.subtitle && (
-                                        <span className={`${link.textColor} opacity-80 text-xs font-medium mt-0.5`}>{link.subtitle}</span>
+                                    
+                                    {isMulti ? (
+                                        <div className="flex flex-wrap gap-2 mt-2">
+                                            {link.sublinks.map((sub, i) => (
+                                                <a 
+                                                    key={i}
+                                                    href={sub.url}
+                                                    className="bg-white/20 hover:bg-white/40 px-3 py-1.5 rounded-lg text-[10px] md:text-xs font-bold transition-all border border-white/10 text-white relative z-30"
+                                                >
+                                                    {sub.label}
+                                                </a>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        link.subtitle && (
+                                            <span className={`${link.textColor} opacity-80 text-xs font-medium mt-0.5`}>{link.subtitle}</span>
+                                        )
                                     )}
                                 </div>
-                                <div className="flex-shrink-0 ml-2 relative z-10">
-                                    <ArrowUpRight className={`w-5 h-5 ${link.textColor} opacity-50 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300`} />
-                                </div>
-                            </motion.a>
+                                
+                                {!isMulti && (
+                                    <div className="flex-shrink-0 ml-2 relative z-10">
+                                        <ArrowUpRight className={`w-5 h-5 ${link.textColor} opacity-50 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300`} />
+                                    </div>
+                                )}
+                            </motion.div>
                         );
                     })}
                 </motion.div>
