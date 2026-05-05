@@ -1,9 +1,11 @@
+import React, { useState, useEffect } from 'react';
 import gmcLogo from '../assets/gmc-logo-navbar.webp';
 import ebotLogo from '../assets/ebot-logo-navbar.webp';
 import logo from '../assets/logo.webp';
 import { Link as RouterLink } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { MapPin, Phone, Mail, Youtube, Instagram, Linkedin, Facebook, Twitter, ChevronRight } from 'lucide-react';
+import { api } from '../lib/api';
 
 const TikTokIcon = ({ size = 18 }) => (
     <svg 
@@ -19,6 +21,15 @@ const TikTokIcon = ({ size = 18 }) => (
 const Footer = () => {
     const { t } = useLanguage();
     const currentYear = new Date().getFullYear();
+    const [dynamicServices, setDynamicServices] = useState([]);
+
+    useEffect(() => {
+        api.getServices()
+            .then(data => {
+                setDynamicServices(data.slice(0, 6)); // Show top 6
+            })
+            .catch(err => console.error("Failed to fetch services for footer:", err));
+    }, []);
 
     return (
         <footer className="bg-[#04122d] text-white pt-24 pb-12 relative overflow-hidden border-t-[6px] border-primary-600 font-sans">
@@ -83,22 +94,20 @@ const Footer = () => {
                             <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
                         </h4>
                         <ul className="space-y-4 text-[15px] font-normal mt-4">
-                            {[
-                                { name: t('footer.serviceLinks.arthroscopy'), href: '/services/arthroscopy' },
-                                { name: t('footer.serviceLinks.sportsMedicine'), href: '/services/sports-medicine' },
-                                { name: t('footer.serviceLinks.roboticSurgery'), href: '/services/robotic-surgery' },
-                                { name: t('footer.serviceLinks.jointReplacement'), href: '/services/joint-pain-treatment' },
-                                { name: t('footer.serviceLinks.deformityCorrection'), href: '/services/deformity-correction' },
-                                { name: t('footer.serviceLinks.physiotherapy'), href: '/services/physiotherapy-home-services' },
-                                { name: t('footer.serviceLinks.more'), href: '/services' }
-                            ].map((service, idx) => (
+                            {dynamicServices.map((service, idx) => (
                                 <li key={idx}>
-                                    <RouterLink to={service.href} className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center group">
+                                    <RouterLink to={`/services/${service.slug}`} className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center group">
                                         <ChevronRight size={14} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-primary-500 transition-all duration-300 mr-2" />
-                                        <span className="whitespace-nowrap">{service.name}</span>
+                                        <span className="whitespace-nowrap">{service.title}</span>
                                     </RouterLink>
                                 </li>
                             ))}
+                            <li>
+                                <RouterLink to="/services" className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center group">
+                                    <ChevronRight size={14} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-primary-500 transition-all duration-300 mr-2" />
+                                    <span className="whitespace-nowrap">{t('footer.serviceLinks.more')}</span>
+                                </RouterLink>
+                            </li>
                         </ul>
                     </div>
 
@@ -111,8 +120,8 @@ const Footer = () => {
                         <ul className="space-y-4 text-[15px] font-normal mt-4">
                             {[
                                 { name: t('nav.home'), href: '/' },
-                                { name: t('nav.about'), href: '/#about' },
-                                { name: t('nav.services'), href: '/#services' },
+                                { name: t('nav.about'), href: '/about' },
+                                { name: t('nav.services'), href: '/services' },
                                 { name: t('nav.testimonials') || 'Testimonials', href: '/#testimonials' }
                             ].map((link, idx) => (
                                 <li key={idx}>

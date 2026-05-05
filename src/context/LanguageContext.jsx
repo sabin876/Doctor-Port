@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { translations } from '../translations';
+import { translations as staticTranslations } from '../translations';
+import { api } from '../lib/api';
 
 const LanguageContext = createContext();
 
@@ -16,6 +17,27 @@ export const LanguageProvider = ({ children }) => {
         const savedLang = localStorage.getItem('language');
         return (savedLang && ['EN', 'HI', 'AR'].includes(savedLang)) ? savedLang : 'EN';
     });
+    
+    const [dynamicTranslations, setDynamicTranslations] = useState({});
+    const [loading, setLoading] = useState(true);
+
+    // Fetch translations from API
+    useEffect(() => {
+        const fetchTranslations = async () => {
+            try {
+                const data = await api.getTranslations(language);
+                setDynamicTranslations(prev => ({
+                    ...prev,
+                    [language]: data
+                }));
+            } catch (error) {
+                console.error('Failed to fetch translations:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchTranslations();
+    }, [language]);
 
     // Save language to localStorage when it changes
     useEffect(() => {
@@ -31,22 +53,18 @@ export const LanguageProvider = ({ children }) => {
                 googleCombo.value = language.toLowerCase();
                 googleCombo.dispatchEvent(new Event('change'));
             } else {
-                // Wait for Google Translate to load if it's not ready
                 setTimeout(triggerGoogleTranslate, 500);
             }
         };
 
-        // Don't trigger if it's already in the target language (google translate might not be initialized yet)
         triggerGoogleTranslate();
     }, [language]);
 
     const t = (key) => {
         const keys = key.split('.');
         
-        // Try to get translation in current language, fallback to English
-        let value = translations[language];
-        
-        // If language or keys are missing in the current language, fallback to EN
+        // 1. Try Dynamic Translations (from Backend)
+        let value = dynamicTranslations[language];
         for (const k of keys) {
             if (value && typeof value === 'object') {
                 value = value[k];
@@ -56,9 +74,22 @@ export const LanguageProvider = ({ children }) => {
             }
         }
 
-        // Final fallback to English if not found in current language
+        // 2. Try Static Translations (Fallback)
         if (value === undefined || value === null) {
-            value = translations['EN'];
+            value = staticTranslations[language];
+            for (const k of keys) {
+                if (value && typeof value === 'object') {
+                    value = value[k];
+                } else {
+                    value = undefined;
+                    break;
+                }
+            }
+        }
+
+        // 3. Final Fallback to EN static
+        if (value === undefined || value === null) {
+            value = staticTranslations['EN'];
             for (const k of keys) {
                 if (value && typeof value === 'object') {
                     value = value[k];
@@ -74,7 +105,8 @@ export const LanguageProvider = ({ children }) => {
     const value = {
         language,
         setLanguage,
-        t
+        t,
+        loading
     };
 
     return (

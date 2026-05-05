@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SEO from './SEO';
 import heroImg from '../assets/doctor-surgery.webp';
 import { motion } from 'framer-motion';
@@ -6,9 +6,7 @@ import { Link } from 'react-router-dom';
 import { User, Calendar, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import Breadcrumbs from './ui/Breadcrumbs';
-import { articlesList } from '../constants/articlesData';
-
-// Articles data is now imported from constants/articlesData.js
+import { api } from '../lib/api';
 
 const container = {
     hidden: { opacity: 0 },
@@ -27,18 +25,21 @@ const item = {
 
 const Articles = () => {
     const { t } = useLanguage();
-    
-    // Debug logging to catch missing or malformed image paths
-    console.log('Articles Component Init');
-    console.log('articlesList raw:', articlesList);
-    
-    // Filter to ensure we only try to render valid articles
-    const validArticles = articlesList.filter(article => {
-        if (!article.image) {
-            console.warn(`Article missing image path: ${article.id}`);
-        }
-        return true; // We render anyway to see the grey placeholder and debug
-    });
+    const [articles, setArticles] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        api.getArticles()
+            .then(data => {
+                setArticles(data);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error("Failed to fetch articles:", err);
+                setLoading(false);
+            });
+    }, []);
 
     return (
         <main className="pt-20 min-h-screen bg-gray-50">
@@ -80,77 +81,80 @@ const Articles = () => {
                 </div>
 
                 {/* Articles Grid */}
-                <motion.div
-                    variants={container}
-                    initial="hidden"
-                    animate="show"
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                >
-                    {articlesList.map((article) => (
-                        <motion.div
-                            key={article.id}
-                            variants={item}
-                            whileHover={{ y: -8 }}
-                            className="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col"
-                        >
-                            <Link
-                                to={`/blog/${article.id}`}
-                                className="flex flex-col h-full"
+                {loading ? (
+                    <div className="flex justify-center py-20">
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+                    </div>
+                ) : (
+                    <motion.div
+                        variants={container}
+                        initial="hidden"
+                        animate="show"
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                    >
+                        {articles.map((article) => (
+                            <motion.div
+                                key={article.slug}
+                                variants={item}
+                                whileHover={{ y: -8 }}
+                                className="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col"
                             >
-                                {/* Image Container */}
-                                <div className="relative h-56 overflow-hidden bg-gray-200">
-                                    {article.image ? (
-                                        <img
-                                            src={article.image}
-                                            alt={article.title}
-                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                            onError={(e) => {
-                                                console.error(`Failed to load image for ${article.id}: ${article.image}`);
-                                                e.target.style.display = 'none';
-                                            }}
-                                        />
-                                    ) : (
-                                        <div className="w-full h-full flex items-center justify-center text-gray-400 text-[10px] p-4 text-center">
-                                            Topic: {article.title}
-                                        </div>
-                                    )}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                                    {/* Category Tag */}
-                                    <div className="absolute top-4 start-4">
-                                        <span className={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider ${article.categoryColor}`}>
-                                            {article.category}
-                                        </span>
-                                    </div>
-                                </div>
-
-                                {/* Content */}
-                                <div className="p-6 flex-1 flex flex-col">
-                                    <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-primary-600 transition-colors">
-                                        {article.title}
-                                    </h3>
-                                    <p className="text-gray-600 mb-4 flex-1 line-clamp-3 text-sm leading-relaxed">
-                                        {article.excerpt}
-                                    </p>
-
-                                    {/* Author & Date */}
-                                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                                        <div className="flex items-center gap-2">
-                                            <div className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center">
-                                                <User className="w-4 h-4 text-primary-600" />
+                                <Link
+                                    to={`/blog/${article.slug}`}
+                                    className="flex flex-col h-full"
+                                >
+                                    {/* Image Container */}
+                                    <div className="relative h-56 overflow-hidden bg-gray-200">
+                                        {article.image ? (
+                                            <img
+                                                src={article.image}
+                                                alt={article.image_alt_text || article.title}
+                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                loading="lazy"
+                                            />
+                                        ) : (
+                                            <div className="w-full h-full flex items-center justify-center text-gray-400 text-[10px] p-4 text-center">
+                                                Topic: {article.title}
                                             </div>
-                                            <span className="text-sm font-medium text-gray-700">{article.author}</span>
-                                        </div>
-                                        <div className="flex items-center gap-1.5 text-gray-500">
-                                            <Calendar className="w-4 h-4" />
-                                            <span className="text-xs">{article.date}</span>
+                                        )}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                                        {/* Category Tag */}
+                                        <div className="absolute top-4 start-4">
+                                            <span className={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider ${article.category_color}`}>
+                                                {article.category}
+                                            </span>
                                         </div>
                                     </div>
-                                </div>
-                            </Link>
-                        </motion.div>
-                    ))}
-                </motion.div>
+
+                                    {/* Content */}
+                                    <div className="p-6 flex-1 flex flex-col">
+                                        <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-primary-600 transition-colors">
+                                            {article.title}
+                                        </h3>
+                                        <p className="text-gray-600 mb-4 flex-1 line-clamp-3 text-sm leading-relaxed">
+                                            {article.excerpt}
+                                        </p>
+
+                                        {/* Author & Date */}
+                                        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                                            <div className="flex items-center gap-2">
+                                                <div className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center">
+                                                    <User className="w-4 h-4 text-primary-600" />
+                                                </div>
+                                                <span className="text-sm font-medium text-gray-700">{article.author}</span>
+                                            </div>
+                                            <div className="flex items-center gap-1.5 text-gray-500">
+                                                <Calendar className="w-4 h-4" />
+                                                <span className="text-xs">{article.date}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                )}
 
 
                 {/* CTA Section */}

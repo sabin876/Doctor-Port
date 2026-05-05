@@ -4,7 +4,7 @@ import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Calendar, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../assets/logo.webp';
-
+import { api } from '../lib/api';
 
 import { useLanguage } from '../context/LanguageContext';
 
@@ -15,11 +15,21 @@ const Navbar = () => {
     const [isLangOpen, setIsLangOpen] = useState(false);
     const [isServicesOpen, setIsServicesOpen] = useState(false);
     const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+    const [dynamicServices, setDynamicServices] = useState([]);
 
     const location = useLocation();
     const navigate = useNavigate();
 
     const isHome = location.pathname === '/';
+
+    useEffect(() => {
+        api.getServices()
+            .then(data => {
+                // Only show services that are marked for indexing (optional filter)
+                setDynamicServices(data);
+            })
+            .catch(err => console.error("Failed to fetch services for nav:", err));
+    }, []);
 
     const handleNavigation = (target, route = null) => {
         setIsOpen(false);
@@ -75,17 +85,6 @@ const Navbar = () => {
         { id: 'articles', name: 'Articles', path: '/blog', isRouterLink: true },
         { id: 'gallery', name: 'Gallery', path: '/gallery', isRouterLink: true },
         { id: 'contact', name: 'Contact', target: 'contact-form', route: '/contact', isRouterLink: false },
-    ];
-
-    const dropdownServices = [
-        { id: 'arthroscopy', name: t('footer.serviceLinks.arthroscopy'), path: '/services/arthroscopy' },
-        { id: 'sportsMedicine', name: t('footer.serviceLinks.sportsMedicine'), path: '/services/sports-medicine' },
-        { id: 'roboticSurgery', name: t('footer.serviceLinks.roboticSurgery'), path: '/services/robotic-surgery' },
-        { id: 'jointReplacement', name: t('footer.serviceLinks.jointReplacement'), path: '/services/joint-pain-treatment' },
-        { id: 'deformityCorrection', name: t('footer.serviceLinks.deformityCorrection'), path: '/services/deformity-correction' },
-        { id: 'physiotherapy', name: t('footer.serviceLinks.physiotherapy'), path: '/services/physiotherapy-home-services' },
-        { id: 'consultation', name: t('footer.serviceLinks.consultation'), path: '/services/consultation' },
-        { id: 'orthopedicTrauma', name: t('footer.serviceLinks.orthopedicTrauma'), path: '/services/orthopedic-trauma' }
     ];
 
     const languages = [
@@ -155,14 +154,14 @@ const Navbar = () => {
                                                 exit={{ opacity: 0, y: 15, scale: 0.95 }}
                                                 className={`absolute ${isRtl ? 'end-0' : 'start-0'} mt-3 w-64 bg-white border border-gray-100 rounded-2xl shadow-premium-hover overflow-hidden z-50 p-2`}
                                             >
-                                                {dropdownServices.map((service) => (
+                                                {dynamicServices.map((service) => (
                                                     <RouterLink
-                                                        key={service.id}
-                                                        to={service.path}
+                                                        key={service.slug}
+                                                        to={`/services/${service.slug}`}
                                                         onClick={() => setIsServicesOpen(false)}
                                                         className="flex items-center justify-between w-full px-4 py-3 text-[12px] font-montserrat font-bold rounded-xl transition-all duration-200 text-gray-700 hover:bg-primary-50 hover:text-primary-600 hover:pl-5 group/item"
                                                     >
-                                                        <span>{service.name}</span>
+                                                        <span>{service.title}</span>
                                                         <ChevronDown className={`w-3 h-3 ${isRtl ? 'rotate-90' : '-rotate-90'} opacity-0 group-hover/item:opacity-100 transition-all`} />
                                                     </RouterLink>
                                                 ))}
@@ -300,14 +299,14 @@ const Navbar = () => {
                                                     exit={{ height: 0, opacity: 0 }}
                                                     className="overflow-hidden flex flex-col items-center mt-4 space-y-4 w-full bg-gray-50/50 rounded-2xl py-4"
                                                 >
-                                                    {dropdownServices.map((service) => (
+                                                    {dynamicServices.map((service) => (
                                                         <RouterLink
-                                                            key={service.id}
-                                                            to={service.path}
+                                                            key={service.slug}
+                                                            to={`/services/${service.slug}`}
                                                             onClick={() => setIsOpen(false)}
                                                             className="text-[12px] font-montserrat font-bold text-gray-600 hover:text-primary-600 transition-colors uppercase tracking-widest"
                                                         >
-                                                            {service.name}
+                                                            {service.title}
                                                         </RouterLink>
                                                     ))}
                                                 </motion.div>

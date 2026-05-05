@@ -1,21 +1,69 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Clock, Calendar, ArrowLeft, ChevronLeft, Share2, Tag, PlayCircle, Activity, User, ShieldCheck, FileText, Bookmark, Share, Award, ArrowRight } from 'lucide-react';
+import { Clock, Calendar, ChevronLeft, Share2, Tag, Activity, User, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { api } from '../lib/api';
 import Breadcrumbs from './ui/Breadcrumbs';
 import SEO from './SEO';
-import { articles } from '../constants/articlesData';
+// import { articles } from '../constants/articlesData'; // No longer needed
 
 const ArticleDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { t } = useLanguage();
-    const article = articles[id];
+    const [article, setArticle] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [headings, setHeadings] = useState([]);
+    const [siteSettings, setSiteSettings] = useState(null);
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        const fetchData = async () => {
+            try {
+                const [articleData, settingsData] = await Promise.all([
+                    api.getArticle(id),
+                    api.getSiteSettings()
+                ]);
+                
+                setArticle(articleData);
+                setSiteSettings(settingsData);
+                
+                // Extract headings for TOC
+                const div = document.createElement('div');
+                div.innerHTML = articleData.content;
+                const hTags = div.querySelectorAll('h2, h3, h4');
+                setHeadings(Array.from(hTags).map((h, i) => ({
+                    id: `heading-${i}`,
+                    text: h.innerText,
+                    level: parseInt(h.tagName.substring(1))
+                })));
+                
+                setLoading(false);
+            } catch (err) {
+                console.error("Failed to fetch article data:", err);
+                setLoading(false);
+            }
+        };
+        fetchData();
     }, [id]);
+
+    const applyInternalLinks = (content) => {
+        if (!content || !siteSettings?.internal_linking_rules) return content;
+        let linkedContent = content;
+        const rules = siteSettings.internal_linking_rules;
+        
+        Object.keys(rules).forEach(keyword => {
+            // Regex to match keyword not already inside a link
+            const regex = new RegExp(`(?![^<]*>)\\b${keyword}\\b`, 'gi');
+            linkedContent = linkedContent.replace(regex, (match) => {
+                return `<a href="${rules[keyword]}" class="text-primary-600 hover:underline font-medium">${match}</a>`;
+            });
+        });
+        return linkedContent;
+    };
+
+    if (loading) return <div className="min-h-screen flex items-center justify-center text-primary-600 font-bold">Loading Article...</div>;
 
     if (!article) {
         return (
@@ -28,44 +76,14 @@ const ArticleDetail = () => {
         );
     }
 
-    const schemaList = [];
-    if (id === 'knee-pain-pillar') {
-        schemaList.push({
-            "@context": "https://schema.org",
-            "@type": "MedicalWebPage",
-            "name": "Knee Pain in Young Adults and Working Professionals",
-            "description": "Comprehensive guide to knee pain causes, MRI, treatment, and sports injuries.",
-            "author": { "@type": "Person", "name": "Dr Ulhas Sonar" },
-            "mainEntity": [
-                {
-                    "@type": "Question",
-                    "name": "When should knee pain be investigated with MRI?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "MRI is recommended when knee pain is associated with swelling, instability, locking, or persistent symptoms despite rehabilitation."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Is knee pain after gym serious?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Most cases are due to overload, but swelling or instability may indicate structural injury."
-                    }
-                }
-            ]
-        });
-    }
-
     return (
         <div className="min-h-screen bg-gray-50">
             <SEO 
-                title={article.metaTitle || `${article.title} | Dr. Ulhas Sonar`}
-                description={article.metaDescription || article.title}
+                title={article.meta_title || `${article.title} | Dr. Ulhas Sonar`}
+                description={article.meta_description || article.title}
                 url={`/blog/${id}`}
                 image={article.image}
                 type="article"
-                schemaList={schemaList}
                 twitterLabel1="Written by"
                 twitterData1={article.author || "Dr. Ulhas Sonar"}
                 twitterLabel2="Time to read"
@@ -84,8 +102,9 @@ const ArticleDetail = () => {
                 {article.image && (
                     <img
                         src={article.image}
-                        alt={article.title}
+                        alt={article.image_alt_text || article.title}
                         className="w-full h-full object-cover"
+                        loading="lazy"
                         onError={(e) => {
                             console.error(`Failed to load article detail image: ${article.image}`);
                             e.target.style.display = 'none';
@@ -103,7 +122,7 @@ const ArticleDetail = () => {
                                 {article.category}
                             </span>
                             <h1 className="text-2xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
-                                {article.title}
+                                {article.h1_title || article.title}
                             </h1>
                             <div className="flex flex-wrap items-center gap-4 md:gap-6 text-white/80 text-xs md:text-sm">
                                 <div className="flex items-center gap-2">
@@ -123,7 +142,6 @@ const ArticleDetail = () => {
                     </div>
                 </div>
 
-                {/* Back Button */}
                 <button
                     onClick={() => navigate('/blog')}
                     className="absolute top-6 left-6 md:top-8 md:left-8 p-2.5 md:p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all z-20"
@@ -135,17 +153,40 @@ const ArticleDetail = () => {
             {/* Content Section */}
             <div className="max-w-4xl mx-auto px-6 py-12 md:py-16">
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-                    {/* Share & Meta (Desktop Sidebar) */}
+                    {/* TOC & Share Sidebar */}
                     <div className="hidden lg:block">
-                        <div className="sticky top-32">
-                            <h4 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Share Article</h4>
-                            <div className="flex flex-col gap-4">
-                                <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-primary-50 hover:border-primary-200 hover:text-primary-600 transition-all">
-                                    <Share2 className="w-5 h-5" />
-                                </button>
-                                <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-primary-50 hover:border-primary-200 hover:text-primary-600 transition-all">
-                                    <Tag className="w-5 h-5" />
-                                </button>
+                        <div className="sticky top-32 space-y-12">
+                            {headings.length > 0 && (
+                                <div>
+                                    <h4 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Table of Contents</h4>
+                                    <nav className="flex flex-col gap-3">
+                                        {headings.map((h) => (
+                                            <a
+                                                key={h.id}
+                                                href={`#${h.id}`}
+                                                className={`text-sm text-gray-600 hover:text-primary-600 transition-colors ${h.level > 2 ? 'pl-4' : 'font-medium'}`}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    document.getElementById(h.id)?.scrollIntoView({ behavior: 'smooth' });
+                                                }}
+                                            >
+                                                {h.text}
+                                            </a>
+                                        ))}
+                                    </nav>
+                                </div>
+                            )}
+
+                            <div>
+                                <h4 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Share Article</h4>
+                                <div className="flex flex-col gap-4">
+                                    <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-primary-50 hover:border-primary-200 hover:text-primary-600 transition-all">
+                                        <Share2 className="w-5 h-5" />
+                                    </button>
+                                    <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-primary-50 hover:border-primary-200 hover:text-primary-600 transition-all">
+                                        <Tag className="w-5 h-5" />
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -155,11 +196,15 @@ const ArticleDetail = () => {
                         <article className="prose prose-sm md:prose-lg prose-primary max-w-none">
                             <div
                                 className="text-gray-700 leading-relaxed space-y-4 md:space-y-6"
-                                dangerouslySetInnerHTML={{ __html: article.content }}
+                                dangerouslySetInnerHTML={{ __html: applyInternalLinks(article.content).replace(/<(h[2-4])/g, (match, p1, offset) => {
+                                    const content = article.content;
+                                    const index = headings.findIndex(h => content.substring(offset).includes(h.text));
+                                    return `<${p1} id="heading-${index}"`;
+                                }).replace(/<img/g, '<img loading="lazy" class="rounded-2xl shadow-md"') }}
                             />
                         </article>
 
-                        {/* Relevant Treatments Section */}
+                        {/* Relevant Treatments */}
                         {article.relatedServiceIds && article.relatedServiceIds.length > 0 && (
                             <div className="mt-12 md:mt-16 pt-8 border-t border-gray-100">
                                 <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
@@ -183,15 +228,15 @@ const ArticleDetail = () => {
                             </div>
                         )}
 
-                        {/* Practical CTA */}
-                        <div className="mt-12 md:mt-16 p-6 md:p-8 rounded-3xl bg-gray-50 border border-gray-100 flex flex-col md:flex-row items-center justify-between gap-6">
+                        {/* CTA */}
+                        <div className="mt-12 md:mt-16 p-6 md:p-8 rounded-3xl bg-primary-600 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl shadow-primary-200">
                             <div>
-                                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">Need a consultation?</h3>
-                                <p className="text-sm md:text-base text-gray-600">Schedule an appointment with Dr. Ulhas for personalized care.</p>
+                                <h3 className="text-lg md:text-xl font-bold mb-2">Need a consultation?</h3>
+                                <p className="text-sm md:text-base text-white/80">Schedule an appointment with Dr. Ulhas for personalized care.</p>
                             </div>
                             <Link
                                 to="/contact"
-                                className="w-full md:w-auto px-8 py-4 bg-primary-600 text-white rounded-xl text-center font-bold hover:bg-primary-700 transition-all flex items-center justify-center gap-2 whitespace-nowrap"
+                                className="w-full md:w-auto px-8 py-4 bg-white text-primary-600 rounded-xl text-center font-bold hover:bg-gray-50 transition-all flex items-center justify-center gap-2 whitespace-nowrap"
                             >
                                 Book Visit <ArrowRight className="w-5 h-5" />
                             </Link>
@@ -200,35 +245,7 @@ const ArticleDetail = () => {
                 </div>
             </div>
 
-            {/* Related Articles (Simplified) */}
-            <div className="bg-gray-50 py-16">
-                <div className="max-w-4xl mx-auto px-6">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-8">More Articles</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {Object.entries(articles)
-                            .filter(([key]) => key !== id)
-                            .slice(0, 2)
-                            .map(([key, item]) => (
-                                <Link
-                                    key={key}
-                                    to={`/blog/${key}`}
-                                    className="group bg-white p-6 rounded-2xl border border-gray-100 hover:border-primary-200 hover:shadow-lg transition-all"
-                                >
-                                    <span className="text-[10px] font-bold text-primary-600 uppercase tracking-widest block mb-2">{item.category}</span>
-                                    <h4 className="font-bold text-gray-900 group-hover:text-primary-600 transition-colors line-clamp-1">{item.title}</h4>
-                                </Link>
-                            ))}
-                    </div>
-                    <div className="mt-12 flex justify-center">
-                        <button
-                            onClick={() => navigate('/blog')}
-                            className="text-primary-600 font-bold flex items-center gap-2 hover:underline"
-                        >
-                            <ArrowRight className="w-5 h-5 rotate-180" /> View All Blog Posts
-                        </button>
-                    </div>
-                </div>
-            </div>
+            {/* More Articles could be fetched here, but for now we hide to prevent crash */}
         </div>
     );
 };

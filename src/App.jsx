@@ -9,6 +9,8 @@ import Footer from './components/Footer';
 import FloatingContactButtons from './components/FloatingContactButtons';
 import TrailingSlashRedirect from './components/ui/TrailingSlashRedirect';
 import CanonicalTag from './components/CanonicalTag';
+import SEOWrapper from './components/SEOWrapper';
+import HtmlSitemap from './components/HtmlSitemap';
 
 // Lazy loaded page components
 const Home = React.lazy(() => import('./components/Home'));
@@ -22,6 +24,7 @@ const ArticleDetail = React.lazy(() => import('./components/ArticleDetail'));
 const Gallery = React.lazy(() => import('./components/Gallery'));
 const ThankYou = React.lazy(() => import('./components/ThankYou'));
 const SocialLinksPage = React.lazy(() => import('./components/SocialLinksPage'));
+const Login = React.lazy(() => import('./components/Login'));
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -55,45 +58,45 @@ function App() {
         <Router>
           <TrailingSlashRedirect />
           <CanonicalTag />
-          <div className="min-h-screen bg-white font-sans text-gray-800">
-            <React.Suspense fallback={<div className="min-h-screen flex items-center justify-center text-primary-600 font-bold">Loading...</div>}>
-              <Routes>
-                {/* Standalone Social Media Page (No Navbar/Footer) */}
-                <Route path="/social-media" element={<SocialLinksPage />} />
+          <SEOWrapper>
+            <div className="min-h-screen bg-white font-sans text-gray-800">
+              <React.Suspense fallback={<div className="min-h-screen flex items-center justify-center text-primary-600 font-bold">Loading...</div>}>
+                <Routes>
+                  {/* Standalone Social Media Page (No Navbar/Footer) */}
+                  <Route path="/social-media" element={<SocialLinksPage />} />
 
-                {/* Main App Routes with Header/Footer */}
-                <Route path="*" element={
-                  <>
-                    <TopBar />
-                    <Navbar />
-                    <Routes>
-                      <Route path="/" element={<Home />} />
-                      <Route path="/about" element={<AboutPage />} />
-                      <Route path="/services" element={<ServicesPage />} />
-                      <Route path="/services/physiotherapy-home-services" element={<PhysiotherapyHomeService />} />
-                      <Route path="/services/:id" element={<ServiceDetail />} />
-                      <Route path="/contact" element={<Contact />} />
-                      <Route path="/blog" element={<Articles />} />
-                      <Route path="/blog/:id" element={<ArticleDetail />} />
-                      <Route path="/gallery" element={<Gallery />} />
-                      <Route path="/thank-you" element={<ThankYou />} />
-                    </Routes>
-                    <Footer />
-                    <FloatingContactButtons />
-                  </>
-                } />
-              </Routes>
-            </React.Suspense>
-          </div>
+                  {/* Main App Routes with Header/Footer */}
+                  <Route path="*" element={
+                    <>
+                      <TopBar />
+                      <Navbar />
+                      <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/about" element={<AboutPage />} />
+                        <Route path="/services" element={<ServicesPage />} />
+                        <Route path="/services/physiotherapy-home-services" element={<PhysiotherapyHomeService />} />
+                        <Route path="/services/:id" element={<ServiceDetail />} />
+                        <Route path="/contact" element={<Contact />} />
+                        <Route path="/blog" element={<Articles />} />
+                        <Route path="/blog/:id" element={<ArticleDetail />} />
+                        <Route path="/gallery" element={<Gallery />} />
+                        <Route path="/thank-you" element={<ThankYou />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/sitemap" element={<HtmlSitemap />} />
+                      </Routes>
+                      <Footer />
+                      <FloatingContactButtons />
+                    </>
+                  } />
+                </Routes>
+              </React.Suspense>
+            </div>
+          </SEOWrapper>
         </Router>
       </ErrorBoundary>
     </HelmetProvider>
   );
 }
-
-
-
-
 
 export default App;
 
