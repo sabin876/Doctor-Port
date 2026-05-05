@@ -9,9 +9,9 @@ const TopBar = () => {
 
                 {/* Contact Info & Address */}
                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 md:gap-6 opacity-95 w-full md:w-auto text-center md:text-left">
-                    <a href="tel:+971551053445" className="flex items-center gap-1.5 hover:text-white/80 transition-colors">
+                    <a href="tel:+971556319379" className="flex items-center gap-1.5 hover:text-white/80 transition-colors">
                         <Phone className="w-3.5 h-3.5" />
-                        <span className="whitespace-nowrap">{t('topBar.phone')}: +971 55 105 3445</span>
+                        <span className="whitespace-nowrap">{t('topBar.phone')}: +971 55 631 9379</span>
                     </a>
 
                     <a href="mailto:Kneeshoulderhip@gmail.com" className="hidden lg:flex items-center gap-1.5 hover:text-white/80 transition-colors">

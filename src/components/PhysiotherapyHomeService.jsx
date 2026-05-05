@@ -88,14 +88,14 @@ const PhysiotherapyHomeService = () => {
                         {/* Dual Action Buttons */}
                         <div className="flex flex-col sm:flex-row items-center gap-4">
                             <a 
-                                href="tel:+971551053445"
+                                href="tel:+971556319379"
                                 className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-[#003B73] text-white font-normal text-[11px] uppercase tracking-[0.2em] rounded-2xl shadow-xl shadow-primary-200 hover:bg-[#002B55] hover:shadow-2xl hover:shadow-primary-300 active:scale-95 transition-all duration-300"
                             >
                                 <Phone size={18} />
                                 {content.ctas.call}
                             </a>
                             <a 
-                                href="https://wa.me/971551053445"
+                                href="https://wa.me/971556319379"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-[#25D366] text-white font-normal text-[11px] uppercase tracking-[0.2em] rounded-2xl shadow-lg shadow-emerald-100 hover:bg-[#1eb954] hover:shadow-xl active:scale-95 transition-all duration-300"
@@ -353,14 +353,14 @@ const PhysiotherapyHomeService = () => {
                             
                             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                                 <a 
-                                    href="tel:+971551053445"
+                                    href="tel:+971556319379"
                                     className="w-full sm:w-auto flex items-center justify-center gap-3 py-5 px-12 bg-[#003B73] text-white font-normal text-[12px] uppercase tracking-[0.2em] rounded-[2rem] shadow-2xl shadow-primary-200 hover:bg-[#002B55] hover:-translate-y-1 active:scale-95 transition-all duration-300"
                                 >
                                     <Phone size={18} />
                                     Call Us Now
                                 </a>
                                 <a 
-                                    href="https://wa.me/971551053445"
+                                    href="https://wa.me/971556319379"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="w-full sm:w-auto flex items-center justify-center gap-3 py-5 px-12 bg-[#25D366] text-white font-normal text-[12px] uppercase tracking-[0.2em] rounded-[2rem] shadow-xl shadow-emerald-100 hover:bg-[#1eb954] hover:-translate-y-1 active:scale-95 transition-all duration-300"

@@ -117,7 +117,7 @@ const SEO = ({
             "image": absoluteImage,
             "@id": baseUrl,
             "url": baseUrl,
-            "telephone": "+971551053445",
+            "telephone": "+971556319379",
             "medicalSpecialty": "Orthopedic",
             "address": {
               "@type": "PostalAddress",
