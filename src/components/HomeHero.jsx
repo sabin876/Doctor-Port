@@ -6,8 +6,8 @@ import { CardContainer, CardBody, CardItem } from './ui/3d-card';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
-import doctorSurgery from '../assets/doctor-surgery.png';
-import doctorPortrait from '../assets/doctor-hero.jpeg';
+import doctorSurgery from '../assets/doctor-surgery.webp';
+import doctorPortrait from '../assets/Doctor Photo.webp';
 
 /* ── Animated number counter ── */
 const AnimatedCounter = ({ value, suffix, trigger }) => {
