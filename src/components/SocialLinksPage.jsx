@@ -50,7 +50,7 @@ const SocialLinksPage = () => {
         },
         {
             title: t('socialMedia.whatsapp'),
-            subtitle: t('socialMedia.whatsappSubtitle'),
+            subtitle: '+971 55 631 9379',
             url: whatsappLink,
             icon: MessageCircle,
             bgClass: 'bg-gradient-to-r from-[#128C7E] to-[#25D366]',
