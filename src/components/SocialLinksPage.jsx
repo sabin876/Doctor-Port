@@ -19,17 +19,40 @@ const TikTokIcon = ({ className }) => (
 const SocialLinksPage = () => {
     const { t } = useLanguage();
     
-    const phoneNumber = "+971551053445";
-    const whatsappLink = `https://wa.me/971551053445?text=Hello%20Dr.%20Ulhas,%20I%20would%20like%20to%20book%20an%20orthopedic%20consultation.`;
+    const dubaiPhone = "+971551053445";
+    const indiaPhone1 = "904920041";
+    const indiaPhone2 = "9049200061";
+    
+    const whatsappLink = `https://wa.me/${dubaiPhone.replace(/\+/g, '')}?text=Hello%20Dr.%20Ulhas,%20I%20would%20like%20to%20book%20an%20orthopedic%20consultation.`;
 
     const contactLinks = [
         {
-            title: 'Call Clinic Now',
+            title: 'Call Dubai Clinic',
             subtitle: '+971 55 105 3445',
-            url: `tel:${phoneNumber}`,
+            url: `tel:${dubaiPhone}`,
             icon: Phone,
             bgClass: 'bg-gradient-to-r from-primary-600 to-primary-800',
             hoverClass: 'hover:shadow-primary-600/40',
+            iconBg: 'bg-white/20',
+            textColor: 'text-white'
+        },
+        {
+            title: 'Call India Clinic (1)',
+            subtitle: '904920041 (India)',
+            url: `tel:${indiaPhone1}`,
+            icon: Phone,
+            bgClass: 'bg-gradient-to-r from-blue-600 to-blue-800',
+            hoverClass: 'hover:shadow-blue-600/40',
+            iconBg: 'bg-white/20',
+            textColor: 'text-white'
+        },
+        {
+            title: 'Call India Clinic (2)',
+            subtitle: '9049200061 (India)',
+            url: `tel:${indiaPhone2}`,
+            icon: Phone,
+            bgClass: 'bg-gradient-to-r from-blue-700 to-blue-900',
+            hoverClass: 'hover:shadow-blue-700/40',
             iconBg: 'bg-white/20',
             textColor: 'text-white'
         },

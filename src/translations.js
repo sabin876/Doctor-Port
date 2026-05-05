@@ -55,14 +55,16 @@ export const translations = {
                     headline1: "Restore Your",
                     headline2: "Life",
                     description: "With more than 15+ years of global experience across UK, India, Jersey Island and Dubai in trauma and orthopedic surgery. Delivering world-class care in knee, hip, shoulder and complex trauma.",
-                    nameplateSub: "Orthopedic Specialist"
+                    nameplateSub: "Orthopedic Specialist",
+                    badgeOutcomes: "Consistently Excellent Outcomes with a strong success record"
                 },
                 {
                     badge: "MBBS, MS Ortho, M Ch Ortho, FRCS (T&O)",
                     headline1: "Precision",
                     headline2: "Ortho",
                     description: "A fellow of the Royal College of Surgeons with over 15 years of global experience. Specializing in robotic-assisted knee replacement and minimally invasive procedures.",
-                    nameplateSub: "Orthopedic Surgeon"
+                    nameplateSub: "Orthopedic Surgeon",
+                    badgeOutcomes: "Consistently Excellent Outcomes with a strong success record"
                 }
             ]
         },
@@ -521,14 +523,16 @@ export const translations = {
                     headline1: "अपने जीवन को",
                     headline2: "बहाल करें",
                     description: "ट्रॉमा और आर्थोपेडिक सर्जरी में यूके, भारत, जर्सी आइलैंड और दुबई में 15+ वर्षों के वैश्विक अनुभव के साथ। घुटने, कूल्हे, कंधे और जटिल ट्रॉमा में विश्व स्तरीय देखभाल प्रदान करना।",
-                    nameplateSub: "आर्थोपेडिक विशेषज्ञ"
+                    nameplateSub: "आर्थोपेडिक विशेषज्ञ",
+                    badgeOutcomes: "मजबूत सफलता रिकॉर्ड के साथ लगातार उत्कृष्ट परिणाम"
                 },
                 {
                     badge: "MBBS, MS Ortho, M Ch Ortho, FRCS (T&O)",
                     headline1: "सटीक",
                     headline2: "आर्थो",
                     description: "15 वर्षों से अधिक के वैश्विक अनुभव के साथ रॉयल कॉलेज ऑफ सर्जन्स के फेलो। रोबोटिक-सहायता प्राप्त घुटना प्रतिस्थापन और न्यूनतम आक्रामक प्रक्रियाओं में विशेषज्ञता।",
-                    nameplateSub: "आर्थोपेडिक सर्जन"
+                    nameplateSub: "आर्थोपेडिक सर्जन",
+                    badgeOutcomes: "मजबूत सफलता रिकॉर्ड के साथ लगातार उत्कृष्ट परिणाम"
                 }
             ]
         },

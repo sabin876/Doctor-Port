@@ -101,7 +101,7 @@ const HomeHero = () => {
             headline1: t('hero.slides.0.headline1'),
             headline2: t('hero.slides.0.headline2'),
             description: t('hero.slides.0.description'),
-            badgeValue: '100%',
+            badgeOutcomes: t('hero.slides.0.badgeOutcomes'),
             nameplateSub: t('hero.slides.0.nameplateSub'),
             stats: allStats,
         },
@@ -113,7 +113,7 @@ const HomeHero = () => {
             headline1: t('hero.slides.1.headline1'),
             headline2: t('hero.slides.1.headline2'),
             description: t('hero.slides.1.description'),
-            badgeValue: '100%',
+            badgeOutcomes: t('hero.slides.1.badgeOutcomes'),
             nameplateSub: t('hero.slides.1.nameplateSub'),
             stats: allStats,
         },
@@ -302,8 +302,8 @@ const HomeHero = () => {
                                             <CheckCircle2 className="w-5 h-5 text-emerald-600" />
                                         </div>
                                         <div>
-                                            <p className="text-[10px] text-slate-400 font-black tracking-widest leading-none mb-1">SUCCESS RATE</p>
-                                            <p className="text-slate-900 text-lg font-black leading-none">{slide.badgeValue}</p>
+                                            <p className="text-[10px] text-slate-400 font-black tracking-widest leading-none mb-1">OUTCOMES</p>
+                                            <p className="text-slate-900 text-[11px] font-black leading-tight max-w-[150px]">{slide.badgeOutcomes}</p>
                                         </div>
                                     </div>
                                 </CardItem>
