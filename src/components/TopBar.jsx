@@ -27,7 +27,7 @@ const TopBar = () => {
 
                 {/* Social Icons */}
                 <div className="hidden md:flex items-center gap-4 ps-6 border-s border-white/10 ms-6">
-                    <a href="https://www.youtube.com/@orthopaedictutorials2135" target="_blank" rel="noreferrer" className="hover:text-white/80 transition-colors">
+                    <a href="https://youtu.be/hX73EZA8eps?si=VxpSILzlZuVGQpwc" target="_blank" rel="noreferrer" className="hover:text-white/80 transition-colors">
                         <Youtube className="w-4 h-4" />
                     </a>
                     <a href="https://linkedin.com/in/ulhassonarortho" target="_blank" rel="noreferrer" className="hover:text-white/80 transition-colors">

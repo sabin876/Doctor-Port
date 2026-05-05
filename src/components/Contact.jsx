@@ -97,7 +97,7 @@ const Contact = () => {
                                 <SocialIcon href="https://x.com/jointsurgeon" icon={<Twitter size={18} className="fill-current" />} />
                                 <SocialIcon href="https://www.instagram.com/drulhasortho.1/" icon={<Instagram size={18} />} />
                                 <SocialIcon href="https://linkedin.com/in/ulhassonarortho" icon={<Linkedin size={18} className="fill-current" />} />
-                                <SocialIcon href="https://www.youtube.com/@orthopaedictutorials2135" icon={<Youtube size={18} className="fill-current" />} />
+                                <SocialIcon href="https://youtu.be/hX73EZA8eps?si=VxpSILzlZuVGQpwc" icon={<Youtube size={18} className="fill-current" />} />
                             </div>
                         </div>
                     </div>

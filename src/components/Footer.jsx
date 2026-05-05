@@ -67,7 +67,7 @@ const Footer = () => {
                         {/* Social Links */}
                         <div className="flex gap-4">
                             {[
-                                { Icon: Youtube, label: 'YouTube', href: 'https://www.youtube.com/@orthopaedictutorials2135' },
+                                { Icon: Youtube, label: 'YouTube', href: 'https://youtu.be/hX73EZA8eps?si=VxpSILzlZuVGQpwc' },
                                 { Icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/drulhasortho.1/' },
                                 { Icon: Twitter, label: 'X (Twitter)', href: 'https://x.com/jointsurgeon' },
                                 { Icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/ulhassonarortho' },

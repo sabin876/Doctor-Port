@@ -79,7 +79,7 @@ const SocialLinksPage = () => {
         },
         {
             title: 'YouTube',
-            url: 'https://www.youtube.com/@orthopaedictutorials2135',
+            url: 'https://youtu.be/hX73EZA8eps?si=VxpSILzlZuVGQpwc',
             icon: Youtube,
             color: 'group-hover:text-[#FF0000]'
         },
