@@ -27,7 +27,7 @@ const SocialLinksPage = () => {
 
     const contactLinks = [
         {
-            title: 'Call Dubai Clinic',
+            title: t('socialMedia.callDubai'),
             subtitle: '+971 55 105 3445',
             url: `tel:${dubaiPhone}`,
             icon: Phone,
@@ -37,7 +37,7 @@ const SocialLinksPage = () => {
             textColor: 'text-white'
         },
         {
-            title: 'Call India Clinic',
+            title: t('socialMedia.callIndia'),
             icon: Phone,
             bgClass: 'bg-gradient-to-r from-blue-600 to-blue-900',
             hoverClass: 'hover:shadow-blue-600/40',
@@ -49,8 +49,8 @@ const SocialLinksPage = () => {
             ]
         },
         {
-            title: 'WhatsApp Consultation',
-            subtitle: 'Direct message for appointments',
+            title: t('socialMedia.whatsapp'),
+            subtitle: t('socialMedia.whatsappSubtitle'),
             url: whatsappLink,
             icon: MessageCircle,
             bgClass: 'bg-gradient-to-r from-[#128C7E] to-[#25D366]',
@@ -59,8 +59,8 @@ const SocialLinksPage = () => {
             textColor: 'text-white'
         },
         {
-            title: 'Visit Official Website',
-            subtitle: 'Explore services & treatments',
+            title: t('socialMedia.website'),
+            subtitle: t('socialMedia.websiteSubtitle'),
             url: '/',
             icon: Globe,
             bgClass: 'bg-white/10 backdrop-blur-md border border-white/20',
@@ -132,8 +132,8 @@ const SocialLinksPage = () => {
         if (navigator.share) {
             try {
                 await navigator.share({
-                    title: 'Dr. Ulhas Sonar - Social Links',
-                    text: 'Connect with Dr. Ulhas Sonar, Orthopedic Surgeon in Dubai.',
+                    title: `${t('common.doctorName')} - Social Links`,
+                    text: t('socialMedia.shareText'),
                     url: window.location.href,
                 });
             } catch (err) {
@@ -142,15 +142,15 @@ const SocialLinksPage = () => {
         } else {
             // Fallback: copy to clipboard
             navigator.clipboard.writeText(window.location.href);
-            alert('Link copied to clipboard!');
+            alert(t('socialMedia.copySuccess'));
         }
     };
 
     return (
         <div className="min-h-screen bg-[#04122d] text-white flex flex-col relative overflow-hidden font-sans pt-8 pb-16 px-4 md:px-6">
             <Helmet>
-                <title>Connect with Dr. Ulhas Sonar | Social Media & Contact Links</title>
-                <meta name="description" content="Connect with Dr. Ulhas Sonar across all social media platforms and contact the clinic directly for orthopaedic consultations in Dubai." />
+                <title>{t('socialMedia.title')} | {t('common.doctorName')}</title>
+                <meta name="description" content={t('socialMedia.description')} />
             </Helmet>
 
             {/* Dynamic Background Elements */}
@@ -213,7 +213,7 @@ const SocialLinksPage = () => {
                         {t('common.specialty')}
                     </p>
                     <p className="text-gray-300 text-sm font-normal leading-relaxed max-w-sm">
-                        Precise orthopaedic surgical care delivered with integrity and an evidence-based approach in Dubai, UAE.
+                        {t('socialMedia.description')}
                     </p>
                 </motion.div>
 
