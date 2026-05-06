@@ -8,10 +8,14 @@
 import { writeFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const BASE_URL = 'https://drulhasorthopedic.com';
+// Load .env from project root
+dotenv.config({ path: resolve(__dirname, '../.env') });
+
+const BASE_URL = process.env.VITE_SITE_URL || 'https://drulhasorthopedic.com';
 const TODAY    = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
 
 // ─── STATIC / CORE PAGES ────────────────────────────────────────────────────

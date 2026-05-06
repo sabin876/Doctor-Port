@@ -111,14 +111,14 @@ const ServiceDetail = () => {
 
                         <div className="flex flex-col sm:flex-row items-center gap-4">
                             <a 
-                                href="tel:+971556319379"
+                                href={`tel:${import.meta.env.VITE_CONTACT_PHONE}`}
                                 className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-[#003B73] text-white font-normal text-[11px] uppercase tracking-[0.2em] rounded-2xl shadow-xl shadow-primary-200 hover:bg-[#002B55] hover:shadow-2xl hover:shadow-primary-300 active:scale-95 transition-all duration-300"
                             >
                                 <Phone size={18} />
                                 Call Us Now
                             </a>
                             <a 
-                                href="https://wa.me/971556319379"
+                                href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER?.replace(/[^0-9]/g, '')}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-[#25D366] text-white font-normal text-[11px] uppercase tracking-[0.2em] rounded-2xl shadow-lg shadow-emerald-100 hover:bg-[#1eb954] active:scale-95 transition-all duration-300"

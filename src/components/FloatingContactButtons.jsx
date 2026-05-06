@@ -7,8 +7,8 @@ const FloatingContactButtons = () => {
     const { language, t } = useLanguage();
     const navigate = useNavigate();
     const isRtl = language === 'AR';
-    const phoneNumber = "+971556319379";
-    const whatsappNumber = "+971556319379";
+    const phoneNumber = import.meta.env.VITE_CONTACT_PHONE || "+971556319379";
+    const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "+971556319379";
 
     const handleBookingClick = (e) => {
         e.preventDefault();

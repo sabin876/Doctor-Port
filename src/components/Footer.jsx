@@ -180,7 +180,7 @@ const Footer = () => {
                                     <Phone size={22} strokeWidth={1.5} />
                                 </div>
                                 <div className="flex flex-col justify-center">
-                                    <span className="text-white font-normal tracking-tight whitespace-nowrap text-lg">+971 55 631 9379</span>
+                                    <span className="text-white font-normal tracking-tight whitespace-nowrap text-lg">{import.meta.env.VITE_CONTACT_PHONE}</span>
                                     <span className="text-primary-500 text-[10px] font-normal uppercase tracking-[0.2em] mt-0.5">{t('footer.emergency')}</span>
                                 </div>
                             </li>

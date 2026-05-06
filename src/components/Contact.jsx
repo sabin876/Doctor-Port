@@ -46,7 +46,7 @@ const Contact = () => {
                             </div>
                             <div>
                                 <h3 className="text-[#1e293b] font-bold text-base mb-1">Phone</h3>
-                                <a href="tel:+971556319379" className="text-[#0d52bc] font-semibold text-lg block leading-tight mb-1">+971 55 631 9379</a>
+                                <a href={`tel:${import.meta.env.VITE_CONTACT_PHONE}`} className="text-[#0d52bc] font-semibold text-lg block leading-tight mb-1">{import.meta.env.VITE_CONTACT_PHONE}</a>
                                 <a href="tel:904920041" className="text-[#0d52bc] font-semibold text-lg block leading-tight mb-1">904920041 (India)</a>
                                 <a href="tel:9049200061" className="text-[#0d52bc] font-semibold text-lg block leading-tight mb-2">9049200061 (India)</a>
                                 <p className="text-gray-400 text-sm">Available for appointments</p>
@@ -60,7 +60,7 @@ const Contact = () => {
                             </div>
                             <div>
                                 <h3 className="text-[#1e293b] font-bold text-base mb-1">Email</h3>
-                                <a href="mailto:Kneeshoulderhip@gmail.com" className="text-[#0d52bc] font-semibold text-base block mb-1 truncate max-w-[200px] sm:max-w-full">Kneeshoulderhip@gmail.com</a>
+                                <a href={`mailto:${import.meta.env.VITE_CONTACT_EMAIL}`} className="text-[#0d52bc] font-semibold text-base block mb-1 truncate max-w-[200px] sm:max-w-full">{import.meta.env.VITE_CONTACT_EMAIL}</a>
                                 <p className="text-gray-400 text-sm">Online support available</p>
                             </div>
                         </div>
