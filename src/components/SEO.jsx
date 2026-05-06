@@ -16,10 +16,12 @@ const SEO = ({
   const siteName = 'Dr. Ulhas | Expert Orthopedic Surgeon';
   const domain = 'drulhasorthopedic.com';
   const baseUrl = `https://${domain}`;
-  let fullUrl = url ? (url.startsWith('https') ? url : `${baseUrl}${url}`) : baseUrl;
+  const safeUrl = url || '';
+  let fullUrl = safeUrl ? (safeUrl.startsWith('https') ? safeUrl : `${baseUrl}${safeUrl}`) : baseUrl;
   
   // Ensure image is an absolute URL for social scrapers
-  const absoluteImage = image.startsWith('http') ? image : `${baseUrl}${image.startsWith('/') ? '' : '/'}${image}`;
+  const safeImage = image || 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1200';
+  const absoluteImage = safeImage.startsWith('http') ? safeImage : `${baseUrl}${safeImage.startsWith('/') ? '' : '/'}${safeImage}`;
 
   // Ensure the URL does NOT end with a trailing slash for consistency (unless it's exactly the base URL)
   if (fullUrl.endsWith('/') && fullUrl !== baseUrl && fullUrl !== baseUrl + '/') {
