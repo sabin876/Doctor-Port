@@ -50,17 +50,74 @@ const ArticleDetail = () => {
 
     const applyInternalLinks = (content) => {
         if (!content || !siteSettings?.internal_linking_rules) return content;
-        let linkedContent = content;
         const rules = siteSettings.internal_linking_rules;
-        
-        Object.keys(rules).forEach(keyword => {
-            // Regex to match keyword not already inside a link
-            const regex = new RegExp(`(?![^<]*>)\\b${keyword}\\b`, 'gi');
-            linkedContent = linkedContent.replace(regex, (match) => {
-                return `<a href="${rules[keyword]}" class="text-primary-600 hover:underline font-medium">${match}</a>`;
-            });
-        });
-        return linkedContent;
+        const keywords = Object.keys(rules);
+        if (keywords.length === 0) return content;
+
+        try {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(`<div>${content}</div>`, 'text/html');
+            const root = doc.body.firstChild;
+
+            const processNode = (node) => {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    const text = node.nodeValue;
+                    let hasChanges = false;
+                    const sortedKeywords = [...keywords].sort((a, b) => b.length - a.length);
+                    
+                    let htmlContent = text;
+                    sortedKeywords.forEach(keyword => {
+                        const escapedKeyword = keyword.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                        const regex = new RegExp(`\\b${escapedKeyword}\\b`, 'gi');
+                        htmlContent = htmlContent.replace(regex, (match) => {
+                            hasChanges = true;
+                            return `###LINK###${keyword}###SPLIT###${match}###ENDLINK###`;
+                        });
+                    });
+                    
+                    if (hasChanges) {
+                        const fragment = document.createDocumentFragment();
+                        const parts = htmlContent.split(/(###LINK###.*?###ENDLINK###)/);
+                        parts.forEach(part => {
+                            if (part.startsWith('###LINK###')) {
+                                const matchData = part.match(/###LINK###(.*?)###SPLIT###(.*?)###ENDLINK###/);
+                                if (matchData) {
+                                    const kw = matchData[1];
+                                    const matchText = matchData[2];
+                                    const anchor = document.createElement('a');
+                                    anchor.href = rules[kw];
+                                    anchor.className = "text-[#0284c7] hover:underline font-semibold";
+                                    anchor.textContent = matchText;
+                                    fragment.appendChild(anchor);
+                                }
+                            } else {
+                                fragment.appendChild(document.createTextNode(part));
+                            }
+                        });
+                        return fragment;
+                    }
+                    return null;
+                } else if (node.nodeType === Node.ELEMENT_NODE) {
+                    if (node.tagName.toLowerCase() === 'a') {
+                        return null;
+                    }
+                    const children = Array.from(node.childNodes);
+                    children.forEach(child => {
+                        const replacement = processNode(child);
+                        if (replacement) {
+                            node.replaceChild(replacement, child);
+                        }
+                    });
+                }
+                return null;
+            };
+
+            processNode(root);
+            return root.innerHTML;
+        } catch (e) {
+            console.error("Error applying internal links:", e);
+            return content;
+        }
     };
 
     if (loading) return <div className="min-h-screen flex items-center justify-center text-primary-600 font-bold">Loading Article...</div>;
