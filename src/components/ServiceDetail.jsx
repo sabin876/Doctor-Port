@@ -92,9 +92,10 @@ const ServiceDetail = () => {
                             {service.h1_title || service.title}
                         </h1>
 
-                        <p className="text-base md:text-lg text-gray-500 font-normal leading-relaxed mb-10 max-w-2xl">
-                            {service.description}
-                        </p>
+                        <div 
+                            className="text-base md:text-lg text-gray-500 font-normal leading-relaxed mb-10 max-w-2xl prose prose-primary"
+                            dangerouslySetInnerHTML={{ __html: service.description }}
+                        />
 
                         <div className="grid sm:grid-cols-2 gap-4 mb-10">
                             {features.slice(0, 4).map((feature, idx) => (

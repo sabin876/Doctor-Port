@@ -28,6 +28,11 @@ const iconMap = {
     'physiotherapy-home-services': HeartPulse
 };
 
+const stripHtml = (html) => {
+    if (!html) return '';
+    return html.replace(/<[^>]*>/g, '');
+};
+
 const Services = () => {
     const { t } = useLanguage();
     const [services, setServices] = useState([]);
@@ -109,7 +114,7 @@ const Services = () => {
                                                 <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
                                                     <div className="overflow-hidden">
                                                         <p className="text-gray-200 text-sm leading-relaxed mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                                                            {service.description}
+                                                            {stripHtml(service.description)}
                                                         </p>
                                                     </div>
                                                 </div>
