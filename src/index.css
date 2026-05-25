@@ -9,7 +9,8 @@
 
   body {
     @apply font-sans antialiased text-gray-800 bg-white;
-    font-family: 'Metropolis', 'Work Sans', sans-serif !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 400;
   }
 
   h1,
@@ -20,7 +21,7 @@
   h6,
   .font-metabolic,
   .font-montserrat {
-    font-family: 'Montserrat', 'Metropolis', sans-serif !important;
+    font-family: 'Poppins', sans-serif !important;
   }
 
   /* Extreme priority override for Navbar and Header */
@@ -29,7 +30,7 @@
   header,
   header *,
   .sticky {
-    font-family: 'Metropolis', sans-serif !important;
+    font-family: 'Poppins', sans-serif !important;
   }
 }
 
