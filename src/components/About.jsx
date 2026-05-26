@@ -87,15 +87,20 @@ const About = () => {
     const { language, t } = useLanguage();
     const isRtl = language === 'AR';
 
-    /* ── Qualification cards (like the reference: Education / Experience / Certifications / Publications) ── */
+    /* ── Qualification cards ── */
     const qualCards = [
         {
             icon: GraduationCap,
-            title: 'Education',
+            title: 'Qualifications',
             items: [
-                'MBBS – B J Medical College, Pune',
-                'MS (Ortho) – Postgraduate training, India',
-                'MCh Upper Limb Surgery – Wrightington, UK',
+                'MBBS, BJMC, Pune, India – 2009',
+                'MS (Ortho), Nagpur, India – 2013',
+                'MRCS (England), UK – 2017',
+                'MCh (Upper Limb), Wrightington, UK – 2018',
+                'FEBOT, Switzerland – 2019',
+                'FRCS (JCIE), UK – 2020',
+                'PG Diploma in Computer Assisted TKR, Glasgow – 2021',
+                'DABRM (American Society of Regenerative Medicine, USA) – expected 2026',
             ],
             color: 'text-blue-700',
             bg: 'bg-blue-50',
@@ -105,9 +110,7 @@ const About = () => {
             icon: Briefcase,
             title: 'Experience',
             items: [
-                '15+ years in Orthopaedic Surgery',
-                'NHS Consultant – UK hospitals',
-                'Surgeon – Dubai (current)',
+                '15+ years of experience in Orthopaedics across the NHS UK, tertiary care centres in UAE and India.',
             ],
             color: 'text-indigo-700',
             bg: 'bg-indigo-50',
@@ -115,12 +118,13 @@ const About = () => {
         },
         {
             icon: Award,
-            title: 'Certifications',
+            title: 'Professional Affiliations',
             items: [
-                'FRCS (T&O) – Royal College of Surgeons, England',
-                'FEBOT – European Board, Switzerland',
-                'MRCS (England)',
-                'PG Dip – Robotic-Assisted TKR, Glasgow',
+                'DHA – UAE',
+                'GMC – UK',
+                'International Society for Knowledge of Surgeons in Arthroscopy & Arthroplasty (ISKSAA) – Lifetime Member',
+                'CAOS (Computer Assisted Orthopedic Surgery) – UK, Member',
+                'Maharashtra Medical Council – Registered Member',
             ],
             color: 'text-blue-700',
             bg: 'bg-blue-50',

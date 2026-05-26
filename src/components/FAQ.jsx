@@ -118,7 +118,7 @@ const FAQ = ({ title, description, items }) => {
                             alt="FAQ Illustration" 
                             loading="lazy"
                             decoding="async"
-                            className="w-full max-w-lg h-auto rounded-3xl shadow-xl object-cover"
+                            className="max-w-2xl max-h-[32rem] w-auto h-auto rounded-3xl shadow-xl object-contain"
                         />
                     </div>
                 </div>
