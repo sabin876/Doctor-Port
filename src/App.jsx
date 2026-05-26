@@ -25,7 +25,8 @@ const Gallery = React.lazy(() => import('./components/Gallery'));
 const ThankYou = React.lazy(() => import('./components/ThankYou'));
 const SocialLinksPage = React.lazy(() => import('./components/SocialLinksPage'));
 const Login = React.lazy(() => import('./components/Login'));
-
+const DashboardLayout = React.lazy(() => import('./components/dashboard/DashboardLayout'));
+const DashboardHome = React.lazy(() => import('./components/dashboard/DashboardHome'));
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -63,6 +64,14 @@ function App() {
                 <Routes>
                   {/* Standalone Social Media Page (No Navbar/Footer) */}
                   <Route path="/social-media" element={<SocialLinksPage />} />
+
+                  {/* Dashboard Routes (Custom Layout) */}
+                  <Route path="/dashboard" element={<DashboardLayout />}>
+                    <Route index element={<DashboardHome />} />
+                    <Route path="articles" element={<div className="p-8 text-slate-500">Articles Management Comming Soon...</div>} />
+                    <Route path="services" element={<div className="p-8 text-slate-500">Services Management Comming Soon...</div>} />
+                    <Route path="settings" element={<div className="p-8 text-slate-500">Settings Comming Soon...</div>} />
+                  </Route>
 
                   {/* Main App Routes with Header/Footer */}
                   <Route path="*" element={
