@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Clock, Calendar, ChevronLeft, Share2, Tag, Activity, User, ArrowRight } from 'lucide-react';
+import { Clock, Calendar, ChevronLeft, Share2, Tag, Activity, User, ArrowRight, List } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { api } from '../lib/api';
 import Breadcrumbs from './ui/Breadcrumbs';
@@ -214,20 +214,31 @@ const ArticleDetail = () => {
                     <div className="hidden lg:block">
                         <div className="sticky top-32 space-y-12">
                             {headings.length > 0 && (
-                                <div>
-                                    <h4 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Table of Contents</h4>
-                                    <nav className="flex flex-col gap-3">
+                                <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <div className="w-8 h-8 rounded-full bg-primary-50 flex items-center justify-center text-primary-600">
+                                            <List className="w-4 h-4" />
+                                        </div>
+                                        <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest">Table of Contents</h4>
+                                    </div>
+                                    <nav className="flex flex-col gap-1 relative before:absolute before:inset-y-0 before:left-[3px] before:w-[2px] before:bg-gray-100">
                                         {headings.map((h) => (
                                             <a
                                                 key={h.id}
                                                 href={`#${h.id}`}
-                                                className={`text-sm text-gray-600 hover:text-primary-600 transition-colors ${h.level > 2 ? 'pl-4' : 'font-medium'}`}
+                                                className={`group relative flex items-center py-2 text-sm transition-all duration-300
+                                                    ${h.level > 2 ? 'pl-6 text-gray-500' : 'pl-4 text-gray-700 font-medium'}
+                                                    hover:text-primary-600 hover:translate-x-1`}
                                                 onClick={(e) => {
                                                     e.preventDefault();
                                                     document.getElementById(h.id)?.scrollIntoView({ behavior: 'smooth' });
                                                 }}
                                             >
-                                                {h.text}
+                                                {/* Custom marker dot */}
+                                                <span className={`absolute left-0 w-2 h-2 rounded-full border-2 bg-white transition-all duration-300
+                                                    ${h.level > 2 ? '-translate-x-[3px] border-gray-200 group-hover:border-primary-400' : '-translate-x-[3px] border-gray-300 group-hover:border-primary-600 group-hover:bg-primary-600'}
+                                                `}/>
+                                                <span className="line-clamp-2 leading-tight">{h.text}</span>
                                             </a>
                                         ))}
                                     </nav>
