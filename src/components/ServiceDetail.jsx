@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate, Navigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Phone, MessageCircle, CheckCircle2, ArrowRight, Activity, ShieldCheck, Zap, HeartPulse, ClipboardCheck, Users, HelpCircle, ChevronDown, ChevronUp, Home, Star, RotateCcw, PlusSquare, Triangle, Hexagon, ChevronLeft } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { api } from '../lib/api';
 import Breadcrumbs from './ui/Breadcrumbs';
 import SEO from './SEO';
+import { defaultServiceFaqs } from '../constants/serviceFaqs';
 
 // Import images
 import kneeArthroscopyImg from '../assets/knee-arthroscopy.png';
@@ -146,9 +147,84 @@ const ServiceDetail = () => {
                     </motion.div>
                 </div>
 
+                {/* FAQ Section */}
+                <ServiceFAQSection serviceSlug={id} customFaqs={service.faqs} serviceTitle={service.title} />
+
                 {/* Additional Sections can be added here dynamically from service.items or extra fields */}
             </div>
         </main>
+    );
+};
+
+const ServiceFAQSection = ({ serviceSlug, customFaqs, serviceTitle }) => {
+    const defaultData = defaultServiceFaqs[serviceSlug] || defaultServiceFaqs["physiotherapy"];
+    const faqs = (customFaqs && customFaqs.length > 0) ? customFaqs : defaultData.items;
+    const badge = defaultData.badge || "Frequently asked questions";
+    const defaultTitle = defaultData.title || `Answers to common ${serviceTitle.toLowerCase()} questions`;
+    const title = (customFaqs && customFaqs.length > 0) ? `Answers to common ${serviceTitle.toLowerCase()} questions` : defaultTitle;
+    const description = defaultData.description || `Helpful information for patients seeking ${serviceTitle.toLowerCase()} treatment.`;
+
+    const [openIndex, setOpenIndex] = useState(0);
+
+    return (
+        <div className="max-w-4xl mx-auto py-16 md:py-24 font-sans px-4">
+            <div className="text-center mb-12">
+                <span className="inline-flex items-center px-4 py-1.5 mb-4 rounded-full bg-blue-50 text-blue-700 text-[10px] font-normal uppercase tracking-[0.3em] border border-blue-100/50">
+                    {badge}
+                </span>
+                <h2 className="text-3xl md:text-5xl font-normal text-primary-950 mb-6 tracking-tighter leading-[1.05]">
+                    {title}
+                </h2>
+                <p className="text-gray-500 max-w-2xl mx-auto text-sm md:text-base leading-relaxed font-normal">
+                    {description}
+                </p>
+            </div>
+
+            <div className="space-y-4">
+                {faqs.map((faq, idx) => {
+                    const isOpen = openIndex === idx;
+                    const qText = faq.question || faq.q;
+                    const aText = faq.answer || faq.a;
+                    return (
+                        <div 
+                            key={idx} 
+                            className="bg-white border border-gray-100/60 rounded-3xl overflow-hidden shadow-[0_10px_35px_-10px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_45px_-10px_rgba(0,0,0,0.05)] transition-all duration-500"
+                        >
+                            <button 
+                                onClick={() => setOpenIndex(isOpen ? null : idx)}
+                                className="w-full flex items-center justify-between p-6 md:p-8 text-start focus:outline-none"
+                            >
+                                <span className="text-base md:text-lg font-medium text-[#0A1A44] pr-8">{qText}</span>
+                                <motion.span 
+                                    animate={{ rotate: isOpen ? 45 : 0 }}
+                                    transition={{ duration: 0.3, ease: "easeOut" }}
+                                    className="text-xl md:text-2xl text-gray-400 font-light shrink-0 select-none cursor-pointer w-8 h-8 rounded-full bg-gray-50/50 flex items-center justify-center hover:bg-gray-100/70 transition-colors"
+                                >
+                                    ＋
+                                </motion.span>
+                            </button>
+                            
+                            <AnimatePresence initial={false}>
+                                {isOpen && (
+                                    <motion.div
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: "auto", opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                                    >
+                                        <div className="px-6 md:px-8 pb-8">
+                                            <p className="text-gray-600 leading-relaxed border-t border-gray-50 pt-6 text-sm md:text-base font-normal">
+                                                {aText}
+                                            </p>
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
     );
 };
 
