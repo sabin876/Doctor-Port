@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Clock, Calendar, ChevronLeft, Share2, Tag, Activity, User, ArrowRight, List } from 'lucide-react';
+import { Clock, Calendar, ChevronLeft, Share2, Tag, Activity, User, ArrowRight, List, Link2, Check } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { api } from '../lib/api';
 import Breadcrumbs from './ui/Breadcrumbs';
@@ -16,6 +16,8 @@ const ArticleDetail = () => {
     const [loading, setLoading] = useState(true);
     const [headings, setHeadings] = useState([]);
     const [siteSettings, setSiteSettings] = useState(null);
+    const [activeId, setActiveId] = useState('');
+    const [copied, setCopied] = useState(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -47,6 +49,66 @@ const ArticleDetail = () => {
         };
         fetchData();
     }, [id]);
+
+    useEffect(() => {
+        let ticking = false;
+
+        const handleScroll = () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrollPosition = window.scrollY + 200; // Offset for navbar
+
+                    let currentActiveId = '';
+                    for (let i = 0; i < headings.length; i++) {
+                        const el = document.getElementById(headings[i].id);
+                        if (el) {
+                            const top = el.offsetTop;
+                            if (scrollPosition >= top) {
+                                currentActiveId = headings[i].id;
+                            } else {
+                                break;
+                            }
+                        }
+                    }
+
+                    // Fallback to last heading at the bottom of the page
+                    const isBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 150;
+                    if (isBottom && headings.length > 0) {
+                        currentActiveId = headings[headings.length - 1].id;
+                    }
+
+                    // Fallback to first heading if near the top
+                    if (!currentActiveId && headings.length > 0) {
+                        currentActiveId = headings[0].id;
+                    }
+
+                    setActiveId(currentActiveId);
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        // Run once initially after elements have rendered
+        const timer = setTimeout(handleScroll, 150);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            clearTimeout(timer);
+        };
+    }, [headings]);
+
+    const handleShare = () => {
+        navigator.clipboard.writeText(window.location.href)
+            .then(() => {
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+            })
+            .catch(err => {
+                console.error('Could not copy text: ', err);
+            });
+    };
 
     const applyInternalLinks = (content) => {
         if (!content || !siteSettings?.internal_linking_rules) return content;
@@ -169,7 +231,7 @@ const ArticleDetail = () => {
                     />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end">
-                    <div className="max-w-4xl mx-auto px-6 pb-12 w-full">
+                    <div className="max-w-6xl mx-auto px-6 pb-12 w-full">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -208,52 +270,111 @@ const ArticleDetail = () => {
             </div>
 
             {/* Content Section */}
-            <div className="max-w-4xl mx-auto px-6 py-12 md:py-16">
+            <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
                     {/* TOC & Share Sidebar */}
                     <div className="hidden lg:block">
-                        <div className="sticky top-32 space-y-12">
+                        <div className="sticky top-32 space-y-8">
                             {headings.length > 0 && (
-                                <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-                                    <div className="flex items-center gap-3 mb-6">
-                                        <div className="w-8 h-8 rounded-full bg-primary-50 flex items-center justify-center text-primary-600">
+                                <div className="bg-white rounded-3xl border border-gray-100 p-6 shadow-[0_8px_30px_rgb(0,0,0,0.015)] backdrop-blur-sm transition-all duration-300 hover:shadow-[0_20px_50px_rgb(0,0,0,0.035)]">
+                                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">
+                                        <div className="w-8 h-8 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center">
                                             <List className="w-4 h-4" />
                                         </div>
-                                        <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest">Table of Contents</h4>
+                                        <div>
+                                            <h4 className="text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em] leading-tight">Table of</h4>
+                                            <h4 className="text-xs font-bold text-primary-950 uppercase tracking-[0.05em] leading-tight">Contents</h4>
+                                        </div>
                                     </div>
-                                    <nav className="flex flex-col gap-1 relative before:absolute before:inset-y-0 before:left-[3px] before:w-[2px] before:bg-gray-100">
-                                        {headings.map((h) => (
-                                            <a
-                                                key={h.id}
-                                                href={`#${h.id}`}
-                                                className={`group relative flex items-center py-2 text-sm transition-all duration-300
-                                                    ${h.level > 2 ? 'pl-6 text-gray-500' : 'pl-4 text-gray-700 font-medium'}
-                                                    hover:text-primary-600 hover:translate-x-1`}
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    document.getElementById(h.id)?.scrollIntoView({ behavior: 'smooth' });
-                                                }}
-                                            >
-                                                {/* Custom marker dot */}
-                                                <span className={`absolute left-0 w-2 h-2 rounded-full border-2 bg-white transition-all duration-300
-                                                    ${h.level > 2 ? '-translate-x-[3px] border-gray-200 group-hover:border-primary-400' : '-translate-x-[3px] border-gray-300 group-hover:border-primary-600 group-hover:bg-primary-600'}
-                                                `}/>
-                                                <span className="line-clamp-2 leading-tight">{h.text}</span>
-                                            </a>
-                                        ))}
-                                    </nav>
+                                    
+                                    <div className="relative pl-4">
+                                        {/* Vertical Timeline Bar */}
+                                        <div className="absolute left-[5.5px] top-2 bottom-2 w-[1.5px] bg-gray-100" />
+                                        
+                                        <nav className="flex flex-col gap-4">
+                                            {headings.map((h) => {
+                                                const isActive = activeId === h.id;
+                                                return (
+                                                    <a
+                                                        key={h.id}
+                                                        href={`#${h.id}`}
+                                                        className={`group relative flex items-start text-xs leading-relaxed transition-all duration-300 ${
+                                                            isActive
+                                                                ? 'text-primary-600 font-semibold pl-2'
+                                                                : 'text-gray-500 hover:text-gray-900 font-normal hover:pl-1'
+                                                        }`}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            const element = document.getElementById(h.id);
+                                                            if (element) {
+                                                                // Calculate scroll position offset for sticky header
+                                                                const yOffset = -90; 
+                                                                const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+                                                                window.scrollTo({ top: y, behavior: 'smooth' });
+                                                            }
+                                                        }}
+                                                    >
+                                                        {/* Interactive Bullet Dot */}
+                                                        <span 
+                                                            className={`absolute left-[-16px] top-[6px] w-[7px] h-[7px] rounded-full border bg-white transition-all duration-300 ${
+                                                                isActive
+                                                                    ? 'border-primary-600 bg-primary-600 scale-125 shadow-[0_0_8px_rgba(2,132,199,0.6)]'
+                                                                    : 'border-gray-300 group-hover:border-gray-500 group-hover:scale-110'
+                                                            }`}
+                                                        />
+                                                        <span className={h.level > 2 ? 'pl-3 text-[11px] text-gray-400' : ''}>
+                                                            {h.text}
+                                                        </span>
+                                                    </a>
+                                                );
+                                            })}
+                                        </nav>
+                                    </div>
                                 </div>
                             )}
 
-                            <div>
-                                <h4 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Share Article</h4>
-                                <div className="flex flex-col gap-4">
-                                    <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-primary-50 hover:border-primary-200 hover:text-primary-600 transition-all">
-                                        <Share2 className="w-5 h-5" />
-                                    </button>
-                                    <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-primary-50 hover:border-primary-200 hover:text-primary-600 transition-all">
-                                        <Tag className="w-5 h-5" />
-                                    </button>
+                            {/* Share & Meta Card */}
+                            <div className="bg-white rounded-3xl border border-gray-100 p-6 shadow-[0_8px_30px_rgb(0,0,0,0.015)] backdrop-blur-sm transition-all duration-300 hover:shadow-[0_20px_50px_rgb(0,0,0,0.035)]">
+                                <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-4 pb-2 border-b border-gray-50">Share Article</h4>
+                                <div className="flex items-center gap-3">
+                                    <div className="relative">
+                                        <button 
+                                            onClick={handleShare}
+                                            className="w-10 h-10 rounded-xl border border-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary-50 hover:border-primary-200 hover:text-primary-600 active:scale-95 transition-all duration-300"
+                                            title="Copy Link to Clipboard"
+                                        >
+                                            {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Share2 className="w-4 h-4" />}
+                                        </button>
+                                        
+                                        {/* Beautiful dynamic Copy Tooltip */}
+                                        {copied && (
+                                            <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2.5 py-1 text-[10px] font-medium text-white bg-gray-900 rounded-lg whitespace-nowrap shadow-md animate-fade-in">
+                                                Link Copied!
+                                            </span>
+                                        )}
+                                    </div>
+                                    <a
+                                        href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(article.title)}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-10 h-10 rounded-xl border border-gray-100 flex items-center justify-center text-gray-600 hover:bg-sky-50 hover:border-sky-200 hover:text-sky-600 active:scale-95 transition-all duration-300"
+                                        title="Share on Twitter / X"
+                                    >
+                                        <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                        </svg>
+                                    </a>
+                                    <a
+                                        href={`https://api.whatsapp.com/send?text=${encodeURIComponent(article.title + ' ' + window.location.href)}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-10 h-10 rounded-xl border border-gray-100 flex items-center justify-center text-gray-600 hover:bg-emerald-50 hover:border-emerald-200 hover:text-emerald-600 active:scale-95 transition-all duration-300"
+                                        title="Share on WhatsApp"
+                                    >
+                                        <svg className="w-4.5 h-4.5 fill-current text-current" viewBox="0 0 24 24">
+                                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.731-1.456L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.965C16.57 1.977 14.1 1.002 11.99.002c-5.439 0-9.864 4.372-9.868 9.8.001 2.01.528 3.975 1.527 5.727l-.991 3.616 3.709-.965zm11.39-7.234c-.3-.15-1.772-.875-2.046-.975-.276-.1-.477-.15-.677.15-.2.3-.777.975-.951 1.174-.176.2-.351.224-.652.074-.3-.15-1.265-.467-2.41-1.485-.89-.794-1.49-1.775-1.665-2.075-.175-.3-.019-.462.13-.611.135-.135.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.677-1.625-.926-2.225-.244-.589-.493-.51-.677-.52l-.577-.008c-.2 0-.527.075-.803.375-.276.3-1.053 1.025-1.053 2.5s1.077 2.9 1.227 3.1c.15.2 2.119 3.235 5.132 4.537.717.31 1.275.494 1.71.632.72.228 1.375.196 1.893.118.577-.087 1.771-.724 2.022-1.424.252-.7.252-1.3.176-1.425-.076-.12-.276-.2-.577-.35z" />
+                                        </svg>
+                                    </a>
                                 </div>
                             </div>
                         </div>
