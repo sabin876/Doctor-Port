@@ -62,7 +62,7 @@ export const translations = {
                     badge: "MBBS, MS Ortho, M Ch Ortho, FRCS (T&O)",
                     headline1: "Patient Centric, Evidence Based",
                     headline2: " & Individualised Orthopedic Care",
-                    description: "A fellow of the Royal College of Surgeons with over 15 years of global experience. Specializing in robotic-assisted knee replacement and minimally invasive procedures.",
+                    description: "Fellow of Royal college of surgeons with over 15 years experience with expertise in arthroscopy, sports injury management, joint preservation and regeneration techniques, partial and total joint replacement, complex trauma, osteotomies, cartilage preservation, and regenerative medicine as well as Robotic surgeries.",
                     nameplateSub: "Consultant Orthopedic Surgeon",
                     badgeOutcomes: "Consistently Excellent Outcomes with a strong success record"
                 }
@@ -542,7 +542,7 @@ export const translations = {
                     badge: "MBBS, MS Ortho, M Ch Ortho, FRCS (T&O)",
                     headline1: "मरीज-केंद्रित, साक्ष्य-आधारित",
                     headline2: " और व्यक्तिगत आर्थोपेडिक देखभाल",
-                    description: "15 वर्षों से अधिक के वैश्विक अनुभव के साथ रॉयल कॉलेज ऑफ सर्जन्स के फेलो। रोबोटिक-सहायता प्राप्त घुटना प्रतिस्थापन और न्यूनतम आक्रामक प्रक्रियाओं में विशेषज्ञता।",
+                    description: "रॉयल कॉलेज ऑफ सर्जन्स के फेलो, जिन्हें 15 वर्षों से अधिक का अनुभव है और आर्थ्रोस्कोपी, स्पोर्ट्स इंजरी प्रबंधन, जॉइंट प्रिजर्वेशन व रिजनरेशन तकनीकों, आंशिक और पूर्ण जोड़ प्रतिस्थापन, जटिल ट्रॉमा, ऑस्टियोटॉमी, कार्टिलेज प्रिजर्वेशन, और रिजनरेटिव मेडिसिन के साथ-साथ रोबोटिक सर्जरी में विशेषज्ञता प्राप्त है।",
                     nameplateSub: "सलाहकार आर्थोपेडिक सर्जन",
                     badgeOutcomes: "मजबूत सफलता रिकॉर्ड के साथ लगातार उत्कृष्ट परिणाम"
                 }
@@ -990,7 +990,7 @@ export const translations = {
                     badge: "MBBS, MS Ortho, M Ch Ortho, FRCS (T&O)",
                     headline1: "رعاية عظام متمحورة حول المريض، قائمة على الأدلة",
                     headline2: " ومخصصة لكل فرد",
-                    description: "زميل الكلية الملكية للجراحين مع خبرة عالمية تزيد عن 15 عاماً. متخصص في استبدال الركبة بمساعدة الروبوت والإجراءات طفيفة التوغل.",
+                    description: "زميل الكلية الملكية للجراحين بخبرة تزيد عن 15 عاماً، متخصص في تنظير المفاصل، علاج الإصابات الرياضية، تقنيات الحفاظ على المفاصل وتجديدها، استبدال المفاصل الجزئي والكلي، الكسور المعقدة، قطع العظم، الحفاظ على الغضاريف، الطب التجديدي، بالإضافة إلى الجراحات الروبوتية.",
                     nameplateSub: "استشاري جراحة العظام"
                 }
             ]
