@@ -16,6 +16,8 @@ import {
 } from 'lucide-react';
 import { api } from '../lib/api';
 import { useLanguage } from '../context/LanguageContext';
+import { getTranslatedService } from '../lib/serviceTranslations';
+
 
 const iconMap = {
     'joint-pain-treatment': Bone,
@@ -25,6 +27,7 @@ const iconMap = {
     'deformity-correction': Layers,
     'consultation': Stethoscope,
     'orthopedic-trauma': Bandage,
+    'physiotherapy': HeartPulse,
     'physiotherapy-home-services': HeartPulse
 };
 
@@ -34,7 +37,7 @@ const stripHtml = (html) => {
 };
 
 const Services = () => {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
     const [services, setServices] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showAll, setShowAll] = useState(false);
@@ -51,7 +54,9 @@ const Services = () => {
             });
     }, []);
 
-    const displayedServices = showAll ? services : services.slice(0, 4);
+    const displayedServices = (showAll ? services : services.slice(0, 4)).map(s => 
+        getTranslatedService(s, t, language)
+    );
 
     return (
         <section id="services" className="py-24 bg-white relative overflow-hidden">

@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, MessageCircle, CheckCircle2, ArrowRight, Activity, ShieldCheck, Zap, HeartPulse, ClipboardCheck, Users, HelpCircle, ChevronDown, ChevronUp, Home, Star, RotateCcw, PlusSquare, Triangle, Hexagon } from 'lucide-react';
+import { Phone, MessageCircle, CheckCircle2, ArrowRight, Activity, ShieldCheck, Zap, HeartPulse, ClipboardCheck, Users, HelpCircle, ChevronDown, ChevronUp, Home, Star, RotateCcw, Cpu, Triangle, Hexagon } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { api } from '../lib/api';
 import SEO from './SEO';
 import Breadcrumbs from './ui/Breadcrumbs';
 import physioIllustration from '../assets/physio-illustration.png';
@@ -9,9 +10,21 @@ import physioIllustration from '../assets/physio-illustration.png';
 const PhysiotherapyHomeService = () => {
     const { t, language } = useLanguage();
     const isRtl = language === 'AR';
+    const [service, setService] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        api.getServices()
+            .then(data => {
+                const found = data.find(s => s.slug === 'physiotherapy');
+                setService(found);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error("Failed to fetch physiotherapy service:", err);
+                setLoading(false);
+            });
     }, []);
 
     // Get content from translations (defaulting to EN if specific keys are missing in AR/HI)
@@ -22,7 +35,7 @@ const PhysiotherapyHomeService = () => {
             <SEO 
                 title={content.seo.title}
                 description={content.seo.description}
-                url="/services/physiotherapy-home-services"
+                url="/services/physiotherapy"
             />
 
             <div className="bg-white border-b border-gray-100">
@@ -174,7 +187,7 @@ const PhysiotherapyHomeService = () => {
 
                     {/* 4-Column Grid of Condition Cards */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {content.conditions.items.map((item, idx) => (
+                        {content.conditions.items && content.conditions.items.map((item, idx) => (
                             <motion.div
                                 key={idx}
                                 initial={{ opacity: 0, y: 20 }}
@@ -211,7 +224,7 @@ const PhysiotherapyHomeService = () => {
                                 <h2 className="text-2xl md:text-3xl font-metabolic mb-6">{content.benefits.title}</h2>
                                 <p className="text-primary-100/70 text-base mb-10 leading-relaxed">{content.benefits.description}</p>
                                 <div className="space-y-4">
-                                    {content.benefits.items.map((item, idx) => (
+                                    {content.benefits.items && content.benefits.items.map((item, idx) => (
                                         <div key={idx} className="flex items-center gap-4">
                                             <CheckCircle2 className="text-primary-500 flex-shrink-0" size={24} />
                                             <span className="text-lg font-normal">{item}</span>
@@ -231,80 +244,148 @@ const PhysiotherapyHomeService = () => {
                 </div>
 
                 {/* Expert Home Treatment - Target Audience */}
-                <div className="text-center mb-32">
-                    <h2 className="text-2xl md:text-4xl font-metabolic text-primary-950 mb-6">{content.expertTreatment.title}</h2>
-                    <p className="text-base text-gray-500 mb-16 max-w-2xl mx-auto">{content.expertTreatment.description}</p>
-                    
-                    <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
-                        {content.expertTreatment.categories.map((cat, idx) => (
-                            <motion.div 
-                                key={idx}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: idx * 0.1 }}
-                                className="group p-8 bg-white border border-gray-100 rounded-[2.5rem] shadow-sm hover:shadow-xl hover:border-primary-100 transition-all duration-500 text-center"
-                            >
-                                <div className="w-16 h-16 rounded-3xl bg-primary-50 text-primary-600 flex items-center justify-center mx-auto mb-6 group-hover:bg-primary-600 group-hover:text-white transition-colors duration-500">
-                                    <ClipboardCheck size={28} />
-                                </div>
-                                <h4 className="text-lg font-normal text-gray-900 group-hover:text-primary-700 transition-colors">{cat}</h4>
-                            </motion.div>
-                        ))}
+                {content.expertTreatment && (
+                    <div className="text-center mb-32">
+                        <h2 className="text-2xl md:text-4xl font-metabolic text-primary-950 mb-6">{content.expertTreatment.title}</h2>
+                        <p className="text-base text-gray-500 mb-16 max-w-2xl mx-auto">{content.expertTreatment.description}</p>
+                        
+                        <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
+                            {content.expertTreatment.categories && content.expertTreatment.categories.map((cat, idx) => (
+                                <motion.div 
+                                    key={idx}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: idx * 0.1 }}
+                                    className="group p-8 bg-white border border-gray-100 rounded-[2.5rem] shadow-sm hover:shadow-xl hover:border-primary-100 transition-all duration-500 text-center"
+                                >
+                                    <div className="w-16 h-16 rounded-3xl bg-primary-50 text-primary-600 flex items-center justify-center mx-auto mb-6 group-hover:bg-primary-600 group-hover:text-white transition-colors duration-500">
+                                        <ClipboardCheck size={28} />
+                                    </div>
+                                    <h4 className="text-lg font-normal text-gray-900 group-hover:text-primary-700 transition-colors">{cat}</h4>
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
-                </div>
+                )}
 
+                {/* CTA Banner - Start Your Recovery */}
+                {content.ctaBanner && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="mb-32"
+                    >
+                        <div className="relative rounded-[3.5rem] overflow-hidden bg-gradient-to-r from-[#003B73] via-[#00569e] to-[#0284c7] py-12 px-8 md:py-16 md:px-16 shadow-2xl">
+                            {/* Decorative background elements */}
+                            <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -mr-40 -mt-40 blur-[100px] pointer-events-none" />
+                            <div className="absolute bottom-0 left-0 w-72 h-72 bg-emerald-400/10 rounded-full -ml-32 -mb-32 blur-[80px] pointer-events-none" />
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/[0.03] rounded-full pointer-events-none" />
 
+                            <div className="relative z-10 flex flex-col items-center text-center gap-8">
+                                {/* Badge */}
+                                <div className="inline-flex items-center px-5 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-[10px] font-normal uppercase tracking-[0.25em]">
+                                    <Zap size={12} className="mr-2 fill-yellow-400 text-yellow-400" />
+                                    Expert Physiotherapy in Dubai
+                                </div>
+
+                                <h2 className="text-2xl md:text-4xl font-normal text-white tracking-tight leading-[1.1] max-w-3xl">
+                                    {content.ctaBanner.title}
+                                </h2>
+                                <p className="text-white/75 text-base md:text-lg font-normal max-w-2xl leading-relaxed">
+                                    {content.ctaBanner.subtitle}
+                                </p>
+
+                                <div className="flex flex-col sm:flex-row items-center gap-5 mt-4">
+                                    <a
+                                        href="tel:+971556319379"
+                                        className="group flex items-center justify-center gap-3 py-4 px-10 bg-white text-[#003B73] font-semibold text-[12px] uppercase tracking-[0.15em] rounded-2xl shadow-xl hover:bg-blue-50 hover:scale-[1.03] active:scale-95 transition-all duration-300"
+                                    >
+                                        <Phone size={18} />
+                                        Call Us Now
+                                    </a>
+                                    <a
+                                        href="https://wa.me/971556319379"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group flex items-center justify-center gap-3 py-4 px-10 bg-[#25D366] text-white font-semibold text-[12px] uppercase tracking-[0.15em] rounded-2xl shadow-xl hover:bg-[#1eb954] hover:scale-[1.03] active:scale-95 transition-all duration-300"
+                                    >
+                                        <MessageCircle size={18} />
+                                        WhatsApp Now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
 
                 {/* Why Choose Us */}
-                <div className="grid lg:grid-cols-2 gap-24 items-start mb-32">
-                    <motion.div
-                        initial={{ opacity: 0, x: isRtl ? 40 : -40 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <h2 className="text-2xl md:text-3xl font-metabolic text-primary-950 mb-8">{content.whyChoose.title}</h2>
-                        <p className="text-base text-gray-500 mb-10 leading-relaxed">{content.whyChoose.description}</p>
-                        
-                        <div className="space-y-6">
-                            {content.whyChoose.items.map((item, idx) => (
-                                <div key={idx} className="flex gap-4 p-6 bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                                    <div className="mt-1">
-                                        <div className="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
-                                            <ShieldCheck size={20} />
+                {content.whyChoose && content.expectations && (
+                    <div className="grid lg:grid-cols-2 gap-24 items-start mb-32">
+                        <motion.div
+                            initial={{ opacity: 0, x: isRtl ? 40 : -40 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                        >
+                            <h2 className="text-2xl md:text-3xl font-metabolic text-primary-950 mb-8">{content.whyChoose.title}</h2>
+                            <p className="text-base text-gray-500 mb-10 leading-relaxed">{content.whyChoose.description}</p>
+                            
+                            <div className="space-y-6">
+                                {content.whyChoose.items && content.whyChoose.items.map((item, idx) => (
+                                    <div key={idx} className="flex gap-4 p-6 bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                                        <div className="mt-1">
+                                            <div className="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                                                <ShieldCheck size={20} />
+                                            </div>
+                                        </div>
+                                        <p className="text-gray-700 font-normal leading-relaxed">{item}</p>
+                                    </div>
+                                ))}
+                            </div>
+                            <p className="mt-8 text-sm font-normal text-primary-600 italic">{content.whyChoose.footer}</p>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, x: isRtl ? -40 : 40 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                        >
+                            <h2 className="text-2xl md:text-3xl font-metabolic text-primary-950 mb-12">{content.expectations.title}</h2>
+                            <div className="space-y-12 relative">
+                                {/* Decorative Line */}
+                                <div className="absolute left-[27px] top-[10px] bottom-[10px] w-0.5 bg-gray-100 hidden md:block"></div>
+                                
+                                {content.expectations.steps && content.expectations.steps.map((step, idx) => (
+                                    <div key={idx} className="relative flex items-start gap-8">
+                                        <div className="relative z-10 w-14 h-14 rounded-full bg-white border-4 border-gray-50 text-primary-600 flex items-center justify-center font-normal text-xl shadow-lg">
+                                            {idx + 1}
+                                        </div>
+                                        <div>
+                                            <h4 className="text-xl font-normal text-gray-900 mb-3">{step.title}</h4>
+                                            <p className="text-gray-500 leading-relaxed">{step.desc}</p>
                                         </div>
                                     </div>
-                                    <p className="text-gray-700 font-normal leading-relaxed">{item}</p>
-                                </div>
-                            ))}
-                        </div>
-                        <p className="mt-8 text-sm font-normal text-primary-600 italic">{content.whyChoose.footer}</p>
-                    </motion.div>
+                                ))}
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
 
+                {/* Optional General Backend-Managed Text Description */}
+                {service && service.description && service.description.length > 150 && (
                     <motion.div
-                        initial={{ opacity: 0, x: isRtl ? -40 : 40 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
+                        className="prose prose-primary max-w-4xl mx-auto py-16 px-4 md:px-8 border-t border-b border-gray-100 font-sans mb-16"
                     >
-                        <h2 className="text-2xl md:text-3xl font-metabolic text-primary-950 mb-12">{content.expectations.title}</h2>
-                        <div className="space-y-12 relative">
-                            {/* Decorative Line */}
-                            <div className="absolute left-[27px] top-[10px] bottom-[10px] w-0.5 bg-gray-100 hidden md:block"></div>
-                            
-                            {content.expectations.steps.map((step, idx) => (
-                                <div key={idx} className="relative flex items-start gap-8">
-                                    <div className="relative z-10 w-14 h-14 rounded-full bg-white border-4 border-gray-50 text-primary-600 flex items-center justify-center font-normal text-xl shadow-lg">
-                                        {idx + 1}
-                                    </div>
-                                    <div>
-                                        <h4 className="text-xl font-normal text-gray-900 mb-3">{step.title}</h4>
-                                        <p className="text-gray-500 leading-relaxed">{step.desc}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                        <div 
+                            className="text-gray-700 leading-relaxed font-normal text-base md:text-lg"
+                            dangerouslySetInnerHTML={{ __html: service.description }}
+                        />
                     </motion.div>
-                </div>
+                )}
 
                 {/* FAQs */}
                 <div className="max-w-4xl mx-auto py-24">
@@ -384,10 +465,10 @@ const getConditionIcon = (index) => {
         <Zap size={22} strokeWidth={2.5} />,           // Knee
         <RotateCcw size={22} strokeWidth={2.5} />,     // Shoulder
         <Activity size={22} strokeWidth={2.5} />,      // Sports
+        <Cpu size={22} strokeWidth={2.5} />,           // Robotic Surgery
         <HeartPulse size={22} strokeWidth={2.5} />,    // Arthritis
-        <PlusSquare size={22} strokeWidth={2.5} />,    // Post-surgical
         <Triangle size={22} strokeWidth={2.5} />,      // Deformity
-        <Hexagon size={22} strokeWidth={2.5} />       // Hip
+        <Hexagon size={22} strokeWidth={2.5} />        // Hip Joint
     ];
     return icons[index % icons.length];
 };

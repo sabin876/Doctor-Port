@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
 // Global layout components
@@ -83,7 +83,8 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/about" element={<AboutPage />} />
                         <Route path="/services" element={<ServicesPage />} />
-                        <Route path="/services/physiotherapy-home-services" element={<PhysiotherapyHomeService />} />
+                        <Route path="/services/physiotherapy" element={<PhysiotherapyHomeService />} />
+                        <Route path="/services/physiotherapy-home-services" element={<Navigate to="/services/physiotherapy" replace />} />
                         <Route path="/services/:id" element={<ServiceDetail />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/blog" element={<Articles />} />

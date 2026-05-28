@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Phone, MessageCircle, CheckCircle2, ArrowRight, Activity, ShieldCheck, Zap, HeartPulse, ClipboardCheck, Users, HelpCircle, ChevronDown, ChevronUp, Home, Star, RotateCcw, PlusSquare, Triangle, Hexagon, ChevronLeft } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { api } from '../lib/api';
+import { getTranslatedService } from '../lib/serviceTranslations';
 import Breadcrumbs from './ui/Breadcrumbs';
 import SEO from './SEO';
 import { defaultServiceFaqs } from '../constants/serviceFaqs';
@@ -23,7 +24,7 @@ const ServiceDetail = () => {
     const { t, language } = useLanguage();
     const isRtl = language === 'AR';
     
-    const [service, setService] = useState(null);
+    const [rawService, setRawService] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -31,7 +32,7 @@ const ServiceDetail = () => {
         api.getServices()
             .then(data => {
                 const found = data.find(s => s.slug === id);
-                setService(found);
+                setRawService(found);
                 setLoading(false);
             })
             .catch(err => {
@@ -39,6 +40,8 @@ const ServiceDetail = () => {
                 setLoading(false);
             });
     }, [id]);
+
+    const service = getTranslatedService(rawService, t, language);
 
     if (loading) return <div className="min-h-screen flex items-center justify-center text-primary-600 font-bold">Loading Service...</div>;
 
