@@ -8,7 +8,7 @@ export const translations = {
             phone: "Call",
             email: "Email",
             location: "Location",
-            locationValue: "DIP, Dubai, UAE"
+            locationValue: "Sunshine Clinic, Majestique BIZNOW Building, 401, B G Lonkar Rd, Kondhwa, Pune, Maharashtra 411048, India"
         },
         nav: {
             home: "Home",
@@ -488,7 +488,7 @@ export const translations = {
             phone: "कॉल करें",
             email: "ईमेल",
             location: "स्थान",
-            locationValue: "DIP, दुबई, यूएई"
+            locationValue: "सनशाइन क्लिनिक, मैजेस्टिक बिज़नौ बिल्डिंग, 401, बी जी लोनकर रोड, कोंढवा, पुणे, महाराष्ट्र 411048, भारत"
         },
         nav: {
             home: "होम",
@@ -937,7 +937,7 @@ export const translations = {
             phone: "اتصل بنا",
             email: "البريد الإلكتروني",
             location: "الموقع",
-            locationValue: "مجمع دبي للاستثمار، دبي، الإمارات"
+            locationValue: "عيادة صن شاين، مبنى ماجيستيك بيزناو، 401، طريق بي جي لونكار، كوندهوا، بونه، ماهاراشترا 411048، الهند"
         },
         nav: {
             home: "الرئيسية",
