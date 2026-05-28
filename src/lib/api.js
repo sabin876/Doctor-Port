@@ -29,6 +29,28 @@ export const api = {
         const data = await response.json();
         return Array.isArray(data) ? data.map(processImageUrls) : data;
     },
+    createService: async (data) => {
+        const response = await fetch(`${API_BASE_URL}/services/`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        return response.json();
+    },
+    updateService: async (slug, data) => {
+        const response = await fetch(`${API_BASE_URL}/services/${slug}/`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        return response.json();
+    },
+    deleteService: async (slug) => {
+        const response = await fetch(`${API_BASE_URL}/services/${slug}/`, {
+            method: 'DELETE'
+        });
+        return response.ok;
+    },
     getTranslations: async (lang = 'EN') => {
         const response = await fetch(`${API_BASE_URL}/translations/?lang=${lang}`);
         return response.json();

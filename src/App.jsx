@@ -28,6 +28,7 @@ const Login = React.lazy(() => import('./components/Login'));
 const NotFound = React.lazy(() => import('./components/NotFound'));
 const DashboardLayout = React.lazy(() => import('./components/dashboard/DashboardLayout'));
 const DashboardHome = React.lazy(() => import('./components/dashboard/DashboardHome'));
+const ServicesManager = React.lazy(() => import('./components/dashboard/ServicesManager'));
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -70,7 +71,7 @@ function App() {
                   <Route path="/dashboard" element={<DashboardLayout />}>
                     <Route index element={<DashboardHome />} />
                     <Route path="articles" element={<div className="p-8 text-slate-500">Articles Management Comming Soon...</div>} />
-                    <Route path="services" element={<div className="p-8 text-slate-500">Services Management Comming Soon...</div>} />
+                    <Route path="services" element={<ServicesManager />} />
                     <Route path="settings" element={<div className="p-8 text-slate-500">Settings Comming Soon...</div>} />
                   </Route>
 
@@ -84,6 +85,8 @@ function App() {
                         <Route path="/about" element={<AboutPage />} />
                         <Route path="/services" element={<ServicesPage />} />
                         <Route path="/services/physiotherapy" element={<PhysiotherapyHomeService />} />
+                        <Route path="/services/test-physiotherapy" element={<PhysiotherapyHomeService />} />
+                        <Route path="/services/test-physiotherapy-service" element={<PhysiotherapyHomeService />} />
                         <Route path="/services/physiotherapy-home-services" element={<Navigate to="/services/physiotherapy" replace />} />
                         <Route path="/services/:id" element={<ServiceDetail />} />
                         <Route path="/contact" element={<Contact />} />
