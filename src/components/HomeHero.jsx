@@ -210,7 +210,7 @@ const HomeHero = () => {
                                 initial="enter"
                                 animate="center"
                                 exit="exit"
-                                className="text-lg text-slate-600 leading-relaxed mb-10 max-w-xl font-medium"
+                                className="text-[15px] md:text-base text-slate-600 leading-relaxed mb-10 max-w-xl font-medium text-justify"
                             >
                                 {slide.description}
                             </motion.p>

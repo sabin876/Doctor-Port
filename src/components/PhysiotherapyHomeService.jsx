@@ -142,6 +142,10 @@ const PhysiotherapyHomeService = () => {
     const [service, setService] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    const phoneNumber = import.meta.env.VITE_CONTACT_PHONE || "+919049200041";
+    const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "+919049200041";
+    const whatsappClean = whatsappNumber.replace(/[^0-9]/g, '');
+
     useEffect(() => {
         window.scrollTo(0, 0);
         api.getServices()
@@ -231,14 +235,14 @@ const PhysiotherapyHomeService = () => {
                         {/* Dual Action Buttons */}
                         <div className="flex flex-col sm:flex-row items-center gap-4">
                             <a 
-                                href="tel:+971556319379"
+                                href={`tel:${phoneNumber}`}
                                 className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-[#003B73] text-white font-normal text-[11px] uppercase tracking-[0.2em] rounded-2xl shadow-xl shadow-primary-200 hover:bg-[#002B55] hover:shadow-2xl hover:shadow-primary-300 active:scale-95 transition-all duration-300"
                             >
                                 <Phone size={18} />
                                 {content.ctas.call}
                             </a>
                             <a 
-                                href="https://wa.me/971556319379"
+                                href={`https://wa.me/${whatsappClean}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-[#25D366] text-white font-normal text-[11px] uppercase tracking-[0.2em] rounded-2xl shadow-lg shadow-emerald-100 hover:bg-[#1eb954] hover:shadow-xl active:scale-95 transition-all duration-300"
@@ -507,6 +511,58 @@ const PhysiotherapyHomeService = () => {
                         })}
                     </div>
                 </div>
+
+                {/* New Post-FAQ CTA Section */}
+                <motion.div 
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="max-w-7xl mx-auto px-4 mb-24 font-montserrat"
+                >
+                    <div className="bg-blue-50 rounded-[3.5rem] p-8 sm:p-12 md:p-20 shadow-[0_30px_70px_rgba(0,0,0,0.06)] border border-blue-100 text-center relative overflow-hidden group">
+                        {/* Decorative Background Elements */}
+                        <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-50/50 rounded-full blur-[100px] group-hover:bg-blue-100/50 transition-colors duration-700"></div>
+                        <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-emerald-50/50 rounded-full blur-[100px] group-hover:bg-emerald-100/50 transition-colors duration-700"></div>
+
+                        <div className="relative z-10">
+                            {/* Badge */}
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                className="inline-flex items-center px-6 py-2.5 mb-10 rounded-full bg-blue-50 text-primary-700 text-[11px] font-normal uppercase tracking-[0.25em] border border-blue-100"
+                            >
+                                Book your physiotherapy session today
+                            </motion.div>
+                            
+                            <h2 className="text-2xl md:text-4xl font-normal text-primary-950 mb-8 tracking-tighter leading-[1.1] max-w-4xl mx-auto">
+                                Safe, structured, and professional care in Dubai
+                            </h2>
+                            
+                            <p className="text-base md:text-lg text-gray-500 font-normal max-w-2xl mx-auto mb-14 leading-relaxed opacity-80">
+                                Home physiotherapy, hotel visits, workplace sessions, and rehabilitation support designed around your condition and schedule.
+                            </p>
+                            
+                            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                                <a 
+                                    href={`tel:${phoneNumber}`}
+                                    className="w-full sm:w-auto flex items-center justify-center gap-3 py-5 px-12 bg-[#003B73] text-white font-normal text-[12px] uppercase tracking-[0.2em] rounded-[2rem] shadow-2xl shadow-primary-200 hover:bg-[#002B55] hover:-translate-y-1 active:scale-95 transition-all duration-300"
+                                >
+                                    <Phone size={18} />
+                                    Call Us Now
+                                </a>
+                                <a 
+                                    href={`https://wa.me/${whatsappClean}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-full sm:w-auto flex items-center justify-center gap-3 py-5 px-12 bg-[#25D366] text-white font-normal text-[12px] uppercase tracking-[0.2em] rounded-[2rem] shadow-xl shadow-emerald-100 hover:bg-[#1eb954] hover:-translate-y-1 active:scale-95 transition-all duration-300"
+                                >
+                                    <MessageCircle size={18} />
+                                    WhatsApp Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </motion.div>
             </div>
         </main>
     );

@@ -110,7 +110,11 @@ const About = () => {
             icon: Briefcase,
             title: 'Experience',
             items: [
-                '15+ years of experience in Orthopaedics across the NHS UK, tertiary care centres in UAE and India.',
+                'Fellow of Royal College of Surgeons with over 15 years experience.',
+                'Expertise in arthroscopy and sports injury management.',
+                'Specialized in joint preservation, cartilage preservation, and regeneration techniques.',
+                'Advanced partial and total joint replacement, and Robotic surgeries.',
+                'Expert management of complex trauma, osteotomies, and regenerative medicine.',
             ],
             color: 'text-indigo-700',
             bg: 'bg-indigo-50',
@@ -222,7 +226,7 @@ const About = () => {
                         <h2 className="font-montserrat font-normal text-[#0f2756] text-2xl md:text-3xl mb-5">
                             A Distinguished Orthopaedic Surgeon
                         </h2>
-                        <div className="space-y-4 text-slate-600 text-[15px] leading-relaxed">
+                        <div className="space-y-4 text-slate-600 text-[15px] leading-relaxed text-justify">
                             <p>{t('about.description1')}</p>
                             <p>{t('about.description2')}</p>
                         </div>
