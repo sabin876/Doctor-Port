@@ -7,6 +7,135 @@ import SEO from './SEO';
 import Breadcrumbs from './ui/Breadcrumbs';
 import physioIllustration from '../assets/physio-illustration.png';
 
+const conditions = [
+  {
+    id: 1,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="22" height="22">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    ),
+    title: "Back and neck pain",
+    description: "Targeted rehabilitation for stiffness, postural pain, muscular spasm, and reduced function.",
+  },
+  {
+    id: 2,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="22" height="22">
+        <circle cx="12" cy="12" r="9" /><path d="M12 8v4l3 3" />
+      </svg>
+    ),
+    title: "Knee pain and stiffness",
+    description: "Structured therapy to improve joint movement, strength, and confidence during walking and activity.",
+  },
+  {
+    id: 3,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="22" height="22">
+        <path d="M12 2a10 10 0 1 0 10 10" /><path d="M12 6v6l4 2" />
+      </svg>
+    ),
+    title: "Shoulder pain",
+    description: "Focused treatment for pain, weakness, and limited shoulder movement during daily activities.",
+  },
+  {
+    id: 4,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="22" height="22">
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+      </svg>
+    ),
+    title: "Sports injuries",
+    description: "Recovery programs for muscle strains, soft tissue injury, overuse problems, and return to activity.",
+  },
+  {
+    id: 5,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="22" height="22">
+        <circle cx="12" cy="12" r="3" /><circle cx="12" cy="12" r="8" />
+      </svg>
+    ),
+    title: "Arthritis care",
+    description: "Gentle, progressive treatment to reduce pain, improve movement and support long-term joint health.",
+  },
+  {
+    id: 6,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="22" height="22">
+        <path d="M12 5v14M5 12h14" />
+      </svg>
+    ),
+    title: "Post-surgical rehabilitation",
+    description: "Planned recovery support after orthopaedic procedures with mobility and strengthening exercises.",
+  },
+  {
+    id: 7,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="22" height="22">
+        <path d="M12 3l9 18H3L12 3z" />
+      </svg>
+    ),
+    title: "Deformity correction support",
+    description: "Rehabilitation care to improve alignment-related movement patterns and functional recovery.",
+  },
+  {
+    id: 8,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="22" height="22">
+        <circle cx="12" cy="12" r="5" fill="currentColor" fillOpacity="0.3" /><circle cx="12" cy="12" r="9" />
+      </svg>
+    ),
+    title: "Hip joint replacement recovery",
+    description: "Stepwise physiotherapy focused on strength, balance, walking confidence, and safe return to daily life.",
+  },
+];
+
+const checklistItems = [
+  "Treatment guided by orthopaedic specialist expertise",
+  "Individual attention with one-to-one sessions",
+  "Clear diagnosis and targeted treatment planning",
+  "Focus on long-term recovery, not temporary relief",
+  "Availability of both clinic-based and home physiotherapy services",
+];
+
+const tagBadges = [
+  "One-to-one physiotherapy sessions",
+  "Structured diagnosis and recovery planning",
+];
+
+// Simple physiotherapist SVG illustration
+function TherapistIllustration() {
+  return (
+    <svg viewBox="0 0 200 220" width="200" height="220" xmlns="http://www.w3.org/2000/svg">
+      {/* Head */}
+      <ellipse cx="100" cy="48" rx="28" ry="30" fill="#f0c08a" />
+      {/* Hair / cap */}
+      <ellipse cx="100" cy="28" rx="30" ry="18" fill="#1a3a5c" />
+      {/* Neck */}
+      <rect x="91" y="74" width="18" height="14" rx="4" fill="#f0c08a" />
+      {/* Body / scrubs */}
+      <rect x="62" y="86" width="76" height="80" rx="18" fill="#1a4d80" />
+      {/* Clipboard */}
+      <rect x="108" y="98" width="38" height="48" rx="6" fill="#d0dff0" />
+      <rect x="112" y="94" width="30" height="8" rx="3" fill="#b0c8e8" />
+      <line x1="115" y1="112" x2="140" y2="112" stroke="#7a9bbf" strokeWidth="2" strokeLinecap="round" />
+      <line x1="115" y1="120" x2="140" y2="120" stroke="#7a9bbf" strokeWidth="2" strokeLinecap="round" />
+      <line x1="115" y1="128" x2="132" y2="128" stroke="#7a9bbf" strokeWidth="2" strokeLinecap="round" />
+      {/* Left arm */}
+      <rect x="44" y="90" width="22" height="52" rx="11" fill="#1a4d80" />
+      {/* Stethoscope arc */}
+      <path d="M66 118 Q80 140 96 130" fill="none" stroke="#8aaec8" strokeWidth="3" strokeLinecap="round" />
+      <circle cx="96" cy="130" r="5" fill="#8aaec8" />
+      {/* Legs */}
+      <rect x="72" y="160" width="22" height="50" rx="10" fill="#1a3a5c" />
+      <rect x="106" y="160" width="22" height="50" rx="10" fill="#1a3a5c" />
+      {/* Shoes */}
+      <ellipse cx="83" cy="208" rx="14" ry="8" fill="#0f2236" />
+      <ellipse cx="117" cy="208" rx="14" ry="8" fill="#0f2236" />
+    </svg>
+  );
+}
+
 const PhysiotherapyHomeService = () => {
     const { t, language } = useLanguage();
     const isRtl = language === 'AR';
@@ -17,9 +146,9 @@ const PhysiotherapyHomeService = () => {
         window.scrollTo(0, 0);
         api.getServices()
             .then(data => {
-                const found = data.find(s => s.slug === 'test-physiotherapy') || 
-                              data.find(s => s.slug === 'test-physiotherapy-service') || 
-                              data.find(s => s.slug === 'physiotherapy');
+                const found = data.find(s => s.slug === 'physiotherapy') || 
+                              data.find(s => s.slug === 'test-physiotherapy') || 
+                              data.find(s => s.slug === 'test-physiotherapy-service');
                 setService(found);
                 setLoading(false);
             })
@@ -36,6 +165,10 @@ const PhysiotherapyHomeService = () => {
     const pageDescription = service?.description || content.hero.description;
     const pageTitle = service?.title || content.hero.title;
     const faqs = (service?.faqs && service.faqs.length > 0) ? service.faqs : content.faqs.items;
+
+    const conditionsData = (service?.conditions && service.conditions.length > 0) ? service.conditions : conditions;
+    const checklistData = (service?.checklist_items && service.checklist_items.length > 0) ? service.checklist_items : checklistItems;
+    const tagBadgesData = (service?.tag_badges && service.tag_badges.length > 0) ? service.tag_badges : tagBadges;
 
     if (loading) {
         return (
@@ -177,6 +310,136 @@ const PhysiotherapyHomeService = () => {
                         />
                     </motion.div>
                 )}
+
+                {/* 2a. Conditions managed with physiotherapy services */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="mb-24 relative"
+                >
+                    <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
+                        <div className="max-w-2xl">
+                            <span className="inline-flex items-center gap-1.5 px-4 py-1.5 mb-4 rounded-full bg-primary-50 border border-primary-100 text-[#003B73] text-[10px] font-normal uppercase tracking-[0.2em]">
+                                Conditions managed with physiotherapy services
+                            </span>
+                            <h2 className="text-3xl md:text-5xl font-normal text-primary-950 tracking-tighter leading-[1.05] mb-4">
+                                {service?.conditions_title || "Professional care for pain, stiffness, and movement problems"}
+                            </h2>
+                        </div>
+                        <div className="max-w-md">
+                            <p className="text-gray-500 text-sm md:text-base leading-relaxed">
+                                Physiotherapy plays an important role in managing a wide range of conditions. Early
+                                treatment often leads to faster recovery and helps prevent long-term complications.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {conditionsData.map((condition) => (
+                            <div
+                                key={condition.id}
+                                className="group bg-white border border-gray-100/80 rounded-[2.5rem] p-8 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:-translate-y-1.5 hover:shadow-premium hover:border-primary-100 transition-all duration-300"
+                            >
+                                <div className="w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#003B73] group-hover:text-white transition-all duration-300 shadow-sm overflow-hidden">
+                                    {typeof condition.icon === 'string' ? (
+                                        <div 
+                                            className="w-[22px] h-[22px] flex items-center justify-center [&>svg]:w-full [&>svg]:h-full [&>svg]:stroke-current"
+                                            dangerouslySetInnerHTML={{ __html: condition.icon }} 
+                                        />
+                                    ) : (
+                                        condition.icon
+                                    )}
+                                </div>
+                                <h3 className="text-lg font-normal text-primary-950 mb-3 group-hover:text-[#003B73] transition-colors duration-300 leading-snug">
+                                    {condition.title}
+                                </h3>
+                                 <div 
+                                    className="text-gray-500 text-xs md:text-sm leading-relaxed font-light [&>p]:mb-1 [&>ul]:list-disc [&>ul]:pl-4 [&>ol]:list-decimal [&>ol]:pl-4"
+                                    dangerouslySetInnerHTML={{ __html: condition.description }}
+                                 />
+                            </div>
+                        ))}
+                    </div>
+                </motion.div>
+
+                {/* 2b. Why Choose Us / Quality Care */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-24"
+                >
+                    {/* Left Column: Why Choose Us info */}
+                    <div className="lg:col-span-7 space-y-8">
+                        <div>
+                            <span className="inline-flex items-center gap-1.5 px-4 py-1.5 mb-4 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-[10px] font-normal uppercase tracking-[0.2em]">
+                                Why choose our physiotherapy services in Dubai
+                            </span>
+                            <h2 className="text-3xl md:text-5xl font-normal text-primary-950 tracking-tighter leading-[1.05] mb-4">
+                                {service?.checklist_title || "Clinical structure, one-to-one care, and clear treatment direction"}
+                            </h2>
+                            <p className="text-gray-500 text-sm md:text-base leading-relaxed">
+                                Choosing the right physiotherapy service is important for both safety and results. Our
+                                approach is based on careful assessment, targeted treatment, and ongoing progression.
+                            </p>
+                        </div>
+
+                        <div className="space-y-3.5">
+                            {checklistData.map((item, i) => (
+                                <div key={i} className="flex items-start gap-4 p-4 bg-white border border-gray-100 rounded-3xl shadow-[0_2px_12px_-3px_rgba(0,0,0,0.02)] hover:shadow-md transition-shadow duration-300">
+                                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mt-0.5">
+                                        <CheckCircle2 size={16} className="fill-emerald-50" />
+                                    </div>
+                                    <span className="text-gray-700 text-sm md:text-base font-light leading-relaxed">{item}</span>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="bg-gradient-to-br from-[#003B73]/5 to-sky-50/25 border-l-4 border-[#003B73] rounded-3xl p-6 shadow-sm">
+                            <p className="text-[#003B73] font-normal text-sm md:text-base leading-relaxed italic">
+                                "Every patient is assessed carefully, and treatment is adapted as progress is made —
+                                ensuring the right care at every stage of recovery."
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Right Column: Illustration & Badges */}
+                    <div className="lg:col-span-5 flex flex-col gap-6 w-full">
+                        <div className="bg-white border border-gray-100 rounded-[3.5rem] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] flex flex-col items-center relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-primary-50 rounded-full blur-3xl pointer-events-none"></div>
+                            
+                            <span className="self-end px-4 py-1.5 rounded-full bg-primary-50 border border-primary-100 text-primary-700 text-[10px] font-normal uppercase tracking-[0.2em] mb-6">
+                                UK-trained Orthopaedic Expertise
+                            </span>
+                            
+                            <div className="flex justify-center items-center py-6 group-hover:scale-105 transition-transform duration-500 max-h-72">
+                                {service?.checklist_image ? (
+                                    <img 
+                                        src={service.checklist_image} 
+                                        alt="Value checklist illustration" 
+                                        className="max-h-64 w-auto object-contain rounded-2xl"
+                                    />
+                                ) : (
+                                    <TherapistIllustration />
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="flex flex-wrap gap-3">
+                            {tagBadgesData.map((tag, i) => (
+                                <span 
+                                    key={i} 
+                                    className="bg-white border border-gray-150 rounded-2xl px-5 py-3.5 text-[11px] font-normal uppercase tracking-[0.1em] text-primary-950 shadow-[0_2px_10px_-2px_rgba(0,0,0,0.03)] hover:border-[#003B73] hover:shadow-md transition-all duration-300 cursor-default"
+                                >
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                </motion.div>
 
                 {/* 3. CTA Banner - Book Your Session */}
                 {content.ctaBanner && (

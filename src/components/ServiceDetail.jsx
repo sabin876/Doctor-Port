@@ -18,6 +18,39 @@ import spineSurgeryImg from '../assets/spine-surgery-bg.png';
 // Fallback image
 const defaultImage = "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1200";
 
+// Simple physiotherapist SVG illustration
+function TherapistIllustration() {
+  return (
+    <svg viewBox="0 0 200 220" width="200" height="220" xmlns="http://www.w3.org/2000/svg">
+      {/* Head */}
+      <ellipse cx="100" cy="48" rx="28" ry="30" fill="#f0c08a" />
+      {/* Hair / cap */}
+      <ellipse cx="100" cy="28" rx="30" ry="18" fill="#1a3a5c" />
+      {/* Neck */}
+      <rect x="91" y="74" width="18" height="14" rx="4" fill="#f0c08a" />
+      {/* Body / scrubs */}
+      <rect x="62" y="86" width="76" height="80" rx="18" fill="#1a4d80" />
+      {/* Clipboard */}
+      <rect x="108" y="98" width="38" height="48" rx="6" fill="#d0dff0" />
+      <rect x="112" y="94" width="30" height="8" rx="3" fill="#b0c8e8" />
+      <line x1="115" y1="112" x2="140" y2="112" stroke="#7a9bbf" strokeWidth="2" strokeLinecap="round" />
+      <line x1="115" y1="120" x2="140" y2="120" stroke="#7a9bbf" strokeWidth="2" strokeLinecap="round" />
+      <line x1="115" y1="128" x2="132" y2="128" stroke="#7a9bbf" strokeWidth="2" strokeLinecap="round" />
+      {/* Left arm */}
+      <rect x="44" y="90" width="22" height="52" rx="11" fill="#1a4d80" />
+      {/* Stethoscope arc */}
+      <path d="M66 118 Q80 140 96 130" fill="none" stroke="#8aaec8" strokeWidth="3" strokeLinecap="round" />
+      <circle cx="96" cy="130" r="5" fill="#8aaec8" />
+      {/* Legs */}
+      <rect x="72" y="160" width="22" height="50" rx="10" fill="#1a3a5c" />
+      <rect x="106" y="160" width="22" height="50" rx="10" fill="#1a3a5c" />
+      {/* Shoes */}
+      <ellipse cx="83" cy="208" rx="14" ry="8" fill="#0f2236" />
+      <ellipse cx="117" cy="208" rx="14" ry="8" fill="#0f2236" />
+    </svg>
+  );
+}
+
 const ServiceDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -149,6 +182,181 @@ const ServiceDetail = () => {
                         </div>
                     </motion.div>
                 </div>
+
+                {/* 2a. Custom Conditions managed with this service (Dynamic CMS Template) */}
+                {rawService?.conditions && rawService.conditions.length > 0 && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="mb-24 mt-16 relative"
+                    >
+                        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
+                            <div className="max-w-2xl">
+                                <span className="inline-flex items-center gap-1.5 px-4 py-1.5 mb-4 rounded-full bg-primary-50 border border-primary-100 text-[#003B73] text-[10px] font-normal uppercase tracking-[0.2em]">
+                                    Conditions managed with {service.title}
+                                </span>
+                                <h2 className="text-3xl md:text-5xl font-normal text-primary-950 tracking-tighter leading-[1.05] mb-4">
+                                    {rawService.conditions_title || "Professional care and targeted recovery options"}
+                                </h2>
+                            </div>
+                            <div className="max-w-md">
+                                <p className="text-gray-500 text-sm md:text-base leading-relaxed">
+                                    Early, structured specialist-guided treatment is key to joint health and returns you to full activity faster with fewer complications.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {rawService.conditions.map((condition) => (
+                                <div
+                                    key={condition.id}
+                                    className="group bg-white border border-gray-100/80 rounded-[2.5rem] p-8 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:-translate-y-1.5 hover:shadow-premium hover:border-primary-100 transition-all duration-300"
+                                >
+                                    <div className="w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#003B73] group-hover:text-white transition-all duration-300 shadow-sm overflow-hidden">
+                                        {typeof condition.icon === 'string' ? (
+                                            <div 
+                                                className="w-[22px] h-[22px] flex items-center justify-center [&>svg]:w-full [&>svg]:h-full [&>svg]:stroke-current"
+                                                dangerouslySetInnerHTML={{ __html: condition.icon }} 
+                                            />
+                                        ) : (
+                                            condition.icon
+                                        )}
+                                    </div>
+                                    <h3 className="text-lg font-normal text-primary-950 mb-3 group-hover:text-[#003B73] transition-colors duration-300 leading-snug">
+                                        {condition.title}
+                                    </h3>
+                                    <div 
+                                        className="text-gray-500 text-xs md:text-sm leading-relaxed font-light [&>p]:mb-1 [&>ul]:list-disc [&>ul]:pl-4 [&>ol]:list-decimal [&>ol]:pl-4"
+                                        dangerouslySetInnerHTML={{ __html: condition.description }}
+                                     />
+                                </div>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+
+                {/* 2b. Custom Why Choose Us Value Checklist (Dynamic CMS Template) */}
+                {rawService?.checklist_items && rawService.checklist_items.length > 0 && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-24 mt-16"
+                    >
+                        {/* Left Column: Why Choose Us info */}
+                        <div className="lg:col-span-7 space-y-8">
+                            <div>
+                                <span className="inline-flex items-center gap-1.5 px-4 py-1.5 mb-4 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-[10px] font-normal uppercase tracking-[0.2em]">
+                                    Why choose our {service.title} services
+                                </span>
+                                <h2 className="text-3xl md:text-5xl font-normal text-primary-950 tracking-tighter leading-[1.05] mb-4">
+                                    {rawService.checklist_title || "Clinical structure, dedicated care, and clear treatment direction"}
+                                </h2>
+                                <p className="text-gray-500 text-sm md:text-base leading-relaxed">
+                                    Our clinical approach centers on providing tailored, premium care guided by international medical benchmarks, safety guidelines, and active therapy.
+                                </p>
+                            </div>
+
+                            <div className="space-y-3.5">
+                                {rawService.checklist_items.map((item, i) => (
+                                    <div key={i} className="flex items-start gap-4 p-4 bg-white border border-gray-100 rounded-3xl shadow-[0_2px_12px_-3px_rgba(0,0,0,0.02)] hover:shadow-md transition-shadow duration-300">
+                                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mt-0.5">
+                                            <CheckCircle2 size={16} className="fill-emerald-50" />
+                                        </div>
+                                        <span className="text-gray-700 text-sm md:text-base font-light leading-relaxed">{item}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Right Column: Badges & Custom Illustration */}
+                        <div className="lg:col-span-5 flex flex-col gap-6 w-full">
+                            {(rawService.checklist_image || rawService.slug === 'physiotherapy' || rawService.slug === 'test-physiotherapy' || rawService.slug === 'test-physiotherapy-service') && (
+                                <div className="bg-white border border-gray-100 rounded-[3.5rem] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] flex flex-col items-center relative overflow-hidden group">
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary-50 rounded-full blur-3xl pointer-events-none"></div>
+                                    
+                                    <span className="self-end px-4 py-1.5 rounded-full bg-primary-50 border border-primary-100 text-primary-700 text-[10px] font-normal uppercase tracking-[0.2em] mb-6">
+                                        UK-trained Orthopaedic Expertise
+                                    </span>
+                                    
+                                    <div className="flex justify-center items-center py-6 group-hover:scale-105 transition-transform duration-500 max-h-72">
+                                        {rawService.checklist_image ? (
+                                            <img 
+                                                src={rawService.checklist_image} 
+                                                alt="Value checklist illustration" 
+                                                className="max-h-64 w-auto object-contain rounded-2xl"
+                                            />
+                                        ) : (
+                                            <TherapistIllustration />
+                                        )}
+                                    </div>
+                                </div>
+                            )}
+
+                            {rawService?.tag_badges && rawService.tag_badges.length > 0 && (
+                                <div className="flex flex-wrap gap-3">
+                                    {rawService.tag_badges.map((tag, i) => (
+                                        <span 
+                                            key={i} 
+                                            className="bg-white border border-gray-150 rounded-2xl px-5 py-3.5 text-[11px] font-normal uppercase tracking-[0.1em] text-primary-950 shadow-[0_2px_10px_-2px_rgba(0,0,0,0.03)] hover:border-[#003B73] hover:shadow-md transition-all duration-300 cursor-default"
+                                        >
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </motion.div>
+                )}
+
+                {/* CTA Banner - Dynamic Booking Card */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="mb-24 mt-16"
+                >
+                    <div className="relative rounded-[3.5rem] overflow-hidden bg-gradient-to-r from-[#003B73] via-[#00569e] to-[#0284c7] py-16 px-8 md:py-20 md:px-16 shadow-2xl">
+                        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -mr-40 -mt-40 blur-[100px] pointer-events-none" />
+                        <div className="absolute bottom-0 left-0 w-72 h-72 bg-emerald-400/10 rounded-full -ml-32 -mb-32 blur-[80px] pointer-events-none" />
+                        
+                        <div className="relative z-10 flex flex-col items-center text-center gap-8">
+                            <div className="inline-flex items-center px-5 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-[10px] font-normal uppercase tracking-[0.25em]">
+                                <Zap size={12} className="mr-2 fill-yellow-400 text-yellow-400" />
+                                Expert {service.title} in Dubai
+                            </div>
+
+                            <h2 className="text-2xl md:text-4xl font-normal text-white tracking-tight leading-[1.1] max-w-3xl">
+                                Schedule a Consultation with our Orthopaedic Specialist Today
+                            </h2>
+                            <p className="text-white/75 text-base md:text-lg font-light max-w-2xl leading-relaxed">
+                                Get advanced clinical care and a personalized recovery roadmap tailored to your specific joint and mobility needs.
+                            </p>
+
+                            <div className="flex flex-col sm:flex-row items-center gap-5 mt-4 w-full sm:w-auto">
+                                <a
+                                    href={`tel:${import.meta.env.VITE_CONTACT_PHONE}`}
+                                    className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-white text-[#003B73] font-semibold text-[12px] uppercase tracking-[0.15em] rounded-2xl shadow-xl hover:bg-blue-50 hover:scale-[1.03] active:scale-95 transition-all duration-300"
+                                >
+                                    <Phone size={18} />
+                                    Call Us Now
+                                </a>
+                                <a
+                                    href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER?.replace(/[^0-9]/g, '')}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-[#25D366] text-white font-semibold text-[12px] uppercase tracking-[0.15em] rounded-2xl shadow-xl hover:bg-[#1eb954] hover:scale-[1.03] active:scale-95 transition-all duration-300"
+                                >
+                                    <MessageCircle size={18} />
+                                    WhatsApp Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </motion.div>
 
                 {/* FAQ Section */}
                 <ServiceFAQSection serviceSlug={id} customFaqs={service.faqs} serviceTitle={service.title} />

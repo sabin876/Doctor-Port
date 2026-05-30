@@ -10,6 +10,9 @@ const processImageUrls = (item) => {
     if (item.og_image && !item.og_image.startsWith('http')) {
         item.og_image = `${baseUrl}${item.og_image.startsWith('/') ? '' : '/'}${item.og_image}`;
     }
+    if (item.checklist_image && !item.checklist_image.startsWith('http')) {
+        item.checklist_image = `${baseUrl}${item.checklist_image.startsWith('/') ? '' : '/'}${item.checklist_image}`;
+    }
     return item;
 };
 
@@ -30,19 +33,31 @@ export const api = {
         return Array.isArray(data) ? data.map(processImageUrls) : data;
     },
     createService: async (data) => {
+        const isFormData = data instanceof FormData;
         const response = await fetch(`${API_BASE_URL}/services/`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
+            headers: isFormData ? {} : { 'Content-Type': 'application/json' },
+            body: isFormData ? data : JSON.stringify(data)
         });
+        if (!response.ok) {
+            const errData = await response.json().catch(() => ({}));
+            const errMessage = errData.detail || Object.entries(errData).map(([k, v]) => `${k}: ${v}`).join(', ') || 'Validation failed';
+            throw new Error(errMessage);
+        }
         return response.json();
     },
     updateService: async (slug, data) => {
+        const isFormData = data instanceof FormData;
         const response = await fetch(`${API_BASE_URL}/services/${slug}/`, {
             method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
+            headers: isFormData ? {} : { 'Content-Type': 'application/json' },
+            body: isFormData ? data : JSON.stringify(data)
         });
+        if (!response.ok) {
+            const errData = await response.json().catch(() => ({}));
+            const errMessage = errData.detail || Object.entries(errData).map(([k, v]) => `${k}: ${v}`).join(', ') || 'Validation failed';
+            throw new Error(errMessage);
+        }
         return response.json();
     },
     deleteService: async (slug) => {
