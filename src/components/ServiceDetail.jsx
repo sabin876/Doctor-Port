@@ -64,7 +64,7 @@ const ServiceDetail = () => {
         window.scrollTo(0, 0);
         api.getServices()
             .then(data => {
-                const found = data.find(s => s.slug === id);
+                const found = data.find(s => s.slug?.toLowerCase() === id?.toLowerCase());
                 setRawService(found);
                 setLoading(false);
             })

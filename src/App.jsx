@@ -88,6 +88,8 @@ function App() {
                         <Route path="/services/test-physiotherapy" element={<PhysiotherapyHomeService />} />
                         <Route path="/services/test-physiotherapy-service" element={<PhysiotherapyHomeService />} />
                         <Route path="/services/physiotherapy-home-services" element={<Navigate to="/services/physiotherapy" replace />} />
+                        <Route path="/services/physiotherapy-services" element={<Navigate to="/services/physiotherapy" replace />} />
+                        <Route path="/services/Physiotherapy-Services" element={<Navigate to="/services/physiotherapy" replace />} />
                         <Route path="/services/:id" element={<ServiceDetail />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/blog" element={<Articles />} />
