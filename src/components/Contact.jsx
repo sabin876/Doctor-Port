@@ -64,8 +64,8 @@ const Contact = () => {
 
                 setContactData({
                     full_name: '',
-                    email_address: '',
-                    subject: '',
+                    email: '',
+                    subject: f"Contact from {contactData.full_name}",
                     city: '',
                     phone: '',
                     service: '',
@@ -169,7 +169,13 @@ const Contact = () => {
                             className="w-full p-3 border rounded"
                             required
                         />
-
+                        <input
+    name="subject"
+    value={contactData.subject}
+    onChange={handleInputChange}
+    placeholder="Subject"
+    className="w-full p-3 border rounded"
+/>
                         <input
                             name="city"
                             value={contactData.city}
