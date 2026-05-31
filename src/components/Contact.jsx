@@ -64,7 +64,8 @@ const Contact = () => {
 
                 setContactData({
                     full_name: '',
-                    email: '',
+                    email_address: '',
+                    subject: '',
                     city: '',
                     phone: '',
                     service: '',
