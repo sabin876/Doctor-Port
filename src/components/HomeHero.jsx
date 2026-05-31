@@ -262,15 +262,21 @@ const HomeHero = () => {
                                 </CardItem>
 
 
-                                {/* Doctor Image with Slide Transition */}
+                                {/* Doctor Video with Autoplay and Poster Fallback */}
                                 <CardItem
                                     translateZ={40}
                                     className="absolute inset-0 w-full h-full overflow-hidden rounded-[2.5rem]"
                                 >
-                                    <img
-                                        src={slide.photo}
-                                        alt="Dr. Ulhas Sonar"
-                                        className={`${slide.photoStyle} filter contrast-[1.05] brightness-95 drop-shadow-2xl`}
+                                    <video
+                                        key="hero-video-home"
+                                        src="/for-web-video.mp4"
+                                        poster={slide.photo}
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
+                                        preload="auto"
+                                        className="w-full h-full object-cover filter contrast-[1.05] brightness-95 drop-shadow-2xl"
                                     />
                                 </CardItem>
 

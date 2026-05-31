@@ -25,3 +25,7 @@ dist-ssr
 *.sw?
 
 .vercel
+
+# Large media assets
+public/for-web-video.mp4
+
