@@ -1,140 +1,13 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { X, ZoomIn, Images, Award, Users, Microscope, ChevronLeft, ChevronRight } from 'lucide-react';
 import SEO from './SEO';
+import { api } from '../lib/api';
 
 
 
-const galleryItems = [
-    {
-        id: 1,
-        src: '/images/gallery/gallery_1.webp',
-        category: 'About',
-        title: 'Patient Testimonials',
-        desc: 'Exceptional patient satisfaction and positive feedback from those who have undergone treatment with Dr. Ulhas.',
-        span: 'col-span-2 row-span-2',
-    },
-    {
-        id: 2,
-        src: '/images/gallery/gallery_2.webp',
-        category: 'Awards',
-        title: 'Excellence Recognition',
-        desc: 'Dr. Ulhas Sonar receiving recognition for outstanding clinical contributions and surgical excellence.',
-        span: 'col-span-1 row-span-1',
-    },
-    {
-        id: 3,
-        src: '/images/gallery/gallery_3.webp',
-        category: 'Awards',
-        title: 'Clinical Excellence Award',
-        desc: 'Honouring the dedication to patient care and surgical innovation in the field of orthopedics.',
-        span: 'col-span-1 row-span-1',
-    },
-    {
-        id: 4,
-        src: '/images/gallery/gallery_4.webp',
-        category: 'Clinic',
-        title: 'Our Dedicated Team',
-        desc: 'A cohesive team of healthcare professionals committed to delivering world-class orthopedic care.',
-        span: 'col-span-1 row-span-2',
-    },
-    {
-        id: 5,
-        src: '/images/gallery/gallery_5.webp',
-        category: 'Surgery',
-        title: 'Advanced Surgical Precision',
-        desc: 'Intra-operative perspective showcasing the meticulous approach to joint preservation and replacement.',
-        span: 'col-span-1 row-span-1',
-    },
-    {
-        id: 6,
-        src: '/images/gallery/gallery_6.webp',
-        category: 'Clinic',
-        title: 'Team Collaboration',
-        desc: 'Regular clinical meetings and team celebrations to ensure excellence in patient care pathways.',
-        span: 'col-span-1 row-span-1',
-    },
-    {
-        id: 7,
-        src: '/images/gallery/gallery_7.webp',
-        category: 'Clinic',
-        title: 'Team Social Engagement',
-        desc: 'Fostering strong professional relationships through social events and team-building activities.',
-        span: 'col-span-1 row-span-1',
-    },
-    {
-        id: 8,
-        src: '/images/gallery/gallery_8.webp',
-        category: 'Clinic',
-        title: 'Professional Growth',
-        desc: 'Celebrating milestones and collective achievements in our journey of clinical excellence.',
-        span: 'col-span-1 row-span-1',
-    },
-    {
-        id: 9,
-        src: '/images/gallery/gallery_9.webp',
-        category: 'Conference',
-        title: 'Global Orthopedic Networking',
-        desc: 'Exchanging knowledge and surgical concepts with international colleagues at global conferences.',
-        span: 'col-span-1 row-span-1',
-    },
-    {
-        id: 10,
-        src: '/images/gallery/kneeassessment.webp',
-        category: 'Clinic',
-        title: 'Comprehensive Knee Assessment',
-        desc: 'Detailed examination focusing on biomechanics and joint health for personalized recovery.',
-        span: 'col-span-1 row-span-1',
-    },
-    {
-        id: 11,
-        src: '/images/gallery/shoulderassessment.webp',
-        category: 'Clinic',
-        title: 'Shoulder Mobility Care',
-        desc: 'Expert assessment and management of rotator cuff injuries and shoulder instability.',
-        span: 'col-span-1 row-span-1',
-    },
-    {
-        id: 12,
-        src: '/images/gallery/hipassessment.webp',
-        category: 'Clinic',
-        title: 'Hip Preservation Strategies',
-        desc: 'Specialized interventions designed to preserve the joint and delay degenerative changes.',
-        span: 'col-span-1 row-span-1',
-    },
-    {
-        id: 13,
-        src: '/images/gallery/spineassessment.webp',
-        category: 'Clinic',
-        title: 'Spine & Back Health',
-        desc: 'Multidisciplinary approach to managing chronic back pain and spinal conditions.',
-        span: 'col-span-1 row-span-1',
-    },
-    {
-        id: 14,
-        src: '/images/gallery/sportsrecovery.webp',
-        category: 'Surgery',
-        title: 'Elite Sports Recovery',
-        desc: 'Advanced surgical and biological treatments to return athletes to their peak performance.',
-        span: 'col-span-1 row-span-1',
-    },
-    {
-        id: 15,
-        src: '/images/gallery/handwristcare.webp',
-        category: 'Clinic',
-        title: 'Hand & Wrist Precision',
-        desc: 'Delicate care for carpal tunnel, tendon injuries, and arthritic hand conditions.',
-        span: 'col-span-1 row-span-1',
-    },
-    {
-        id: 16,
-        src: '/images/gallery/combinedjoint.webp',
-        category: 'Surgery',
-        title: 'Combined Limb Procedures',
-        desc: 'Holistic surgical management of complex lower limb injuries and deformities.',
-        span: 'col-span-1 row-span-1',
-    },
-];
+
+// Gallery items are dynamically retrieved from the backend database
 
 const categories = ['All', 'Clinic', 'Surgery', 'Consultation', 'Awards', 'Conference', 'About'];
 
@@ -149,10 +22,25 @@ const categoryIcons = {
 };
 
 const Gallery = () => {
+    const [galleryItems, setGalleryItems] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [activeCategory, setActiveCategory] = useState('All');
     const [lightbox, setLightbox] = useState(null); // index in filtered list
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        api.getGalleryItems()
+            .then(data => {
+                setGalleryItems(data || []);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error("Failed to fetch gallery items:", err);
+                setLoading(false);
+            });
+    }, []);
 
     const filtered =
         activeCategory === 'All'
@@ -252,12 +140,17 @@ const Gallery = () => {
                 </motion.div>
 
                 {/* Masonry Grid */}
-                <motion.div
-                    layout
-                    className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[220px] gap-4"
-                >
-                    <AnimatePresence mode="popLayout">
-                        {filtered.map((item, idx) => (
+                {loading ? (
+                    <div className="flex justify-center items-center py-32">
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                    </div>
+                ) : (
+                    <motion.div
+                        layout
+                        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[220px] gap-4"
+                    >
+                        <AnimatePresence mode="popLayout">
+                            {filtered.map((item, idx) => (
                             <motion.div
                                 key={item.id}
                                 layout
@@ -301,9 +194,10 @@ const Gallery = () => {
                                 {/* Shine sweep */}
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
                             </motion.div>
-                        ))}
-                    </AnimatePresence>
-                </motion.div>
+                            ))}
+                        </AnimatePresence>
+                    </motion.div>
+                )}
             </div>
 
             {/* Lightbox */}

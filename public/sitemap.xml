@@ -5,49 +5,49 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
   <url>
-    <loc>https://yourdomain.com/</loc>
+    <loc>https://drulhasorthopedic.com/</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://yourdomain.com/about</loc>
+    <loc>https://drulhasorthopedic.com/about</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://yourdomain.com/services</loc>
+    <loc>https://drulhasorthopedic.com/services</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://yourdomain.com/contact</loc>
+    <loc>https://drulhasorthopedic.com/contact</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://yourdomain.com/articles</loc>
+    <loc>https://drulhasorthopedic.com/articles</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://yourdomain.com/gallery</loc>
+    <loc>https://drulhasorthopedic.com/gallery</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://yourdomain.com/social-media</loc>
+    <loc>https://drulhasorthopedic.com/social-media</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -55,7 +55,7 @@
 
   <!-- Total/Partial Joint Replacement -->
   <url>
-    <loc>https://yourdomain.com/services/joint-pain-treatment</loc>
+    <loc>https://drulhasorthopedic.com/services/joint-pain-treatment</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -63,7 +63,7 @@
 
   <!-- Sports / ACL Injury Management -->
   <url>
-    <loc>https://yourdomain.com/services/sports-medicine</loc>
+    <loc>https://drulhasorthopedic.com/services/sports-medicine</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -71,7 +71,7 @@
 
   <!-- Robotic / Computer Assisted Surgery -->
   <url>
-    <loc>https://yourdomain.com/services/robotic-surgery</loc>
+    <loc>https://drulhasorthopedic.com/services/robotic-surgery</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -79,7 +79,7 @@
 
   <!-- Knee and Shoulder Arthroscopy -->
   <url>
-    <loc>https://yourdomain.com/services/arthroscopy</loc>
+    <loc>https://drulhasorthopedic.com/services/arthroscopy</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -87,7 +87,7 @@
 
   <!-- Deformity Corrections / Osteotomies -->
   <url>
-    <loc>https://yourdomain.com/services/deformity-correction</loc>
+    <loc>https://drulhasorthopedic.com/services/deformity-correction</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -95,7 +95,7 @@
 
   <!-- Joint Preservation / Regeneration -->
   <url>
-    <loc>https://yourdomain.com/services/consultation</loc>
+    <loc>https://drulhasorthopedic.com/services/consultation</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -103,7 +103,7 @@
 
   <!-- Fractures and Trauma Care -->
   <url>
-    <loc>https://yourdomain.com/services/orthopedic-trauma</loc>
+    <loc>https://drulhasorthopedic.com/services/orthopedic-trauma</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -111,7 +111,7 @@
 
   <!-- Physiotherapy and Rehabilitation -->
   <url>
-    <loc>https://yourdomain.com/services/physiotherapy-home-services</loc>
+    <loc>https://drulhasorthopedic.com/services/physiotherapy-home-services</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -119,7 +119,7 @@
 
   <!-- Knee Surgery -->
   <url>
-    <loc>https://yourdomain.com/services/knee-surgery</loc>
+    <loc>https://drulhasorthopedic.com/services/knee-surgery</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -127,7 +127,7 @@
 
   <!-- Hip Surgery -->
   <url>
-    <loc>https://yourdomain.com/services/hip-surgery</loc>
+    <loc>https://drulhasorthopedic.com/services/hip-surgery</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -135,7 +135,7 @@
 
   <!-- Shoulder Surgery -->
   <url>
-    <loc>https://yourdomain.com/services/shoulder-surgery</loc>
+    <loc>https://drulhasorthopedic.com/services/shoulder-surgery</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -143,7 +143,7 @@
 
   <!-- Knee Pain in Professionals: The Ultimate Specialist Guide -->
   <url>
-    <loc>https://yourdomain.com/blog/knee-pain-pillar</loc>
+    <loc>https://drulhasorthopedic.com/blog/knee-pain-pillar</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -151,7 +151,7 @@
 
   <!-- Understanding Common Causes of Knee Pain -->
   <url>
-    <loc>https://yourdomain.com/blog/causes-of-knee-pain</loc>
+    <loc>https://drulhasorthopedic.com/blog/causes-of-knee-pain</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
@@ -159,7 +159,7 @@
 
   <!-- Knee Pain After Gym or Sports in Working Professionals -->
   <url>
-    <loc>https://yourdomain.com/blog/knee-pain-gym-sports</loc>
+    <loc>https://drulhasorthopedic.com/blog/knee-pain-gym-sports</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
@@ -167,7 +167,7 @@
 
   <!-- When Knee Pain Needs a Scan: MRI, X-rays and Decision-Making -->
   <url>
-    <loc>https://yourdomain.com/blog/when-to-get-mri-knee</loc>
+    <loc>https://drulhasorthopedic.com/blog/when-to-get-mri-knee</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
@@ -175,7 +175,7 @@
 
   <!-- Continuing Sports with Knee Pain: Risks and Mistakes -->
   <url>
-    <loc>https://yourdomain.com/blog/continuing-sports-risks</loc>
+    <loc>https://drulhasorthopedic.com/blog/continuing-sports-risks</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
@@ -183,7 +183,7 @@
 
   <!-- Anterior Knee Pain (Patellofemoral Pain) in Office Workers -->
   <url>
-    <loc>https://yourdomain.com/blog/anterior-knee-pain-office</loc>
+    <loc>https://drulhasorthopedic.com/blog/anterior-knee-pain-office</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -191,7 +191,7 @@
 
   <!-- Meniscus Tear vs. Muscle Strain – How to Tell them Apart -->
   <url>
-    <loc>https://yourdomain.com/blog/meniscus-tear-vs-strain</loc>
+    <loc>https://drulhasorthopedic.com/blog/meniscus-tear-vs-strain</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -199,7 +199,7 @@
 
   <!-- Best Exercises for Knee Pain (Desk Professionals) -->
   <url>
-    <loc>https://yourdomain.com/blog/knee-pain-exercises-desk</loc>
+    <loc>https://drulhasorthopedic.com/blog/knee-pain-exercises-desk</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -207,7 +207,7 @@
 
   <!-- Managing Knee Pain During Travel and Long Flights -->
   <url>
-    <loc>https://yourdomain.com/blog/knee-pain-travel-flights</loc>
+    <loc>https://drulhasorthopedic.com/blog/knee-pain-travel-flights</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

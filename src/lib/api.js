@@ -73,5 +73,24 @@ export const api = {
     getSiteSettings: async () => {
         const response = await fetch(`${API_BASE_URL}/settings/`);
         return response.json();
+    },
+    getGalleryItems: async () => {
+        const response = await fetch(`${API_BASE_URL}/gallery/`);
+        const data = await response.json();
+        if (Array.isArray(data)) {
+            return data.map(item => {
+                const processed = processImageUrls(item);
+                return {
+                    id: processed.id,
+                    src: processed.image,
+                    category: processed.category,
+                    title: processed.title,
+                    desc: processed.description,
+                    span: processed.span || 'col-span-1 row-span-1'
+                };
+            });
+        }
+        return data;
     }
 };
+
