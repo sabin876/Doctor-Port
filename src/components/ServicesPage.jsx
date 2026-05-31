@@ -1,6 +1,8 @@
 import React from 'react';
 import SEO from './SEO';
 import Services from './Services';
+import CTABanner from './CTABanner';
+import Testimonials from './Testimonials';
 import FAQ from './FAQ';
 import { useLanguage } from '../context/LanguageContext';
 import Breadcrumbs from './ui/Breadcrumbs';
@@ -30,6 +32,8 @@ const ServicesPage = () => {
                 ]} />
             </div>
             <Services />
+            <CTABanner />
+            <Testimonials />
             <FAQ />
         </main>
     );

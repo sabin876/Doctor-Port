@@ -5,7 +5,7 @@ const TopBar = () => {
     const { t } = useLanguage();
     return (
         <div className="bg-[#1282b2] text-white py-2 px-4 sm:px-6 lg:px-8 relative z-[60] border-b border-white/10 shadow-sm">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between text-[11px] font-montserrat font-bold uppercase tracking-wider">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between text-[13px] font-normal text-white">
 
                 {/* Contact Info & Address */}
                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 md:gap-6 opacity-95 w-full md:w-auto text-center md:text-left">
@@ -19,7 +19,7 @@ const TopBar = () => {
                         <span>{t('topBar.email')}: {import.meta.env.VITE_CONTACT_EMAIL}</span>
                     </a>
 
-                    <div className="hidden sm:flex items-center gap-1.5 font-montserrat">
+                    <div className="hidden sm:flex items-center gap-1.5">
                         <MapPin className="w-3.5 h-3.5" />
                         <span className="line-clamp-1">{t('topBar.location')}: {t('topBar.locationValue')}</span>
                     </div>

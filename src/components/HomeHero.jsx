@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, animate } from 'framer-motion';
-import { Calendar, ChevronRight, Activity, Star, Award, GraduationCap, CheckCircle2 } from 'lucide-react';
+import { Calendar, ChevronRight, Activity, Star, Award, GraduationCap } from 'lucide-react';
 import { Link as RouterLink } from 'react-router-dom';
 import { CardContainer, CardBody, CardItem } from './ui/3d-card';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
-import doctorSurgery from '../assets/doctor-surgery.webp';
-import doctorPortrait from '../assets/Doctor Photo.webp';
+import doctorPortrait from '../assets/doctor-hero.webp';
 
 /* ── Animated number counter ── */
 const AnimatedCounter = ({ value, suffix, trigger }) => {
@@ -94,46 +93,28 @@ const HomeHero = () => {
 
     const slides = [
         {
-            id: 0,
-            photo: doctorSurgery,
-            photoStyle: 'h-[105%] w-auto object-cover object-center',
-            badge: t('hero.slides.0.badge'),
-            headline1: t('hero.slides.0.headline1'),
-            headline2: t('hero.slides.0.headline2'),
-            description: t('hero.slides.0.description'),
-            badgeOutcomes: t('hero.slides.0.badgeOutcomes'),
-            nameplateSub: t('hero.slides.0.nameplateSub'),
-            stats: allStats,
-        },
-        {
             id: 1,
             photo: doctorPortrait,
-            photoStyle: 'h-[100%] w-auto object-contain object-bottom',
+            photoStyle: 'w-full h-full object-contain object-bottom pt-8',
             badge: t('hero.slides.1.badge'),
-            headline1: t('hero.slides.1.headline1'),
-            headline2: t('hero.slides.1.headline2'),
+            headlineA: "Patient Centric, Evidence",
+            headlineB: "Based & Individualised",
+            headlineC: "Orthopedic Care",
             description: t('hero.slides.1.description'),
             badgeOutcomes: t('hero.slides.1.badgeOutcomes'),
-            nameplateSub: t('hero.slides.1.nameplateSub'),
+            nameplateSub: language === 'AR'
+                ? "استشاري جراحة العظام"
+                : language === 'HI'
+                ? "सलाहकार आर्थोपेडिक सर्जन"
+                : "Consultant Orthopedic Surgeon",
             stats: allStats,
         },
     ];
 
     const highlights = t('hero.highlights') || [];
 
-    const [activeSlide, setActiveSlide] = useState(0);
-    const [direction, setDirection] = useState(1);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            const next = (activeSlide + 1) % slides.length;
-            setDirection(1);
-            setActiveSlide(next);
-        }, SLIDE_DURATION);
-        return () => clearTimeout(timer);
-    }, [activeSlide]);
-
-    const slide = slides[activeSlide];
+    const activeSlide = 0;
+    const slide = slides[0];
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -198,7 +179,7 @@ const HomeHero = () => {
                                     initial="enter"
                                     animate="center"
                                     exit="exit"
-                                    className="text-blue-700 text-xs md:text-[13px] font-black tracking-[0.15em] uppercase"
+                                    className="text-blue-700 text-xs md:text-[13px] font-semibold tracking-[0.15em] uppercase"
                                 >
                                     {slide.badge}
                                 </motion.span>
@@ -206,34 +187,19 @@ const HomeHero = () => {
                         </motion.div>
 
                         <motion.div variants={itemVariants} className="mb-8">
-                                <h1 className="text-[38px] md:text-[48px] font-montserrat font-medium leading-[0.88] tracking-tighter">
-                                <AnimatePresence mode="wait">
-                                    <motion.span
-                                        key={`h1-${slide.id}`}
-                                        variants={contentVariants}
-                                        initial="enter"
-                                        animate="center"
-                                        exit="exit"
-                                        className="text-slate-900 inline-block mr-3"
-                                    >
-                                        {slide.headline1}
-                                    </motion.span>
-                                </AnimatePresence>
-                                <AnimatePresence mode="wait">
-                                    <motion.span
-                                        key={`h2-${slide.id}`}
-                                        variants={contentVariants}
-                                        initial="enter"
-                                        animate="center"
-                                        exit="exit"
-                                        className="text-transparent bg-clip-text inline-block pb-3"
-                                        style={{
-                                            backgroundImage: 'linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%)',
-                                        }}
-                                    >
-                                        {slide.headline2}
-                                    </motion.span>
-                                </AnimatePresence>
+                            <h1 className="text-[26px] sm:text-[32px] md:text-[38px] lg:text-[42px] font-semibold leading-[1.25] tracking-tight font-poppins">
+                                {/* Line 1: Patient Centric, Evidence */}
+                                <span className="text-slate-900 block">
+                                    {slide.headlineA}
+                                </span>
+                                {/* Line 2: Based & Individualised */}
+                                <span className="text-slate-900 block">
+                                    {slide.headlineB}
+                                </span>
+                                {/* Line 3: Orthopedic Care — gradient */}
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 block pb-1">
+                                    {slide.headlineC}
+                                </span>
                             </h1>
                         </motion.div>
 
@@ -244,7 +210,7 @@ const HomeHero = () => {
                                 initial="enter"
                                 animate="center"
                                 exit="exit"
-                                className="text-lg text-slate-600 leading-relaxed mb-10 max-w-xl font-medium"
+                                className="text-[15px] md:text-base text-slate-600 leading-relaxed mb-10 max-w-xl font-medium text-justify"
                             >
                                 {slide.description}
                             </motion.p>
@@ -286,45 +252,32 @@ const HomeHero = () => {
                         className="flex items-center justify-center relative"
                     >
                         <CardContainer containerClassName="py-0">
-                                <CardBody className="relative w-full max-w-[360px] h-[430px] md:max-w-[440px] md:h-[520px]">
+                                <CardBody className="relative w-[360px] h-[430px] md:w-[440px] md:h-[520px]">
                                 {/* Portrait Card Shell */}
                                 <CardItem
                                     translateZ={-20}
-                                    className="absolute inset-0 rounded-[2.5rem] bg-white border border-slate-100 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] overflow-hidden"
+                                    className="absolute inset-0 w-full h-full rounded-[2.5rem] bg-white border border-slate-100 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] overflow-hidden"
                                 >
                                     <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-transparent to-cyan-500/10" />
                                 </CardItem>
 
-                                {/* Floating Success Badge */}
-                                <CardItem translateZ={80} className="absolute top-6 right-6 md:top-8 md:right-8 z-30 scale-100 md:scale-110 origin-top-right">
-                                    <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-white/90 backdrop-blur-xl border border-white/50 shadow-2xl">
-                                        <div className="w-9 h-9 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
-                                            <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-                                        </div>
-                                        <div>
-                                            <p className="text-[10px] text-slate-400 font-black tracking-widest leading-none mb-1">OUTCOMES</p>
-                                            <p className="text-slate-900 text-[11px] font-black leading-tight max-w-[150px]">{slide.badgeOutcomes}</p>
-                                        </div>
-                                    </div>
-                                </CardItem>
 
-                                {/* Doctor Image with Slide Transition */}
+                                {/* Doctor Video with Autoplay and Poster Fallback */}
                                 <CardItem
                                     translateZ={40}
-                                    className="absolute inset-0 flex items-center justify-center pt-10 overflow-hidden rounded-[2.5rem]"
+                                    className="absolute inset-0 w-full h-full overflow-hidden rounded-[2.5rem]"
                                 >
-                                    <AnimatePresence mode="wait">
-                                        <motion.img
-                                            key={`img-${slide.id}`}
-                                            src={slide.photo}
-                                            alt="Dr. Ulhas Sonar"
-                                            initial={{ opacity: 0, scale: 1.15 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            exit={{ opacity: 0, scale: 1.15 }}
-                                            transition={{ duration: 0.9, ease: [0.23, 1, 0.32, 1] }}
-                                            className={`${slide.photoStyle} filter contrast-[1.05] brightness-95 drop-shadow-2xl`}
-                                        />
-                                    </AnimatePresence>
+                                    <video
+                                        key="hero-video-home"
+                                        src={import.meta.env.VITE_HERO_VIDEO_URL || "/for-web-video.mp4"}
+                                        poster={slide.photo}
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
+                                        preload="auto"
+                                        className="w-full h-full object-cover filter contrast-[1.05] brightness-95 drop-shadow-2xl"
+                                    />
                                 </CardItem>
 
                                 {/* Name & Info Overlay — Bottom of Card */}

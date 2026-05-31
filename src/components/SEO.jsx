@@ -119,7 +119,7 @@ const SEO = ({
             "image": absoluteImage,
             "@id": baseUrl,
             "url": baseUrl,
-            "telephone": "+971556319379",
+            "telephone": import.meta.env.VITE_CONTACT_PHONE || "+919049200041",
             "medicalSpecialty": "Orthopedic",
             "address": {
               "@type": "PostalAddress",

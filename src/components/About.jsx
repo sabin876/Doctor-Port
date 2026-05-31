@@ -87,15 +87,20 @@ const About = () => {
     const { language, t } = useLanguage();
     const isRtl = language === 'AR';
 
-    /* ── Qualification cards (like the reference: Education / Experience / Certifications / Publications) ── */
+    /* ── Qualification cards ── */
     const qualCards = [
         {
             icon: GraduationCap,
-            title: 'Education',
+            title: 'Qualifications',
             items: [
-                'MBBS – B J Medical College, Pune',
-                'MS (Ortho) – Postgraduate training, India',
-                'MCh Upper Limb Surgery – Wrightington, UK',
+                'MBBS, BJMC, Pune, India – 2009',
+                'MS (Ortho), Nagpur, India – 2013',
+                'MRCS (England), UK – 2017',
+                'MCh (Upper Limb), Wrightington, UK – 2018',
+                'FEBOT, Switzerland – 2019',
+                'FRCS (JCIE), UK – 2020',
+                'PG Diploma in Computer Assisted TKR, Glasgow – 2021',
+                'DABRM (American Society of Regenerative Medicine, USA) – expected 2026',
             ],
             color: 'text-blue-700',
             bg: 'bg-blue-50',
@@ -105,9 +110,11 @@ const About = () => {
             icon: Briefcase,
             title: 'Experience',
             items: [
-                '15+ years in Orthopaedic Surgery',
-                'NHS Consultant – UK hospitals',
-                'Surgeon – Dubai (current)',
+                'Fellow of Royal College of Surgeons with over 15 years experience.',
+                'Expertise in arthroscopy and sports injury management.',
+                'Specialized in joint preservation, cartilage preservation, and regeneration techniques.',
+                'Advanced partial and total joint replacement, and Robotic surgeries.',
+                'Expert management of complex trauma, osteotomies, and regenerative medicine.',
             ],
             color: 'text-indigo-700',
             bg: 'bg-indigo-50',
@@ -115,12 +122,13 @@ const About = () => {
         },
         {
             icon: Award,
-            title: 'Certifications',
+            title: 'Professional Affiliations',
             items: [
-                'FRCS (T&O) – Royal College of Surgeons, England',
-                'FEBOT – European Board, Switzerland',
-                'MRCS (England)',
-                'PG Dip – Robotic-Assisted TKR, Glasgow',
+                'DHA – UAE',
+                'GMC – UK',
+                'International Society for Knowledge of Surgeons in Arthroscopy & Arthroplasty (ISKSAA) – Lifetime Member',
+                'CAOS (Computer Assisted Orthopedic Surgery) – UK, Member',
+                'Maharashtra Medical Council – Registered Member',
             ],
             color: 'text-blue-700',
             bg: 'bg-blue-50',
@@ -218,7 +226,7 @@ const About = () => {
                         <h2 className="font-montserrat font-normal text-[#0f2756] text-2xl md:text-3xl mb-5">
                             A Distinguished Orthopaedic Surgeon
                         </h2>
-                        <div className="space-y-4 text-slate-600 text-[15px] leading-relaxed">
+                        <div className="space-y-4 text-slate-600 text-[15px] leading-relaxed text-justify">
                             <p>{t('about.description1')}</p>
                             <p>{t('about.description2')}</p>
                         </div>

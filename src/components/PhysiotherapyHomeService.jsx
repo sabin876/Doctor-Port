@@ -1,48 +1,214 @@
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Phone, MessageCircle, CheckCircle2, ArrowRight, Activity, ShieldCheck, Zap, HeartPulse, ClipboardCheck, Users, HelpCircle, ChevronDown, ChevronUp, Home, Star, RotateCcw, PlusSquare, Triangle, Hexagon } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Phone, MessageCircle, CheckCircle2, HelpCircle, ChevronDown, ChevronUp, Home, Star, ShieldCheck, Zap } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { api } from '../lib/api';
 import SEO from './SEO';
 import Breadcrumbs from './ui/Breadcrumbs';
 import physioIllustration from '../assets/physio-illustration.png';
 
+const conditions = [
+  {
+    id: 1,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="22" height="22">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    ),
+    title: "Back and neck pain",
+    description: "Targeted rehabilitation for stiffness, postural pain, muscular spasm, and reduced function.",
+  },
+  {
+    id: 2,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="22" height="22">
+        <circle cx="12" cy="12" r="9" /><path d="M12 8v4l3 3" />
+      </svg>
+    ),
+    title: "Knee pain and stiffness",
+    description: "Structured therapy to improve joint movement, strength, and confidence during walking and activity.",
+  },
+  {
+    id: 3,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="22" height="22">
+        <path d="M12 2a10 10 0 1 0 10 10" /><path d="M12 6v6l4 2" />
+      </svg>
+    ),
+    title: "Shoulder pain",
+    description: "Focused treatment for pain, weakness, and limited shoulder movement during daily activities.",
+  },
+  {
+    id: 4,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="22" height="22">
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+      </svg>
+    ),
+    title: "Sports injuries",
+    description: "Recovery programs for muscle strains, soft tissue injury, overuse problems, and return to activity.",
+  },
+  {
+    id: 5,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="22" height="22">
+        <circle cx="12" cy="12" r="3" /><circle cx="12" cy="12" r="8" />
+      </svg>
+    ),
+    title: "Arthritis care",
+    description: "Gentle, progressive treatment to reduce pain, improve movement and support long-term joint health.",
+  },
+  {
+    id: 6,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="22" height="22">
+        <path d="M12 5v14M5 12h14" />
+      </svg>
+    ),
+    title: "Post-surgical rehabilitation",
+    description: "Planned recovery support after orthopaedic procedures with mobility and strengthening exercises.",
+  },
+  {
+    id: 7,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="22" height="22">
+        <path d="M12 3l9 18H3L12 3z" />
+      </svg>
+    ),
+    title: "Deformity correction support",
+    description: "Rehabilitation care to improve alignment-related movement patterns and functional recovery.",
+  },
+  {
+    id: 8,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="22" height="22">
+        <circle cx="12" cy="12" r="5" fill="currentColor" fillOpacity="0.3" /><circle cx="12" cy="12" r="9" />
+      </svg>
+    ),
+    title: "Hip joint replacement recovery",
+    description: "Stepwise physiotherapy focused on strength, balance, walking confidence, and safe return to daily life.",
+  },
+];
+
+const checklistItems = [
+  "Treatment guided by orthopaedic specialist expertise",
+  "Individual attention with one-to-one sessions",
+  "Clear diagnosis and targeted treatment planning",
+  "Focus on long-term recovery, not temporary relief",
+  "Availability of both clinic-based and home physiotherapy services",
+];
+
+const tagBadges = [
+  "One-to-one physiotherapy sessions",
+  "Structured diagnosis and recovery planning",
+];
+
+// Simple physiotherapist SVG illustration
+function TherapistIllustration() {
+  return (
+    <svg viewBox="0 0 200 220" width="200" height="220" xmlns="http://www.w3.org/2000/svg">
+      {/* Head */}
+      <ellipse cx="100" cy="48" rx="28" ry="30" fill="#f0c08a" />
+      {/* Hair / cap */}
+      <ellipse cx="100" cy="28" rx="30" ry="18" fill="#1a3a5c" />
+      {/* Neck */}
+      <rect x="91" y="74" width="18" height="14" rx="4" fill="#f0c08a" />
+      {/* Body / scrubs */}
+      <rect x="62" y="86" width="76" height="80" rx="18" fill="#1a4d80" />
+      {/* Clipboard */}
+      <rect x="108" y="98" width="38" height="48" rx="6" fill="#d0dff0" />
+      <rect x="112" y="94" width="30" height="8" rx="3" fill="#b0c8e8" />
+      <line x1="115" y1="112" x2="140" y2="112" stroke="#7a9bbf" strokeWidth="2" strokeLinecap="round" />
+      <line x1="115" y1="120" x2="140" y2="120" stroke="#7a9bbf" strokeWidth="2" strokeLinecap="round" />
+      <line x1="115" y1="128" x2="132" y2="128" stroke="#7a9bbf" strokeWidth="2" strokeLinecap="round" />
+      {/* Left arm */}
+      <rect x="44" y="90" width="22" height="52" rx="11" fill="#1a4d80" />
+      {/* Stethoscope arc */}
+      <path d="M66 118 Q80 140 96 130" fill="none" stroke="#8aaec8" strokeWidth="3" strokeLinecap="round" />
+      <circle cx="96" cy="130" r="5" fill="#8aaec8" />
+      {/* Legs */}
+      <rect x="72" y="160" width="22" height="50" rx="10" fill="#1a3a5c" />
+      <rect x="106" y="160" width="22" height="50" rx="10" fill="#1a3a5c" />
+      {/* Shoes */}
+      <ellipse cx="83" cy="208" rx="14" ry="8" fill="#0f2236" />
+      <ellipse cx="117" cy="208" rx="14" ry="8" fill="#0f2236" />
+    </svg>
+  );
+}
+
 const PhysiotherapyHomeService = () => {
     const { t, language } = useLanguage();
     const isRtl = language === 'AR';
+    const [service, setService] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    const phoneNumber = import.meta.env.VITE_CONTACT_PHONE || "+919049200041";
+    const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "+919049200041";
+    const whatsappClean = whatsappNumber.replace(/[^0-9]/g, '');
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        api.getServices()
+            .then(data => {
+                const found = data.find(s => s.slug === 'physiotherapy') || 
+                              data.find(s => s.slug === 'test-physiotherapy') || 
+                              data.find(s => s.slug === 'test-physiotherapy-service');
+                setService(found);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error("Failed to fetch physiotherapy service:", err);
+                setLoading(false);
+            });
     }, []);
 
-    // Get content from translations (defaulting to EN if specific keys are missing in AR/HI)
+    // Get static content from translations (as fallback/structure)
     const content = t('physioHome');
+
+    // Get the description and other fields from the database if loaded, or fallback to static translated blocks
+    const pageDescription = service?.description || content.hero.description;
+    const pageTitle = service?.title || content.hero.title;
+    const faqs = (service?.faqs && service.faqs.length > 0) ? service.faqs : content.faqs.items;
+
+    const conditionsData = (service?.conditions && service.conditions.length > 0) ? service.conditions : conditions;
+    const checklistData = (service?.checklist_items && service.checklist_items.length > 0) ? service.checklist_items : checklistItems;
+    const tagBadgesData = (service?.tag_badges && service.tag_badges.length > 0) ? service.tag_badges : tagBadges;
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center text-primary-600 font-bold bg-white">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+            </div>
+        );
+    }
 
     return (
         <main className="relative pt-20 bg-white overflow-hidden">
             <SEO 
-                title={content.seo.title}
-                description={content.seo.description}
-                url="/services/physiotherapy-home-services"
+                title={service?.meta_title || content.seo.title}
+                description={service?.meta_description || content.seo.description}
+                url="/services/physiotherapy"
+                image={service?.image}
             />
 
             <div className="bg-white border-b border-gray-100">
                 <Breadcrumbs items={[
                     { name: t('nav.home'), path: '/' },
                     { name: t('nav.services'), path: '/services' },
-                    { name: t('services.items.7.title') }
+                    { name: pageTitle }
                 ]} />
             </div>
 
-            {/* Premium Background Elements */}
+            {/* Premium Background Ambient Elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-                <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-primary-50/30 rounded-full blur-[120px] -mr-40 -mt-40"></div>
-                <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-blue-50/40 rounded-full blur-[120px] -ml-40 -mb-40"></div>
+                <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-primary-50/20 rounded-full blur-[120px] -mr-40 -mt-40"></div>
+                <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-blue-50/30 rounded-full blur-[120px] -ml-40 -mb-40"></div>
             </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16 lg:py-24">
-                {/* Redesigned Hero Section - 2 Columns */}
+                {/* 1. Redesigned Premium Hero Section - 2 Columns */}
                 <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
-                    {/* Left Column: Content & Features */}
+                    {/* Left Column: Title & Booking */}
                     <motion.div
                         initial={{ opacity: 0, x: isRtl ? 40 : -40 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -54,48 +220,29 @@ const PhysiotherapyHomeService = () => {
                             animate={{ opacity: 1, y: 0 }}
                             className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-primary-50 border border-primary-100 text-primary-700 text-[10px] font-normal uppercase tracking-[0.3em]"
                         >
-                            <Zap size={12} className="fill-primary-600" />
+                            <Zap size={12} className="fill-primary-600 animate-pulse text-primary-600" />
                             DHA Licensed Experts
                         </motion.div>
 
                         <h1 className="text-3xl md:text-5xl font-normal text-primary-950 mb-6 tracking-tighter leading-[1.05]">
-                            {content.hero.title}
+                            {pageTitle}
                         </h1>
 
                         <p className="text-base md:text-lg text-gray-500 font-normal leading-relaxed mb-10 max-w-2xl">
                             {content.hero.description}
                         </p>
 
-                        {/* Feature Highlights Grid (2x2) */}
-                        <div className="grid sm:grid-cols-2 gap-4 mb-10">
-                            {[
-                                { icon: ShieldCheck, text: content.features[0] },
-                                { icon: Home, text: content.features[1] },
-                                { icon: Users, text: content.features[2] },
-                                { icon: Star, text: content.features[4] } // Using "Transparent pricing"
-                            ].map((feature, idx) => (
-                                <div key={idx} className="flex items-center gap-4 p-4 bg-gray-50/80 backdrop-blur-sm border border-gray-100 rounded-2xl hover:bg-white hover:shadow-md transition-all duration-300">
-                                    <div className="w-10 h-10 rounded-xl bg-white text-primary-600 flex items-center justify-center shadow-sm flex-shrink-0">
-                                        <feature.icon size={20} strokeWidth={2.5} />
-                                    </div>
-                                    <span className="text-xs font-normal text-gray-700 leading-tight">
-                                        {feature.text}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
-
                         {/* Dual Action Buttons */}
                         <div className="flex flex-col sm:flex-row items-center gap-4">
                             <a 
-                                href="tel:+971556319379"
+                                href={`tel:${phoneNumber}`}
                                 className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-[#003B73] text-white font-normal text-[11px] uppercase tracking-[0.2em] rounded-2xl shadow-xl shadow-primary-200 hover:bg-[#002B55] hover:shadow-2xl hover:shadow-primary-300 active:scale-95 transition-all duration-300"
                             >
                                 <Phone size={18} />
                                 {content.ctas.call}
                             </a>
                             <a 
-                                href="https://wa.me/971556319379"
+                                href={`https://wa.me/${whatsappClean}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-[#25D366] text-white font-normal text-[11px] uppercase tracking-[0.2em] rounded-2xl shadow-lg shadow-emerald-100 hover:bg-[#1eb954] hover:shadow-xl active:scale-95 transition-all duration-300"
@@ -106,7 +253,7 @@ const PhysiotherapyHomeService = () => {
                         </div>
                     </motion.div>
 
-                    {/* Right Column: Illustration & Floating Card */}
+                    {/* Right Column: Illustration & Float Card */}
                     <motion.div
                         initial={{ opacity: 0, x: isRtl ? -40 : 40 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -114,7 +261,6 @@ const PhysiotherapyHomeService = () => {
                         transition={{ duration: 0.8 }}
                         className="relative"
                     >
-                        {/* Illustration Container */}
                         <div className="relative p-4 md:p-8 rounded-[4rem] bg-gradient-to-br from-primary-50 to-white border border-primary-50 shadow-2xl overflow-hidden group">
                             <motion.img 
                                 initial={{ scale: 1.1, opacity: 0 }}
@@ -125,12 +271,10 @@ const PhysiotherapyHomeService = () => {
                                 className="w-full h-auto relative z-10 group-hover:scale-105 transition-transform duration-700"
                             />
                             
-                            {/* Decorative Blobs */}
                             <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-200/20 rounded-full blur-[80px]"></div>
                             <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-emerald-200/20 rounded-full blur-[80px]"></div>
                         </div>
 
-                        {/* Floating Experience Card */}
                         <motion.div 
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -151,173 +295,220 @@ const PhysiotherapyHomeService = () => {
                     </motion.div>
                 </div>
 
-                {/* Redesigned Conditions Managed Section - Professional Grid */}
-                <div className="mb-32">
-                    {/* Header Block */}
-                    <div className="mb-16">
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            className="inline-flex items-center px-4 py-1.5 mb-6 rounded-full bg-blue-50 text-[#003B73] text-[10px] font-normal uppercase tracking-[0.2em] border border-blue-100"
-                        >
-                            {content.conditions.badge}
-                        </motion.div>
-                        <div className="grid lg:grid-cols-2 gap-8 items-end">
-                            <h2 className="text-2xl md:text-4xl font-normal text-[#001D3D] leading-[1.1] tracking-tight">
-                                {content.conditions.title}
+                {/* 2. Dynamic Backend Description Content (Beautiful Premium Styling) */}
+                {pageDescription && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="prose prose-primary max-w-4xl mx-auto py-16 px-6 md:px-12 bg-white rounded-[3.5rem] shadow-[0_15px_60px_rgba(0,0,0,0.02)] border border-gray-100 font-sans mb-24 relative overflow-hidden"
+                    >
+                        {/* Decorative internal ambient elements */}
+                        <div className="absolute -top-32 -right-32 w-64 h-64 bg-primary-50/50 rounded-full blur-[90px] pointer-events-none"></div>
+                        <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-blue-50/50 rounded-full blur-[90px] pointer-events-none"></div>
+
+                        <div 
+                            className="text-gray-700 leading-relaxed font-normal text-base md:text-lg relative z-10"
+                            dangerouslySetInnerHTML={{ __html: pageDescription }}
+                        />
+                    </motion.div>
+                )}
+
+                {/* 2a. Conditions managed with physiotherapy services */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="mb-24 relative"
+                >
+                    <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
+                        <div className="max-w-2xl">
+                            <span className="inline-flex items-center gap-1.5 px-4 py-1.5 mb-4 rounded-full bg-primary-50 border border-primary-100 text-[#003B73] text-[10px] font-normal uppercase tracking-[0.2em]">
+                                Conditions managed with physiotherapy services
+                            </span>
+                            <h2 className="text-3xl md:text-5xl font-normal text-primary-950 tracking-tighter leading-[1.05] mb-4">
+                                {service?.conditions_title || "Professional care for pain, stiffness, and movement problems"}
                             </h2>
-                            <p className="text-gray-500 text-lg font-normal leading-relaxed max-w-xl">
-                                {content.conditions.description}
+                        </div>
+                        <div className="max-w-md">
+                            <p className="text-gray-500 text-sm md:text-base leading-relaxed">
+                                Physiotherapy plays an important role in managing a wide range of conditions. Early
+                                treatment often leads to faster recovery and helps prevent long-term complications.
                             </p>
                         </div>
                     </div>
 
-                    {/* 4-Column Grid of Condition Cards */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {content.conditions.items.map((item, idx) => (
-                            <motion.div
-                                key={idx}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: idx * 0.05 }}
-                                className="group p-8 bg-white border border-gray-100 rounded-[2.5rem] shadow-sm hover:shadow-2xl hover:border-blue-100 transition-all duration-500 relative overflow-hidden"
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {conditionsData.map((condition) => (
+                            <div
+                                key={condition.id}
+                                className="group bg-white border border-gray-100/80 rounded-[2.5rem] p-8 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:-translate-y-1.5 hover:shadow-premium hover:border-primary-100 transition-all duration-300"
                             >
-                                {/* Decorative Accent */}
-                                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50/30 rounded-full blur-2xl -mr-12 -mt-12 group-hover:bg-blue-100/40 transition-colors"></div>
-                                
-                                {/* Professional Icon Container */}
-                                <div className="w-12 h-12 rounded-2xl bg-blue-50/50 text-[#003B73] flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500 shadow-inner">
-                                    {getConditionIcon(idx)}
+                                <div className="w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#003B73] group-hover:text-white transition-all duration-300 shadow-sm overflow-hidden">
+                                    {typeof condition.icon === 'string' ? (
+                                        <div 
+                                            className="w-[22px] h-[22px] flex items-center justify-center [&>svg]:w-full [&>svg]:h-full [&>svg]:stroke-current"
+                                            dangerouslySetInnerHTML={{ __html: condition.icon }} 
+                                        />
+                                    ) : (
+                                        condition.icon
+                                    )}
                                 </div>
-
-                                <h4 className="text-lg font-normal text-[#001D3D] mb-4 leading-tight group-hover:text-blue-700 transition-colors">
-                                    {item.title}
-                                </h4>
-                                <p className="text-xs text-gray-500 font-normal leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">
-                                    {item.desc}
-                                </p>
-                            </motion.div>
+                                <h3 className="text-lg font-normal text-primary-950 mb-3 group-hover:text-[#003B73] transition-colors duration-300 leading-snug">
+                                    {condition.title}
+                                </h3>
+                                 <div 
+                                    className="text-gray-500 text-xs md:text-sm leading-relaxed font-light [&>p]:mb-1 [&>ul]:list-disc [&>ul]:pl-4 [&>ol]:list-decimal [&>ol]:pl-4"
+                                    dangerouslySetInnerHTML={{ __html: condition.description }}
+                                 />
+                            </div>
                         ))}
                     </div>
-                </div>
+                </motion.div>
 
-                {/* Benefits Section */}
-                <div className="bg-primary-950 rounded-[4rem] p-10 md:p-20 text-white relative overflow-hidden mb-32">
-                    <div className="absolute top-0 right-0 w-80 h-80 bg-primary-500/20 rounded-full blur-[100px] -mr-40 -mt-40"></div>
-                    <div className="relative z-10">
-                        <div className="grid lg:grid-cols-2 gap-16 items-center">
-                            <div>
-                                <h2 className="text-2xl md:text-3xl font-metabolic mb-6">{content.benefits.title}</h2>
-                                <p className="text-primary-100/70 text-base mb-10 leading-relaxed">{content.benefits.description}</p>
-                                <div className="space-y-4">
-                                    {content.benefits.items.map((item, idx) => (
-                                        <div key={idx} className="flex items-center gap-4">
-                                            <CheckCircle2 className="text-primary-500 flex-shrink-0" size={24} />
-                                            <span className="text-lg font-normal">{item}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                                <p className="mt-8 text-primary-400 font-normal italic">{content.benefits.footer}</p>
-                            </div>
-                            <div className="grid grid-cols-2 gap-4">
-                                <BenefitCard icon={<Zap size={32} />} title="Fast Results" />
-                                <BenefitCard icon={<ShieldCheck size={32} />} title="Safe Care" />
-                                <BenefitCard icon={<HeartPulse size={32} />} title="Pain Relief" />
-                                <BenefitCard icon={<Users size={32} />} title="Expert Team" />
-                            </div>
+                {/* 2b. Why Choose Us / Quality Care */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-24"
+                >
+                    {/* Left Column: Why Choose Us info */}
+                    <div className="lg:col-span-7 space-y-8">
+                        <div>
+                            <span className="inline-flex items-center gap-1.5 px-4 py-1.5 mb-4 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-[10px] font-normal uppercase tracking-[0.2em]">
+                                Why choose our physiotherapy services in Dubai
+                            </span>
+                            <h2 className="text-3xl md:text-5xl font-normal text-primary-950 tracking-tighter leading-[1.05] mb-4">
+                                {service?.checklist_title || "Clinical structure, one-to-one care, and clear treatment direction"}
+                            </h2>
+                            <p className="text-gray-500 text-sm md:text-base leading-relaxed">
+                                Choosing the right physiotherapy service is important for both safety and results. Our
+                                approach is based on careful assessment, targeted treatment, and ongoing progression.
+                            </p>
                         </div>
-                    </div>
-                </div>
 
-                {/* Expert Home Treatment - Target Audience */}
-                <div className="text-center mb-32">
-                    <h2 className="text-2xl md:text-4xl font-metabolic text-primary-950 mb-6">{content.expertTreatment.title}</h2>
-                    <p className="text-base text-gray-500 mb-16 max-w-2xl mx-auto">{content.expertTreatment.description}</p>
-                    
-                    <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
-                        {content.expertTreatment.categories.map((cat, idx) => (
-                            <motion.div 
-                                key={idx}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: idx * 0.1 }}
-                                className="group p-8 bg-white border border-gray-100 rounded-[2.5rem] shadow-sm hover:shadow-xl hover:border-primary-100 transition-all duration-500 text-center"
-                            >
-                                <div className="w-16 h-16 rounded-3xl bg-primary-50 text-primary-600 flex items-center justify-center mx-auto mb-6 group-hover:bg-primary-600 group-hover:text-white transition-colors duration-500">
-                                    <ClipboardCheck size={28} />
-                                </div>
-                                <h4 className="text-lg font-normal text-gray-900 group-hover:text-primary-700 transition-colors">{cat}</h4>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-
-
-
-                {/* Why Choose Us */}
-                <div className="grid lg:grid-cols-2 gap-24 items-start mb-32">
-                    <motion.div
-                        initial={{ opacity: 0, x: isRtl ? 40 : -40 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <h2 className="text-2xl md:text-3xl font-metabolic text-primary-950 mb-8">{content.whyChoose.title}</h2>
-                        <p className="text-base text-gray-500 mb-10 leading-relaxed">{content.whyChoose.description}</p>
-                        
-                        <div className="space-y-6">
-                            {content.whyChoose.items.map((item, idx) => (
-                                <div key={idx} className="flex gap-4 p-6 bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                                    <div className="mt-1">
-                                        <div className="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
-                                            <ShieldCheck size={20} />
-                                        </div>
+                        <div className="space-y-3.5">
+                            {checklistData.map((item, i) => (
+                                <div key={i} className="flex items-start gap-4 p-4 bg-white border border-gray-100 rounded-3xl shadow-[0_2px_12px_-3px_rgba(0,0,0,0.02)] hover:shadow-md transition-shadow duration-300">
+                                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mt-0.5">
+                                        <CheckCircle2 size={16} className="fill-emerald-50" />
                                     </div>
-                                    <p className="text-gray-700 font-normal leading-relaxed">{item}</p>
+                                    <span className="text-gray-700 text-sm md:text-base font-light leading-relaxed">{item}</span>
                                 </div>
                             ))}
                         </div>
-                        <p className="mt-8 text-sm font-normal text-primary-600 italic">{content.whyChoose.footer}</p>
-                    </motion.div>
 
-                    <motion.div
-                        initial={{ opacity: 0, x: isRtl ? -40 : 40 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <h2 className="text-2xl md:text-3xl font-metabolic text-primary-950 mb-12">{content.expectations.title}</h2>
-                        <div className="space-y-12 relative">
-                            {/* Decorative Line */}
-                            <div className="absolute left-[27px] top-[10px] bottom-[10px] w-0.5 bg-gray-100 hidden md:block"></div>
+                        <div className="bg-gradient-to-br from-[#003B73]/5 to-sky-50/25 border-l-4 border-[#003B73] rounded-3xl p-6 shadow-sm">
+                            <p className="text-[#003B73] font-normal text-sm md:text-base leading-relaxed italic">
+                                "Every patient is assessed carefully, and treatment is adapted as progress is made —
+                                ensuring the right care at every stage of recovery."
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Right Column: Illustration & Badges */}
+                    <div className="lg:col-span-5 flex flex-col gap-6 w-full">
+                        <div className="bg-white border border-gray-100 rounded-[3.5rem] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] flex flex-col items-center relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-primary-50 rounded-full blur-3xl pointer-events-none"></div>
                             
-                            {content.expectations.steps.map((step, idx) => (
-                                <div key={idx} className="relative flex items-start gap-8">
-                                    <div className="relative z-10 w-14 h-14 rounded-full bg-white border-4 border-gray-50 text-primary-600 flex items-center justify-center font-normal text-xl shadow-lg">
-                                        {idx + 1}
-                                    </div>
-                                    <div>
-                                        <h4 className="text-xl font-normal text-gray-900 mb-3">{step.title}</h4>
-                                        <p className="text-gray-500 leading-relaxed">{step.desc}</p>
-                                    </div>
-                                </div>
+                            <span className="self-end px-4 py-1.5 rounded-full bg-primary-50 border border-primary-100 text-primary-700 text-[10px] font-normal uppercase tracking-[0.2em] mb-6">
+                                UK-trained Orthopaedic Expertise
+                            </span>
+                            
+                            <div className="flex justify-center items-center py-6 group-hover:scale-105 transition-transform duration-500 max-h-72">
+                                {service?.checklist_image ? (
+                                    <img 
+                                        src={service.checklist_image} 
+                                        alt="Value checklist illustration" 
+                                        className="max-h-64 w-auto object-contain rounded-2xl"
+                                    />
+                                ) : (
+                                    <TherapistIllustration />
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="flex flex-wrap gap-3">
+                            {tagBadgesData.map((tag, i) => (
+                                <span 
+                                    key={i} 
+                                    className="bg-white border border-gray-150 rounded-2xl px-5 py-3.5 text-[11px] font-normal uppercase tracking-[0.1em] text-primary-950 shadow-[0_2px_10px_-2px_rgba(0,0,0,0.03)] hover:border-[#003B73] hover:shadow-md transition-all duration-300 cursor-default"
+                                >
+                                    {tag}
+                                </span>
                             ))}
                         </div>
-                    </motion.div>
-                </div>
+                    </div>
+                </motion.div>
 
-                {/* FAQs */}
-                <div className="max-w-4xl mx-auto py-24">
+                {/* 3. CTA Banner - Book Your Session */}
+                {content.ctaBanner && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="mb-24"
+                    >
+                        <div className="relative rounded-[3.5rem] overflow-hidden bg-gradient-to-r from-[#003B73] via-[#00569e] to-[#0284c7] py-16 px-8 md:py-20 md:px-16 shadow-2xl">
+                            <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -mr-40 -mt-40 blur-[100px] pointer-events-none" />
+                            <div className="absolute bottom-0 left-0 w-72 h-72 bg-emerald-400/10 rounded-full -ml-32 -mb-32 blur-[80px] pointer-events-none" />
+                            
+                            <div className="relative z-10 flex flex-col items-center text-center gap-8">
+                                <div className="inline-flex items-center px-5 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-[10px] font-normal uppercase tracking-[0.25em]">
+                                    <Zap size={12} className="mr-2 fill-yellow-400 text-yellow-400" />
+                                    Expert Physiotherapy in Dubai
+                                </div>
+
+                                <h2 className="text-2xl md:text-4xl font-normal text-white tracking-tight leading-[1.1] max-w-3xl">
+                                    {content.ctaBanner.title}
+                                </h2>
+                                <p className="text-white/75 text-base md:text-lg font-light max-w-2xl leading-relaxed">
+                                    {content.ctaBanner.subtitle}
+                                </p>
+
+                                <div className="flex flex-col sm:flex-row items-center gap-5 mt-4 w-full sm:w-auto">
+                                    <a
+                                        href="tel:+971556319379"
+                                        className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-white text-[#003B73] font-semibold text-[12px] uppercase tracking-[0.15em] rounded-2xl shadow-xl hover:bg-blue-50 hover:scale-[1.03] active:scale-95 transition-all duration-300"
+                                    >
+                                        <Phone size={18} />
+                                        Call Us Now
+                                    </a>
+                                    <a
+                                        href="https://wa.me/971556319379"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-[#25D366] text-white font-semibold text-[12px] uppercase tracking-[0.15em] rounded-2xl shadow-xl hover:bg-[#1eb954] hover:scale-[1.03] active:scale-95 transition-all duration-300"
+                                    >
+                                        <MessageCircle size={18} />
+                                        WhatsApp Now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+
+                {/* 4. FAQs - Dynamic Interactive Glassmorphic Accordion */}
+                <div className="max-w-4xl mx-auto py-16">
                     <div className="text-center mb-16">
-                        <HelpCircle className="w-12 h-12 text-primary-600 mx-auto mb-6" />
-                        <h2 className="text-2xl md:text-4xl font-metabolic text-primary-950 mb-6">{content.faqs.title}</h2>
+                        <HelpCircle className="w-12 h-12 text-primary-600 mx-auto mb-6 animate-pulse" />
+                        <h2 className="text-2xl md:text-4xl font-normal text-primary-950 mb-6">{content.faqs.title}</h2>
                         <p className="text-gray-500">Find answers to common questions about our home physiotherapy services.</p>
                     </div>
 
                     <div className="space-y-4">
-                        {content.faqs.items.map((faq, idx) => (
-                            <FAQItem key={idx} question={faq.q} answer={faq.a} />
-                        ))}
+                        {faqs.map((faq, idx) => {
+                            const qText = faq.question || faq.q;
+                            const aText = faq.answer || faq.a;
+                            return (
+                                <FAQItem key={idx} question={qText} answer={aText} />
+                            );
+                        })}
                     </div>
                 </div>
 
@@ -353,14 +544,14 @@ const PhysiotherapyHomeService = () => {
                             
                             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                                 <a 
-                                    href="tel:+971556319379"
+                                    href={`tel:${phoneNumber}`}
                                     className="w-full sm:w-auto flex items-center justify-center gap-3 py-5 px-12 bg-[#003B73] text-white font-normal text-[12px] uppercase tracking-[0.2em] rounded-[2rem] shadow-2xl shadow-primary-200 hover:bg-[#002B55] hover:-translate-y-1 active:scale-95 transition-all duration-300"
                                 >
                                     <Phone size={18} />
                                     Call Us Now
                                 </a>
                                 <a 
-                                    href="https://wa.me/971556319379"
+                                    href={`https://wa.me/${whatsappClean}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="w-full sm:w-auto flex items-center justify-center gap-3 py-5 px-12 bg-[#25D366] text-white font-normal text-[12px] uppercase tracking-[0.2em] rounded-[2rem] shadow-xl shadow-emerald-100 hover:bg-[#1eb954] hover:-translate-y-1 active:scale-95 transition-all duration-300"
@@ -377,35 +568,11 @@ const PhysiotherapyHomeService = () => {
     );
 };
 
-// Helper to assign icons to condition categories
-const getConditionIcon = (index) => {
-    const icons = [
-        <Activity size={22} strokeWidth={2.5} />,      // Back/Neck
-        <Zap size={22} strokeWidth={2.5} />,           // Knee
-        <RotateCcw size={22} strokeWidth={2.5} />,     // Shoulder
-        <Activity size={22} strokeWidth={2.5} />,      // Sports
-        <HeartPulse size={22} strokeWidth={2.5} />,    // Arthritis
-        <PlusSquare size={22} strokeWidth={2.5} />,    // Post-surgical
-        <Triangle size={22} strokeWidth={2.5} />,      // Deformity
-        <Hexagon size={22} strokeWidth={2.5} />       // Hip
-    ];
-    return icons[index % icons.length];
-};
-
-const BenefitCard = ({ icon, title }) => (
-    <div className="p-8 rounded-[2rem] bg-white/5 border border-white/10 flex flex-col items-center justify-center text-center group hover:bg-white/10 transition-all duration-500">
-        <div className="text-primary-400 mb-4 group-hover:scale-110 transition-transform">
-            {icon}
-        </div>
-        <span className="text-xs font-normal uppercase tracking-widest text-primary-100">{title}</span>
-    </div>
-);
-
 const FAQItem = ({ question, answer }) => {
-    const [isOpen, setIsOpen] = React.useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm transition-all duration-300">
+        <div className="bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
             <button 
                 onClick={() => setIsOpen(!isOpen)}
                 className="w-full flex items-center justify-between p-6 md:p-8 text-start"
@@ -413,13 +580,22 @@ const FAQItem = ({ question, answer }) => {
                 <span className="text-lg font-normal text-gray-900 pr-8">{question}</span>
                 {isOpen ? <ChevronUp className="text-primary-600" /> : <ChevronDown className="text-gray-400" />}
             </button>
-            {isOpen && (
-                <div className="px-6 md:px-8 pb-8">
-                    <p className="text-gray-600 leading-relaxed border-t border-gray-50 pt-6">
-                        {answer}
-                    </p>
-                </div>
-            )}
+            <AnimatePresence initial={false}>
+                {isOpen && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                        <div className="px-6 md:px-8 pb-8">
+                            <p className="text-gray-600 leading-relaxed border-t border-gray-50 pt-6 text-sm md:text-base font-normal">
+                                {answer}
+                            </p>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 };

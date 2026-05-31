@@ -56,19 +56,24 @@ const SEOWrapper = ({ children }) => {
         return <div dangerouslySetInnerHTML={{ __html: htmlString }} />;
     };
 
+    const currentUrl = `${window.location.origin}${location.pathname}`;
+    const canonicalUrl = seoData?.canonical_url || currentUrl;
+
     return (
         <>
             <Helmet>
                 {seoData && (
                     <>
-                        <title>{seoData.meta_title || seoData.title}</title>
+                        <title>{seoData.meta_title || seoData.title || "Dr. Ulhas Sonar"}</title>
                         <meta name="description" content={seoData.meta_description || seoData.description} />
-                        {seoData.canonical_url && <link rel="canonical" href={seoData.canonical_url} />}
+                        <link rel="canonical" href={canonicalUrl} />
                         <meta name="robots" content={`${seoData.index_page !== false ? 'index' : 'noindex'}, ${seoData.follow_links !== false ? 'follow' : 'nofollow'}`} />
                         
                         {/* OG Tags */}
                         <meta property="og:title" content={seoData.og_title || seoData.meta_title || seoData.title} />
                         <meta property="og:description" content={seoData.og_description || seoData.meta_description || seoData.description} />
+                        <meta property="og:url" content={currentUrl} />
+                        <meta property="og:type" content={location.pathname.startsWith('/blog/') ? 'article' : 'website'} />
                         {seoData.og_image && <meta property="og:image" content={seoData.og_image} />}
                         
                         {/* Schema Markup */}

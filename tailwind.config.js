@@ -26,9 +26,9 @@ export default {
                 }
             },
             fontFamily: {
-                sans: ['"Plus Jakarta Sans"', 'Metropolis', 'sans-serif'],
-                montserrat: ['Montserrat', '"Plus Jakarta Sans"', 'sans-serif'],
-                metabolic: ['"Plus Jakarta Sans"', 'Metropolis', 'sans-serif'],
+                sans: ['Poppins', 'sans-serif'],
+                montserrat: ['Poppins', 'sans-serif'],
+                metabolic: ['Poppins', 'sans-serif'],
             },
             animation: {
                 'fade-in-up': 'fadeInUp 0.5s ease-out forwards',

@@ -16,6 +16,8 @@ import {
 } from 'lucide-react';
 import { api } from '../lib/api';
 import { useLanguage } from '../context/LanguageContext';
+import { getTranslatedService } from '../lib/serviceTranslations';
+
 
 const iconMap = {
     'joint-pain-treatment': Bone,
@@ -25,11 +27,17 @@ const iconMap = {
     'deformity-correction': Layers,
     'consultation': Stethoscope,
     'orthopedic-trauma': Bandage,
+    'physiotherapy': HeartPulse,
     'physiotherapy-home-services': HeartPulse
 };
 
+const stripHtml = (html) => {
+    if (!html) return '';
+    return html.replace(/<[^>]*>/g, '');
+};
+
 const Services = () => {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
     const [services, setServices] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showAll, setShowAll] = useState(false);
@@ -46,7 +54,9 @@ const Services = () => {
             });
     }, []);
 
-    const displayedServices = showAll ? services : services.slice(0, 4);
+    const displayedServices = (showAll ? services : services.slice(0, 4)).map(s => 
+        getTranslatedService(s, t, language)
+    );
 
     return (
         <section id="services" className="py-24 bg-white relative overflow-hidden">
@@ -109,7 +119,7 @@ const Services = () => {
                                                 <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
                                                     <div className="overflow-hidden">
                                                         <p className="text-gray-200 text-sm leading-relaxed mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                                                            {service.description}
+                                                            {stripHtml(service.description)}
                                                         </p>
                                                     </div>
                                                 </div>

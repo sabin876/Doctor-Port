@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
 // Global layout components
@@ -25,7 +25,10 @@ const Gallery = React.lazy(() => import('./components/Gallery'));
 const ThankYou = React.lazy(() => import('./components/ThankYou'));
 const SocialLinksPage = React.lazy(() => import('./components/SocialLinksPage'));
 const Login = React.lazy(() => import('./components/Login'));
-
+const NotFound = React.lazy(() => import('./components/NotFound'));
+const DashboardLayout = React.lazy(() => import('./components/dashboard/DashboardLayout'));
+const DashboardHome = React.lazy(() => import('./components/dashboard/DashboardHome'));
+const ServicesManager = React.lazy(() => import('./components/dashboard/ServicesManager'));
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -57,13 +60,20 @@ function App() {
       <ErrorBoundary>
         <Router>
           <TrailingSlashRedirect />
-          <CanonicalTag />
           <SEOWrapper>
             <div className="min-h-screen bg-white font-sans text-gray-800">
               <React.Suspense fallback={<div className="min-h-screen flex items-center justify-center text-primary-600 font-bold">Loading...</div>}>
                 <Routes>
                   {/* Standalone Social Media Page (No Navbar/Footer) */}
                   <Route path="/social-media" element={<SocialLinksPage />} />
+
+                  {/* Dashboard Routes (Custom Layout) */}
+                  <Route path="/dashboard" element={<DashboardLayout />}>
+                    <Route index element={<DashboardHome />} />
+                    <Route path="articles" element={<div className="p-8 text-slate-500">Articles Management Comming Soon...</div>} />
+                    <Route path="services" element={<ServicesManager />} />
+                    <Route path="settings" element={<div className="p-8 text-slate-500">Settings Comming Soon...</div>} />
+                  </Route>
 
                   {/* Main App Routes with Header/Footer */}
                   <Route path="*" element={
@@ -74,7 +84,12 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/about" element={<AboutPage />} />
                         <Route path="/services" element={<ServicesPage />} />
-                        <Route path="/services/physiotherapy-home-services" element={<PhysiotherapyHomeService />} />
+                        <Route path="/services/physiotherapy" element={<PhysiotherapyHomeService />} />
+                        <Route path="/services/test-physiotherapy" element={<PhysiotherapyHomeService />} />
+                        <Route path="/services/test-physiotherapy-service" element={<PhysiotherapyHomeService />} />
+                        <Route path="/services/physiotherapy-home-services" element={<Navigate to="/services/physiotherapy" replace />} />
+                        <Route path="/services/physiotherapy-services" element={<Navigate to="/services/physiotherapy" replace />} />
+                        <Route path="/services/Physiotherapy-Services" element={<Navigate to="/services/physiotherapy" replace />} />
                         <Route path="/services/:id" element={<ServiceDetail />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/blog" element={<Articles />} />
@@ -83,6 +98,7 @@ function App() {
                         <Route path="/thank-you" element={<ThankYou />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/sitemap" element={<HtmlSitemap />} />
+                        <Route path="*" element={<NotFound />} />
                       </Routes>
                       <Footer />
                       <FloatingContactButtons />
