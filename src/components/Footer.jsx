@@ -217,13 +217,13 @@ const Footer = () => {
                                 className="group flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 hover:border-primary-500/30 p-3 rounded-2xl shadow-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(2,132,199,0.15)] active:scale-98"
                             >
                                 {/* Professional SVG Shield Logo Representation */}
-                                <div className="relative w-11 h-11 bg-primary-950/60 rounded-xl shadow-inner flex items-center justify-center flex-shrink-0 overflow-hidden border border-white/10 group-hover:border-primary-500/50 transition-all duration-500">
-                                    <svg className="w-7 h-7 text-primary-400 group-hover:text-primary-300 transition-colors" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <div className="relative w-14 h-14 bg-[#1a2b5b] rounded-2xl shadow-inner flex items-center justify-center flex-shrink-0 overflow-hidden border-2 border-[#1a2b5b]">
+                                    <svg className="w-10 h-10 text-white" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M20 2L4 8V18C4 26.5 10.5 34.5 20 38C29.5 34.5 36 26.5 36 18V8L20 2Z" fill="currentColor" fillOpacity="0.15"/>
-                                        <path d="M20 4L6 9.25V18C6 25.5 11.5 32.5 20 35.5C28.5 32.5 34 25.5 34 18V9.25L20 4Z" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                        <path d="M20 12V26M13 19H27" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M20 4L6 9.25V18C6 25.5 11.5 32.5 20 35.5C28.5 32.5 34 25.5 34 18V9.25L20 4Z" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M20 12V26M13 19H27" stroke="white" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
                                     </svg>
-                                    <div className="absolute inset-0 bg-gradient-to-tr from-primary-600/30 to-transparent pointer-events-none"></div>
+                                    <div className="absolute inset-0 bg-gradient-to-tr from-primary-600/20 to-transparent pointer-events-none"></div>
                                 </div>
                                 <div className="flex flex-col border-l border-white/10 pl-3 py-0.5 min-w-0 flex-1">
                                     <span className="text-white text-[11px] font-normal font-montserrat tracking-tight leading-tight mb-1 truncate text-right" dir="rtl">
