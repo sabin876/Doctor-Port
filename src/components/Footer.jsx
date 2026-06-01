@@ -165,16 +165,23 @@ const Footer = () => {
                             <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
                         </h4>
                         <ul className="space-y-6 mt-4 mb-10">
-                            <li className="flex gap-4 group cursor-pointer">
-                                <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 group-hover:bg-primary-600/30 group-hover:border-primary-500/40 flex items-center justify-center text-primary-400 group-hover:text-primary-300 transition-all duration-300 flex-shrink-0 shadow-lg shadow-black/20">
-                                    <MapPin size={22} strokeWidth={1.5} />
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-gray-300 text-sm font-normal leading-relaxed group-hover:text-white transition-colors duration-300">
-                                        {t('footer.hospitalName')}
-                                    </span>
-                                    <span className="text-gray-500 text-xs mt-0.5">Dubai, UAE</span>
-                                </div>
+                            <li>
+                                <a 
+                                    href="https://maps.google.com/?q=Canadian+Specialist+Hospital+Dubai" 
+                                    target="_blank" 
+                                    rel="noreferrer" 
+                                    className="flex gap-4 group cursor-pointer"
+                                >
+                                    <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 group-hover:bg-primary-600/30 group-hover:border-primary-500/40 flex items-center justify-center text-primary-400 group-hover:text-primary-300 transition-all duration-300 flex-shrink-0 shadow-lg shadow-black/20">
+                                        <MapPin size={22} strokeWidth={1.5} />
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <span className="text-gray-300 text-sm font-normal leading-relaxed group-hover:text-white transition-colors duration-300">
+                                            {t('footer.hospitalName')}
+                                        </span>
+                                        <span className="text-gray-500 text-xs mt-0.5">Dubai, UAE</span>
+                                    </div>
+                                </a>
                             </li>
                             <li className="flex gap-4 group cursor-pointer">
                                 <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 group-hover:bg-primary-600/30 group-hover:border-primary-500/40 flex items-center justify-center text-primary-400 group-hover:text-primary-300 transition-all duration-300 flex-shrink-0 shadow-lg shadow-black/20">
