@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import gmcLogo from '../assets/gmc-logo-navbar.webp';
 import ebotLogo from '../assets/ebot-logo-navbar.webp';
 import logo from '../assets/logo.webp';
+import cshLogo from '../assets/csh-logo.png';
 import { Link as RouterLink } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { MapPin, Phone, Mail, Youtube, Instagram, Linkedin, Facebook, Twitter, ChevronRight } from 'lucide-react';
@@ -195,25 +196,9 @@ const Footer = () => {
                                 href="https://csh.ae/" 
                                 target="_blank" 
                                 rel="noreferrer" 
-                                className="group flex items-center gap-4 bg-white/[0.98] hover:bg-white p-3.5 pr-6 rounded-[1.5rem] shadow-2xl transition-all duration-500 hover:-translate-y-1.5 hover:shadow-primary-500/20 active:scale-95"
+                                className="group flex items-center justify-center bg-white p-2.5 rounded-2xl shadow-xl transition-all duration-500 hover:-translate-y-1.5 hover:shadow-primary-500/20 active:scale-95"
                             >
-                                {/* Professional SVG Shield Logo Representation */}
-                                <div className="relative w-14 h-14 bg-[#1a2b5b] rounded-2xl shadow-inner flex items-center justify-center flex-shrink-0 overflow-hidden border-2 border-[#1a2b5b]">
-                                    <svg className="w-10 h-10 text-white" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20 2L4 8V18C4 26.5 10.5 34.5 20 38C29.5 34.5 36 26.5 36 18V8L20 2Z" fill="currentColor" fillOpacity="0.15"/>
-                                        <path d="M20 4L6 9.25V18C6 25.5 11.5 32.5 20 35.5C28.5 32.5 34 25.5 34 18V9.25L20 4Z" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                        <path d="M20 12V26M13 19H27" stroke="white" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                    </svg>
-                                    <div className="absolute inset-0 bg-gradient-to-tr from-primary-600/20 to-transparent pointer-events-none"></div>
-                                </div>
-                                <div className="flex flex-col border-l border-gray-100 pl-4 py-0.5 min-w-0">
-                                    <span className="text-[#1a2b5b] text-[13px] font-normal font-montserrat tracking-tight leading-tight mb-1 truncate text-right" dir="rtl">
-                                        المستشفى الكندي التخصصي
-                                    </span>
-                                    <span className="text-[#1a2b5b] text-[11px] font-normal font-montserrat tracking-tighter leading-tight truncate">
-                                        Canadian Specialist Hospital
-                                    </span>
-                                </div>
+                                <img src={cshLogo} alt="Canadian Specialist Hospital" className="h-14 w-auto object-contain rounded-xl" />
                             </a>
                         </div>
                     </div>
