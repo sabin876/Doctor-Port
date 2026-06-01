@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import gmcLogo from '../assets/gmc-logo-navbar.webp';
 import ebotLogo from '../assets/ebot-logo-navbar.webp';
 import logo from '../assets/logo.webp';
@@ -6,7 +6,6 @@ import cshLogo from '../assets/csh-logo.png';
 import { Link as RouterLink } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { MapPin, Phone, Mail, Youtube, Instagram, Linkedin, Facebook, Twitter, ChevronRight } from 'lucide-react';
-import { api } from '../lib/api';
 
 const TikTokIcon = ({ size = 18 }) => (
     <svg 
@@ -22,15 +21,6 @@ const TikTokIcon = ({ size = 18 }) => (
 const Footer = () => {
     const { t } = useLanguage();
     const currentYear = new Date().getFullYear();
-    const [dynamicServices, setDynamicServices] = useState([]);
-
-    useEffect(() => {
-        api.getServices()
-            .then(data => {
-                setDynamicServices(data.slice(0, 6)); // Show top 6
-            })
-            .catch(err => console.error("Failed to fetch services for footer:", err));
-    }, []);
 
     return (
         <footer className="bg-[#04122d] text-white pt-24 pb-12 relative overflow-hidden border-t-[6px] border-primary-600 font-sans">
@@ -40,9 +30,9 @@ const Footer = () => {
             <div className="absolute top-20 -end-40 w-80 h-80 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-y-12 gap-x-8 mb-16">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-y-12 gap-x-8 mb-16">
                     {/* Brand Column */}
-                    <div className="sm:col-span-4 md:col-span-3 lg:col-span-4 flex flex-col pt-2">
+                    <div className="sm:col-span-2 md:col-span-2 lg:col-span-4 flex flex-col pt-2">
                         {/* Primary Brand Identity */}
                         <div className="flex flex-col mb-8">
                             <RouterLink to="/" className="flex items-center gap-4 group mb-6">
@@ -88,32 +78,8 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    {/* Services Column */}
-                    <div className="sm:col-span-2 md:col-span-3 lg:col-span-2 pt-2">
-                        <h4 className="text-[13px] font-montserrat font-normal uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
-                            {t('footer.services')}
-                            <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
-                        </h4>
-                        <ul className="space-y-4 text-[15px] font-normal mt-4">
-                            {dynamicServices.map((service, idx) => (
-                                <li key={idx}>
-                                    <RouterLink to={`/services/${service.slug}`} className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-start group relative pl-5">
-                                        <ChevronRight size={14} className="absolute left-0 top-[5px] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 text-primary-500 transition-all duration-300" />
-                                        <span className="leading-snug">{service.title}</span>
-                                    </RouterLink>
-                                </li>
-                            ))}
-                            <li>
-                                <RouterLink to="/services" className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-start group relative pl-5">
-                                    <ChevronRight size={14} className="absolute left-0 top-[5px] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 text-primary-500 transition-all duration-300" />
-                                    <span className="leading-snug">{t('footer.serviceLinks.more')}</span>
-                                </RouterLink>
-                            </li>
-                        </ul>
-                    </div>
-
                     {/* Quick Links Column */}
-                    <div className="sm:col-span-2 md:col-span-2 lg:col-span-2 pt-2">
+                    <div className="sm:col-span-1 md:col-span-2 lg:col-span-2 pt-2">
                         <h4 className="text-[13px] font-montserrat font-normal uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
                             {t('footer.nav')}
                             <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
@@ -136,7 +102,7 @@ const Footer = () => {
                     </div>
 
                     {/* Support Links Column */}
-                    <div className="sm:col-span-2 md:col-span-2 lg:col-span-2 pt-2">
+                    <div className="sm:col-span-1 md:col-span-2 lg:col-span-2 pt-2">
                         <h4 className="text-[13px] font-montserrat font-normal uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
                             {t('footer.support')}
                             <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
@@ -159,7 +125,7 @@ const Footer = () => {
                     </div>
 
                     {/* Contact Info Column */}
-                    <div className="sm:col-span-2 md:col-span-2 lg:col-span-2 pt-2">
+                    <div className="sm:col-span-2 md:col-span-2 lg:col-span-4 pt-2">
                         <h4 className="text-[13px] font-montserrat font-normal uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
                             {t('footer.clinic')}
                             <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
