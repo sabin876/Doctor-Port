@@ -62,9 +62,18 @@ const Footer = () => {
                                 </div>
                             </RouterLink>
 
-                            <p className="text-slate-400 text-sm leading-relaxed font-light max-w-sm mb-8 pr-4">
+                            <p className="text-slate-400 text-sm leading-relaxed font-light max-w-sm mb-6 pr-4">
                                 Precise orthopaedic surgical care delivered with integrity, respect for patient rights, and an individualised medical evidence-based approach—restoring movement, function, and active lives.
                             </p>
+
+                            {/* Affiliation & Accreditation Logos */}
+                            <div className="flex gap-4 mb-6">
+                                <div className="flex gap-3 bg-white/5 p-2 rounded-2xl border border-white/10 shadow-lg backdrop-blur-sm items-center hover:border-primary-500/20 transition-colors duration-300">
+                                    <img src={gmcLogo} alt="General Medical Council" className="h-8 w-auto opacity-80 hover:opacity-100 transition-opacity brightness-0 invert" />
+                                    <div className="w-px h-6 bg-white/10" />
+                                    <img src={ebotLogo} alt="EBOT" className="h-8 w-auto opacity-80 hover:opacity-100 transition-opacity brightness-0 invert" />
+                                </div>
+                            </div>
                         </div>
                         
                         {/* Social Links with Custom Hover Glow */}
