@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
 // Global layout components
@@ -52,6 +52,22 @@ class ErrorBoundary extends React.Component {
     }
     return this.props.children;
   }
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+    }
+    window.scrollTo(0, 0);
+  }, [pathname, hash]);
+
+  return null;
 }
 
 function App() {
@@ -59,6 +75,7 @@ function App() {
     <HelmetProvider>
       <ErrorBoundary>
         <Router>
+          <ScrollToTop />
           <TrailingSlashRedirect />
           <SEOWrapper>
             <div className="min-h-screen bg-white font-sans text-gray-800">
