@@ -169,9 +169,9 @@ const Footer = () => {
                                 href="https://csh.ae/" 
                                 target="_blank" 
                                 rel="noreferrer" 
-                                className="group flex items-center justify-center bg-white p-2.5 rounded-2xl shadow-xl transition-all duration-500 hover:-translate-y-1.5 hover:shadow-primary-500/20 active:scale-95"
+                                className="group inline-flex items-center justify-center bg-white py-2 px-5 rounded-xl shadow-xl transition-all duration-500 hover:-translate-y-1.5 hover:shadow-primary-500/20 active:scale-95"
                             >
-                                <img src={cshLogo} alt="Canadian Specialist Hospital" className="h-14 w-auto object-contain rounded-xl" />
+                                <img src={cshLogo} alt="Canadian Specialist Hospital" className="h-10 w-auto object-contain rounded-lg" />
                             </a>
                         </div>
                     </div>
