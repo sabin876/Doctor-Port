@@ -4,7 +4,7 @@ import ebotLogo from '../assets/ebot-logo-navbar.webp';
 import logo from '../assets/logo.webp';
 import { Link as RouterLink } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
-import { MapPin, Phone, Mail, Youtube, Instagram, Linkedin, Facebook, Twitter, ChevronRight } from 'lucide-react';
+import { MapPin, Phone, Mail, Youtube, Instagram, Linkedin, Facebook, Twitter, ChevronRight, Sparkles } from 'lucide-react';
 import { api } from '../lib/api';
 
 const TikTokIcon = ({ size = 18 }) => (
@@ -32,92 +32,104 @@ const Footer = () => {
     }, []);
 
     return (
-        <footer className="bg-[#04122d] text-white pt-24 pb-12 relative overflow-hidden border-t-[6px] border-primary-600 font-sans">
-            {/* Background Decorations */}
-            <div className="absolute top-0 start-0 w-full h-[600px] bg-gradient-to-br from-primary-900/20 via-transparent to-transparent pointer-events-none"></div>
-            <div className="absolute -bottom-40 -start-40 w-96 h-96 bg-primary-600/10 rounded-full blur-[120px] pointer-events-none"></div>
-            <div className="absolute top-20 -end-40 w-80 h-80 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <footer className="bg-gradient-to-b from-[#020815] via-[#040f26] to-[#01050e] text-white pt-24 pb-12 relative overflow-hidden border-t border-slate-800 font-sans">
+            {/* Atmospheric Background Glows */}
+            <div className="absolute top-0 start-0 w-full h-[500px] bg-gradient-to-br from-primary-950/20 via-transparent to-transparent pointer-events-none"></div>
+            <div className="absolute -bottom-48 -start-48 w-[500px] h-[500px] bg-primary-600/5 rounded-full blur-[140px] pointer-events-none"></div>
+            <div className="absolute top-20 -end-48 w-96 h-96 bg-sky-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+            
+            {/* Subtle Horizontal Highlight Line at Top */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-500/40 to-transparent"></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12 gap-y-12 gap-x-8 mb-16">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12 gap-y-12 gap-x-8 mb-20">
+                    
                     {/* Brand Column */}
-                    <div className="lg:col-span-4 flex flex-col pt-2">
-                        {/* Primary Brand Identity */}
-                        <div className="flex flex-col mb-8">
-                            <RouterLink to="/" className="flex items-center gap-4 group mb-6">
-                                <div className="bg-white p-2.5 rounded-2xl shadow-xl shadow-black/20 group-hover:scale-105 transition-transform duration-500">
-                                    <img src={logo} alt="Dr. Ulhas Sonar" className="h-12 w-auto" />
+                    <div className="lg:col-span-4 flex flex-col justify-between">
+                        <div>
+                            {/* Primary Brand Identity */}
+                            <RouterLink to="/" className="flex items-center gap-4 group mb-6 inline-flex">
+                                <div className="bg-white/95 p-2 rounded-2xl border border-white/10 group-hover:border-primary-500/30 group-hover:shadow-[0_0_25px_rgba(2,132,199,0.25)] transition-all duration-500">
+                                    <img src={logo} alt="Dr. Ulhas Sonar" className="h-10 w-auto object-contain" />
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-xl md:text-2xl font-montserrat font-normal tracking-tight text-white leading-tight uppercase">
+                                    <span className="text-lg font-montserrat font-bold tracking-tight text-white leading-tight uppercase group-hover:text-primary-400 transition-colors duration-300">
                                         {t('common.doctorName')}
                                     </span>
-                                    <span className="text-primary-400 text-[10px] font-montserrat font-normal uppercase tracking-[0.25em] mt-1 opacity-90">
+                                    <span className="text-primary-500 text-[9px] font-montserrat font-medium uppercase tracking-[0.25em] mt-1">
                                         {t('common.specialty')}
                                     </span>
                                 </div>
                             </RouterLink>
 
-
+                            <p className="text-slate-400 text-sm leading-relaxed font-light max-w-sm mb-8 pr-4">
+                                Precise orthopaedic surgical care delivered with integrity, respect for patient rights, and an individualised medical evidence-based approach—restoring movement, function, and active lives.
+                            </p>
                         </div>
-                        <p className="text-gray-400 text-sm leading-loose font-normal max-w-sm mb-8">
-                            Precise orthopaedic surgical care delivered with integrity, respect for patient rights, and an individualised medical evidence-based approach—restoring movement, function, and active lives.
-                        </p>
                         
-                        {/* Social Links */}
-                        <div className="flex gap-4">
-                            {[
-                                { Icon: Youtube, label: 'YouTube', href: 'https://youtu.be/hX73EZA8eps?si=VxpSILzlZuVGQpwc' },
-                                { Icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/drulhasortho.1/' },
-                                { Icon: Twitter, label: 'X (Twitter)', href: 'https://x.com/jointsurgeon' },
-                                { Icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/ulhassonarortho' },
-                                { Icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61585848005137' },
-                                { Icon: TikTokIcon, label: 'TikTok', href: 'https://www.tiktok.com/@dr.ulhas.orthoped' }
-                            ].map((social, index) => (
-                                <a 
-                                    key={index} 
-                                    href={social.href} 
-                                    target="_blank" rel="noreferrer"
-                                    aria-label={social.label}
-                                    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-primary-600 hover:text-white hover:border-primary-500 hover:-translate-y-1 transition-all duration-300 shadow-sm"
-                                >
-                                    <social.Icon size={18} strokeWidth={2} />
-                                </a>
-                            ))}
+                        {/* Social Links with Custom Hover Glow */}
+                        <div>
+                            <h4 className="text-[10px] font-normal uppercase tracking-[0.25em] mb-4 text-slate-500">Connect With Me</h4>
+                            <div className="flex gap-3 flex-wrap">
+                                {[
+                                    { Icon: Youtube, label: 'YouTube', href: 'https://youtu.be/hX73EZA8eps?si=VxpSILzlZuVGQpwc', hoverClass: 'hover:bg-[#FF0000] hover:shadow-[0_0_15px_rgba(255,0,0,0.4)] hover:border-[#FF0000]' },
+                                    { Icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/drulhasortho.1/', hoverClass: 'hover:bg-gradient-to-tr hover:from-[#f9ce34] hover:via-[#ee2a7b] hover:to-[#6228d7] hover:shadow-[0_0_15px_rgba(238,42,123,0.4)] hover:border-[#ee2a7b]' },
+                                    { Icon: Twitter, label: 'X (Twitter)', href: 'https://x.com/jointsurgeon', hoverClass: 'hover:bg-[#111111] hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-[#333333]' },
+                                    { Icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/ulhassonarortho', hoverClass: 'hover:bg-[#0077b5] hover:shadow-[0_0_15px_rgba(0,119,181,0.4)] hover:border-[#0077b5]' },
+                                    { Icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61585848005137', hoverClass: 'hover:bg-[#1877f2] hover:shadow-[0_0_15px_rgba(24,119,242,0.4)] hover:border-[#1877f2]' },
+                                    { Icon: TikTokIcon, label: 'TikTok', href: 'https://www.tiktok.com/@dr.ulhas.orthoped', hoverClass: 'hover:bg-[#000000] hover:shadow-[0_0_15px_rgba(0,242,234,0.4)] hover:border-[#00f2ea]' }
+                                ].map((social, index) => (
+                                    <a 
+                                        key={index} 
+                                        href={social.href} 
+                                        target="_blank" rel="noreferrer"
+                                        aria-label={social.label}
+                                        className={`w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:-translate-y-1 transition-all duration-300 shadow-sm ${social.hoverClass}`}
+                                    >
+                                        <social.Icon size={16} strokeWidth={2} />
+                                    </a>
+                                ))}
+                            </div>
                         </div>
                     </div>
 
                     {/* Services Column */}
-                    <div className="lg:col-span-2 pt-2">
-                        <h4 className="text-[13px] font-montserrat font-normal uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
+                    <div className="lg:col-span-2 lg:pl-4">
+                        <h4 className="text-xs font-montserrat font-semibold uppercase tracking-[0.25em] mb-6 text-white flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary-500 shadow-[0_0_8px_rgba(2,132,199,0.8)]" />
                             {t('footer.services')}
-                            <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
                         </h4>
-                        <ul className="space-y-4 text-[15px] font-normal mt-4">
+                        <ul className="space-y-3.5 mt-4">
                             {dynamicServices.map((service, idx) => (
                                 <li key={idx}>
-                                    <RouterLink to={`/services/${service.slug}`} className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center group">
-                                        <ChevronRight size={14} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-primary-500 transition-all duration-300 mr-2" />
-                                        <span className="whitespace-nowrap">{service.title}</span>
+                                    <RouterLink 
+                                        to={`/services/${service.slug}`} 
+                                        className="text-slate-400 hover:text-white transition-all duration-300 flex items-center group relative py-0.5 text-sm font-light"
+                                    >
+                                        <span className="w-1 h-1 rounded-full bg-primary-500 scale-0 group-hover:scale-100 transition-all duration-300 mr-2 -ml-3 group-hover:ml-0 shadow-[0_0_8px_rgba(2,132,199,0.8)] flex-shrink-0" />
+                                        <span className="group-hover:translate-x-1 transition-transform duration-300 truncate">{service.title}</span>
                                     </RouterLink>
                                 </li>
                             ))}
                             <li>
-                                <RouterLink to="/services" className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center group">
-                                    <ChevronRight size={14} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-primary-500 transition-all duration-300 mr-2" />
-                                    <span className="whitespace-nowrap">{t('footer.serviceLinks.more')}</span>
+                                <RouterLink 
+                                    to="/services" 
+                                    className="text-slate-400 hover:text-white transition-all duration-300 flex items-center group relative py-0.5 text-sm font-light"
+                                >
+                                    <span className="w-1 h-1 rounded-full bg-primary-500 scale-0 group-hover:scale-100 transition-all duration-300 mr-2 -ml-3 group-hover:ml-0 shadow-[0_0_8px_rgba(2,132,199,0.8)] flex-shrink-0" />
+                                    <span className="group-hover:translate-x-1 transition-transform duration-300">{t('footer.serviceLinks.more')}</span>
                                 </RouterLink>
                             </li>
                         </ul>
                     </div>
 
                     {/* Quick Links Column */}
-                    <div className="lg:col-span-2 pt-2">
-                        <h4 className="text-[13px] font-montserrat font-normal uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
+                    <div className="lg:col-span-2 lg:pl-4">
+                        <h4 className="text-xs font-montserrat font-semibold uppercase tracking-[0.25em] mb-6 text-white flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary-500 shadow-[0_0_8px_rgba(2,132,199,0.8)]" />
                             {t('footer.nav')}
-                            <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
                         </h4>
-                        <ul className="space-y-4 text-[15px] font-normal mt-4">
+                        <ul className="space-y-3.5 mt-4">
                             {[
                                 { name: t('nav.home'), href: '/' },
                                 { name: t('nav.about'), href: '/about' },
@@ -125,9 +137,12 @@ const Footer = () => {
                                 { name: t('nav.testimonials') || 'Testimonials', href: '/#testimonials' }
                             ].map((link, idx) => (
                                 <li key={idx}>
-                                    <RouterLink to={link.href} className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center group">
-                                        <ChevronRight size={14} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-primary-500 transition-all duration-300 mr-2" />
-                                        <span>{link.name}</span>
+                                    <RouterLink 
+                                        to={link.href} 
+                                        className="text-slate-400 hover:text-white transition-all duration-300 flex items-center group relative py-0.5 text-sm font-light"
+                                    >
+                                        <span className="w-1 h-1 rounded-full bg-primary-500 scale-0 group-hover:scale-100 transition-all duration-300 mr-2 -ml-3 group-hover:ml-0 shadow-[0_0_8px_rgba(2,132,199,0.8)] flex-shrink-0" />
+                                        <span className="group-hover:translate-x-1 transition-transform duration-300">{link.name}</span>
                                     </RouterLink>
                                 </li>
                             ))}
@@ -135,12 +150,12 @@ const Footer = () => {
                     </div>
 
                     {/* Support Links Column */}
-                    <div className="lg:col-span-2 pt-2">
-                        <h4 className="text-[13px] font-montserrat font-normal uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
+                    <div className="lg:col-span-2 lg:pl-4">
+                        <h4 className="text-xs font-montserrat font-semibold uppercase tracking-[0.25em] mb-6 text-white flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary-500 shadow-[0_0_8px_rgba(2,132,199,0.8)]" />
                             {t('footer.support')}
-                            <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
                         </h4>
-                        <ul className="space-y-4 text-[15px] font-normal mt-4">
+                        <ul className="space-y-3.5 mt-4">
                             {[
                                 { name: t('footer.patientResources'), href: '/#publications' },
                                 { name: t('footer.articles'), href: '/blog' },
@@ -148,9 +163,12 @@ const Footer = () => {
                                 { name: t('footer.privacy'), href: '#' }
                             ].map((item, idx) => (
                                 <li key={idx}>
-                                    <RouterLink to={item.href} className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center group">
-                                        <ChevronRight size={14} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-primary-500 transition-all duration-300 mr-2" />
-                                        <span>{item.name}</span>
+                                    <RouterLink 
+                                        to={item.href} 
+                                        className="text-slate-400 hover:text-white transition-all duration-300 flex items-center group relative py-0.5 text-sm font-light"
+                                    >
+                                        <span className="w-1 h-1 rounded-full bg-primary-500 scale-0 group-hover:scale-100 transition-all duration-300 mr-2 -ml-3 group-hover:ml-0 shadow-[0_0_8px_rgba(2,132,199,0.8)] flex-shrink-0" />
+                                        <span className="group-hover:translate-x-1 transition-transform duration-300">{item.name}</span>
                                     </RouterLink>
                                 </li>
                             ))}
@@ -158,59 +176,60 @@ const Footer = () => {
                     </div>
 
                     {/* Contact Info Column */}
-                    <div className="lg:col-span-2 pt-2">
-                        <h4 className="text-[13px] font-montserrat font-normal uppercase tracking-[0.2em] mb-8 text-white relative inline-block">
+                    <div className="lg:col-span-2">
+                        <h4 className="text-xs font-montserrat font-semibold uppercase tracking-[0.25em] mb-6 text-white flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary-500 shadow-[0_0_8px_rgba(2,132,199,0.8)]" />
                             {t('footer.clinic')}
-                            <span className="absolute -bottom-3 left-0 w-8 h-1 bg-primary-600 rounded-full"></span>
                         </h4>
-                        <ul className="space-y-6 mt-4 mb-10">
-                            <li className="flex gap-4 group cursor-pointer">
-                                <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 group-hover:bg-primary-600/30 group-hover:border-primary-500/40 flex items-center justify-center text-primary-400 group-hover:text-primary-300 transition-all duration-300 flex-shrink-0 shadow-lg shadow-black/20">
-                                    <MapPin size={22} strokeWidth={1.5} />
+                        <ul className="space-y-4 mt-4 mb-8">
+                            <li className="flex gap-3.5 group cursor-pointer">
+                                <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 group-hover:bg-primary-500 group-hover:text-white group-hover:border-primary-400 group-hover:shadow-[0_0_15px_rgba(2,132,199,0.3)] flex items-center justify-center text-primary-400 transition-all duration-300 flex-shrink-0 shadow-md">
+                                    <MapPin size={16} strokeWidth={2} />
                                 </div>
-                                <div className="flex flex-col">
-                                    <span className="text-gray-300 text-sm font-normal leading-relaxed group-hover:text-white transition-colors duration-300">
+                                <div className="flex flex-col min-w-0">
+                                    <span className="text-slate-300 text-xs font-light leading-relaxed group-hover:text-white transition-colors duration-300">
                                         {t('footer.hospitalName')}
                                     </span>
-                                    <span className="text-gray-500 text-xs mt-0.5">Dubai, UAE</span>
+                                    <span className="text-slate-500 text-[10px] mt-0.5">Dubai, UAE</span>
                                 </div>
                             </li>
-                            <li className="flex gap-4 group cursor-pointer">
-                                <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 group-hover:bg-primary-600/30 group-hover:border-primary-500/40 flex items-center justify-center text-primary-400 group-hover:text-primary-300 transition-all duration-300 flex-shrink-0 shadow-lg shadow-black/20">
-                                    <Phone size={22} strokeWidth={1.5} />
+                            
+                            <li className="flex gap-3.5 group cursor-pointer">
+                                <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 group-hover:bg-primary-500 group-hover:text-white group-hover:border-primary-400 group-hover:shadow-[0_0_15px_rgba(2,132,199,0.3)] flex items-center justify-center text-primary-400 transition-all duration-300 flex-shrink-0 shadow-md">
+                                    <Phone size={16} strokeWidth={2} />
                                 </div>
-                                <div className="flex flex-col justify-center">
-                                    <span className="text-white font-normal tracking-tight whitespace-nowrap text-lg">{import.meta.env.VITE_CONTACT_PHONE}</span>
-                                    <span className="text-primary-500 text-[10px] font-normal uppercase tracking-[0.2em] mt-0.5">{t('footer.emergency')}</span>
+                                <div className="flex flex-col min-w-0">
+                                    <span className="text-white text-[14px] font-medium tracking-tight whitespace-nowrap">{import.meta.env.VITE_CONTACT_PHONE}</span>
+                                    <span className="text-primary-500 text-[9px] font-semibold uppercase tracking-[0.2em] mt-0.5">{t('footer.emergency')}</span>
                                 </div>
                             </li>
                         </ul>
 
-                        {/* Visit Me At Section - Enhanced Design */}
-                        <div className="pt-4 border-t border-white/5 mt-4">
-                            <h4 className="text-[10px] font-normal uppercase tracking-[0.3em] mb-5 text-primary-500">
+                        {/* Visit Me At Section - Enhanced Glassmorphism Design */}
+                        <div className="pt-5 border-t border-white/5 mt-4">
+                            <h4 className="text-[9px] font-semibold uppercase tracking-[0.3em] mb-4 text-primary-500">
                                 {t('footer.visitMeAt')}
                             </h4>
                             <a 
                                 href="https://csh.ae/" 
                                 target="_blank" 
                                 rel="noreferrer" 
-                                className="group flex items-center gap-4 bg-white/[0.98] hover:bg-white p-3.5 pr-6 rounded-[1.5rem] shadow-2xl transition-all duration-500 hover:-translate-y-1.5 hover:shadow-primary-500/20 active:scale-95"
+                                className="group flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 hover:border-primary-500/30 p-3 rounded-2xl shadow-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(2,132,199,0.15)] active:scale-98"
                             >
                                 {/* Professional SVG Shield Logo Representation */}
-                                <div className="relative w-14 h-14 bg-[#1a2b5b] rounded-2xl shadow-inner flex items-center justify-center flex-shrink-0 overflow-hidden border-2 border-[#1a2b5b]">
-                                    <svg className="w-10 h-10 text-white" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <div className="relative w-11 h-11 bg-primary-950/60 rounded-xl shadow-inner flex items-center justify-center flex-shrink-0 overflow-hidden border border-white/10 group-hover:border-primary-500/50 transition-all duration-500">
+                                    <svg className="w-7 h-7 text-primary-400 group-hover:text-primary-300 transition-colors" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M20 2L4 8V18C4 26.5 10.5 34.5 20 38C29.5 34.5 36 26.5 36 18V8L20 2Z" fill="currentColor" fillOpacity="0.15"/>
-                                        <path d="M20 4L6 9.25V18C6 25.5 11.5 32.5 20 35.5C28.5 32.5 34 25.5 34 18V9.25L20 4Z" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                        <path d="M20 12V26M13 19H27" stroke="white" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M20 4L6 9.25V18C6 25.5 11.5 32.5 20 35.5C28.5 32.5 34 25.5 34 18V9.25L20 4Z" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M20 12V26M13 19H27" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
                                     </svg>
-                                    <div className="absolute inset-0 bg-gradient-to-tr from-primary-600/20 to-transparent pointer-events-none"></div>
+                                    <div className="absolute inset-0 bg-gradient-to-tr from-primary-600/30 to-transparent pointer-events-none"></div>
                                 </div>
-                                <div className="flex flex-col border-l border-gray-100 pl-4 py-0.5 min-w-0">
-                                    <span className="text-[#1a2b5b] text-[13px] font-normal font-montserrat tracking-tight leading-tight mb-1 truncate text-right" dir="rtl">
+                                <div className="flex flex-col border-l border-white/10 pl-3 py-0.5 min-w-0 flex-1">
+                                    <span className="text-white text-[11px] font-normal font-montserrat tracking-tight leading-tight mb-1 truncate text-right" dir="rtl">
                                         المستشفى الكندي التخصصي
                                     </span>
-                                    <span className="text-[#1a2b5b] text-[11px] font-normal font-montserrat tracking-tighter leading-tight truncate">
+                                    <span className="text-slate-400 group-hover:text-slate-300 text-[9px] font-normal font-montserrat tracking-tighter leading-tight truncate transition-colors">
                                         Canadian Specialist Hospital
                                     </span>
                                 </div>
@@ -219,13 +238,17 @@ const Footer = () => {
                     </div>
                 </div>
 
+                {/* Divider Line */}
+                <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent"></div>
+
                 {/* Bottom Bar */}
-                <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p className="text-gray-500 text-[12px] font-montserrat font-normal uppercase tracking-[0.15em]">
-                        &copy; {currentYear} <span className="text-gray-400">{t('common.doctorName')}</span>. {t('footer.rights')}
+                <div className="mt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+                    <p className="text-slate-500 text-[11px] font-montserrat font-normal uppercase tracking-[0.2em] text-center md:text-left">
+                        &copy; {currentYear} <span className="text-slate-400 font-semibold">{t('common.doctorName')}</span>. {t('footer.rights')}
                     </p>
                     <div className="flex items-center gap-2">
-                        <span className="text-gray-600 text-[10px] font-montserrat font-normal uppercase tracking-widest">Designed for Excellence</span>
+                        <Sparkles size={12} className="text-primary-500 animate-pulse" />
+                        <span className="text-slate-600 text-[9px] font-montserrat font-medium uppercase tracking-[0.25em]">Designed for Excellence</span>
                     </div>
                 </div>
             </div>
