@@ -27,7 +27,7 @@ const SEOWrapper = ({ children }) => {
                     const slug = path.split('/')[2];
                     if (slug) {
                         const services = await api.getServices();
-                        const data = services.find(s => s.slug === slug);
+                        const data = services.find(s => s.slug?.toLowerCase() === slug?.toLowerCase());
                         setSeoData(data);
                     }
                 } else {
@@ -56,6 +56,27 @@ const SEOWrapper = ({ children }) => {
         return <div dangerouslySetInnerHTML={{ __html: htmlString }} />;
     };
 
+    // Function to render custom schema markup safely supporting both JSON objects/strings and HTML script tags
+    const renderSchemaMarkup = (schema) => {
+        if (!schema) return null;
+        if (typeof schema === 'string') {
+            const trimmed = schema.trim();
+            if (trimmed.startsWith('<script') && trimmed.includes('</script>')) {
+                return <div dangerouslySetInnerHTML={{ __html: trimmed }} />;
+            }
+            return (
+                <script type="application/ld+json">
+                    {trimmed}
+                </script>
+            );
+        }
+        return (
+            <script type="application/ld+json">
+                {JSON.stringify(schema)}
+            </script>
+        );
+    };
+
     const currentUrl = `${window.location.origin}${location.pathname}`;
     const canonicalUrl = seoData?.canonical_url || currentUrl;
 
@@ -77,11 +98,7 @@ const SEOWrapper = ({ children }) => {
                         {seoData.og_image && <meta property="og:image" content={seoData.og_image} />}
                         
                         {/* Schema Markup */}
-                        {seoData.schema_markup && (
-                            <script type="application/ld+json">
-                                {JSON.stringify(seoData.schema_markup)}
-                            </script>
-                        )}
+                        {seoData.schema_markup && renderSchemaMarkup(seoData.schema_markup)}
                     </>
                 )}
             </Helmet>

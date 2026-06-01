@@ -92,6 +92,118 @@ const ServiceDetail = () => {
     // Map features from service.items (JSON list)
     const features = service.items || ["Expert Diagnosis", "Personalized Treatment", "Follow-up Care", "Professional Support"];
 
+    // Dynamic Schema Generation for SEO
+    const stripHtml = (html) => {
+        if (!html) return '';
+        return html.replace(/<[^>]*>/g, '').trim();
+    };
+
+    const origin = window.location.origin;
+
+    // 1. MedicalProcedure Schema
+    let bodyLocation = "";
+    let procedureType = "SurgicalProcedure";
+    const slugLower = id?.toLowerCase() || "";
+    
+    if (slugLower.includes('knee')) {
+        bodyLocation = "Knee";
+    } else if (slugLower.includes('hip')) {
+        bodyLocation = "Hip";
+    } else if (slugLower.includes('shoulder')) {
+        bodyLocation = "Shoulder";
+    } else if (slugLower.includes('spine')) {
+        bodyLocation = "Spine";
+    } else if (slugLower.includes('sports') || slugLower.includes('injury')) {
+        bodyLocation = "Joints";
+    }
+    
+    if (slugLower.includes('physiotherapy') || slugLower.includes('rehab')) {
+        procedureType = "NoninvasiveProcedure";
+    } else if (slugLower.includes('consultation')) {
+        procedureType = "DiagnosticProcedure";
+    }
+
+    const medicalProcedureSchema = {
+        "@context": "https://schema.org",
+        "@type": "MedicalProcedure",
+        "name": service.title,
+        "description": stripHtml(service.description),
+        "image": service.image,
+        "procedureType": {
+            "@type": "MedicalProcedureType",
+            "name": procedureType
+        },
+        ...(bodyLocation ? { "bodyLocation": bodyLocation } : {}),
+        "relevantSpecialty": {
+            "@type": "MedicalSpecialty",
+            "name": "Orthopedic"
+        },
+        "provider": {
+            "@type": "Physician",
+            "name": "Dr. Ulhas Sonar",
+            "telephone": import.meta.env.VITE_CONTACT_PHONE || "+971556319379",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Canadian Specialist Hospital",
+                "addressLocality": "Dubai",
+                "addressCountry": "AE"
+            }
+        }
+    };
+
+    // 2. BreadcrumbList Schema
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": t('nav.home') || "Home",
+                "item": `${origin}`
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": t('nav.services') || "Services",
+                "item": `${origin}/services`
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": service.title,
+                "item": `${origin}/services/${id}`
+            }
+        ]
+    };
+
+    // 3. FAQPage Schema
+    const defaultData = defaultServiceFaqs[id] || defaultServiceFaqs["physiotherapy"];
+    const faqs = (service.faqs && service.faqs.length > 0) ? service.faqs : (defaultData ? defaultData.items : []);
+    
+    const faqSchema = faqs && faqs.length > 0 ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question || faq.q,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": stripHtml(faq.answer || faq.a)
+            }
+        }))
+    } : null;
+
+    const schemaList = [medicalProcedureSchema, breadcrumbSchema];
+    if (faqSchema) {
+        schemaList.push(faqSchema);
+    }
+    
+    // Support merging user custom backend schema if present
+    if (service.schema_markup) {
+        schemaList.push(service.schema_markup);
+    }
+
     return (
         <main className="relative pt-20 bg-white overflow-hidden">
             <SEO 
@@ -99,6 +211,7 @@ const ServiceDetail = () => {
                 description={service.meta_description || service.description}
                 url={`/services/${id}`}
                 image={service.image}
+                schemaList={schemaList}
             />
 
             <div className="bg-white border-b border-gray-100">

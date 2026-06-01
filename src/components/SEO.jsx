@@ -104,32 +104,43 @@ const SEO = ({
       {twitterData2 && <meta name="twitter:data2" content={twitterData2} />}
 
       {/* 9. Schema */}
-      {schemaList && schemaList.length > 0 ? (
-        schemaList.map((schema, idx) => (
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Physician",
+          "name": "Dr. Ulhas Sonar",
+          "image": absoluteImage,
+          "@id": baseUrl,
+          "url": baseUrl,
+          "telephone": import.meta.env.VITE_CONTACT_PHONE || "+971556319379",
+          "medicalSpecialty": "Orthopedic",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Canadian Specialist Hospital",
+            "addressLocality": "Dubai",
+            "addressCountry": "AE"
+          }
+        })}
+      </script>
+      {schemaList && schemaList.length > 0 && schemaList.map((schema, idx) => {
+        if (!schema) return null;
+        if (typeof schema === 'string') {
+          const trimmed = schema.trim();
+          if (trimmed.startsWith('<script') && trimmed.includes('</script>')) {
+            return <div key={idx} dangerouslySetInnerHTML={{ __html: trimmed }} />;
+          }
+          return (
+            <script key={idx} type="application/ld+json">
+              {trimmed}
+            </script>
+          );
+        }
+        return (
           <script key={idx} type="application/ld+json">
             {JSON.stringify(schema)}
           </script>
-        ))
-      ) : (
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Physician",
-            "name": "Dr. Ulhas Sonar",
-            "image": absoluteImage,
-            "@id": baseUrl,
-            "url": baseUrl,
-            "telephone": import.meta.env.VITE_CONTACT_PHONE || "+919049200041",
-            "medicalSpecialty": "Orthopedic",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Canadian Specialist Hospital",
-              "addressLocality": "Dubai",
-              "addressCountry": "AE"
-            }
-          })}
-        </script>
-      )}
+        );
+      })}
     </Helmet>
   );
 };
