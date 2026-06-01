@@ -52,6 +52,7 @@ class ErrorBoundary extends React.Component {
     }
     return this.props.children;
   }
+}
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
 
