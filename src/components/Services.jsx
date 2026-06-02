@@ -70,7 +70,7 @@ const Services = () => {
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-5xl font-montserrat font-bold text-gray-900 mb-6 tracking-tight">
+                        className="text-3xl md:text-4xl font-montserrat font-bold text-gray-900 mb-6 tracking-tight">
                         {t('services.title')} <span className="text-primary-600">{t('services.titleHighlight')}</span> {t('services.titleEnd')}
                     </motion.h1>
                     <motion.p
