@@ -41,4 +41,5 @@ jobs:
           dangerous-clean-slate: true
           exclude: |
             **/Hero section Video.mp4
+            Hero section Video.mp4
           
