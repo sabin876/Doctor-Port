@@ -7,7 +7,7 @@ import logo from '../assets/logo.webp';
 import { api } from '../lib/api';
 
 const Contact = () => {
-    const { language } = useLanguage();
+    const { language, t } = useLanguage();
     const isRtl = language === 'AR';
 
     // Form states
@@ -56,6 +56,16 @@ const Contact = () => {
     };
 
     useEffect(() => {
+        if (window.location.hash) {
+            const id = window.location.hash.replace('#', '');
+            const element = document.getElementById(id);
+            if (element) {
+                setTimeout(() => {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+                return;
+            }
+        }
         window.scrollTo(0, 0);
     }, []);
 
@@ -118,7 +128,12 @@ const Contact = () => {
                             </div>
                             <div>
                                 <h3 className="text-[#1e293b] font-bold text-base mb-1">Dubai Clinic</h3>
-                                <p className="text-gray-600 font-medium text-base mb-1">Canadian Specialist Hospital</p>
+                                <button 
+                                    onClick={() => document.getElementById('map-section')?.scrollIntoView({ behavior: 'smooth' })}
+                                    className="text-[#0d52bc] hover:text-[#0a3f91] font-semibold text-base mb-1 block text-left hover:underline"
+                                >
+                                    {t('footer.viewLocation') || 'View Location'}
+                                </button>
                                 <p className="text-gray-400 text-sm">Dubai, United Arab Emirates</p>
                             </div>
                         </div>
@@ -130,7 +145,12 @@ const Contact = () => {
                             </div>
                             <div>
                                 <h3 className="text-[#1e293b] font-bold text-base mb-1">Pune Clinic (India)</h3>
-                                <p className="text-gray-600 font-medium text-base mb-1 line-clamp-2">Sunshine Childrens Clinic, Majestique BIZNOW Bldg</p>
+                                <button 
+                                    onClick={() => document.getElementById('map-section')?.scrollIntoView({ behavior: 'smooth' })}
+                                    className="text-[#0d52bc] hover:text-[#0a3f91] font-semibold text-base mb-1 block text-left hover:underline"
+                                >
+                                    {t('footer.viewLocation') || 'View Location'}
+                                </button>
                                 <p className="text-gray-400 text-sm">Kondhwa, Pune, Maharashtra</p>
                             </div>
                         </div>
@@ -238,7 +258,7 @@ const Contact = () => {
             </div>
 
             {/* Full Width Map Section */}
-            <div className="w-full relative grid lg:grid-cols-2">
+            <div id="map-section" className="w-full relative grid lg:grid-cols-2">
                 <div className="h-[400px] lg:h-[500px] w-full relative">
                     <div className="absolute top-6 left-6 z-10 bg-white/90 backdrop-blur-sm px-5 py-2.5 rounded-2xl shadow-lg border border-gray-100 flex items-center gap-3">
                         <div className="w-2.5 h-2.5 rounded-full bg-[#10b981] animate-pulse"></div>
