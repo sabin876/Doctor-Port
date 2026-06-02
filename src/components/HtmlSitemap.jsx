@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { FileText, Stethoscope, ChevronRight, LayoutGrid } from 'lucide-react';
 import Breadcrumbs from './ui/Breadcrumbs';
 import SEO from './SEO';
+import { api } from '../lib/api';
 
 const HtmlSitemap = () => {
     const [data, setData] = useState({ articles: [], services: [] });
@@ -11,8 +12,7 @@ const HtmlSitemap = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        fetch('http://127.0.0.1:8000/api/html-sitemap/')
-            .then(res => res.json())
+        api.getHtmlSitemap()
             .then(json => {
                 setData(json);
                 setLoading(false);
@@ -70,7 +70,7 @@ const HtmlSitemap = () => {
                                     {data.services.map((service, index) => (
                                         <li key={index}>
                                             <Link 
-                                                to={`/services/${index}`} 
+                                                to={`/services/${service.slug}`} 
                                                 className="group flex items-center justify-between p-2 hover:bg-primary-50 rounded-lg transition-all"
                                             >
                                                 <span className="text-gray-700 group-hover:text-primary-700 transition-colors">{service.title}</span>

@@ -4,6 +4,7 @@ import { Phone, Mail, MapPin, Youtube, Instagram, Linkedin, Facebook, Twitter, S
 import { useLanguage } from '../context/LanguageContext';
 import SEO from './SEO';
 import logo from '../assets/logo.webp';
+import { api } from '../lib/api';
 
 const Contact = () => {
     const { language } = useLanguage();
@@ -36,33 +37,18 @@ const Contact = () => {
         }
 
         try {
-            const response = await fetch(
-                'https://api.drulhasorthopedic.com/api/send-mail/',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(contactData)
-                }
-            );
+            const data = await api.sendContactMail(contactData);
 
-            const data = await response.json();
+            alert(data.result || 'Message sent successfully');
 
-            if (response.ok) {
-                alert(data.result || 'Message sent successfully');
-
-                setContactData({
-                    full_name: '',
-                    email: '',
-                    city: '',
-                    phone: '',
-                    service: '',
-                    message: ''
-                });
-            } else {
-                alert(data.result || 'Failed to send message');
-            }
+            setContactData({
+                full_name: '',
+                email: '',
+                city: '',
+                phone: '',
+                service: '',
+                message: ''
+            });
         } catch (error) {
             console.error(error);
             alert('Server error. Try again later.');

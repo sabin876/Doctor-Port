@@ -325,9 +325,9 @@ const ServiceDetail = () => {
                             {rawService.conditions.map((condition) => (
                                 <div
                                     key={condition.id}
-                                    className="group bg-white border border-gray-100/80 rounded-[2.5rem] p-8 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:-translate-y-1.5 hover:shadow-premium hover:border-primary-100 transition-all duration-300"
+                                    className="group bg-primary-600 text-white border border-primary-500 rounded-[2.5rem] p-8 shadow-md hover:-translate-y-1.5 hover:bg-primary-700 hover:shadow-lg transition-all duration-300"
                                 >
-                                    <div className="w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#003B73] group-hover:text-white transition-all duration-300 shadow-sm overflow-hidden">
+                                    <div className="w-12 h-12 rounded-2xl bg-white/20 text-white flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-white group-hover:text-primary-600 transition-all duration-300 shadow-sm overflow-hidden">
                                         {typeof condition.icon === 'string' ? (
                                             <div 
                                                 className="w-[22px] h-[22px] flex items-center justify-center [&>svg]:w-full [&>svg]:h-full [&>svg]:stroke-current"
@@ -337,11 +337,11 @@ const ServiceDetail = () => {
                                             condition.icon
                                         )}
                                     </div>
-                                    <h3 className="text-lg font-normal text-primary-950 mb-3 group-hover:text-[#003B73] transition-colors duration-300 leading-snug">
+                                    <h3 className="text-lg font-semibold text-white mb-3 leading-snug">
                                         {condition.title}
                                     </h3>
                                     <div 
-                                        className="text-gray-500 text-xs md:text-sm leading-relaxed font-light [&>p]:mb-1 [&>ul]:list-disc [&>ul]:pl-4 [&>ol]:list-decimal [&>ol]:pl-4"
+                                        className="text-blue-100 text-xs md:text-sm leading-relaxed font-light [&>p]:mb-1 [&>ul]:list-disc [&>ul]:pl-4 [&>ol]:list-decimal [&>ol]:pl-4 [&_a]:text-white [&_a]:underline"
                                         dangerouslySetInnerHTML={{ __html: condition.description }}
                                      />
                                 </div>
@@ -375,11 +375,11 @@ const ServiceDetail = () => {
 
                             <div className="space-y-3.5">
                                 {rawService.checklist_items.map((item, i) => (
-                                    <div key={i} className="flex items-start gap-4 p-4 bg-white border border-gray-100 rounded-3xl shadow-[0_2px_12px_-3px_rgba(0,0,0,0.02)] hover:shadow-md transition-shadow duration-300">
-                                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mt-0.5">
-                                            <CheckCircle2 size={16} className="fill-emerald-50" />
+                                    <div key={i} className="flex items-start gap-4 p-4 bg-primary-600 text-white border border-primary-500 rounded-3xl shadow-md hover:bg-primary-700 hover:shadow-lg transition-all duration-300">
+                                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-white/20 text-white flex items-center justify-center mt-0.5">
+                                            <CheckCircle2 size={16} className="fill-white/10" />
                                         </div>
-                                        <span className="text-gray-700 text-sm md:text-base font-light leading-relaxed">{item}</span>
+                                        <span className="text-white text-sm md:text-base font-normal leading-relaxed">{item}</span>
                                     </div>
                                 ))}
                             </div>

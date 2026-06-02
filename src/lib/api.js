@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://api.drulhasorthopedic.com/api";
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "https://api.drulhasorthopedic.com/api").replace(/\/+$/, "");
 
 const processImageUrls = (item) => {
     if (!item) return item;
@@ -91,6 +91,29 @@ export const api = {
             });
         }
         return data;
+    },
+    getHtmlSitemap: async () => {
+        const response = await fetch(`${API_BASE_URL}/html-sitemap/`);
+        return response.json();
+    },
+    login: async (username, password) => {
+        const response = await fetch(`${API_BASE_URL}/login/`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+        });
+        return response.json();
+    },
+    getAdminUrl: () => {
+        return API_BASE_URL.replace(/\/api\/?$/, '') + '/admin/';
+    },
+    sendContactMail: async (data) => {
+        const response = await fetch(`${API_BASE_URL}/send-mail/`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        return response.json();
     }
 };
 
