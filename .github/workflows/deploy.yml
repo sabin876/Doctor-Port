@@ -40,5 +40,5 @@ jobs:
           server-dir: /public_html/
           dangerous-clean-slate: true
           exclude: |
-            **/Hero section Video Uploaded.mp4
+            **/Hero section Video.mp4
           
