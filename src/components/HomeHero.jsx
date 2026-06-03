@@ -269,7 +269,7 @@ const HomeHero = () => {
                                 >
                                     <video
                                         key="hero-video-home"
-                                        src={import.meta.env.VITE_HERO_VIDEO_URL || "/Hero section Video.mp4"}
+                                        src={import.meta.env.VITE_HERO_VIDEO_URL || "/hero-video.mp4"}
                                         poster={slide.photo}
                                         autoPlay
                                         loop
