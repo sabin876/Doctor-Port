@@ -142,7 +142,7 @@ const Footer = () => {
                                         <span className="text-gray-300 text-sm font-normal leading-relaxed group-hover:text-white transition-colors duration-300">
                                             {t('footer.viewLocation')}
                                         </span>
-                                        <span className="text-gray-500 text-xs mt-0.5">Dubai, India</span>
+                                        <span className="text-gray-500 text-xs mt-0.5">Pune, India</span>
                                     </div>
                                 </RouterLink>
                             </li>
