@@ -1,24 +1,13 @@
 import { motion } from 'framer-motion';
-import { Phone, MessageCircle, Calendar } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Phone, MessageCircle } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import Chatbot from './Chatbot';
 
 const FloatingContactButtons = () => {
-    const { language, t } = useLanguage();
-    const navigate = useNavigate();
+    const { language } = useLanguage();
     const isRtl = language === 'AR';
     const phoneNumber = import.meta.env.VITE_CONTACT_PHONE || "+919049200041";
     const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "+919049200041";
-
-    const handleBookingClick = (e) => {
-        e.preventDefault();
-        const contactForm = document.getElementById('contact-form');
-        if (contactForm) {
-            contactForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        } else {
-            navigate('/contact');
-        }
-    };
 
     return (
         <div className="fixed end-4 bottom-4 md:end-6 md:bottom-6 z-50 flex flex-col gap-3 md:gap-4">
@@ -41,23 +30,8 @@ const FloatingContactButtons = () => {
                 </span>
             </motion.a>
 
-            {/* Book Appointment Button */}
-            <motion.a
-                href="/contact"
-                onClick={handleBookingClick}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                initial={{ opacity: 0, x: isRtl ? -100 : 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="group relative w-12 h-12 md:w-14 md:h-14 bg-indigo-600 rounded-full shadow-lg hover:shadow-2xl flex items-center justify-center transition-all duration-300"
-            >
-                <span className="absolute inset-0 rounded-full bg-indigo-600 animate-pulse opacity-20"></span>
-                <Calendar className="w-6 h-6 text-white relative z-10" />
-                <span className={`absolute ${isRtl ? 'start-16' : 'end-16'} top-1/2 -translate-y-1/2 bg-gray-900 text-white text-[10px] font-bold px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none uppercase tracking-widest`}>
-                    Book Now
-                </span>
-            </motion.a>
+            {/* Chatbot Button */}
+            <Chatbot />
 
             {/* Phone Call Button */}
             <motion.a

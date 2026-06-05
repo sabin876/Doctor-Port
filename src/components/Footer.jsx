@@ -2,7 +2,6 @@ import React from 'react';
 import gmcLogo from '../assets/gmc-logo-navbar.webp';
 import ebotLogo from '../assets/ebot-logo-navbar.webp';
 import logo from '../assets/logo.webp';
-import cshLogo from '../assets/csh-logo.png';
 import { Link as RouterLink } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { MapPin, Phone, Mail, Youtube, Instagram, Linkedin, Facebook, Twitter, ChevronRight } from 'lucide-react';
@@ -109,10 +108,10 @@ const Footer = () => {
                         </h4>
                         <ul className="space-y-4 text-[15px] font-normal mt-4">
                             {[
-                                { name: t('footer.patientResources'), href: '/#publications' },
+                                { name: t('nav.gallery'), href: '/gallery' },
                                 { name: t('footer.articles'), href: '/blog' },
                                 { name: t('nav.faq'), href: '/#faq' },
-                                { name: t('footer.privacy'), href: '#' }
+                                { name: t('nav.contact'), href: '/contact' }
                             ].map((item, idx) => (
                                 <li key={idx}>
                                     <RouterLink to={item.href} className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-start group relative pl-5">
@@ -132,10 +131,8 @@ const Footer = () => {
                         </h4>
                         <ul className="space-y-6 mt-4 mb-10">
                             <li>
-                                <a 
-                                    href="https://maps.google.com/?q=Canadian+Specialist+Hospital+Dubai" 
-                                    target="_blank" 
-                                    rel="noreferrer" 
+                                <RouterLink 
+                                    to="/contact#map-section" 
                                     className="flex gap-4 group cursor-pointer"
                                 >
                                     <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 group-hover:bg-primary-600/30 group-hover:border-primary-500/40 flex items-center justify-center text-primary-400 group-hover:text-primary-300 transition-all duration-300 flex-shrink-0 shadow-lg shadow-black/20">
@@ -143,11 +140,11 @@ const Footer = () => {
                                     </div>
                                     <div className="flex flex-col">
                                         <span className="text-gray-300 text-sm font-normal leading-relaxed group-hover:text-white transition-colors duration-300">
-                                            {t('footer.hospitalName')}
+                                            {t('footer.viewLocation')}
                                         </span>
-                                        <span className="text-gray-500 text-xs mt-0.5">Dubai, UAE</span>
+                                        <span className="text-gray-500 text-xs mt-0.5">Pune, India</span>
                                     </div>
-                                </a>
+                                </RouterLink>
                             </li>
                             <li>
                                 <a 
@@ -164,21 +161,6 @@ const Footer = () => {
                                 </a>
                             </li>
                         </ul>
-
-                        {/* Visit Me At Section - Enhanced Design */}
-                        <div className="pt-4 border-t border-white/5 mt-4">
-                            <h4 className="text-[10px] font-normal uppercase tracking-[0.3em] mb-5 text-primary-500">
-                                {t('footer.visitMeAt')}
-                            </h4>
-                            <a 
-                                href="https://csh.ae/" 
-                                target="_blank" 
-                                rel="noreferrer" 
-                                className="group inline-flex items-center justify-center bg-white py-2 px-5 rounded-xl shadow-xl transition-all duration-500 hover:-translate-y-1.5 hover:shadow-primary-500/20 active:scale-95"
-                            >
-                                <img src={cshLogo} alt="Canadian Specialist Hospital" className="h-10 w-auto object-contain rounded-lg" />
-                            </a>
-                        </div>
                     </div>
                 </div>
 

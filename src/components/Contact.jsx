@@ -4,9 +4,10 @@ import { Phone, Mail, MapPin, Youtube, Instagram, Linkedin, Facebook, Twitter, S
 import { useLanguage } from '../context/LanguageContext';
 import SEO from './SEO';
 import logo from '../assets/logo.webp';
+import { api } from '../lib/api';
 
 const Contact = () => {
-    const { language } = useLanguage();
+    const { language, t } = useLanguage();
     const isRtl = language === 'AR';
 
     // Form states
@@ -36,33 +37,18 @@ const Contact = () => {
         }
 
         try {
-            const response = await fetch(
-                'https://api.drulhasorthopedic.com/api/send-mail/',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(contactData)
-                }
-            );
+            const data = await api.sendContactMail(contactData);
 
-            const data = await response.json();
+            alert(data.result || 'Message sent successfully');
 
-            if (response.ok) {
-                alert(data.result || 'Message sent successfully');
-
-                setContactData({
-                    full_name: '',
-                    email: '',
-                    city: '',
-                    phone: '',
-                    service: '',
-                    message: ''
-                });
-            } else {
-                alert(data.result || 'Failed to send message');
-            }
+            setContactData({
+                full_name: '',
+                email: '',
+                city: '',
+                phone: '',
+                service: '',
+                message: ''
+            });
         } catch (error) {
             console.error(error);
             alert('Server error. Try again later.');
@@ -70,6 +56,16 @@ const Contact = () => {
     };
 
     useEffect(() => {
+        if (window.location.hash) {
+            const id = window.location.hash.replace('#', '');
+            const element = document.getElementById(id);
+            if (element) {
+                setTimeout(() => {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+                return;
+            }
+        }
         window.scrollTo(0, 0);
     }, []);
 
@@ -125,18 +121,6 @@ const Contact = () => {
                             </div>
                         </div>
 
-                        {/* Location Card 1 (Dubai) */}
-                        <div className="bg-white rounded-2xl p-6 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] border border-gray-100 flex items-start gap-5 transition-transform hover:-translate-y-1 duration-300">
-                            <div className="w-12 h-12 rounded-full bg-[#f0fbf4] text-[#10b981] flex items-center justify-center flex-shrink-0">
-                                <MapPin size={20} />
-                            </div>
-                            <div>
-                                <h3 className="text-[#1e293b] font-bold text-base mb-1">Dubai Clinic</h3>
-                                <p className="text-gray-600 font-medium text-base mb-1">Canadian Specialist Hospital</p>
-                                <p className="text-gray-400 text-sm">Dubai, United Arab Emirates</p>
-                            </div>
-                        </div>
-
                         {/* Location Card 2 (Pune) */}
                         <div className="bg-white rounded-2xl p-6 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] border border-gray-100 flex items-start gap-5 transition-transform hover:-translate-y-1 duration-300">
                             <div className="w-12 h-12 rounded-full bg-[#f0fbf4] text-[#10b981] flex items-center justify-center flex-shrink-0">
@@ -144,7 +128,12 @@ const Contact = () => {
                             </div>
                             <div>
                                 <h3 className="text-[#1e293b] font-bold text-base mb-1">Pune Clinic (India)</h3>
-                                <p className="text-gray-600 font-medium text-base mb-1 line-clamp-2">Sunshine Childrens Clinic, Majestique BIZNOW Bldg</p>
+                                <button 
+                                    onClick={() => document.getElementById('map-section')?.scrollIntoView({ behavior: 'smooth' })}
+                                    className="text-[#0d52bc] hover:text-[#0a3f91] font-semibold text-base mb-1 block text-left hover:underline"
+                                >
+                                    {t('footer.viewLocation') || 'View Location'}
+                                </button>
                                 <p className="text-gray-400 text-sm">Kondhwa, Pune, Maharashtra</p>
                             </div>
                         </div>
@@ -252,23 +241,7 @@ const Contact = () => {
             </div>
 
             {/* Full Width Map Section */}
-            <div className="w-full relative grid lg:grid-cols-2">
-                <div className="h-[400px] lg:h-[500px] w-full relative">
-                    <div className="absolute top-6 left-6 z-10 bg-white/90 backdrop-blur-sm px-5 py-2.5 rounded-2xl shadow-lg border border-gray-100 flex items-center gap-3">
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#10b981] animate-pulse"></div>
-                        <span className="font-bold text-[#1e293b] text-sm tracking-wide">Dubai Clinic</span>
-                    </div>
-                    <iframe
-                        title="Dubai Medical Center Location"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.2612745339667!2d55.3371900150117!3d25.26180998386629!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5ccf5777bd37%3A0x60037a5999092b71!2sCanadian%20Specialist%20Hospital!5e0!3m2!1sen!2sae!4v1655976541012!5m2!1sen!2sae"
-                        width="100%"
-                        height="100%"
-                        style={{ border: 0 }}
-                        allowFullScreen=""
-                        loading="lazy"
-                        className="absolute inset-0 w-full h-full object-cover"
-                    ></iframe>
-                </div>
+            <div id="map-section" className="w-full relative">
                 <div className="h-[400px] lg:h-[500px] w-full relative">
                     <div className="absolute top-6 left-6 z-10 bg-white/90 backdrop-blur-sm px-5 py-2.5 rounded-2xl shadow-lg border border-gray-100 flex items-center gap-3">
                         <div className="w-2.5 h-2.5 rounded-full bg-[#10b981] animate-pulse"></div>
@@ -282,7 +255,7 @@ const Contact = () => {
                         style={{ border: 0 }}
                         allowFullScreen=""
                         loading="lazy"
-                        className="absolute inset-0 w-full h-full object-cover lg:border-l border-white/20"
+                        className="absolute inset-0 w-full h-full object-cover"
                     ></iframe>
                 </div>
             </div>

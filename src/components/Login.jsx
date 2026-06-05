@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { User, Lock, ArrowRight, Activity } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import { api } from '../lib/api';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -15,23 +16,11 @@ const Login = () => {
     setError('');
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/login/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify({
-          username: email,
-          password: password,
-        }),
-      });
+      const data = await api.login(email, password);
 
-      const data = await response.json();
-
-      if (response.ok && data.success) {
+      if (data.success) {
         // Redirect to Django admin
-        window.location.href = 'http://127.0.0.1:8000/admin/';
+        window.location.href = api.getAdminUrl();
       } else {
         setError(data.error || 'Invalid email or password. Please try again.');
         setIsLoading(false);
