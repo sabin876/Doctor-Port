@@ -144,8 +144,18 @@ const HomeHero = () => {
             id="home"
             className="relative min-h-[85vh] flex items-start pt-2 pb-16 overflow-hidden bg-gradient-to-b from-blue-50/80 via-white to-blue-50/50"
         >
-            {/* ── Background Effects ── */}
-            <div className="absolute inset-0 z-0 pointer-events-none">
+            {/* ── Background Video & Effects ── */}
+            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
+                    src="/hero-video.mp4"
+                    className="absolute inset-0 w-full h-full object-cover opacity-[0.12] filter blur-[1px]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-blue-50/60 via-white/80 to-blue-50/60" />
                 <Orb className="w-[800px] h-[800px] bg-blue-400/10 -top-40 -left-60" delay={0} />
                 <Orb className="w-[600px] h-[600px] bg-cyan-400/10 bottom-0 -right-40" delay={4} />
                 <div
