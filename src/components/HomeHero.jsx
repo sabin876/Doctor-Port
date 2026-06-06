@@ -146,15 +146,6 @@ const HomeHero = () => {
         >
             {/* ── Background Video & Effects ── */}
             <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-                <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="auto"
-                    src="/hero-video.mp4"
-                    className="absolute inset-0 w-full h-full object-cover opacity-[0.12] filter blur-[1px]"
-                />
                 <div className="absolute inset-0 bg-gradient-to-b from-blue-50/60 via-white/80 to-blue-50/60" />
                 <Orb className="w-[800px] h-[800px] bg-blue-400/10 -top-40 -left-60" delay={0} />
                 <Orb className="w-[600px] h-[600px] bg-cyan-400/10 bottom-0 -right-40" delay={4} />
@@ -272,20 +263,14 @@ const HomeHero = () => {
                                 </CardItem>
 
 
-                                {/* Doctor Video with Autoplay and Poster Fallback */}
+                                {/* Doctor Image */}
                                 <CardItem
                                     translateZ={40}
                                     className="absolute inset-0 w-full h-full overflow-hidden rounded-[2.5rem]"
                                 >
-                                    <video
-                                        key="hero-video-home"
-                                        src={import.meta.env.VITE_HERO_VIDEO_URL || "/hero-video.mp4"}
-                                        poster={slide.photo}
-                                        autoPlay
-                                        loop
-                                        muted
-                                        playsInline
-                                        preload="auto"
+                                    <img
+                                        src={slide.photo}
+                                        alt="Dr. Ulhas Sonar"
                                         className="w-full h-full object-cover filter contrast-[1.05] brightness-95 drop-shadow-2xl"
                                     />
                                 </CardItem>
