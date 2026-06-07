@@ -70,7 +70,7 @@ export const translations = {
             ]
         },
         about: {
-            badge: "Your Orthopaedic Surgeon in Pune, India",
+            badge: "Your Orthopaedic Surgeon in Pune, Maharashtra - India",
             credentials: "MBBS, MS (Ortho), MRCS (England), MCh Upper Limb Surgeries (Wrightington, UK), FEBOT (Switzerland), FRCS (T&O) UK, PG Dip in Computer & Robotics Assisted TKR (Glasgow, UK)",
             title: "About",
             titleHighlight: "Dr. Ulhas Sonar",
