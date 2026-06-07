@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, animate } from 'framer-motion';
-import { Calendar, ChevronRight, Activity, Star, Award, GraduationCap, LogIn } from 'lucide-react';
+import { Calendar, ChevronRight, Activity, Star, Award, GraduationCap } from 'lucide-react';
 import { Link as RouterLink } from 'react-router-dom';
 import { CardContainer, CardBody, CardItem } from './ui/3d-card';
 import { useLanguage } from '../context/LanguageContext';
@@ -228,14 +228,6 @@ const HomeHero = () => {
                                 <Calendar className="w-4 h-4 transition-transform group-hover:rotate-12" />
                                 {t('hero.bookAppointment')}
                                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                            </RouterLink>
-
-                            <RouterLink
-                                to="/login"
-                                className="group flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-montserrat font-black text-[13px] tracking-wide text-slate-700 border-2 border-slate-100 bg-white hover:bg-slate-50 hover:border-blue-500 hover:text-blue-600 transition-all shadow-sm"
-                            >
-                                <LogIn className="w-4 h-4 text-blue-500 transition-transform group-hover:translate-x-0.5" />
-                                {t('hero.portal') || 'Portal'}
                             </RouterLink>
 
                             <RouterLink

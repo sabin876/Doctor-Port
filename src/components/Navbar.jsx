@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link as ScrollLink, scroller } from 'react-scroll';
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Calendar, ChevronDown } from 'lucide-react';
+import { Menu, X, Calendar, ChevronDown, LogIn } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../assets/logo.webp';
 import { api } from '../lib/api';
@@ -246,6 +246,14 @@ const Navbar = () => {
                             <Calendar className="w-4 h-4 me-2 group-hover/btn:rotate-12 transition-transform" />
                             {t('nav.bookNow')}
                         </button>
+
+                        <RouterLink
+                            to="/login"
+                            className="border-2 border-primary-600 text-primary-600 px-6 py-2.5 rounded-xl font-normal text-[16px] hover:bg-primary-600 hover:text-white transition-all duration-300 shadow-sm flex items-center group/btn-portal"
+                        >
+                            <LogIn className="w-4 h-4 me-2 transition-transform group-hover/btn-portal:scale-110" />
+                            {t('hero.portal') || 'Portal'}
+                        </RouterLink>
                     </div>
 
                     <div className="md:hidden flex items-center">
@@ -362,14 +370,22 @@ const Navbar = () => {
                                 </div>
                             </div>
 
-                            <div className="w-full pt-8">
-                                <button
-                                    onClick={() => handleNavigation('contact-form', '/contact')}
-                                    className="block w-full bg-primary-600 text-white text-center py-4 rounded-xl font-normal shadow-xl shadow-primary-200 text-[16px]"
-                                >
-                                    {t('nav.bookNow')}
-                                </button>
-                            </div>
+                             <div className="w-full pt-8 flex flex-col gap-4">
+                                 <button
+                                     onClick={() => handleNavigation('contact-form', '/contact')}
+                                     className="block w-full bg-primary-600 text-white text-center py-4 rounded-xl font-normal shadow-xl shadow-primary-200 text-[16px]"
+                                 >
+                                     {t('nav.bookNow')}
+                                 </button>
+                                 <RouterLink
+                                     to="/login"
+                                     onClick={() => setIsOpen(false)}
+                                     className="block w-full border-2 border-primary-600 text-primary-600 text-center py-4 rounded-xl font-normal text-[16px] hover:bg-primary-600 hover:text-white transition-all duration-300 flex items-center justify-center gap-2"
+                                 >
+                                     <LogIn className="w-4 h-4" />
+                                     {t('hero.portal') || 'Portal'}
+                                 </RouterLink>
+                             </div>
                         </div>
                     </motion.div>
                 )}
