@@ -33,6 +33,7 @@ export const translations = {
             description: "Advanced orthopedic solutions for joint replacement, sports injuries, and complex trauma. World-class care tailored to your recovery.",
             bookAppointment: "Book Appointment",
             exploreServices: "Explore Services",
+            portal: "Portal",
             highlights: [
                 "15+ Years Global Experience",
                 "Advanced Robotic Surgery",
@@ -514,6 +515,7 @@ export const translations = {
             description: "जोड़ प्रतिस्थापन, खेल की चोटों और जटिल ट्रॉमा के लिए उन्नत आर्थोपेडिक समाधान। आपकी रिकवरी के लिए विश्वस्तरीय देखभाल।",
             bookAppointment: "अपॉइंटमेंट बुक करें",
             exploreServices: "सेवाएं देखें",
+            portal: "पोर्टल",
             highlights: [
                 "15+ वर्षों का वैश्विक अनुभव",
                 "उन्नत रोबोटिक सर्जरी",
@@ -964,6 +966,7 @@ export const translations = {
             description: "حلول عظام متقدمة لاستبدال المفاصل، وإصابات الرياضة، والحالات المعقدة. رعاية عالمية المستوى مصممة لتعافيك.",
             bookAppointment: "احجز موعداً",
             exploreServices: "استكشف الخدمات",
+            portal: "البوابة الرقمية",
             highlights: [
                 "خبرة عالمية تزيد عن 15 عاماً",
                 "جراحة روبوتية متقدمة",
