@@ -28,4 +28,6 @@ dist-ssr
 
 # Large video assets
 src/assets/hero-section.mp4
+public/hero-section.mp4
+public/hero-video.mp4
 
