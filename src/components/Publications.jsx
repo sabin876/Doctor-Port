@@ -224,7 +224,7 @@ const Publications = () => {
                         <p className="text-[10px] text-slate-400 uppercase tracking-widest font-black">{t('publications.stats.papers')}</p>
                     </div>
                     <div className="text-center group">
-                        <p className="text-4xl font-black text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">UK/India</p>
+                        <p className="text-2xl font-black text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">UK, India, Jersey Island, and Dubai</p>
                         <p className="text-[10px] text-slate-400 uppercase tracking-widest font-black">{t('publications.stats.impact')}</p>
                     </div>
                     <div className="text-center group">
