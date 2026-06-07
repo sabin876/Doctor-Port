@@ -3,6 +3,7 @@ import { motion, AnimatePresence, animate } from 'framer-motion';
 import { CardContainer, CardBody, CardItem } from './ui/3d-card';
 import { useLanguage } from '../context/LanguageContext';
 import doctorImg from '../assets/doctor-hero.webp'; 
+import heroVideo from '../assets/hero-section.mp4';
 import slide1 from '../assets/hero-bg-1.webp';
 import slide2 from '../assets/hero-bg-2.webp';
 import slide3 from '../assets/hero-bg-3.webp';
@@ -163,9 +164,15 @@ const Hero = () => {
                                     className="w-full"
                                 >
                                     <div className="relative rounded-[2.5rem] overflow-hidden border-4 border-white/10 shadow-2xl bg-gradient-to-b from-blue-500/10 to-transparent p-2">
-                                        <img
-                                            src={doctorImg}
-                                            alt="Dr. Ulhas Sonar"
+                                        <video
+                                            key="hero-video-main"
+                                            src={heroVideo}
+                                            poster={doctorImg}
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
+                                            preload="auto"
                                             className="w-full h-full object-cover rounded-[2rem] hover:scale-105 transition-transform duration-1000"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>

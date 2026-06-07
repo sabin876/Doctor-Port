@@ -7,6 +7,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
 import doctorPortrait from '../assets/doctor-hero.webp';
+import heroVideo from '../assets/hero-section.mp4';
 
 /* ── Animated number counter ── */
 const AnimatedCounter = ({ value, suffix, trigger }) => {
@@ -263,14 +264,20 @@ const HomeHero = () => {
                                 </CardItem>
 
 
-                                {/* Doctor Image */}
+                                {/* Doctor Video */}
                                 <CardItem
                                     translateZ={40}
                                     className="absolute inset-0 w-full h-full overflow-hidden rounded-[2.5rem]"
                                 >
-                                    <img
-                                        src={slide.photo}
-                                        alt="Dr. Ulhas Sonar"
+                                    <video
+                                        key="hero-video-home"
+                                        src={heroVideo}
+                                        poster={slide.photo}
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
+                                        preload="auto"
                                         className="w-full h-full object-cover filter contrast-[1.05] brightness-95 drop-shadow-2xl"
                                     />
                                 </CardItem>
