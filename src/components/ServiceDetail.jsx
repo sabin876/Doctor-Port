@@ -443,7 +443,7 @@ const ServiceDetail = () => {
                             </div>
 
                             <h2 className="text-2xl md:text-4xl font-normal text-white tracking-tight leading-[1.1] max-w-3xl">
-                                Schedule a Consultation with our Orthopaedic Specialist Today
+                                Schedule a Consultation with our Consultant Orthopedics Surgeon Today
                             </h2>
                             <p className="text-white/75 text-base md:text-lg font-light max-w-2xl leading-relaxed">
                                 Get advanced clinical care and a personalized recovery roadmap tailored to your specific joint and mobility needs.

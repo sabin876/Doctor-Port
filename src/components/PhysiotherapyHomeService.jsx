@@ -91,7 +91,7 @@ const conditions = [
 ];
 
 const checklistItems = [
-  "Treatment guided by orthopaedic specialist expertise",
+  "Treatment guided by consultant orthopedics surgeon expertise",
   "Individual attention with one-to-one sessions",
   "Clear diagnosis and targeted treatment planning",
   "Focus on long-term recovery, not temporary relief",

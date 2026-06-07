@@ -36,7 +36,7 @@ export const defaultServiceFaqs = {
                 answer: "We treat all athletic injuries, including ACL tears, meniscus tears, rotator cuff injuries, shoulder dislocations, tennis/golfer's elbow, ankle sprains, and ligament tears."
             },
             {
-                question: "When should I see an orthopedic specialist for a sports injury?",
+                question: "When should I see a consultant orthopedics surgeon for a sports injury?",
                 answer: "You should consult a specialist if you experience severe pain, joint instability (giving way), inability to bear weight, visible swelling, or a limited range of motion that does not improve after 48 hours of rest and icing."
             },
             {

@@ -9,7 +9,7 @@ const AboutPage = () => {
     return (
         <main className="pt-20 bg-gray-50 min-h-screen">
             <SEO 
-                title="About Dr. Ulhas | Leading Orthopedic Specialist"
+                title="About Dr. Ulhas | Leading Consultant Orthopedics Surgeon"
                 description="Learn more about Dr. Ulhas's qualifications, orthopedic experience, and dedication to personalized patient treatment."
                 url="/about"
                 image={doctorImg}

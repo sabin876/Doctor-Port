@@ -56,7 +56,7 @@ export const translations = {
                     headline1: "Restore Your",
                     headline2: "Life",
                     description: "With more than 15+ years of global experience across UK, India, Jersey Island and Dubai in trauma and orthopedic surgery. Delivering world-class care in knee, hip, shoulder and complex trauma.",
-                    nameplateSub: "Orthopedic Specialist",
+                    nameplateSub: "Consultant Orthopedics Surgeon",
                     badgeOutcomes: "Consistently Excellent Outcomes with a strong success record"
                 },
                 {
@@ -408,7 +408,7 @@ export const translations = {
                 title: "Why Choose Our Physiotherapy Services in Dubai",
                 description: "Choosing the right physiotherapy service is important for both safety and results. Our approach is based on clinical experience and structured care:",
                 items: [
-                    "Treatment guided by orthopaedic specialist expertise",
+                    "Treatment guided by consultant orthopedics surgeon expertise",
                     "Individual attention with one-to-one sessions",
                     "Clear diagnosis and targeted treatment planning",
                     "Focus on long-term recovery, not temporary relief",
