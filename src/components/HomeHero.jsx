@@ -7,7 +7,6 @@ import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
 import doctorPortrait from '../assets/doctor-hero.webp';
-import heroVideo from '../assets/hero-section.mp4';
 
 /* ── Animated number counter ── */
 const AnimatedCounter = ({ value, suffix, trigger }) => {
@@ -271,7 +270,7 @@ const HomeHero = () => {
                                 >
                                     <video
                                         key="hero-video-home"
-                                        src={heroVideo}
+                                        src="/hero-section.mp4"
                                         poster={slide.photo}
                                         autoPlay
                                         loop
