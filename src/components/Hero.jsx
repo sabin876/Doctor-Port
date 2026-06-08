@@ -38,6 +38,9 @@ const Hero = () => {
     const [currentSlide, setCurrentSlide] = React.useState(0);
     const slides = [slide1, slide2, slide3];
 
+    const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || "https://api.drulhasorthopedic.com/api").replace(/\/+$/, "");
+    const videoUrl = `${apiBaseUrl.replace(/\/api\/?$/, '')}/media/hero-section.mp4`;
+
     React.useEffect(() => {
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -165,7 +168,7 @@ const Hero = () => {
                                     <div className="relative rounded-[2.5rem] overflow-hidden border-4 border-white/10 shadow-2xl bg-gradient-to-b from-blue-500/10 to-transparent p-2">
                                         <video
                                             key="hero-video-main"
-                                            src="/hero-section.mp4"
+                                            src={videoUrl}
                                             poster={doctorImg}
                                             autoPlay
                                             loop

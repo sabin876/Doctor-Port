@@ -82,6 +82,9 @@ const SLIDE_DURATION = 8000;
 const HomeHero = () => {
     const { t, language } = useLanguage();
 
+    const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || "https://api.drulhasorthopedic.com/api").replace(/\/+$/, "");
+    const videoUrl = `${apiBaseUrl.replace(/\/api\/?$/, '')}/media/hero-section.mp4`;
+
     const allStats = [
         { value: '15', suffix: '+', label: t('hero.stats.exp') },
         { value: '6', suffix: '', label: t('hero.stats.qualifications') },
@@ -270,7 +273,7 @@ const HomeHero = () => {
                                 >
                                     <video
                                         key="hero-video-home"
-                                        src="/hero-section.mp4"
+                                        src={videoUrl}
                                         poster={slide.photo}
                                         autoPlay
                                         loop
