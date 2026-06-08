@@ -186,17 +186,19 @@ const Hero = () => {
                                     className="w-full"
                                 >
                                     <div className="relative rounded-[2.5rem] overflow-hidden border-4 border-white/10 shadow-2xl bg-gradient-to-b from-blue-500/10 to-transparent p-2">
-                                        <video
-                                            key="hero-video-main"
-                                            src={videoUrl}
-                                            poster={doctorImg}
-                                            autoPlay
-                                            loop
-                                            muted
-                                            playsInline
-                                            preload="auto"
-                                            className="w-full h-full object-cover rounded-[2rem] hover:scale-105 transition-transform duration-1000"
-                                        />
+                                        {videoUrl && (
+                                            <video
+                                                key={videoUrl}
+                                                src={videoUrl}
+                                                poster={doctorImg}
+                                                autoPlay
+                                                loop
+                                                muted
+                                                playsInline
+                                                preload="auto"
+                                                className="w-full h-full object-cover rounded-[2rem] hover:scale-105 transition-transform duration-1000"
+                                            />
+                                        )}
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
                                         <div className="absolute bottom-10 start-10 text-white">
                                             <p className="font-extrabold text-4xl tracking-tight leading-none">Dr. Ulhas Sonar</p>

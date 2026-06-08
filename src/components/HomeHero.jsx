@@ -291,17 +291,19 @@ const HomeHero = () => {
                                     translateZ={40}
                                     className="absolute inset-0 w-full h-full overflow-hidden rounded-[2.5rem]"
                                 >
-                                    <video
-                                        key="hero-video-home"
-                                        src={videoUrl}
-                                        poster={slide.photo}
-                                        autoPlay
-                                        loop
-                                        muted
-                                        playsInline
-                                        preload="auto"
-                                        className="w-full h-full object-cover filter contrast-[1.05] brightness-95 drop-shadow-2xl"
-                                    />
+                                    {videoUrl && (
+                                        <video
+                                            key={videoUrl}
+                                            src={videoUrl}
+                                            poster={slide.photo}
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
+                                            preload="auto"
+                                            className="w-full h-full object-cover filter contrast-[1.05] brightness-95 drop-shadow-2xl"
+                                        />
+                                    )}
                                 </CardItem>
 
                                 {/* Name & Info Overlay — Bottom of Card */}
