@@ -19,7 +19,7 @@ const TikTokIcon = ({ className }) => (
 const SocialLinksPage = () => {
     const { t } = useLanguage();
     
-    const dubaiPhone = import.meta.env.VITE_CONTACT_PHONE || "+919049200041";
+    const dubaiPhone = import.meta.env.VITE_CONTACT_PHONE || "+971556319379";
     const indiaPhone1 = "9049200041";
     const indiaPhone2 = "9049200061";
     

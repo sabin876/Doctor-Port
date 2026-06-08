@@ -13,6 +13,7 @@ const SEO = ({
   twitterLabel2,
   twitterData2
 }) => {
+  const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+971556319379";
   const siteName = 'Dr. Ulhas | Expert Orthopedic Surgeon';
   const domain = 'drulhasorthopedic.com';
   const baseUrl = `https://${domain}`;
@@ -112,7 +113,7 @@ const SEO = ({
           "image": absoluteImage,
           "@id": baseUrl,
           "url": baseUrl,
-          "telephone": import.meta.env.VITE_CONTACT_PHONE || "+971556319379",
+          "telephone": contactPhone,
           "medicalSpecialty": "Orthopedic",
           "address": {
             "@type": "PostalAddress",

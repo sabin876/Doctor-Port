@@ -142,8 +142,8 @@ const PhysiotherapyHomeService = () => {
     const [service, setService] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const phoneNumber = import.meta.env.VITE_CONTACT_PHONE || "+919049200041";
-    const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "+919049200041";
+    const phoneNumber = import.meta.env.VITE_CONTACT_PHONE || "+971556319379";
+    const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "+971556319379";
     const whatsappClean = whatsappNumber.replace(/[^0-9]/g, '');
 
     useEffect(() => {

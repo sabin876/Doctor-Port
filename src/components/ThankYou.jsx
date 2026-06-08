@@ -7,6 +7,8 @@ import { Helmet } from 'react-helmet-async';
 
 const ThankYou = () => {
     const { t } = useLanguage();
+    const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+971556319379";
+    const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "+971556319379";
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -89,14 +91,14 @@ const ThankYou = () => {
                             <Phone size={20} />
                         </div>
                         <h4 className="text-xs font-black text-primary-950 uppercase tracking-widest leading-none">Immediate Assistance</h4>
-                        <a href={`tel:${import.meta.env.VITE_CONTACT_PHONE}`} className="text-lg font-bold text-primary-600">Call {import.meta.env.VITE_CONTACT_PHONE}</a>
+                        <a href={`tel:${contactPhone}`} className="text-lg font-bold text-primary-600">Call {contactPhone}</a>
                     </div>
                     <div className="flex flex-col items-center gap-2 pr-2">
                         <div className="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-600 mb-2">
                             <Calendar size={20} />
                         </div>
                         <h4 className="text-xs font-black text-primary-950 uppercase tracking-widest leading-none">WhatsApp Booking</h4>
-                        <a href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER?.replace(/[^0-9]/g, '')}`} className="text-lg font-bold text-green-600">Chat with us now</a>
+                        <a href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`} className="text-lg font-bold text-green-600">Chat with us now</a>
                     </div>
                 </motion.div>
             </div>

@@ -20,6 +20,7 @@ const TikTokIcon = ({ size = 18 }) => (
 const Footer = () => {
     const { t } = useLanguage();
     const currentYear = new Date().getFullYear();
+    const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+971556319379";
 
     return (
         <footer className="bg-[#04122d] text-white pt-24 pb-12 relative overflow-hidden border-t-[6px] border-primary-600 font-sans">
@@ -148,14 +149,14 @@ const Footer = () => {
                             </li>
                             <li>
                                 <a 
-                                    href={`tel:${import.meta.env.VITE_CONTACT_PHONE}`}
+                                    href={`tel:${contactPhone}`}
                                     className="flex gap-4 group cursor-pointer"
                                 >
                                     <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 group-hover:bg-primary-600/30 group-hover:border-primary-500/40 flex items-center justify-center text-primary-400 group-hover:text-primary-300 transition-all duration-300 flex-shrink-0 shadow-lg shadow-black/20">
                                         <Phone size={22} strokeWidth={1.5} />
                                     </div>
                                     <div className="flex flex-col justify-center">
-                                        <span className="text-white font-normal tracking-tight whitespace-nowrap text-lg group-hover:text-primary-400 transition-colors duration-300">{import.meta.env.VITE_CONTACT_PHONE}</span>
+                                        <span className="text-white font-normal tracking-tight whitespace-nowrap text-lg group-hover:text-primary-400 transition-colors duration-300">{contactPhone}</span>
                                         <span className="text-primary-500 text-[10px] font-normal uppercase tracking-[0.2em] mt-0.5">{t('footer.emergency')}</span>
                                     </div>
                                 </a>

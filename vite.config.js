@@ -3,6 +3,11 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import viteCompression from 'vite-plugin-compression'
 
+// Set process.env fallbacks before Vite loads them
+process.env.VITE_CONTACT_PHONE = process.env.VITE_CONTACT_PHONE || "+971556319379";
+process.env.VITE_CONTACT_EMAIL = process.env.VITE_CONTACT_EMAIL || "Kneeshoulderhip@gmail.com";
+process.env.VITE_WHATSAPP_NUMBER = process.env.VITE_WHATSAPP_NUMBER || "+971556319379";
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [

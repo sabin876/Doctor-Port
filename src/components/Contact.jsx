@@ -9,6 +9,8 @@ import { api } from '../lib/api';
 const Contact = () => {
     const { language, t } = useLanguage();
     const isRtl = language === 'AR';
+    const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+971556319379";
+    const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || "Kneeshoulderhip@gmail.com";
 
     // Form states
     const [contactData, setContactData] = useState({
@@ -102,7 +104,7 @@ const Contact = () => {
                             </div>
                             <div>
                                 <h3 className="text-[#1e293b] font-bold text-base mb-1">Phone</h3>
-                                <a href={`tel:${import.meta.env.VITE_CONTACT_PHONE}`} className="text-[#0d52bc] font-semibold text-lg block leading-tight mb-1">{import.meta.env.VITE_CONTACT_PHONE}</a>
+                                <a href={`tel:${contactPhone}`} className="text-[#0d52bc] font-semibold text-lg block leading-tight mb-1">{contactPhone}</a>
                                 <a href="tel:904920041" className="text-[#0d52bc] font-semibold text-lg block leading-tight mb-1">904920041 (India)</a>
                                 <a href="tel:9049200061" className="text-[#0d52bc] font-semibold text-lg block leading-tight mb-2">9049200061 (India)</a>
                                 <p className="text-gray-400 text-sm">Available for appointments</p>
@@ -116,7 +118,7 @@ const Contact = () => {
                             </div>
                             <div>
                                 <h3 className="text-[#1e293b] font-bold text-base mb-1">Email</h3>
-                                <a href={`mailto:${import.meta.env.VITE_CONTACT_EMAIL}`} className="text-[#0d52bc] font-semibold text-base block mb-1 truncate max-w-[200px] sm:max-w-full">{import.meta.env.VITE_CONTACT_EMAIL}</a>
+                                <a href={`mailto:${contactEmail}`} className="text-[#0d52bc] font-semibold text-base block mb-1 truncate max-w-[200px] sm:max-w-full">{contactEmail}</a>
                                 <p className="text-gray-400 text-sm">Online support available</p>
                             </div>
                         </div>

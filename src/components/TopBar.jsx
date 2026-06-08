@@ -3,20 +3,23 @@ import { useLanguage } from '../context/LanguageContext';
 
 const TopBar = () => {
     const { t } = useLanguage();
+    const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+971556319379";
+    const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || "Kneeshoulderhip@gmail.com";
+
     return (
         <div className="bg-[#1282b2] text-white py-2 px-4 sm:px-6 lg:px-8 relative z-[60] border-b border-white/10 shadow-sm">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between text-[13px] font-normal text-white">
 
                 {/* Contact Info & Address */}
                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 md:gap-6 opacity-95 w-full md:w-auto text-center md:text-left">
-                    <a href={`tel:${import.meta.env.VITE_CONTACT_PHONE}`} className="flex items-center gap-1.5 hover:text-white/80 transition-colors">
+                    <a href={`tel:${contactPhone}`} className="flex items-center gap-1.5 hover:text-white/80 transition-colors">
                         <Phone className="w-3.5 h-3.5" />
-                        <span className="whitespace-nowrap">{t('topBar.phone')}: {import.meta.env.VITE_CONTACT_PHONE}</span>
+                        <span className="whitespace-nowrap">{t('topBar.phone')}: {contactPhone}</span>
                     </a>
 
-                    <a href={`mailto:${import.meta.env.VITE_CONTACT_EMAIL}`} className="hidden lg:flex items-center gap-1.5 hover:text-white/80 transition-colors">
+                    <a href={`mailto:${contactEmail}`} className="hidden lg:flex items-center gap-1.5 hover:text-white/80 transition-colors">
                         <Mail className="w-3.5 h-3.5" />
-                        <span>{t('topBar.email')}: {import.meta.env.VITE_CONTACT_EMAIL}</span>
+                        <span>{t('topBar.email')}: {contactEmail}</span>
                     </a>
 
                     <div className="hidden sm:flex items-center gap-1.5">
