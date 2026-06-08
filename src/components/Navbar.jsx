@@ -139,7 +139,7 @@ const Navbar = () => {
                                     <RouterLink
                                         to={link.path}
                                         onClick={() => setIsOpen(false)}
-                                        className="flex items-center gap-1 text-[16px] font-normal leading-[46px] text-[rgba(0,0,0,0.88)] transition-all duration-300 hover:text-primary-600 relative group py-2"
+                                        className="flex items-center gap-1 text-[16px] font-bold leading-[46px] text-[rgba(0,0,0,0.88)] transition-all duration-300 hover:text-primary-600 relative group py-2"
                                     >
                                         {t(`nav.${link.id}`)}
                                         <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${isServicesOpen ? 'rotate-180 text-primary-600' : 'text-gray-400'}`} />
@@ -173,7 +173,7 @@ const Navbar = () => {
                                 <RouterLink
                                     key={link.name}
                                     to={link.path}
-                                    className="text-[16px] font-normal leading-[46px] text-[rgba(0,0,0,0.88)] transition-all duration-300 hover:text-primary-600 relative group"
+                                    className="text-[16px] font-bold leading-[46px] text-[rgba(0,0,0,0.88)] transition-all duration-300 hover:text-primary-600 relative group"
                                 >
                                     {t(`nav.${link.id}`)}
                                     <span className={`absolute -bottom-1 ${isRtl ? 'end-0' : 'start-0'} w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full`}></span>
@@ -182,7 +182,7 @@ const Navbar = () => {
                                 <button
                                     key={link.id}
                                     onClick={() => handleNavigation(link.target, link.route)}
-                                    className="text-[16px] font-normal leading-[46px] text-[rgba(0,0,0,0.88)] transition-all duration-300 hover:text-primary-600 relative group"
+                                    className="text-[16px] font-bold leading-[46px] text-[rgba(0,0,0,0.88)] transition-all duration-300 hover:text-primary-600 relative group"
                                 >
                                     {t(`nav.${link.id}`)}
                                     <span className={`absolute -bottom-1 ${isRtl ? 'end-0' : 'start-0'} w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full`}></span>
@@ -241,7 +241,7 @@ const Navbar = () => {
 
                         <button
                             onClick={() => handleNavigation('contact-form', '/contact')}
-                            className="bg-primary-600 text-white px-6 py-2.5 rounded-xl font-normal text-[16px] hover:bg-primary-700 transition-all duration-300 shadow-premium hover:shadow-premium-hover hover:-translate-y-0.5 flex items-center group/btn"
+                            className="bg-primary-600 text-white px-6 py-2.5 rounded-xl font-bold text-[16px] hover:bg-primary-700 transition-all duration-300 shadow-premium hover:shadow-premium-hover hover:-translate-y-0.5 flex items-center group/btn"
                         >
                             <Calendar className="w-4 h-4 me-2 group-hover/btn:rotate-12 transition-transform" />
                             {t('nav.bookNow')}
@@ -277,7 +277,7 @@ const Navbar = () => {
                                             <RouterLink
                                                 to={link.path}
                                                 onClick={() => setIsOpen(false)}
-                                                className="text-[16px] font-normal leading-[46px] text-[rgba(0,0,0,0.88)] hover:text-primary-600 transition-colors"
+                                                className="text-[16px] font-bold leading-[46px] text-[rgba(0,0,0,0.88)] hover:text-primary-600 transition-colors"
                                             >
                                                 {t(`nav.${link.id}`)}
                                             </RouterLink>
@@ -323,7 +323,7 @@ const Navbar = () => {
                                         <RouterLink
                                             to={link.path}
                                             onClick={() => setIsOpen(false)} // Close mobile menu on click
-                                            className="text-[16px] font-normal leading-[46px] text-[rgba(0,0,0,0.88)] hover:text-primary-600 transition-colors"
+                                            className="text-[16px] font-bold leading-[46px] text-[rgba(0,0,0,0.88)] hover:text-primary-600 transition-colors"
                                         >
                                             {t(`nav.${link.id}`)}
                                         </RouterLink>
@@ -335,7 +335,7 @@ const Navbar = () => {
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: index * 0.1 }}
                                         onClick={() => handleNavigation(link.target, link.route)}
-                                        className="text-[16px] font-normal leading-[46px] text-[rgba(0,0,0,0.88)] hover:text-primary-600 transition-colors"
+                                        className="text-[16px] font-bold leading-[46px] text-[rgba(0,0,0,0.88)] hover:text-primary-600 transition-colors"
                                     >
                                         {t(`nav.${link.id}`)}
                                     </motion.button>
@@ -365,7 +365,7 @@ const Navbar = () => {
                              <div className="w-full pt-8">
                                  <button
                                      onClick={() => handleNavigation('contact-form', '/contact')}
-                                     className="block w-full bg-primary-600 text-white text-center py-4 rounded-xl font-normal shadow-xl shadow-primary-200 text-[16px]"
+                                     className="block w-full bg-primary-600 text-white text-center py-4 rounded-xl font-bold shadow-xl shadow-primary-200 text-[16px]"
                                  >
                                      {t('nav.bookNow')}
                                  </button>
