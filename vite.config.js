@@ -20,6 +20,11 @@ export default defineConfig({
       threshold: 1024,
     }),
   ],
+  define: {
+    'import.meta.env.VITE_CONTACT_PHONE': JSON.stringify(process.env.VITE_CONTACT_PHONE || "+971556319379"),
+    'import.meta.env.VITE_CONTACT_EMAIL': JSON.stringify(process.env.VITE_CONTACT_EMAIL || "Kneeshoulderhip@gmail.com"),
+    'import.meta.env.VITE_WHATSAPP_NUMBER': JSON.stringify(process.env.VITE_WHATSAPP_NUMBER || "+971556319379"),
+  },
   server: {
     host: true,
     port: 5173,
