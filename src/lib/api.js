@@ -114,6 +114,38 @@ export const api = {
             body: JSON.stringify(data)
         });
         return response.json();
+    },
+    sendOtp: async (token) => {
+        const response = await fetch(`${API_BASE_URL}/send-otp/`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token })
+        });
+        if (!response.ok) {
+            const errData = await response.json().catch(() => ({}));
+            throw new Error(errData.detail || 'Failed to send OTP');
+        }
+        return response.json();
+    },
+    verifyOtp: async (token, otp) => {
+        const response = await fetch(`${API_BASE_URL}/verify-otp/`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token, otp })
+        });
+        if (!response.ok) {
+            const errData = await response.json().catch(() => ({}));
+            throw new Error(errData.detail || 'Incorrect or expired OTP');
+        }
+        return response.json();
+    },
+    getReport: async (token) => {
+        const response = await fetch(`${API_BASE_URL}/report/${token}/`);
+        if (!response.ok) {
+            const errData = await response.json().catch(() => ({}));
+            throw { status: response.status, message: errData.detail || 'Failed to load report' };
+        }
+        return response.json();
     }
 };
 
