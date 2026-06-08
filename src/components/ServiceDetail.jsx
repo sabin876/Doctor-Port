@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate, Navigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, MessageCircle, CheckCircle2, ArrowRight, Activity, ShieldCheck, Zap, HeartPulse, ClipboardCheck, Users, HelpCircle, ChevronDown, ChevronUp, Home, Star, RotateCcw, PlusSquare, Triangle, Hexagon, ChevronLeft, Calendar, Send } from 'lucide-react';
+import { Phone, MessageCircle, CheckCircle2, ArrowRight, Activity, ShieldCheck, Zap, HeartPulse, ClipboardCheck, Users, HelpCircle, ChevronDown, ChevronUp, Home, Star, RotateCcw, PlusSquare, Triangle, Hexagon, ChevronLeft } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { api } from '../lib/api';
 import { getTranslatedService } from '../lib/serviceTranslations';
@@ -63,42 +63,7 @@ const ServiceDetail = () => {
     const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+971556319379";
     const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "+971556319379";
 
-    // Premium quick booking form states
-    const [bookingData, setBookingData] = useState({
-        name: '',
-        phone: '',
-        date: '',
-        message: ''
-    });
-    const [bookingStatus, setBookingStatus] = useState({ loading: false, success: false, error: null });
 
-    const handleBookingChange = (e) => {
-        setBookingData(prev => ({ ...prev, [e.target.name]: e.target.value }));
-    };
-
-    const handleBookingSubmit = async (e) => {
-        e.preventDefault();
-        if (!bookingData.name || !bookingData.phone) {
-            setBookingStatus({ loading: false, success: false, error: "Please enter your name and phone number." });
-            return;
-        }
-        setBookingStatus({ loading: true, success: false, error: null });
-        try {
-            const payload = {
-                full_name: bookingData.name,
-                phone: bookingData.phone,
-                email: 'booking@drulhasorthopedic.com',
-                service: service?.title || 'General Consultation',
-                message: `Preferred date: ${bookingData.date || 'Not specified'}. Notes: ${bookingData.message || 'Quick consultation request'}`
-            };
-            await api.sendContactMail(payload);
-            setBookingStatus({ loading: false, success: true, error: null });
-            setBookingData({ name: '', phone: '', date: '', message: '' });
-        } catch (error) {
-            console.error("Booking error:", error);
-            setBookingStatus({ loading: false, success: false, error: "Failed to submit request. Please try again or call us." });
-        }
-    };
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -496,180 +461,42 @@ const ServiceDetail = () => {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mb-24 mt-16 text-start"
+                    className="mb-24 mt-16"
                 >
-                    <div className="relative rounded-[3.5rem] overflow-hidden bg-gradient-to-br from-[#05122d] via-[#0b2545] to-[#134074] py-16 px-8 md:py-20 md:px-12 lg:px-16 shadow-2xl border border-white/10">
-                        {/* Decorative glowing blobs */}
-                        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary-500/10 rounded-full -mr-40 -mt-40 blur-[120px] pointer-events-none" />
-                        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-emerald-500/10 rounded-full -ml-32 -mb-32 blur-[100px] pointer-events-none" />
+                    <div className="relative rounded-[3.5rem] overflow-hidden bg-gradient-to-r from-[#003B73] via-[#00569e] to-[#0284c7] py-16 px-8 md:py-20 md:px-16 shadow-2xl">
+                        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -mr-40 -mt-40 blur-[100px] pointer-events-none" />
+                        <div className="absolute bottom-0 left-0 w-72 h-72 bg-emerald-400/10 rounded-full -ml-32 -mb-32 blur-[80px] pointer-events-none" />
                         
-                        <div className="relative z-10 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-                            
-                            {/* Left Column: CTA Info */}
-                            <div className="lg:col-span-7 flex flex-col items-start">
-                                <div className="inline-flex items-center px-4 py-1.5 mb-6 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-primary-300 text-[10px] font-semibold uppercase tracking-[0.25em]">
-                                    <Zap size={12} className="mr-2 fill-yellow-400 text-yellow-400 animate-pulse" />
-                                    Consultant Orthopedic Surgeon Dubai
-                                </div>
-
-                                <h2 className="text-3xl md:text-5xl font-normal text-white tracking-tight leading-[1.05] mb-6 max-w-2xl">
-                                    Schedule a Consultation with our Consultant Orthopedic Surgeon Today
-                                </h2>
-                                
-                                <p className="text-white/70 text-base md:text-lg font-light leading-relaxed mb-8 max-w-xl">
-                                    Get advanced clinical care and a personalized recovery roadmap tailored to your specific joint and mobility needs.
-                                </p>
-
-                                {/* Bullet points with checkmarks */}
-                                <div className="space-y-3.5 mb-8">
-                                    {[
-                                        "Treatment guided by UK-trained Consultant expertise",
-                                        "Convenient consultations at Canadian Specialist Hospital, Dubai",
-                                        "Comprehensive rehabilitation plan & recovery guidance"
-                                    ].map((item, i) => (
-                                        <div key={i} className="flex items-center gap-3">
-                                            <div className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
-                                                <CheckCircle2 size={14} className="stroke-[2.5]" />
-                                            </div>
-                                            <span className="text-white/90 text-sm font-medium">{item}</span>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                {/* Quick Contact Buttons */}
-                                <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto">
-                                    <a
-                                        href={`tel:${contactPhone}`}
-                                        className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-8 bg-white text-[#003B73] font-semibold text-[11px] uppercase tracking-[0.15em] rounded-2xl shadow-xl hover:bg-blue-50 hover:scale-[1.02] active:scale-95 transition-all duration-300"
-                                    >
-                                        <Phone size={16} />
-                                        Call Us Now
-                                    </a>
-                                    <a
-                                        href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-8 bg-[#25D366] text-white font-semibold text-[11px] uppercase tracking-[0.15em] rounded-2xl shadow-xl hover:bg-[#1eb954] hover:scale-[1.02] active:scale-95 transition-all duration-300"
-                                    >
-                                        <MessageCircle size={16} />
-                                        WhatsApp Now
-                                    </a>
-                                </div>
+                        <div className="relative z-10 flex flex-col items-center text-center gap-8">
+                            <div className="inline-flex items-center px-5 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-[10px] font-normal uppercase tracking-[0.25em]">
+                                <Zap size={12} className="mr-2 fill-yellow-400 text-yellow-400" />
+                                Expert {service.title} in Dubai
                             </div>
 
-                            {/* Right Column: Glassmorphic Booking Form */}
-                            <div className="lg:col-span-5 w-full">
-                                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-6 sm:p-8 shadow-2xl relative overflow-hidden">
-                                    
-                                    <AnimatePresence mode="wait">
-                                        {bookingStatus.success ? (
-                                            <motion.div
-                                                key="success"
-                                                initial={{ opacity: 0, scale: 0.9 }}
-                                                animate={{ opacity: 1, scale: 1 }}
-                                                exit={{ opacity: 0 }}
-                                                className="text-center py-8 flex flex-col items-center justify-center"
-                                            >
-                                                <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mb-6 shadow-lg shadow-emerald-500/10">
-                                                    <CheckCircle2 size={36} strokeWidth={2} />
-                                                </div>
-                                                <h3 className="text-xl font-bold text-white mb-2">Request Received!</h3>
-                                                <p className="text-white/80 text-sm leading-relaxed max-w-xs mb-6">
-                                                    Thank you. Our team will contact you shortly to confirm your appointment.
-                                                </p>
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setBookingStatus({ loading: false, success: false, error: null })}
-                                                    className="px-6 py-2.5 bg-white/10 hover:bg-white/20 border border-white/10 text-white rounded-xl text-xs font-semibold uppercase tracking-wider transition-all"
-                                                >
-                                                    Book Another
-                                                </button>
-                                            </motion.div>
-                                        ) : (
-                                            <motion.div
-                                                key="form"
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: 1 }}
-                                                exit={{ opacity: 0 }}
-                                            >
-                                                <h3 className="text-lg font-bold text-white mb-1 text-start">Request an Appointment</h3>
-                                                <p className="text-white/60 text-xs mb-6 text-start">Please fill in your details for a consultation request.</p>
-                                                
-                                                <form onSubmit={handleBookingSubmit} className="space-y-4">
-                                                    <div>
-                                                        <div className="relative">
-                                                            <input
-                                                                required
-                                                                type="text"
-                                                                name="name"
-                                                                value={bookingData.name}
-                                                                onChange={handleBookingChange}
-                                                                placeholder="Your Full Name"
-                                                                className="w-full bg-white/5 border border-white/10 focus:border-primary-400 focus:bg-white/10 text-white px-4 py-3 rounded-xl text-sm outline-none transition-all placeholder-white/40"
-                                                            />
-                                                        </div>
-                                                    </div>
+                            <h2 className="text-2xl md:text-4xl font-normal text-white tracking-tight leading-[1.1] max-w-3xl">
+                                Schedule a Consultation with our Consultant Orthopedics Surgeon Today
+                            </h2>
+                            <p className="text-white/75 text-base md:text-lg font-light max-w-2xl leading-relaxed">
+                                Get advanced clinical care and a personalized recovery roadmap tailored to your specific joint and mobility needs.
+                            </p>
 
-                                                    <div>
-                                                        <div className="relative">
-                                                            <input
-                                                                required
-                                                                type="tel"
-                                                                name="phone"
-                                                                value={bookingData.phone}
-                                                                onChange={handleBookingChange}
-                                                                placeholder="Your Phone Number"
-                                                                className="w-full bg-white/5 border border-white/10 focus:border-primary-400 focus:bg-white/10 text-white px-4 py-3 rounded-xl text-sm outline-none transition-all placeholder-white/40"
-                                                            />
-                                                        </div>
-                                                    </div>
-
-                                                    <div>
-                                                        <div className="relative">
-                                                            <input
-                                                                type="date"
-                                                                name="date"
-                                                                value={bookingData.date}
-                                                                onChange={handleBookingChange}
-                                                                className="w-full bg-white/5 border border-white/10 focus:border-primary-400 focus:bg-white/10 text-white px-4 py-3 rounded-xl text-sm outline-none transition-all placeholder-white/40 [&::-webkit-calendar-picker-indicator]:invert"
-                                                            />
-                                                        </div>
-                                                    </div>
-
-                                                    <div>
-                                                        <textarea
-                                                            name="message"
-                                                            value={bookingData.message}
-                                                            onChange={handleBookingChange}
-                                                            placeholder="Message / Brief description of pain or condition"
-                                                            rows="2"
-                                                            className="w-full bg-white/5 border border-white/10 focus:border-primary-400 focus:bg-white/10 text-white px-4 py-3 rounded-xl text-sm outline-none transition-all placeholder-white/40 resize-none h-16"
-                                                        />
-                                                    </div>
-
-                                                    {bookingStatus.error && (
-                                                        <p className="text-rose-400 text-xs font-semibold text-start">{bookingStatus.error}</p>
-                                                    )}
-
-                                                    <button
-                                                        type="submit"
-                                                        disabled={bookingStatus.loading}
-                                                        className="w-full py-3.5 bg-gradient-to-r from-primary-500 to-blue-600 hover:from-primary-600 hover:to-blue-700 text-white font-bold rounded-xl text-xs uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg transition-all active:scale-[0.98] disabled:opacity-50"
-                                                    >
-                                                        {bookingStatus.loading ? (
-                                                            <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                                                        ) : (
-                                                            <>
-                                                                <Send size={14} />
-                                                                Request Consultation
-                                                            </>
-                                                        )}
-                                                    </button>
-                                                </form>
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
+                            <div className="flex flex-col sm:flex-row items-center gap-5 mt-4 w-full sm:w-auto">
+                                <a
+                                    href={`tel:${contactPhone}`}
+                                    className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-white text-[#003B73] font-semibold text-[12px] uppercase tracking-[0.15em] rounded-2xl shadow-xl hover:bg-blue-50 hover:scale-[1.03] active:scale-95 transition-all duration-300"
+                                >
+                                    <Phone size={18} />
+                                    Call Us Now
+                                </a>
+                                <a
+                                    href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-[#25D366] text-white font-semibold text-[12px] uppercase tracking-[0.15em] rounded-2xl shadow-xl hover:bg-[#1eb954] hover:scale-[1.03] active:scale-95 transition-all duration-300"
+                                >
+                                    <MessageCircle size={18} />
+                                    WhatsApp Now
+                                </a>
                             </div>
                         </div>
                     </div>
