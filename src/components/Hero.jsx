@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, animate } from 'framer-motion';
 import { CardContainer, CardBody, CardItem } from './ui/3d-card';
 import { useLanguage } from '../context/LanguageContext';
+import { api } from '../lib/api';
 import doctorImg from '../assets/doctor-hero.webp'; 
 import slide1 from '../assets/hero-bg-1.webp';
 import slide2 from '../assets/hero-bg-2.webp';
@@ -37,9 +38,28 @@ const Hero = () => {
     const isRtl = language === 'AR';
     const [currentSlide, setCurrentSlide] = React.useState(0);
     const slides = [slide1, slide2, slide3];
+    const [videoUrl, setVideoUrl] = useState('');
 
-    const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || "https://api.drulhasorthopedic.com/api").replace(/\/+$/, "");
-    const videoUrl = `${apiBaseUrl.replace(/\/api\/?$/, '')}/media/hero-section.mp4`;
+    useEffect(() => {
+        const fetchVideo = async () => {
+            try {
+                const data = await api.getHeroVideo();
+                if (data && data.video) {
+                    setVideoUrl(data.video);
+                } else {
+                    const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || "https://api.drulhasorthopedic.com/api").replace(/\/+$/, "");
+                    const fallbackUrl = `${apiBaseUrl.replace(/\/api\/?$/, '')}/media/hero-section.mp4`;
+                    setVideoUrl(fallbackUrl);
+                }
+            } catch (error) {
+                console.error("Failed to load hero video:", error);
+                const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || "https://api.drulhasorthopedic.com/api").replace(/\/+$/, "");
+                const fallbackUrl = `${apiBaseUrl.replace(/\/api\/?$/, '')}/media/hero-section.mp4`;
+                setVideoUrl(fallbackUrl);
+            }
+        };
+        fetchVideo();
+    }, []);
 
     React.useEffect(() => {
         const timer = setInterval(() => {

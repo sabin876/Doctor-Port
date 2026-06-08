@@ -74,6 +74,10 @@ export const api = {
         const response = await fetch(`${API_BASE_URL}/settings/`);
         return response.json();
     },
+    getHeroVideo: async () => {
+        const response = await fetch(`${API_BASE_URL}/hero-video/`);
+        return response.json();
+    },
     getGalleryItems: async () => {
         const response = await fetch(`${API_BASE_URL}/gallery/`);
         const data = await response.json();

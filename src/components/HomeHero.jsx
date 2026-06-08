@@ -4,6 +4,7 @@ import { Calendar, ChevronRight, Activity, Star, Award, GraduationCap } from 'lu
 import { Link as RouterLink } from 'react-router-dom';
 import { CardContainer, CardBody, CardItem } from './ui/3d-card';
 import { useLanguage } from '../context/LanguageContext';
+import { api } from '../lib/api';
 import { translations } from '../translations';
 
 import doctorPortrait from '../assets/doctor-hero.webp';
@@ -81,9 +82,28 @@ const SLIDE_DURATION = 8000;
 
 const HomeHero = () => {
     const { t, language } = useLanguage();
+    const [videoUrl, setVideoUrl] = useState('');
 
-    const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || "https://api.drulhasorthopedic.com/api").replace(/\/+$/, "");
-    const videoUrl = `${apiBaseUrl.replace(/\/api\/?$/, '')}/media/hero-section.mp4`;
+    useEffect(() => {
+        const fetchVideo = async () => {
+            try {
+                const data = await api.getHeroVideo();
+                if (data && data.video) {
+                    setVideoUrl(data.video);
+                } else {
+                    const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || "https://api.drulhasorthopedic.com/api").replace(/\/+$/, "");
+                    const fallbackUrl = `${apiBaseUrl.replace(/\/api\/?$/, '')}/media/hero-section.mp4`;
+                    setVideoUrl(fallbackUrl);
+                }
+            } catch (error) {
+                console.error("Failed to load hero video:", error);
+                const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || "https://api.drulhasorthopedic.com/api").replace(/\/+$/, "");
+                const fallbackUrl = `${apiBaseUrl.replace(/\/api\/?$/, '')}/media/hero-section.mp4`;
+                setVideoUrl(fallbackUrl);
+            }
+        };
+        fetchVideo();
+    }, []);
 
     const allStats = [
         { value: '15', suffix: '+', label: t('hero.stats.exp') },
