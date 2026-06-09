@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, animate } from 'framer-motion';
-import { Calendar, ChevronRight, Activity, Star, Award, GraduationCap } from 'lucide-react';
+import { Calendar, ChevronRight, Activity, Star, Award, GraduationCap, FileText } from 'lucide-react';
 import { Link as RouterLink } from 'react-router-dom';
 import { CardContainer, CardBody, CardItem } from './ui/3d-card';
 import { useLanguage } from '../context/LanguageContext';
@@ -251,6 +251,15 @@ const HomeHero = () => {
                                 {t('hero.bookAppointment')}
                                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                             </RouterLink>
+
+                            <RouterLink
+                                to="/report-access"
+                                className="group flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-black text-[12px] text-blue-600 border-2 border-blue-100 bg-blue-50/50 hover:bg-blue-50 hover:border-blue-200 transition-all shadow-sm w-fit"
+                            >
+                                <FileText className="w-4 h-4 transition-transform group-hover:scale-110" />
+                                <span>{language === 'AR' ? "التقارير" : language === 'HI' ? "रिपोर्ट" : "Report"}</span>
+                            </RouterLink>
+
 
                             <RouterLink
                                 to="/services"

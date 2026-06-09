@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link as ScrollLink, scroller } from 'react-scroll';
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Calendar, ChevronDown } from 'lucide-react';
+import { Menu, X, Calendar, ChevronDown, FileText } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../assets/logo.webp';
 import { api } from '../lib/api';
@@ -239,6 +239,14 @@ const Navbar = () => {
                             </AnimatePresence>
                         </div>
 
+                        <RouterLink
+                            to="/report-access"
+                            className="text-primary-600 border border-primary-100 bg-primary-50/50 hover:bg-primary-100/50 px-4 py-2.5 rounded-xl font-bold text-[16px] transition-all duration-300 shadow-sm flex items-center group/report-btn"
+                        >
+                            <FileText className="w-4 h-4 me-2 group-hover/report-btn:scale-110 transition-transform" />
+                            {t('nav.report')}
+                        </RouterLink>
+
                         <button
                             onClick={() => handleNavigation('contact-form', '/contact')}
                             className="bg-primary-600 text-white px-6 py-2.5 rounded-xl font-bold text-[16px] hover:bg-primary-700 transition-all duration-300 shadow-premium hover:shadow-premium-hover hover:-translate-y-0.5 flex items-center group/btn"
@@ -362,7 +370,15 @@ const Navbar = () => {
                                 </div>
                             </div>
 
-                             <div className="w-full pt-8">
+                             <div className="w-full pt-8 flex flex-col gap-4">
+                                 <RouterLink
+                                     to="/report-access"
+                                     onClick={() => setIsOpen(false)}
+                                     className="flex items-center justify-center gap-2 w-full text-primary-600 border border-primary-100 bg-primary-50/50 py-4 rounded-xl font-bold text-[16px]"
+                                 >
+                                     <FileText className="w-4 h-4" />
+                                     {t('nav.report')}
+                                 </RouterLink>
                                  <button
                                      onClick={() => handleNavigation('contact-form', '/contact')}
                                      className="block w-full bg-primary-600 text-white text-center py-4 rounded-xl font-bold shadow-xl shadow-primary-200 text-[16px]"
