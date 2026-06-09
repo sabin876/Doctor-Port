@@ -241,11 +241,11 @@ const HomeHero = () => {
 
                         <motion.div
                             variants={itemVariants}
-                            className="flex flex-col sm:flex-row gap-5"
+                            className="flex flex-col sm:flex-row gap-4 w-full"
                         >
                             <RouterLink
                                 to="/contact"
-                                className="group relative flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-montserrat font-black text-[13px] tracking-wide bg-blue-600 text-white shadow-[0_20px_40px_-10px_rgba(37,99,235,0.4)] hover:shadow-[0_25px_50px_-12px_rgba(37,99,235,0.5)] hover:scale-[1.03] active:scale-[0.97] transition-all overflow-hidden"
+                                className="group relative flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-montserrat font-black text-[12px] tracking-wide bg-blue-600 text-white shadow-[0_15px_30px_-8px_rgba(37,99,235,0.4)] hover:shadow-[0_20px_40px_-10px_rgba(37,99,235,0.5)] hover:scale-[1.03] active:scale-[0.97] transition-all overflow-hidden w-fit"
                             >
                                 <Calendar className="w-4 h-4 transition-transform group-hover:rotate-12" />
                                 {t('hero.bookAppointment')}
@@ -254,7 +254,7 @@ const HomeHero = () => {
 
                             <RouterLink
                                 to="/services"
-                                className="group flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-black text-sm text-slate-700 border-2 border-slate-100 bg-white hover:bg-slate-50 hover:border-blue-100 transition-all shadow-sm"
+                                className="group flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-black text-[13px] text-slate-700 border-2 border-slate-100 bg-white hover:bg-slate-50 hover:border-blue-100 transition-all shadow-sm w-fit"
                             >
                                 {t('hero.exploreServices')}
                                 <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
