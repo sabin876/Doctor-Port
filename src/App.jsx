@@ -118,7 +118,8 @@ function App() {
                         <Route path="/thank-you" element={<ThankYou />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/report-access" element={<ReportAccess />} />
-                        <Route path="/report/:token" element={<ReportView />} />
+                        <Route path="/verify-otp" element={<Navigate to="/report-access" replace />} />
+                        <Route path="/report" element={<ReportView />} />
                         <Route path="/sitemap" element={<HtmlSitemap />} />
                         <Route path="*" element={<NotFound />} />
                       </Routes>

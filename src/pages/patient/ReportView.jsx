@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FileText, Calendar, User, Mail, ShieldAlert, ArrowLeft, Download } from 'lucide-react';
 import { api } from '../../lib/api';
 import { Helmet } from 'react-helmet-async';
 
 const ReportView = () => {
-  const { token } = useParams();
+  const [searchParams] = useSearchParams();
+  const email = searchParams.get('email') || '';
+  const reportId = searchParams.get('report_id') || '';
   const navigate = useNavigate();
 
   const [report, setReport] = useState(null);
@@ -14,16 +16,21 @@ const ReportView = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    if (!email || !reportId) {
+      setErrorState('not_found');
+      setIsLoading(false);
+      return;
+    }
+
     const fetchReport = async () => {
       try {
-        const data = await api.getReport(token);
+        const data = await api.getReport(email, reportId);
         setReport(data);
       } catch (err) {
         if (err.status === 403) {
           setErrorState('not_verified');
-          // Automatically redirect to verify page after 2 seconds
           setTimeout(() => {
-            navigate(`/report-access?token=${token}`);
+            navigate(`/report-access`);
           }, 2500);
         } else if (err.status === 404) {
           setErrorState('not_found');
@@ -36,7 +43,7 @@ const ReportView = () => {
     };
 
     fetchReport();
-  }, [token, navigate]);
+  }, [email, reportId, navigate]);
 
   const formatDate = (dateStr) => {
     if (!dateStr) return '';
@@ -85,7 +92,7 @@ const ReportView = () => {
           </div>
           <div className="pt-2">
             <Link
-              to={`/report-access?token=${token}`}
+              to="/report-access"
               className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all text-sm shadow-sm"
             >
               Verify Code Now

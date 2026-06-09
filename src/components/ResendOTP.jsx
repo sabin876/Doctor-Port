@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { api } from '../lib/api';
 
-const ResendOTP = ({ token, onResendStart, onResendSuccess, onResendError }) => {
+const ResendOTP = ({ email, onResendStart, onResendSuccess, onResendError }) => {
   const [countdown, setCountdown] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -18,7 +18,7 @@ const ResendOTP = ({ token, onResendStart, onResendSuccess, onResendError }) => 
     if (onResendStart) onResendStart();
 
     try {
-      await api.sendOtp(token);
+      await api.sendOtp(email);
       setCountdown(60); // Cooldown for 60 seconds
       if (onResendSuccess) onResendSuccess();
     } catch (err) {

@@ -34,9 +34,9 @@ const ReportAccess = () => {
   const navigate = useNavigate();
   const urlToken = searchParams.get('token') || '';
 
-  const [token, setToken] = useState(urlToken);
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
+  const [otpSent, setOtpSent] = useState(!!urlToken);
   const [isLoading, setIsLoading] = useState(false);
   const [toast, setToast] = useState(null);
 
@@ -44,12 +44,27 @@ const ReportAccess = () => {
     setToast({ message, type });
   };
 
-  const handleVerify = async (e) => {
+  const handleRequestOtp = async (e) => {
     if (e) e.preventDefault();
-    if (!token.trim()) {
-      showToast('Please enter your access token.', 'error');
+    if (!email.trim()) {
+      showToast('Please enter your email address.', 'error');
       return;
     }
+
+    setIsLoading(true);
+    try {
+      await api.sendOtp(email.trim());
+      setOtpSent(true);
+      showToast('Verification code sent to your email!', 'success');
+    } catch (err) {
+      showToast(err.message || 'No report found for this email address.', 'error');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleVerify = async (e) => {
+    if (e) e.preventDefault();
     if (!email.trim()) {
       showToast('Please enter your email address.', 'error');
       return;
@@ -61,10 +76,10 @@ const ReportAccess = () => {
 
     setIsLoading(true);
     try {
-      await api.verifyOtp(token.trim(), email.trim(), otp);
+      const res = await api.verifyOtp(email.trim(), otp);
       showToast('Verification successful!', 'success');
       setTimeout(() => {
-        navigate(`/report/${token.trim()}`);
+        navigate(`/report?email=${encodeURIComponent(email.trim())}&report_id=${res.report_id}`);
       }, 1000);
     } catch (err) {
       showToast(err.message || 'Incorrect or expired verification code.', 'error');
@@ -78,7 +93,7 @@ const ReportAccess = () => {
       <Helmet>
         <title>Report Access | Patient Portal</title>
       </Helmet>
-
+      
       {/* Decorative Orbs */}
       <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-blue-200/20 blur-[100px] pointer-events-none" />
       <div className="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] rounded-full bg-sky-200/25 blur-[100px] pointer-events-none" />
@@ -105,24 +120,30 @@ const ReportAccess = () => {
           </div>
           <h1 className="text-2xl font-black text-slate-800 mb-2 font-poppins">Report Access Portal</h1>
           <p className="text-slate-500 text-sm font-medium">
-            Enter your email address and the 6-digit code sent to your email to unlock your medical report.
+            {otpSent 
+              ? 'Enter the 6-digit code sent to your email to unlock your medical report.'
+              : 'Enter your email address to request a secure access code for your medical report.'}
           </p>
         </div>
 
-        {!token && (
-          <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-2xl text-amber-800 text-xs font-semibold leading-relaxed">
-            ⚠️ Warning: Invalid or missing access token. Please click the secure link sent to your email to access your report.
-          </div>
-        )}
-
         {/* Verification Form */}
-        <form onSubmit={handleVerify} className="space-y-6">
-
+        <form onSubmit={otpSent ? handleVerify : handleRequestOtp} className="space-y-6">
           {/* Email Address Input */}
           <div className="space-y-2">
-            <label className="block text-xs font-black uppercase tracking-widest text-slate-400">
-              Email Address
-            </label>
+            <div className="flex justify-between items-center">
+              <label className="block text-xs font-black uppercase tracking-widest text-slate-400">
+                Email Address
+              </label>
+              {otpSent && (
+                <button
+                  type="button"
+                  onClick={() => setOtpSent(false)}
+                  className="text-xs font-bold text-blue-600 hover:text-blue-800"
+                >
+                  Change Email
+                </button>
+              )}
+            </div>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
                 <Mail className="w-5 h-5" />
@@ -132,31 +153,38 @@ const ReportAccess = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="patient@example.com"
-                className="w-full pl-11 pr-4 py-3 border border-slate-200 rounded-xl outline-none transition-all text-sm font-medium bg-white text-slate-800 focus:ring-4 focus:ring-blue-100 focus:border-blue-500"
+                disabled={otpSent}
+                className={`w-full pl-11 pr-4 py-3 border rounded-xl outline-none transition-all text-sm font-medium ${
+                  otpSent
+                    ? 'bg-slate-50 border-slate-200 text-slate-400 cursor-not-allowed'
+                    : 'bg-white border-slate-200 text-slate-800 focus:ring-4 focus:ring-blue-100 focus:border-blue-500'
+                }`}
                 required
               />
             </div>
           </div>
 
-          <div className="space-y-2">
-            <label className="block text-xs font-black uppercase tracking-widest text-slate-400 text-center">
-              6-Digit Verification Code
-            </label>
-            <OTPInput
-              value={otp}
-              onChange={setOtp}
-              onComplete={(completedOtp) => {
-                // Auto verify on final code digit
-                setTimeout(() => handleVerify(), 200);
-              }}
-            />
-          </div>
+          {otpSent && (
+            <div className="space-y-2">
+              <label className="block text-xs font-black uppercase tracking-widest text-slate-400 text-center">
+                6-Digit Verification Code
+              </label>
+              <OTPInput
+                value={otp}
+                onChange={setOtp}
+                onComplete={(completedOtp) => {
+                  // Auto verify on final code digit
+                  setTimeout(() => handleVerify(), 200);
+                }}
+              />
+            </div>
+          )}
 
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             type="submit"
-            disabled={!token.trim() || !email.trim() || otp.length !== 6 || isLoading}
+            disabled={(otpSent && otp.length !== 6) || !email.trim() || isLoading}
             className="w-full py-4 bg-blue-600 text-white rounded-2xl font-bold shadow-[0_12px_24px_-6px_rgba(37,99,235,0.3)] hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
           >
             {isLoading ? (
@@ -165,11 +193,11 @@ const ReportAccess = () => {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                Verifying...
+                {otpSent ? 'Verifying...' : 'Sending...'}
               </span>
             ) : (
               <>
-                Unlock Report
+                {otpSent ? 'Unlock Report' : 'Send Verification Code'}
                 <ArrowRight className="w-4 h-4" />
               </>
             )}
@@ -177,11 +205,11 @@ const ReportAccess = () => {
         </form>
 
         {/* Footer / Resend */}
-        {token.trim() && (
+        {otpSent && (
           <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col items-center gap-2 text-center">
             <span className="text-slate-400 text-xs font-medium">Didn't receive the code?</span>
             <ResendOTP
-              token={token.trim()}
+              email={email.trim()}
               onResendStart={() => showToast('Sending verification email...', 'success')}
               onResendSuccess={() => showToast('New code sent to your email!', 'success')}
               onResendError={(err) => showToast(err, 'error')}

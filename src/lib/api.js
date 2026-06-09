@@ -119,11 +119,11 @@ export const api = {
         });
         return response.json();
     },
-    sendOtp: async (token) => {
+    sendOtp: async (email) => {
         const response = await fetch(`${API_BASE_URL}/send-otp/`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ token })
+            body: JSON.stringify({ email })
         });
         if (!response.ok) {
             const errData = await response.json().catch(() => ({}));
@@ -131,11 +131,11 @@ export const api = {
         }
         return response.json();
     },
-    verifyOtp: async (token, email, otp) => {
+    verifyOtp: async (email, otp) => {
         const response = await fetch(`${API_BASE_URL}/verify-otp/`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ token, email, otp })
+            body: JSON.stringify({ email, otp })
         });
         if (!response.ok) {
             const errData = await response.json().catch(() => ({}));
@@ -143,8 +143,8 @@ export const api = {
         }
         return response.json();
     },
-    getReport: async (token) => {
-        const response = await fetch(`${API_BASE_URL}/report/${token}/`);
+    getReport: async (email, reportId) => {
+        const response = await fetch(`${API_BASE_URL}/report/?email=${encodeURIComponent(email)}&report_id=${encodeURIComponent(reportId)}`);
         if (!response.ok) {
             const errData = await response.json().catch(() => ({}));
             throw { status: response.status, message: errData.detail || 'Failed to load report' };
