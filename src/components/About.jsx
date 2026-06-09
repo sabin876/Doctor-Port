@@ -204,20 +204,12 @@ const About = () => {
                     <span className="text-blue-600">{t('about.titleHighlight')}</span>
                 </motion.h1>
 
-                <motion.div
+                <motion.p
                     {...fadeUp(0.16)}
-                    className="flex flex-wrap justify-center items-center gap-2 max-w-2xl mx-auto mt-4"
+                    className="text-slate-500 text-sm md:text-base leading-relaxed max-w-2xl mx-auto mt-4 font-normal"
                 >
-                    {((t('about.credentials') || '').split(',').map(q => q.trim()).filter(q => q.length > 0)).map((qual, idx) => (
-                        <motion.span
-                            key={idx}
-                            className="px-2.5 py-1 rounded-xl bg-white border border-blue-100 text-blue-700 text-[10px] font-semibold tracking-wide uppercase shadow-[0_2px_6px_rgba(59,130,246,0.04)] hover:bg-blue-50 hover:border-blue-200 transition-all cursor-default"
-                            whileHover={{ y: -1 }}
-                        >
-                            {qual}
-                        </motion.span>
-                    ))}
-                </motion.div>
+                    {t('about.credentials')}
+                </motion.p>
             </div>
 
             {/* ════════════════════════════════════════

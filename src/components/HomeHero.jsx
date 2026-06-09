@@ -190,27 +190,24 @@ const HomeHero = () => {
                 >
                     {/* ── LEFT – Content ── */}
                     <div className="flex flex-col">
-                        {/* Global Qualifications Container */}
+                        {/* Redesigned Single Qualifications Badge */}
                         <motion.div
                             variants={itemVariants}
-                            className="flex flex-wrap items-center gap-2 mb-6 max-w-full md:max-w-xl text-start"
+                            className="flex items-start gap-2.5 px-4.5 py-3 rounded-2xl mb-6 bg-gradient-to-r from-blue-50 to-indigo-50/40 border border-blue-100 shadow-[0_4px_16px_rgba(59,130,246,0.06)] max-w-full md:max-w-xl backdrop-blur-md text-start"
                         >
-                            {/* Heading Label Badge */}
-                            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-600 text-white shadow-[0_4px_12px_rgba(37,99,235,0.15)] text-[10px] font-bold tracking-wider uppercase flex-shrink-0">
-                                <GraduationCap className="w-3.5 h-3.5" />
-                                <span>{language === 'AR' ? "المؤهلات" : language === 'HI' ? "योग्यताएं" : "Credentials"}</span>
-                            </div>
-                            
-                            {/* Qualification Tags */}
-                            {((slide.badge || '').split(',').map(q => q.trim()).filter(q => q.length > 0)).map((qual, idx) => (
+                            <GraduationCap className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                            <AnimatePresence mode="wait">
                                 <motion.span
-                                    key={idx}
-                                    className="px-2.5 py-1 rounded-xl bg-white border border-blue-100 text-blue-700 text-[9px] md:text-[10px] font-bold tracking-wide uppercase shadow-[0_2px_6px_rgba(59,130,246,0.04)] hover:bg-blue-50 hover:border-blue-200 transition-all cursor-default"
-                                    whileHover={{ y: -1 }}
+                                    key={slide.badge}
+                                    variants={contentVariants}
+                                    initial="enter"
+                                    animate="center"
+                                    exit="exit"
+                                    className="text-blue-750 text-[10px] md:text-[11px] font-semibold tracking-wide leading-relaxed text-start"
                                 >
-                                    {qual}
+                                    {slide.badge}
                                 </motion.span>
-                            ))}
+                            </AnimatePresence>
                         </motion.div>
 
                         <motion.div variants={itemVariants} className="mb-8">
