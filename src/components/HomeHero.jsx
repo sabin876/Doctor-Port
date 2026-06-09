@@ -193,9 +193,9 @@ const HomeHero = () => {
                         {/* Mockup Badge */}
                         <motion.div
                             variants={itemVariants}
-                            className="flex items-center gap-2 px-4 py-2 rounded-full mb-6 bg-blue-50 border border-blue-100 shadow-[0_4px_12px_rgba(59,130,246,0.08)] w-fit backdrop-blur-md"
+                            className="flex items-start gap-2 px-4 py-2.5 rounded-2xl mb-6 bg-blue-50 border border-blue-100 shadow-[0_4px_12px_rgba(59,130,246,0.08)] max-w-full md:max-w-xl backdrop-blur-md text-start"
                         >
-                            <span className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)] animate-pulse" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)] animate-pulse mt-1.5 flex-shrink-0" />
                             <AnimatePresence mode="wait">
                                 <motion.span
                                     key={slide.badge}
@@ -203,7 +203,7 @@ const HomeHero = () => {
                                     initial="enter"
                                     animate="center"
                                     exit="exit"
-                                    className="text-blue-700 text-xs md:text-[13px] font-semibold tracking-[0.15em] uppercase"
+                                    className="text-blue-700 text-[9px] md:text-[10px] font-semibold tracking-[0.1em] uppercase leading-relaxed text-start"
                                 >
                                     {slide.badge}
                                 </motion.span>

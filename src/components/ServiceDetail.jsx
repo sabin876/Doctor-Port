@@ -380,7 +380,7 @@ const ServiceDetail = () => {
                         </h1>
 
                         <div 
-                            className="text-base md:text-lg text-gray-500 font-normal leading-relaxed mb-10 max-w-2xl prose prose-primary"
+                            className="text-base md:text-lg text-gray-500 font-normal leading-relaxed mb-10 max-w-2xl prose prose-primary text-justify"
                             dangerouslySetInnerHTML={{ __html: service.description }}
                         />
 
@@ -509,7 +509,7 @@ const ServiceDetail = () => {
                                         {aboutTitle}
                                     </h3>
                                     <div 
-                                        className="text-gray-600 text-sm md:text-base leading-relaxed prose prose-slate max-w-none [&>p]:mb-3"
+                                        className="text-gray-600 text-sm md:text-base leading-relaxed prose prose-slate max-w-none [&>p]:mb-3 text-justify"
                                         dangerouslySetInnerHTML={{ __html: aboutDesc }}
                                     />
                                 </div>
