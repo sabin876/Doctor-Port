@@ -105,36 +105,18 @@ const ReportAccess = () => {
           </div>
           <h1 className="text-2xl font-black text-slate-800 mb-2 font-poppins">Report Access Portal</h1>
           <p className="text-slate-500 text-sm font-medium">
-            Enter your access token and the 6-digit code sent to your email to unlock your medical report.
+            Enter your email address and the 6-digit code sent to your email to unlock your medical report.
           </p>
         </div>
 
+        {!token && (
+          <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-2xl text-amber-800 text-xs font-semibold leading-relaxed">
+            ⚠️ Warning: Invalid or missing access token. Please click the secure link sent to your email to access your report.
+          </div>
+        )}
+
         {/* Verification Form */}
         <form onSubmit={handleVerify} className="space-y-6">
-          {/* Token Input (Renders input field always, but disables it if pre-populated from URL) */}
-          <div className="space-y-2">
-            <label className="block text-xs font-black uppercase tracking-widest text-slate-400">
-              Access Token
-            </label>
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
-                <KeyRound className="w-5 h-5" />
-              </div>
-              <input
-                type="text"
-                value={token}
-                onChange={(e) => setToken(e.target.value)}
-                disabled={!!urlToken}
-                placeholder="Enter access token UUID"
-                className={`w-full pl-11 pr-4 py-3 border rounded-xl outline-none transition-all text-sm font-medium ${
-                  urlToken
-                    ? 'bg-slate-50 border-slate-200 text-slate-400 cursor-not-allowed'
-                    : 'bg-white border-slate-200 text-slate-800 focus:ring-4 focus:ring-blue-100 focus:border-blue-500'
-                }`}
-                required
-              />
-            </div>
-          </div>
 
           {/* Email Address Input */}
           <div className="space-y-2">
