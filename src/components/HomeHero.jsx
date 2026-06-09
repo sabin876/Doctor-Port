@@ -193,7 +193,7 @@ const HomeHero = () => {
                         {/* Redesigned Single Qualifications Badge */}
                         <motion.div
                             variants={itemVariants}
-                            className="flex items-start px-4 py-2.5 rounded-2xl mb-6 bg-gradient-to-r from-blue-50 to-indigo-50/40 border border-blue-100 shadow-[0_4px_16px_rgba(59,130,246,0.06)] max-w-[90%] md:max-w-md backdrop-blur-md text-start"
+                            className="flex items-start px-4 py-2.5 rounded-2xl mb-6 bg-gradient-to-r from-blue-50 to-indigo-50/40 border border-blue-100 shadow-[0_4px_16px_rgba(59,130,246,0.06)] max-w-[90%] md:max-w-md backdrop-blur-md text-justify"
                         >
                             <AnimatePresence mode="wait">
                                 <motion.span
@@ -202,7 +202,7 @@ const HomeHero = () => {
                                     initial="enter"
                                     animate="center"
                                     exit="exit"
-                                    className="text-blue-750 text-[10px] md:text-[11px] font-semibold tracking-wide leading-relaxed text-start"
+                                    className="text-blue-750 text-[10px] md:text-[11px] font-semibold tracking-wide leading-relaxed text-justify w-full"
                                 >
                                     {slide.badge}
                                 </motion.span>
