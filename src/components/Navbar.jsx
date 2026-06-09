@@ -241,17 +241,17 @@ const Navbar = () => {
 
                         <button
                             onClick={() => handleNavigation('contact-form', '/contact')}
-                            className="bg-primary-600 text-white px-6 py-2.5 rounded-xl font-bold text-[16px] hover:bg-primary-700 transition-all duration-300 shadow-premium hover:shadow-premium-hover hover:-translate-y-0.5 flex items-center group/btn"
+                            className="bg-primary-600 text-white px-4 py-2.5 rounded-xl font-bold text-[14px] hover:bg-primary-700 transition-all duration-300 shadow-premium hover:shadow-premium-hover hover:-translate-y-0.5 flex items-center group/btn"
                         >
-                            <Calendar className="w-4 h-4 me-2 group-hover/btn:rotate-12 transition-transform" />
+                            <Calendar className="w-4 h-4 me-1.5 group-hover/btn:rotate-12 transition-transform" />
                             {t('nav.bookNow')}
                         </button>
 
                         <RouterLink
                             to="/report-access"
-                            className="text-primary-600 border border-primary-100 bg-primary-50/50 hover:bg-primary-100/50 px-4 py-2.5 rounded-xl font-bold text-[16px] transition-all duration-300 shadow-sm flex items-center group/report-btn"
+                            className="text-primary-600 border border-primary-100 bg-primary-50/50 hover:bg-primary-100/50 px-4 py-2.5 rounded-xl font-bold text-[14px] transition-all duration-300 shadow-sm flex items-center group/report-btn"
                         >
-                            <FileText className="w-4 h-4 me-2 group-hover/report-btn:scale-110 transition-transform" />
+                            <FileText className="w-4 h-4 me-1.5 group-hover/report-btn:scale-110 transition-transform" />
                             {t('nav.report')}
                         </RouterLink>
                     </div>
@@ -370,17 +370,17 @@ const Navbar = () => {
                                 </div>
                             </div>
 
-                             <div className="w-full pt-8 flex flex-col gap-4">
+                             <div className="w-full pt-8 flex flex-col items-center gap-3">
                                  <button
                                      onClick={() => handleNavigation('contact-form', '/contact')}
-                                     className="block w-full bg-primary-600 text-white text-center py-4 rounded-xl font-bold shadow-xl shadow-primary-200 text-[16px]"
+                                     className="block w-fit bg-primary-600 text-white text-center px-6 py-2.5 rounded-xl font-bold shadow-xl shadow-primary-200 text-[14px]"
                                  >
                                      {t('nav.bookNow')}
                                  </button>
                                  <RouterLink
                                      to="/report-access"
                                      onClick={() => setIsOpen(false)}
-                                     className="flex items-center justify-center gap-2 w-full text-primary-600 border border-primary-100 bg-primary-50/50 py-4 rounded-xl font-bold text-[16px]"
+                                     className="flex items-center justify-center gap-2 w-fit text-primary-600 border border-primary-100 bg-primary-50/50 px-6 py-2.5 rounded-xl font-bold text-[14px]"
                                  >
                                      <FileText className="w-4 h-4" />
                                      {t('nav.report')}
