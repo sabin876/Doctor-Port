@@ -8,6 +8,7 @@ import { getTranslatedService } from '../lib/serviceTranslations';
 import Breadcrumbs from './ui/Breadcrumbs';
 import SEO from './SEO';
 import { defaultServiceFaqs } from '../constants/serviceFaqs';
+import CTABanner from './CTABanner';
 
 // Import images
 import kneeArthroscopyImg from '../assets/knee-arthroscopy.png';
@@ -542,6 +543,9 @@ const ServiceDetail = () => {
                                 </div>
                             )}
                         </div>
+
+                        {/* Struggling with Joint or Back Pain? CTA banner */}
+                        <CTABanner />
 
                         {/* Lower row: Fractures & Injuries We Commonly Treat */}
                         {commonlyTreatedTitle && commonlyTreated.length > 0 && (
