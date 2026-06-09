@@ -381,67 +381,126 @@ const ServiceDetail = () => {
                     </motion.div>
                 )}
 
-                {/* Why Choose Section */}
+                {/* 2b. Custom Why Choose Us Value Checklist (Dynamic CMS Template) */}
                 {hasChecklist && (
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="mb-24 mt-16 text-start"
+                        transition={{ duration: 0.8 }}
+                        className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-24 mt-16 text-start"
                     >
-                        <div className="relative rounded-[3.5rem] overflow-hidden bg-gradient-to-br from-[#05122d] via-[#0b2545] to-[#134074] py-16 px-8 md:py-20 md:px-16 shadow-2xl border border-white/10">
-                            {/* Decorative glowing blobs */}
-                            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary-500/10 rounded-full -mr-40 -mt-40 blur-[120px] pointer-events-none" />
-                            <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-emerald-500/10 rounded-full -ml-32 -mb-32 blur-[100px] pointer-events-none" />
-                            
-                            <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto">
-                                <span className="inline-flex items-center gap-1.5 px-4 py-1.5 mb-6 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-emerald-300 text-[10px] font-semibold uppercase tracking-[0.2em]">
-                                    <Zap size={12} className="fill-emerald-400 text-emerald-400 animate-pulse" />
-                                    Why Choose Us
+                        {/* Left Column: Why Choose Us info */}
+                        <div className="lg:col-span-7 space-y-8">
+                            <div>
+                                <span className="inline-flex items-center gap-1.5 px-4 py-1.5 mb-4 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-[10px] font-normal uppercase tracking-[0.2em]">
+                                    Why choose our {service.title} services
                                 </span>
-                                
-                                <h2 className="text-3xl md:text-5xl font-normal text-white tracking-tight leading-[1.1] mb-6">
+                                <h2 className="text-3xl md:text-5xl font-normal text-primary-950 tracking-tighter leading-[1.05] mb-4">
                                     {checklistTitle}
                                 </h2>
-                                
-                                <p className="text-white/70 text-base md:text-lg font-light leading-relaxed mb-10 max-w-2xl">
+                                <p className="text-gray-500 text-sm md:text-base leading-relaxed">
                                     Our clinical approach centers on providing tailored, premium care guided by international medical benchmarks, safety guidelines, and active therapy.
                                 </p>
+                            </div>
 
-                                <div className="grid sm:grid-cols-2 gap-4 mb-10 w-full text-start">
-                                    {checklistItems.map((item, i) => (
-                                        <div key={i} className="flex items-start gap-4 p-4 bg-white/5 border border-white/10 rounded-3xl hover:bg-white/10 transition-all duration-300">
-                                            <div className="flex-shrink-0 w-5 h-5 rounded-full bg-white/25 text-white flex items-center justify-center mt-0.5">
-                                                <CheckCircle2 size={13} className="stroke-[2.5]" />
-                                            </div>
-                                            <span className="text-white text-sm md:text-base font-normal leading-relaxed">{item}</span>
+                            <div className="space-y-3.5">
+                                {checklistItems.map((item, i) => (
+                                    <div key={i} className="flex items-start gap-4 p-4 bg-primary-600 text-white border border-primary-500 rounded-3xl shadow-md hover:bg-primary-700 hover:shadow-lg transition-all duration-300">
+                                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-white/20 text-white flex items-center justify-center mt-0.5">
+                                            <CheckCircle2 size={16} className="fill-white/10" />
                                         </div>
+                                        <span className="text-white text-sm md:text-base font-normal leading-relaxed">{item}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Right Column: Badges & Custom Illustration */}
+                        <div className="lg:col-span-5 flex flex-col gap-6 w-full">
+                            {(rawService.checklist_image || rawService.slug === 'physiotherapy' || rawService.slug === 'test-physiotherapy' || rawService.slug === 'test-physiotherapy-service') && (
+                                <div className="bg-white border border-gray-100 rounded-[3.5rem] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] flex flex-col items-center relative overflow-hidden group">
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary-50 rounded-full blur-3xl pointer-events-none"></div>
+                                    
+                                    <span className="self-end px-4 py-1.5 rounded-full bg-primary-50 border border-primary-100 text-primary-700 text-[10px] font-normal uppercase tracking-[0.2em] mb-6">
+                                        UK-trained Orthopaedic Expertise
+                                    </span>
+                                    
+                                    <div className="flex justify-center items-center py-6 group-hover:scale-105 transition-transform duration-500 max-h-72">
+                                        {rawService.checklist_image ? (
+                                            <img 
+                                                src={rawService.checklist_image} 
+                                                alt="Value checklist illustration" 
+                                                className="max-h-64 w-auto object-contain rounded-2xl"
+                                            />
+                                        ) : (
+                                            <TherapistIllustration />
+                                        )}
+                                    </div>
+                                </div>
+                            )}
+
+                            {rawService?.tag_badges && rawService.tag_badges.length > 0 && (
+                                <div className="flex flex-wrap gap-3">
+                                    {rawService.tag_badges.map((tag, i) => (
+                                        <span 
+                                            key={i} 
+                                            className="bg-white border border-gray-150 rounded-2xl px-5 py-3.5 text-[11px] font-normal uppercase tracking-[0.1em] text-primary-950 shadow-[0_2px_10px_-2px_rgba(0,0,0,0.03)] hover:border-[#003B73] hover:shadow-md transition-all duration-300 cursor-default"
+                                        >
+                                            {tag}
+                                        </span>
                                     ))}
                                 </div>
-
-                                {/* Quick Contact Buttons */}
-                                <div className="flex flex-col sm:flex-row items-center gap-5 mt-4 w-full sm:w-auto">
-                                    <a
-                                        href={`tel:${contactPhone}`}
-                                        className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-white text-[#003B73] font-semibold text-[12px] uppercase tracking-[0.15em] rounded-2xl shadow-xl hover:bg-blue-50 hover:scale-[1.03] active:scale-95 transition-all duration-300"
-                                    >
-                                        <Phone size={18} />
-                                        Call Us Now
-                                    </a>
-                                    <a
-                                        href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-[#25D366] text-white font-semibold text-[12px] uppercase tracking-[0.15em] rounded-2xl shadow-xl hover:bg-[#1eb954] hover:scale-[1.03] active:scale-95 transition-all duration-300"
-                                    >
-                                        <MessageCircle size={18} />
-                                        WhatsApp Now
-                                    </a>
-                                </div>
-                            </div>
+                            )}
                         </div>
                     </motion.div>
                 )}
+
+                {/* CTA Banner - Dynamic Booking Card */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="mb-24 mt-16"
+                >
+                    <div className="relative rounded-[3.5rem] overflow-hidden bg-gradient-to-r from-[#003B73] via-[#00569e] to-[#0284c7] py-16 px-8 md:py-20 md:px-16 shadow-2xl">
+                        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -mr-40 -mt-40 blur-[100px] pointer-events-none" />
+                        <div className="absolute bottom-0 left-0 w-72 h-72 bg-emerald-400/10 rounded-full -ml-32 -mb-32 blur-[80px] pointer-events-none" />
+                        
+                        <div className="relative z-10 flex flex-col items-center text-center gap-8">
+                            <div className="inline-flex items-center px-5 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-[10px] font-normal uppercase tracking-[0.25em]">
+                                <Zap size={12} className="mr-2 fill-yellow-400 text-yellow-400" />
+                                Expert {service.title} in Dubai
+                            </div>
+
+                            <h2 className="text-2xl md:text-4xl font-normal text-white tracking-tight leading-[1.1] max-w-3xl">
+                                Schedule a Consultation with our Consultant Orthopedics Surgeon Today
+                            </h2>
+                            <p className="text-white/75 text-base md:text-lg font-light max-w-2xl leading-relaxed">
+                                Get advanced clinical care and a personalized recovery roadmap tailored to your specific joint and mobility needs.
+                            </p>
+
+                            <div className="flex flex-col sm:flex-row items-center gap-5 mt-4 w-full sm:w-auto">
+                                <a
+                                    href={`tel:${contactPhone}`}
+                                    className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-white text-[#003B73] font-semibold text-[12px] uppercase tracking-[0.15em] rounded-2xl shadow-xl hover:bg-blue-50 hover:scale-[1.03] active:scale-95 transition-all duration-300"
+                                >
+                                    <Phone size={18} />
+                                    Call Us Now
+                                </a>
+                                <a
+                                    href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-[#25D366] text-white font-semibold text-[12px] uppercase tracking-[0.15em] rounded-2xl shadow-xl hover:bg-[#1eb954] hover:scale-[1.03] active:scale-95 transition-all duration-300"
+                                >
+                                    <MessageCircle size={18} />
+                                    WhatsApp Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </motion.div>
 
                 {/* FAQ Section */}
                 <ServiceFAQSection serviceSlug={id} customFaqs={service.faqs} serviceTitle={service.title} />
