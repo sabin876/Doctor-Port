@@ -131,11 +131,11 @@ export const api = {
         }
         return response.json();
     },
-    verifyOtp: async (token, otp) => {
+    verifyOtp: async (token, email, otp) => {
         const response = await fetch(`${API_BASE_URL}/verify-otp/`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ token, otp })
+            body: JSON.stringify({ token, email, otp })
         });
         if (!response.ok) {
             const errData = await response.json().catch(() => ({}));

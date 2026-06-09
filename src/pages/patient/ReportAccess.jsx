@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShieldAlert, CheckCircle, ArrowRight, ShieldCheck, KeyRound } from 'lucide-react';
+import { ShieldAlert, CheckCircle, ArrowRight, ShieldCheck, KeyRound, Mail } from 'lucide-react';
 import OTPInput from '../../components/OTPInput';
 import ResendOTP from '../../components/ResendOTP';
 import { api } from '../../lib/api';
@@ -35,6 +35,7 @@ const ReportAccess = () => {
   const urlToken = searchParams.get('token') || '';
 
   const [token, setToken] = useState(urlToken);
+  const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [toast, setToast] = useState(null);
@@ -49,6 +50,10 @@ const ReportAccess = () => {
       showToast('Please enter your access token.', 'error');
       return;
     }
+    if (!email.trim()) {
+      showToast('Please enter your email address.', 'error');
+      return;
+    }
     if (otp.length !== 6) {
       showToast('Please enter a valid 6-digit code.', 'error');
       return;
@@ -56,7 +61,7 @@ const ReportAccess = () => {
 
     setIsLoading(true);
     try {
-      await api.verifyOtp(token.trim(), otp);
+      await api.verifyOtp(token.trim(), email.trim(), otp);
       showToast('Verification successful!', 'success');
       setTimeout(() => {
         navigate(`/report/${token.trim()}`);
@@ -131,6 +136,26 @@ const ReportAccess = () => {
             </div>
           </div>
 
+          {/* Email Address Input */}
+          <div className="space-y-2">
+            <label className="block text-xs font-black uppercase tracking-widest text-slate-400">
+              Email Address
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                <Mail className="w-5 h-5" />
+              </div>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="patient@example.com"
+                className="w-full pl-11 pr-4 py-3 border border-slate-200 rounded-xl outline-none transition-all text-sm font-medium bg-white text-slate-800 focus:ring-4 focus:ring-blue-100 focus:border-blue-500"
+                required
+              />
+            </div>
+          </div>
+
           <div className="space-y-2">
             <label className="block text-xs font-black uppercase tracking-widest text-slate-400 text-center">
               6-Digit Verification Code
@@ -149,7 +174,7 @@ const ReportAccess = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             type="submit"
-            disabled={!token.trim() || otp.length !== 6 || isLoading}
+            disabled={!token.trim() || !email.trim() || otp.length !== 6 || isLoading}
             className="w-full py-4 bg-blue-600 text-white rounded-2xl font-bold shadow-[0_12px_24px_-6px_rgba(37,99,235,0.3)] hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
           >
             {isLoading ? (
