@@ -123,6 +123,112 @@ const ServiceDetail = () => {
         || (defaultChecklists[id?.toLowerCase()]?.title)
         || `Why choose our ${service.title} services`;
 
+    // Dynamic Detailed Sections Content (Fallback to Fracture & Trauma defaults if slug matches)
+    const isFractureTrauma = id?.toLowerCase() === 'fracture-trauma-surgery';
+    const hasDetailedSections = (rawService?.about_title && rawService?.about_description) || isFractureTrauma;
+    const aboutTitle = rawService?.about_title || (isFractureTrauma ? "About Fracture & Trauma Surgery" : "");
+    const aboutDesc = rawService?.about_description || (isFractureTrauma ? "Fracture and trauma surgery involves the diagnosis, treatment, and reconstruction of injuries affecting bones, joints, ligaments, tendons, and surrounding soft tissues. Treatment may range from non-surgical fracture management to advanced surgical fixation and complex trauma reconstruction depending on the nature of the injury." : "");
+    const whoNeedsTitle = rawService?.who_needs_title || (isFractureTrauma ? "Who May Need Fracture & Trauma Surgery?" : "");
+    const whoNeedsDesc = rawService?.who_needs_description || (isFractureTrauma ? "Specialist assessment may be required if you experience any of the following symptoms:" : "");
+    const whoNeedsItems = (rawService?.who_needs_items && rawService.who_needs_items.length > 0)
+        ? rawService.who_needs_items
+        : (isFractureTrauma ? [
+            "A suspected fracture following an injury",
+            "Significant pain after a fall",
+            "Swelling and deformity",
+            "Difficulty walking or using a limb",
+            "Fracture involving a joint",
+            "Displaced fractures",
+            "Multiple injuries",
+            "Sports-related fractures",
+            "Previous fracture healing problems",
+            "Persistent pain after injury"
+          ] : []);
+
+    const commonlyTreatedTitle = rawService?.commonly_treated_title || (isFractureTrauma ? "Fractures & Injuries We Commonly Treat" : "");
+    const commonlyTreatedDesc = rawService?.commonly_treated_description || (isFractureTrauma ? "From simple fractures requiring precise immobilization to complex high-energy polytrauma demanding multi-stage surgical intervention." : "");
+    const commonlyTreated = (rawService?.commonly_treated && rawService.commonly_treated.length > 0)
+        ? rawService.commonly_treated
+        : (isFractureTrauma ? [
+            {
+                "title": "Upper Limb Injuries",
+                "icon": "PlusSquare",
+                "items": [
+                    "Distal Radius Fractures",
+                    "Wrist Fractures",
+                    "Hand Fractures",
+                    "Finger Fractures",
+                    "Clavicle Fractures",
+                    "Shoulder Fractures",
+                    "Elbow Fractures"
+                ]
+            },
+            {
+                "title": "Lower Limb Injuries",
+                "icon": "Triangle",
+                "items": [
+                    "Hip Fractures",
+                    "Femur Fractures",
+                    "Tibial Fractures",
+                    "Ankle Fractures",
+                    "Foot Fractures",
+                    "Patella Fractures"
+                ]
+            },
+            {
+                "title": "Joint & Complex Trauma",
+                "icon": "Hexagon",
+                "items": [
+                    "Intra-Articular Fractures",
+                    "Complex Joint Injuries",
+                    "Multi-Trauma Injuries",
+                    "Fracture Dislocations",
+                    "Sports Trauma",
+                    "High-Energy Trauma"
+                ]
+            }
+          ] : []);
+
+    const renderIcon = (iconName, className) => {
+        switch (iconName) {
+            case 'PlusSquare': return <PlusSquare className={className} />;
+            case 'Triangle': return <Triangle className={className} />;
+            case 'Hexagon': return <Hexagon className={className} />;
+            case 'ShieldCheck': return <ShieldCheck className={className} />;
+            case 'Activity': return <Activity className={className} />;
+            case 'Zap': return <Zap className={className} />;
+            case 'HeartPulse': return <HeartPulse className={className} />;
+            default: return <Activity className={className} />;
+        }
+    };
+
+    const getThemeClasses = (idx) => {
+        const themes = [
+            {
+                iconBg: "bg-blue-50",
+                iconColor: "text-[#1282b2]",
+                hoverBg: "group-hover:bg-[#1282b2]",
+                dotBg: "bg-blue-400",
+                hoverBorder: "hover:border-blue-200"
+            },
+            {
+                iconBg: "bg-emerald-50",
+                iconColor: "text-emerald-600",
+                hoverBg: "group-hover:bg-emerald-600",
+                dotBg: "bg-emerald-400",
+                hoverBorder: "hover:border-emerald-200"
+            },
+            {
+                iconBg: "bg-blue-50",
+                iconColor: "text-[#003B73]",
+                hoverBg: "group-hover:bg-[#003B73]",
+                dotBg: "bg-blue-400",
+                hoverBorder: "hover:border-blue-200"
+            }
+        ];
+        return themes[idx % themes.length];
+    };
+
     // Dynamic Schema Generation for SEO
     const stripHtml = (html) => {
         if (!html) return '';
@@ -378,6 +484,107 @@ const ServiceDetail = () => {
                                 </div>
                             ))}
                         </div>
+                    </motion.div>
+                )}
+
+                {/* 2aa. Custom / Dynamic Detailed Service Sections (Beautiful Design) */}
+                {hasDetailedSections && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="mb-24 mt-16 space-y-20"
+                    >
+                        {/* Upper row: About & Who May Need */}
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                            {/* About Card */}
+                            {aboutTitle && aboutDesc && (
+                                <div className="lg:col-span-5 bg-gradient-to-br from-primary-50/50 to-white border border-primary-100 rounded-[2.5rem] p-8 md:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.02)] relative overflow-hidden group flex flex-col justify-center text-start">
+                                    <div className="absolute top-0 left-0 w-2 h-full bg-[#1282b2]" />
+                                    <span className="inline-flex items-center gap-1.5 px-4 py-1.5 mb-6 w-fit rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-[10px] font-normal uppercase tracking-[0.2em]">
+                                        About the Speciality
+                                    </span>
+                                    <h3 className="text-2xl md:text-3xl font-semibold text-primary-950 tracking-tight mb-6">
+                                        {aboutTitle}
+                                    </h3>
+                                    <div 
+                                        className="text-gray-600 text-sm md:text-base leading-relaxed prose prose-slate max-w-none [&>p]:mb-3"
+                                        dangerouslySetInnerHTML={{ __html: aboutDesc }}
+                                    />
+                                </div>
+                            )}
+
+                            {/* Who May Need Card */}
+                            {whoNeedsTitle && whoNeedsItems.length > 0 && (
+                                <div className={`${aboutTitle ? 'lg:col-span-7' : 'lg:col-span-12'} bg-white border border-gray-100 rounded-[2.5rem] p-8 md:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.02)] relative overflow-hidden group flex flex-col text-start`}>
+                                    <span className="inline-flex items-center gap-1.5 px-4 py-1.5 mb-6 w-fit rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-[10px] font-normal uppercase tracking-[0.2em]">
+                                        Clinical Indications
+                                    </span>
+                                    <h3 className="text-2xl md:text-3xl font-semibold text-primary-950 tracking-tight mb-2">
+                                        {whoNeedsTitle}
+                                    </h3>
+                                    {whoNeedsDesc && (
+                                        <p className="text-gray-500 text-xs md:text-sm mb-6">
+                                            {whoNeedsDesc}
+                                        </p>
+                                    )}
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+                                        {whoNeedsItems.map((item, idx) => (
+                                            <div key={idx} className="flex items-start gap-3">
+                                                <div className="w-5 h-5 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                                    <CheckCircle2 size={13} className="text-[#1282b2]" />
+                                                </div>
+                                                <span className="text-gray-600 text-xs md:text-sm leading-snug">{item}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Lower row: Fractures & Injuries We Commonly Treat */}
+                        {commonlyTreatedTitle && commonlyTreated.length > 0 && (
+                            <div className="space-y-8">
+                                <div className="max-w-3xl text-start">
+                                    <span className="inline-flex items-center gap-1.5 px-4 py-1.5 mb-4 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-[10px] font-normal uppercase tracking-[0.2em]">
+                                        Treatments & Capabilities
+                                    </span>
+                                    <h3 className="text-3xl md:text-5xl font-normal text-primary-950 tracking-tighter leading-[1.05] mb-4">
+                                        {commonlyTreatedTitle}
+                                    </h3>
+                                    {commonlyTreatedDesc && (
+                                        <p className="text-gray-500 text-sm md:text-base leading-relaxed">
+                                            {commonlyTreatedDesc}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                    {commonlyTreated.map((category, idx) => {
+                                        const theme = getThemeClasses(idx);
+                                        return (
+                                            <div key={idx} className={`group bg-white border border-gray-100 rounded-[2.5rem] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.02)] ${theme.hoverBorder} hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-start flex flex-col`}>
+                                                <div className={`w-12 h-12 rounded-2xl ${theme.iconBg} flex items-center justify-center mb-6 ${theme.hoverBg} group-hover:text-white transition-all duration-300`}>
+                                                    {renderIcon(category.icon, `w-6 h-6 ${theme.iconColor} group-hover:text-white transition-colors`)}
+                                                </div>
+                                                <h4 className={`text-xl font-semibold text-gray-900 mb-6 ${theme.iconColor} transition-colors`}>
+                                                    {category.title}
+                                                </h4>
+                                                <ul className="space-y-3">
+                                                    {(category.items || []).map((item, itemIdx) => (
+                                                        <li key={itemIdx} className="flex items-center gap-3 text-gray-600 text-sm">
+                                                            <span className={`w-1.5 h-1.5 rounded-full ${theme.dotBg} ${theme.hoverBg} transition-colors`} />
+                                                            {item}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        )}
                     </motion.div>
                 )}
 
