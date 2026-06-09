@@ -193,9 +193,8 @@ const HomeHero = () => {
                         {/* Redesigned Single Qualifications Badge */}
                         <motion.div
                             variants={itemVariants}
-                            className="flex items-start gap-2.5 px-4.5 py-3 rounded-2xl mb-6 bg-gradient-to-r from-blue-50 to-indigo-50/40 border border-blue-100 shadow-[0_4px_16px_rgba(59,130,246,0.06)] max-w-full md:max-w-xl backdrop-blur-md text-start"
+                            className="flex items-start px-4 py-2.5 rounded-2xl mb-6 bg-gradient-to-r from-blue-50 to-indigo-50/40 border border-blue-100 shadow-[0_4px_16px_rgba(59,130,246,0.06)] max-w-[90%] md:max-w-md backdrop-blur-md text-start"
                         >
-                            <GraduationCap className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
                             <AnimatePresence mode="wait">
                                 <motion.span
                                     key={slide.badge}
