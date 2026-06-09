@@ -4,7 +4,7 @@ import { Calendar } from 'lucide-react';
 import { Link as RouterLink } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
-const CTABanner = () => {
+const CTABanner = ({ title, subtitle }) => {
     const { t } = useLanguage();
 
     return (
@@ -24,10 +24,10 @@ const CTABanner = () => {
                     <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10 text-center md:text-left">
                         <div className="max-w-2xl">
                             <h2 className="text-xl md:text-2xl lg:text-3xl font-montserrat font-bold text-white mb-4 tracking-tight leading-tight">
-                                {t('ctaBanner.title')}
+                                {title || t('ctaBanner.title')}
                             </h2>
                             <p className="text-white/90 text-lg md:text-xl font-medium tracking-wide">
-                                {t('ctaBanner.subtitle')}
+                                {subtitle || t('ctaBanner.subtitle')}
                             </p>
                         </div>
                         

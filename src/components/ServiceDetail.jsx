@@ -82,6 +82,26 @@ const ServiceDetail = () => {
 
     const service = getTranslatedService(rawService, t, language);
 
+    const getCTAText = () => {
+        if (language === 'AR') {
+            return {
+                title: "هل تبحث عن استشارة متخصصة في جراحة العظام؟",
+                subtitle: "استشر أخصائينا المدرب في المملكة المتحدة للحصول على رعاية سريرية متقدمة."
+            };
+        } else if (language === 'HI') {
+            return {
+                title: "क्या आप विशेषज्ञ आर्थोपेडिक परामर्श की तलाश में हैं?",
+                subtitle: "उन्नत और व्यक्तिगत देखभाल के लिए हमारे यूके-प्रशिक्षित विशेषज्ञ से संपर्क करें।"
+            };
+        } else {
+            return {
+                title: "Seeking Professional Orthopedic Advice?",
+                subtitle: "Consult our UK-trained specialist for advanced, personalized care."
+            };
+        }
+    };
+    const ctaText = getCTAText();
+
     if (loading) return <div className="min-h-screen flex items-center justify-center text-primary-600 font-bold">Loading Service...</div>;
 
     if (!service) {
@@ -545,7 +565,7 @@ const ServiceDetail = () => {
                         </div>
 
                         {/* Struggling with Joint or Back Pain? CTA banner */}
-                        <CTABanner />
+                        <CTABanner title={ctaText.title} subtitle={ctaText.subtitle} />
 
                         {/* Lower row: Fractures & Injuries We Commonly Treat */}
                         {commonlyTreatedTitle && commonlyTreated.length > 0 && (
