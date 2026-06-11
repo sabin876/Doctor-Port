@@ -16,17 +16,20 @@ export const CardContainer = ({
             containerRef.current.getBoundingClientRect();
         const x = (e.clientX - left - width / 2) / 25;
         const y = (e.clientY - top - height / 2) / 25;
+        containerRef.current.style.transition = "none";
         containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y * -1}deg)`;
     };
 
     const handleMouseEnter = () => {
         setIsMouseEntered(true);
         if (!containerRef.current) return;
+        containerRef.current.style.transition = "none";
     };
 
     const handleMouseLeave = () => {
         if (!containerRef.current) return;
         setIsMouseEntered(false);
+        containerRef.current.style.transition = "transform 0.5s ease-out";
         containerRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
     };
 
@@ -47,7 +50,7 @@ export const CardContainer = ({
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
                     className={cn(
-                        "flex items-center justify-center relative transition-all duration-200 ease-linear",
+                        "flex items-center justify-center relative",
                         className
                     )}
                     style={{

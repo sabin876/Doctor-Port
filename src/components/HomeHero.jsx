@@ -303,13 +303,12 @@ const HomeHero = () => {
                                         <video
                                             key={videoUrl}
                                             src={videoUrl}
-                                            poster={slide.photo}
                                             autoPlay
                                             loop
                                             muted
                                             playsInline
                                             preload="auto"
-                                            className="w-full h-full object-cover filter contrast-[1.05] brightness-95 drop-shadow-2xl"
+                                            className="w-full h-full object-cover filter contrast-[1.05] brightness-95"
                                         />
                                     )}
                                 </CardItem>

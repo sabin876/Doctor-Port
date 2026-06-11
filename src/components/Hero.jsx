@@ -190,7 +190,6 @@ const Hero = () => {
                                             <video
                                                 key={videoUrl}
                                                 src={videoUrl}
-                                                poster={doctorImg}
                                                 autoPlay
                                                 loop
                                                 muted
