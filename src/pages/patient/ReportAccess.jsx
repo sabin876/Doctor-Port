@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ShieldCheck, Mail, KeyRound, AlertCircle, ArrowRight, Download, User, Calendar, FileText } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { verifyOTP } from '../../lib/reportApi';
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://api.drulhasorthopedic.com';
 
 // ─── Helpers ──────────────────────────────────────────────────────────
 const OTP_LENGTH = 6;
@@ -16,44 +17,94 @@ const formatDate = (dateStr) => {
 };
 
 // ─── ReportCard Component ─────────────────────────────────────────────
-const ReportCard = ({ report }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    className="bg-white rounded-[2rem] shadow-xl border border-slate-100 overflow-hidden w-full max-w-md"
-  >
-    <div className="bg-gradient-to-r from-blue-600 to-sky-500 p-7 text-white">
-      <h2 className="text-xl font-black">Report Details</h2>
-    </div>
-    <div className="p-7 space-y-6">
-      <div className="grid grid-cols-2 gap-4 bg-slate-50 p-4 rounded-xl">
-        <div>
-          <p className="text-[10px] uppercase font-bold text-slate-400">Doctor</p>
-          <p className="text-sm font-bold text-slate-800">{report.doctor_name}</p>
-        </div>
-        <div>
-          <p className="text-[10px] uppercase font-bold text-slate-400">Date</p>
-          <p className="text-sm font-bold text-slate-800">{formatDate(report.created_at)}</p>
-        </div>
-      </div>
-      <div>
-        <p className="text-[10px] uppercase font-bold text-slate-400 mb-2">Diagnosis & Notes</p>
-        <div className="bg-slate-50 p-4 rounded-xl text-sm text-slate-700 whitespace-pre-wrap">{report.content}</div>
-      </div>
-      {report.report_file && (
-        <a 
-          href={report.report_file} 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className="flex items-center justify-center gap-2 w-full py-4 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700 transition-all"
-        >
-          <Download className="w-5 h-5" /> Download Report
-        </a>
-      )}
-    </div>
-  </motion.div>
-);
+// const ReportCard = ({ report }) => (
+  
+//   const fileUrl = report.report_file ? (report.report_file.startsWith('http') ? report.report_file : `${BASE_URL}${report.report_file}`): null;
+ 
+//   <motion.div
+//     initial={{ opacity: 0, y: 20 }}
+//     animate={{ opacity: 1, y: 0 }}
+//     className="bg-white rounded-[2rem] shadow-xl border border-slate-100 overflow-hidden w-full max-w-md"
+//   >
+//     <div className="bg-gradient-to-r from-blue-600 to-sky-500 p-7 text-white">
+//       <h2 className="text-xl font-black">Report Details</h2>
+//     </div>
+//     <div className="p-7 space-y-6">
+//       <div className="grid grid-cols-2 gap-4 bg-slate-50 p-4 rounded-xl">
+//         <div>
+//           <p className="text-[10px] uppercase font-bold text-slate-400">Doctor</p>
+//           <p className="text-sm font-bold text-slate-800">{report.doctor_name}</p>
+//         </div>
+//         <div>
+//           <p className="text-[10px] uppercase font-bold text-slate-400">Date</p>
+//           <p className="text-sm font-bold text-slate-800">{formatDate(report.created_at)}</p>
+//         </div>
+//       </div>
+//       <div>
+//         <p className="text-[10px] uppercase font-bold text-slate-400 mb-2">Diagnosis & Notes</p>
+//         <div className="bg-slate-50 p-4 rounded-xl text-sm text-slate-700 whitespace-pre-wrap">{report.content}</div>
+//       </div>
+//       {report.report_file && (
+//         <a 
+//           href={report.report_file} 
+//           target="_blank" 
+//           rel="noopener noreferrer" 
+//           className="flex items-center justify-center gap-2 w-full py-4 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700 transition-all"
+//         >
+//           <Download className="w-5 h-5" /> Download Report
+//         </a>
+//       )}
+//     </div>
+//   </motion.div>
+// );
 
+// ─── ReportCard Component ─────────────────────────────────────────────
+const ReportCard = ({ report }) => {
+  // 1. Move your URL calculation here, above the return
+  const fileUrl = report.report_file 
+    ? (report.report_file.startsWith('http') ? report.report_file : `${BASE_URL}${report.report_file}`) 
+    : null;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="bg-white rounded-[2rem] shadow-xl border border-slate-100 overflow-hidden w-full max-w-md"
+    >
+      <div className="bg-gradient-to-r from-blue-600 to-sky-500 p-7 text-white">
+        <h2 className="text-xl font-black">Report Details</h2>
+      </div>
+      <div className="p-7 space-y-6">
+        <div className="grid grid-cols-2 gap-4 bg-slate-50 p-4 rounded-xl">
+          <div>
+            <p className="text-[10px] uppercase font-bold text-slate-400">Doctor</p>
+            <p className="text-sm font-bold text-slate-800">{report.doctor_name || 'N/A'}</p>
+          </div>
+          <div>
+            <p className="text-[10px] uppercase font-bold text-slate-400">Date</p>
+            <p className="text-sm font-bold text-slate-800">{formatDate(report.created_at)}</p>
+          </div>
+        </div>
+        <div>
+          <p className="text-[10px] uppercase font-bold text-slate-400 mb-2">Diagnosis & Notes</p>
+          <div className="bg-slate-50 p-4 rounded-xl text-sm text-slate-700 whitespace-pre-wrap">{report.content}</div>
+        </div>
+        
+        {/* 2. Use the newly calculated 'fileUrl' variable here */}
+        {fileUrl && (
+          <a 
+            href={fileUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="flex items-center justify-center gap-2 w-full py-4 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700 transition-all"
+          >
+            <Download className="w-5 h-5" /> Download Report
+          </a>
+        )}
+      </div>
+    </motion.div>
+  );
+};
 // ─── Main Page Component ──────────────────────────────────────────────
 const ReportAccess = () => {
   const [searchParams] = useSearchParams();
