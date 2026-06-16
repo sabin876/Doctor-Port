@@ -37,7 +37,7 @@ const ReportView = () => {
         }
 
         const data = await api.getReport(email, reportId);
-        setReport(data);
+        setReport(data.report);
       } catch (err) {
         if (err.status === 403) {
           setErrorState('not_verified');

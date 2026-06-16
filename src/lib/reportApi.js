@@ -46,11 +46,12 @@ export const sendOTP = (reportId, email) =>
  *
  * Returns: { token, report: { id, doctor, patient_email, content, created_at, pdf, file } }
  */
-export const verifyOTP = (email, otp, token = null) => {
-  const payload = { email, otp };
-  if (token) payload.token = token;
-  data=client.post('/api/verify-otp/', payload).then((r) => r.data);
-  console.log(data)
+export const verifyOTP = async (email, otp) => {
+  const res = await client.post('/api/verify-otp/', {
+    email,
+    otp,
+  });
+  return res.data;
 };
 
 export const downloadFile = async (fileUrl) => {
