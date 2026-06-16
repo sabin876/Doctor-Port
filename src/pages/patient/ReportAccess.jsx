@@ -59,11 +59,14 @@ const formatDate = (dateStr) => {
 // );
 
 // ─── ReportCard Component ─────────────────────────────────────────────
+// ─── ReportCard Component ─────────────────────────────────────────────
 const ReportCard = ({ report }) => {
-  // 1. Move your URL calculation here, above the return
   const fileUrl = report.report_file 
     ? (report.report_file.startsWith('http') ? report.report_file : `${BASE_URL}${report.report_file}`) 
     : null;
+
+  const isImage = fileUrl && /\.(jpeg|jpg|gif|png|webp)$/i.test(fileUrl);
+  const isPdf = fileUrl && /\.pdf$/i.test(fileUrl);
 
   return (
     <motion.div
@@ -71,35 +74,47 @@ const ReportCard = ({ report }) => {
       animate={{ opacity: 1, y: 0 }}
       className="bg-white rounded-[2rem] shadow-xl border border-slate-100 overflow-hidden w-full max-w-md"
     >
-      <div className="bg-gradient-to-r from-blue-600 to-sky-500 p-7 text-white">
-        <h2 className="text-xl font-black">Report Details</h2>
-      </div>
+      {/* ... header and meta info ... */}
+
       <div className="p-7 space-y-6">
-        <div className="grid grid-cols-2 gap-4 bg-slate-50 p-4 rounded-xl">
-          <div>
-            <p className="text-[10px] uppercase font-bold text-slate-400">Doctor</p>
-            <p className="text-sm font-bold text-slate-800">{report.doctor_name || 'N/A'}</p>
-          </div>
-          <div>
-            <p className="text-[10px] uppercase font-bold text-slate-400">Date</p>
-            <p className="text-sm font-bold text-slate-800">{formatDate(report.created_at)}</p>
-          </div>
-        </div>
-        <div>
-          <p className="text-[10px] uppercase font-bold text-slate-400 mb-2">Diagnosis & Notes</p>
-          <div className="bg-slate-50 p-4 rounded-xl text-sm text-slate-700 whitespace-pre-wrap">{report.content}</div>
-        </div>
-        
-        {/* 2. Use the newly calculated 'fileUrl' variable here */}
+        {/* ... Diagnosis section ... */}
+
         {fileUrl && (
-          <a 
-            href={fileUrl} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="flex items-center justify-center gap-2 w-full py-4 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700 transition-all"
-          >
-            <Download className="w-5 h-5" /> Download Report
-          </a>
+          <div className="space-y-3">
+            {/* 1. View Image Directly in UI */}
+            {isImage && (
+              <div className="rounded-xl overflow-hidden border border-slate-200">
+                <img src={fileUrl} alt="Report" className="w-full h-auto" />
+              </div>
+            )}
+
+            {/* 2. PDF Viewer (Embedded) */}
+            {isPdf && (
+              <div className="w-full h-64 border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+                <iframe src={fileUrl} title="PDF Preview" className="w-full h-full" />
+              </div>
+            )}
+
+            <div className="flex gap-2">
+              {/* View in new tab button */}
+              <a 
+                href={fileUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex-1 flex items-center justify-center gap-2 py-3 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition-all"
+              >
+                View Fullscreen
+              </a>
+              {/* Direct download button */}
+              <a 
+                href={fileUrl} 
+                download
+                className="flex-1 flex items-center justify-center gap-2 py-3 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700 transition-all"
+              >
+                <Download className="w-4 h-4" /> Download
+              </a>
+            </div>
+          </div>
         )}
       </div>
     </motion.div>
