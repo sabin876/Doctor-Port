@@ -54,9 +54,5 @@ export const verifyOTP = async (email, otp) => {
   return res.data;
 };
 
-export const downloadFile = async (fileUrl) => {
-  const response = await client.get(fileUrl, { responseType: 'blob' });
-  return URL.createObjectURL(response.data);
-};
    
 export default client;

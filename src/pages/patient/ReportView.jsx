@@ -227,10 +227,10 @@ const ReportView = () => {
           </div>
 
           {/* PDF Download Button (If pdf field is present in report data) */}
-          {report.pdf && (
+          {report.report_file && (
             <div className="pt-2">
               <a
-                href={report.pdf}
+                href={report.report_file}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full flex items-center justify-center gap-2.5 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl font-bold shadow-[0_12px_24px_-6px_rgba(16,185,129,0.3)] transition-all"
