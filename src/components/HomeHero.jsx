@@ -297,19 +297,22 @@ const HomeHero = () => {
                                 {/* Doctor Video */}
                                 <CardItem
                                     translateZ={40}
-                                    className="absolute inset-0 w-full h-full overflow-hidden rounded-[2.5rem]"
+                                    className="absolute inset-0 w-full h-full overflow-hidden rounded-[2.5rem] transform-gpu"
+                                    style={{ backfaceVisibility: 'hidden' }}
                                 >
                                     {videoUrl && (
                                         <video
                                             key={videoUrl}
-                                            src={videoUrl}
                                             autoPlay
                                             loop
                                             muted
                                             playsInline
                                             preload="auto"
-                                            className="w-full h-full object-cover filter contrast-[1.05] brightness-95"
-                                        />
+                                            className="w-full h-full object-cover transform-gpu"
+                                            style={{ backfaceVisibility: 'hidden', willChange: 'transform' }}
+                                        >
+                                            <source src={videoUrl} type="video/mp4" />
+                                        </video>
                                     )}
                                 </CardItem>
 

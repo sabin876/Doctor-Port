@@ -1,9 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShieldCheck, Mail, KeyRound, AlertCircle, ArrowRight, Download, User, Calendar, FileText } from 'lucide-react';
+import { ShieldCheck, Mail, AlertCircle, Download, Send } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
-import { verifyOTP } from '../../lib/reportApi';
+import { verifyOTP, sendOTP } from '../../lib/reportApi';
+
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://api.drulhasorthopedic.com';
 
 // ─── Helpers ──────────────────────────────────────────────────────────
@@ -16,49 +17,6 @@ const formatDate = (dateStr) => {
   });
 };
 
-// ─── ReportCard Component ─────────────────────────────────────────────
-// const ReportCard = ({ report }) => (
-  
-//   const fileUrl = report.report_file ? (report.report_file.startsWith('http') ? report.report_file : `${BASE_URL}${report.report_file}`): null;
- 
-//   <motion.div
-//     initial={{ opacity: 0, y: 20 }}
-//     animate={{ opacity: 1, y: 0 }}
-//     className="bg-white rounded-[2rem] shadow-xl border border-slate-100 overflow-hidden w-full max-w-md"
-//   >
-//     <div className="bg-gradient-to-r from-blue-600 to-sky-500 p-7 text-white">
-//       <h2 className="text-xl font-black">Report Details</h2>
-//     </div>
-//     <div className="p-7 space-y-6">
-//       <div className="grid grid-cols-2 gap-4 bg-slate-50 p-4 rounded-xl">
-//         <div>
-//           <p className="text-[10px] uppercase font-bold text-slate-400">Doctor</p>
-//           <p className="text-sm font-bold text-slate-800">{report.doctor_name}</p>
-//         </div>
-//         <div>
-//           <p className="text-[10px] uppercase font-bold text-slate-400">Date</p>
-//           <p className="text-sm font-bold text-slate-800">{formatDate(report.created_at)}</p>
-//         </div>
-//       </div>
-//       <div>
-//         <p className="text-[10px] uppercase font-bold text-slate-400 mb-2">Diagnosis & Notes</p>
-//         <div className="bg-slate-50 p-4 rounded-xl text-sm text-slate-700 whitespace-pre-wrap">{report.content}</div>
-//       </div>
-//       {report.report_file && (
-//         <a 
-//           href={report.report_file} 
-//           target="_blank" 
-//           rel="noopener noreferrer" 
-//           className="flex items-center justify-center gap-2 w-full py-4 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700 transition-all"
-//         >
-//           <Download className="w-5 h-5" /> Download Report
-//         </a>
-//       )}
-//     </div>
-//   </motion.div>
-// );
-
-// ─── ReportCard Component ─────────────────────────────────────────────
 // ─── ReportCard Component ─────────────────────────────────────────────
 const ReportCard = ({ report }) => {
   const fileUrl = report.report_file 
@@ -74,13 +32,28 @@ const ReportCard = ({ report }) => {
       animate={{ opacity: 1, y: 0 }}
       className="bg-white rounded-[2rem] shadow-xl border border-slate-100 overflow-hidden w-full max-w-md"
     >
-      {/* ... header and meta info ... */}
-
+      <div className="bg-gradient-to-r from-blue-600 to-sky-500 p-7 text-white">
+        <h2 className="text-xl font-black font-poppins">Report Details</h2>
+      </div>
       <div className="p-7 space-y-6">
-        {/* ... Diagnosis section ... */}
+        <div className="grid grid-cols-2 gap-4 bg-slate-50 p-4 rounded-xl">
+          <div>
+            <p className="text-[10px] uppercase font-bold text-slate-400">Doctor</p>
+            <p className="text-sm font-bold text-slate-800">{report.doctor_name}</p>
+          </div>
+          <div>
+            <p className="text-[10px] uppercase font-bold text-slate-400">Date</p>
+            <p className="text-sm font-bold text-slate-800">{formatDate(report.created_at)}</p>
+          </div>
+        </div>
+
+        <div>
+          <p className="text-[10px] uppercase font-bold text-slate-400 mb-2">Diagnosis & Notes</p>
+          <div className="bg-slate-50 p-4 rounded-xl text-sm text-slate-700 whitespace-pre-wrap">{report.content}</div>
+        </div>
 
         {fileUrl && (
-          <div className="space-y-3">
+          <div className="space-y-3 pt-2">
             {/* 1. View Image Directly in UI */}
             {isImage && (
               <div className="rounded-xl overflow-hidden border border-slate-200">
@@ -101,7 +74,7 @@ const ReportCard = ({ report }) => {
                 href={fileUrl} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="flex-1 flex items-center justify-center gap-2 py-3 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition-all"
+                className="flex-1 flex items-center justify-center gap-2 py-3 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition-all text-sm"
               >
                 View Fullscreen
               </a>
@@ -109,7 +82,7 @@ const ReportCard = ({ report }) => {
               <a 
                 href={fileUrl} 
                 download
-                className="flex-1 flex items-center justify-center gap-2 py-3 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700 transition-all"
+                className="flex-1 flex items-center justify-center gap-2 py-3 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700 transition-all text-sm"
               >
                 <Download className="w-4 h-4" /> Download
               </a>
@@ -120,6 +93,7 @@ const ReportCard = ({ report }) => {
     </motion.div>
   );
 };
+
 // ─── Main Page Component ──────────────────────────────────────────────
 const ReportAccess = () => {
   const [searchParams] = useSearchParams();
@@ -128,7 +102,58 @@ const ReportAccess = () => {
   const [status, setStatus] = useState('idle'); // 'idle' | 'loading' | 'success'
   const [errorMsg, setErrorMsg] = useState('');
   const [report, setReport] = useState(null);
+  const [otpSent, setOtpSent] = useState(false);
+  const [resendCooldown, setResendCooldown] = useState(0);
+  const [sendLoading, setSendLoading] = useState(false);
   const inputRefs = useRef([]);
+
+  useEffect(() => {
+    let timer;
+    if (resendCooldown > 0) {
+      timer = setTimeout(() => setResendCooldown(resendCooldown - 1), 1000);
+    }
+    return () => clearTimeout(timer);
+  }, [resendCooldown]);
+
+  const handleSendOTP = async () => {
+    if (!email.includes('@')) {
+      setErrorMsg('Please enter a valid email address.');
+      return;
+    }
+    setSendLoading(true);
+    setErrorMsg('');
+    try {
+      await sendOTP(null, email.trim());
+      setOtpSent(true);
+      setResendCooldown(60);
+      setErrorMsg('');
+    } catch (err) {
+      setErrorMsg(err?.detail || 'Failed to send OTP. Please check your email or try again.');
+    } finally {
+      setSendLoading(false);
+    }
+  };
+
+  const handleKeyDown = (e, index) => {
+    if (e.key === 'Backspace') {
+      if (!digits[index] && index > 0) {
+        inputRefs.current[index - 1].focus();
+        const next = [...digits];
+        next[index - 1] = '';
+        setDigits(next);
+      }
+    }
+  };
+
+  const handlePaste = (e) => {
+    e.preventDefault();
+    const pastedData = e.clipboardData.getData('text').trim();
+    if (/^\d{6}$/.test(pastedData)) {
+      const next = pastedData.split('');
+      setDigits(next);
+      inputRefs.current[OTP_LENGTH - 1].focus();
+    }
+  };
 
   const handleVerify = async (otpValue = digits.join('')) => {
     if (otpValue.length < OTP_LENGTH) return setErrorMsg('Please enter the full 6-digit code.');
@@ -139,13 +164,12 @@ const ReportAccess = () => {
 
     try {
       const data = await verifyOTP(email.trim(), otpValue);
-      // The API returns { detail, report: {...} }
       setReport(data.report);
       setStatus('success');
     } catch (err) {
       setErrorMsg(err?.detail || 'Invalid OTP. Please try again.');
       setStatus('idle');
-      setDigits(Array(OTP_LENGTH).fill('')); // Clear inputs on error
+      setDigits(Array(OTP_LENGTH).fill(''));
     }
   };
 
@@ -167,44 +191,91 @@ const ReportAccess = () => {
                 <ShieldCheck className="w-8 h-8" />
               </div>
               <h1 className="text-2xl font-black text-slate-800">Verify Identity</h1>
-              <p className="text-slate-500 text-sm mt-2">Enter your email and the 6-digit code.</p>
+              <p className="text-slate-500 text-sm mt-2">Enter your email and request/verify the 6-digit code.</p>
             </div>
 
-            <div className="space-y-4">
-              <input 
-                type="email" 
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="w-full p-4 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 font-medium"
-              />
-              
-              <div className="flex gap-2 justify-center">
-                {digits.map((digit, i) => (
-                  <input
-                    key={i}
-                    ref={(el) => (inputRefs.current[i] = el)}
-                    type="text"
-                    maxLength={1}
-                    value={digit}
-                    onChange={(e) => {
-                      const val = e.target.value.replace(/\D/g, '');
-                      const next = [...digits];
-                      next[i] = val;
-                      setDigits(next);
-                      if (val && i < OTP_LENGTH - 1) inputRefs.current[i + 1].focus();
-                    }}
-                    className="w-12 h-14 text-center text-xl font-black border-2 border-slate-200 rounded-xl focus:border-blue-500 outline-none"
-                  />
-                ))}
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block">Email Address</label>
+                <div className="flex gap-2">
+                  <div className="relative flex-1">
+                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                    <input 
+                      type="email" 
+                      value={email} 
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="patient@example.com"
+                      className="w-full pl-12 pr-4 py-4 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 font-medium transition-all"
+                    />
+                  </div>
+                  <button
+                    onClick={handleSendOTP}
+                    disabled={sendLoading || resendCooldown > 0}
+                    className="px-5 bg-blue-50 hover:bg-blue-100 disabled:bg-slate-50 text-blue-600 disabled:text-slate-400 rounded-xl font-bold transition-all border border-blue-100 disabled:border-slate-100 flex items-center justify-center gap-2 text-sm whitespace-nowrap min-w-[120px]"
+                  >
+                    {sendLoading ? (
+                      <svg className="animate-spin h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                    ) : resendCooldown > 0 ? (
+                      `Resend ${resendCooldown}s`
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4" /> Send OTP
+                      </>
+                    )}
+                  </button>
+                </div>
+                {otpSent && (
+                  <p className="text-emerald-600 text-xs font-semibold flex items-center gap-1.5 mt-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    OTP sent to your email!
+                  </p>
+                )}
               </div>
 
-              {errorMsg && <p className="text-red-500 text-sm text-center font-medium">{errorMsg}</p>}
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block text-center">Enter 6-Digit Code</label>
+                <div className="flex gap-2 justify-center">
+                  {digits.map((digit, i) => (
+                    <input
+                      key={i}
+                      ref={(el) => (inputRefs.current[i] = el)}
+                      type="text"
+                      maxLength={1}
+                      value={digit}
+                      onKeyDown={(e) => handleKeyDown(e, i)}
+                      onPaste={handlePaste}
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/\D/g, '');
+                        if (!val && digits[i]) {
+                          return;
+                        }
+                        const next = [...digits];
+                        next[i] = val.slice(-1);
+                        setDigits(next);
+                        if (val && i < OTP_LENGTH - 1) {
+                          inputRefs.current[i + 1].focus();
+                        }
+                      }}
+                      className="w-12 h-14 text-center text-xl font-black border-2 border-slate-200 rounded-xl focus:border-blue-500 outline-none transition-all"
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {errorMsg && (
+                <div className="p-3 bg-red-50 text-red-500 text-sm rounded-xl font-medium flex items-center gap-2 justify-center border border-red-100">
+                  <AlertCircle className="w-4 h-4 shrink-0" />
+                  <span>{errorMsg}</span>
+                </div>
+              )}
 
               <button 
                 onClick={() => handleVerify()}
                 disabled={status === 'loading'}
-                className="w-full py-4 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition-all disabled:opacity-50"
+                className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all disabled:opacity-50 shadow-md shadow-blue-200"
               >
                 {status === 'loading' ? 'Verifying...' : 'Unlock Report'}
               </button>
