@@ -3,7 +3,7 @@ import { useLanguage } from '../context/LanguageContext';
 
 const TopBar = () => {
     const { t } = useLanguage();
-    const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+971556319379";
+    const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+91 90492 00041";
     const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || "Kneeshoulderhip@gmail.com";
 
     return (
