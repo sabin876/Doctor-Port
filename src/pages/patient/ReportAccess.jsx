@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ShieldCheck, Mail, AlertCircle, Download, Send } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { verifyOTP, sendOTP } from '../../lib/reportApi';
+import logoImg from '../../assets/logo.webp';
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://api.drulhasorthopedic.com';
 
@@ -187,8 +188,8 @@ const ReportAccess = () => {
             className="bg-white p-8 rounded-3xl shadow-lg border border-slate-100 w-full max-w-md"
           >
             <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-blue-50 text-blue-600 flex items-center justify-center rounded-2xl mx-auto mb-4">
-                <ShieldCheck className="w-8 h-8" />
+              <div className="w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                <img src={logoImg} alt="Doctor Logo" className="w-full h-full object-contain drop-shadow-sm" />
               </div>
               <h1 className="text-2xl font-black text-slate-800">Verify Identity</h1>
               <p className="text-slate-500 text-sm mt-2">Enter your email and request/verify the 6-digit code.</p>
@@ -204,29 +205,29 @@ const ReportAccess = () => {
                       type="email" 
                       value={email} 
                       onChange={(e) => setEmail(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          handleSendOTP();
+                        }
+                      }}
+                      disabled={sendLoading || resendCooldown > 0}
                       placeholder="patient@example.com"
-                      className="w-full pl-12 pr-4 py-4 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 font-medium transition-all"
+                      className="w-full pl-12 pr-4 py-4 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 font-medium transition-all disabled:opacity-70"
                     />
-                  </div>
-                  <button
-                    onClick={handleSendOTP}
-                    disabled={sendLoading || resendCooldown > 0}
-                    className="px-5 bg-blue-50 hover:bg-blue-100 disabled:bg-slate-50 text-blue-600 disabled:text-slate-400 rounded-xl font-bold transition-all border border-blue-100 disabled:border-slate-100 flex items-center justify-center gap-2 text-sm whitespace-nowrap min-w-[120px]"
-                  >
-                    {sendLoading ? (
-                      <svg className="animate-spin h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                    ) : resendCooldown > 0 ? (
-                      `Resend ${resendCooldown}s`
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4" /> Send OTP
-                      </>
+                    {sendLoading && (
+                      <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                        <svg className="animate-spin h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                      </div>
                     )}
-                  </button>
+                  </div>
                 </div>
+                {!otpSent && !sendLoading && resendCooldown === 0 && (
+                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest text-center mt-2">Press Enter to receive code</p>
+                )}
                 {otpSent && (
                   <p className="text-emerald-600 text-xs font-semibold flex items-center gap-1.5 mt-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
