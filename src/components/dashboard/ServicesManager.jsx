@@ -352,8 +352,7 @@ const ServicesManager = () => {
                 onClick={() => handleOpenEdit(null)}
                 className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-primary-600 text-white rounded-xl font-medium text-sm shadow-md hover:bg-primary-700 active:scale-95 transition-all w-full sm:w-auto"
               >
-                <Plus size={18} />
-                Create Service
+                Add Services
               </button>
             </div>
 
