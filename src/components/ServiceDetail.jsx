@@ -687,6 +687,9 @@ const ServiceDetail = () => {
                     </motion.div>
                 )}
 
+                {/* Custom Highlight Section */}
+                {rawService?.highlight_title && <WhyChooseRoboticKnee service={rawService} />}
+
                 {/* CTA Banner - Dynamic Booking Card */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -809,6 +812,91 @@ const ServiceFAQSection = ({ serviceSlug, customFaqs, serviceTitle }) => {
                         </div>
                     );
                 })}
+            </div>
+        </div>
+    );
+};
+
+const WhyChooseRoboticKnee = ({ service }) => {
+    return (
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-24 mt-16 text-start">
+            <div className="lg:col-span-7 space-y-8">
+                <div>
+                    {service.highlight_badge && (
+                        <span className="inline-flex items-center gap-1.5 px-4 py-1.5 mb-4 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-[10px] font-normal uppercase tracking-[0.2em]">
+                            {service.highlight_badge}
+                        </span>
+                    )}
+                    <h2 className="text-3xl md:text-5xl font-normal text-primary-950 tracking-tighter leading-[1.05] mb-4">
+                        {service.highlight_title}
+                    </h2>
+                    {service.highlight_description && (
+                        <div 
+                            className="text-gray-500 text-sm md:text-base leading-relaxed prose prose-slate max-w-none [&>p]:mb-3"
+                            dangerouslySetInnerHTML={{ __html: service.highlight_description }}
+                        />
+                    )}
+                </div>
+                
+                {service.highlight_checklist_items && service.highlight_checklist_items.length > 0 && (
+                    <div className="bg-white border border-gray-100 rounded-[2.5rem] p-8 md:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.02)]">
+                        {service.highlight_checklist_title && (
+                            <h3 className="text-2xl font-semibold text-primary-950 tracking-tight mb-6">
+                                {service.highlight_checklist_title}
+                            </h3>
+                        )}
+                        <div className="grid sm:grid-cols-2 gap-x-6 gap-y-4">
+                            {service.highlight_checklist_items.map((item, i) => (
+                                <div key={i} className="flex items-start gap-3">
+                                    <div className="w-5 h-5 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                                    </div>
+                                    <span className="text-gray-600 text-sm md:text-base leading-snug">{item}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
+            
+            <div className="lg:col-span-5 flex flex-col gap-6 w-full">
+                <div className="bg-white border border-gray-100 rounded-[2.5rem] shadow-[0_8px_30px_rgba(0,0,0,0.02)] overflow-hidden relative flex flex-col">
+                    <div className="h-32 bg-primary-50 relative"></div>
+                    <div className="px-8 pb-10 relative -mt-16 text-center flex-grow flex flex-col">
+                        <div className="w-32 h-32 mx-auto rounded-full border-4 border-white shadow-sm overflow-hidden bg-white mb-6">
+                            <img 
+                                src={service.highlight_doctor_image || "/images/doctor-photo.webp"} 
+                                alt={service.highlight_doctor_name || "Doctor"} 
+                                onError={(e) => {
+                                    e.target.onerror = null; 
+                                    e.target.src = "https://ui-avatars.com/api/?name=" + encodeURIComponent(service.highlight_doctor_name || "Doctor") + "&background=0D8ABC&color=fff&size=200";
+                                }}
+                                className="w-full h-full object-cover bg-white"
+                            />
+                        </div>
+                        {service.highlight_doctor_name && (
+                            <h3 className="text-2xl font-semibold text-primary-950 tracking-tight mb-1">{service.highlight_doctor_name}</h3>
+                        )}
+                        {service.highlight_doctor_role && (
+                            <p className="text-primary-600 font-medium text-sm mb-6">{service.highlight_doctor_role}</p>
+                        )}
+                        
+                        {service.highlight_doctor_badges && service.highlight_doctor_badges.length > 0 && (
+                            <div className="flex justify-center gap-2 mb-6 flex-wrap">
+                                {service.highlight_doctor_badges.map((badge, i) => (
+                                    <span key={i} className="px-3 py-1 rounded-full bg-gray-50 border border-gray-100 text-gray-600 text-[10px] font-normal uppercase tracking-[0.1em]">{badge}</span>
+                                ))}
+                            </div>
+                        )}
+                        
+                        {service.highlight_doctor_description && (
+                            <div 
+                                className="text-gray-500 text-sm md:text-base leading-relaxed text-center prose prose-slate max-w-none [&>p]:mb-3"
+                                dangerouslySetInnerHTML={{ __html: service.highlight_doctor_description }}
+                            />
+                        )}
+                    </div>
+                </div>
             </div>
         </div>
     );
