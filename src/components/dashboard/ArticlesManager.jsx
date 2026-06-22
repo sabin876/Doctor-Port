@@ -318,7 +318,7 @@ const ArticlesManager = () => {
                   onClick={() => handleOpenEdit(null)}
                   className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-bold text-xs uppercase tracking-wider cursor-pointer shadow-sm transition-all"
                 >
-                  <Plus size={14} /> Add New
+                  Add Article
                 </button>
                 <button
                   onClick={() => alert("Bulk SEO Editor Comming Soon!")}
