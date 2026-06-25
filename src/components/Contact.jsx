@@ -10,7 +10,7 @@ const Contact = () => {
     const { language, t } = useLanguage();
     const isRtl = language === 'AR';
     const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+971556319379";
-    const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || "Kneeshoulderhip@gmail.com";
+    const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || "appointment@drulhasorthopedic.com";
 
     // Form states
     const [contactData, setContactData] = useState({

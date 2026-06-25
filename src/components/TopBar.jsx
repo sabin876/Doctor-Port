@@ -4,7 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 const TopBar = () => {
     const { t } = useLanguage();
     const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+91 90492 00041";
-    const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || "Kneeshoulderhip@gmail.com";
+    const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || "appointment@drulhasorthopedic.com";
 
     return (
         <div className="bg-[#1282b2] text-white py-2 px-4 sm:px-6 lg:px-8 relative z-[60] border-b border-white/10 shadow-sm">
