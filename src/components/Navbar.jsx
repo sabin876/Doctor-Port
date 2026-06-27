@@ -142,7 +142,7 @@ const Navbar = () => {
                                         className="flex items-center gap-1 text-[16px] font-bold leading-[46px] text-[rgba(0,0,0,0.88)] transition-all duration-300 hover:text-primary-600 relative group py-2"
                                     >
                                         {t(`nav.${link.id}`)}
-                                        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${isServicesOpen ? 'rotate-180 text-primary-600' : 'text-gray-400'}`} />
+                                        <ChevronDown strokeWidth={2.5} className={`w-4 h-4 transition-transform duration-300 ${isServicesOpen ? 'rotate-180 text-primary-600' : 'text-gray-400'}`} />
                                         <span className={`absolute -bottom-1 ${isRtl ? 'end-0' : 'start-0'} w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover/services:w-full`}></span>
                                     </RouterLink>
 
@@ -152,19 +152,45 @@ const Navbar = () => {
                                                 initial={{ opacity: 0, y: 15, scale: 0.95 }}
                                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                                 exit={{ opacity: 0, y: 15, scale: 0.95 }}
-                                                className={`absolute ${isRtl ? 'end-0' : 'start-0'} mt-3 w-64 bg-white border border-gray-100 rounded-2xl shadow-premium-hover overflow-hidden z-50 p-2`}
+                                                className={`absolute ${isRtl ? 'end-0' : 'start-0'} mt-3 w-64 bg-white border border-gray-100 rounded-2xl shadow-premium-hover z-50 p-2`}
                                             >
-                                                {dynamicServices.map((service) => (
-                                                    <RouterLink
-                                                        key={service.slug}
-                                                        to={`/services/${service.slug}`}
-                                                        onClick={() => setIsOpen(false)}
-                                                        className="flex items-center justify-between w-full px-4 py-3 text-[14px] font-normal text-[rgba(0,0,0,0.88)] rounded-xl transition-all duration-200 hover:bg-primary-50 hover:text-primary-600 hover:pl-5 group/item"
-                                                    >
-                                                        <span>{service.title}</span>
-                                                        <ChevronDown className={`w-3 h-3 ${isRtl ? 'rotate-90' : '-rotate-90'} opacity-0 group-hover/item:opacity-100 transition-all`} />
-                                                    </RouterLink>
-                                                ))}
+                                                {dynamicServices.map((service) => {
+                                                    const subServices = (service.sub_services && service.sub_services.length > 0) 
+                                                        ? service.sub_services 
+                                                        : null;
+                                                    
+                                                    return (
+                                                        <div key={service.slug} className="relative group/item">
+                                                            <RouterLink
+                                                                to={`/services/${service.slug}`}
+                                                                onClick={() => !subServices && setIsOpen(false)}
+                                                                className="flex items-center justify-between w-full px-4 py-3 text-[14px] font-normal text-[rgba(0,0,0,0.88)] rounded-xl transition-all duration-200 hover:bg-primary-50 hover:text-primary-600 hover:pl-5"
+                                                            >
+                                                                <span>{service.title}</span>
+                                                                {subServices ? (
+                                                                    <ChevronDown strokeWidth={3} className={`w-4 h-4 text-primary-600 ${isRtl ? 'rotate-90' : '-rotate-90'}`} />
+                                                                ) : (
+                                                                    <ChevronDown className={`w-3 h-3 ${isRtl ? 'rotate-90' : '-rotate-90'} opacity-0 group-hover/item:opacity-100 transition-all`} />
+                                                                )}
+                                                            </RouterLink>
+
+                                                            {subServices && (
+                                                                <div className={`absolute top-0 ${isRtl ? 'right-[95%]' : 'left-[95%]'} hidden group-hover/item:block w-56 bg-white border border-gray-100 rounded-2xl shadow-premium-hover overflow-hidden z-50 p-2 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300`}>
+                                                                    {subServices.map(sub => (
+                                                                        <RouterLink
+                                                                            key={sub.slug}
+                                                                            to={`/services/${sub.slug}`}
+                                                                            onClick={() => setIsOpen(false)}
+                                                                            className="flex items-center justify-between w-full px-4 py-3 text-[14px] font-normal text-[rgba(0,0,0,0.88)] rounded-xl transition-all duration-200 hover:bg-primary-50 hover:text-primary-600 hover:pl-5"
+                                                                        >
+                                                                            {sub.title}
+                                                                        </RouterLink>
+                                                                    ))}
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    );
+                                                })}
                                             </motion.div>
                                         )}
                                     </AnimatePresence>
@@ -307,16 +333,32 @@ const Navbar = () => {
                                                     exit={{ height: 0, opacity: 0 }}
                                                     className="overflow-hidden flex flex-col items-center mt-4 space-y-4 w-full bg-gray-50/50 rounded-2xl py-4"
                                                 >
-                                                    {dynamicServices.map((service) => (
-                                                        <RouterLink
-                                                            key={service.slug}
-                                                            to={`/services/${service.slug}`}
-                                                            onClick={() => setIsOpen(false)}
-                                                            className="text-[14px] font-normal text-[rgba(0,0,0,0.88)] hover:text-primary-600 transition-colors"
-                                                        >
-                                                            {service.title}
-                                                        </RouterLink>
-                                                    ))}
+                                                    {dynamicServices.map((service) => {
+                                                        const subServices = (service.sub_services && service.sub_services.length > 0) 
+                                                            ? service.sub_services 
+                                                            : null;
+                                                        return (
+                                                            <div key={service.slug} className="w-full flex flex-col items-center">
+                                                                <RouterLink
+                                                                    to={`/services/${service.slug}`}
+                                                                    onClick={() => setIsOpen(false)}
+                                                                    className="text-[14px] font-normal text-[rgba(0,0,0,0.88)] hover:text-primary-600 transition-colors py-1.5"
+                                                                >
+                                                                    {service.title}
+                                                                </RouterLink>
+                                                                {subServices && subServices.map(sub => (
+                                                                    <RouterLink
+                                                                        key={sub.slug}
+                                                                        to={`/services/${sub.slug}`}
+                                                                        onClick={() => setIsOpen(false)}
+                                                                        className="text-[13px] font-normal text-gray-500 hover:text-primary-600 transition-colors py-1"
+                                                                    >
+                                                                        — {sub.title}
+                                                                    </RouterLink>
+                                                                ))}
+                                                            </div>
+                                                        );
+                                                    })}
                                                 </motion.div>
                                             )}
                                         </AnimatePresence>
