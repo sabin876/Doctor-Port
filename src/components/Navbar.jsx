@@ -179,7 +179,7 @@ const Navbar = () => {
                                                                     {subServices.map(sub => (
                                                                         <RouterLink
                                                                             key={sub.slug}
-                                                                            to={`/services/${sub.slug}`}
+                                                                            to={`/services/${service.slug}/${sub.slug}`}
                                                                             onClick={() => setIsOpen(false)}
                                                                             className="flex items-center justify-between w-full px-4 py-3 text-[14px] font-normal text-[rgba(0,0,0,0.88)] rounded-xl transition-all duration-200 hover:bg-primary-50 hover:text-primary-600 hover:pl-5"
                                                                         >
@@ -349,7 +349,7 @@ const Navbar = () => {
                                                                 {subServices && subServices.map(sub => (
                                                                     <RouterLink
                                                                         key={sub.slug}
-                                                                        to={`/services/${sub.slug}`}
+                                                                        to={`/services/${service.slug}/${sub.slug}`}
                                                                         onClick={() => setIsOpen(false)}
                                                                         className="text-[13px] font-normal text-gray-500 hover:text-primary-600 transition-colors py-1"
                                                                     >

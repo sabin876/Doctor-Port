@@ -19,6 +19,7 @@ const Contact = React.lazy(() => import('./components/Contact'));
 const PhysiotherapyHomeService = React.lazy(() => import('./components/PhysiotherapyHomeService'));
 const ServicesPage = React.lazy(() => import('./components/ServicesPage'));
 const ServiceDetail = React.lazy(() => import('./components/ServiceDetail'));
+const SubServiceDetail = React.lazy(() => import('./components/SubServiceDetail'));
 const Articles = React.lazy(() => import('./components/Articles'));
 const ArticleDetail = React.lazy(() => import('./components/ArticleDetail'));
 const Gallery = React.lazy(() => import('./components/Gallery'));
@@ -111,6 +112,7 @@ function App() {
                         <Route path="/services/physiotherapy-services" element={<Navigate to="/services/physiotherapy" replace />} />
                         <Route path="/services/Physiotherapy-Services" element={<Navigate to="/services/physiotherapy" replace />} />
                         <Route path="/services/:id" element={<ServiceDetail />} />
+                        <Route path="/services/:parent_slug/:sub_slug" element={<SubServiceDetail />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/blog" element={<Articles />} />
                         <Route path="/blog/:id" element={<ArticleDetail />} />
