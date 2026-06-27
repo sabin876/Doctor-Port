@@ -48,6 +48,7 @@ const ServicesManager = () => {
     conditions: [],
     checklist_items: [],
     tag_badges: [],
+    sub_services: [],
     conditions_title: '',
     checklist_title: ''
   });
@@ -55,6 +56,7 @@ const ServicesManager = () => {
   // Feature item and FAQ inputs
   const [newFeature, setNewFeature] = useState('');
   const [newFaq, setNewFaq] = useState({ question: '', answer: '' });
+  const [newSubService, setNewSubService] = useState({ title: '', slug: '' });
 
   // Custom sections inputs (Conditions, checklist items, tag badges)
   const defaultSpineSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M12 2v20M5 12h14M8 5h8M8 19h8M6 8h12M6 16h12" /></svg>`;
@@ -120,6 +122,7 @@ const ServicesManager = () => {
         conditions: Array.isArray(service.conditions) ? [...service.conditions] : [],
         checklist_items: Array.isArray(service.checklist_items) ? [...service.checklist_items] : [],
         tag_badges: Array.isArray(service.tag_badges) ? [...service.tag_badges] : [],
+        sub_services: Array.isArray(service.sub_services) ? [...service.sub_services] : [],
         conditions_title: service.conditions_title || '',
         checklist_title: service.checklist_title || ''
       });
@@ -138,6 +141,7 @@ const ServicesManager = () => {
         conditions: [],
         checklist_items: [],
         tag_badges: [],
+        sub_services: [],
         conditions_title: '',
         checklist_title: ''
       });
@@ -178,6 +182,29 @@ const ServicesManager = () => {
     setFormData(prev => ({
       ...prev,
       items: prev.items.filter((_, i) => i !== idx)
+    }));
+  };
+
+  const handleAddSubService = () => {
+    if (newSubService.title.trim()) {
+      setFormData(prev => ({
+        ...prev,
+        sub_services: [
+          ...(prev.sub_services || []),
+          {
+            title: newSubService.title.trim(),
+            slug: newSubService.slug.trim() || newSubService.title.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+          }
+        ]
+      }));
+      setNewSubService({ title: '', slug: '' });
+    }
+  };
+
+  const handleRemoveSubService = (idx) => {
+    setFormData(prev => ({
+      ...prev,
+      sub_services: (prev.sub_services || []).filter((_, i) => i !== idx)
     }));
   };
 
@@ -266,6 +293,7 @@ const ServicesManager = () => {
       payload.append('icon', formData.icon);
       payload.append('description', formData.description);
       payload.append('items', JSON.stringify(formData.items));
+      payload.append('sub_services', JSON.stringify(formData.sub_services || []));
       payload.append('faqs', JSON.stringify(formData.faqs));
       payload.append('conditions', JSON.stringify(formData.conditions || []));
       payload.append('checklist_items', JSON.stringify(formData.checklist_items || []));
@@ -777,9 +805,6 @@ const ServicesManager = () => {
                               Choose Photo
                             </label>
                           </div>
-                        </div>
-                      </div>
-                    </div>
                   </motion.div>
                 )}
 
@@ -885,6 +910,7 @@ const ServicesManager = () => {
                           <p className="text-xs text-slate-400 text-center py-4 font-light">No FAQs added yet.</p>
                         )}
                       </div>
+                    </div>
                     </div>
                   </motion.div>
                 )}

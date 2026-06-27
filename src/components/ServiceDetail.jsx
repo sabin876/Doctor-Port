@@ -9,6 +9,7 @@ import Breadcrumbs from './ui/Breadcrumbs';
 import SEO from './SEO';
 import { defaultServiceFaqs } from '../constants/serviceFaqs';
 import CTABanner from './CTABanner';
+import RoboticKneeJourney from './RoboticKneeJourney';
 
 // Import images
 import kneeArthroscopyImg from '../assets/knee-arthroscopy.png';
@@ -506,6 +507,11 @@ const ServiceDetail = () => {
                             ))}
                         </div>
                     </motion.div>
+                )}
+
+                {/* Journey Section (Dynamic from CMS or fallback for fracture-trauma-surgery testing) */}
+                {(rawService?.journey_is_active || id?.toLowerCase() === 'fracture-trauma-surgery') && (
+                    <RoboticKneeJourney service={rawService} />
                 )}
 
                 {/* 2aa. Custom / Dynamic Detailed Service Sections (Beautiful Design) */}

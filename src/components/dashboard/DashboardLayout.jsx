@@ -10,7 +10,8 @@ import {
   Menu,
   X,
   Bell,
-  Search
+  Search,
+  Layers
 } from 'lucide-react';
 
 const DashboardLayout = () => {
