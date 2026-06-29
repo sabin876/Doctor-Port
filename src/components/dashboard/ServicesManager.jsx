@@ -805,6 +805,9 @@ const ServicesManager = () => {
                               Choose Photo
                             </label>
                           </div>
+                        </div>
+                      </div>
+                    </div>
                   </motion.div>
                 )}
 
@@ -910,7 +913,6 @@ const ServicesManager = () => {
                           <p className="text-xs text-slate-400 text-center py-4 font-light">No FAQs added yet.</p>
                         )}
                       </div>
-                    </div>
                     </div>
                   </motion.div>
                 )}
