@@ -6,7 +6,7 @@ import 'dotenv/config';
 
 // Set process.env fallbacks before Vite loads them
 process.env.VITE_CONTACT_PHONE = process.env.VITE_CONTACT_PHONE || "+91 90492 00041";
-process.env.VITE_CONTACT_EMAIL = process.env.VITE_CONTACT_EMAIL || "Kneeshoulderhip@gmail.com";
+process.env.VITE_CONTACT_EMAIL = process.env.VITE_CONTACT_EMAIL || "appointment@drulhasorthopedic.com";
 process.env.VITE_WHATSAPP_NUMBER = process.env.VITE_WHATSAPP_NUMBER || "+971556319379";
 
 // https://vite.dev/config/
@@ -28,7 +28,7 @@ export default defineConfig({
   ],
   define: {
     'import.meta.env.VITE_CONTACT_PHONE': JSON.stringify(process.env.VITE_CONTACT_PHONE || "+91 90492 00041"),
-    'import.meta.env.VITE_CONTACT_EMAIL': JSON.stringify(process.env.VITE_CONTACT_EMAIL || "Kneeshoulderhip@gmail.com"),
+    'import.meta.env.VITE_CONTACT_EMAIL': JSON.stringify(process.env.VITE_CONTACT_EMAIL || "appointment@drulhasorthopedic.com"),
     'import.meta.env.VITE_WHATSAPP_NUMBER': JSON.stringify(process.env.VITE_WHATSAPP_NUMBER || "+971556319379"),
   },
   server: {

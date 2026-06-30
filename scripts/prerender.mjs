@@ -21,6 +21,7 @@ app.use(express.static(DIST_DIR));
 const server = app.listen(PORT, async () => {
   console.log(`\n🚀 Static server started at http://localhost:${PORT}`);
   
+  let browser;
   try {
     // 1. Read the sitemap to know which routes to crawl
     const sitemapPath = path.join(DIST_DIR, 'sitemap.xml');
@@ -50,7 +51,7 @@ const server = app.listen(PORT, async () => {
     console.log(`Found ${routes.length} routes to pre-render.`);
     
     // 2. Launch headless browser
-    const browser = await puppeteer.launch({ 
+    browser = await puppeteer.launch({ 
       headless: 'new',
       channel: 'chrome' // Use system Chrome to avoid cache path issues on Windows
     });
@@ -58,11 +59,12 @@ const server = app.listen(PORT, async () => {
     
     // 3. Crawl each route
     for (const route of routes) {
-      const url = `http://localhost:${PORT}${route}`;
+      const url = `http://127.0.0.1:${PORT}${route}`;
       console.log(`Rendering: ${route}...`);
       
-      // Wait until network is idle to ensure React has fully mounted and fetched data
-      await page.goto(url, { waitUntil: 'networkidle0' });
+      // Wait for DOM content to load and then wait 3 seconds for React to mount and fetch data
+      await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 });
+      await new Promise(resolve => setTimeout(resolve, 3000));
       
       const html = await page.evaluate(() => document.documentElement.outerHTML);
       
@@ -79,13 +81,19 @@ const server = app.listen(PORT, async () => {
       console.log(`✅ Saved ${route} -> ${filePath}`);
     }
     
-    await browser.close();
     console.log('\n🎉 Pre-rendering complete!');
   } catch (error) {
     console.error('Error during pre-rendering:', error);
     process.exitCode = 1;
   } finally {
-    // 4. Shutdown server
+    // 4. Shutdown browser and server
+    if (browser) {
+      try {
+        await browser.close();
+      } catch (e) {
+        console.error('Error closing browser:', e);
+      }
+    }
     server.close();
   }
 });
