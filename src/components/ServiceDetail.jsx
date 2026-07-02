@@ -509,8 +509,8 @@ const ServiceDetail = () => {
                     </motion.div>
                 )}
 
-                {/* Journey Section (Dynamic from CMS or fallback for fracture-trauma-surgery testing) */}
-                {(rawService?.journey_is_active || id?.toLowerCase() === 'fracture-trauma-surgery') && (
+                {/* Journey Section (Dynamic from CMS) */}
+                {rawService?.journey_is_active && (
                     <RoboticKneeJourney service={rawService} />
                 )}
 
