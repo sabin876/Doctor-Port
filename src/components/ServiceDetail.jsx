@@ -117,7 +117,10 @@ const ServiceDetail = () => {
     }
 
     // Map features from service.items (JSON list)
-    const features = service.items || ["Expert Diagnosis", "Personalized Treatment", "Follow-up Care", "Professional Support"];
+    const features = (service.items && service.items.length > 0)
+        ? service.items
+        : ["Expert Diagnosis", "Personalized Treatment", "Follow-up Care", "Professional Support"];
+
 
     // Default checklist items for fallback (e.g. Fracture & Trauma Surgery)
     const defaultChecklists = {
@@ -391,28 +394,28 @@ const ServiceDetail = () => {
                         <motion.div
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-primary-50 border border-primary-100 text-primary-700 text-[10px] font-normal uppercase tracking-[0.3em]"
+                            className="inline-flex items-center gap-2.5 px-4 py-2 mb-6 rounded-full bg-gradient-to-r from-primary-500/10 to-sky-500/10 border border-primary-500/20 text-primary-800 text-[10px] font-semibold uppercase tracking-[0.25em] shadow-[0_2px_12px_rgba(14,165,233,0.08)] backdrop-blur-md"
                         >
-                            <Zap size={12} className="fill-primary-600" />
+                            <Zap size={11} className="fill-primary-600 text-primary-600 animate-pulse" />
                             Specialized Service
                         </motion.div>
 
-                        <h1 className="text-3xl md:text-5xl font-normal text-primary-950 mb-6 tracking-tighter leading-[1.05]">
+                        <h1 className="text-3xl md:text-5xl font-bold text-primary-950 mb-6 tracking-tight leading-[1.1]">
                             {service.h1_title || service.title}
                         </h1>
 
                         <div 
-                            className="text-base md:text-lg text-gray-500 font-normal leading-relaxed mb-10 max-w-2xl prose prose-primary text-justify"
+                            className="text-base md:text-lg text-slate-600 font-normal leading-relaxed mb-10 max-w-2xl prose prose-primary select-text text-justify"
                             dangerouslySetInnerHTML={{ __html: service.description }}
                         />
 
                         <div className="grid sm:grid-cols-2 gap-4 mb-10">
                             {features.slice(0, 4).map((feature, idx) => (
-                                <div key={idx} className="flex items-center gap-4 p-4 bg-gray-50/80 backdrop-blur-sm border border-gray-100 rounded-2xl hover:bg-white hover:shadow-md transition-all duration-300">
-                                    <div className="w-10 h-10 rounded-xl bg-white text-primary-600 flex items-center justify-center shadow-sm flex-shrink-0">
-                                        <CheckCircle2 size={20} strokeWidth={2.5} />
+                                <div key={idx} className="flex items-center gap-4.5 p-4 bg-gradient-to-br from-slate-50/80 to-white backdrop-blur-sm border border-slate-100 rounded-2xl hover:border-primary-100 hover:shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-0.5 transition-all duration-300">
+                                    <div className="w-9 h-9 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center shadow-inner flex-shrink-0">
+                                        <CheckCircle2 size={18} strokeWidth={2.5} />
                                     </div>
-                                    <span className="text-xs font-normal text-gray-700 leading-tight">
+                                    <span className="text-xs font-semibold text-slate-700 leading-tight">
                                         {feature}
                                     </span>
                                 </div>
@@ -422,18 +425,18 @@ const ServiceDetail = () => {
                         <div className="flex flex-col sm:flex-row items-center gap-4">
                             <a 
                                 href={`tel:${contactPhone}`}
-                                className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-[#003B73] text-white font-normal text-[11px] uppercase tracking-[0.2em] rounded-2xl shadow-xl shadow-primary-200 hover:bg-[#002B55] hover:shadow-2xl hover:shadow-primary-300 active:scale-95 transition-all duration-300"
+                                className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-gradient-to-r from-[#003B73] to-[#002B55] text-white font-semibold text-[11px] uppercase tracking-[0.2em] rounded-2xl shadow-lg shadow-primary-900/10 hover:shadow-xl hover:shadow-primary-900/20 active:scale-95 transition-all duration-300"
                             >
-                                <Phone size={18} />
+                                <Phone size={16} className="group-hover:animate-bounce" />
                                 Call Us Now
                             </a>
                             <a 
                                 href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-[#25D366] text-white font-normal text-[11px] uppercase tracking-[0.2em] rounded-2xl shadow-lg shadow-emerald-100 hover:bg-[#1eb954] active:scale-95 transition-all duration-300"
+                                className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-gradient-to-r from-[#25D366] to-[#1eb954] text-white font-semibold text-[11px] uppercase tracking-[0.2em] rounded-2xl shadow-lg shadow-emerald-500/10 hover:shadow-xl hover:shadow-emerald-500/20 active:scale-95 transition-all duration-300"
                             >
-                                <MessageCircle size={18} />
+                                <MessageCircle size={16} className="group-hover:rotate-12 transition-transform" />
                                 WhatsApp Now
                             </a>
                         </div>
@@ -443,14 +446,30 @@ const ServiceDetail = () => {
                         initial={{ opacity: 0, x: isRtl ? -40 : 40 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="relative"
+                        className="relative lg:pl-10"
                     >
-                        <div className="relative h-[400px] md:h-[500px] p-4 rounded-[4rem] bg-gradient-to-br from-primary-50 to-white border border-primary-50 shadow-2xl overflow-hidden group">
+                        {/* Background dots */}
+                        <div className="absolute -top-6 -right-6 w-32 h-32 bg-[radial-gradient(#bae6fd_1.5px,transparent_1.5px)] [background-size:16px_16px] opacity-75 z-0" />
+                        <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-[radial-gradient(#bae6fd_1.5px,transparent_1.5px)] [background-size:16px_16px] opacity-75 z-0" />
+
+                        <div className="relative h-[400px] md:h-[500px] p-4 rounded-[4rem] bg-gradient-to-br from-primary-50/50 to-white border border-primary-50/50 shadow-2xl overflow-hidden group z-10">
                             <img 
                                 src={service.image || defaultImage} 
                                 alt={service.image_alt_text || service.title} 
                                 className="w-full h-full object-cover rounded-[3rem] relative z-10 group-hover:scale-105 transition-transform duration-700"
                             />
+                        </div>
+
+                        {/* Floating stat card */}
+                        <div className="absolute -bottom-4 -left-4 md:-left-6 z-20 bg-white/95 backdrop-blur-md border border-slate-100 p-5 rounded-2xl shadow-xl flex items-center gap-4 max-w-[280px]">
+                            <div className="w-12 h-12 rounded-xl bg-primary-50 flex items-center justify-center text-primary-600 shadow-inner flex-shrink-0">
+                                <Activity className="w-6 h-6 animate-pulse" />
+                            </div>
+                            <div>
+                                <div className="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Care Quality</div>
+                                <div className="text-sm font-bold text-slate-800">100% Patient-Centric</div>
+                                <div className="text-[11px] text-slate-500">Tailored Recovery Plans</div>
+                            </div>
                         </div>
                     </motion.div>
                 </div>
