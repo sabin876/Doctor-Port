@@ -152,7 +152,7 @@ const Navbar = () => {
                                                 initial={{ opacity: 0, y: 15, scale: 0.95 }}
                                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                                 exit={{ opacity: 0, y: 15, scale: 0.95 }}
-                                                className={`absolute ${isRtl ? 'end-0' : 'start-0'} mt-3 w-64 bg-white border border-gray-100 rounded-2xl shadow-premium-hover z-50 p-2`}
+                                                className={`absolute ${isRtl ? 'end-0' : 'start-0'} mt-3 w-64 bg-primary-900 border border-primary-800/40 rounded-2xl shadow-premium-hover z-50 p-2`}
                                             >
                                                 {dynamicServices.map((service) => {
                                                     const subServices = (service.sub_services && service.sub_services.length > 0) 
@@ -164,24 +164,24 @@ const Navbar = () => {
                                                             <RouterLink
                                                                 to={`/services/${service.slug}`}
                                                                 onClick={() => !subServices && setIsOpen(false)}
-                                                                className="flex items-center justify-between w-full px-4 py-3 text-[14px] font-normal text-primary-900 rounded-xl transition-all duration-200 hover:bg-primary-50 hover:text-primary-600 hover:pl-5"
+                                                                className="flex items-center justify-between w-full px-4 py-3 text-[14px] font-normal text-white/90 rounded-xl transition-all duration-200 hover:bg-white/10 hover:text-white hover:pl-5"
                                                             >
                                                                 <span>{service.title}</span>
                                                                 {subServices ? (
-                                                                    <ChevronDown strokeWidth={3} className={`w-4 h-4 text-primary-600 ${isRtl ? 'rotate-90' : '-rotate-90'}`} />
+                                                                    <ChevronDown strokeWidth={3} className={`w-4 h-4 text-white/70 group-hover/item:text-white transition-colors ${isRtl ? 'rotate-90' : '-rotate-90'}`} />
                                                                 ) : (
-                                                                    <ChevronDown className={`w-3 h-3 ${isRtl ? 'rotate-90' : '-rotate-90'} opacity-0 group-hover/item:opacity-100 transition-all`} />
+                                                                    <ChevronDown className={`w-3 h-3 text-white/70 ${isRtl ? 'rotate-90' : '-rotate-90'} opacity-0 group-hover/item:opacity-100 transition-all`} />
                                                                 )}
                                                             </RouterLink>
 
                                                             {subServices && (
-                                                                <div className={`absolute top-0 ${isRtl ? 'right-[95%]' : 'left-[95%]'} hidden group-hover/item:block w-56 bg-white border border-gray-100 rounded-2xl shadow-premium-hover overflow-hidden z-50 p-2 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300`}>
+                                                                <div className={`absolute top-0 ${isRtl ? 'right-[95%]' : 'left-[95%]'} hidden group-hover/item:block w-56 bg-primary-900 border border-primary-800/40 rounded-2xl shadow-premium-hover overflow-hidden z-50 p-2 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300`}>
                                                                     {subServices.map(sub => (
                                                                         <RouterLink
                                                                             key={sub.slug}
                                                                             to={`/services/${service.slug}/${sub.slug}`}
                                                                             onClick={() => setIsOpen(false)}
-                                                                            className="flex items-center justify-between w-full px-4 py-3 text-[12.5px] font-normal text-primary-900 rounded-xl transition-all duration-200 hover:bg-primary-50 hover:text-primary-600 hover:pl-5"
+                                                                            className="flex items-center justify-between w-full px-4 py-3 text-[12.5px] font-normal text-white/90 rounded-xl transition-all duration-200 hover:bg-white/10 hover:text-white hover:pl-5"
                                                                         >
                                                                             {sub.title}
                                                                         </RouterLink>
