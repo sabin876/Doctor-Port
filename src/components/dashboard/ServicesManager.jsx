@@ -428,7 +428,6 @@ const ServicesManager = () => {
                     </p>
 
                     <div className="mt-4 flex gap-4 text-xs text-slate-500 font-medium">
-                      <span>✓ {service.items?.length || 0} Highlights</span>
                       <span>? {service.faqs?.length || 0} FAQs</span>
                     </div>
                   </div>
@@ -510,7 +509,7 @@ const ServicesManager = () => {
                     : 'text-slate-500 hover:text-slate-800'
                 }`}
               >
-                2. Highlights & FAQs
+                2. FAQs
               </button>
               <button
                 type="button"
@@ -818,52 +817,8 @@ const ServicesManager = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.15 }}
-                    className="grid md:grid-cols-2 gap-6"
+                    className="max-w-2xl mx-auto w-full"
                   >
-                    {/* Highlights Manager */}
-                    <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
-                      <div className="border-b border-slate-100 pb-2">
-                        <h3 className="text-lg font-bold text-slate-800">Key Highlights</h3>
-                        <p className="text-xs text-slate-400">Add highlight bullets displayed at the top of the page.</p>
-                      </div>
-                      
-                      <div className="flex gap-2">
-                        <input 
-                          type="text" 
-                          className="w-full text-sm px-4 py-2.5 border border-slate-200 rounded-xl focus:outline-none"
-                          placeholder="Add key highlight feature..."
-                          value={newFeature}
-                          onChange={e => setNewFeature(e.target.value)}
-                          onKeyDown={e => e.key === 'Enter' && (e.preventDefault(), handleAddFeature())}
-                        />
-                        <button
-                          type="button"
-                          onClick={handleAddFeature}
-                          className="text-primary-600 hover:bg-primary-50 p-2 rounded-xl"
-                        >
-                          <PlusCircle size={24} />
-                        </button>
-                      </div>
-
-                      <div className="space-y-2 max-h-80 overflow-y-auto pr-1">
-                        {formData.items.map((item, idx) => (
-                          <div key={idx} className="flex items-center justify-between gap-3 p-3 bg-slate-50 border border-slate-100 rounded-xl">
-                            <span className="text-xs text-slate-700 font-medium leading-snug">{item}</span>
-                            <button
-                              type="button"
-                              onClick={() => handleRemoveFeature(idx)}
-                              className="text-red-500 hover:bg-red-50 p-1.5 rounded-lg"
-                            >
-                              <MinusCircle size={16} />
-                            </button>
-                          </div>
-                        ))}
-                        {formData.items.length === 0 && (
-                          <p className="text-xs text-slate-400 text-center py-4 font-light">No highlights added yet.</p>
-                        )}
-                      </div>
-                    </div>
-
                     {/* FAQ Manager */}
                     <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
                       <div className="border-b border-slate-100 pb-2">

@@ -118,18 +118,7 @@ const SubServiceDetail = () => {
                             </p>
                         </div>
 
-                        <div className="grid sm:grid-cols-2 gap-4 mb-10">
-                            {["Expert Diagnosis", "Personalized Treatment", "UK-Trained Specialist", "Follow-up Care"].map((feature, idx) => (
-                                <div key={idx} className="flex items-center gap-4 p-4 bg-gray-50/80 backdrop-blur-sm border border-gray-100 rounded-2xl hover:bg-white hover:shadow-md transition-all duration-300">
-                                    <div className="w-10 h-10 rounded-xl bg-white text-primary-600 flex items-center justify-center shadow-sm flex-shrink-0">
-                                        <CheckCircle2 size={20} strokeWidth={2.5} />
-                                    </div>
-                                    <span className="text-xs font-normal text-gray-700 leading-tight">
-                                        {feature}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
+
 
                         <div className="flex flex-col sm:flex-row items-center gap-4">
                             <a 

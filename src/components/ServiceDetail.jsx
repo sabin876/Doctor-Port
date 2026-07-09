@@ -409,18 +409,7 @@ const ServiceDetail = () => {
                             dangerouslySetInnerHTML={{ __html: service.description }}
                         />
 
-                        <div className="grid sm:grid-cols-2 gap-4 mb-10">
-                            {features.slice(0, 4).map((feature, idx) => (
-                                <div key={idx} className="flex items-center gap-4.5 p-4 bg-gradient-to-br from-slate-50/80 to-white backdrop-blur-sm border border-slate-100 rounded-2xl hover:border-primary-100 hover:shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-0.5 transition-all duration-300">
-                                    <div className="w-9 h-9 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center shadow-inner flex-shrink-0">
-                                        <CheckCircle2 size={18} strokeWidth={2.5} />
-                                    </div>
-                                    <span className="text-xs font-semibold text-slate-700 leading-tight">
-                                        {feature}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
+
 
                         <div className="flex flex-col sm:flex-row items-center gap-4">
                             <a 
