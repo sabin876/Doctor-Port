@@ -400,7 +400,7 @@ const ServiceDetail = () => {
                             Specialized Service
                         </motion.div>
 
-                        <h1 className="text-3xl md:text-5xl font-bold text-primary-950 mb-6 tracking-tight leading-[1.1]">
+                        <h1 className="text-2xl md:text-4xl font-bold text-primary-950 mb-6 tracking-tight leading-[1.1]">
                             {service.h1_title || service.title}
                         </h1>
 

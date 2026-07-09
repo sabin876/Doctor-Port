@@ -102,7 +102,7 @@ const SubServiceDetail = () => {
                             Specialized Treatment
                         </motion.div>
 
-                        <h1 className="text-3xl md:text-5xl font-normal text-primary-950 mb-4 tracking-tighter leading-[1.05]">
+                        <h1 className="text-2xl md:text-4xl font-normal text-primary-950 mb-4 tracking-tighter leading-[1.05]">
                             {subService.title}
                         </h1>
                         <h2 className="text-xl md:text-2xl font-light text-primary-700 mb-6">

@@ -224,7 +224,7 @@ const PhysiotherapyHomeService = () => {
                             DHA Licensed Experts
                         </motion.div>
 
-                        <h1 className="text-3xl md:text-5xl font-normal text-primary-950 mb-6 tracking-tighter leading-[1.05]">
+                        <h1 className="text-2xl md:text-4xl font-normal text-primary-950 mb-6 tracking-tighter leading-[1.05]">
                             {pageTitle}
                         </h1>
 
