@@ -164,7 +164,7 @@ const Navbar = () => {
                                                             <RouterLink
                                                                 to={`/services/${service.slug}`}
                                                                 onClick={() => !subServices && setIsOpen(false)}
-                                                                className="flex items-center justify-between w-full px-4 py-3 text-[14px] font-normal text-[rgba(0,0,0,0.88)] rounded-xl transition-all duration-200 hover:bg-primary-50 hover:text-primary-600 hover:pl-5"
+                                                                className="flex items-center justify-between w-full px-4 py-3 text-[14px] font-normal text-primary-900 rounded-xl transition-all duration-200 hover:bg-primary-50 hover:text-primary-600 hover:pl-5"
                                                             >
                                                                 <span>{service.title}</span>
                                                                 {subServices ? (
@@ -181,7 +181,7 @@ const Navbar = () => {
                                                                             key={sub.slug}
                                                                             to={`/services/${service.slug}/${sub.slug}`}
                                                                             onClick={() => setIsOpen(false)}
-                                                                            className="flex items-center justify-between w-full px-4 py-3 text-[12.5px] font-normal text-[rgba(0,0,0,0.88)] rounded-xl transition-all duration-200 hover:bg-primary-50 hover:text-primary-600 hover:pl-5"
+                                                                            className="flex items-center justify-between w-full px-4 py-3 text-[12.5px] font-normal text-primary-900 rounded-xl transition-all duration-200 hover:bg-primary-50 hover:text-primary-600 hover:pl-5"
                                                                         >
                                                                             {sub.title}
                                                                         </RouterLink>
@@ -342,7 +342,7 @@ const Navbar = () => {
                                                                 <RouterLink
                                                                     to={`/services/${service.slug}`}
                                                                     onClick={() => setIsOpen(false)}
-                                                                    className="text-[14px] font-normal text-[rgba(0,0,0,0.88)] hover:text-primary-600 transition-colors py-1.5"
+                                                                    className="text-[14px] font-normal text-primary-900 hover:text-primary-600 transition-colors py-1.5"
                                                                 >
                                                                     {service.title}
                                                                 </RouterLink>
@@ -351,7 +351,7 @@ const Navbar = () => {
                                                                         key={sub.slug}
                                                                         to={`/services/${service.slug}/${sub.slug}`}
                                                                         onClick={() => setIsOpen(false)}
-                                                                        className="text-[12px] font-normal text-gray-500 hover:text-primary-600 transition-colors py-1"
+                                                                        className="text-[12px] font-normal text-primary-700 hover:text-primary-600 transition-colors py-1"
                                                                     >
                                                                         — {sub.title}
                                                                     </RouterLink>
