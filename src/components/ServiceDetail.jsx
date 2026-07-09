@@ -475,7 +475,7 @@ const ServiceDetail = () => {
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
                             {/* About Card */}
                             {aboutTitle && aboutDesc && (
-                                <div className="lg:col-span-5 bg-gradient-to-br from-primary-50/50 to-white border border-primary-100 rounded-[2.5rem] p-8 md:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.02)] relative overflow-hidden group flex flex-col justify-center text-start">
+                                <div className="lg:col-span-5 bg-gradient-to-br from-blue-50/60 via-blue-50/30 to-white border border-blue-100/70 rounded-[2.5rem] p-8 md:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.02)] relative overflow-hidden group flex flex-col justify-center text-start">
                                     <div className="absolute top-0 left-0 w-2 h-full bg-[#1282b2]" />
                                     <span className="inline-flex items-center gap-1.5 px-4 py-1.5 mb-6 w-fit rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-[10px] font-normal uppercase tracking-[0.2em]">
                                         About the Speciality
@@ -492,7 +492,7 @@ const ServiceDetail = () => {
 
                             {/* Who May Need Card */}
                             {whoNeedsTitle && whoNeedsItems.length > 0 && (
-                                <div className={`${aboutTitle ? 'lg:col-span-7' : 'lg:col-span-12'} bg-white border border-gray-100 rounded-[2.5rem] p-8 md:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.02)] relative overflow-hidden group flex flex-col text-start`}>
+                                <div className={`${aboutTitle ? 'lg:col-span-7' : 'lg:col-span-12'} bg-gradient-to-br from-emerald-50/40 via-emerald-50/10 to-white border border-emerald-100/50 rounded-[2.5rem] p-8 md:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.02)] relative overflow-hidden group flex flex-col text-start`}>
                                     <span className="inline-flex items-center gap-1.5 px-4 py-1.5 mb-6 w-fit rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-[10px] font-normal uppercase tracking-[0.2em]">
                                         Clinical Indications
                                     </span>
