@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import SEO from './SEO';
 import Services from './Services';
 import CTABanner from './CTABanner';
-import Testimonials from './Testimonials';
 import FAQ from './FAQ';
 import { useLanguage } from '../context/LanguageContext';
 import { api } from '../lib/api';
@@ -112,7 +111,6 @@ const ServicesPage = () => {
             </div>
             <Services />
             <CTABanner />
-            <Testimonials />
             <FAQ />
         </main>
     );

@@ -6,7 +6,6 @@ import Affiliations from './Affiliations';
 import PersonalizedSolutions from './PersonalizedSolutions';
 import CTABanner from './CTABanner';
 import SportingInjury from './SportingInjury';
-import Testimonials from './Testimonials';
 import FAQ from './FAQ';
 
 const Home = () => {
@@ -19,7 +18,6 @@ const Home = () => {
             <PersonalizedSolutions />
             <CTABanner />
             <SportingInjury />
-            <Testimonials />
             <FAQ />
         </main>
     );
