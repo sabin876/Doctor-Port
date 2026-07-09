@@ -463,6 +463,63 @@ const ServiceDetail = () => {
                     </motion.div>
                 </div>
 
+                {/* About the Speciality & Clinical Indications Section */}
+                {((aboutTitle && aboutDesc) || (whoNeedsTitle && whoNeedsItems.length > 0)) && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="mb-24 mt-16"
+                    >
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                            {/* About Card */}
+                            {aboutTitle && aboutDesc && (
+                                <div className="lg:col-span-5 bg-gradient-to-br from-primary-50/50 to-white border border-primary-100 rounded-[2.5rem] p-8 md:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.02)] relative overflow-hidden group flex flex-col justify-center text-start">
+                                    <div className="absolute top-0 left-0 w-2 h-full bg-[#1282b2]" />
+                                    <span className="inline-flex items-center gap-1.5 px-4 py-1.5 mb-6 w-fit rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-[10px] font-normal uppercase tracking-[0.2em]">
+                                        About the Speciality
+                                    </span>
+                                    <h3 className="text-2xl md:text-3xl font-semibold text-primary-950 tracking-tight mb-6">
+                                        {aboutTitle}
+                                    </h3>
+                                    <div 
+                                        className="text-gray-600 text-sm md:text-base leading-relaxed prose prose-slate max-w-none [&>p]:mb-3 text-justify"
+                                        dangerouslySetInnerHTML={{ __html: aboutDesc }}
+                                    />
+                                </div>
+                            )}
+
+                            {/* Who May Need Card */}
+                            {whoNeedsTitle && whoNeedsItems.length > 0 && (
+                                <div className={`${aboutTitle ? 'lg:col-span-7' : 'lg:col-span-12'} bg-white border border-gray-100 rounded-[2.5rem] p-8 md:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.02)] relative overflow-hidden group flex flex-col text-start`}>
+                                    <span className="inline-flex items-center gap-1.5 px-4 py-1.5 mb-6 w-fit rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-[10px] font-normal uppercase tracking-[0.2em]">
+                                        Clinical Indications
+                                    </span>
+                                    <h3 className="text-2xl md:text-3xl font-semibold text-primary-950 tracking-tight mb-2">
+                                        {whoNeedsTitle}
+                                    </h3>
+                                    {whoNeedsDesc && (
+                                        <p className="text-gray-500 text-xs md:text-sm mb-6">
+                                            {whoNeedsDesc}
+                                        </p>
+                                    )}
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+                                        {whoNeedsItems.map((item, idx) => (
+                                            <div key={idx} className="flex items-start gap-3">
+                                                <div className="w-5 h-5 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                                    <CheckCircle2 size={13} className="text-[#1282b2]" />
+                                                </div>
+                                                <span className="text-gray-600 text-xs md:text-sm leading-snug">{item}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </motion.div>
+                )}
+
                 {/* 2a. Custom Conditions managed with this service (Dynamic CMS Template) */}
                 {rawService?.conditions && rawService.conditions.length > 0 && (
                     <motion.div
@@ -522,8 +579,8 @@ const ServiceDetail = () => {
                     <RoboticKneeJourney service={rawService} />
                 )}
 
-                {/* 2aa. Custom / Dynamic Detailed Service Sections (Beautiful Design) */}
-                {hasDetailedSections && (
+                {/* 2aa. Custom / Dynamic Detailed Service Sections - CTA & Commonly Treated */}
+                {((commonlyTreatedTitle && commonlyTreated.length > 0) || (ctaText.title)) && (
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -531,55 +588,10 @@ const ServiceDetail = () => {
                         transition={{ duration: 0.8 }}
                         className="mb-24 mt-16 space-y-20"
                     >
-                        {/* Upper row: About & Who May Need */}
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-                            {/* About Card */}
-                            {aboutTitle && aboutDesc && (
-                                <div className="lg:col-span-5 bg-gradient-to-br from-primary-50/50 to-white border border-primary-100 rounded-[2.5rem] p-8 md:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.02)] relative overflow-hidden group flex flex-col justify-center text-start">
-                                    <div className="absolute top-0 left-0 w-2 h-full bg-[#1282b2]" />
-                                    <span className="inline-flex items-center gap-1.5 px-4 py-1.5 mb-6 w-fit rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-[10px] font-normal uppercase tracking-[0.2em]">
-                                        About the Speciality
-                                    </span>
-                                    <h3 className="text-2xl md:text-3xl font-semibold text-primary-950 tracking-tight mb-6">
-                                        {aboutTitle}
-                                    </h3>
-                                    <div 
-                                        className="text-gray-600 text-sm md:text-base leading-relaxed prose prose-slate max-w-none [&>p]:mb-3 text-justify"
-                                        dangerouslySetInnerHTML={{ __html: aboutDesc }}
-                                    />
-                                </div>
-                            )}
-
-                            {/* Who May Need Card */}
-                            {whoNeedsTitle && whoNeedsItems.length > 0 && (
-                                <div className={`${aboutTitle ? 'lg:col-span-7' : 'lg:col-span-12'} bg-white border border-gray-100 rounded-[2.5rem] p-8 md:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.02)] relative overflow-hidden group flex flex-col text-start`}>
-                                    <span className="inline-flex items-center gap-1.5 px-4 py-1.5 mb-6 w-fit rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-[10px] font-normal uppercase tracking-[0.2em]">
-                                        Clinical Indications
-                                    </span>
-                                    <h3 className="text-2xl md:text-3xl font-semibold text-primary-950 tracking-tight mb-2">
-                                        {whoNeedsTitle}
-                                    </h3>
-                                    {whoNeedsDesc && (
-                                        <p className="text-gray-500 text-xs md:text-sm mb-6">
-                                            {whoNeedsDesc}
-                                        </p>
-                                    )}
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
-                                        {whoNeedsItems.map((item, idx) => (
-                                            <div key={idx} className="flex items-start gap-3">
-                                                <div className="w-5 h-5 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                                    <CheckCircle2 size={13} className="text-[#1282b2]" />
-                                                </div>
-                                                <span className="text-gray-600 text-xs md:text-sm leading-snug">{item}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-
                         {/* Struggling with Joint or Back Pain? CTA banner */}
-                        <CTABanner title={ctaText.title} subtitle={ctaText.subtitle} />
+                        {ctaText.title && (
+                            <CTABanner title={ctaText.title} subtitle={ctaText.subtitle} />
+                        )}
 
                         {/* Lower row: Fractures & Injuries We Commonly Treat */}
                         {commonlyTreatedTitle && commonlyTreated.length > 0 && (
