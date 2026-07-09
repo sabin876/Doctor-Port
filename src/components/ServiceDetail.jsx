@@ -179,37 +179,43 @@ const ServiceDetail = () => {
                 "title": "Upper Limb Injuries",
                 "icon": "PlusSquare",
                 "items": [
-                    "Distal Radius Fractures",
-                    "Wrist Fractures",
-                    "Hand Fractures",
-                    "Finger Fractures",
-                    "Clavicle Fractures",
-                    "Shoulder Fractures",
-                    "Elbow Fractures"
+                    "Wrist fractures",
+                    "Distal radius fractures",
+                    "Hand fractures",
+                    "Finger fractures",
+                    "Forearm fractures",
+                    "Elbow fractures",
+                    "Arm fractures",
+                    "Shoulder fractures",
+                    "Clavicle fractures"
                 ]
             },
             {
                 "title": "Lower Limb Injuries",
                 "icon": "Triangle",
                 "items": [
-                    "Hip Fractures",
-                    "Femur Fractures",
-                    "Tibial Fractures",
-                    "Ankle Fractures",
-                    "Foot Fractures",
-                    "Patella Fractures"
+                    "Hip fractures",
+                    "Femur fractures",
+                    "Knee fractures",
+                    "Patella fractures",
+                    "Tibial fractures",
+                    "Ankle fractures",
+                    "Foot fractures"
                 ]
             },
             {
-                "title": "Joint & Complex Trauma",
+                "title": "Joint and Trauma Injuries",
                 "icon": "Hexagon",
                 "items": [
-                    "Intra-Articular Fractures",
-                    "Complex Joint Injuries",
-                    "Multi-Trauma Injuries",
-                    "Fracture Dislocations",
-                    "Sports Trauma",
-                    "High-Energy Trauma"
+                    "Intra-articular fractures",
+                    "Fracture dislocations",
+                    "Complex joint injuries",
+                    "Sports trauma",
+                    "High-energy trauma",
+                    "Post-fall injuries",
+                    "Sprains and ligament injuries",
+                    "Tendon and muscle injuries",
+                    "Soft-tissue injuries"
                 ]
             }
           ] : []);
