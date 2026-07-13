@@ -20,7 +20,7 @@ const TikTokIcon = ({ size = 18 }) => (
 const Footer = () => {
     const { t } = useLanguage();
     const currentYear = new Date().getFullYear();
-    const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+971556319379";
+    const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+91 90492 00041";
 
     return (
         <footer className="bg-[#04122d] text-white pt-24 pb-12 relative overflow-hidden border-t-[6px] border-primary-600 font-sans">

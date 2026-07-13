@@ -6,8 +6,8 @@ import Chatbot from './Chatbot';
 const FloatingContactButtons = () => {
     const { language } = useLanguage();
     const isRtl = language === 'AR';
-    const phoneNumber = import.meta.env.VITE_CONTACT_PHONE || "+971556319379";
-    const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "+971556319379";
+    const phoneNumber = import.meta.env.VITE_CONTACT_PHONE || "+91 90492 00041";
+    const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "+919049200041";
 
     return (
         <div className="fixed end-4 bottom-4 md:end-6 md:bottom-6 z-50 flex flex-col gap-3 md:gap-4">

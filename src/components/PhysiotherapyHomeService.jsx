@@ -142,8 +142,8 @@ const PhysiotherapyHomeService = () => {
     const [service, setService] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const phoneNumber = import.meta.env.VITE_CONTACT_PHONE || "+971556319379";
-    const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "+971556319379";
+    const phoneNumber = import.meta.env.VITE_CONTACT_PHONE || "+91 90492 00041";
+    const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "+919049200041";
     const whatsappClean = whatsappNumber.replace(/[^0-9]/g, '');
 
     useEffect(() => {
@@ -472,14 +472,14 @@ const PhysiotherapyHomeService = () => {
 
                                 <div className="flex flex-col sm:flex-row items-center gap-5 mt-4 w-full sm:w-auto">
                                     <a
-                                        href="tel:+971556319379"
+                                        href={`tel:${phoneNumber.replace(/\s+/g, '')}`}
                                         className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-white text-[#003B73] font-semibold text-[12px] uppercase tracking-[0.15em] rounded-2xl shadow-xl hover:bg-blue-50 hover:scale-[1.03] active:scale-95 transition-all duration-300"
                                     >
                                         <Phone size={18} />
                                         Call Us Now
                                     </a>
                                     <a
-                                        href="https://wa.me/971556319379"
+                                        href={`https://wa.me/${whatsappClean}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="w-full sm:w-auto group flex items-center justify-center gap-3 py-4 px-10 bg-[#25D366] text-white font-semibold text-[12px] uppercase tracking-[0.15em] rounded-2xl shadow-xl hover:bg-[#1eb954] hover:scale-[1.03] active:scale-95 transition-all duration-300"

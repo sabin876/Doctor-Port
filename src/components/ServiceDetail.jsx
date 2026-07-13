@@ -62,8 +62,8 @@ const ServiceDetail = () => {
     const [rawService, setRawService] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+971556319379";
-    const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "+971556319379";
+    const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+91 90492 00041";
+    const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "+919049200041";
 
 
 

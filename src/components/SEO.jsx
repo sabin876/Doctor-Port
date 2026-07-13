@@ -13,7 +13,7 @@ const SEO = ({
   twitterLabel2,
   twitterData2
 }) => {
-  const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+971556319379";
+  const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+91 90492 00041";
   const siteName = 'Dr. Ulhas | Expert Orthopedic Surgeon';
   const domain = 'drulhasorthopedic.com';
   const baseUrl = `https://${domain}`;

@@ -9,7 +9,7 @@ import { api } from '../lib/api';
 const Contact = () => {
     const { language, t } = useLanguage();
     const isRtl = language === 'AR';
-    const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+971556319379";
+    const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+91 90492 00041";
     const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || "appointment@drulhasorthopedic.com";
 
     // Form states
