@@ -152,7 +152,7 @@ const Navbar = () => {
                                                 initial={{ opacity: 0, y: 15, scale: 0.95 }}
                                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                                 exit={{ opacity: 0, y: 15, scale: 0.95 }}
-                                                className={`absolute ${isRtl ? 'end-0' : 'start-0'} mt-3 w-64 bg-primary-900 border border-primary-800/40 rounded-2xl shadow-premium-hover z-50 p-2`}
+                                                className={`absolute ${isRtl ? 'end-0' : 'start-0'} mt-3 w-72 bg-primary-900 border border-primary-800/40 rounded-2xl shadow-premium-hover z-50 p-2`}
                                             >
                                                 {dynamicServices.map((service) => {
                                                     const subServices = (service.sub_services && service.sub_services.length > 0) 
@@ -164,7 +164,7 @@ const Navbar = () => {
                                                             <RouterLink
                                                                 to={`/services/${service.slug}`}
                                                                 onClick={() => !subServices && setIsOpen(false)}
-                                                                className="flex items-center justify-between w-full px-4 py-3 text-[14px] font-normal text-white/90 rounded-xl transition-all duration-200 hover:bg-white/10 hover:text-white hover:pl-5"
+                                                                className="flex items-center justify-between w-full px-4 py-1.5 text-[13px] font-normal text-white/90 rounded-xl transition-all duration-200 hover:bg-white/10 hover:text-white hover:pl-5"
                                                             >
                                                                 <span>{service.title}</span>
                                                                 {subServices ? (
@@ -181,7 +181,7 @@ const Navbar = () => {
                                                                             key={sub.slug}
                                                                             to={`/services/${service.slug}/${sub.slug}`}
                                                                             onClick={() => setIsOpen(false)}
-                                                                            className="flex items-center justify-between w-full px-4 py-3 text-[12.5px] font-normal text-white/90 rounded-xl transition-all duration-200 hover:bg-white/10 hover:text-white hover:pl-5"
+                                                                            className="flex items-center justify-between w-full px-4 py-1.5 text-[12px] font-normal text-white/90 rounded-xl transition-all duration-200 hover:bg-white/10 hover:text-white hover:pl-5"
                                                                         >
                                                                             {sub.title}
                                                                         </RouterLink>
