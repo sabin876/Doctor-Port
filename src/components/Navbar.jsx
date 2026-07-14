@@ -164,7 +164,7 @@ const Navbar = () => {
                                                             <RouterLink
                                                                 to={`/services/${service.slug}`}
                                                                 onClick={() => !subServices && setIsOpen(false)}
-                                                                className="flex items-center justify-between w-full px-4 py-1.5 text-[13px] font-normal text-white/90 rounded-xl transition-all duration-200 hover:bg-white/10 hover:text-white hover:pl-5"
+                                                                className="flex items-center justify-between w-full px-4 py-1.5 text-[14px] font-normal text-white/90 rounded-xl transition-all duration-200 hover:bg-white/10 hover:text-white hover:pl-5"
                                                             >
                                                                 <span>{service.title}</span>
                                                                 {subServices ? (
@@ -181,7 +181,7 @@ const Navbar = () => {
                                                                             key={sub.slug}
                                                                             to={`/services/${service.slug}/${sub.slug}`}
                                                                             onClick={() => setIsOpen(false)}
-                                                                            className="flex items-center justify-between w-full px-4 py-1.5 text-[12px] font-normal text-white/90 rounded-xl transition-all duration-200 hover:bg-white/10 hover:text-white hover:pl-5"
+                                                                            className="flex items-center justify-between w-full px-4 py-1.5 text-[13px] font-normal text-white/90 rounded-xl transition-all duration-200 hover:bg-white/10 hover:text-white hover:pl-5"
                                                                         >
                                                                             {sub.title}
                                                                         </RouterLink>
