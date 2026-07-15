@@ -104,9 +104,8 @@ const Contact = () => {
                             </div>
                             <div>
                                 <h3 className="text-[#1e293b] font-bold text-base mb-1">Phone</h3>
-                                <a href={`tel:${contactPhone}`} className="text-[#0d52bc] font-semibold text-lg block leading-tight mb-1">{contactPhone}</a>
-                                <a href="tel:9049200041" className="text-[#0d52bc] font-semibold text-lg block leading-tight mb-1">9049200041 (India)</a>
-                                <a href="tel:9049200061" className="text-[#0d52bc] font-semibold text-lg block leading-tight mb-2">9049200061 (India)</a>
+                                <a href="tel:+971556319379" className="text-[#0d52bc] font-semibold text-lg block leading-tight mb-1">+971 55 631 9379 (Dubai)</a>
+                                <a href="tel:+919049200041" className="text-[#0d52bc] font-semibold text-lg block leading-tight mb-2">+91 90492 00041 (India)</a>
                                 <p className="text-gray-400 text-sm">Available for appointments</p>
                             </div>
                         </div>

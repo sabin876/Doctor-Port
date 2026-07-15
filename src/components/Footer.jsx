@@ -112,8 +112,7 @@ const Footer = () => {
                                 { name: t('nav.gallery'), href: '/gallery' },
                                 { name: t('footer.articles'), href: '/blog' },
                                 { name: t('nav.faq'), href: '/#faq' },
-                                { name: t('nav.contact'), href: '/contact' },
-                                { name: t('nav.socialMedia') || 'Social Links', href: '/social-media' }
+                                { name: t('nav.contact'), href: '/contact' }
                             ].map((item, idx) => (
                                 <li key={idx}>
                                     <RouterLink to={item.href} className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-start group relative pl-5">

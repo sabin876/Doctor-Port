@@ -19,11 +19,10 @@ const TikTokIcon = ({ className }) => (
 const SocialLinksPage = () => {
     const { t } = useLanguage();
     
-    const dubaiPhone = import.meta.env.VITE_CONTACT_PHONE || "+91 90492 00041";
-    const indiaPhone1 = "9049200041";
-    const indiaPhone2 = "9049200061";
+    const dubaiPhone = "+971556319379";
+    const indiaPhone = "+919049200041";
     
-    const whatsappLink = `https://wa.me/${dubaiPhone.replace(/\+/g, '')}?text=Hello%20Dr.%20Ulhas,%20I%20would%20like%20to%20book%20an%20orthopedic%20consultation.`;
+    const whatsappLink = `https://wa.me/919049200041?text=Hello%20Dr.%20Ulhas,%20I%20would%20like%20to%20book%20an%20orthopedic%20consultation.`;
 
     const contactLinks = [
         {
@@ -38,19 +37,17 @@ const SocialLinksPage = () => {
         },
         {
             title: t('socialMedia.callIndia'),
+            subtitle: '+91 90492 00041',
+            url: `tel:${indiaPhone}`,
             icon: Phone,
             bgClass: 'bg-gradient-to-r from-blue-600 to-blue-900',
             hoverClass: 'hover:shadow-blue-600/40',
             iconBg: 'bg-white/20',
-            textColor: 'text-white',
-            sublinks: [
-                { label: '9049200041', url: `tel:${indiaPhone1}` },
-                { label: '9049200061', url: `tel:${indiaPhone2}` }
-            ]
+            textColor: 'text-white'
         },
         {
             title: t('socialMedia.whatsapp'),
-            subtitle: '+971 55 631 9379',
+            subtitle: '+91 90492 00041',
             url: whatsappLink,
             icon: MessageCircle,
             bgClass: 'bg-gradient-to-r from-[#128C7E] to-[#25D366]',
