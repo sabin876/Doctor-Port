@@ -18,6 +18,12 @@ const PORT = 3000;
 // Start a local static server
 const app = express();
 app.use(express.static(DIST_DIR));
+
+// Fallback for SPA routing: send index.html for any virtual route request
+app.use((req, res) => {
+  res.sendFile(path.join(DIST_DIR, 'index.html'));
+});
+
 const server = app.listen(PORT, async () => {
   console.log(`\n🚀 Static server started at http://localhost:${PORT}`);
   
