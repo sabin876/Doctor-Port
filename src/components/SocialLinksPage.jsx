@@ -26,16 +26,6 @@ const SocialLinksPage = () => {
 
     const contactLinks = [
         {
-            title: t('socialMedia.callDubai'),
-            subtitle: '+971 55 631 9379',
-            url: `tel:${dubaiPhone}`,
-            icon: Phone,
-            bgClass: 'bg-gradient-to-r from-primary-600 to-primary-800',
-            hoverClass: 'hover:shadow-primary-600/40',
-            iconBg: 'bg-white/20',
-            textColor: 'text-white'
-        },
-        {
             title: t('socialMedia.callIndia'),
             subtitle: '+91 90492 00041',
             url: `tel:${indiaPhone}`,

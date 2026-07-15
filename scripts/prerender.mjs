@@ -69,7 +69,7 @@ const server = app.listen(PORT, async () => {
       console.log(`Rendering: ${route}...`);
       
       // Wait for DOM content to load and then wait 3 seconds for React to mount and fetch data
-      await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 });
+      await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
       await new Promise(resolve => setTimeout(resolve, 3000));
       
       const html = await page.evaluate(() => document.documentElement.outerHTML);
