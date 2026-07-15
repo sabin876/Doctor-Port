@@ -84,6 +84,7 @@ const Navbar = () => {
         { id: 'services', name: 'Services', path: '/services', isRouterLink: true, hasDropdown: true },
         { id: 'articles', name: 'Articles', path: '/blog', isRouterLink: true },
         { id: 'gallery', name: 'Gallery', path: '/gallery', isRouterLink: true },
+        { id: 'socialMedia', name: 'Social Links', path: '/social-media', isRouterLink: true },
         { id: 'contact', name: 'Contact', target: 'contact-form', route: '/contact', isRouterLink: false },
     ];
 
