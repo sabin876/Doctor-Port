@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate, Navigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, MessageCircle, CheckCircle2, ArrowRight, Activity, ShieldCheck, Zap, HeartPulse, ClipboardCheck, Users, HelpCircle, ChevronDown, ChevronUp, Home, Star, RotateCcw, PlusSquare, Triangle, Hexagon, ChevronLeft } from 'lucide-react';
+import { Phone, MessageCircle, CheckCircle2, ArrowRight, Activity, ShieldCheck, Zap, HeartPulse, ClipboardCheck, Users, HelpCircle, ChevronDown, ChevronUp, Home, Star, RotateCcw, PlusSquare, Triangle, Hexagon, ChevronLeft, Stethoscope } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { api } from '../lib/api';
 import { getTranslatedService } from '../lib/serviceTranslations';
@@ -53,6 +53,80 @@ function TherapistIllustration() {
   );
 }
 
+const fractureServicesList = [
+    {
+        title: "Fracture Assessment",
+        desc: "Fracture assessment includes specialist evaluation of bone injuries, swelling, pain, deformity and difficulty using the affected limb. The consultation may include clinical examination, review of X-rays, CT scans or MRI scans, and discussion of the most suitable treatment pathway."
+    },
+    {
+        title: "Fracture Fixation Surgery",
+        desc: "Fracture fixation surgery is used for selected fractures that are displaced, unstable, involve a joint, or are unlikely to heal well with non-surgical care alone. Fixation may involve plates, screws, nails or wires depending on the fracture pattern, bone involved, soft-tissue condition and patient needs."
+    },
+    {
+        title: "Upper Limb Fracture Treatment",
+        desc: "Upper limb fracture treatment includes care for fractures of the shoulder, arm, elbow, forearm, wrist and hand. These injuries may affect lifting, gripping, writing, driving, work and daily function, so treatment is planned with attention to bone healing, joint movement and hand or arm use."
+    },
+    {
+        title: "Lower Limb Fracture Treatment",
+        desc: "Lower limb fracture treatment includes care for fractures of the hip, thigh, knee, leg, ankle and foot. Because these injuries can affect walking and weight-bearing, treatment focuses on fracture stability, safe mobilisation, pain control and gradual return to activity."
+    },
+    {
+        title: "Wrist Fracture Surgery",
+        desc: "Wrist fracture surgery may be needed for selected distal radius fractures and other wrist fractures when alignment is poor, the fracture is unstable or joint involvement is present. Some wrist fractures can be treated with plaster or splinting, while others may require fixation to support better alignment and hand function."
+    },
+    {
+        title: "Ankle Fracture Treatment",
+        desc: "Ankle fracture treatment includes assessment of stable and unstable ankle injuries. Stable fractures may be managed with immobilisation and rehabilitation, while displaced or unstable fractures may require surgical fixation to restore ankle alignment and support safe walking."
+    },
+    {
+        title: "Hip Fracture Surgery",
+        desc: "Hip fracture surgery may be required for selected hip fractures, especially when walking ability, fracture type and patient health indicate the need for fixation or replacement. Treatment depends on the fracture pattern, bone quality, age, general health and mobility needs."
+    },
+    {
+        title: "Ligament and Soft-Tissue Injury Care",
+        desc: "Ligament and soft-tissue injury care includes treatment for sprains, ligament injuries, muscle injuries and tendon-related problems. Treatment may involve rest, bracing, physiotherapy, activity modification, imaging review or surgery when instability or significant structural damage is present."
+    },
+    {
+        title: "Minor Injury and Sports Trauma Care",
+        desc: "Minor injury and sports trauma care includes assessment and treatment of common injuries such as falls, twists, sprains, bruising and activity-related trauma. Early assessment is useful when pain, swelling, difficulty walking or reduced movement continues after the injury."
+    },
+    {
+        title: "General Orthopaedic Consultation",
+        desc: "A general orthopaedic consultation is suitable for bone, joint, muscle, tendon and ligament problems affecting daily activities, work, walking or sport. This may include assessment of persistent pain, stiffness, swelling, weakness, movement restriction or reduced confidence after injury."
+    },
+    {
+        title: "Post-Fracture Rehabilitation Planning",
+        desc: "Post-fracture rehabilitation planning supports recovery after plaster treatment, splinting, bracing or fracture surgery. The plan may include mobilisation, range-of-motion exercises, strengthening, walking support, balance training and gradual return to daily activity."
+    },
+    {
+        title: "Second Opinion for Fracture Treatment",
+        desc: "A second opinion for fracture treatment may help patients who want clarity about X-rays, scans, plaster treatment, surgery, healing progress or delayed recovery. This consultation helps explain the diagnosis, treatment options, expected recovery, and whether current management is suitable."
+    }
+];
+
+const staggerContainer = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.06
+        }
+    }
+};
+
+const staggerItem = {
+    hidden: { opacity: 0, y: 30 },
+    show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            type: "spring",
+            stiffness: 80,
+            damping: 14
+        }
+    }
+};
+
 const ServiceDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -82,6 +156,13 @@ const ServiceDetail = () => {
     }, [id]);
 
     const service = getTranslatedService(rawService, t, language);
+
+    const subServicesList = (service?.sub_services && service.sub_services.length > 0)
+        ? service.sub_services.map(item => ({
+            title: item.title,
+            desc: item.description
+          }))
+        : (id?.toLowerCase() === 'fracture-trauma-surgery' ? fractureServicesList : []);
 
     const getCTAText = () => {
         if (language === 'AR') {
@@ -523,6 +604,80 @@ const ServiceDetail = () => {
                                 </div>
                             )}
                         </div>
+                    </motion.div>
+                )}
+                {/* Services Under Fracture, Trauma & General Orthopaedic Surgery */}
+                {subServicesList.length > 0 && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="mb-24 mt-16 bg-gradient-to-br from-slate-50 via-blue-50/20 to-slate-50 border border-slate-100/70 rounded-[3.5rem] p-8 md:p-12 lg:p-16 relative overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.01)]"
+                    >
+                        <div className="absolute top-0 start-0 w-full h-full overflow-hidden z-0 opacity-10 pointer-events-none">
+                            <div className="absolute top-[-10%] left-[-10%] w-[45%] h-[45%] bg-[#1282b2]/20 blur-[100px] rounded-full"></div>
+                            <div className="absolute bottom-[-10%] right-[-10%] w-[45%] h-[45%] bg-[#003B73]/20 blur-[100px] rounded-full"></div>
+                        </div>
+
+                        <div className="text-start mb-12 relative z-10">
+                            <span className="inline-flex items-center px-4 py-1.5 mb-4 rounded-full bg-blue-50 text-[#003B73] text-[10px] font-semibold uppercase tracking-[0.25em] border border-blue-100/50">
+                                Specialized Procedures
+                            </span>
+                            <h2 className="text-3xl md:text-5xl font-montserrat font-bold text-primary-950 mb-6 tracking-tight leading-[1.05]">
+                                {service.title === "Fracture & Trauma Surgery" ? "Services Under Fracture, Trauma & General Orthopaedic Surgery" : `Services Under ${service.title}`}
+                            </h2>
+                            <p className="text-slate-600 max-w-3xl text-base md:text-lg leading-relaxed font-normal">
+                                {service.title === "Fracture & Trauma Surgery"
+                                    ? "We provide a comprehensive range of orthopedic trauma care, fracture fixation, and rehabilitation planning tailored to help you return to your active lifestyle safely."
+                                    : `We provide a comprehensive range of specialized procedures and support options under our ${service.title} care.`}
+                            </p>
+                        </div>
+
+                        <motion.div 
+                            variants={staggerContainer}
+                            initial="hidden"
+                            whileInView="show"
+                            viewport={{ once: true, margin: "-100px" }}
+                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10"
+                        >
+                            {subServicesList.map((item, idx) => {
+                                const padNumber = String(idx + 1).padStart(2, '0');
+                                return (
+                                    <motion.div
+                                        key={idx}
+                                        variants={staggerItem}
+                                        whileHover={{ y: -12, scale: 1.03 }}
+                                        className="group relative bg-white border border-slate-100 hover:border-blue-200 rounded-[2.5rem] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.015)] hover:shadow-2xl transition-all duration-500 text-start flex flex-col justify-between overflow-hidden cursor-default min-h-[260px]"
+                                    >
+                                        {/* Background large number element */}
+                                        <div className="absolute -right-2 -bottom-4 text-8xl font-black text-slate-50 group-hover:-translate-y-2 group-hover:scale-105 select-none pointer-events-none transition-all duration-500 font-sans">
+                                            {padNumber}
+                                        </div>
+
+                                        <div className="relative z-10 flex flex-col h-full justify-between">
+                                            <div>
+                                                {/* Decorative Accent Bar */}
+                                                <div className="w-12 h-1 bg-[#1282b2] group-hover:w-20 transition-all duration-500 rounded-full mb-6" />
+                                                
+                                                <div className="flex justify-between items-start mb-4">
+                                                    <h3 className="text-lg md:text-xl font-montserrat font-bold text-[#003B73] leading-snug group-hover:translate-x-1.5 transition-transform duration-300">
+                                                        {item.title}
+                                                    </h3>
+                                                    <span className="text-sm font-semibold text-slate-300 group-hover:scale-110 transition-transform duration-300">
+                                                        {padNumber}
+                                                    </span>
+                                                </div>
+
+                                                <p className="text-slate-600 group-hover:text-slate-700 text-xs md:text-sm leading-relaxed text-justify pr-4 transition-colors duration-350">
+                                                    {item.desc}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                );
+                            })}
+                        </motion.div>
                     </motion.div>
                 )}
 

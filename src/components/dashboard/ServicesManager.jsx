@@ -56,7 +56,7 @@ const ServicesManager = () => {
   // Feature item and FAQ inputs
   const [newFeature, setNewFeature] = useState('');
   const [newFaq, setNewFaq] = useState({ question: '', answer: '' });
-  const [newSubService, setNewSubService] = useState({ title: '', slug: '' });
+  const [newSubService, setNewSubService] = useState({ title: '', slug: '', description: '' });
 
   // Custom sections inputs (Conditions, checklist items, tag badges)
   const defaultSpineSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M12 2v20M5 12h14M8 5h8M8 19h8M6 8h12M6 16h12" /></svg>`;
@@ -193,11 +193,12 @@ const ServicesManager = () => {
           ...(prev.sub_services || []),
           {
             title: newSubService.title.trim(),
-            slug: newSubService.slug.trim() || newSubService.title.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+            slug: newSubService.slug.trim() || newSubService.title.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+            description: newSubService.description.trim()
           }
         ]
       }));
-      setNewSubService({ title: '', slug: '' });
+      setNewSubService({ title: '', slug: '', description: '' });
     }
   };
 
@@ -521,6 +522,17 @@ const ServicesManager = () => {
                 }`}
               >
                 3. Treatment & Value Sections
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('subservices')}
+                className={`py-2.5 px-6 font-semibold text-sm rounded-lg transition-all ${
+                  activeTab === 'subservices'
+                    ? 'bg-white text-primary-600 shadow-sm'
+                    : 'text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                4. Sub-Services
               </button>
             </div>
 
@@ -1161,6 +1173,75 @@ const ServicesManager = () => {
                         ))}
                         {(formData.conditions || []).length === 0 && (
                           <p className="text-xs text-slate-400 text-center py-4 font-light">Using default conditions list.</p>
+                        )}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+
+                {activeTab === 'subservices' && (
+                  <motion.div
+                    key="tab-subservices"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.15 }}
+                    className="max-w-2xl mx-auto w-full space-y-6"
+                  >
+                    <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
+                      <div className="border-b border-slate-100 pb-2">
+                        <h3 className="text-lg font-bold text-slate-800">Sub-Services / Procedures</h3>
+                        <p className="text-xs text-slate-400">Configure detailed procedures and sub-services that belong to this service.</p>
+                      </div>
+
+                      <div className="space-y-3 p-4 bg-slate-50 rounded-xl border border-slate-100">
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-600 uppercase">Sub-Service Title</label>
+                          <input 
+                            type="text" 
+                            className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none bg-white"
+                            placeholder="e.g. Fracture Assessment"
+                            value={newSubService.title}
+                            onChange={e => setNewSubService(prev => ({ ...prev, title: e.target.value }))}
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-600 uppercase">Sub-Service Description</label>
+                          <textarea 
+                            rows={3}
+                            className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none bg-white"
+                            placeholder="Provide a detailed description of this procedure..."
+                            value={newSubService.description}
+                            onChange={e => setNewSubService(prev => ({ ...prev, description: e.target.value }))}
+                          />
+                        </div>
+                        <button
+                          type="button"
+                          onClick={handleAddSubService}
+                          className="inline-flex items-center justify-center gap-2 w-full text-xs font-semibold py-2 bg-primary-50 text-primary-700 rounded-lg hover:bg-primary-150 transition-colors"
+                        >
+                          <Plus size={14} /> Add Sub-Service
+                        </button>
+                      </div>
+
+                      <div className="space-y-3 max-h-96 overflow-y-auto pr-1">
+                        {(formData.sub_services || []).map((ss, idx) => (
+                          <div key={idx} className="p-4 bg-white border border-slate-150 rounded-xl space-y-1 relative group">
+                            <button
+                              type="button"
+                              onClick={() => handleRemoveSubService(idx)}
+                              className="absolute top-3 right-3 text-red-500 hover:bg-red-50 p-1.5 rounded-md"
+                            >
+                              <MinusCircle size={14} />
+                            </button>
+                            <p className="text-xs font-bold text-slate-800 pr-8 leading-normal">{ss.title}</p>
+                            {ss.description && (
+                              <p className="text-[10px] text-slate-500 font-light leading-relaxed border-t border-slate-50 pt-1 mt-1">{ss.description}</p>
+                            )}
+                          </div>
+                        ))}
+                        {(formData.sub_services || []).length === 0 && (
+                          <p className="text-xs text-slate-400 text-center py-4 font-light">No sub-services added yet.</p>
                         )}
                       </div>
                     </div>
