@@ -607,7 +607,7 @@ const ServiceDetail = () => {
                     </motion.div>
                 )}
                 {/* Services Under Fracture, Trauma & General Orthopaedic Surgery */}
-                {subServicesList.length > 0 && (
+                {false && subServicesList.length > 0 && (
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
