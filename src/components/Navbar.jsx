@@ -155,9 +155,7 @@ const Navbar = () => {
                                                 className={`absolute ${isRtl ? 'end-0' : 'start-0'} mt-3 w-72 bg-primary-900 border border-primary-800/40 rounded-2xl shadow-premium-hover z-50 p-2`}
                                             >
                                                 {dynamicServices.map((service) => {
-                                                    const subServices = (service.sub_services && service.sub_services.length > 0) 
-                                                        ? service.sub_services 
-                                                        : null;
+                                                    const subServices = null; // (service.sub_services && service.sub_services.length > 0) ? service.sub_services : null;
                                                     
                                                     return (
                                                         <div key={service.slug} className="relative group/item">
@@ -334,9 +332,7 @@ const Navbar = () => {
                                                     className="overflow-hidden flex flex-col items-center mt-4 space-y-4 w-full bg-gray-50/50 rounded-2xl py-4"
                                                 >
                                                     {dynamicServices.map((service) => {
-                                                        const subServices = (service.sub_services && service.sub_services.length > 0) 
-                                                            ? service.sub_services 
-                                                            : null;
+                                                        const subServices = null; // (service.sub_services && service.sub_services.length > 0) ? service.sub_services : null;
                                                         return (
                                                             <div key={service.slug} className="w-full flex flex-col items-center">
                                                                 <RouterLink
