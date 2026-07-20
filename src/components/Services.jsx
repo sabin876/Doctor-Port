@@ -112,17 +112,10 @@ const Services = () => {
                                             <IconComp className="w-6 h-6" />
                                         </div>
                                         <div className="relative z-30 p-8 flex flex-col justify-end">
-                                            <div className="transform transition-transform duration-500 group-hover:-translate-y-2">
-                                                <h3 className="text-xl md:text-2xl font-montserrat font-semibold text-white mb-3 leading-tight drop-shadow-md">
+                                            <div>
+                                                <h3 className="text-lg md:text-xl font-montserrat font-semibold text-white mb-4 leading-tight drop-shadow-md">
                                                     {service.title}
                                                 </h3>
-                                                <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
-                                                    <div className="overflow-hidden">
-                                                        <p className="text-gray-200 text-sm leading-relaxed mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                                                            {stripHtml(service.description)}
-                                                        </p>
-                                                    </div>
-                                                </div>
                                                 <RouterLink
                                                     to={`/services/${service.slug}`}
                                                     className="inline-flex items-center gap-3 text-white font-medium text-sm tracking-wider uppercase hover:text-primary-300 transition-colors"
