@@ -30,6 +30,7 @@ const NotFound = React.lazy(() => import('./components/NotFound'));
 const DashboardLayout = React.lazy(() => import('./components/dashboard/DashboardLayout'));
 const DashboardHome = React.lazy(() => import('./components/dashboard/DashboardHome'));
 const ServicesManager = React.lazy(() => import('./components/dashboard/ServicesManager'));
+const SettingsManager = React.lazy(() => import('./components/dashboard/SettingsManager'));
 const ReportAccess = React.lazy(() => import('./pages/patient/ReportAccess'));
 const ReportView = React.lazy(() => import('./pages/patient/ReportView'));
 class ErrorBoundary extends React.Component {
@@ -93,7 +94,7 @@ function App() {
                     <Route index element={<DashboardHome />} />
                     <Route path="articles" element={<div className="p-8 text-slate-500">Articles Management Comming Soon...</div>} />
                     <Route path="services" element={<ServicesManager />} />
-                    <Route path="settings" element={<div className="p-8 text-slate-500">Settings Comming Soon...</div>} />
+                    <Route path="settings" element={<SettingsManager />} />
                   </Route>
 
                   {/* Main App Routes with Header/Footer */}

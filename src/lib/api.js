@@ -74,6 +74,18 @@ export const api = {
         const response = await fetch(`${API_BASE_URL}/settings/`);
         return response.json();
     },
+    updateSiteSettings: async (data) => {
+        const response = await fetch(`${API_BASE_URL}/settings/`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if (!response.ok) {
+            const errData = await response.json().catch(() => ({}));
+            throw new Error(errData.detail || 'Failed to update site settings');
+        }
+        return response.json();
+    },
     getHeroVideo: async () => {
         const response = await fetch(`${API_BASE_URL}/hero-video/`);
         return response.json();

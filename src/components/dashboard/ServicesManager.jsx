@@ -50,7 +50,11 @@ const ServicesManager = () => {
     tag_badges: [],
     sub_services: [],
     conditions_title: '',
-    checklist_title: ''
+    checklist_title: '',
+    cta_title: '',
+    cta_subtitle: '',
+    cta_button_text: '',
+    cta_button_link: ''
   });
 
   // Feature item and FAQ inputs
@@ -124,7 +128,11 @@ const ServicesManager = () => {
         tag_badges: Array.isArray(service.tag_badges) ? [...service.tag_badges] : [],
         sub_services: Array.isArray(service.sub_services) ? [...service.sub_services] : [],
         conditions_title: service.conditions_title || '',
-        checklist_title: service.checklist_title || ''
+        checklist_title: service.checklist_title || '',
+        cta_title: service.cta_title || '',
+        cta_subtitle: service.cta_subtitle || '',
+        cta_button_text: service.cta_button_text || '',
+        cta_button_link: service.cta_button_link || ''
       });
       setMainImagePreview(service.image || '');
       setOgImagePreview(service.og_image || '');
@@ -143,7 +151,11 @@ const ServicesManager = () => {
         tag_badges: [],
         sub_services: [],
         conditions_title: '',
-        checklist_title: ''
+        checklist_title: '',
+        cta_title: '',
+        cta_subtitle: '',
+        cta_button_text: '',
+        cta_button_link: ''
       });
       setMainImagePreview('');
       setOgImagePreview('');
@@ -301,6 +313,10 @@ const ServicesManager = () => {
       payload.append('tag_badges', JSON.stringify(formData.tag_badges || []));
       payload.append('conditions_title', formData.conditions_title || '');
       payload.append('checklist_title', formData.checklist_title || '');
+      payload.append('cta_title', formData.cta_title || '');
+      payload.append('cta_subtitle', formData.cta_subtitle || '');
+      payload.append('cta_button_text', formData.cta_button_text || '');
+      payload.append('cta_button_link', formData.cta_button_link || '');
 
       // Append files if they were chosen
       if (mainImageFile) {
@@ -816,6 +832,58 @@ const ServicesManager = () => {
                               Choose Photo
                             </label>
                           </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Per-Service CTA Banner Override Box */}
+                    <div className="pt-6 border-t border-slate-150 space-y-4">
+                      <div className="flex items-center justify-between">
+                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                          Custom Call to Action (CTA) Banner Override
+                        </label>
+                        <span className="text-[10px] text-slate-400 font-medium">Leave blank to use global site CTA</span>
+                      </div>
+                      <div className="grid sm:grid-cols-2 gap-4 p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                        <div>
+                          <label className="text-[11px] font-semibold text-slate-600 block mb-1">Custom CTA Title</label>
+                          <input 
+                            type="text"
+                            value={formData.cta_title}
+                            onChange={e => setFormData(prev => ({ ...prev, cta_title: e.target.value }))}
+                            placeholder="Default: Struggling with Joint or Back Pain?"
+                            className="w-full text-xs px-3 py-2 border border-slate-200 rounded-xl bg-white focus:outline-none"
+                          />
+                        </div>
+                        <div>
+                          <label className="text-[11px] font-semibold text-slate-600 block mb-1">Custom CTA Subtitle</label>
+                          <input 
+                            type="text"
+                            value={formData.cta_subtitle}
+                            onChange={e => setFormData(prev => ({ ...prev, cta_subtitle: e.target.value }))}
+                            placeholder="Default: Get expert orthopedic care today."
+                            className="w-full text-xs px-3 py-2 border border-slate-200 rounded-xl bg-white focus:outline-none"
+                          />
+                        </div>
+                        <div>
+                          <label className="text-[11px] font-semibold text-slate-600 block mb-1">Button Text</label>
+                          <input 
+                            type="text"
+                            value={formData.cta_button_text}
+                            onChange={e => setFormData(prev => ({ ...prev, cta_button_text: e.target.value }))}
+                            placeholder="Default: Book Appointment Now"
+                            className="w-full text-xs px-3 py-2 border border-slate-200 rounded-xl bg-white focus:outline-none"
+                          />
+                        </div>
+                        <div>
+                          <label className="text-[11px] font-semibold text-slate-600 block mb-1">Button Link Path</label>
+                          <input 
+                            type="text"
+                            value={formData.cta_button_link}
+                            onChange={e => setFormData(prev => ({ ...prev, cta_button_link: e.target.value }))}
+                            placeholder="Default: /contact"
+                            className="w-full text-xs px-3 py-2 border border-slate-200 rounded-xl bg-white focus:outline-none"
+                          />
                         </div>
                       </div>
                     </div>

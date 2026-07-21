@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar } from 'lucide-react';
 import { Link as RouterLink } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { api } from '../lib/api';
 
-const CTABanner = ({ title, subtitle }) => {
+const CTABanner = ({ title, subtitle, buttonText, buttonLink }) => {
     const { t } = useLanguage();
+    const [siteSettings, setSiteSettings] = useState(null);
+
+    useEffect(() => {
+        if (!title || !subtitle || !buttonText || !buttonLink) {
+            api.getSiteSettings()
+                .then(data => setSiteSettings(data))
+                .catch(err => console.error("Error loading CTA site settings:", err));
+        }
+    }, [title, subtitle, buttonText, buttonLink]);
+
+    const displayTitle = title || siteSettings?.cta_title || t('ctaBanner.title') || "Struggling with Joint or Back Pain?";
+    const displaySubtitle = subtitle || siteSettings?.cta_subtitle || t('ctaBanner.subtitle') || "Get expert orthopedic care today.";
+    const displayButtonText = buttonText || siteSettings?.cta_button_text || t('ctaBanner.button') || "Book Appointment Now";
+    const displayButtonLink = buttonLink || siteSettings?.cta_button_link || "/contact";
 
     return (
         <section className="relative overflow-hidden py-0">
@@ -24,20 +39,20 @@ const CTABanner = ({ title, subtitle }) => {
                     <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10 text-center md:text-left">
                         <div className="max-w-2xl">
                             <h2 className="text-xl md:text-2xl lg:text-3xl font-montserrat font-bold text-white mb-4 tracking-tight leading-tight">
-                                {title || t('ctaBanner.title')}
+                                {displayTitle}
                             </h2>
                             <p className="text-white/90 text-lg md:text-xl font-medium tracking-wide">
-                                {subtitle || t('ctaBanner.subtitle')}
+                                {displaySubtitle}
                             </p>
                         </div>
                         
                         <div className="flex-shrink-0">
                             <RouterLink
-                                to="/contact"
+                                to={displayButtonLink}
                                 className="group relative flex items-center justify-center gap-3 px-8 py-4 bg-white text-[#0369a1] rounded-2xl font-black text-sm md:text-base tracking-wide shadow-[0_15px_30px_-10px_rgba(0,0,0,0.2)] hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.3)] hover:scale-[1.03] active:scale-[0.97] transition-all border border-white/50"
                             >
                                 <Calendar className="w-6 h-6 transition-transform group-hover:rotate-12" />
-                                <span>{t('ctaBanner.button')}</span>
+                                <span>{displayButtonText}</span>
                                 
                                 {/* Subtle white shine animation */}
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
