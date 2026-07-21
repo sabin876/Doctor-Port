@@ -36,8 +36,12 @@ const FAQ = ({ title, description, items }) => {
     const displayDescription = description || t('faq.description') || "Non cum cras felis lacus sociosqu, risus porttitor suspendisse.";
 
     return (
-        <section id="faq" className="py-24 bg-gray-50/30 font-sans">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="faq" className="py-24 bg-gradient-to-b from-slate-50 via-blue-50/20 to-slate-50 font-sans relative overflow-hidden border-t border-slate-100">
+            {/* Soft background glow accents */}
+            <div className="absolute top-10 left-1/4 w-96 h-96 bg-blue-100/50 rounded-full blur-3xl -translate-y-1/2 pointer-events-none" />
+            <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-indigo-100/40 rounded-full blur-3xl translate-y-1/2 pointer-events-none" />
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Header Section */}
                 <div className="text-center mb-16">
                     <motion.h2
@@ -60,10 +64,10 @@ const FAQ = ({ title, description, items }) => {
                 </div>
 
                 {/* Content Layout */}
-                <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-center mt-12">
+                <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
                     
                     {/* Left Column: FAQ Items */}
-                    <div className="w-full lg:w-1/2 flex flex-col pt-8">
+                    <div className="w-full lg:w-1/2 flex flex-col gap-4">
                         {faqs.map((faq, index) => (
                             <motion.div
                                 key={index}
@@ -71,21 +75,25 @@ const FAQ = ({ title, description, items }) => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                className={`border-b border-gray-300 py-6`}
+                                className={`rounded-2xl border transition-all duration-300 p-5 md:p-6 ${
+                                    openIndex === index 
+                                    ? 'bg-white border-blue-200 shadow-md shadow-blue-900/5' 
+                                    : 'bg-white/80 hover:bg-white border-slate-200/80 hover:border-blue-200 hover:shadow-sm'
+                                }`}
                             >
                                 <button
                                     onClick={() => setOpenIndex(openIndex === index ? null : index)}
                                     className="w-full flex justify-between items-center text-left focus:outline-none gap-4"
                                 >
-                                    <span className={`text-xl font-bold transition-colors ${openIndex === index ? 'text-[#0A1A44]' : 'text-[#0A1A44] hover:text-blue-700'}`}>
+                                    <span className={`text-lg md:text-xl font-bold transition-colors ${openIndex === index ? 'text-[#0A1A44]' : 'text-[#0A1A44] hover:text-blue-700'}`}>
                                         {faq.question}
                                     </span>
-                                    <div className={`shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-all ${
+                                    <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all ${
                                         openIndex === index 
-                                        ? 'border-2 border-[#0A1A44] text-[#0A1A44]' 
+                                        ? 'bg-blue-50 border border-blue-200 text-[#0A1A44]' 
                                         : 'bg-[#0A1A44] text-white'
                                     }`}>
-                                        <ChevronDown size={14} className={`transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`} />
+                                        <ChevronDown size={16} className={`transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`} />
                                     </div>
                                 </button>
                                 <AnimatePresence initial={false}>
@@ -97,7 +105,7 @@ const FAQ = ({ title, description, items }) => {
                                             transition={{ duration: 0.3 }}
                                             className="overflow-hidden"
                                         >
-                                            <div className="pt-4 text-gray-600 text-base leading-relaxed pr-10">
+                                            <div className="pt-4 text-gray-600 text-base leading-relaxed pr-2 md:pr-6 border-t border-slate-100 mt-4">
                                                 {faq.answer}
                                             </div>
                                         </motion.div>
@@ -108,7 +116,7 @@ const FAQ = ({ title, description, items }) => {
                     </div>
 
                     {/* Right Column: Illustration Image */}
-                    <div className="w-full lg:w-1/2 relative flex justify-center items-center mt-12 lg:mt-0">
+                    <div className="w-full lg:w-1/2 relative flex justify-center items-center">
                         <motion.img 
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -118,7 +126,7 @@ const FAQ = ({ title, description, items }) => {
                             alt="FAQ Illustration" 
                             loading="lazy"
                             decoding="async"
-                            className="max-w-2xl max-h-[32rem] w-auto h-auto rounded-3xl shadow-xl object-contain"
+                            className="max-w-2xl max-h-[32rem] w-auto h-auto rounded-3xl shadow-xl border border-white/60 object-contain"
                         />
                     </div>
                 </div>

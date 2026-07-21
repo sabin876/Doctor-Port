@@ -111,7 +111,11 @@ const ServicesPage = () => {
             </div>
             <Services />
             <CTABanner />
-            <FAQ />
+            <FAQ 
+                title={t('faq_services.title')} 
+                description={t('faq_services.description')} 
+                items={serviceFaqs} 
+            />
         </main>
     );
 };

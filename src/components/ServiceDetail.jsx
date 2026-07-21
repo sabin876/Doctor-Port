@@ -943,62 +943,76 @@ const ServiceFAQSection = ({ serviceSlug, customFaqs, serviceTitle }) => {
     const [openIndex, setOpenIndex] = useState(0);
 
     return (
-        <div className="max-w-4xl mx-auto py-16 md:py-24 font-sans px-4">
-            <div className="text-center mb-12">
-                <span className="inline-flex items-center px-4 py-1.5 mb-4 rounded-full bg-blue-50 text-blue-700 text-[10px] font-normal uppercase tracking-[0.3em] border border-blue-100/50">
-                    {badge}
-                </span>
-                <h2 className="text-3xl md:text-5xl font-normal text-primary-950 mb-6 tracking-tighter leading-[1.05]">
-                    {title}
-                </h2>
-                <p className="text-gray-500 max-w-2xl mx-auto text-sm md:text-base leading-relaxed font-normal">
-                    {description}
-                </p>
-            </div>
+        <div className="relative rounded-[3rem] bg-gradient-to-b from-slate-50 via-blue-50/20 to-slate-50 border border-slate-100 p-8 md:p-16 my-16 font-sans overflow-hidden">
+            {/* Soft ambient background glows */}
+            <div className="absolute top-0 left-1/3 w-80 h-80 bg-blue-100/40 rounded-full blur-3xl -translate-y-1/2 pointer-events-none" />
+            <div className="absolute bottom-0 right-1/3 w-80 h-80 bg-indigo-100/30 rounded-full blur-3xl translate-y-1/2 pointer-events-none" />
 
-            <div className="space-y-4">
-                {faqs.map((faq, idx) => {
-                    const isOpen = openIndex === idx;
-                    const qText = faq.question || faq.q;
-                    const aText = faq.answer || faq.a;
-                    return (
-                        <div 
-                            key={idx} 
-                            className="bg-white border border-gray-100/60 rounded-3xl overflow-hidden shadow-[0_10px_35px_-10px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_45px_-10px_rgba(0,0,0,0.05)] transition-all duration-500"
-                        >
-                            <button 
-                                onClick={() => setOpenIndex(isOpen ? null : idx)}
-                                className="w-full flex items-center justify-between p-6 md:p-8 text-start focus:outline-none"
+            <div className="max-w-4xl mx-auto relative z-10">
+                <div className="text-center mb-12">
+                    <span className="inline-flex items-center px-4 py-1.5 mb-4 rounded-full bg-blue-50 text-blue-700 text-[10px] font-normal uppercase tracking-[0.3em] border border-blue-100/50">
+                        {badge}
+                    </span>
+                    <h2 className="text-3xl md:text-5xl font-normal text-primary-950 mb-6 tracking-tighter leading-[1.05]">
+                        {title}
+                    </h2>
+                    <p className="text-gray-500 max-w-2xl mx-auto text-sm md:text-base leading-relaxed font-normal">
+                        {description}
+                    </p>
+                </div>
+
+                <div className="space-y-4">
+                    {faqs.map((faq, idx) => {
+                        const isOpen = openIndex === idx;
+                        const qText = faq.question || faq.q;
+                        const aText = faq.answer || faq.a;
+                        return (
+                            <div 
+                                key={idx} 
+                                className={`rounded-3xl transition-all duration-300 border ${
+                                    isOpen 
+                                    ? 'bg-white border-blue-200 shadow-md shadow-blue-900/5' 
+                                    : 'bg-white/80 hover:bg-white border-slate-200/80 hover:border-blue-200 hover:shadow-sm'
+                                }`}
                             >
-                                <span className="text-base md:text-lg font-medium text-[#0A1A44] pr-8">{qText}</span>
-                                <motion.span 
-                                    animate={{ rotate: isOpen ? 45 : 0 }}
-                                    transition={{ duration: 0.3, ease: "easeOut" }}
-                                    className="text-xl md:text-2xl text-gray-400 font-light shrink-0 select-none cursor-pointer w-8 h-8 rounded-full bg-gray-50/50 flex items-center justify-center hover:bg-gray-100/70 transition-colors"
+                                <button 
+                                    onClick={() => setOpenIndex(isOpen ? null : idx)}
+                                    className="w-full flex items-center justify-between p-6 md:p-8 text-start focus:outline-none"
                                 >
-                                    ＋
-                                </motion.span>
-                            </button>
-                            
-                            <AnimatePresence initial={false}>
-                                {isOpen && (
-                                    <motion.div
-                                        initial={{ height: 0, opacity: 0 }}
-                                        animate={{ height: "auto", opacity: 1 }}
-                                        exit={{ height: 0, opacity: 0 }}
-                                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                                    <span className="text-base md:text-lg font-medium text-[#0A1A44] pr-8">{qText}</span>
+                                    <motion.span 
+                                        animate={{ rotate: isOpen ? 45 : 0 }}
+                                        transition={{ duration: 0.3, ease: "easeOut" }}
+                                        className={`text-xl md:text-2xl font-light shrink-0 select-none cursor-pointer w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
+                                            isOpen 
+                                            ? 'bg-blue-50 text-blue-700 border border-blue-200' 
+                                            : 'bg-slate-100 text-slate-500'
+                                        }`}
                                     >
-                                        <div className="px-6 md:px-8 pb-8">
-                                            <p className="text-gray-600 leading-relaxed border-t border-gray-50 pt-6 text-sm md:text-base font-normal">
-                                                {aText}
-                                            </p>
-                                        </div>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
-                    );
-                })}
+                                        ＋
+                                    </motion.span>
+                                </button>
+                                
+                                <AnimatePresence initial={false}>
+                                    {isOpen && (
+                                        <motion.div
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: "auto", opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                                        >
+                                            <div className="px-6 md:px-8 pb-8">
+                                                <p className="text-gray-600 leading-relaxed border-t border-slate-100 pt-6 text-sm md:text-base font-normal">
+                                                    {aText}
+                                                </p>
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );
