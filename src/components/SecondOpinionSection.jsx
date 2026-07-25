@@ -47,7 +47,8 @@ const SecondOpinionSection = ({ customBadge, customTitle, customDescription, cus
 
     useEffect(() => {
         if (Array.isArray(customItems) && customItems.length > 0) {
-            const formatted = customItems.map(item => ({
+            const activeOnly = customItems.filter(item => item.is_active !== false);
+            const formatted = activeOnly.map(item => ({
                 id: item.id,
                 category: item.category,
                 title: item.title,
@@ -62,7 +63,8 @@ const SecondOpinionSection = ({ customBadge, customTitle, customDescription, cus
         api.getSecondOpinions()
             .then(data => {
                 if (Array.isArray(data) && data.length > 0) {
-                    const formatted = data.map(item => ({
+                    const activeOnly = data.filter(item => item.is_active !== false);
+                    const formatted = activeOnly.map(item => ({
                         id: item.id,
                         category: item.category,
                         title: item.title,

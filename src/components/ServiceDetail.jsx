@@ -801,18 +801,12 @@ const ServiceDetail = () => {
                 )}
 
                 {/* Second Opinion Section - Placed right above Expertise & Quality / Why Choose Us */}
-                {Boolean(rawService?.second_opinion_is_active) && (
+                {(rawService?.second_opinion_is_active === true || rawService?.second_opinion_is_active === 'true' || rawService?.second_opinion_is_active === 1) && (
                     <SecondOpinionSection 
                         customBadge={rawService?.second_opinion_badge}
                         customTitle={rawService?.second_opinion_title}
                         customDescription={rawService?.second_opinion_description}
                         customItems={rawService?.second_opinions}
-                        initialCategory={
-                            id?.toLowerCase().includes('fracture') || id?.toLowerCase().includes('trauma') ? 'fracture' :
-                            id?.toLowerCase().includes('knee') || id?.toLowerCase().includes('robotic') ? 'knee' :
-                            id?.toLowerCase().includes('sports') || id?.toLowerCase().includes('acl') || id?.toLowerCase().includes('arthroscopy') ? 'acl' :
-                            id?.toLowerCase().includes('hip') || id?.toLowerCase().includes('shoulder') ? 'hipShoulder' : 'all'
-                        } 
                     />
                 )}
 
