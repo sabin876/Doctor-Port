@@ -801,7 +801,7 @@ const ServiceDetail = () => {
                 )}
 
                 {/* Second Opinion Section - Placed right above Expertise & Quality / Why Choose Us */}
-                {(rawService?.second_opinion_is_active !== false) && (
+                {Boolean(rawService?.second_opinion_is_active) && (
                     <SecondOpinionSection 
                         customBadge={rawService?.second_opinion_badge}
                         customTitle={rawService?.second_opinion_title}
