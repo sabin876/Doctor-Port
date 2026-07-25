@@ -440,6 +440,10 @@ const ServicesManager = () => {
       payload.append('cta_subtitle', formData.cta_subtitle || '');
       payload.append('cta_button_text', formData.cta_button_text || '');
       payload.append('cta_button_link', formData.cta_button_link || '');
+      payload.append('second_opinion_is_active', formData.second_opinion_is_active ? 'true' : 'false');
+      payload.append('second_opinion_badge', formData.second_opinion_badge || '');
+      payload.append('second_opinion_title', formData.second_opinion_title || '');
+      payload.append('second_opinion_description', formData.second_opinion_description || '');
 
       // Append files if they were chosen
       if (mainImageFile) {
