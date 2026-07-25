@@ -36,7 +36,7 @@ const defaultItems = [
     }
 ];
 
-const SecondOpinionSection = ({ customBadge, customTitle, customDescription }) => {
+const SecondOpinionSection = ({ customBadge, customTitle, customDescription, customItems }) => {
     const { language } = useLanguage();
     const isRtl = language === 'AR';
     const [opinions, setOpinions] = useState(defaultItems);
@@ -46,6 +46,19 @@ const SecondOpinionSection = ({ customBadge, customTitle, customDescription }) =
     const whatsappMessage = encodeURIComponent("Hello Dr. Ulhas, I would like to get a second opinion regarding my orthopedic condition.");
 
     useEffect(() => {
+        if (Array.isArray(customItems) && customItems.length > 0) {
+            const formatted = customItems.map(item => ({
+                id: item.id,
+                category: item.category,
+                title: item.title,
+                p1: item.paragraph_1 || item.p1 || '',
+                p2: item.paragraph_2 || item.p2 || ''
+            }));
+            setOpinions(formatted);
+            setLoading(false);
+            return;
+        }
+
         api.getSecondOpinions()
             .then(data => {
                 if (Array.isArray(data) && data.length > 0) {
@@ -64,7 +77,7 @@ const SecondOpinionSection = ({ customBadge, customTitle, customDescription }) =
                 console.error("Failed to fetch second opinions:", err);
                 setLoading(false);
             });
-    }, []);
+    }, [customItems]);
 
     return (
         <section id="second-opinion-section" className="py-16 md:py-20 bg-gray-50 border-t border-b border-gray-100">
