@@ -247,7 +247,11 @@ const ServicesManager = () => {
         cta_title: service.cta_title || '',
         cta_subtitle: service.cta_subtitle || '',
         cta_button_text: service.cta_button_text || '',
-        cta_button_link: service.cta_button_link || ''
+        cta_button_link: service.cta_button_link || '',
+        second_opinion_is_active: service.second_opinion_is_active ?? false,
+        second_opinion_badge: service.second_opinion_badge || 'Specialized Orthopedic Care',
+        second_opinion_title: service.second_opinion_title || 'Second Opinion Services',
+        second_opinion_description: service.second_opinion_description || 'Get expert evaluation and clear, evidence-based recommendations before undergoing surgery or complex orthopedic treatment.'
       });
       setMainImagePreview(service.image || '');
       setOgImagePreview(service.og_image || '');
@@ -270,7 +274,11 @@ const ServicesManager = () => {
         cta_title: '',
         cta_subtitle: '',
         cta_button_text: '',
-        cta_button_link: ''
+        cta_button_link: '',
+        second_opinion_is_active: false,
+        second_opinion_badge: 'Specialized Orthopedic Care',
+        second_opinion_title: 'Second Opinion Services',
+        second_opinion_description: 'Get expert evaluation and clear, evidence-based recommendations before undergoing surgery or complex orthopedic treatment.'
       });
       setMainImagePreview('');
       setOgImagePreview('');
@@ -894,6 +902,17 @@ const ServicesManager = () => {
                 }`}
               >
                 4. Sub-Services
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('second_opinion')}
+                className={`py-2.5 px-6 font-semibold text-sm rounded-lg transition-all ${
+                  activeTab === 'second_opinion'
+                    ? 'bg-white text-primary-600 shadow-sm'
+                    : 'text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                5. Second Opinion Section
               </button>
             </div>
 
@@ -1656,6 +1675,72 @@ const ServicesManager = () => {
                         {(formData.sub_services || []).length === 0 && (
                           <p className="text-xs text-slate-400 text-center py-4 font-light">No sub-services added yet.</p>
                         )}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+
+                {activeTab === 'second_opinion' && (
+                  <motion.div
+                    key="tab-second-opinion"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.15 }}
+                    className="max-w-3xl mx-auto w-full space-y-6 text-start"
+                  >
+                    <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-5">
+                      <div className="border-b border-slate-100 pb-3">
+                        <h3 className="text-lg font-bold text-slate-800">Second Opinion Section Settings</h3>
+                        <p className="text-xs text-slate-400">Customize the main section title, badge, subtext description, and visibility for this service page.</p>
+                      </div>
+
+                      <div className="flex items-center gap-3 p-4 bg-slate-50 border border-slate-200 rounded-xl">
+                        <input
+                          type="checkbox"
+                          id="second_opinion_is_active_input"
+                          checked={formData.second_opinion_is_active || false}
+                          onChange={(e) => setFormData(prev => ({ ...prev, second_opinion_is_active: e.target.checked }))}
+                          className="w-4 h-4 rounded text-primary-600 focus:ring-primary-500"
+                        />
+                        <label htmlFor="second_opinion_is_active_input" className="text-sm font-semibold text-slate-800 select-none cursor-pointer">
+                          Enable Second Opinion / Specialized Care Section on this Service Page
+                        </label>
+                      </div>
+
+                      <div className="grid sm:grid-cols-2 gap-4">
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-600 uppercase">Section Badge / Pill</label>
+                          <input
+                            type="text"
+                            className="w-full text-sm px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 ring-primary-500/20 focus:outline-none"
+                            value={formData.second_opinion_badge || ''}
+                            onChange={e => setFormData(prev => ({ ...prev, second_opinion_badge: e.target.value }))}
+                            placeholder="e.g. Specialized Orthopedic Care"
+                          />
+                        </div>
+
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-600 uppercase">Section Main Title</label>
+                          <input
+                            type="text"
+                            className="w-full text-sm px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 ring-primary-500/20 focus:outline-none"
+                            value={formData.second_opinion_title || ''}
+                            onChange={e => setFormData(prev => ({ ...prev, second_opinion_title: e.target.value }))}
+                            placeholder="e.g. Second Opinion Services"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="text-xs font-semibold text-slate-600 uppercase">Section Subtitle / Description</label>
+                        <textarea
+                          rows={3}
+                          className="w-full text-sm px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 ring-primary-500/20 focus:outline-none leading-relaxed"
+                          value={formData.second_opinion_description || ''}
+                          onChange={e => setFormData(prev => ({ ...prev, second_opinion_description: e.target.value }))}
+                          placeholder="e.g. Get expert evaluation and clear, evidence-based recommendations before undergoing surgery or complex orthopedic treatment."
+                        />
                       </div>
                     </div>
                   </motion.div>
