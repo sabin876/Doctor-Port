@@ -28,11 +28,37 @@ import {
 } from 'lucide-react';
 import { api } from '../../lib/api';
 
+const categoryOptions = [
+  { value: 'knee', label: 'Knee Replacement' },
+  { value: 'acl', label: 'ACL or Meniscus Surgery' },
+  { value: 'hipShoulder', label: 'Hip or Shoulder Surgery' },
+  { value: 'fracture', label: 'Fracture or Trauma Treatment' },
+  { value: 'general', label: 'General Orthopedic Second Opinion' }
+];
+
 const ServicesManager = () => {
+  const [activeSection, setActiveSection] = useState('services'); // 'services' or 'second-opinions'
+
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+
+  // Second Opinions Management State
+  const [secondOpinions, setSecondOpinions] = useState([]);
+  const [soLoading, setSoLoading] = useState(false);
+  const [soSearchQuery, setSoSearchQuery] = useState('');
+  const [soModalOpen, setSoModalOpen] = useState(false);
+  const [soEditingItem, setSoEditingItem] = useState(null);
+  const [soSaving, setSoSaving] = useState(false);
+  const [soFormData, setSoFormData] = useState({
+    title: '',
+    category: 'knee',
+    paragraph_1: '',
+    paragraph_2: '',
+    order: 0,
+    is_active: true
+  });
   
   // Editor State
   const [isEditing, setIsEditing] = useState(false);
@@ -98,6 +124,95 @@ const ServicesManager = () => {
   useEffect(() => {
     fetchServices();
   }, []);
+
+  const fetchSecondOpinions = async () => {
+    setSoLoading(true);
+    try {
+      const data = await api.getSecondOpinions();
+      setSecondOpinions(data || []);
+    } catch (err) {
+      console.error('Failed to load second opinions:', err);
+    } finally {
+      setSoLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (activeSection === 'second-opinions') {
+      fetchSecondOpinions();
+    }
+  }, [activeSection]);
+
+  const handleOpenAddSO = () => {
+    setSoEditingItem(null);
+    setSoFormData({
+      title: '',
+      category: 'knee',
+      paragraph_1: '',
+      paragraph_2: '',
+      order: secondOpinions.length + 1,
+      is_active: true
+    });
+    setSoModalOpen(true);
+  };
+
+  const handleOpenEditSO = (item) => {
+    setSoEditingItem(item);
+    setSoFormData({
+      title: item.title || '',
+      category: item.category || 'knee',
+      paragraph_1: item.paragraph_1 || '',
+      paragraph_2: item.paragraph_2 || '',
+      order: item.order ?? 0,
+      is_active: item.is_active ?? true
+    });
+    setSoModalOpen(true);
+  };
+
+  const handleDeleteSO = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this second opinion item?")) return;
+    try {
+      await api.deleteSecondOpinion(id);
+      fetchSecondOpinions();
+    } catch (err) {
+      console.error("Delete second opinion failed:", err);
+      alert("Failed to delete item.");
+    }
+  };
+
+  const handleToggleActiveSO = async (item) => {
+    try {
+      await api.updateSecondOpinion(item.id, { is_active: !item.is_active });
+      fetchSecondOpinions();
+    } catch (err) {
+      console.error("Toggle active second opinion failed:", err);
+      alert("Failed to update status.");
+    }
+  };
+
+  const handleSubmitSO = async (e) => {
+    e.preventDefault();
+    if (!soFormData.title || !soFormData.paragraph_1 || !soFormData.paragraph_2) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
+    setSoSaving(true);
+    try {
+      if (soEditingItem) {
+        await api.updateSecondOpinion(soEditingItem.id, soFormData);
+      } else {
+        await api.createSecondOpinion(soFormData);
+      }
+      setSoModalOpen(false);
+      fetchSecondOpinions();
+    } catch (err) {
+      console.error("Save second opinion failed:", err);
+      alert(err.message || "Failed to save item.");
+    } finally {
+      setSoSaving(false);
+    }
+  };
 
   const fetchServices = async () => {
     try {
@@ -387,31 +502,284 @@ const ServicesManager = () => {
             exit={{ opacity: 0, y: -15 }}
             className="space-y-6"
           >
-            {/* Header Block */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              <div>
-                <h1 className="text-3xl font-bold text-slate-800 tracking-tight">Services Management</h1>
-                <p className="text-slate-500 text-sm mt-1">Create, update, and organize clinic and home services.</p>
+            {/* Section Switcher Navigation Bar */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
+              <div className="flex items-center gap-2 p-1.5 bg-slate-100 rounded-xl">
+                <button
+                  type="button"
+                  onClick={() => setActiveSection('services')}
+                  className={`flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-xs transition-all ${
+                    activeSection === 'services'
+                      ? 'bg-primary-600 text-white shadow-md'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  <Stethoscope size={16} />
+                  <span>Clinical Services & Procedures</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setActiveSection('second-opinions')}
+                  className={`flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-xs transition-all ${
+                    activeSection === 'second-opinions'
+                      ? 'bg-primary-600 text-white shadow-md'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  <Layers size={16} />
+                  <span>Second Opinion Care</span>
+                </button>
               </div>
-              <button
-                onClick={() => handleOpenEdit(null)}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-primary-600 text-white rounded-xl font-medium text-sm shadow-md hover:bg-primary-700 active:scale-95 transition-all w-full sm:w-auto"
-              >
-                Add Services
-              </button>
+
+              {activeSection === 'services' ? (
+                <button
+                  onClick={() => handleOpenEdit(null)}
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-primary-600 text-white rounded-xl font-medium text-xs shadow-md hover:bg-primary-700 active:scale-95 transition-all"
+                >
+                  <Plus size={16} />
+                  <span>Add New Service</span>
+                </button>
+              ) : (
+                <button
+                  onClick={handleOpenAddSO}
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-primary-600 text-white rounded-xl font-medium text-xs shadow-md hover:bg-primary-700 active:scale-95 transition-all"
+                >
+                  <Plus size={16} />
+                  <span>Add Second Opinion</span>
+                </button>
+              )}
             </div>
 
-            {/* Filters */}
-            <div className="flex items-center gap-2 px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-500 max-w-md shadow-sm">
-              <Search size={18} />
-              <input 
-                type="text" 
-                placeholder="Search services by title or slug..." 
-                className="bg-transparent border-none focus:outline-none text-sm w-full text-slate-800 placeholder-slate-400"
-                value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
-              />
-            </div>
+            {activeSection === 'second-opinions' ? (
+              /* Second Opinions Management Section */
+              <div className="space-y-6">
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200/80">
+                  <div className="relative w-full sm:w-80">
+                    <Search size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+                    <input
+                      type="text"
+                      placeholder="Search second opinions..."
+                      value={soSearchQuery}
+                      onChange={(e) => setSoSearchQuery(e.target.value)}
+                      className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-primary-500 transition-colors"
+                    />
+                  </div>
+
+                  <span className="text-xs text-slate-500 font-medium">
+                    Showing {secondOpinions.filter(op => op.title.toLowerCase().includes(soSearchQuery.toLowerCase())).length} items
+                  </span>
+                </div>
+
+                {soLoading ? (
+                  <div className="flex justify-center py-16 bg-white rounded-3xl border border-slate-100">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {secondOpinions
+                      .filter(op => op.title.toLowerCase().includes(soSearchQuery.toLowerCase()))
+                      .map((item) => {
+                        const catObj = categoryOptions.find(c => c.value === item.category);
+                        return (
+                          <div 
+                            key={item.id}
+                            className={`bg-white rounded-2xl border transition-all duration-300 p-6 flex flex-col justify-between space-y-4 shadow-xs ${
+                              item.is_active ? 'border-slate-200/80 hover:border-primary-200' : 'border-slate-200 bg-slate-50/50 opacity-75'
+                            }`}
+                          >
+                            <div>
+                              <div className="flex items-center justify-between gap-3 mb-3">
+                                <span className="px-3 py-1 bg-slate-100 border border-slate-200 text-slate-700 text-xs font-semibold rounded-lg">
+                                  {catObj ? catObj.label : item.category}
+                                </span>
+
+                                <div className="flex items-center gap-2">
+                                  <span className="text-xs text-slate-400 font-mono">Order: #{item.order}</span>
+                                  <button
+                                    onClick={() => handleToggleActiveSO(item)}
+                                    className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase transition-colors ${
+                                      item.is_active 
+                                        ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' 
+                                        : 'bg-slate-200 text-slate-600'
+                                    }`}
+                                  >
+                                    {item.is_active ? 'Active' : 'Draft'}
+                                  </button>
+                                </div>
+                              </div>
+
+                              <h3 className="text-base font-bold text-slate-900 leading-snug mb-3">
+                                {item.title}
+                              </h3>
+
+                              <div className="space-y-2 text-xs text-slate-600 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-100">
+                                <p><strong className="text-slate-800">Paragraph 1:</strong> {item.paragraph_1}</p>
+                                <p><strong className="text-slate-800">Paragraph 2:</strong> {item.paragraph_2}</p>
+                              </div>
+                            </div>
+
+                            <div className="flex items-center justify-end gap-2 pt-4 border-t border-slate-100">
+                              <button
+                                onClick={() => handleOpenEditSO(item)}
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-blue-700 hover:bg-blue-100 text-xs font-semibold rounded-lg transition-colors"
+                              >
+                                <Edit3 size={14} />
+                                <span>Edit</span>
+                              </button>
+
+                              <button
+                                onClick={() => handleDeleteSO(item.id)}
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-50 text-red-700 hover:bg-red-100 text-xs font-semibold rounded-lg transition-colors"
+                              >
+                                <Trash2 size={14} />
+                                <span>Delete</span>
+                              </button>
+                            </div>
+                          </div>
+                        );
+                      })}
+                  </div>
+                )}
+
+                {/* Modal Form for Second Opinion Edit/Add */}
+                {soModalOpen && (
+                  <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm overflow-y-auto">
+                    <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-xl w-full p-6 sm:p-8 relative my-8 text-start">
+                      <button
+                        onClick={() => setSoModalOpen(false)}
+                        className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-xl transition-colors"
+                      >
+                        <X size={20} />
+                      </button>
+
+                      <h2 className="text-lg font-bold text-slate-900 mb-6">
+                        {soEditingItem ? 'Edit Second Opinion' : 'Add New Second Opinion'}
+                      </h2>
+
+                      <form onSubmit={handleSubmitSO} className="space-y-4">
+                        <div>
+                          <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                            Title *
+                          </label>
+                          <input
+                            type="text"
+                            required
+                            placeholder="e.g. Second Opinion Before Knee Replacement"
+                            value={soFormData.title}
+                            onChange={(e) => setSoFormData({ ...soFormData, title: e.target.value })}
+                            className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-primary-500"
+                          />
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                              Category *
+                            </label>
+                            <select
+                              value={soFormData.category}
+                              onChange={(e) => setSoFormData({ ...soFormData, category: e.target.value })}
+                              className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-primary-500"
+                            >
+                              {categoryOptions.map((cat) => (
+                                <option key={cat.value} value={cat.value}>
+                                  {cat.label}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                              Display Order
+                            </label>
+                            <input
+                              type="number"
+                              value={soFormData.order}
+                              onChange={(e) => setSoFormData({ ...soFormData, order: parseInt(e.target.value) || 0 })}
+                              className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-primary-500"
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                            Paragraph 1 (What decisions are based on) *
+                          </label>
+                          <textarea
+                            required
+                            rows={3}
+                            placeholder="e.g. Knee replacement decisions should be based on symptoms..."
+                            value={soFormData.paragraph_1}
+                            onChange={(e) => setSoFormData({ ...soFormData, paragraph_1: e.target.value })}
+                            className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-primary-500 leading-relaxed"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                            Paragraph 2 (What a second opinion clarifies) *
+                          </label>
+                          <textarea
+                            required
+                            rows={3}
+                            placeholder="e.g. A second opinion can help clarify whether the patient needs..."
+                            value={soFormData.paragraph_2}
+                            onChange={(e) => setSoFormData({ ...soFormData, paragraph_2: e.target.value })}
+                            className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-primary-500 leading-relaxed"
+                          />
+                        </div>
+
+                        <div className="flex items-center gap-3 pt-2">
+                          <input
+                            type="checkbox"
+                            id="is_active_so"
+                            checked={soFormData.is_active}
+                            onChange={(e) => setSoFormData({ ...soFormData, is_active: e.target.checked })}
+                            className="w-4 h-4 rounded text-primary-600 focus:ring-primary-500"
+                          />
+                          <label htmlFor="is_active_so" className="text-xs font-medium text-slate-700 select-none">
+                            Publish this item (Active)
+                          </label>
+                        </div>
+
+                        <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-100">
+                          <button
+                            type="button"
+                            onClick={() => setSoModalOpen(false)}
+                            className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-xl transition-colors"
+                          >
+                            Cancel
+                          </button>
+
+                          <button
+                            type="submit"
+                            disabled={soSaving}
+                            className="inline-flex items-center gap-2 px-5 py-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold text-xs rounded-xl transition-colors disabled:opacity-50"
+                          >
+                            <span>{soSaving ? 'Saving...' : 'Save Record'}</span>
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              /* Main Clinical Services Section */
+              <div className="space-y-6">
+                {/* Filters */}
+                <div className="flex items-center gap-2 px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-500 max-w-md shadow-sm">
+                  <Search size={18} />
+                  <input 
+                    type="text" 
+                    placeholder="Search services by title or slug..." 
+                    className="bg-transparent border-none focus:outline-none text-sm w-full text-slate-800 placeholder-slate-400"
+                    value={searchQuery}
+                    onChange={e => setSearchQuery(e.target.value)}
+                  />
+                </div>
 
             {error && (
               <div className="p-4 bg-red-50 text-red-700 rounded-xl text-sm border border-red-100 flex items-center gap-3">
@@ -476,6 +844,8 @@ const ServicesManager = () => {
                 </div>
               )}
             </div>
+            </div>
+            )}
           </motion.div>
         ) : (
           <motion.div

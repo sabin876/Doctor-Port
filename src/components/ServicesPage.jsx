@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SEO from './SEO';
 import Services from './Services';
+import SecondOpinionSection from './SecondOpinionSection';
 import CTABanner from './CTABanner';
 import FAQ from './FAQ';
 import { useLanguage } from '../context/LanguageContext';
@@ -110,6 +111,7 @@ const ServicesPage = () => {
                 ]} />
             </div>
             <Services />
+            <SecondOpinionSection />
             <CTABanner />
             <FAQ 
                 title={t('faq_services.title')} 

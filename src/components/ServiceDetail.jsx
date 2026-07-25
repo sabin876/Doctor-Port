@@ -10,6 +10,7 @@ import SEO from './SEO';
 import { defaultServiceFaqs } from '../constants/serviceFaqs';
 import CTABanner from './CTABanner';
 import RoboticKneeJourney from './RoboticKneeJourney';
+import SecondOpinionSection from './SecondOpinionSection';
 
 // Import images
 import kneeArthroscopyImg from '../assets/knee-arthroscopy.png';
@@ -797,6 +798,21 @@ const ServiceDetail = () => {
                             </div>
                         )}
                     </motion.div>
+                )}
+
+                {/* Second Opinion Section - Placed right above Expertise & Quality / Why Choose Us */}
+                {(rawService?.second_opinion_is_active !== false) && (
+                    <SecondOpinionSection 
+                        customBadge={rawService?.second_opinion_badge}
+                        customTitle={rawService?.second_opinion_title}
+                        customDescription={rawService?.second_opinion_description}
+                        initialCategory={
+                            id?.toLowerCase().includes('fracture') || id?.toLowerCase().includes('trauma') ? 'fracture' :
+                            id?.toLowerCase().includes('knee') || id?.toLowerCase().includes('robotic') ? 'knee' :
+                            id?.toLowerCase().includes('sports') || id?.toLowerCase().includes('acl') || id?.toLowerCase().includes('arthroscopy') ? 'acl' :
+                            id?.toLowerCase().includes('hip') || id?.toLowerCase().includes('shoulder') ? 'hipShoulder' : 'all'
+                        } 
+                    />
                 )}
 
                 {/* 2b. Custom Why Choose Us Value Checklist (Dynamic CMS Template) */}

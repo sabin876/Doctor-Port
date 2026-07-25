@@ -162,6 +162,41 @@ export const api = {
             throw { status: response.status, message: errData.detail || 'Failed to load report' };
         }
         return response.json();
+    },
+    getSecondOpinions: async () => {
+        const response = await fetch(`${API_BASE_URL}/second-opinions/`);
+        const data = await response.json();
+        return Array.isArray(data) ? data : [];
+    },
+    createSecondOpinion: async (data) => {
+        const response = await fetch(`${API_BASE_URL}/second-opinions/`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if (!response.ok) {
+            const errData = await response.json().catch(() => ({}));
+            throw new Error(errData.detail || 'Failed to create second opinion record');
+        }
+        return response.json();
+    },
+    updateSecondOpinion: async (id, data) => {
+        const response = await fetch(`${API_BASE_URL}/second-opinions/${id}/`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if (!response.ok) {
+            const errData = await response.json().catch(() => ({}));
+            throw new Error(errData.detail || 'Failed to update second opinion record');
+        }
+        return response.json();
+    },
+    deleteSecondOpinion: async (id) => {
+        const response = await fetch(`${API_BASE_URL}/second-opinions/${id}/`, {
+            method: 'DELETE'
+        });
+        return response.ok;
     }
 };
 
