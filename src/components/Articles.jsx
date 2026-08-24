@@ -7,6 +7,7 @@ import { User, Calendar, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import Breadcrumbs from './ui/Breadcrumbs';
 import { api } from '../lib/api';
+import FAQ from './FAQ';
 
 const container = {
     hidden: { opacity: 0 },
@@ -25,6 +26,32 @@ const item = {
 
 const Articles = () => {
     const { t } = useLanguage();
+
+    // Get learning center specific FAQs from translations
+    const faqItems = [0, 1].map(i => ({
+        question: t(`faq_articles.items.${i}.question`),
+        answer: t(`faq_articles.items.${i}.answer`)
+    }));
+
+    // Add FAQ Schema if valid
+    const hasValidFaqs = faqItems && faqItems.length > 0 && faqItems[0].question && !faqItems[0].question.startsWith('faq_articles');
+    const faqSchema = hasValidFaqs ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqItems.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+            }
+        }))
+    } : null;
+
+    const schemaList = [];
+    if (faqSchema) {
+        schemaList.push(faqSchema);
+    }
     const [articles, setArticles] = useState(() => {
         if (typeof window !== 'undefined' && window.__INITIAL_ARTICLES__) {
             return window.__INITIAL_ARTICLES__;
@@ -61,6 +88,7 @@ const Articles = () => {
                 description="Read the latest articles on orthopedic conditions, treatments, and recovery from Dr. Ulhas Sonar."
                 url="/blog"
                 image={heroImg}
+                schemaList={schemaList}
             />
             <div className="bg-white border-b border-gray-100">
                 <Breadcrumbs items={[
@@ -190,6 +218,12 @@ const Articles = () => {
                     </Link>
                 </motion.div>
             </div>
+            
+            <FAQ 
+                title={t('faq_articles.title')} 
+                description={t('faq_articles.description')} 
+                items={faqItems} 
+            />
         </main>
     );
 };
