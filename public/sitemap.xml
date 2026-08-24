@@ -55,88 +55,64 @@
          Priority: 0.9
     ====================================================== -->
 
-    <!-- Knee Replacement & Knee Preservation Surgery -->
-    <url>
-        <loc>https://drulhasorthopedic.com/services/knee-replacement-knee-preservation-surgery</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Robotic Knee Replacement Surgery -->
-    <url>
-        <loc>https://drulhasorthopedic.com/services/robotic-knee-replacement-surgery</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Sports Injury -->
-    <url>
-        <loc>https://drulhasorthopedic.com/services/sports-injury</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Fracture & Trauma Surgery -->
     <url>
         <loc>https://drulhasorthopedic.com/services/fracture-trauma-surgery</loc>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
 
-    <!-- Second Opinion for Orthopaedic Surgery -->
-    <url>
-        <loc>https://drulhasorthopedic.com/services/second-opinion-for-orthopaedic-surgery</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Joint Preservation Surgery -->
-    <url>
-        <loc>https://drulhasorthopedic.com/services/joint-preservation-surgery</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Knee & Shoulder Arthroscopy -->
-    <url>
-        <loc>https://drulhasorthopedic.com/services/knee-shoulder-arthroscopy</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Osteoporosis Treatment -->
-    <url>
-        <loc>https://drulhasorthopedic.com/services/osteoporosis-treatment</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Regenerative Orthopaedics and PRP Treatment -->
-    <url>
-        <loc>https://drulhasorthopedic.com/services/regenerative-orthopaedics-and-prp-treatment</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Hip Replacement Surgery -->
-    <url>
-        <loc>https://drulhasorthopedic.com/services/hip-replacement-surgery</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Deformity Correction & Osteotomy Surgery -->
     <url>
         <loc>https://drulhasorthopedic.com/services/deformity-correction-osteotomy-surgery</loc>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
 
-    <!-- Physiotherapy, Rehabilitation & Recovery Planning -->
     <url>
-        <loc>https://drulhasorthopedic.com/services/physiotherapy-rehabilitation-recovery-planning</loc>
+        <loc>https://drulhasorthopedic.com/services/fracture-trauma-surgery/test1</loc>
         <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://drulhasorthopedic.com/services/fracture-trauma-surgery/test-2</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://drulhasorthopedic.com/services/fracture-trauma-surgery/test3</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://drulhasorthopedic.com/services/fracture-trauma-surgery/second-opinion-for-prp-regenerative-treatment</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://drulhasorthopedic.com/services/fracture-trauma-surgery/second-opinion-for-prp-regenerative-treatment</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://drulhasorthopedic.com/services/fracture-trauma-surgery/second-opinion-for-prp-regenerative-treatment</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://drulhasorthopedic.com/services/fracture-trauma-surgery/second-opinion-for-prp-regenerative-treatment</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://drulhasorthopedic.com/services/fracture-trauma-surgery/second-opinion-for-prp-regenerative-treatment</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
     </url>
 
 
@@ -158,31 +134,55 @@
     ====================================================== -->
 
     <url>
-        <loc>https://drulhasorthopedic.com/blog/alignment-concept-total-knee-replacement</loc>
+        <loc>https://drulhasorthopedic.com/blog/causes-of-knee-pain</loc>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
-        <loc>https://drulhasorthopedic.com/blog/the-evolution-of-tkr-implants</loc>
+        <loc>https://drulhasorthopedic.com/blog/knee-pain-gym-sports</loc>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
-        <loc>https://drulhasorthopedic.com/blog/steps-in-total-knee-replacement</loc>
+        <loc>https://drulhasorthopedic.com/blog/when-to-get-mri-knee</loc>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
-        <loc>https://drulhasorthopedic.com/blog/when-to-consult-a-knee-specialist-in-pune</loc>
+        <loc>https://drulhasorthopedic.com/blog/continuing-sports-risks</loc>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
-        <loc>https://drulhasorthopedic.com/blog/mcl-vs-lcl-injuries</loc>
+        <loc>https://drulhasorthopedic.com/blog/anterior-knee-pain-office</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://drulhasorthopedic.com/blog/meniscus-tear-vs-strain</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://drulhasorthopedic.com/blog/knee-pain-exercises-desk</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://drulhasorthopedic.com/blog/knee-pain-travel-flights</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://drulhasorthopedic.com/blog/knee-pain-pillar</loc>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Plus, 
@@ -24,7 +25,13 @@ import {
   Zap,
   BookOpen,
   Eye,
-  Undo2
+  Undo2,
+  Bot,
+  Save,
+  CheckCircle2,
+  AlertCircle,
+  Terminal,
+  ShieldCheck
 } from 'lucide-react';
 import { api } from '../../lib/api';
 
@@ -37,7 +44,17 @@ const categoryOptions = [
 ];
 
 const ServicesManager = () => {
-  const [activeSection, setActiveSection] = useState('services'); // 'services' or 'second-opinions'
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [activeSection, setActiveSection] = useState('services'); // 'services', 'second-opinions', 'robots'
+
+  // Robots.txt Section State
+  const [robotsContent, setRobotsContent] = useState(`User-agent: *\nAllow: /\n\n# Disallow private dashboard & admin panels\nDisallow: /admin/\nDisallow: /dashboard/\n\n# Sitemap location\nSitemap: https://drulhasorthopedic.com/sitemap.xml`);
+  const [robotsLoading, setRobotsLoading] = useState(false);
+  const [robotsSaving, setRobotsSaving] = useState(false);
+  const [robotsSuccessMsg, setRobotsSuccessMsg] = useState('');
+  const [robotsErrorMsg, setRobotsErrorMsg] = useState('');
+  const [testUrlInput, setTestUrlInput] = useState('/services/knee-replacement-knee-preservation-surgery');
+  const [testResult, setTestResult] = useState(null);
 
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -124,6 +141,73 @@ const ServicesManager = () => {
   useEffect(() => {
     fetchServices();
   }, []);
+
+  useEffect(() => {
+    if (searchParams.get('tab') === 'robots') {
+      setActiveSection('robots');
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (activeSection === 'robots') {
+      fetchRobotsTxt();
+    }
+  }, [activeSection]);
+
+  const fetchRobotsTxt = async () => {
+    try {
+      setRobotsLoading(true);
+      const data = await api.getSiteSettings();
+      if (data && data.robots_txt) {
+        setRobotsContent(data.robots_txt);
+      }
+    } catch (err) {
+      console.error('Failed to load robots.txt:', err);
+    } finally {
+      setRobotsLoading(false);
+    }
+  };
+
+  const handleSaveRobots = async (e) => {
+    e.preventDefault();
+    try {
+      setRobotsSaving(true);
+      setRobotsSuccessMsg('');
+      setRobotsErrorMsg('');
+      await api.updateSiteSettings({ robots_txt: robotsContent });
+      setRobotsSuccessMsg('Robots.txt updated & published to backend server successfully!');
+      setTimeout(() => setRobotsSuccessMsg(''), 4000);
+    } catch (err) {
+      console.error('Failed to save robots.txt:', err);
+      setRobotsErrorMsg(err.message || 'Failed to save robots.txt');
+    } finally {
+      setRobotsSaving(false);
+    }
+  };
+
+  const handleTestRobotsUrl = () => {
+    if (!testUrlInput.trim()) return;
+    const lines = robotsContent.split('\n');
+    let isDisallowed = false;
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (trimmed.toLowerCase().startsWith('disallow:')) {
+        const path = trimmed.substring(9).trim();
+        if (path && path !== '/' && testUrlInput.startsWith(path)) {
+          isDisallowed = true;
+          break;
+        } else if (path === '/') {
+          isDisallowed = true;
+          break;
+        }
+      }
+    }
+    setTestResult({
+      url: testUrlInput,
+      allowed: !isDisallowed,
+      statusText: !isDisallowed ? 'ALLOWED for search engine crawling & indexing' : 'DISALLOWED by robots.txt directives'
+    });
+  };
 
   const fetchSecondOpinions = async () => {
     setSoLoading(true);
@@ -542,6 +626,19 @@ const ServicesManager = () => {
                   <Layers size={16} />
                   <span>Second Opinion Care</span>
                 </button>
+
+                <button
+                  type="button"
+                  onClick={() => setActiveSection('robots')}
+                  className={`flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-xs transition-all ${
+                    activeSection === 'robots'
+                      ? 'bg-primary-600 text-white shadow-md'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  <Bot size={16} />
+                  <span>Robots.txt & Indexing Rules</span>
+                </button>
               </div>
 
               {activeSection === 'services' ? (
@@ -552,7 +649,7 @@ const ServicesManager = () => {
                   <Plus size={16} />
                   <span>Add New Service</span>
                 </button>
-              ) : (
+              ) : activeSection === 'second-opinions' ? (
                 <button
                   onClick={handleOpenAddSO}
                   className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-primary-600 text-white rounded-xl font-medium text-xs shadow-md hover:bg-primary-700 active:scale-95 transition-all"
@@ -560,10 +657,117 @@ const ServicesManager = () => {
                   <Plus size={16} />
                   <span>Add Second Opinion</span>
                 </button>
+              ) : (
+                <a
+                  href="http://127.0.0.1:8000/robots.txt"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-slate-800 text-white rounded-xl font-medium text-xs shadow-md hover:bg-slate-900 active:scale-95 transition-all"
+                >
+                  <Terminal size={16} />
+                  <span>View Live robots.txt</span>
+                </a>
               )}
             </div>
 
-            {activeSection === 'second-opinions' ? (
+            {activeSection === 'robots' ? (
+              /* Robots.txt & Crawling Directives Section */
+              <div className="space-y-6">
+                <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xs space-y-6">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+                    <div className="flex items-center gap-3">
+                      <div className="p-3 rounded-2xl bg-indigo-50 text-indigo-600">
+                        <Bot size={24} />
+                      </div>
+                      <div>
+                        <h2 className="text-xl font-extrabold text-slate-900">Robots.txt & Crawling Directives</h2>
+                        <p className="text-xs text-slate-500">Configure search engine bot access rules for Services, Sub-Services, and core site routes.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {robotsSuccessMsg && (
+                    <div className="p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-semibold rounded-2xl flex items-center gap-3">
+                      <CheckCircle2 size={18} className="text-emerald-600" />
+                      {robotsSuccessMsg}
+                    </div>
+                  )}
+
+                  {robotsErrorMsg && (
+                    <div className="p-4 bg-rose-50 border border-rose-200 text-rose-800 text-sm font-semibold rounded-2xl flex items-center gap-3">
+                      <AlertCircle size={18} className="text-rose-600" />
+                      {robotsErrorMsg}
+                    </div>
+                  )}
+
+                  <form onSubmit={handleSaveRobots} className="space-y-6">
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                          Robots.txt Content Editor
+                        </label>
+                        <button
+                          type="button"
+                          onClick={() => setRobotsContent("User-agent: *\nAllow: /\n\n# Disallow private dashboard & admin panels\nDisallow: /admin/\nDisallow: /dashboard/\n\n# Sitemap location\nSitemap: https://drulhasorthopedic.com/sitemap.xml")}
+                          className="text-[11px] font-semibold text-primary-600 hover:underline cursor-pointer"
+                        >
+                          Apply Standard Medical Preset
+                        </button>
+                      </div>
+                      <textarea
+                        rows={10}
+                        value={robotsContent}
+                        onChange={(e) => setRobotsContent(e.target.value)}
+                        className="w-full p-4 bg-slate-900 text-emerald-400 font-mono text-xs rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500/30 leading-relaxed"
+                        placeholder="User-agent: *&#10;Allow: /"
+                      />
+                    </div>
+
+                    <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
+                      <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-2">
+                        <ShieldCheck size={16} className="text-primary-600" /> Test Sub-Service URL Crawl Permission
+                      </h4>
+                      <div className="flex flex-col sm:flex-row gap-3">
+                        <input
+                          type="text"
+                          value={testUrlInput}
+                          onChange={(e) => setTestUrlInput(e.target.value)}
+                          placeholder="e.g. /services/robotic-knee-replacement-surgery"
+                          className="flex-1 px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-xs text-slate-800 focus:outline-none focus:border-primary-500"
+                        />
+                        <button
+                          type="button"
+                          onClick={handleTestRobotsUrl}
+                          className="px-5 py-2.5 bg-slate-800 hover:bg-slate-900 text-white rounded-xl font-bold text-xs cursor-pointer transition-all"
+                        >
+                          Test Crawl Rule
+                        </button>
+                      </div>
+
+                      {testResult && (
+                        <div className={`p-3 rounded-xl border text-xs font-semibold flex items-center gap-2 ${
+                          testResult.allowed ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-rose-50 border-rose-200 text-rose-800'
+                        }`}>
+                          {testResult.allowed ? <CheckCircle2 size={16} className="text-emerald-600" /> : <AlertCircle size={16} className="text-rose-600" />}
+                          <span>URL <code className="bg-white/50 px-1 py-0.5 rounded">{testResult.url}</code> is <strong>{testResult.statusText}</strong></span>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="flex justify-end pt-2">
+                      <button
+                        type="submit"
+                        disabled={robotsSaving}
+                        className="flex items-center gap-2 px-8 py-3.5 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-bold text-xs shadow-md active:scale-95 transition-all disabled:opacity-50 cursor-pointer"
+                      >
+                        <Save size={16} />
+                        {robotsSaving ? 'Updating...' : 'Save & Publish Robots.txt'}
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            ) : activeSection === 'second-opinions' ? (
               /* Second Opinions Management Section */
               <div className="space-y-6">
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200/80">

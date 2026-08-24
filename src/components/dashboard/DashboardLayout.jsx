@@ -11,7 +11,8 @@ import {
   X,
   Bell,
   Search,
-  Layers
+  Layers,
+  Bot
 } from 'lucide-react';
 
 const DashboardLayout = () => {
@@ -21,7 +22,8 @@ const DashboardLayout = () => {
   const navItems = [
     { name: 'Overview', path: '/dashboard', icon: LayoutDashboard },
     { name: 'Articles', path: '/dashboard/articles', icon: FileText },
-    { name: 'Services', path: '/dashboard/services', icon: Stethoscope },
+    { name: 'Services & Sub-Services', path: '/dashboard/services', icon: Stethoscope },
+    { name: 'Robots.txt & Indexing', path: '/dashboard/services?tab=robots', icon: Bot },
     { name: 'Settings', path: '/dashboard/settings', icon: Settings },
   ];
 
