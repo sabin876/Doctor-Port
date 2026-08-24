@@ -1,129 +1,208 @@
 /**
  * generate-sitemap.mjs
  * ---------------------
- * Run after build or during dev to auto-generate /public/sitemap.xml
+ * Outputs the static curated /public/sitemap.xml
  * Usage: node scripts/generate-sitemap.mjs
  */
 
 import { writeFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import dotenv from 'dotenv';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// Load .env from project root
-dotenv.config({ path: resolve(__dirname, '../.env') });
+const xml = `<?xml version="1.0" encoding="UTF-8"?>
 
-const BASE_URL = process.env.VITE_SITE_URL || 'https://drulhasorthopedic.com';
-const TODAY    = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-// ─── STATIC / CORE PAGES ────────────────────────────────────────────────────
-const staticPages = [
-  { path: '/',        changefreq: 'weekly',  priority: '1.0' },
-  { path: '/about',   changefreq: 'monthly', priority: '0.9' },
-  { path: '/services',changefreq: 'monthly', priority: '0.9' },
-  { path: '/contact', changefreq: 'monthly', priority: '0.8' },
-  { path: '/gallery', changefreq: 'monthly', priority: '0.6' },
-  { path: '/social-media', changefreq: 'monthly', priority: '0.7' },
-  { path: '/blog',     changefreq: 'weekly',  priority: '0.8' },
-  { path: '/report-access', changefreq: 'monthly', priority: '0.5' },
-  { path: '/sitemap',  changefreq: 'monthly', priority: '0.4' },
-];
+    <!-- =====================================================
+         HOMEPAGE
+         Priority: 1.0
+    ====================================================== -->
 
-async function generateSitemap() {
-  console.log('Fetching services and articles to generate sitemap...');
-  const API_BASE_URL = (process.env.VITE_API_BASE_URL || 'https://api.drulhasorthopedic.com/api').replace(/\/+$/, "");
-  
-  let services = [];
-  let articles = [];
-  try {
-    const sRes = await fetch(`${API_BASE_URL}/services/`);
-    if (sRes.ok) services = await sRes.json();
-  } catch (e) {
-    console.error('Failed to fetch services for sitemap:', e);
-  }
+    <url>
+        <loc>https://drulhasorthopedic.com/</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
 
-  try {
-    const aRes = await fetch(`${API_BASE_URL}/articles/`);
-    if (aRes.ok) articles = await aRes.json();
-  } catch (e) {
-    console.error('Failed to fetch articles for sitemap:', e);
-  }
 
-  const servicePages = [];
-  if (Array.isArray(services)) {
-    services.forEach(s => {
-      if (s.slug) {
-        servicePages.push({
-          path: `/services/${s.slug}`,
-          changefreq: 'monthly',
-          priority: '0.85',
-          comment: s.title
-        });
-        if (Array.isArray(s.sub_services)) {
-          s.sub_services.forEach(sub => {
-            if (sub.slug) {
-              servicePages.push({
-                path: `/services/${s.slug}/${sub.slug}`,
-                changefreq: 'monthly',
-                priority: '0.75',
-                comment: `${s.title} -> ${sub.title}`
-              });
-            }
-          });
-        }
-      }
-    });
-  }
+    <!-- =====================================================
+         MAIN PAGES
+         Priority: 0.8
+    ====================================================== -->
 
-  const articlePages = [];
-  if (Array.isArray(articles)) {
-    articles.forEach(a => {
-      if (a.slug) {
-        articlePages.push({
-          path: `/blog/${a.slug}`,
-          changefreq: 'monthly',
-          priority: '0.8',
-          comment: a.title
-        });
-      }
-    });
-  }
+    <url>
+        <loc>https://drulhasorthopedic.com/about/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 
-  const allPages = [...staticPages, ...servicePages, ...articlePages];
+    <url>
+        <loc>https://drulhasorthopedic.com/gallery/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 
-  function buildUrl({ path, changefreq, priority, comment }) {
-    const commentLine = comment ? `\n  <!-- ${comment} -->` : '';
-    return `${commentLine}
-  <url>
-    <loc>${BASE_URL}${path}</loc>
-    <lastmod>${TODAY}</lastmod>
-    <changefreq>${changefreq}</changefreq>
-    <priority>${priority}</priority>
-  </url>`;
-  }
+    <url>
+        <loc>https://drulhasorthopedic.com/contact/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-${allPages.map(buildUrl).join('\n')}
 
-  <!-- EXCLUDED: /admin/* (admin pages), /thank-you (thank you pages) -->
+    <!-- =====================================================
+         SERVICES HUB
+         Priority: 0.9
+    ====================================================== -->
+
+    <url>
+        <loc>https://drulhasorthopedic.com/services/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+
+    <!-- =====================================================
+         ALL SERVICE PAGES
+         Priority: 0.9
+    ====================================================== -->
+
+    <!-- Knee Replacement & Knee Preservation Surgery -->
+    <url>
+        <loc>https://drulhasorthopedic.com/services/knee-replacement-knee-preservation-surgery</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Robotic Knee Replacement Surgery -->
+    <url>
+        <loc>https://drulhasorthopedic.com/services/robotic-knee-replacement-surgery</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Sports Injury -->
+    <url>
+        <loc>https://drulhasorthopedic.com/services/sports-injury</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Fracture & Trauma Surgery -->
+    <url>
+        <loc>https://drulhasorthopedic.com/services/fracture-trauma-surgery</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Second Opinion for Orthopaedic Surgery -->
+    <url>
+        <loc>https://drulhasorthopedic.com/services/second-opinion-for-orthopaedic-surgery</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Joint Preservation Surgery -->
+    <url>
+        <loc>https://drulhasorthopedic.com/services/joint-preservation-surgery</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Knee & Shoulder Arthroscopy -->
+    <url>
+        <loc>https://drulhasorthopedic.com/services/knee-shoulder-arthroscopy</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Osteoporosis Treatment -->
+    <url>
+        <loc>https://drulhasorthopedic.com/services/osteoporosis-treatment</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Regenerative Orthopaedics and PRP Treatment -->
+    <url>
+        <loc>https://drulhasorthopedic.com/services/regenerative-orthopaedics-and-prp-treatment</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Hip Replacement Surgery -->
+    <url>
+        <loc>https://drulhasorthopedic.com/services/hip-replacement-surgery</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Deformity Correction & Osteotomy Surgery -->
+    <url>
+        <loc>https://drulhasorthopedic.com/services/deformity-correction-osteotomy-surgery</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Physiotherapy, Rehabilitation & Recovery Planning -->
+    <url>
+        <loc>https://drulhasorthopedic.com/services/physiotherapy-rehabilitation-recovery-planning</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+
+    <!-- =====================================================
+         BLOG / ARTICLES HUB
+         Priority: 0.7
+    ====================================================== -->
+
+    <url>
+        <loc>https://drulhasorthopedic.com/blog</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+
+    <!-- =====================================================
+         BLOG ARTICLES
+         Priority: 0.7
+    ====================================================== -->
+
+    <url>
+        <loc>https://drulhasorthopedic.com/blog/alignment-concept-total-knee-replacement</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://drulhasorthopedic.com/blog/the-evolution-of-tkr-implants</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://drulhasorthopedic.com/blog/steps-in-total-knee-replacement</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://drulhasorthopedic.com/blog/when-to-consult-a-knee-specialist-in-pune</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://drulhasorthopedic.com/blog/mcl-vs-lcl-injuries</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
 </urlset>
 `;
 
-  const outputPath = resolve(__dirname, '../public/sitemap.xml');
-  writeFileSync(outputPath, xml, 'utf-8');
-
-  console.log(`✅ sitemap.xml generated → ${outputPath}`);
-  console.log(`   Total URLs: ${allPages.length}`);
-  console.log(`   Static pages : ${staticPages.length}`);
-  console.log(`   Service pages: ${servicePages.length}`);
-  console.log(`   Article pages: ${articlePages.length}`);
-  console.log(`   Last modified: ${TODAY}`);
-}
-
-generateSitemap();
+const outputPath = resolve(__dirname, '../public/sitemap.xml');
+writeFileSync(outputPath, xml, 'utf-8');
+console.log(`✅ sitemap.xml updated → ${outputPath}`);
