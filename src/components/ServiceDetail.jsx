@@ -134,8 +134,19 @@ const ServiceDetail = () => {
     const { t, language } = useLanguage();
     const isRtl = language === 'AR';
     
-    const [rawService, setRawService] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [rawService, setRawService] = useState(() => {
+        if (typeof window !== 'undefined' && window.__INITIAL_SERVICES__) {
+            return window.__INITIAL_SERVICES__.find(s => s.slug?.toLowerCase() === id?.toLowerCase()) || null;
+        }
+        return null;
+    });
+    const [loading, setLoading] = useState(() => {
+        if (typeof window !== 'undefined' && window.__INITIAL_SERVICES__) {
+            const found = window.__INITIAL_SERVICES__.some(s => s.slug?.toLowerCase() === id?.toLowerCase());
+            if (found) return false;
+        }
+        return true;
+    });
 
     const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+91 90492 00041";
     const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "+919049200041";
@@ -144,6 +155,9 @@ const ServiceDetail = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        if (rawService) {
+            return;
+        }
         api.getServices()
             .then(data => {
                 const found = data.find(s => s.slug?.toLowerCase() === id?.toLowerCase());
@@ -154,7 +168,7 @@ const ServiceDetail = () => {
                 console.error("Failed to fetch service detail:", err);
                 setLoading(false);
             });
-    }, [id]);
+    }, [id, rawService]);
 
     const service = getTranslatedService(rawService, t, language);
 

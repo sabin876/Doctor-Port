@@ -22,8 +22,18 @@ const categoryIcons = {
 };
 
 const Gallery = () => {
-    const [galleryItems, setGalleryItems] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [galleryItems, setGalleryItems] = useState(() => {
+        if (typeof window !== 'undefined' && window.__INITIAL_GALLERY__) {
+            return window.__INITIAL_GALLERY__;
+        }
+        return [];
+    });
+    const [loading, setLoading] = useState(() => {
+        if (typeof window !== 'undefined' && window.__INITIAL_GALLERY__) {
+            return false;
+        }
+        return true;
+    });
     const [activeCategory, setActiveCategory] = useState('All');
     const [lightbox, setLightbox] = useState(null); // index in filtered list
     const sectionRef = useRef(null);
@@ -31,6 +41,9 @@ const Gallery = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        if (galleryItems.length > 0) {
+            return;
+        }
         api.getGalleryItems()
             .then(data => {
                 setGalleryItems(data || []);
@@ -40,7 +53,7 @@ const Gallery = () => {
                 console.error("Failed to fetch gallery items:", err);
                 setLoading(false);
             });
-    }, []);
+    }, [galleryItems]);
 
     const filtered =
         activeCategory === 'All'

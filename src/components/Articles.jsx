@@ -25,11 +25,24 @@ const item = {
 
 const Articles = () => {
     const { t } = useLanguage();
-    const [articles, setArticles] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [articles, setArticles] = useState(() => {
+        if (typeof window !== 'undefined' && window.__INITIAL_ARTICLES__) {
+            return window.__INITIAL_ARTICLES__;
+        }
+        return [];
+    });
+    const [loading, setLoading] = useState(() => {
+        if (typeof window !== 'undefined' && window.__INITIAL_ARTICLES__) {
+            return false;
+        }
+        return true;
+    });
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        if (articles.length > 0) {
+            return;
+        }
         api.getArticles()
             .then(data => {
                 setArticles(data);
@@ -39,7 +52,7 @@ const Articles = () => {
                 console.error("Failed to fetch articles:", err);
                 setLoading(false);
             });
-    }, []);
+    }, [articles]);
 
     return (
         <main className="pt-20 min-h-screen bg-gray-50">

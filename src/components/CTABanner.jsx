@@ -7,15 +7,21 @@ import { api } from '../lib/api';
 
 const CTABanner = ({ title, subtitle, buttonText, buttonLink }) => {
     const { t } = useLanguage();
-    const [siteSettings, setSiteSettings] = useState(null);
+    const [siteSettings, setSiteSettings] = useState(() => {
+        if (typeof window !== 'undefined' && window.__INITIAL_SETTINGS__) {
+            return window.__INITIAL_SETTINGS__;
+        }
+        return null;
+    });
 
     useEffect(() => {
         if (!title || !subtitle || !buttonText || !buttonLink) {
+            if (siteSettings) return;
             api.getSiteSettings()
                 .then(data => setSiteSettings(data))
                 .catch(err => console.error("Error loading CTA site settings:", err));
         }
-    }, [title, subtitle, buttonText, buttonLink]);
+    }, [title, subtitle, buttonText, buttonLink, siteSettings]);
 
     const displayTitle = title || siteSettings?.cta_title || t('ctaBanner.title') || "Struggling with Joint or Back Pain?";
     const displaySubtitle = subtitle || siteSettings?.cta_subtitle || t('ctaBanner.subtitle') || "Get expert orthopedic care today.";

@@ -18,11 +18,25 @@ export const LanguageProvider = ({ children }) => {
         return (savedLang && ['EN', 'HI', 'AR'].includes(savedLang)) ? savedLang : 'EN';
     });
     
-    const [dynamicTranslations, setDynamicTranslations] = useState({});
-    const [loading, setLoading] = useState(true);
+    const [dynamicTranslations, setDynamicTranslations] = useState(() => {
+        if (typeof window !== 'undefined' && window.__INITIAL_TRANSLATIONS__) {
+            return window.__INITIAL_TRANSLATIONS__;
+        }
+        return {};
+    });
+    const [loading, setLoading] = useState(() => {
+        if (typeof window !== 'undefined' && window.__INITIAL_TRANSLATIONS__) {
+            return false;
+        }
+        return true;
+    });
 
     // Fetch translations from API
     useEffect(() => {
+        if (dynamicTranslations[language]) {
+            setLoading(false);
+            return;
+        }
         const fetchTranslations = async () => {
             try {
                 const data = await api.getTranslations(language);

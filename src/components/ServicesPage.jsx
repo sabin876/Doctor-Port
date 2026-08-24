@@ -10,9 +10,17 @@ import heroImg from '../assets/joint-replacement-bg.webp';
 
 const ServicesPage = () => {
     const { t } = useLanguage();
-    const [services, setServices] = useState([]);
+    const [services, setServices] = useState(() => {
+        if (typeof window !== 'undefined' && window.__INITIAL_SERVICES__) {
+            return window.__INITIAL_SERVICES__;
+        }
+        return [];
+    });
     
     useEffect(() => {
+        if (services.length > 0) {
+            return;
+        }
         api.getServices()
             .then(data => {
                 setServices(data || []);
@@ -20,7 +28,7 @@ const ServicesPage = () => {
             .catch(err => {
                 console.error("Failed to fetch services for schema:", err);
             });
-    }, []);
+    }, [services]);
     
     // Get service-specific FAQs from translations
     const serviceFaqs = [0, 1, 2].map(i => ({

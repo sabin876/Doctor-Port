@@ -38,11 +38,24 @@ const stripHtml = (html) => {
 
 const Services = () => {
     const { t, language } = useLanguage();
-    const [services, setServices] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [services, setServices] = useState(() => {
+        if (typeof window !== 'undefined' && window.__INITIAL_SERVICES__) {
+            return window.__INITIAL_SERVICES__;
+        }
+        return [];
+    });
+    const [loading, setLoading] = useState(() => {
+        if (typeof window !== 'undefined' && window.__INITIAL_SERVICES__) {
+            return false;
+        }
+        return true;
+    });
     const [showAll, setShowAll] = useState(false);
 
     useEffect(() => {
+        if (services.length > 0) {
+            return;
+        }
         api.getServices()
             .then(data => {
                 setServices(data);
@@ -52,7 +65,7 @@ const Services = () => {
                 console.error("Failed to fetch services:", err);
                 setLoading(false);
             });
-    }, []);
+    }, [services]);
 
     const displayedServices = (showAll ? services : services.slice(0, 4)).map(s => 
         getTranslatedService(s, t, language)

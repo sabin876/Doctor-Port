@@ -10,8 +10,11 @@ import express from 'express';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
+
 const DIST_DIR = path.resolve(__dirname, '../dist');
 const PORT = 3000;
 
@@ -29,7 +32,95 @@ const server = app.listen(PORT, async () => {
   
   let browser;
   try {
-    // 1. Read the sitemap to know which routes to crawl
+    // 1. Fetch all API datasets to inline into index.html
+    console.log('Fetching all datasets from API for inlining...');
+    const API_BASE_URL = (process.env.VITE_API_BASE_URL || 'https://api.drulhasorthopedic.com/api').replace(/\/+$/, "");
+    
+    let services = [];
+    let articles = [];
+    let settings = {};
+    let translations = {};
+    let gallery = [];
+    let heroVideo = {};
+    let secondOpinions = [];
+
+    try {
+      const [sRes, aRes, setRes, tEnRes, tHiRes, tArRes, gRes, hRes, soRes] = await Promise.all([
+        fetch(`${API_BASE_URL}/services/`).catch(() => null),
+        fetch(`${API_BASE_URL}/articles/`).catch(() => null),
+        fetch(`${API_BASE_URL}/settings/`).catch(() => null),
+        fetch(`${API_BASE_URL}/translations/?lang=EN`).catch(() => null),
+        fetch(`${API_BASE_URL}/translations/?lang=HI`).catch(() => null),
+        fetch(`${API_BASE_URL}/translations/?lang=AR`).catch(() => null),
+        fetch(`${API_BASE_URL}/gallery/`).catch(() => null),
+        fetch(`${API_BASE_URL}/hero-video/`).catch(() => null),
+        fetch(`${API_BASE_URL}/second-opinions/`).catch(() => null)
+      ]);
+
+      if (sRes && sRes.ok) services = await sRes.json();
+      if (aRes && aRes.ok) articles = await aRes.json();
+      if (setRes && setRes.ok) settings = await setRes.json();
+      if (tEnRes && tEnRes.ok) translations.EN = await tEnRes.json();
+      if (tHiRes && tHiRes.ok) translations.HI = await tHiRes.json();
+      if (tArRes && tArRes.ok) translations.AR = await tArRes.json();
+      
+      if (gRes && gRes.ok) {
+        const rawG = await gRes.json();
+        if (Array.isArray(rawG)) {
+          const baseUrl = API_BASE_URL.replace(/\/api\/?$/, '');
+          gallery = rawG.map(item => {
+            let img = item.image;
+            if (img && !img.startsWith('http')) {
+              img = `${baseUrl}${img.startsWith('/') ? '' : '/'}${img}`;
+            }
+            return {
+              id: item.id,
+              src: img,
+              category: item.category,
+              title: item.title,
+              desc: item.description,
+              span: item.span || 'col-span-1 row-span-1'
+            };
+          });
+        }
+      }
+      if (hRes && hRes.ok) heroVideo = await hRes.json();
+      if (soRes && soRes.ok) secondOpinions = await soRes.json();
+      
+      console.log('✅ Successfully fetched all datasets for inlining.');
+    } catch (e) {
+      console.error('Failed to fetch data for inlining:', e);
+    }
+
+    const indexPath = path.join(DIST_DIR, 'index.html');
+    if (!fs.existsSync(indexPath)) {
+      throw new Error('dist/index.html not found! Please build the project before prerendering.');
+    }
+    
+    let indexHtml = fs.readFileSync(indexPath, 'utf8');
+    
+    const inlineScript = `
+  <script id="initial-data">
+    window.__INITIAL_SERVICES__ = ${JSON.stringify(services)};
+    window.__INITIAL_ARTICLES__ = ${JSON.stringify(articles)};
+    window.__INITIAL_SETTINGS__ = ${JSON.stringify(settings)};
+    window.__INITIAL_TRANSLATIONS__ = ${JSON.stringify(translations)};
+    window.__INITIAL_GALLERY__ = ${JSON.stringify(gallery)};
+    window.__INITIAL_HERO_VIDEO__ = ${JSON.stringify(heroVideo)};
+    window.__INITIAL_SECOND_OPINIONS__ = ${JSON.stringify(secondOpinions)};
+  </script>
+`;
+    
+    if (indexHtml.includes('</head>')) {
+      indexHtml = indexHtml.replace('</head>', `${inlineScript}\n</head>`);
+    } else {
+      indexHtml = inlineScript + indexHtml;
+    }
+    
+    fs.writeFileSync(indexPath, indexHtml, 'utf8');
+    console.log('✅ Injected initial-data script into dist/index.html');
+
+    // 2. Read the sitemap to know which routes to crawl
     const sitemapPath = path.join(DIST_DIR, 'sitemap.xml');
     if (!fs.existsSync(sitemapPath)) {
       throw new Error('sitemap.xml not found in dist/. Please ensure generate-sitemap runs before prerender.');
@@ -68,9 +159,9 @@ const server = app.listen(PORT, async () => {
       const url = `http://127.0.0.1:${PORT}${route}`;
       console.log(`Rendering: ${route}...`);
       
-      // Wait for DOM content to load and then wait 3 seconds for React to mount and fetch data
+      // Wait for DOM content to load and then wait a short time for React to hydrate/render
       await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      await new Promise(resolve => setTimeout(resolve, 150));
       
       const html = await page.evaluate(() => document.documentElement.outerHTML);
       

@@ -5,53 +5,1266 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
   <url>
-    <loc>https://drulhasorthopedic.com/</loc>
-    <lastmod>2026-07-15</lastmod>
+    <loc>https://yourdomain.com/</loc>
+    <lastmod>2026-08-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://drulhasorthopedic.com/about</loc>
-    <lastmod>2026-07-15</lastmod>
+    <loc>https://yourdomain.com/about</loc>
+    <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://drulhasorthopedic.com/services</loc>
-    <lastmod>2026-07-15</lastmod>
+    <loc>https://yourdomain.com/services</loc>
+    <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://drulhasorthopedic.com/contact</loc>
-    <lastmod>2026-07-15</lastmod>
+    <loc>https://yourdomain.com/contact</loc>
+    <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://drulhasorthopedic.com/gallery</loc>
-    <lastmod>2026-07-15</lastmod>
+    <loc>https://yourdomain.com/gallery</loc>
+    <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://drulhasorthopedic.com/social-media</loc>
-    <lastmod>2026-07-15</lastmod>
+    <loc>https://yourdomain.com/social-media</loc>
+    <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- Physiotherapy and Rehabilitation -->
   <url>
-    <loc>https://drulhasorthopedic.com/services/physiotherapy-home-services</loc>
-    <lastmod>2026-07-15</lastmod>
+    <loc>https://yourdomain.com/blog</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://yourdomain.com/report-access</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://yourdomain.com/sitemap</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Knee Replacement & Knee Preservation Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-joint-replacement-knee-preservation-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+  </url>
+
+  <!-- Knee Replacement & Knee Preservation Surgery -> Knee Preservation Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-joint-replacement-knee-preservation-surgery/knee-preservation-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee Replacement & Knee Preservation Surgery -> High Tibial Osteotomy -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-joint-replacement-knee-preservation-surgery/high-tibial-osteotomy</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee Replacement & Knee Preservation Surgery -> Distal Femoral Osteotomy -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-joint-replacement-knee-preservation-surgery/distal-femoral-osteotomy</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee Replacement & Knee Preservation Surgery -> Partial Knee Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-joint-replacement-knee-preservation-surgery/partial-knee-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee Replacement & Knee Preservation Surgery -> Robotic Partial Knee Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-joint-replacement-knee-preservation-surgery/robotic-partial-knee-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee Replacement & Knee Preservation Surgery -> Total Knee Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-joint-replacement-knee-preservation-surgery/total-knee-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee Replacement & Knee Preservation Surgery -> Robotic Total Knee Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-joint-replacement-knee-preservation-surgery/robotic-total-knee-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee Replacement & Knee Preservation Surgery -> Patellofemoral Joint Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-joint-replacement-knee-preservation-surgery/patellofemoral-joint-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee Replacement & Knee Preservation Surgery -> Revision Knee Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-joint-replacement-knee-preservation-surgery/revision-knee-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee Replacement & Knee Preservation Surgery -> Knee Arthritis Treatment Planning -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-joint-replacement-knee-preservation-surgery/knee-arthritis-treatment-planning</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee Replacement & Knee Preservation Surgery -> PRP and Regenerative Orthopaedics for Knee Pain -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-joint-replacement-knee-preservation-surgery/prp-and-regenerative-orthopaedics-for-knee-pain</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Robotic Knee Replacement Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/robotic-knee-replacement-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Robotic Knee Replacement Surgery -> Robotic Total Knee Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/robotic-knee-replacement-surgery/robotic-total-knee-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Robotic Knee Replacement Surgery -> Robotic Partial Knee Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/robotic-knee-replacement-surgery/robotic-partial-knee-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Robotic Knee Replacement Surgery -> Advanced Total Knee Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/robotic-knee-replacement-surgery/advanced-total-knee-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Robotic Knee Replacement Surgery -> Partial Knee Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/robotic-knee-replacement-surgery/partial-knee-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Robotic Knee Replacement Surgery -> Patellofemoral Joint Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/robotic-knee-replacement-surgery/patellofemoral-joint-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Robotic Knee Replacement Surgery -> Complex Primary Knee Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/robotic-knee-replacement-surgery/complex-primary-knee-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Robotic Knee Replacement Surgery -> Revision Knee Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/robotic-knee-replacement-surgery/revision-knee-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Robotic Knee Replacement Surgery -> Hip Replacement Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/robotic-knee-replacement-surgery/hip-replacement-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Robotic Knee Replacement Surgery -> Complex Hip Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/robotic-knee-replacement-surgery/complex-hip-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Robotic Knee Replacement Surgery -> Joint Replacement Recovery Planning -->
+  <url>
+    <loc>https://yourdomain.com/services/robotic-knee-replacement-surgery/joint-replacement-recovery-planning</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Sports Injury -->
+  <url>
+    <loc>https://yourdomain.com/services/sports-injury-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Sports Injury -> Sports Injury Assessment -->
+  <url>
+    <loc>https://yourdomain.com/services/sports-injury-treatment/sports-injury-assessment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Sports Injury -> ACL Reconstruction Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/sports-injury-treatment/acl-reconstruction-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Sports Injury -> Revision ACL Reconstruction -->
+  <url>
+    <loc>https://yourdomain.com/services/sports-injury-treatment/revision-acl-reconstruction</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Sports Injury -> Meniscus Repair Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/sports-injury-treatment/meniscus-repair-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Sports Injury -> Meniscectomy / Meniscus Trimming -->
+  <url>
+    <loc>https://yourdomain.com/services/sports-injury-treatment/meniscectomy-meniscus-trimming</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Sports Injury -> Knee Arthroscopy -->
+  <url>
+    <loc>https://yourdomain.com/services/sports-injury-treatment/knee-arthroscopy</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Sports Injury -> Cartilage Injury Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/sports-injury-treatment/cartilage-injury-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Sports Injury -> Multiligament Knee Injury Management -->
+  <url>
+    <loc>https://yourdomain.com/services/sports-injury-treatment/multiligament-knee-injury-management</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Sports Injury -> Patella Instability Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/sports-injury-treatment/patella-instability-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Sports Injury -> MPFL Reconstruction -->
+  <url>
+    <loc>https://yourdomain.com/services/sports-injury-treatment/mpfl-reconstruction</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Sports Injury -> PCL Injury Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/sports-injury-treatment/pcl-injury-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Sports Injury -> MCL and LCL Injury Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/sports-injury-treatment/mcl-and-lcl-injury-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Sports Injury -> Sports Rehabilitation Planning -->
+  <url>
+    <loc>https://yourdomain.com/services/sports-injury-treatment/sports-rehabilitation-planning</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Fracture & Trauma Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/fracture-trauma-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Fracture & Trauma Surgery -> Fracture Assessment -->
+  <url>
+    <loc>https://yourdomain.com/services/fracture-trauma-surgery/fracture-assessment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Fracture & Trauma Surgery -> Fracture Fixation Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/fracture-trauma-surgery/fracture-fixation-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Fracture & Trauma Surgery -> Upper Limb Fracture Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/fracture-trauma-surgery/upper-limb-fracture-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Fracture & Trauma Surgery -> Lower Limb Fracture Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/fracture-trauma-surgery/lower-limb-fracture-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Fracture & Trauma Surgery -> Wrist Fracture Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/fracture-trauma-surgery/wrist-fracture-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Fracture & Trauma Surgery -> Ankle Fracture Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/fracture-trauma-surgery/ankle-fracture-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Fracture & Trauma Surgery -> Hip Fracture Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/fracture-trauma-surgery/hip-fracture-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Fracture & Trauma Surgery -> Ligament and Soft-Tissue Injury Care -->
+  <url>
+    <loc>https://yourdomain.com/services/fracture-trauma-surgery/ligament-and-soft-tissue-injury-care</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Fracture & Trauma Surgery -> Minor Injury and Sports Trauma Care -->
+  <url>
+    <loc>https://yourdomain.com/services/fracture-trauma-surgery/minor-injury-and-sports-trauma-care</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Fracture & Trauma Surgery -> General Orthopaedic Consultation -->
+  <url>
+    <loc>https://yourdomain.com/services/fracture-trauma-surgery/general-orthopaedic-consultation</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Fracture & Trauma Surgery -> Post-Fracture Rehabilitation Planning -->
+  <url>
+    <loc>https://yourdomain.com/services/fracture-trauma-surgery/post-fracture-rehabilitation-planning</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Fracture & Trauma Surgery -> Second Opinion for Fracture Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/fracture-trauma-surgery/second-opinion-for-fracture-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Second Opinion for Orthopaedic Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/second-opinion-for-orthopaedic-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Second Opinion for Orthopaedic Surgery -> Second Opinion for Knee Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/second-opinion-for-orthopaedic-surgery/second-opinion-for-knee-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Second Opinion for Orthopaedic Surgery -> Second Opinion for ACL Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/second-opinion-for-orthopaedic-surgery/second-opinion-for-acl-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Second Opinion for Orthopaedic Surgery -> Second Opinion for Meniscus Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/second-opinion-for-orthopaedic-surgery/second-opinion-for-meniscus-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Second Opinion for Orthopaedic Surgery -> Second Opinion for Shoulder Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/second-opinion-for-orthopaedic-surgery/second-opinion-for-shoulder-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Second Opinion for Orthopaedic Surgery -> Second Opinion for Hip Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/second-opinion-for-orthopaedic-surgery/second-opinion-for-hip-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Second Opinion for Orthopaedic Surgery -> Second Opinion for Fracture Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/second-opinion-for-orthopaedic-surgery/second-opinion-for-fracture-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Second Opinion for Orthopaedic Surgery -> Second Opinion for Revision Joint Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/second-opinion-for-orthopaedic-surgery/second-opinion-for-revision-joint-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Second Opinion for Orthopaedic Surgery -> Second Opinion for Deformity Correction / Osteotomy -->
+  <url>
+    <loc>https://yourdomain.com/services/second-opinion-for-orthopaedic-surgery/second-opinion-for-deformity-correction-osteotomy</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Second Opinion for Orthopaedic Surgery -> Second Opinion for PRP / Regenerative Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/second-opinion-for-orthopaedic-surgery/second-opinion-for-prp-regenerative-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Second Opinion for Orthopaedic Surgery -> Second Opinion After Failed Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/second-opinion-for-orthopaedic-surgery/second-opinion-after-failed-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Second Opinion for Orthopaedic Surgery -> Treatment Decision Consultation -->
+  <url>
+    <loc>https://yourdomain.com/services/second-opinion-for-orthopaedic-surgery/treatment-decision-consultation</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Second Opinion for Orthopaedic Surgery -> MRI / X-ray / Scan Review -->
+  <url>
+    <loc>https://yourdomain.com/services/second-opinion-for-orthopaedic-surgery/mri-x-ray-scan-review</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Joint Preservation Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/joint-preservation-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Joint Preservation Surgery -> Knee Preservation Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/joint-preservation-surgery/knee-preservation-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Joint Preservation Surgery -> High Tibial Osteotomy -->
+  <url>
+    <loc>https://yourdomain.com/services/joint-preservation-surgery/high-tibial-osteotomy</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Joint Preservation Surgery -> Distal Femoral Osteotomy -->
+  <url>
+    <loc>https://yourdomain.com/services/joint-preservation-surgery/distal-femoral-osteotomy</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Joint Preservation Surgery -> Cartilage Injury Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/joint-preservation-surgery/cartilage-injury-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Joint Preservation Surgery -> Meniscus Preservation Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/joint-preservation-surgery/meniscus-preservation-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Joint Preservation Surgery -> Early Arthritis Treatment Planning -->
+  <url>
+    <loc>https://yourdomain.com/services/joint-preservation-surgery/early-arthritis-treatment-planning</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Joint Preservation Surgery -> Partial Knee Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/joint-preservation-surgery/partial-knee-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Joint Preservation Surgery -> Patellofemoral Joint Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/joint-preservation-surgery/patellofemoral-joint-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Joint Preservation Surgery -> PRP and Biologic Treatment Planning -->
+  <url>
+    <loc>https://yourdomain.com/services/joint-preservation-surgery/prp-and-biologic-treatment-planning</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Joint Preservation Surgery -> Rehabilitation for Joint Preservation -->
+  <url>
+    <loc>https://yourdomain.com/services/joint-preservation-surgery/rehabilitation-for-joint-preservation</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee,Shoulder Arthroscopy -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-shoulder-arthroscopy-services</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Knee,Shoulder Arthroscopy -> Shoulder Pain Assessment -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-shoulder-arthroscopy-services/shoulder-pain-assessment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee,Shoulder Arthroscopy -> Rotator Cuff Tear Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-shoulder-arthroscopy-services/rotator-cuff-tear-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee,Shoulder Arthroscopy -> Rotator Cuff Repair Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-shoulder-arthroscopy-services/rotator-cuff-repair-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee,Shoulder Arthroscopy -> Shoulder Arthroscopy -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-shoulder-arthroscopy-services/shoulder-arthroscopy</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee,Shoulder Arthroscopy -> Shoulder Impingement Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-shoulder-arthroscopy-services/shoulder-impingement-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee,Shoulder Arthroscopy -> Frozen Shoulder Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-shoulder-arthroscopy-services/frozen-shoulder-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee,Shoulder Arthroscopy -> Shoulder Instability Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-shoulder-arthroscopy-services/shoulder-instability-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee,Shoulder Arthroscopy -> Labral Tear Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-shoulder-arthroscopy-services/labral-tear-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee,Shoulder Arthroscopy -> Biceps Tendon Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-shoulder-arthroscopy-services/biceps-tendon-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee,Shoulder Arthroscopy -> AC Joint Arthritis Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-shoulder-arthroscopy-services/ac-joint-arthritis-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee,Shoulder Arthroscopy -> Shoulder Injection Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-shoulder-arthroscopy-services/shoulder-injection-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Knee,Shoulder Arthroscopy -> Shoulder Rehabilitation Planning -->
+  <url>
+    <loc>https://yourdomain.com/services/knee-shoulder-arthroscopy-services/shoulder-rehabilitation-planning</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Osteoporosiso Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/osteoporosiso-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Osteoporosiso Treatment -> Osteoporosis Assessment -->
+  <url>
+    <loc>https://yourdomain.com/services/osteoporosiso-treatment/osteoporosis-assessment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Osteoporosiso Treatment -> DEXA Scan Review -->
+  <url>
+    <loc>https://yourdomain.com/services/osteoporosiso-treatment/dexa-scan-review</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Osteoporosiso Treatment -> Fragility Fracture Assessment -->
+  <url>
+    <loc>https://yourdomain.com/services/osteoporosiso-treatment/fragility-fracture-assessment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Osteoporosiso Treatment -> Vitamin D Deficiency Consultation -->
+  <url>
+    <loc>https://yourdomain.com/services/osteoporosiso-treatment/vitamin-d-deficiency-consultation</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Osteoporosiso Treatment -> Vitamin B12 Deficiency Screening -->
+  <url>
+    <loc>https://yourdomain.com/services/osteoporosiso-treatment/vitamin-b12-deficiency-screening</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Osteoporosiso Treatment -> Calcium Deficiency Assessment -->
+  <url>
+    <loc>https://yourdomain.com/services/osteoporosiso-treatment/calcium-deficiency-assessment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Osteoporosiso Treatment -> Bone Health Blood Test Review -->
+  <url>
+    <loc>https://yourdomain.com/services/osteoporosiso-treatment/bone-health-blood-test-review</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Osteoporosiso Treatment -> Fracture Prevention Planning -->
+  <url>
+    <loc>https://yourdomain.com/services/osteoporosiso-treatment/fracture-prevention-planning</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Osteoporosiso Treatment -> Osteopenia Management -->
+  <url>
+    <loc>https://yourdomain.com/services/osteoporosiso-treatment/osteopenia-management</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Osteoporosiso Treatment -> Bone Health for Men and Women -->
+  <url>
+    <loc>https://yourdomain.com/services/osteoporosiso-treatment/bone-health-for-men-and-women</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Osteoporosiso Treatment -> Rehabilitation After Fragility Fracture -->
+  <url>
+    <loc>https://yourdomain.com/services/osteoporosiso-treatment/rehabilitation-after-fragility-fracture</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Regenerative orthopaedics and PRP treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/regenerative-orthopaedics-and-prp-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Regenerative orthopaedics and PRP treatment -> PRP Treatment for Knee Pain -->
+  <url>
+    <loc>https://yourdomain.com/services/regenerative-orthopaedics-and-prp-treatment/prp-treatment-for-knee-pain</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Regenerative orthopaedics and PRP treatment -> PRP for Sports Injuries -->
+  <url>
+    <loc>https://yourdomain.com/services/regenerative-orthopaedics-and-prp-treatment/prp-for-sports-injuries</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Regenerative orthopaedics and PRP treatment -> PRP for Tendon Problems -->
+  <url>
+    <loc>https://yourdomain.com/services/regenerative-orthopaedics-and-prp-treatment/prp-for-tendon-problems</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Regenerative orthopaedics and PRP treatment -> Regenerative Orthopaedics Consultation -->
+  <url>
+    <loc>https://yourdomain.com/services/regenerative-orthopaedics-and-prp-treatment/regenerative-orthopaedics-consultation</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Regenerative orthopaedics and PRP treatment -> Stem Cell Therapy Assessment -->
+  <url>
+    <loc>https://yourdomain.com/services/regenerative-orthopaedics-and-prp-treatment/stem-cell-therapy-assessment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Regenerative orthopaedics and PRP treatment -> Biologic Treatment for Early Arthritis -->
+  <url>
+    <loc>https://yourdomain.com/services/regenerative-orthopaedics-and-prp-treatment/biologic-treatment-for-early-arthritis</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Regenerative orthopaedics and PRP treatment -> Cartilage Injury Treatment Planning -->
+  <url>
+    <loc>https://yourdomain.com/services/regenerative-orthopaedics-and-prp-treatment/cartilage-injury-treatment-planning</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Regenerative orthopaedics and PRP treatment -> Injection Therapy for Joint Pain -->
+  <url>
+    <loc>https://yourdomain.com/services/regenerative-orthopaedics-and-prp-treatment/injection-therapy-for-joint-pain</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Regenerative orthopaedics and PRP treatment -> Non-Surgical Knee Arthritis Management -->
+  <url>
+    <loc>https://yourdomain.com/services/regenerative-orthopaedics-and-prp-treatment/non-surgical-knee-arthritis-management</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Regenerative orthopaedics and PRP treatment -> Rehabilitation After PRP or Biologic Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/regenerative-orthopaedics-and-prp-treatment/rehabilitation-after-prp-or-biologic-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Hip Replacement Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/hip-replacement-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Hip Replacement Surgery -> Hip Pain Assessment -->
+  <url>
+    <loc>https://yourdomain.com/services/hip-replacement-surgery/hip-pain-assessment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Hip Replacement Surgery -> Hip Arthritis Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/hip-replacement-surgery/hip-arthritis-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Hip Replacement Surgery -> Total Hip Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/hip-replacement-surgery/total-hip-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Hip Replacement Surgery -> Complex Hip Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/hip-replacement-surgery/complex-hip-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Hip Replacement Surgery -> Hip Replacement for Avascular Necrosis -->
+  <url>
+    <loc>https://yourdomain.com/services/hip-replacement-surgery/hip-replacement-for-avascular-necrosis</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Hip Replacement Surgery -> Revision Hip Replacement -->
+  <url>
+    <loc>https://yourdomain.com/services/hip-replacement-surgery/revision-hip-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Hip Replacement Surgery -> Hip Fracture Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/hip-replacement-surgery/hip-fracture-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Hip Replacement Surgery -> Hip Preservation Assessment -->
+  <url>
+    <loc>https://yourdomain.com/services/hip-replacement-surgery/hip-preservation-assessment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Hip Replacement Surgery -> Hip Injection Treatment -->
+  <url>
+    <loc>https://yourdomain.com/services/hip-replacement-surgery/hip-injection-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Hip Replacement Surgery -> Hip Rehabilitation Planning -->
+  <url>
+    <loc>https://yourdomain.com/services/hip-replacement-surgery/hip-rehabilitation-planning</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Deformity Correction & Osteotomy Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/deformity-correction-osteotomy-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Deformity Correction & Osteotomy Surgery -> High Tibial Osteotomy -->
+  <url>
+    <loc>https://yourdomain.com/services/deformity-correction-osteotomy-surgery/high-tibial-osteotomy</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Deformity Correction & Osteotomy Surgery -> Distal Femoral Osteotomy -->
+  <url>
+    <loc>https://yourdomain.com/services/deformity-correction-osteotomy-surgery/distal-femoral-osteotomy</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Deformity Correction & Osteotomy Surgery -> Knee Realignment Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/deformity-correction-osteotomy-surgery/knee-realignment-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Deformity Correction & Osteotomy Surgery -> Bow-Leg Correction Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/deformity-correction-osteotomy-surgery/bow-leg-correction-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Deformity Correction & Osteotomy Surgery -> Knock-Knee Correction Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/deformity-correction-osteotomy-surgery/knock-knee-correction-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Deformity Correction & Osteotomy Surgery -> Osteotomy for Early Knee Arthritis -->
+  <url>
+    <loc>https://yourdomain.com/services/deformity-correction-osteotomy-surgery/osteotomy-for-early-knee-arthritis</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Deformity Correction & Osteotomy Surgery -> Post-Traumatic Deformity Correction -->
+  <url>
+    <loc>https://yourdomain.com/services/deformity-correction-osteotomy-surgery/post-traumatic-deformity-correction</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Deformity Correction & Osteotomy Surgery -> Limb Alignment Assessment -->
+  <url>
+    <loc>https://yourdomain.com/services/deformity-correction-osteotomy-surgery/limb-alignment-assessment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Deformity Correction & Osteotomy Surgery -> Complex Knee Deformity Planning -->
+  <url>
+    <loc>https://yourdomain.com/services/deformity-correction-osteotomy-surgery/complex-knee-deformity-planning</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Deformity Correction & Osteotomy Surgery -> Rehabilitation After Osteotomy Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/deformity-correction-osteotomy-surgery/rehabilitation-after-osteotomy-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Physiotherapy, Rehabilitation & Recovery Planning -->
+  <url>
+    <loc>https://yourdomain.com/services/physiotherapy-rehabilitation-recovery-planning</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Physiotherapy, Rehabilitation & Recovery Planning -> Post-Surgery Rehabilitation Planning -->
+  <url>
+    <loc>https://yourdomain.com/services/physiotherapy-rehabilitation-recovery-planning/post-surgery-rehabilitation-planning</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Physiotherapy, Rehabilitation & Recovery Planning -> Knee Replacement Rehabilitation -->
+  <url>
+    <loc>https://yourdomain.com/services/physiotherapy-rehabilitation-recovery-planning/knee-replacement-rehabilitation</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Physiotherapy, Rehabilitation & Recovery Planning -> ACL Reconstruction Rehabilitation -->
+  <url>
+    <loc>https://yourdomain.com/services/physiotherapy-rehabilitation-recovery-planning/acl-reconstruction-rehabilitation</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Physiotherapy, Rehabilitation & Recovery Planning -> Meniscus Surgery Rehabilitation -->
+  <url>
+    <loc>https://yourdomain.com/services/physiotherapy-rehabilitation-recovery-planning/meniscus-surgery-rehabilitation</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Physiotherapy, Rehabilitation & Recovery Planning -> Shoulder Rehabilitation -->
+  <url>
+    <loc>https://yourdomain.com/services/physiotherapy-rehabilitation-recovery-planning/shoulder-rehabilitation</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Physiotherapy, Rehabilitation & Recovery Planning -> Hip Replacement Rehabilitation -->
+  <url>
+    <loc>https://yourdomain.com/services/physiotherapy-rehabilitation-recovery-planning/hip-replacement-rehabilitation</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Physiotherapy, Rehabilitation & Recovery Planning -> Fracture Rehabilitation -->
+  <url>
+    <loc>https://yourdomain.com/services/physiotherapy-rehabilitation-recovery-planning/fracture-rehabilitation</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Physiotherapy, Rehabilitation & Recovery Planning -> Sports Injury Rehabilitation -->
+  <url>
+    <loc>https://yourdomain.com/services/physiotherapy-rehabilitation-recovery-planning/sports-injury-rehabilitation</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Physiotherapy, Rehabilitation & Recovery Planning -> Return-to-Work Planning -->
+  <url>
+    <loc>https://yourdomain.com/services/physiotherapy-rehabilitation-recovery-planning/return-to-work-planning</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Physiotherapy, Rehabilitation & Recovery Planning -> Return-to-Sport Planning -->
+  <url>
+    <loc>https://yourdomain.com/services/physiotherapy-rehabilitation-recovery-planning/return-to-sport-planning</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Physiotherapy, Rehabilitation & Recovery Planning -> Pain and Mobility Recovery Planning -->
+  <url>
+    <loc>https://yourdomain.com/services/physiotherapy-rehabilitation-recovery-planning/pain-and-mobility-recovery-planning</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Physiotherapy, Rehabilitation & Recovery Planning -> Prehabilitation Before Surgery -->
+  <url>
+    <loc>https://yourdomain.com/services/physiotherapy-rehabilitation-recovery-planning/prehabilitation-before-surgery</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- When to Consult a Knee Specialist in Pune? -->
+  <url>
+    <loc>https://yourdomain.com/blog/when-to-consult-a-knee-specialist-in-pune</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- MCL vs LCL Injuries: Symptoms, Differences & Treatment -->
+  <url>
+    <loc>https://yourdomain.com/blog/mcl-vs-lcl-injuries-symptoms-differences-treatment</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Alignment concept: Total Knee Replacement -->
+  <url>
+    <loc>https://yourdomain.com/blog/alignment-concept-total-knee-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- The Evolution of TKR Implants -->
+  <url>
+    <loc>https://yourdomain.com/blog/the-evolution-of-tkr-implants</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Steps in Total Knee Replacement -->
+  <url>
+    <loc>https://yourdomain.com/blog/steps-in-total-knee-replacement</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <!-- EXCLUDED: /admin/* (admin pages), /thank-you (thank you pages) -->

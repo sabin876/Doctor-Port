@@ -5,30 +5,72 @@ import { api } from '../lib/api';
 
 const SEOWrapper = ({ children }) => {
     const location = useLocation();
-    const [seoData, setSeoData] = useState(null);
-    const [siteSettings, setSiteSettings] = useState(null);
+    const [seoData, setSeoData] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const path = window.location.pathname;
+            if (path.startsWith('/blog/')) {
+                const slug = path.split('/')[2];
+                if (slug && window.__INITIAL_ARTICLES__) {
+                    return window.__INITIAL_ARTICLES__.find(a => a.slug?.toLowerCase() === slug?.toLowerCase()) || null;
+                }
+            } else if (path.startsWith('/services/')) {
+                const slug = path.split('/')[2];
+                if (slug && window.__INITIAL_SERVICES__) {
+                    return window.__INITIAL_SERVICES__.find(s => s.slug?.toLowerCase() === slug?.toLowerCase()) || null;
+                }
+            } else {
+                return {
+                    meta_title: "Dr. Ulhas Sonar | Orthopedic Surgeon Dubai",
+                    meta_description: "Expert orthopedic care in Dubai. Specialist in robotic joint replacement and sports injuries.",
+                    canonical_url: window.location.href,
+                    index_page: true,
+                    follow_links: true
+                };
+            }
+        }
+        return null;
+    });
+    const [siteSettings, setSiteSettings] = useState(() => {
+        if (typeof window !== 'undefined' && window.__INITIAL_SETTINGS__) {
+            return window.__INITIAL_SETTINGS__;
+        }
+        return null;
+    });
 
     useEffect(() => {
         const fetchSEO = async () => {
             try {
-                // Fetch site-wide settings (scripts, robots)
-                const settings = await api.getSiteSettings();
-                setSiteSettings(settings);
+                // Fetch site-wide settings if not inlined
+                let settings = siteSettings;
+                if (!settings) {
+                    settings = await api.getSiteSettings();
+                    setSiteSettings(settings);
+                }
 
-                // Fetch page-specific SEO
+                // Fetch page-specific SEO if not inlined
                 const path = location.pathname;
                 if (path.startsWith('/blog/')) {
                     const slug = path.split('/')[2];
                     if (slug) {
-                        const data = await api.getArticle(slug);
-                        setSeoData(data);
+                        const inlined = window.__INITIAL_ARTICLES__?.find(a => a.slug?.toLowerCase() === slug?.toLowerCase());
+                        if (inlined) {
+                            setSeoData(inlined);
+                        } else {
+                            const data = await api.getArticle(slug);
+                            setSeoData(data);
+                        }
                     }
                 } else if (path.startsWith('/services/')) {
                     const slug = path.split('/')[2];
                     if (slug) {
-                        const services = await api.getServices();
-                        const data = services.find(s => s.slug?.toLowerCase() === slug?.toLowerCase());
-                        setSeoData(data);
+                        const inlined = window.__INITIAL_SERVICES__?.find(s => s.slug?.toLowerCase() === slug?.toLowerCase());
+                        if (inlined) {
+                            setSeoData(inlined);
+                        } else {
+                            const services = await api.getServices();
+                            const data = services.find(s => s.slug?.toLowerCase() === slug?.toLowerCase());
+                            setSeoData(data);
+                        }
                     }
                 } else {
                     // Default/Home SEO
@@ -46,7 +88,7 @@ const SEOWrapper = ({ children }) => {
         };
 
         fetchSEO();
-    }, [location.pathname]);
+    }, [location.pathname, siteSettings]);
 
     // Function to parse raw HTML strings for Helmet
     const renderRawScripts = (htmlString) => {

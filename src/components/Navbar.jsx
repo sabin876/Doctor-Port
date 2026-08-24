@@ -15,7 +15,12 @@ const Navbar = () => {
     const [isLangOpen, setIsLangOpen] = useState(false);
     const [isServicesOpen, setIsServicesOpen] = useState(false);
     const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
-    const [dynamicServices, setDynamicServices] = useState([]);
+    const [dynamicServices, setDynamicServices] = useState(() => {
+        if (typeof window !== 'undefined' && window.__INITIAL_SERVICES__) {
+            return window.__INITIAL_SERVICES__;
+        }
+        return [];
+    });
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -23,13 +28,16 @@ const Navbar = () => {
     const isHome = location.pathname === '/';
 
     useEffect(() => {
+        if (dynamicServices.length > 0) {
+            return;
+        }
         api.getServices()
             .then(data => {
                 // Only show services that are marked for indexing (optional filter)
                 setDynamicServices(data);
             })
             .catch(err => console.error("Failed to fetch services for nav:", err));
-    }, []);
+    }, [dynamicServices]);
 
     const handleNavigation = (target, route = null) => {
         setIsOpen(false);

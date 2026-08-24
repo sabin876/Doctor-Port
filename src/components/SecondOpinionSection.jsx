@@ -39,8 +39,34 @@ const defaultItems = [
 const SecondOpinionSection = ({ customBadge, customTitle, customDescription, customItems }) => {
     const { language } = useLanguage();
     const isRtl = language === 'AR';
-    const [opinions, setOpinions] = useState(defaultItems);
-    const [loading, setLoading] = useState(true);
+    const [opinions, setOpinions] = useState(() => {
+        if (Array.isArray(customItems) && customItems.length > 0) {
+            const activeOnly = customItems.filter(item => item.is_active !== false);
+            return activeOnly.map(item => ({
+                id: item.id,
+                category: item.category,
+                title: item.title,
+                p1: item.paragraph_1 || item.p1 || '',
+                p2: item.paragraph_2 || item.p2 || ''
+            }));
+        }
+        if (typeof window !== 'undefined' && window.__INITIAL_SECOND_OPINIONS__ && window.__INITIAL_SECOND_OPINIONS__.length > 0) {
+            const activeOnly = window.__INITIAL_SECOND_OPINIONS__.filter(item => item.is_active !== false);
+            return activeOnly.map(item => ({
+                id: item.id,
+                category: item.category,
+                title: item.title,
+                p1: item.paragraph_1 || item.p1 || '',
+                p2: item.paragraph_2 || item.p2 || ''
+            }));
+        }
+        return defaultItems;
+    });
+    const [loading, setLoading] = useState(() => {
+        if (Array.isArray(customItems) && customItems.length > 0) return false;
+        if (typeof window !== 'undefined' && window.__INITIAL_SECOND_OPINIONS__) return false;
+        return true;
+    });
 
     const whatsappNumber = "+919049200041";
     const whatsappMessage = encodeURIComponent("Hello Dr. Ulhas, I would like to get a second opinion regarding my orthopedic condition.");
@@ -56,6 +82,11 @@ const SecondOpinionSection = ({ customBadge, customTitle, customDescription, cus
                 p2: item.paragraph_2 || item.p2 || ''
             }));
             setOpinions(formatted);
+            setLoading(false);
+            return;
+        }
+
+        if (typeof window !== 'undefined' && window.__INITIAL_SECOND_OPINIONS__) {
             setLoading(false);
             return;
         }

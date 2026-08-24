@@ -16,15 +16,43 @@ const SubServiceDetail = () => {
     const { t, language } = useLanguage();
     const isRtl = language === 'AR';
 
-    const [parentService, setParentService] = useState(null);
-    const [subService, setSubService] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [parentService, setParentService] = useState(() => {
+        if (typeof window !== 'undefined' && window.__INITIAL_SERVICES__) {
+            const foundParent = window.__INITIAL_SERVICES__.find(s => s.slug?.toLowerCase() === parent_slug?.toLowerCase());
+            if (foundParent) {
+                return getTranslatedService(foundParent, t, language);
+            }
+        }
+        return null;
+    });
+    const [subService, setSubService] = useState(() => {
+        if (typeof window !== 'undefined' && window.__INITIAL_SERVICES__) {
+            const foundParent = window.__INITIAL_SERVICES__.find(s => s.slug?.toLowerCase() === parent_slug?.toLowerCase());
+            if (foundParent && foundParent.sub_services) {
+                return foundParent.sub_services.find(sub => sub.slug?.toLowerCase() === sub_slug?.toLowerCase()) || null;
+            }
+        }
+        return null;
+    });
+    const [loading, setLoading] = useState(() => {
+        if (typeof window !== 'undefined' && window.__INITIAL_SERVICES__) {
+            const foundParent = window.__INITIAL_SERVICES__.find(s => s.slug?.toLowerCase() === parent_slug?.toLowerCase());
+            if (foundParent) {
+                const foundSub = foundParent.sub_services?.some(sub => sub.slug?.toLowerCase() === sub_slug?.toLowerCase());
+                if (foundSub) return false;
+            }
+        }
+        return true;
+    });
 
     const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+91 90492 00041";
     const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "+919049200041";
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        if (parentService && subService) {
+            return;
+        }
         api.getServices()
             .then(data => {
                 const foundParent = data.find(s => s.slug?.toLowerCase() === parent_slug?.toLowerCase());
@@ -42,7 +70,7 @@ const SubServiceDetail = () => {
                 console.error("Failed to fetch sub-service details:", err);
                 setLoading(false);
             });
-    }, [parent_slug, sub_slug, language, t]);
+    }, [parent_slug, sub_slug, language, t, parentService, subService]);
 
     if (loading) return <div className="min-h-screen flex items-center justify-center text-primary-600 font-bold">Loading...</div>;
 

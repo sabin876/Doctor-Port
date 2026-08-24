@@ -12,35 +12,56 @@ const ArticleDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { t } = useLanguage();
-    const [article, setArticle] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [article, setArticle] = useState(() => {
+        if (typeof window !== 'undefined' && window.__INITIAL_ARTICLES__) {
+            return window.__INITIAL_ARTICLES__.find(a => a.slug?.toLowerCase() === id?.toLowerCase()) || null;
+        }
+        return null;
+    });
+    const [siteSettings, setSiteSettings] = useState(() => {
+        if (typeof window !== 'undefined' && window.__INITIAL_SETTINGS__) {
+            return window.__INITIAL_SETTINGS__;
+        }
+        return null;
+    });
+    const [loading, setLoading] = useState(() => {
+        if (typeof window !== 'undefined' && window.__INITIAL_ARTICLES__) {
+            const found = window.__INITIAL_ARTICLES__.some(a => a.slug?.toLowerCase() === id?.toLowerCase());
+            if (found && window.__INITIAL_SETTINGS__) return false;
+        }
+        return true;
+    });
     const [headings, setHeadings] = useState([]);
-    const [siteSettings, setSiteSettings] = useState(null);
     const [activeId, setActiveId] = useState('');
     const [copied, setCopied] = useState(false);
 
     useEffect(() => {
+        if (article) {
+            const div = document.createElement('div');
+            div.innerHTML = article.content;
+            const hTags = div.querySelectorAll('h2, h3, h4');
+            setHeadings(Array.from(hTags).map((h, i) => ({
+                id: `heading-${i}`,
+                text: h.innerText,
+                level: parseInt(h.tagName.substring(1))
+            })));
+        }
+    }, [article]);
+
+    useEffect(() => {
         window.scrollTo(0, 0);
+        if (article && siteSettings) {
+            return;
+        }
         const fetchData = async () => {
             try {
                 const [articleData, settingsData] = await Promise.all([
-                    api.getArticle(id),
-                    api.getSiteSettings()
+                    article ? Promise.resolve(article) : api.getArticle(id),
+                    siteSettings ? Promise.resolve(siteSettings) : api.getSiteSettings()
                 ]);
                 
                 setArticle(articleData);
                 setSiteSettings(settingsData);
-                
-                // Extract headings for TOC
-                const div = document.createElement('div');
-                div.innerHTML = articleData.content;
-                const hTags = div.querySelectorAll('h2, h3, h4');
-                setHeadings(Array.from(hTags).map((h, i) => ({
-                    id: `heading-${i}`,
-                    text: h.innerText,
-                    level: parseInt(h.tagName.substring(1))
-                })));
-                
                 setLoading(false);
             } catch (err) {
                 console.error("Failed to fetch article data:", err);
@@ -48,7 +69,7 @@ const ArticleDetail = () => {
             }
         };
         fetchData();
-    }, [id]);
+    }, [id, article, siteSettings]);
 
     useEffect(() => {
         let ticking = false;

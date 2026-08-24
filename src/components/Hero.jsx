@@ -38,9 +38,21 @@ const Hero = () => {
     const isRtl = language === 'AR';
     const [currentSlide, setCurrentSlide] = React.useState(0);
     const slides = [slide1, slide2, slide3];
-    const [videoUrl, setVideoUrl] = useState('');
+    const [videoUrl, setVideoUrl] = useState(() => {
+        if (typeof window !== 'undefined' && window.__INITIAL_HERO_VIDEO__) {
+            const data = window.__INITIAL_HERO_VIDEO__;
+            if (data && data.video) {
+                return data.video;
+            } else if (data) {
+                const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || "https://api.drulhasorthopedic.com/api").replace(/\/+$/, "");
+                return `${apiBaseUrl.replace(/\/api\/?$/, '')}/media/hero-section.mp4`;
+            }
+        }
+        return '';
+    });
 
     useEffect(() => {
+        if (videoUrl) return;
         const fetchVideo = async () => {
             try {
                 const data = await api.getHeroVideo();
@@ -59,7 +71,7 @@ const Hero = () => {
             }
         };
         fetchVideo();
-    }, []);
+    }, [videoUrl]);
 
     React.useEffect(() => {
         const timer = setInterval(() => {
