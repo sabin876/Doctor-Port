@@ -328,28 +328,54 @@ const ArticleDetail = () => {
                         </div>
 
                         {/* Article FAQs Section (Rendered Last) */}
-                        {article.faqs && (typeof article.faqs === 'string' ? JSON.parse(article.faqs) : article.faqs).length > 0 && (
-                            <div className="mt-12 md:mt-16 pt-8 border-t border-gray-100">
-                                <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                                    <HelpCircle className="w-6 h-6 text-primary-600" /> Frequently Asked Questions
-                                </h3>
-                                <div className="space-y-4">
-                                    {(typeof article.faqs === 'string' ? JSON.parse(article.faqs) : article.faqs).map((faq, idx) => (
-                                        <details key={idx} className="group bg-white rounded-2xl border border-gray-100 p-5 [&_summary::-webkit-details-marker]:hidden shadow-sm transition-all">
-                                            <summary className="flex items-center justify-between font-bold text-gray-900 cursor-pointer text-sm md:text-base">
-                                                <span>{faq.question}</span>
-                                                <span className="ml-4 flex-shrink-0 transition transform group-open:-rotate-180 text-gray-400 group-hover:text-primary-600">
-                                                    <ChevronDown className="w-5 h-5" />
-                                                </span>
-                                            </summary>
-                                            <p className="mt-3 text-sm text-gray-600 leading-relaxed border-t border-gray-50 pt-3">
-                                                {faq.answer}
-                                            </p>
-                                        </details>
-                                    ))}
+                        {(() => {
+                            let faqsList = [];
+                            if (article?.faqs) {
+                                if (typeof article.faqs === 'string') {
+                                    try { faqsList = JSON.parse(article.faqs); } catch (e) { faqsList = []; }
+                                } else if (Array.isArray(article.faqs)) {
+                                    faqsList = article.faqs;
+                                }
+                            }
+                            if (!faqsList || faqsList.length === 0) {
+                                faqsList = [
+                                    {
+                                        question: "When should I consult an orthopedic specialist for knee pain?",
+                                        answer: "You should consult an orthopedic specialist if your knee pain persists for more than a few days, causes swelling, prevents weight-bearing, or is accompanied by stiffness, clicking, or instability."
+                                    },
+                                    {
+                                        question: "Can knee injuries heal without surgery?",
+                                        answer: "Yes, many knee conditions and minor ligament or cartilage injuries can be treated successfully with non-surgical methods such as targeted physical therapy, rest, medication, and lifestyle adjustments."
+                                    },
+                                    {
+                                        question: "What diagnostic tests are recommended for knee problems?",
+                                        answer: "A physical examination by an orthopedic surgeon is typically followed by imaging tests like X-rays (for bone structure and joint alignment) or an MRI scan (for soft tissues like ligaments, cartilage, and meniscus)."
+                                    }
+                                ];
+                            }
+                            return (
+                                <div className="mt-12 md:mt-16 pt-8 border-t border-gray-100">
+                                    <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                                        <HelpCircle className="w-6 h-6 text-primary-600" /> Frequently Asked Questions
+                                    </h3>
+                                    <div className="space-y-4">
+                                        {faqsList.map((faq, idx) => (
+                                            <details key={idx} className="group bg-white rounded-2xl border border-gray-100 p-5 [&_summary::-webkit-details-marker]:hidden shadow-sm transition-all">
+                                                <summary className="flex items-center justify-between font-bold text-gray-900 cursor-pointer text-sm md:text-base">
+                                                    <span>{faq.question}</span>
+                                                    <span className="ml-4 flex-shrink-0 transition transform group-open:-rotate-180 text-gray-400 group-hover:text-primary-600">
+                                                        <ChevronDown className="w-5 h-5" />
+                                                    </span>
+                                                </summary>
+                                                <p className="mt-3 text-sm text-gray-600 leading-relaxed border-t border-gray-50 pt-3">
+                                                    {faq.answer}
+                                                </p>
+                                            </details>
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
-                        )}
+                            );
+                        })()}
                     </div>
                 </div>
             </div>
