@@ -29,6 +29,7 @@ const Login = React.lazy(() => import('./components/Login'));
 const NotFound = React.lazy(() => import('./components/NotFound'));
 const DashboardLayout = React.lazy(() => import('./components/dashboard/DashboardLayout'));
 const DashboardHome = React.lazy(() => import('./components/dashboard/DashboardHome'));
+const ArticlesManager = React.lazy(() => import('./components/dashboard/ArticlesManager'));
 const ServicesManager = React.lazy(() => import('./components/dashboard/ServicesManager'));
 const SettingsManager = React.lazy(() => import('./components/dashboard/SettingsManager'));
 const ReportAccess = React.lazy(() => import('./pages/patient/ReportAccess'));
@@ -92,7 +93,7 @@ function App() {
                   {/* Dashboard Routes (Custom Layout) */}
                   <Route path="/dashboard" element={<DashboardLayout />}>
                     <Route index element={<DashboardHome />} />
-                    <Route path="articles" element={<div className="p-8 text-slate-500">Articles Management Comming Soon...</div>} />
+                    <Route path="articles" element={<ArticlesManager />} />
                     <Route path="services" element={<ServicesManager />} />
                     <Route path="settings" element={<SettingsManager />} />
                   </Route>

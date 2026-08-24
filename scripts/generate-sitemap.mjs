@@ -1,208 +1,164 @@
 /**
  * generate-sitemap.mjs
  * ---------------------
- * Outputs the static curated /public/sitemap.xml
+ * Generates dynamic sitemap.xml by querying the API (or fallback)
+ * and writing to public/sitemap.xml (and dist/sitemap.xml if dist exists).
  * Usage: node scripts/generate-sitemap.mjs
  */
 
-import { writeFileSync } from 'fs';
+import { writeFileSync, existsSync, mkdirSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: resolve(__dirname, '../.env') });
 
-const xml = `<?xml version="1.0" encoding="UTF-8"?>
+const SITE_URL = (process.env.VITE_SITE_URL || 'https://drulhasorthopedic.com').replace(/\/+$/, '');
+const API_BASE_URL = (process.env.VITE_API_BASE_URL || 'https://api.drulhasorthopedic.com/api').replace(/\/+$/, '');
 
+const staticRoutes = [
+  { path: '/', priority: '1.0', changefreq: 'daily' },
+  { path: '/about/', priority: '0.8', changefreq: 'monthly' },
+  { path: '/gallery/', priority: '0.8', changefreq: 'monthly' },
+  { path: '/contact/', priority: '0.8', changefreq: 'monthly' },
+  { path: '/services/', priority: '0.9', changefreq: 'weekly' },
+  { path: '/services/physiotherapy/', priority: '0.8', changefreq: 'monthly' },
+  { path: '/blog/', priority: '0.8', changefreq: 'weekly' },
+  { path: '/report-access/', priority: '0.5', changefreq: 'monthly' },
+  { path: '/sitemap/', priority: '0.5', changefreq: 'monthly' },
+  { path: '/social-media/', priority: '0.5', changefreq: 'monthly' },
+  { path: '/thank-you/', priority: '0.4', changefreq: 'monthly' },
+];
+
+const fallbackServices = [
+  'knee-replacement-knee-preservation-surgery',
+  'robotic-knee-replacement-surgery',
+  'sports-injury',
+  'fracture-trauma-surgery',
+  'second-opinion-for-orthopaedic-surgery',
+  'joint-preservation-surgery',
+  'knee-shoulder-arthroscopy',
+  'osteoporosis-treatment',
+  'regenerative-orthopaedics-and-prp-treatment',
+  'hip-replacement-surgery',
+  'deformity-correction-osteotomy-surgery',
+  'physiotherapy-rehabilitation-recovery-planning',
+];
+
+const fallbackArticles = [
+  'alignment-concept-total-knee-replacement',
+  'the-evolution-of-tkr-implants',
+  'steps-in-total-knee-replacement',
+  'when-to-consult-a-knee-specialist-in-pune',
+  'mcl-vs-lcl-injuries',
+];
+
+async function generate() {
+  console.log('Generating sitemap from API / static definitions...');
+  let dynamicServices = [];
+  let dynamicSubServices = [];
+  let dynamicArticles = [];
+
+  try {
+    const [sRes, aRes] = await Promise.all([
+      fetch(`${API_BASE_URL}/services/`).catch(() => null),
+      fetch(`${API_BASE_URL}/articles/`).catch(() => null),
+    ]);
+
+    if (sRes && sRes.ok) {
+      const services = await sRes.json();
+      if (Array.isArray(services) && services.length > 0) {
+        services.forEach((s) => {
+          if (s.slug) {
+            dynamicServices.push(s.slug);
+            if (Array.isArray(s.sub_services)) {
+              s.sub_services.forEach((sub) => {
+                if (sub.slug) {
+                  dynamicSubServices.push({ parent: s.slug, slug: sub.slug });
+                }
+              });
+            }
+          }
+        });
+      }
+    }
+
+    if (aRes && aRes.ok) {
+      const articles = await aRes.json();
+      if (Array.isArray(articles) && articles.length > 0) {
+        articles.forEach((a) => {
+          if (a.slug) dynamicArticles.push(a.slug);
+        });
+      }
+    }
+  } catch (err) {
+    console.warn('Could not fetch from API for sitemap, using fallbacks:', err.message);
+  }
+
+  // Combine dynamic with fallback if dynamic is empty
+  const serviceSlugs = dynamicServices.length > 0 ? dynamicServices : fallbackServices;
+  const articleSlugs = dynamicArticles.length > 0 ? dynamicArticles : fallbackArticles;
+
+  let urlEntries = '';
+
+  // 1. Static Routes
+  for (const route of staticRoutes) {
+    urlEntries += `
+    <url>
+        <loc>${SITE_URL}${route.path}</loc>
+        <changefreq>${route.changefreq}</changefreq>
+        <priority>${route.priority}</priority>
+    </url>`;
+  }
+
+  // 2. Service Pages
+  for (const slug of serviceSlugs) {
+    urlEntries += `
+    <url>
+        <loc>${SITE_URL}/services/${slug}</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>`;
+  }
+
+  // 3. Sub-service Pages
+  for (const sub of dynamicSubServices) {
+    urlEntries += `
+    <url>
+        <loc>${SITE_URL}/services/${sub.parent}/${sub.slug}</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>`;
+  }
+
+  // 4. Blog Articles
+  for (const slug of articleSlugs) {
+    urlEntries += `
+    <url>
+        <loc>${SITE_URL}/blog/${slug}</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>`;
+  }
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-    <!-- =====================================================
-         HOMEPAGE
-         Priority: 1.0
-    ====================================================== -->
-
-    <url>
-        <loc>https://drulhasorthopedic.com/</loc>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-    </url>
-
-
-    <!-- =====================================================
-         MAIN PAGES
-         Priority: 0.8
-    ====================================================== -->
-
-    <url>
-        <loc>https://drulhasorthopedic.com/about/</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://drulhasorthopedic.com/gallery/</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://drulhasorthopedic.com/contact/</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-
-    <!-- =====================================================
-         SERVICES HUB
-         Priority: 0.9
-    ====================================================== -->
-
-    <url>
-        <loc>https://drulhasorthopedic.com/services/</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-
-    <!-- =====================================================
-         ALL SERVICE PAGES
-         Priority: 0.9
-    ====================================================== -->
-
-    <!-- Knee Replacement & Knee Preservation Surgery -->
-    <url>
-        <loc>https://drulhasorthopedic.com/services/knee-replacement-knee-preservation-surgery</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Robotic Knee Replacement Surgery -->
-    <url>
-        <loc>https://drulhasorthopedic.com/services/robotic-knee-replacement-surgery</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Sports Injury -->
-    <url>
-        <loc>https://drulhasorthopedic.com/services/sports-injury</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Fracture & Trauma Surgery -->
-    <url>
-        <loc>https://drulhasorthopedic.com/services/fracture-trauma-surgery</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Second Opinion for Orthopaedic Surgery -->
-    <url>
-        <loc>https://drulhasorthopedic.com/services/second-opinion-for-orthopaedic-surgery</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Joint Preservation Surgery -->
-    <url>
-        <loc>https://drulhasorthopedic.com/services/joint-preservation-surgery</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Knee & Shoulder Arthroscopy -->
-    <url>
-        <loc>https://drulhasorthopedic.com/services/knee-shoulder-arthroscopy</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Osteoporosis Treatment -->
-    <url>
-        <loc>https://drulhasorthopedic.com/services/osteoporosis-treatment</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Regenerative Orthopaedics and PRP Treatment -->
-    <url>
-        <loc>https://drulhasorthopedic.com/services/regenerative-orthopaedics-and-prp-treatment</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Hip Replacement Surgery -->
-    <url>
-        <loc>https://drulhasorthopedic.com/services/hip-replacement-surgery</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Deformity Correction & Osteotomy Surgery -->
-    <url>
-        <loc>https://drulhasorthopedic.com/services/deformity-correction-osteotomy-surgery</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Physiotherapy, Rehabilitation & Recovery Planning -->
-    <url>
-        <loc>https://drulhasorthopedic.com/services/physiotherapy-rehabilitation-recovery-planning</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-
-    <!-- =====================================================
-         BLOG / ARTICLES HUB
-         Priority: 0.7
-    ====================================================== -->
-
-    <url>
-        <loc>https://drulhasorthopedic.com/blog</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-
-    <!-- =====================================================
-         BLOG ARTICLES
-         Priority: 0.7
-    ====================================================== -->
-
-    <url>
-        <loc>https://drulhasorthopedic.com/blog/alignment-concept-total-knee-replacement</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <url>
-        <loc>https://drulhasorthopedic.com/blog/the-evolution-of-tkr-implants</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <url>
-        <loc>https://drulhasorthopedic.com/blog/steps-in-total-knee-replacement</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <url>
-        <loc>https://drulhasorthopedic.com/blog/when-to-consult-a-knee-specialist-in-pune</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <url>
-        <loc>https://drulhasorthopedic.com/blog/mcl-vs-lcl-injuries</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
+${urlEntries}
 </urlset>
 `;
 
-const outputPath = resolve(__dirname, '../public/sitemap.xml');
-writeFileSync(outputPath, xml, 'utf-8');
-console.log(`✅ sitemap.xml updated → ${outputPath}`);
+  const publicPath = resolve(__dirname, '../public/sitemap.xml');
+  const distDir = resolve(__dirname, '../dist');
+  const distPath = resolve(distDir, 'sitemap.xml');
+
+  writeFileSync(publicPath, xml, 'utf-8');
+  console.log(`✅ sitemap.xml generated → ${publicPath}`);
+
+  if (existsSync(distDir)) {
+    writeFileSync(distPath, xml, 'utf-8');
+    console.log(`✅ sitemap.xml synced → ${distPath}`);
+  }
+}
+
+generate();

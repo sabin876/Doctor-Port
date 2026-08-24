@@ -61,6 +61,7 @@ const ArticlesManager = () => {
   const [imagePreview, setImagePreview] = useState('');
   const [ogImageFile, setOgImageFile] = useState(null);
   const [ogImagePreview, setOgImagePreview] = useState('');
+  const [faqs, setFaqs] = useState([]);
 
   useEffect(() => {
     fetchArticles();
@@ -126,6 +127,15 @@ const ArticlesManager = () => {
         image_alt_text: article.image_alt_text || '',
         h1_title: article.h1_title || ''
       });
+      let parsedFaqs = [];
+      if (article.faqs) {
+        if (typeof article.faqs === 'string') {
+          try { parsedFaqs = JSON.parse(article.faqs); } catch (e) { parsedFaqs = []; }
+        } else if (Array.isArray(article.faqs)) {
+          parsedFaqs = article.faqs;
+        }
+      }
+      setFaqs(parsedFaqs);
       setImagePreview(article.image || '');
       setOgImagePreview(article.og_image || '');
     } else {
@@ -150,6 +160,7 @@ const ArticlesManager = () => {
         image_alt_text: '',
         h1_title: ''
       });
+      setFaqs([]);
       setImagePreview('');
       setOgImagePreview('');
     }
@@ -157,6 +168,22 @@ const ArticlesManager = () => {
     setOgImageFile(null);
     setActiveTab('basic');
     setIsEditing(true);
+  };
+
+  const handleAddFAQ = () => {
+    setFaqs(prev => [...prev, { question: '', answer: '' }]);
+  };
+
+  const handleUpdateFAQ = (index, field, value) => {
+    setFaqs(prev => {
+      const updated = [...prev];
+      updated[index] = { ...updated[index], [field]: value };
+      return updated;
+    });
+  };
+
+  const handleRemoveFAQ = (index) => {
+    setFaqs(prev => prev.filter((_, i) => i !== index));
   };
 
   const handleTitleChange = (e) => {
@@ -210,6 +237,7 @@ const ArticlesManager = () => {
       payload.append('follow_links', formData.follow_links ? 'true' : 'false');
       payload.append('image_alt_text', formData.image_alt_text);
       payload.append('h1_title', formData.h1_title);
+      payload.append('faqs', JSON.stringify(faqs));
 
       if (formData.schema_markup.trim()) {
         try {
@@ -509,7 +537,7 @@ const ArticlesManager = () => {
             </div>
 
             {/* Tab Navigation */}
-            <div className="flex border-b border-slate-200 bg-slate-50/50 p-1 rounded-xl gap-1.5 max-w-md">
+            <div className="flex border-b border-slate-200 bg-slate-50/50 p-1 rounded-xl gap-1.5 max-w-lg">
               <button
                 type="button"
                 onClick={() => setActiveTab('basic')}
@@ -518,6 +546,15 @@ const ArticlesManager = () => {
                 }`}
               >
                 Content
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('faqs')}
+                className={`flex-1 py-2 px-3 font-bold text-xs uppercase tracking-wider rounded-lg transition-all cursor-pointer ${
+                  activeTab === 'faqs' ? 'bg-white text-primary-600 shadow-sm border border-slate-200/50' : 'text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                FAQs ({faqs.length})
               </button>
               <button
                 type="button"
@@ -645,6 +682,85 @@ const ArticlesManager = () => {
                         onChange={e => setFormData(prev => ({ ...prev, content: e.target.value }))}
                       />
                     </div>
+                  </motion.div>
+                )}
+
+                {/* FAQs Tab */}
+                {activeTab === 'faqs' && (
+                  <motion.div
+                    key="tab-faqs"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="space-y-6"
+                  >
+                    <div className="flex items-center justify-between bg-primary-50/60 border border-primary-100 p-4 rounded-2xl">
+                      <div>
+                        <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+                          <HelpCircle size={16} className="text-primary-600" /> Article Frequently Asked Questions
+                        </h3>
+                        <p className="text-xs text-slate-500 mt-0.5">
+                          Add custom Q&A pairs for this article. These will be rendered in the article detail section.
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleAddFAQ}
+                        className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-bold text-xs cursor-pointer shadow-sm transition-all"
+                      >
+                        <Plus size={14} /> Add FAQ
+                      </button>
+                    </div>
+
+                    {faqs.length === 0 ? (
+                      <div className="border-2 border-dashed border-slate-200 rounded-2xl p-8 text-center text-slate-400 bg-white">
+                        <HelpCircle size={28} className="mx-auto mb-2 text-slate-300" />
+                        <p className="text-xs font-semibold text-slate-600">No FAQs added for this article yet.</p>
+                        <p className="text-[11px] text-slate-400 mt-1">Click "Add FAQ" above to create question and answer pairs.</p>
+                      </div>
+                    ) : (
+                      <div className="space-y-4">
+                        {faqs.map((faq, index) => (
+                          <div key={index} className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3 relative group">
+                            <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+                              <span className="text-xs font-bold text-primary-600 uppercase tracking-wider">
+                                FAQ #{index + 1}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => handleRemoveFAQ(index)}
+                                className="text-rose-500 hover:text-rose-700 hover:bg-rose-50 p-1.5 rounded-lg transition-colors cursor-pointer"
+                                title="Remove FAQ"
+                              >
+                                <Trash2 size={14} />
+                              </button>
+                            </div>
+                            
+                            <div className="space-y-1">
+                              <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">Question</label>
+                              <input
+                                type="text"
+                                className="w-full text-xs px-3.5 py-2.5 border border-slate-200 rounded-xl focus:ring-2 ring-primary-500/20 focus:outline-none font-medium"
+                                value={faq.question || ''}
+                                onChange={e => handleUpdateFAQ(index, 'question', e.target.value)}
+                                placeholder="e.g. How long is recovery after total knee replacement?"
+                              />
+                            </div>
+
+                            <div className="space-y-1">
+                              <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">Answer</label>
+                              <textarea
+                                rows={3}
+                                className="w-full text-xs px-3.5 py-2.5 border border-slate-200 rounded-xl focus:ring-2 ring-primary-500/20 focus:outline-none leading-relaxed"
+                                value={faq.answer || ''}
+                                onChange={e => handleUpdateFAQ(index, 'answer', e.target.value)}
+                                placeholder="Detailed answer for this question..."
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </motion.div>
                 )}
 

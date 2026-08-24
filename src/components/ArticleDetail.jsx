@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Clock, Calendar, ChevronLeft, Share2, Tag, Activity, User, ArrowRight, List, Link2, Check } from 'lucide-react';
+import { Clock, Calendar, ChevronLeft, Share2, Tag, Activity, User, ArrowRight, Link2, Check, HelpCircle, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { api } from '../lib/api';
 import Breadcrumbs from './ui/Breadcrumbs';
@@ -31,22 +31,7 @@ const ArticleDetail = () => {
         }
         return true;
     });
-    const [headings, setHeadings] = useState([]);
-    const [activeId, setActiveId] = useState('');
     const [copied, setCopied] = useState(false);
-
-    useEffect(() => {
-        if (article) {
-            const div = document.createElement('div');
-            div.innerHTML = article.content;
-            const hTags = div.querySelectorAll('h2, h3, h4');
-            setHeadings(Array.from(hTags).map((h, i) => ({
-                id: `heading-${i}`,
-                text: h.innerText,
-                level: parseInt(h.tagName.substring(1))
-            })));
-        }
-    }, [article]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -70,55 +55,6 @@ const ArticleDetail = () => {
         };
         fetchData();
     }, [id, article, siteSettings]);
-
-    useEffect(() => {
-        let ticking = false;
-
-        const handleScroll = () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    const scrollPosition = window.scrollY + 200; // Offset for navbar
-
-                    let currentActiveId = '';
-                    for (let i = 0; i < headings.length; i++) {
-                        const el = document.getElementById(headings[i].id);
-                        if (el) {
-                            const top = el.offsetTop;
-                            if (scrollPosition >= top) {
-                                currentActiveId = headings[i].id;
-                            } else {
-                                break;
-                            }
-                        }
-                    }
-
-                    // Fallback to last heading at the bottom of the page
-                    const isBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 150;
-                    if (isBottom && headings.length > 0) {
-                        currentActiveId = headings[headings.length - 1].id;
-                    }
-
-                    // Fallback to first heading if near the top
-                    if (!currentActiveId && headings.length > 0) {
-                        currentActiveId = headings[0].id;
-                    }
-
-                    setActiveId(currentActiveId);
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        // Run once initially after elements have rendered
-        const timer = setTimeout(handleScroll, 150);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-            clearTimeout(timer);
-        };
-    }, [headings]);
 
     const handleShare = () => {
         navigator.clipboard.writeText(window.location.href)
@@ -293,66 +229,9 @@ const ArticleDetail = () => {
             {/* Content Section */}
             <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-                    {/* TOC & Share Sidebar */}
+                    {/* Share Sidebar */}
                     <div className="hidden lg:block">
                         <div className="sticky top-32 space-y-8">
-                            {headings.length > 0 && (
-                                <div className="bg-white rounded-3xl border border-gray-100 p-6 shadow-[0_8px_30px_rgb(0,0,0,0.015)] backdrop-blur-sm transition-all duration-300 hover:shadow-[0_20px_50px_rgb(0,0,0,0.035)]">
-                                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">
-                                        <div className="w-8 h-8 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center">
-                                            <List className="w-4 h-4" />
-                                        </div>
-                                        <div>
-                                            <h4 className="text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em] leading-tight">Table of</h4>
-                                            <h4 className="text-xs font-bold text-primary-950 uppercase tracking-[0.05em] leading-tight">Contents</h4>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="relative pl-4">
-                                        {/* Vertical Timeline Bar */}
-                                        <div className="absolute left-[5.5px] top-2 bottom-2 w-[1.5px] bg-gray-100" />
-                                        
-                                        <nav className="flex flex-col gap-4">
-                                            {headings.map((h) => {
-                                                const isActive = activeId === h.id;
-                                                return (
-                                                    <a
-                                                        key={h.id}
-                                                        href={`#${h.id}`}
-                                                        className={`group relative flex items-start text-xs leading-relaxed transition-all duration-300 ${
-                                                            isActive
-                                                                ? 'text-primary-600 font-semibold pl-2'
-                                                                : 'text-gray-500 hover:text-gray-900 font-normal hover:pl-1'
-                                                        }`}
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            const element = document.getElementById(h.id);
-                                                            if (element) {
-                                                                // Calculate scroll position offset for sticky header
-                                                                const yOffset = -90; 
-                                                                const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
-                                                                window.scrollTo({ top: y, behavior: 'smooth' });
-                                                            }
-                                                        }}
-                                                    >
-                                                        {/* Interactive Bullet Dot */}
-                                                        <span 
-                                                            className={`absolute left-[-16px] top-[6px] w-[7px] h-[7px] rounded-full border bg-white transition-all duration-300 ${
-                                                                isActive
-                                                                    ? 'border-primary-600 bg-primary-600 scale-125 shadow-[0_0_8px_rgba(2,132,199,0.6)]'
-                                                                    : 'border-gray-300 group-hover:border-gray-500 group-hover:scale-110'
-                                                            }`}
-                                                        />
-                                                        <span className={h.level > 2 ? 'pl-3 text-[11px] text-gray-400' : ''}>
-                                                            {h.text}
-                                                        </span>
-                                                    </a>
-                                                );
-                                            })}
-                                        </nav>
-                                    </div>
-                                </div>
-                            )}
 
                             {/* Share & Meta Card */}
                             <div className="bg-white rounded-3xl border border-gray-100 p-6 shadow-[0_8px_30px_rgb(0,0,0,0.015)] backdrop-blur-sm transition-all duration-300 hover:shadow-[0_20px_50px_rgb(0,0,0,0.035)]">
@@ -406,13 +285,33 @@ const ArticleDetail = () => {
                         <article className="prose prose-sm md:prose-lg prose-primary max-w-none">
                             <div
                                 className="text-gray-700 leading-relaxed space-y-4 md:space-y-6"
-                                dangerouslySetInnerHTML={{ __html: applyInternalLinks(article.content).replace(/<(h[2-4])/g, (match, p1, offset) => {
-                                    const content = article.content;
-                                    const index = headings.findIndex(h => content.substring(offset).includes(h.text));
-                                    return `<${p1} id="heading-${index}"`;
-                                }).replace(/<img/g, '<img loading="lazy" class="rounded-2xl shadow-md"') }}
+                                dangerouslySetInnerHTML={{ __html: applyInternalLinks(article.content).replace(/<img/g, '<img loading="lazy" class="rounded-2xl shadow-md"') }}
                             />
                         </article>
+
+                        {/* Article FAQs Section */}
+                        {article.faqs && (typeof article.faqs === 'string' ? JSON.parse(article.faqs) : article.faqs).length > 0 && (
+                            <div className="mt-12 md:mt-16 pt-8 border-t border-gray-100">
+                                <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                                    <HelpCircle className="w-6 h-6 text-primary-600" /> Frequently Asked Questions
+                                </h3>
+                                <div className="space-y-4">
+                                    {(typeof article.faqs === 'string' ? JSON.parse(article.faqs) : article.faqs).map((faq, idx) => (
+                                        <details key={idx} className="group bg-white rounded-2xl border border-gray-100 p-5 [&_summary::-webkit-details-marker]:hidden shadow-sm transition-all">
+                                            <summary className="flex items-center justify-between font-bold text-gray-900 cursor-pointer text-sm md:text-base">
+                                                <span>{faq.question}</span>
+                                                <span className="ml-4 flex-shrink-0 transition transform group-open:-rotate-180 text-gray-400 group-hover:text-primary-600">
+                                                    <ChevronDown className="w-5 h-5" />
+                                                </span>
+                                            </summary>
+                                            <p className="mt-3 text-sm text-gray-600 leading-relaxed border-t border-gray-50 pt-3">
+                                                {faq.answer}
+                                            </p>
+                                        </details>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
 
                         {/* Relevant Treatments */}
                         {article.relatedServiceIds && article.relatedServiceIds.length > 0 && (
