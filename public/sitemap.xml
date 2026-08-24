@@ -57,7 +57,52 @@
         <priority>0.4</priority>
     </url>
     <url>
+        <loc>http://localhost:5173/services/knee-replacement-knee-preservation-surgery</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>http://localhost:5173/services/robotic-knee-replacement-surgery</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>http://localhost:5173/services/sports-injury</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
         <loc>http://localhost:5173/services/fracture-trauma-surgery</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>http://localhost:5173/services/second-opinion-for-orthopaedic-surgery</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>http://localhost:5173/services/joint-preservation-surgery</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>http://localhost:5173/services/knee-shoulder-arthroscopy</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>http://localhost:5173/services/osteoporosis-treatment</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>http://localhost:5173/services/regenerative-orthopaedics-and-prp-treatment</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>http://localhost:5173/services/hip-replacement-surgery</loc>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -67,87 +112,32 @@
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>http://localhost:5173/services/fracture-trauma-surgery/test1</loc>
+        <loc>http://localhost:5173/services/physiotherapy-rehabilitation-recovery-planning</loc>
         <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.9</priority>
     </url>
     <url>
-        <loc>http://localhost:5173/services/fracture-trauma-surgery/test-2</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>http://localhost:5173/services/fracture-trauma-surgery/test3</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>http://localhost:5173/services/fracture-trauma-surgery/second-opinion-for-prp-regenerative-treatment</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>http://localhost:5173/services/fracture-trauma-surgery/second-opinion-for-prp-regenerative-treatment</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>http://localhost:5173/services/fracture-trauma-surgery/second-opinion-for-prp-regenerative-treatment</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>http://localhost:5173/services/fracture-trauma-surgery/second-opinion-for-prp-regenerative-treatment</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>http://localhost:5173/services/fracture-trauma-surgery/second-opinion-for-prp-regenerative-treatment</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>http://localhost:5173/blog/causes-of-knee-pain</loc>
+        <loc>http://localhost:5173/blog/alignment-concept-total-knee-replacement</loc>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>http://localhost:5173/blog/knee-pain-gym-sports</loc>
+        <loc>http://localhost:5173/blog/the-evolution-of-tkr-implants</loc>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>http://localhost:5173/blog/when-to-get-mri-knee</loc>
+        <loc>http://localhost:5173/blog/steps-in-total-knee-replacement</loc>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>http://localhost:5173/blog/continuing-sports-risks</loc>
+        <loc>http://localhost:5173/blog/when-to-consult-a-knee-specialist-in-pune</loc>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>http://localhost:5173/blog/anterior-knee-pain-office</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>http://localhost:5173/blog/meniscus-tear-vs-strain</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>http://localhost:5173/blog/knee-pain-exercises-desk</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>http://localhost:5173/blog/knee-pain-travel-flights</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>http://localhost:5173/blog/knee-pain-pillar</loc>
+        <loc>http://localhost:5173/blog/mcl-vs-lcl-injuries</loc>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>

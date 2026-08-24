@@ -289,30 +289,6 @@ const ArticleDetail = () => {
                             />
                         </article>
 
-                        {/* Article FAQs Section */}
-                        {article.faqs && (typeof article.faqs === 'string' ? JSON.parse(article.faqs) : article.faqs).length > 0 && (
-                            <div className="mt-12 md:mt-16 pt-8 border-t border-gray-100">
-                                <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                                    <HelpCircle className="w-6 h-6 text-primary-600" /> Frequently Asked Questions
-                                </h3>
-                                <div className="space-y-4">
-                                    {(typeof article.faqs === 'string' ? JSON.parse(article.faqs) : article.faqs).map((faq, idx) => (
-                                        <details key={idx} className="group bg-white rounded-2xl border border-gray-100 p-5 [&_summary::-webkit-details-marker]:hidden shadow-sm transition-all">
-                                            <summary className="flex items-center justify-between font-bold text-gray-900 cursor-pointer text-sm md:text-base">
-                                                <span>{faq.question}</span>
-                                                <span className="ml-4 flex-shrink-0 transition transform group-open:-rotate-180 text-gray-400 group-hover:text-primary-600">
-                                                    <ChevronDown className="w-5 h-5" />
-                                                </span>
-                                            </summary>
-                                            <p className="mt-3 text-sm text-gray-600 leading-relaxed border-t border-gray-50 pt-3">
-                                                {faq.answer}
-                                            </p>
-                                        </details>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
                         {/* Relevant Treatments */}
                         {article.relatedServiceIds && article.relatedServiceIds.length > 0 && (
                             <div className="mt-12 md:mt-16 pt-8 border-t border-gray-100">
@@ -350,6 +326,30 @@ const ArticleDetail = () => {
                                 Book Visit <ArrowRight className="w-5 h-5" />
                             </Link>
                         </div>
+
+                        {/* Article FAQs Section (Rendered Last) */}
+                        {article.faqs && (typeof article.faqs === 'string' ? JSON.parse(article.faqs) : article.faqs).length > 0 && (
+                            <div className="mt-12 md:mt-16 pt-8 border-t border-gray-100">
+                                <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                                    <HelpCircle className="w-6 h-6 text-primary-600" /> Frequently Asked Questions
+                                </h3>
+                                <div className="space-y-4">
+                                    {(typeof article.faqs === 'string' ? JSON.parse(article.faqs) : article.faqs).map((faq, idx) => (
+                                        <details key={idx} className="group bg-white rounded-2xl border border-gray-100 p-5 [&_summary::-webkit-details-marker]:hidden shadow-sm transition-all">
+                                            <summary className="flex items-center justify-between font-bold text-gray-900 cursor-pointer text-sm md:text-base">
+                                                <span>{faq.question}</span>
+                                                <span className="ml-4 flex-shrink-0 transition transform group-open:-rotate-180 text-gray-400 group-hover:text-primary-600">
+                                                    <ChevronDown className="w-5 h-5" />
+                                                </span>
+                                            </summary>
+                                            <p className="mt-3 text-sm text-gray-600 leading-relaxed border-t border-gray-50 pt-3">
+                                                {faq.answer}
+                                            </p>
+                                        </details>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
