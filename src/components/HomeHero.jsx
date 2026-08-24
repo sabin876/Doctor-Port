@@ -81,6 +81,7 @@ const StatsRow = ({ trigger, stats }) => (
 const SLIDE_DURATION = 8000;
 
 const HomeHero = () => {
+    const { t, language } = useLanguage();
     const [videoUrl, setVideoUrl] = useState(() => {
         if (typeof window !== 'undefined' && window.__INITIAL_HERO_VIDEO__) {
             const data = window.__INITIAL_HERO_VIDEO__;
