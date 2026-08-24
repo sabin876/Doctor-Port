@@ -161,7 +161,29 @@ const server = app.listen(PORT, async () => {
       
       // Wait for DOM content to load and then wait a short time for React to hydrate/render
       await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
-      await new Promise(resolve => setTimeout(resolve, 150));
+      
+      // Scroll to the bottom of the page to trigger all scroll animations (Framer Motion whileInView) and lazy loading
+      await page.evaluate(async () => {
+        await new Promise((resolve) => {
+          let totalHeight = 0;
+          const distance = 150;
+          const timer = setInterval(() => {
+            const scrollHeight = document.body.scrollHeight;
+            window.scrollBy(0, distance);
+            totalHeight += distance;
+
+            if (totalHeight >= scrollHeight) {
+              clearInterval(timer);
+              // Scroll back to top so initial render position is normal
+              window.scrollTo(0, 0);
+              resolve();
+            }
+          }, 15);
+        });
+      });
+
+      // Wait a moment for animations to complete their final transitions
+      await new Promise(resolve => setTimeout(resolve, 500));
       
       const html = await page.evaluate(() => document.documentElement.outerHTML);
       
