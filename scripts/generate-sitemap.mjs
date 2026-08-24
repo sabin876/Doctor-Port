@@ -6,7 +6,7 @@
  * Usage: node scripts/generate-sitemap.mjs
  */
 
-import { writeFileSync, existsSync, mkdirSync } from 'fs';
+import { writeFileSync, existsSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
@@ -14,22 +14,8 @@ import dotenv from 'dotenv';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: resolve(__dirname, '../.env') });
 
-const SITE_URL = (process.env.VITE_SITE_URL || 'https://drulhasorthopedic.com').replace(/\/+$/, '');
-const API_BASE_URL = (process.env.VITE_API_BASE_URL || 'https://api.drulhasorthopedic.com/api').replace(/\/+$/, '');
-
-const staticRoutes = [
-  { path: '/', priority: '1.0', changefreq: 'daily' },
-  { path: '/about/', priority: '0.8', changefreq: 'monthly' },
-  { path: '/gallery/', priority: '0.8', changefreq: 'monthly' },
-  { path: '/contact/', priority: '0.8', changefreq: 'monthly' },
-  { path: '/services/', priority: '0.9', changefreq: 'weekly' },
-  { path: '/services/physiotherapy/', priority: '0.8', changefreq: 'monthly' },
-  { path: '/blog/', priority: '0.8', changefreq: 'weekly' },
-  { path: '/report-access/', priority: '0.5', changefreq: 'monthly' },
-  { path: '/sitemap/', priority: '0.5', changefreq: 'monthly' },
-  { path: '/social-media/', priority: '0.5', changefreq: 'monthly' },
-  { path: '/thank-you/', priority: '0.4', changefreq: 'monthly' },
-];
+const SITE_URL = (process.env.VITE_SITE_URL && !process.env.VITE_SITE_URL.includes('localhost') ? process.env.VITE_SITE_URL : 'https://drulhasorthopedic.com').replace(/\/+$/, '');
+const API_BASE_URL = (process.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api').replace(/\/+$/, '');
 
 const fallbackServices = [
   'knee-replacement-knee-preservation-surgery',
@@ -55,7 +41,7 @@ const fallbackArticles = [
 ];
 
 async function generate() {
-  console.log('Generating sitemap from API / static definitions...');
+  console.log('Generating sitemap.xml...');
   let dynamicServices = [];
   let dynamicSubServices = [];
   let dynamicArticles = [];
@@ -96,55 +82,113 @@ async function generate() {
     console.warn('Could not fetch from API for sitemap, using fallbacks:', err.message);
   }
 
-  // Combine dynamic with fallback if dynamic is empty
   const serviceSlugs = dynamicServices.length > 0 ? dynamicServices : fallbackServices;
   const articleSlugs = dynamicArticles.length > 0 ? dynamicArticles : fallbackArticles;
 
-  let urlEntries = '';
-
-  // 1. Static Routes
-  for (const route of staticRoutes) {
-    urlEntries += `
-    <url>
-        <loc>${SITE_URL}${route.path}</loc>
-        <changefreq>${route.changefreq}</changefreq>
-        <priority>${route.priority}</priority>
-    </url>`;
-  }
-
-  // 2. Service Pages
+  let serviceEntries = '';
   for (const slug of serviceSlugs) {
-    urlEntries += `
+    serviceEntries += `
     <url>
         <loc>${SITE_URL}/services/${slug}</loc>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
-    </url>`;
+    </url>\n`;
   }
 
-  // 3. Sub-service Pages
   for (const sub of dynamicSubServices) {
-    urlEntries += `
+    serviceEntries += `
     <url>
         <loc>${SITE_URL}/services/${sub.parent}/${sub.slug}</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
-    </url>`;
+    </url>\n`;
   }
 
-  // 4. Blog Articles
+  let articleEntries = '';
   for (const slug of articleSlugs) {
-    urlEntries += `
+    articleEntries += `
     <url>
         <loc>${SITE_URL}/blog/${slug}</loc>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
-    </url>`;
+    </url>\n`;
   }
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
+
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urlEntries}
+
+    <!-- =====================================================
+         HOMEPAGE
+         Priority: 1.0
+    ====================================================== -->
+
+    <url>
+        <loc>${SITE_URL}/</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+
+    <!-- =====================================================
+         MAIN PAGES
+         Priority: 0.8
+    ====================================================== -->
+
+    <url>
+        <loc>${SITE_URL}/about/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>${SITE_URL}/gallery/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>${SITE_URL}/contact/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+
+    <!-- =====================================================
+         SERVICES HUB
+         Priority: 0.9
+    ====================================================== -->
+
+    <url>
+        <loc>${SITE_URL}/services/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+
+    <!-- =====================================================
+         ALL SERVICE PAGES
+         Priority: 0.9
+    ====================================================== -->
+${serviceEntries}
+
+    <!-- =====================================================
+         BLOG / ARTICLES HUB
+         Priority: 0.7
+    ====================================================== -->
+
+    <url>
+        <loc>${SITE_URL}/blog</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+
+    <!-- =====================================================
+         BLOG ARTICLES
+         Priority: 0.7
+    ====================================================== -->
+${articleEntries}
 </urlset>
 `;
 
