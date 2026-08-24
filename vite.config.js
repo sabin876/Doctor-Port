@@ -34,6 +34,16 @@ export default defineConfig({
   server: {
     host: true,
     port: 5173,
+    proxy: {
+      '/robots.txt': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+      },
+      '/sitemap.xml': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+      },
+    },
   },
   build: {
     // Use terser for better JS minification

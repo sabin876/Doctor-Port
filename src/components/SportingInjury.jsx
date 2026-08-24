@@ -37,17 +37,21 @@ const MedicalRadar = () => (
 const SportingInjury = () => {
     const { t } = useLanguage();
     useEffect(() => {
-        // Instagram Embed Script
-        const script = document.createElement('script');
-        script.src = "//www.instagram.com/embed.js";
-        script.async = true;
-        document.body.appendChild(script);
-
-        return () => {
-            if (document.body.contains(script)) {
-                document.body.removeChild(script);
+        const processInstagram = () => {
+            if (window.instgrm && window.instgrm.Embeds) {
+                window.instgrm.Embeds.process();
             }
         };
+
+        if (window.instgrm) {
+            processInstagram();
+        } else {
+            const script = document.createElement('script');
+            script.src = "https://www.instagram.com/embed.js";
+            script.async = true;
+            script.onload = processInstagram;
+            document.body.appendChild(script);
+        }
     }, []);
 
     const medicalDashboardLabel = t('sportingInjury.dashboard');
@@ -120,13 +124,13 @@ const SportingInjury = () => {
                                 </CardItem>
 
                                 <CardItem translateZ={80} className="w-full relative overflow-hidden rounded-2xl bg-white border border-white/20 flex justify-center">
-                                    <blockquote 
-                                        className="instagram-media" 
-                                        data-instgrm-permalink="https://www.instagram.com/reel/DTijxQ3krcw/?utm_source=ig_embed&amp;utm_campaign=loading" 
-                                        data-instgrm-version="14" 
-                                        style={{ background: '#FFF', border: '0', borderRadius: '3px', margin: '0', maxWidth: '540px', minWidth: '326px', padding: '0', width: '100%' }}
-                                    > 
-                                    </blockquote>
+                                    <iframe 
+                                        src="https://www.instagram.com/reel/DTijxQ3krcw/embed/?autoplay=1" 
+                                        className="w-full h-[460px] sm:h-[500px] md:h-[540px] rounded-2xl border-0" 
+                                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                        allowFullScreen
+                                        title="Sporting Injury Video Reel"
+                                    />
                                 </CardItem>
                             </CardBody>
                         </CardContainer>

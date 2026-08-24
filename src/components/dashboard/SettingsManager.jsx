@@ -15,6 +15,7 @@ const SettingsManager = () => {
     cta_button_text: 'Book Appointment Now',
     cta_button_link: '/contact',
     robots_txt: 'User-agent: *\nAllow: /',
+    sitemap_xml: '',
     header_scripts: '',
     footer_scripts: ''
   });
@@ -34,6 +35,7 @@ const SettingsManager = () => {
           cta_button_text: data.cta_button_text || 'Book Appointment Now',
           cta_button_link: data.cta_button_link || '/contact',
           robots_txt: data.robots_txt || 'User-agent: *\nAllow: /',
+          sitemap_xml: data.sitemap_xml || '',
           header_scripts: data.header_scripts || '',
           footer_scripts: data.footer_scripts || ''
         });
@@ -177,7 +179,7 @@ const SettingsManager = () => {
             </div>
             <div>
               <h2 className="text-lg font-bold text-slate-900">Header Scripts & SEO Controls</h2>
-              <p className="text-xs text-slate-500">Google Analytics, GSC verification, and robots.txt</p>
+              <p className="text-xs text-slate-500">Google Analytics, GSC verification, robots.txt, and sitemap.xml</p>
             </div>
           </div>
 
@@ -190,6 +192,54 @@ const SettingsManager = () => {
                 rows={3}
                 value={settings.robots_txt}
                 onChange={(e) => handleChange('robots_txt', e.target.value)}
+                className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl text-slate-800 font-mono text-xs focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all"
+              />
+            </div>
+
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                  Custom Sitemap.xml Rules
+                </label>
+                <span className="text-[11px] text-slate-400 font-medium">Leave empty for auto-generated dynamic sitemap</span>
+              </div>
+              <textarea
+                rows={6}
+                value={settings.sitemap_xml}
+                onChange={(e) => handleChange('sitemap_xml', e.target.value)}
+                placeholder='<?xml version="1.0" encoding="UTF-8"?>&#10;<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">&#10;  <url><loc>https://drulhasorthopedic.com/</loc><priority>1.0</priority></url>&#10;</urlset>'
+                className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl text-slate-800 font-mono text-xs focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all"
+              />
+            </div>
+
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                  Header Scripts (GA4, GSC, Meta / FB Pixel)
+                </label>
+                <span className="text-[11px] text-slate-400 font-medium">Injected into head / top section</span>
+              </div>
+              <textarea
+                rows={4}
+                value={settings.header_scripts}
+                onChange={(e) => handleChange('header_scripts', e.target.value)}
+                placeholder='<!-- Google Tag Manager / GA4 / Facebook Pixel -->'
+                className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl text-slate-800 font-mono text-xs focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all"
+              />
+            </div>
+
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                  Footer Scripts
+                </label>
+                <span className="text-[11px] text-slate-400 font-medium">Injected before closing body tag</span>
+              </div>
+              <textarea
+                rows={3}
+                value={settings.footer_scripts}
+                onChange={(e) => handleChange('footer_scripts', e.target.value)}
+                placeholder='<!-- Chat widgets or tracking scripts -->'
                 className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl text-slate-800 font-mono text-xs focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all"
               />
             </div>
