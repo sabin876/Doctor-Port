@@ -148,11 +148,68 @@ const ArticleDetail = () => {
             const parser = new DOMParser();
             const doc = parser.parseFromString(`<div>${processed}</div>`, 'text/html');
             const tables = doc.querySelectorAll('table');
+            
             tables.forEach(table => {
+                // Strip inline rigid styles from table element
+                table.removeAttribute('style');
+                table.removeAttribute('width');
+                table.removeAttribute('height');
+                table.removeAttribute('border');
+                table.removeAttribute('cellspacing');
+                table.removeAttribute('cellpadding');
+                table.className = 'w-full text-left border-collapse rounded-xl overflow-hidden my-0';
+
+                // Promote first row to header if no <thead> exists
+                if (!table.querySelector('thead')) {
+                    const firstRow = table.querySelector('tr');
+                    if (firstRow) {
+                        const thead = doc.createElement('thead');
+                        thead.className = 'bg-slate-100 border-b border-slate-200';
+                        const headerRow = doc.createElement('tr');
+                        
+                        Array.from(firstRow.children).forEach(cell => {
+                            const th = doc.createElement('th');
+                            th.className = 'p-4 text-xs font-bold uppercase tracking-wider text-slate-800 border border-slate-200 bg-slate-100';
+                            th.innerHTML = cell.innerHTML;
+                            headerRow.appendChild(th);
+                        });
+                        
+                        thead.appendChild(headerRow);
+                        table.insertBefore(thead, table.firstChild);
+                        firstRow.remove();
+                    }
+                }
+
+                // Clean all table cells (td and th)
+                const cells = table.querySelectorAll('td, th');
+                cells.forEach(cell => {
+                    cell.removeAttribute('style');
+                    cell.removeAttribute('width');
+                    cell.removeAttribute('height');
+                    cell.classList.add('p-3.5', 'md:p-4', 'text-xs', 'md:text-sm', 'text-slate-700', 'border', 'border-slate-200', 'align-top');
+                    
+                    // Remove bottom margin on paragraphs inside table cells
+                    const cellParagraphs = cell.querySelectorAll('p');
+                    cellParagraphs.forEach(p => {
+                        p.style.margin = '0';
+                        p.style.padding = '0';
+                        p.classList.add('m-0', 'p-0');
+                    });
+                    
+                    // Clean hardcoded dark colors on spans inside cells
+                    const spans = cell.querySelectorAll('span');
+                    spans.forEach(span => {
+                        if (span.style.color === 'rgb(0, 0, 0)' || span.style.color === '#000000') {
+                            span.style.color = '';
+                        }
+                    });
+                });
+
+                // Ensure responsive wrapper exists
                 const parent = table.parentElement;
                 if (!parent || (!parent.classList.contains('overflow-x-auto') && parent.tagName.toLowerCase() !== 'figure')) {
                     const wrapper = doc.createElement('div');
-                    wrapper.className = 'overflow-x-auto my-6 rounded-2xl border border-slate-200 shadow-sm max-w-full w-full';
+                    wrapper.className = 'overflow-x-auto my-6 rounded-2xl border border-slate-200 shadow-sm max-w-full w-full bg-white';
                     table.parentNode.insertBefore(wrapper, table);
                     wrapper.appendChild(table);
                 }
@@ -160,12 +217,12 @@ const ArticleDetail = () => {
             
             const figures = doc.querySelectorAll('figure.table');
             figures.forEach(fig => {
-                fig.className = 'overflow-x-auto my-6 rounded-2xl border border-slate-200 shadow-sm max-w-full w-full';
+                fig.className = 'overflow-x-auto my-6 rounded-2xl border border-slate-200 shadow-sm max-w-full w-full bg-white';
             });
 
             return doc.body.firstChild.innerHTML;
         } catch (e) {
-            console.error("Error wrapping article tables:", e);
+            console.error("Error formatting article tables:", e);
             return processed;
         }
     };

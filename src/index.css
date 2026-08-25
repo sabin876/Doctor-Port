@@ -178,11 +178,13 @@ body {
   border-radius: 1rem !important;
 }
 
-.prose table {
+.prose table,
+.prose table[style] {
   width: 100% !important;
-  min-width: 540px !important;
+  min-width: 520px !important;
   max-width: 100% !important;
-  border-collapse: collapse !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
   margin: 0 !important;
   font-size: 0.875rem !important;
   line-height: 1.5 !important;
@@ -190,29 +192,46 @@ body {
   background-color: #ffffff !important;
   border-radius: 0.75rem !important;
   overflow: hidden !important;
-  border: 1px solid #e2e8f0 !important;
+  border: 1px solid #cbd5e1 !important;
 }
 
-.prose th {
+.prose thead th,
+.prose thead th[style],
+.prose tr:first-child th,
+.prose tr:first-child td {
   background-color: #f1f5f9 !important;
   color: #0f172a !important;
   font-weight: 700 !important;
   padding: 0.875rem 1.25rem !important;
-  border: 1px solid #cbd5e1 !important;
-  white-space: nowrap !important;
+  border-bottom: 2px solid #cbd5e1 !important;
+  border-right: 1px solid #cbd5e1 !important;
+  border-top: 1px solid #cbd5e1 !important;
+  border-left: 1px solid #cbd5e1 !important;
 }
 
-.prose td {
+.prose td,
+.prose td[style] {
   padding: 0.875rem 1.25rem !important;
-  border: 1px solid #e2e8f0 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  border-right: 1px solid #e2e8f0 !important;
+  border-left: 1px solid #e2e8f0 !important;
+  border-top: 1px solid #e2e8f0 !important;
   vertical-align: top !important;
   color: #334155 !important;
+  font-size: 0.875rem !important;
 }
 
-.prose tr:nth-child(even) {
+.prose td p,
+.prose th p {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.5 !important;
+}
+
+.prose tr:nth-child(even) td {
   background-color: #f8fafc !important;
 }
 
-.prose tr:hover {
+.prose tr:hover td {
   background-color: #f1f5f9 !important;
 }
