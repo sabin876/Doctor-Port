@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import doctorExamImg from '../assets/doctor-photo.webp';
@@ -93,15 +94,13 @@ const MovementMission = () => {
 
                         {/* Button Bottom Left */}
                         <div className="relative z-10 pt-8 mt-auto">
-                            <a
-                                href={whatsappLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <Link
+                                to="/contact"
                                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#0084FF] hover:bg-[#0072DC] text-white text-sm font-semibold shadow-md transition-all duration-300 hover:scale-105 active:scale-95"
                             >
                                 <span>Schedule a Consultation</span>
                                 <ArrowUpRight className="w-4 h-4" />
-                            </a>
+                            </Link>
                         </div>
                     </motion.div>
 
