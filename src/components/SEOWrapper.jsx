@@ -119,7 +119,11 @@ const SEOWrapper = ({ children }) => {
         );
     };
 
-    const currentUrl = `${window.location.origin}${location.pathname}`;
+    const domain = 'https://drulhasorthopedic.com';
+    const cleanPath = location.pathname.length > 1 && location.pathname.endsWith('/') 
+        ? location.pathname.slice(0, -1) 
+        : location.pathname;
+    const currentUrl = `${domain}${cleanPath}`;
     const canonicalUrl = seoData?.canonical_url || currentUrl;
 
     return (

@@ -42,6 +42,9 @@ const SEO = ({
       {/* 2. Meta Description */}
       <meta name="description" content={description || defaultDesc} />
 
+      {/* 3. Canonical Tag */}
+      <link rel="canonical" href={fullUrl} />
+
 
       {/* 22. Meta Robots Tag */}
       <meta name="robots" content="index, follow" />

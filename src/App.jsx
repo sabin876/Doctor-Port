@@ -83,6 +83,7 @@ function App() {
         <Router>
           <ScrollToTop />
           <TrailingSlashRedirect />
+          <CanonicalTag />
           <SEOWrapper>
             <div className="min-h-screen bg-white font-sans text-gray-800">
               <React.Suspense fallback={<div className="min-h-screen flex items-center justify-center text-primary-600 font-bold">Loading...</div>}>
