@@ -173,26 +173,32 @@ body {
   max-width: 100% !important;
   overflow-x: auto !important;
   -webkit-overflow-scrolling: touch !important;
-  margin-top: 1.5rem !important;
-  margin-bottom: 1.5rem !important;
+  margin-top: 1.75rem !important;
+  margin-bottom: 1.75rem !important;
   border-radius: 1rem !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid #cbd5e1 !important;
+  background-color: #ffffff !important;
 }
 
 .prose table,
 .prose table[style] {
   width: 100% !important;
-  min-width: 520px !important;
-  max-width: 100% !important;
+  min-width: 580px !important;
+  max-width: none !important;
+  table-layout: auto !important;
   border-collapse: separate !important;
   border-spacing: 0 !important;
   margin: 0 !important;
   font-size: 0.875rem !important;
-  line-height: 1.5 !important;
+  line-height: 1.6 !important;
   text-align: left !important;
   background-color: #ffffff !important;
-  border-radius: 0.75rem !important;
-  overflow: hidden !important;
-  border: 1px solid #cbd5e1 !important;
+}
+
+.prose table *,
+.prose table *[style] {
+  box-sizing: border-box !important;
 }
 
 .prose thead th,
@@ -205,8 +211,11 @@ body {
   padding: 0.875rem 1.25rem !important;
   border-bottom: 2px solid #cbd5e1 !important;
   border-right: 1px solid #cbd5e1 !important;
-  border-top: 1px solid #cbd5e1 !important;
-  border-left: 1px solid #cbd5e1 !important;
+  border-top: none !important;
+  border-left: none !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
 }
 
 .prose td,
@@ -214,18 +223,30 @@ body {
   padding: 0.875rem 1.25rem !important;
   border-bottom: 1px solid #e2e8f0 !important;
   border-right: 1px solid #e2e8f0 !important;
-  border-left: 1px solid #e2e8f0 !important;
-  border-top: 1px solid #e2e8f0 !important;
+  border-top: none !important;
+  border-left: none !important;
   vertical-align: top !important;
   color: #334155 !important;
   font-size: 0.875rem !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+}
+
+.prose td:last-child,
+.prose th:last-child {
+  border-right: none !important;
+}
+
+.prose tr:last-child td {
+  border-bottom: none !important;
 }
 
 .prose td p,
 .prose th p {
   margin: 0 !important;
   padding: 0 !important;
-  line-height: 1.5 !important;
+  line-height: 1.6 !important;
 }
 
 .prose tr:nth-child(even) td {

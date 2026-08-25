@@ -150,26 +150,35 @@ const ArticleDetail = () => {
             const tables = doc.querySelectorAll('table');
             
             tables.forEach(table => {
-                // Strip inline rigid styles from table element
+                // Strip inline rigid styles and fixed dimensions from table and all children
+                const allDescendants = table.querySelectorAll('*');
+                allDescendants.forEach(el => {
+                    el.removeAttribute('style');
+                    el.removeAttribute('width');
+                    el.removeAttribute('height');
+                    el.removeAttribute('border');
+                    el.removeAttribute('cellspacing');
+                    el.removeAttribute('cellpadding');
+                });
                 table.removeAttribute('style');
                 table.removeAttribute('width');
                 table.removeAttribute('height');
                 table.removeAttribute('border');
                 table.removeAttribute('cellspacing');
                 table.removeAttribute('cellpadding');
-                table.className = 'w-full text-left border-collapse rounded-xl overflow-hidden my-0';
+                table.className = 'w-full text-left border-collapse my-0 font-sans text-xs md:text-sm';
 
                 // Promote first row to header if no <thead> exists
                 if (!table.querySelector('thead')) {
                     const firstRow = table.querySelector('tr');
                     if (firstRow) {
                         const thead = doc.createElement('thead');
-                        thead.className = 'bg-slate-100 border-b border-slate-200';
+                        thead.className = 'bg-slate-100/90 border-b-2 border-slate-200';
                         const headerRow = doc.createElement('tr');
                         
                         Array.from(firstRow.children).forEach(cell => {
                             const th = doc.createElement('th');
-                            th.className = 'p-4 text-xs font-bold uppercase tracking-wider text-slate-800 border border-slate-200 bg-slate-100';
+                            th.className = 'p-3.5 md:p-4 text-xs font-bold uppercase tracking-wider text-slate-800 border border-slate-200 bg-slate-100/90 align-top';
                             th.innerHTML = cell.innerHTML;
                             headerRow.appendChild(th);
                         });
@@ -183,41 +192,46 @@ const ArticleDetail = () => {
                 // Clean all table cells (td and th)
                 const cells = table.querySelectorAll('td, th');
                 cells.forEach(cell => {
-                    cell.removeAttribute('style');
-                    cell.removeAttribute('width');
-                    cell.removeAttribute('height');
-                    cell.classList.add('p-3.5', 'md:p-4', 'text-xs', 'md:text-sm', 'text-slate-700', 'border', 'border-slate-200', 'align-top');
+                    cell.classList.add('p-3.5', 'md:p-4', 'text-xs', 'md:text-sm', 'text-slate-700', 'border', 'border-slate-200', 'align-top', 'leading-relaxed');
                     
                     // Remove bottom margin on paragraphs inside table cells
                     const cellParagraphs = cell.querySelectorAll('p');
                     cellParagraphs.forEach(p => {
-                        p.style.margin = '0';
-                        p.style.padding = '0';
-                        p.classList.add('m-0', 'p-0');
-                    });
-                    
-                    // Clean hardcoded dark colors on spans inside cells
-                    const spans = cell.querySelectorAll('span');
-                    spans.forEach(span => {
-                        if (span.style.color === 'rgb(0, 0, 0)' || span.style.color === '#000000') {
-                            span.style.color = '';
-                        }
+                        p.classList.add('m-0', 'p-0', 'leading-relaxed');
                     });
                 });
 
                 // Ensure responsive wrapper exists
-                const parent = table.parentElement;
-                if (!parent || (!parent.classList.contains('overflow-x-auto') && parent.tagName.toLowerCase() !== 'figure')) {
-                    const wrapper = doc.createElement('div');
-                    wrapper.className = 'overflow-x-auto my-6 rounded-2xl border border-slate-200 shadow-sm max-w-full w-full bg-white';
+                let parent = table.parentElement;
+                let wrapper;
+                if (parent && parent.tagName.toLowerCase() === 'figure' && parent.classList.contains('table')) {
+                    parent.removeAttribute('style');
+                    parent.removeAttribute('width');
+                    parent.removeAttribute('height');
+                    parent.className = 'overflow-x-auto my-6 rounded-2xl border border-slate-200 shadow-sm max-w-full w-full bg-white relative border-collapse';
+                    wrapper = parent;
+                } else if (!parent || !parent.classList.contains('overflow-x-auto')) {
+                    wrapper = doc.createElement('div');
+                    wrapper.className = 'overflow-x-auto my-6 rounded-2xl border border-slate-200 shadow-sm max-w-full w-full bg-white relative border-collapse';
                     table.parentNode.insertBefore(wrapper, table);
                     wrapper.appendChild(table);
+                }
+
+                // Add mobile scroll indicator if not already present
+                if (wrapper && !wrapper.querySelector('.table-scroll-hint')) {
+                    const hint = doc.createElement('div');
+                    hint.className = 'table-scroll-hint md:hidden text-[11px] font-medium text-slate-500 bg-slate-50/90 px-3.5 py-2 border-b border-slate-200 flex items-center justify-between';
+                    hint.innerHTML = '<span class="font-semibold text-slate-700">Table Data</span><span class="text-primary-600 font-semibold flex items-center gap-1">Swipe left/right &rarr;</span>';
+                    wrapper.insertBefore(hint, wrapper.firstChild);
                 }
             });
             
             const figures = doc.querySelectorAll('figure.table');
             figures.forEach(fig => {
-                fig.className = 'overflow-x-auto my-6 rounded-2xl border border-slate-200 shadow-sm max-w-full w-full bg-white';
+                fig.removeAttribute('style');
+                fig.removeAttribute('width');
+                fig.removeAttribute('height');
+                fig.className = 'overflow-x-auto my-6 rounded-2xl border border-slate-200 shadow-sm max-w-full w-full bg-white relative border-collapse';
             });
 
             return doc.body.firstChild.innerHTML;
