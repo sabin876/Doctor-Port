@@ -139,6 +139,37 @@ const ArticleDetail = () => {
         }
     };
 
+    const formatArticleContent = (content) => {
+        if (!content) return '';
+        let processed = applyInternalLinks(content);
+        processed = processed.replace(/<img/g, '<img loading="lazy" class="rounded-2xl shadow-md max-w-full h-auto"');
+        
+        try {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(`<div>${processed}</div>`, 'text/html');
+            const tables = doc.querySelectorAll('table');
+            tables.forEach(table => {
+                const parent = table.parentElement;
+                if (!parent || (!parent.classList.contains('overflow-x-auto') && parent.tagName.toLowerCase() !== 'figure')) {
+                    const wrapper = doc.createElement('div');
+                    wrapper.className = 'overflow-x-auto my-6 rounded-2xl border border-slate-200 shadow-sm max-w-full w-full';
+                    table.parentNode.insertBefore(wrapper, table);
+                    wrapper.appendChild(table);
+                }
+            });
+            
+            const figures = doc.querySelectorAll('figure.table');
+            figures.forEach(fig => {
+                fig.className = 'overflow-x-auto my-6 rounded-2xl border border-slate-200 shadow-sm max-w-full w-full';
+            });
+
+            return doc.body.firstChild.innerHTML;
+        } catch (e) {
+            console.error("Error wrapping article tables:", e);
+            return processed;
+        }
+    };
+
     if (loading) return <div className="min-h-screen flex items-center justify-center text-primary-600 font-bold">Loading Article...</div>;
 
     if (!article) {
@@ -285,7 +316,7 @@ const ArticleDetail = () => {
                         <article className="prose prose-sm md:prose-lg prose-primary max-w-none">
                             <div
                                 className="text-gray-700 leading-relaxed space-y-4 md:space-y-6"
-                                dangerouslySetInnerHTML={{ __html: applyInternalLinks(article.content).replace(/<img/g, '<img loading="lazy" class="rounded-2xl shadow-md"') }}
+                                dangerouslySetInnerHTML={{ __html: formatArticleContent(article.content) }}
                             />
                         </article>
 

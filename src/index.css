@@ -163,3 +163,56 @@ body {
 .prose p {
   margin-bottom: 1.25rem !important;
 }
+
+/* Responsive Table Styles for Article & Service Content */
+.prose .overflow-x-auto,
+.prose figure.table,
+.prose-table-wrapper {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+  border-radius: 1rem !important;
+}
+
+.prose table {
+  width: 100% !important;
+  min-width: 540px !important;
+  max-width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 0 !important;
+  font-size: 0.875rem !important;
+  line-height: 1.5 !important;
+  text-align: left !important;
+  background-color: #ffffff !important;
+  border-radius: 0.75rem !important;
+  overflow: hidden !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.prose th {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+  font-weight: 700 !important;
+  padding: 0.875rem 1.25rem !important;
+  border: 1px solid #cbd5e1 !important;
+  white-space: nowrap !important;
+}
+
+.prose td {
+  padding: 0.875rem 1.25rem !important;
+  border: 1px solid #e2e8f0 !important;
+  vertical-align: top !important;
+  color: #334155 !important;
+}
+
+.prose tr:nth-child(even) {
+  background-color: #f8fafc !important;
+}
+
+.prose tr:hover {
+  background-color: #f1f5f9 !important;
+}
