@@ -8,6 +8,7 @@ import CTABanner from './CTABanner';
 import SportingInjury from './SportingInjury';
 import WhyPatientsTrust from './WhyPatientsTrust';
 import FAQ from './FAQ';
+import HomeArticles from './HomeArticles';
 
 const Home = () => {
     return (
@@ -21,6 +22,7 @@ const Home = () => {
             <SportingInjury />
             <WhyPatientsTrust />
             <FAQ />
+            <HomeArticles />
         </main>
     );
 };
