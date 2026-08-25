@@ -5,6 +5,7 @@ import HomeHero from './HomeHero';
 import Affiliations from './Affiliations';
 import PersonalizedSolutions from './PersonalizedSolutions';
 import CTABanner from './CTABanner';
+import MovementMission from './MovementMission';
 import SportingInjury from './SportingInjury';
 import WhyPatientsTrust from './WhyPatientsTrust';
 import FAQ from './FAQ';
@@ -19,6 +20,7 @@ const Home = () => {
             <Affiliations />
             <PersonalizedSolutions />
             <CTABanner />
+            <MovementMission />
             <SportingInjury />
             <WhyPatientsTrust />
             <FAQ />
