@@ -126,6 +126,14 @@ const SEOWrapper = ({ children }) => {
     const currentUrl = `${domain}${cleanPath}`;
     const canonicalUrl = seoData?.canonical_url || currentUrl;
 
+    let rawOgImage = seoData?.og_image || seoData?.image || 'https://drulhasorthopedic.com/images/articles/article_pillar_guide.png';
+    if (typeof rawOgImage === 'string' && rawOgImage.includes('localhost')) {
+        rawOgImage = rawOgImage.replace(/http:\/\/localhost(:\d+)?/g, 'https://drulhasorthopedic.com');
+    }
+    const absoluteOgImage = (typeof rawOgImage === 'string' && rawOgImage.startsWith('http'))
+        ? rawOgImage
+        : `https://drulhasorthopedic.com${typeof rawOgImage === 'string' && rawOgImage.startsWith('/') ? '' : '/'}${rawOgImage}`;
+
     return (
         <>
             <Helmet>
@@ -141,7 +149,10 @@ const SEOWrapper = ({ children }) => {
                         <meta property="og:description" content={seoData.og_description || seoData.meta_description || seoData.description} />
                         <meta property="og:url" content={currentUrl} />
                         <meta property="og:type" content={location.pathname.startsWith('/blog/') ? 'article' : 'website'} />
-                        {seoData.og_image && <meta property="og:image" content={seoData.og_image} />}
+                        <meta property="og:image" content={absoluteOgImage} />
+                        <meta property="og:image:secure_url" content={absoluteOgImage} />
+                        <meta name="twitter:card" content="summary_large_image" />
+                        <meta name="twitter:image" content={absoluteOgImage} />
                         
                         {/* Schema Markup */}
                         {seoData.schema_markup && renderSchemaMarkup(seoData.schema_markup)}

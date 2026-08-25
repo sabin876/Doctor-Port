@@ -258,9 +258,9 @@ const ArticleDetail = () => {
         <div className="min-h-screen bg-gray-50">
             <SEO 
                 title={article.meta_title || `${article.title} | Dr. Ulhas Sonar`}
-                description={article.meta_description || article.title}
+                description={article.meta_description || article.excerpt || article.title}
                 url={`/blog/${id}`}
-                image={article.image}
+                image={article.og_image || article.image}
                 type="article"
                 twitterLabel1="Written by"
                 twitterData1={article.author || "Dr. Ulhas Sonar"}

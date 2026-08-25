@@ -21,8 +21,13 @@ const SEO = ({
   let fullUrl = safeUrl ? (safeUrl.startsWith('https') ? safeUrl : `${baseUrl}${safeUrl}`) : baseUrl;
   
   // Ensure image is an absolute URL for social scrapers
-  const safeImage = image || 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1200';
-  const absoluteImage = safeImage.startsWith('http') ? safeImage : `${baseUrl}${safeImage.startsWith('/') ? '' : '/'}${safeImage}`;
+  let safeImage = image || 'https://drulhasorthopedic.com/images/articles/article_pillar_guide.png';
+  if (typeof safeImage === 'string' && safeImage.includes('localhost')) {
+    safeImage = safeImage.replace(/http:\/\/localhost(:\d+)?/g, 'https://drulhasorthopedic.com');
+  }
+  const absoluteImage = (typeof safeImage === 'string' && safeImage.startsWith('http')) 
+    ? safeImage 
+    : `${baseUrl}${typeof safeImage === 'string' && safeImage.startsWith('/') ? '' : '/'}${safeImage}`;
 
   // Ensure the URL does NOT end with a trailing slash for consistency (unless it's exactly the base URL)
   if (fullUrl.endsWith('/') && fullUrl !== baseUrl && fullUrl !== baseUrl + '/') {

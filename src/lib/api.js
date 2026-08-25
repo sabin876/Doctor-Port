@@ -4,15 +4,15 @@ const processImageUrls = (item) => {
     if (!item) return item;
     const baseUrl = API_BASE_URL.replace(/\/api\/?$/, '');
     
-    if (item.image && !item.image.startsWith('http')) {
-        item.image = `${baseUrl}${item.image.startsWith('/') ? '' : '/'}${item.image}`;
-    }
-    if (item.og_image && !item.og_image.startsWith('http')) {
-        item.og_image = `${baseUrl}${item.og_image.startsWith('/') ? '' : '/'}${item.og_image}`;
-    }
-    if (item.checklist_image && !item.checklist_image.startsWith('http')) {
-        item.checklist_image = `${baseUrl}${item.checklist_image.startsWith('/') ? '' : '/'}${item.checklist_image}`;
-    }
+    ['image', 'og_image', 'checklist_image', 'highlight_doctor_image'].forEach(key => {
+        if (item[key] && typeof item[key] === 'string') {
+            if (item[key].includes('localhost')) {
+                item[key] = item[key].replace(/http:\/\/localhost(:\d+)?/g, 'https://drulhasorthopedic.com');
+            } else if (!item[key].startsWith('http')) {
+                item[key] = `${baseUrl}${item[key].startsWith('/') ? '' : '/'}${item[key]}`;
+            }
+        }
+    });
     return item;
 };
 
