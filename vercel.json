@@ -83,6 +83,14 @@
   ],
   "rewrites": [
     {
+      "source": "/robots.txt",
+      "destination": "https://api.drulhasorthopedic.com/robots.txt"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "https://api.drulhasorthopedic.com/sitemap.xml"
+    },
+    {
       "source": "/((?!api/.*).*)",
       "destination": "/index.html"
     }
