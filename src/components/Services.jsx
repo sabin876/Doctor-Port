@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import {
     ArrowRight,
     ChevronDown,
@@ -36,8 +36,11 @@ const stripHtml = (html) => {
     return html.replace(/<[^>]*>/g, '');
 };
 
-const Services = () => {
+const Services = ({ isHomePage = false }) => {
     const { t, language } = useLanguage();
+    const location = useLocation();
+    const isHome = isHomePage || location.pathname === '/';
+
     const [services, setServices] = useState(() => {
         if (typeof window !== 'undefined' && window.__INITIAL_SERVICES__) {
             return window.__INITIAL_SERVICES__;
@@ -67,7 +70,7 @@ const Services = () => {
             });
     }, [services]);
 
-    const displayedServices = (showAll ? services : services.slice(0, 4)).map(s => 
+    const displayedServices = (showAll || !isHome ? services : services.slice(0, 4)).map(s => 
         getTranslatedService(s, t, language)
     );
 
@@ -80,12 +83,12 @@ const Services = () => {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-16">
-                    <motion.h1
+                    <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         className="text-3xl md:text-4xl font-montserrat font-bold text-gray-900 mb-6 tracking-tight">
                         {t('services.title')} <span className="text-primary-600">{t('services.titleHighlight')}</span> {t('services.titleEnd')}
-                    </motion.h1>
+                    </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -147,25 +150,37 @@ const Services = () => {
                     </div>
                 )}
 
-                <div className="flex justify-center mt-20">
-                    <motion.button
-                        onClick={() => setShowAll(!showAll)}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="group flex items-center gap-3 px-10 py-5 bg-white border-2 border-primary-600 text-primary-600 rounded-[2rem] font-medium text-sm uppercase tracking-[0.2em] hover:bg-primary-600 hover:text-white transition-all duration-300 shadow-xl"
-                    >
-                        {showAll ? (
-                            <>
-                                {t('services.showLess')}
-                                <ChevronUp className="w-5 h-5 transition-transform group-hover:translate-y-[-2px]" />
-                            </>
-                        ) : (
-                            <>
-                                {t('services.showMore')}
-                                <ChevronDown className="w-5 h-5 transition-transform group-hover:translate-y-[2px]" />
-                            </>
-                        )}
-                    </motion.button>
+                <div className="flex justify-center mt-16 md:mt-20">
+                    {isHome ? (
+                        <RouterLink
+                            to="/services"
+                            className="group flex items-center gap-3 px-10 py-5 bg-white border-2 border-primary-600 text-primary-600 rounded-[2rem] font-semibold text-sm uppercase tracking-[0.2em] hover:bg-primary-600 hover:text-white transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
+                        >
+                            <span>{t('services.showMore') || "More Services"}</span>
+                            <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                        </RouterLink>
+                    ) : (
+                        services.length > 4 && (
+                            <motion.button
+                                onClick={() => setShowAll(!showAll)}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="group flex items-center gap-3 px-10 py-5 bg-white border-2 border-primary-600 text-primary-600 rounded-[2rem] font-semibold text-sm uppercase tracking-[0.2em] hover:bg-primary-600 hover:text-white transition-all duration-300 shadow-xl"
+                            >
+                                {showAll ? (
+                                    <>
+                                        {t('services.showLess') || "Show Less"}
+                                        <ChevronUp className="w-5 h-5 transition-transform group-hover:translate-y-[-2px]" />
+                                    </>
+                                ) : (
+                                    <>
+                                        {t('services.showMore') || "More Services"}
+                                        <ChevronDown className="w-5 h-5 transition-transform group-hover:translate-y-[2px]" />
+                                    </>
+                                )}
+                            </motion.button>
+                        )
+                    )}
                 </div>
             </div>
         </section>
