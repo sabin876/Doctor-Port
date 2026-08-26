@@ -240,7 +240,38 @@ const server = app.listen(PORT, async () => {
         });
       });
 
-      const html = await page.evaluate(() => document.documentElement.outerHTML);
+      let html = await page.evaluate(() => document.documentElement.outerHTML);
+
+      // Clean up & deduplicate duplicate <title> tags in <head>
+      const titleMatches = html.match(/<title[^>]*>[\s\S]*?<\/title>/gi);
+      if (titleMatches && titleMatches.length > 1) {
+        // Prefer title with actual page-specific text if available, or the last injected title
+        const chosenTitle = titleMatches[titleMatches.length - 1];
+        html = html.replace(/<title[^>]*>[\s\S]*?<\/title>/gi, '');
+        if (html.includes('<head>')) {
+          html = html.replace('<head>', `<head>\n    ${chosenTitle}`);
+        }
+      }
+
+      // Deduplicate <meta name="description"> tags
+      const descMatches = html.match(/<meta[^>]*name=["']description["'][^>]*>/gi);
+      if (descMatches && descMatches.length > 1) {
+        const chosenDesc = descMatches[descMatches.length - 1];
+        html = html.replace(/<meta[^>]*name=["']description["'][^>]*>/gi, '');
+        if (html.includes('</title>')) {
+          html = html.replace('</title>', `</title>\n    ${chosenDesc}`);
+        }
+      }
+
+      // Deduplicate <link rel="canonical"> tags
+      const canonicalMatches = html.match(/<link[^>]*rel=["']canonical["'][^>]*>/gi);
+      if (canonicalMatches && canonicalMatches.length > 1) {
+        const chosenCanonical = canonicalMatches[canonicalMatches.length - 1];
+        html = html.replace(/<link[^>]*rel=["']canonical["'][^>]*>/gi, '');
+        if (html.includes('</title>')) {
+          html = html.replace('</title>', `</title>\n    ${chosenCanonical}`);
+        }
+      }
 
       // Determine output file path
       // Normalize route (e.g. / -> dist/index.html, /about/ -> dist/about/index.html, /services/foo -> dist/services/foo/index.html)
@@ -272,5 +303,6 @@ const server = app.listen(PORT, async () => {
       }
     }
     server.close();
+    process.exit(process.exitCode || 0);
   }
 });

@@ -14,7 +14,7 @@ const SEO = ({
   twitterData2
 }) => {
   const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+91 90492 00041";
-  const siteName = 'Dr. Ulhas | Expert Orthopedic Surgeon';
+  const siteName = 'Dr. Ulhas Sonar | Orthopaedic Surgeon Dubai';
   const domain = 'drulhasorthopedic.com';
   const baseUrl = `https://${domain}`;
   const safeUrl = url || '';
@@ -36,7 +36,7 @@ const SEO = ({
     fullUrl = baseUrl;
   }
 
-  const formattedTitle = title ? (title.includes('Dr. Ulhas') ? title : `${title} | Dr. Ulhas`) : siteName;
+  const formattedTitle = title ? (title.includes('Dr. Ulhas') ? title : `${title} | Dr. Ulhas Sonar`) : siteName;
   const defaultDesc = "Expert orthopedic care specializing in joint replacement, sports injuries, and comprehensive rehabilitation with Dr. Ulhas.";
 
   return (
