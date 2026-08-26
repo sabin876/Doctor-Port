@@ -164,7 +164,7 @@ const Testimonials = () => {
 
                 {/* Carousel Container */}
                 <div 
-                    className="relative px-2 sm:px-10 md:px-12"
+                    className="relative px-7 sm:px-12 md:px-14"
                     onMouseEnter={() => setIsPaused(true)}
                     onMouseLeave={() => setIsPaused(false)}
                 >
@@ -172,9 +172,9 @@ const Testimonials = () => {
                     <button
                         onClick={handlePrev}
                         aria-label="Previous testimonial"
-                        className="absolute left-0 sm:left-1 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 hover:bg-blue-600 hover:text-white border border-blue-100 text-blue-600 shadow-md flex items-center justify-center z-20 transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
+                        className="absolute -left-2 sm:left-0 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-blue-600 hover:text-white border border-blue-100 text-blue-600 shadow-lg flex items-center justify-center z-20 transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
                     >
-                        <ChevronLeft className="w-6 h-6" />
+                        <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
                     </button>
 
                     {/* Cards Grid */}
@@ -194,7 +194,7 @@ const Testimonials = () => {
                                         href={GOOGLE_REVIEWS_URL}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="bg-white rounded-3xl p-6 shadow-xl text-slate-800 flex flex-col justify-between min-h-[290px] border border-slate-100/80 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 block"
+                                        className="bg-white rounded-3xl p-5 sm:p-6 shadow-xl text-slate-800 flex flex-col justify-between min-h-[280px] sm:min-h-[290px] border border-slate-100/80 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 block"
                                     >
                                         <div>
                                             {/* Header Row: Avatar + Name/Date + Google Icon */}
@@ -202,14 +202,14 @@ const Testimonials = () => {
                                                 <div className="flex items-center gap-3">
                                                     {/* Color-coded Letter Avatar */}
                                                     <div 
-                                                        className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md shrink-0"
+                                                        className="w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg shadow-md shrink-0"
                                                         style={{ backgroundColor: item.avatarBg }}
                                                     >
                                                         {item.name[0]}
                                                     </div>
 
                                                     <div>
-                                                        <h3 className="font-extrabold text-slate-900 text-base leading-tight">
+                                                        <h3 className="font-extrabold text-slate-900 text-sm sm:text-base leading-tight">
                                                             {item.name}
                                                         </h3>
                                                         <p className="text-slate-400 text-xs mt-0.5 font-medium">
@@ -225,12 +225,12 @@ const Testimonials = () => {
                                             {/* Stars Rating */}
                                             <div className="flex gap-1 mb-3">
                                                 {[...Array(item.rating)].map((_, i) => (
-                                                    <Star key={i} size={16} fill="#F59E0B" className="text-[#F59E0B]" />
+                                                    <Star key={i} size={15} fill="#F59E0B" className="text-[#F59E0B]" />
                                                 ))}
                                             </div>
 
                                             {/* Review Body Text */}
-                                            <p className="text-slate-600 text-sm leading-relaxed font-normal">
+                                            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">
                                                 {item.text}
                                             </p>
                                         </div>
@@ -244,9 +244,9 @@ const Testimonials = () => {
                     <button
                         onClick={handleNext}
                         aria-label="Next testimonial"
-                        className="absolute right-0 sm:right-1 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 hover:bg-blue-600 hover:text-white border border-blue-100 text-blue-600 shadow-md flex items-center justify-center z-20 transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
+                        className="absolute -right-2 sm:right-0 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-blue-600 hover:text-white border border-blue-100 text-blue-600 shadow-lg flex items-center justify-center z-20 transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
                     >
-                        <ChevronRight className="w-6 h-6" />
+                        <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
                     </button>
                 </div>
 

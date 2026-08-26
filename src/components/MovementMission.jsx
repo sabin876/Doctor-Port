@@ -69,7 +69,7 @@ const MovementMission = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="lg:col-span-5 relative rounded-[2rem] overflow-hidden shadow-lg border border-slate-100 flex flex-col justify-between p-8 md:p-10 min-h-[460px] md:min-h-[520px] bg-slate-900 group"
+                        className="lg:col-span-5 relative rounded-[2rem] overflow-hidden shadow-lg border border-slate-100 flex flex-col justify-between p-6 sm:p-8 md:p-10 min-h-[380px] sm:min-h-[460px] md:min-h-[520px] bg-slate-900 group"
                     >
                         {/* Background Image */}
                         <img 
@@ -83,17 +83,17 @@ const MovementMission = () => {
 
                         {/* Quote Content */}
                         <div className="relative z-10 my-auto pt-4">
-                            <blockquote className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white leading-tight mb-6 tracking-tight">
+                            <blockquote className="text-lg sm:text-2xl md:text-3xl font-extrabold text-white leading-tight mb-6 tracking-tight">
                                 “ Every joint tells a story. My role is to restore its rhythm, mobility, and confidence — with precision and care. ”
                             </blockquote>
                             
-                            <div className="text-lg md:text-xl font-bold text-white tracking-wide">
+                            <div className="text-base sm:text-lg md:text-xl font-bold text-white tracking-wide">
                                 — Dr. Ulhas Sonar
                             </div>
                         </div>
 
                         {/* Button Bottom Left */}
-                        <div className="relative z-10 pt-8 mt-auto">
+                        <div className="relative z-10 pt-6 sm:pt-8 mt-auto">
                             <Link
                                 to="/contact"
                                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#0084FF] hover:bg-[#0072DC] text-white text-sm font-semibold shadow-md transition-all duration-300 hover:scale-105 active:scale-95"
@@ -113,7 +113,7 @@ const MovementMission = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: 0.1 }}
-                            className="bg-[#E4F2FD] rounded-[2rem] p-8 md:p-9 border border-sky-100 flex flex-col justify-center flex-1 transition-all duration-300 hover:shadow-md"
+                            className="bg-[#E4F2FD] rounded-[2rem] p-6 sm:p-8 md:p-9 border border-sky-100 flex flex-col justify-center flex-1 transition-all duration-300 hover:shadow-md"
                         >
                             <h3 className="text-xl md:text-2xl font-bold text-[#0F4C81] mb-4 leading-snug">
                                 Holistic Joint Health Approach
@@ -129,7 +129,7 @@ const MovementMission = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: 0.2 }}
-                            className="bg-[#E4F2FD] rounded-[2rem] p-8 md:p-9 border border-sky-100 flex flex-col justify-center flex-1 transition-all duration-300 hover:shadow-md"
+                            className="bg-[#E4F2FD] rounded-[2rem] p-6 sm:p-8 md:p-9 border border-sky-100 flex flex-col justify-center flex-1 transition-all duration-300 hover:shadow-md"
                         >
                             <h3 className="text-xl md:text-2xl font-bold text-[#0F4C81] mb-4 leading-snug">
                                 Precision-led Procedures & Personalized Care
@@ -147,7 +147,7 @@ const MovementMission = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="lg:col-span-3 bg-[#0084FF] rounded-[2rem] p-8 md:p-9 text-white flex flex-col justify-between shadow-lg relative overflow-hidden min-h-[460px] md:min-h-[520px]"
+                        className="lg:col-span-3 bg-[#0084FF] rounded-[2rem] p-6 sm:p-8 md:p-9 text-white flex flex-col justify-between shadow-lg relative overflow-hidden min-h-[380px] sm:min-h-[460px] md:min-h-[520px]"
                     >
                         {/* Text Header */}
                         <div>

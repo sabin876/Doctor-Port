@@ -110,7 +110,7 @@ const Services = ({ isHomePage = false }) => {
                                 return (
                                     <motion.div
                                         key={service.slug}
-                                        className="group relative h-[450px] rounded-[2.5rem] overflow-hidden flex flex-col justify-end border border-gray-200 shadow-xl transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 bg-gray-50"
+                                        className="group relative h-[380px] sm:h-[420px] lg:h-[450px] rounded-[2.5rem] overflow-hidden flex flex-col justify-end border border-gray-200 shadow-xl transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 bg-gray-50"
                                         initial={{ opacity: 0, y: 30 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -30 }}
@@ -124,10 +124,10 @@ const Services = ({ isHomePage = false }) => {
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent z-10 transition-opacity duration-500 group-hover:via-black/35" />
                                         <div className="absolute inset-0 rounded-[2.5rem] border-2 border-white/5 group-hover:border-primary-500/30 transition-colors duration-500 pointer-events-none z-20" />
-                                        <div className="absolute top-6 right-6 w-14 h-14 rounded-full backdrop-blur-md bg-white/10 border border-white/20 flex items-center justify-center text-white z-30 group-hover:bg-primary-600 transition-colors duration-500 shadow-lg">
-                                            <IconComp className="w-6 h-6" />
+                                        <div className="absolute top-5 right-5 sm:top-6 sm:right-6 w-12 h-12 sm:w-14 sm:h-14 rounded-full backdrop-blur-md bg-white/10 border border-white/20 flex items-center justify-center text-white z-30 group-hover:bg-primary-600 transition-colors duration-500 shadow-lg">
+                                            <IconComp className="w-5 h-5 sm:w-6 sm:h-6" />
                                         </div>
-                                        <div className="relative z-30 p-8 flex flex-col justify-end">
+                                        <div className="relative z-30 p-6 sm:p-8 flex flex-col justify-end">
                                             <div>
                                                 <h3 className="text-lg md:text-xl font-montserrat font-semibold text-white mb-4 leading-tight drop-shadow-md">
                                                     {service.title}
