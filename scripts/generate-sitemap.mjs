@@ -203,6 +203,37 @@ ${articleEntries}
     writeFileSync(distPath, xml, 'utf-8');
     console.log(`✅ sitemap.xml synced → ${distPath}`);
   }
+
+  // Generate robots.txt
+  console.log('Generating robots.txt...');
+  let robotsTxtContent = `User-agent: *\nAllow: /\nDisallow: /dashboard/\nDisallow: /admin/\n\nSitemap: ${SITE_URL}/sitemap.xml\n`;
+  try {
+    const setRes = await fetch(`${API_BASE_URL}/settings/`).catch(() => null);
+    if (setRes && setRes.ok) {
+      const setJson = await setRes.json();
+      if (setJson && setJson.robots_txt && setJson.robots_txt.trim()) {
+        robotsTxtContent = setJson.robots_txt.trim();
+        if (!robotsTxtContent.toLowerCase().includes('sitemap:')) {
+          robotsTxtContent += `\n\nSitemap: ${SITE_URL}/sitemap.xml\n`;
+        } else {
+          robotsTxtContent += '\n';
+        }
+      }
+    }
+  } catch (err) {
+    console.warn('Could not fetch settings for robots.txt, using default:', err.message);
+  }
+
+  const publicRobotsPath = resolve(__dirname, '../public/robots.txt');
+  const distRobotsPath = resolve(distDir, 'robots.txt');
+
+  writeFileSync(publicRobotsPath, robotsTxtContent, 'utf-8');
+  console.log(`✅ robots.txt generated → ${publicRobotsPath}`);
+
+  if (existsSync(distDir)) {
+    writeFileSync(distRobotsPath, robotsTxtContent, 'utf-8');
+    console.log(`✅ robots.txt synced → ${distRobotsPath}`);
+  }
 }
 
 generate();
