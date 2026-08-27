@@ -6,7 +6,7 @@
  * Usage: node scripts/generate-sitemap.mjs
  */
 
-import { writeFileSync, existsSync } from 'fs';
+import { writeFileSync, readFileSync, existsSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
@@ -233,6 +233,17 @@ ${articleEntries}
   if (existsSync(distDir)) {
     writeFileSync(distRobotsPath, robotsTxtContent, 'utf-8');
     console.log(`✅ robots.txt synced → ${distRobotsPath}`);
+  }
+
+  // Sync root vercel.json to dist/vercel.json
+  const rootVercelPath = resolve(__dirname, '../vercel.json');
+  const distVercelPath = resolve(distDir, 'vercel.json');
+  if (existsSync(rootVercelPath)) {
+    const vercelConfig = readFileSync(rootVercelPath, 'utf-8');
+    if (existsSync(distDir)) {
+      writeFileSync(distVercelPath, vercelConfig, 'utf-8');
+      console.log(`✅ vercel.json synced to dist → ${distVercelPath}`);
+    }
   }
 }
 
