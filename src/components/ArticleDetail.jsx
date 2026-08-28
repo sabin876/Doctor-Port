@@ -260,7 +260,7 @@ const ArticleDetail = () => {
                 title={article.meta_title || `${article.title} | Dr. Ulhas Sonar`}
                 description={article.meta_description || article.excerpt || article.title}
                 url={`/blog/${id}`}
-                image={article.og_image || article.image}
+                image={article.image || article.og_image}
                 type="article"
                 twitterLabel1="Written by"
                 twitterData1={article.author || "Dr. Ulhas Sonar"}

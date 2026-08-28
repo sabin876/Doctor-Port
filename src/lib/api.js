@@ -1,13 +1,34 @@
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "https://api.drulhasorthopedic.com/api").replace(/\/+$/, "");
 
+export const getAbsoluteImageUrl = (imgUrl) => {
+    if (!imgUrl || typeof imgUrl !== 'string') {
+        return 'https://drulhasorthopedic.com/images/articles/article_pillar_guide.png';
+    }
+    let url = imgUrl.trim();
+    if (!url) {
+        return 'https://drulhasorthopedic.com/images/articles/article_pillar_guide.png';
+    }
+    if (url.includes('localhost') || url.includes('127.0.0.1')) {
+        url = url.replace(/http:\/\/(localhost|127\.0\.0\.1)(:\d+)?/g, 'https://drulhasorthopedic.com');
+    }
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+        if (url.startsWith('http://drulhasorthopedic.com')) {
+            url = url.replace('http://', 'https://');
+        }
+        return url;
+    }
+    const cleanPath = url.startsWith('/') ? url : `/${url}`;
+    return `https://drulhasorthopedic.com${cleanPath}`;
+};
+
 const processImageUrls = (item) => {
     if (!item) return item;
     const baseUrl = API_BASE_URL.replace(/\/api\/?$/, '');
     
     ['image', 'og_image', 'checklist_image', 'highlight_doctor_image'].forEach(key => {
         if (item[key] && typeof item[key] === 'string') {
-            if (item[key].includes('localhost')) {
-                item[key] = item[key].replace(/http:\/\/localhost(:\d+)?/g, 'https://drulhasorthopedic.com');
+            if (item[key].includes('localhost') || item[key].includes('127.0.0.1')) {
+                item[key] = item[key].replace(/http:\/\/(localhost|127\.0\.0\.1)(:\d+)?/g, 'https://drulhasorthopedic.com');
             } else if (!item[key].startsWith('http')) {
                 item[key] = `${baseUrl}${item[key].startsWith('/') ? '' : '/'}${item[key]}`;
             }

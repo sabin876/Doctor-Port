@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
-import { api } from '../lib/api';
+import { api, getAbsoluteImageUrl } from '../lib/api';
 
 const SEOWrapper = ({ children }) => {
     const location = useLocation();
@@ -126,13 +126,7 @@ const SEOWrapper = ({ children }) => {
     const currentUrl = `${domain}${cleanPath}`;
     const canonicalUrl = seoData?.canonical_url || currentUrl;
 
-    let rawOgImage = seoData?.og_image || seoData?.image || 'https://drulhasorthopedic.com/images/articles/article_pillar_guide.png';
-    if (typeof rawOgImage === 'string' && rawOgImage.includes('localhost')) {
-        rawOgImage = rawOgImage.replace(/http:\/\/localhost(:\d+)?/g, 'https://drulhasorthopedic.com');
-    }
-    const absoluteOgImage = (typeof rawOgImage === 'string' && rawOgImage.startsWith('http'))
-        ? rawOgImage
-        : `https://drulhasorthopedic.com${typeof rawOgImage === 'string' && rawOgImage.startsWith('/') ? '' : '/'}${rawOgImage}`;
+    const absoluteOgImage = getAbsoluteImageUrl(seoData?.image || seoData?.og_image);
 
     return (
         <>
