@@ -15,7 +15,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: resolve(__dirname, '../.env') });
 
 const SITE_URL = (process.env.VITE_SITE_URL && !process.env.VITE_SITE_URL.includes('localhost') ? process.env.VITE_SITE_URL : 'https://drulhasorthopedic.com').replace(/\/+$/, '');
-const API_BASE_URL = (process.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api').replace(/\/+$/, '');
+const API_BASE_URL = (process.env.VITE_API_BASE_URL || 'https://api.drulhasorthopedic.com/api').replace(/\/+$/, '');
 
 const fallbackServices = [
   'knee-replacement-knee-preservation-surgery',

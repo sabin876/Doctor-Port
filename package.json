@@ -9,7 +9,7 @@
     "build:ssr": "vite build --outDir dist/client && vite build --ssr src/entry-server.jsx --outDir dist/server",
     "sitemap": "node scripts/generate-sitemap.mjs",
     "convert-images": "node scripts/convert-to-webp.mjs",
-    "build": "node scripts/generate-sitemap.mjs && vite build && node scripts/prerender.mjs && node -e \"require('fs').copyFileSync('dist/index.html', 'dist/404.html')\"",
+    "build": "node scripts/generate-sitemap.mjs && vite build --outDir dist && vite build --ssr src/entry-server.jsx --outDir dist-ssr && node scripts/prerender.mjs && node -e \"require('fs').copyFileSync('dist/index.html', 'dist/404.html')\"",
     "lint": "eslint .",
     "preview": "vite preview"
   },
