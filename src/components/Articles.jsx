@@ -67,19 +67,18 @@ const Articles = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        if (articles.length > 0) {
-            return;
-        }
         api.getArticles()
             .then(data => {
-                setArticles(data);
+                if (Array.isArray(data) && data.length > 0) {
+                    setArticles(data);
+                }
                 setLoading(false);
             })
             .catch(err => {
                 console.error("Failed to fetch articles:", err);
                 setLoading(false);
             });
-    }, [articles]);
+    }, []);
 
     return (
         <main className="pt-20 min-h-screen bg-gray-50">

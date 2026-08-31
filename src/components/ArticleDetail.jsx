@@ -35,18 +35,19 @@ const ArticleDetail = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        if (article && siteSettings) {
-            return;
-        }
         const fetchData = async () => {
             try {
                 const [articleData, settingsData] = await Promise.all([
-                    article ? Promise.resolve(article) : api.getArticle(id),
+                    api.getArticle(id),
                     siteSettings ? Promise.resolve(siteSettings) : api.getSiteSettings()
                 ]);
                 
-                setArticle(articleData);
-                setSiteSettings(settingsData);
+                if (articleData && !articleData.detail) {
+                    setArticle(articleData);
+                }
+                if (settingsData) {
+                    setSiteSettings(settingsData);
+                }
                 setLoading(false);
             } catch (err) {
                 console.error("Failed to fetch article data:", err);
@@ -54,7 +55,7 @@ const ArticleDetail = () => {
             }
         };
         fetchData();
-    }, [id, article, siteSettings]);
+    }, [id]);
 
     const handleShare = () => {
         navigator.clipboard.writeText(window.location.href)

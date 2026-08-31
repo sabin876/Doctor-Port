@@ -56,19 +56,18 @@ const Services = ({ isHomePage = false }) => {
     const [showAll, setShowAll] = useState(false);
 
     useEffect(() => {
-        if (services.length > 0) {
-            return;
-        }
         api.getServices()
             .then(data => {
-                setServices(data);
+                if (Array.isArray(data) && data.length > 0) {
+                    setServices(data);
+                }
                 setLoading(false);
             })
             .catch(err => {
                 console.error("Failed to fetch services:", err);
                 setLoading(false);
             });
-    }, [services]);
+    }, []);
 
     const displayedServices = (showAll || !isHome ? services : services.slice(0, 4)).map(s => 
         getTranslatedService(s, t, language)
