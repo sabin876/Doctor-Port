@@ -2,39 +2,34 @@ import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import { api, getAbsoluteImageUrl } from '../lib/api';
+import { useInitialData } from '../context/InitialDataContext';
 
 const SEOWrapper = ({ children }) => {
     const location = useLocation();
+    const initialData = useInitialData();
+
+    const isDetailRoute = location.pathname.startsWith('/blog/') || location.pathname.startsWith('/services/');
+
     const [seoData, setSeoData] = useState(() => {
-        if (typeof window !== 'undefined') {
-            const path = window.location.pathname;
-            if (path.startsWith('/blog/')) {
-                const slug = path.split('/')[2];
-                if (slug && window.__INITIAL_ARTICLES__) {
-                    return window.__INITIAL_ARTICLES__.find(a => a.slug?.toLowerCase() === slug?.toLowerCase()) || null;
-                }
-            } else if (path.startsWith('/services/')) {
-                const slug = path.split('/')[2];
-                if (slug && window.__INITIAL_SERVICES__) {
-                    return window.__INITIAL_SERVICES__.find(s => s.slug?.toLowerCase() === slug?.toLowerCase()) || null;
-                }
-            } else {
-                return {
-                    meta_title: "Dr. Ulhas Sonar | Orthopedic Surgeon Dubai",
-                    meta_description: "Expert orthopedic care in Dubai. Specialist in robotic joint replacement and sports injuries.",
-                    canonical_url: window.location.href,
-                    index_page: true,
-                    follow_links: true
-                };
-            }
+        if (location.pathname.startsWith('/blog/')) {
+            const slug = location.pathname.split('/')[2];
+            return initialData?.getArticle?.(slug) || null;
         }
-        return null;
+        if (location.pathname.startsWith('/services/')) {
+            const slug = location.pathname.split('/')[2];
+            return initialData?.getService?.(slug) || null;
+        }
+        return {
+            meta_title: "Dr. Ulhas Sonar | Orthopedic Surgeon Dubai",
+            meta_description: "Expert orthopedic care in Dubai. Specialist in robotic joint replacement and sports injuries.",
+            canonical_url: typeof window !== 'undefined' ? window.location.href : 'https://drulhasorthopedic.com',
+            index_page: true,
+            follow_links: true
+        };
     });
+
     const [siteSettings, setSiteSettings] = useState(() => {
-        if (typeof window !== 'undefined' && window.__INITIAL_SETTINGS__) {
-            return window.__INITIAL_SETTINGS__;
-        }
-        return null;
+        return initialData?.settings || (typeof window !== 'undefined' ? window.__INITIAL_SETTINGS__ : null);
     });
 
     useEffect(() => {
@@ -131,7 +126,7 @@ const SEOWrapper = ({ children }) => {
     return (
         <>
             <Helmet>
-                {seoData && (
+                {seoData && !isDetailRoute && (
                     <>
                         <title>{seoData.meta_title || seoData.title || "Dr. Ulhas Sonar"}</title>
                         <meta name="description" content={seoData.meta_description || seoData.description} />
@@ -142,7 +137,7 @@ const SEOWrapper = ({ children }) => {
                         <meta property="og:title" content={seoData.og_title || seoData.meta_title || seoData.title} />
                         <meta property="og:description" content={seoData.og_description || seoData.meta_description || seoData.description} />
                         <meta property="og:url" content={currentUrl} />
-                        <meta property="og:type" content={location.pathname.startsWith('/blog/') ? 'article' : 'website'} />
+                        <meta property="og:type" content="website" />
                         <meta property="og:image" content={absoluteOgImage} />
                         <meta property="og:image:secure_url" content={absoluteOgImage} />
                         <meta name="twitter:card" content="summary_large_image" />

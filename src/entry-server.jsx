@@ -5,14 +5,16 @@ import { LanguageProvider } from './context/LanguageContext.jsx'
 import App from './App.jsx'
 
 export function render(url, initialData = null) {
+  const helmetContext = {};
   const html = renderToString(
     <StrictMode>
       <LanguageProvider>
         <StaticRouter location={url}>
-          <App initialData={initialData} />
+          <App initialData={initialData} helmetContext={helmetContext} />
         </StaticRouter>
       </LanguageProvider>
     </StrictMode>
   );
-  return { html };
+  const { helmet } = helmetContext;
+  return { html, helmet };
 }

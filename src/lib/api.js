@@ -11,22 +11,31 @@ const getApiBaseUrl = () => {
 
 const API_BASE_URL = getApiBaseUrl();
 
-export const getAbsoluteImageUrl = (imgUrl) => {
+export const getAbsoluteImageUrl = (imgUrl, defaultImage = null) => {
     if (!imgUrl || typeof imgUrl !== 'string') {
-        return 'https://drulhasorthopedic.com/images/articles/article_pillar_guide.png';
+        return defaultImage || 'https://drulhasorthopedic.com/assets/images/doctor-hero.webp';
     }
     let url = imgUrl.trim();
     if (!url) {
-        return 'https://drulhasorthopedic.com/images/articles/article_pillar_guide.png';
+        return defaultImage || 'https://drulhasorthopedic.com/assets/images/doctor-hero.webp';
     }
-    if (url.includes('localhost') || url.includes('127.0.0.1')) {
+    if (url.includes('localhost:8000') || url.includes('127.0.0.1:8000')) {
+        url = url.replace(/http:\/\/(localhost|127\.0\.0\.1):8000/g, 'https://api.drulhasorthopedic.com');
+    } else if (url.includes('localhost') || url.includes('127.0.0.1')) {
         url = url.replace(/http:\/\/(localhost|127\.0\.0\.1)(:\d+)?/g, 'https://drulhasorthopedic.com');
     }
     if (url.startsWith('http://') || url.startsWith('https://')) {
         if (url.startsWith('http://drulhasorthopedic.com')) {
             url = url.replace('http://', 'https://');
         }
+        if (url.startsWith('http://api.drulhasorthopedic.com')) {
+            url = url.replace('http://', 'https://');
+        }
         return url;
+    }
+    if (url.startsWith('/media/') || url.startsWith('media/')) {
+        const cleanMedia = url.startsWith('/') ? url : `/${url}`;
+        return `https://api.drulhasorthopedic.com${cleanMedia}`;
     }
     const cleanPath = url.startsWith('/') ? url : `/${url}`;
     return `https://drulhasorthopedic.com${cleanPath}`;

@@ -468,7 +468,7 @@ const ServiceDetail = () => {
                 title={service.meta_title || `${service.title} | Dr. Ulhas Sonar`}
                 description={service.meta_description || service.description}
                 url={`/services/${id}`}
-                image={service.image}
+                image={service.og_image || service.image}
                 schemaList={schemaList}
             />
 

@@ -184,9 +184,92 @@ async function createServer() {
       const initialData = await fetchInitialDataForRoute(req.path);
 
       // 3. Render React app to HTML for THIS exact URL
-      const { html: appHtml } = render(url, initialData);
+      const renderResult = render(url, initialData);
+      const appHtml = renderResult?.html || '';
+      const helmet = renderResult?.helmet || null;
 
-      // 4. Inject Initial Data and Rendered HTML into response
+      // Helper to generate absolute image URLs for social previews
+      function getAbsoluteImageUrl(imgUrl) {
+        if (!imgUrl || typeof imgUrl !== 'string') return 'https://drulhasorthopedic.com/assets/images/doctor-hero.webp';
+        let u = imgUrl.trim();
+        if (!u) return 'https://drulhasorthopedic.com/assets/images/doctor-hero.webp';
+        if (u.includes('localhost:8000') || u.includes('127.0.0.1:8000')) {
+          u = u.replace(/http:\/\/(localhost|127\.0\.0\.1):8000/g, 'https://api.drulhasorthopedic.com');
+        } else if (u.includes('localhost') || u.includes('127.0.0.1')) {
+          u = u.replace(/http:\/\/(localhost|127\.0\.0\.1)(:\d+)?/g, 'https://drulhasorthopedic.com');
+        }
+        if (u.startsWith('http://') || u.startsWith('https://')) {
+          return u.replace('http://', 'https://');
+        }
+        if (u.startsWith('/media/') || u.startsWith('media/')) {
+          const cleanMedia = u.startsWith('/') ? u : `/${u}`;
+          return `https://api.drulhasorthopedic.com${cleanMedia}`;
+        }
+        const cleanPath = u.startsWith('/') ? u : `/${u}`;
+        return `https://drulhasorthopedic.com${cleanPath}`;
+      }
+
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      // 4. Build Specific Social OG & Twitter Tags for Blog/Service
+      let routeSocialTags = '';
+      if (req.path.startsWith('/blog/') && initialData.routeData) {
+        const art = initialData.routeData;
+        const ogTitle = art.og_title || art.meta_title || art.title || 'Expert Orthopedic Article';
+        const ogDesc = art.og_description || art.meta_description || art.excerpt || art.title;
+        const ogImg = getAbsoluteImageUrl(art.og_image || art.image || art.featured_image);
+        const pageUrl = `https://drulhasorthopedic.com${req.path.replace(/\/+$/, '')}`;
+
+        routeSocialTags = `
+    <!-- Specific Blog Social OG & Twitter Card Tags -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="${escapeHtml(ogTitle)}" />
+    <meta property="og:description" content="${escapeHtml(ogDesc)}" />
+    <meta property="og:url" content="${pageUrl}" />
+    <meta property="og:image" content="${ogImg}" />
+    <meta property="og:image:secure_url" content="${ogImg}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Dr. Ulhas Sonar | Orthopaedic Surgeon Dubai" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${escapeHtml(ogTitle)}" />
+    <meta name="twitter:description" content="${escapeHtml(ogDesc)}" />
+    <meta name="twitter:image" content="${ogImg}" />
+`;
+      } else if (req.path.startsWith('/services/') && initialData.routeData) {
+        const srv = initialData.routeData?.subService || initialData.routeData;
+        const ogTitle = srv.og_title || srv.meta_title || srv.title || 'Orthopedic Service';
+        const ogDesc = srv.og_description || srv.meta_description || srv.description || srv.title;
+        const ogImg = getAbsoluteImageUrl(srv.og_image || srv.image);
+        const pageUrl = `https://drulhasorthopedic.com${req.path.replace(/\/+$/, '')}`;
+
+        routeSocialTags = `
+    <!-- Specific Service Social OG & Twitter Card Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="${escapeHtml(ogTitle)}" />
+    <meta property="og:description" content="${escapeHtml(ogDesc)}" />
+    <meta property="og:url" content="${pageUrl}" />
+    <meta property="og:image" content="${ogImg}" />
+    <meta property="og:image:secure_url" content="${ogImg}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Dr. Ulhas Sonar | Orthopaedic Surgeon Dubai" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${escapeHtml(ogTitle)}" />
+    <meta name="twitter:description" content="${escapeHtml(ogDesc)}" />
+    <meta name="twitter:image" content="${ogImg}" />
+`;
+      }
+
+      // 5. Inject Helmet Tags and Initial Data
       const inlineDataScript = `<script id="initial-data">
         window.__INITIAL_DATA__ = ${JSON.stringify(initialData)};
         window.__INITIAL_SERVICES__ = ${JSON.stringify(initialData.services || [])};
@@ -197,16 +280,29 @@ async function createServer() {
         window.__INITIAL_HERO_VIDEO__ = ${JSON.stringify(initialData.heroVideo || {})};
         window.__INITIAL_SECOND_OPINIONS__ = ${JSON.stringify(initialData.secondOpinions || [])};
       </script>`;
-      
+
+      let helmetHead = '';
+      if (helmet) {
+        if (helmet.title) helmetHead += helmet.title.toString() + '\n';
+        if (helmet.meta) helmetHead += helmet.meta.toString() + '\n';
+        if (helmet.link) helmetHead += helmet.link.toString() + '\n';
+        if (helmet.script) helmetHead += helmet.script.toString() + '\n';
+      }
+
       let html = template;
+      if (helmet?.title && helmet.title.toString()) {
+        html = html.replace(/<title[^>]*>.*?<\/title>/i, '');
+      }
+
+      const headInjections = `${inlineDataScript}\n${routeSocialTags}\n${helmetHead}`;
       if (html.includes('</head>')) {
-        html = html.replace('</head>', `${inlineDataScript}\n</head>`);
+        html = html.replace('</head>', `${headInjections}\n</head>`);
       } else {
-        html = inlineDataScript + html;
+        html = headInjections + html;
       }
       html = html.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`);
 
-      // 5. Send exact pathname-aware HTML back to browser
+      // 6. Send exact pathname-aware HTML back to browser
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
     } catch (e) {
       if (!isProd && vite) {

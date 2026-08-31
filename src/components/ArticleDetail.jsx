@@ -251,13 +251,15 @@ const ArticleDetail = () => {
         );
     }
 
+    const currentUrl = typeof window !== 'undefined' ? window.location.href : `https://drulhasorthopedic.com/blog/${id}`;
+
     return (
         <div className="min-h-screen bg-gray-50">
             <SEO 
                 title={article.meta_title || `${article.title} | Dr. Ulhas Sonar`}
                 description={article.meta_description || article.excerpt || article.title}
                 url={`/blog/${id}`}
-                image={article.image || article.og_image}
+                image={article.og_image || article.image || article.featured_image}
                 type="article"
                 twitterLabel1="Written by"
                 twitterData1={article.author || "Dr. Ulhas Sonar"}
@@ -353,7 +355,7 @@ const ArticleDetail = () => {
                                         )}
                                     </div>
                                     <a
-                                        href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(article.title)}`}
+                                        href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(article.title)}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="w-10 h-10 rounded-xl border border-gray-100 flex items-center justify-center text-gray-600 hover:bg-sky-50 hover:border-sky-200 hover:text-sky-600 active:scale-95 transition-all duration-300"
@@ -364,7 +366,7 @@ const ArticleDetail = () => {
                                         </svg>
                                     </a>
                                     <a
-                                        href={`https://api.whatsapp.com/send?text=${encodeURIComponent(article.title + ' ' + window.location.href)}`}
+                                        href={`https://api.whatsapp.com/send?text=${encodeURIComponent(article.title + ' ' + currentUrl)}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="w-10 h-10 rounded-xl border border-gray-100 flex items-center justify-center text-gray-600 hover:bg-emerald-50 hover:border-emerald-200 hover:text-emerald-600 active:scale-95 transition-all duration-300"

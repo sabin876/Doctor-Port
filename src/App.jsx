@@ -80,10 +80,10 @@ function ScrollToTop() {
 
 import { InitialDataProvider } from './context/InitialDataContext';
 
-function App({ initialData }) {
+function App({ initialData, helmetContext }) {
   return (
     <InitialDataProvider initialData={initialData}>
-      <HelmetProvider>
+      <HelmetProvider context={helmetContext}>
         <ErrorBoundary>
           <ScrollToTop />
           <TrailingSlashRedirect />
