@@ -1,5 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot, hydrateRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
 import "@fontsource/metropolis/100.css";
 import "@fontsource/metropolis/200.css";
 import "@fontsource/metropolis/300.css";
@@ -19,7 +20,9 @@ const initialData = window.__INITIAL_DATA__ || null;
 const app = (
   <StrictMode>
     <LanguageProvider>
-      <App initialData={initialData} />
+      <BrowserRouter>
+        <App initialData={initialData} />
+      </BrowserRouter>
     </LanguageProvider>
   </StrictMode>
 );
