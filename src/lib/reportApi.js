@@ -1,6 +1,17 @@
 import axios from 'axios';
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://api.drulhasorthopedic.com';
+const getApiBaseUrl = () => {
+    let envUrl = import.meta.env.VITE_API_BASE_URL;
+    if (typeof window !== 'undefined') {
+        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        if (!isLocal && envUrl && (envUrl.includes('localhost') || envUrl.includes('127.0.0.1'))) {
+            envUrl = 'https://api.drulhasorthopedic.com';
+        }
+    }
+    return (envUrl || 'https://api.drulhasorthopedic.com').replace(/\/api\/?$/, '').replace(/\/+$/, '');
+};
+
+const BASE_URL = getApiBaseUrl();
 
 const client = axios.create({
   baseURL: BASE_URL,

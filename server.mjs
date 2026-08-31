@@ -147,7 +147,16 @@ async function createServer() {
       const { html: appHtml } = render(url, initialData);
 
       // 4. Inject Initial Data and Rendered HTML into response
-      const inlineDataScript = `<script id="initial-data">window.__INITIAL_DATA__ = ${JSON.stringify(initialData)};</script>`;
+      const inlineDataScript = `<script id="initial-data">
+        window.__INITIAL_DATA__ = ${JSON.stringify(initialData)};
+        window.__INITIAL_SERVICES__ = ${JSON.stringify(initialData.services || [])};
+        window.__INITIAL_ARTICLES__ = ${JSON.stringify(initialData.articles || [])};
+        window.__INITIAL_SETTINGS__ = ${JSON.stringify(initialData.settings || {})};
+        window.__INITIAL_TRANSLATIONS__ = ${JSON.stringify(initialData.translations || {})};
+        window.__INITIAL_GALLERY__ = ${JSON.stringify(initialData.gallery || [])};
+        window.__INITIAL_HERO_VIDEO__ = ${JSON.stringify(initialData.heroVideo || {})};
+        window.__INITIAL_SECOND_OPINIONS__ = ${JSON.stringify(initialData.secondOpinions || [])};
+      </script>`;
       
       let html = template;
       if (html.includes('</head>')) {

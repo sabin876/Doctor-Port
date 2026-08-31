@@ -1,4 +1,15 @@
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "https://api.drulhasorthopedic.com/api").replace(/\/+$/, "");
+const getApiBaseUrl = () => {
+    let envUrl = import.meta.env.VITE_API_BASE_URL;
+    if (typeof window !== 'undefined') {
+        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        if (!isLocal && envUrl && (envUrl.includes('localhost') || envUrl.includes('127.0.0.1'))) {
+            envUrl = 'https://api.drulhasorthopedic.com/api';
+        }
+    }
+    return (envUrl || 'https://api.drulhasorthopedic.com/api').replace(/\/+$/, '');
+};
+
+const API_BASE_URL = getApiBaseUrl();
 
 export const getAbsoluteImageUrl = (imgUrl) => {
     if (!imgUrl || typeof imgUrl !== 'string') {
@@ -24,11 +35,12 @@ export const getAbsoluteImageUrl = (imgUrl) => {
 const processImageUrls = (item) => {
     if (!item) return item;
     const baseUrl = API_BASE_URL.replace(/\/api\/?$/, '');
+    const isProdHost = typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
     
     ['image', 'og_image', 'checklist_image', 'highlight_doctor_image'].forEach(key => {
         if (item[key] && typeof item[key] === 'string') {
-            if (item[key].includes('localhost') || item[key].includes('127.0.0.1')) {
-                item[key] = item[key].replace(/http:\/\/(localhost|127\.0\.0\.1)(:\d+)?/g, 'https://drulhasorthopedic.com');
+            if (isProdHost && (item[key].includes('localhost') || item[key].includes('127.0.0.1'))) {
+                item[key] = item[key].replace(/http:\/\/(localhost|127\.0\.0\.1)(:\d+)?/g, 'https://api.drulhasorthopedic.com');
             } else if (!item[key].startsWith('http')) {
                 item[key] = `${baseUrl}${item[key].startsWith('/') ? '' : '/'}${item[key]}`;
             }
