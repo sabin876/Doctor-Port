@@ -99,8 +99,19 @@ const server = app.listen(PORT, async () => {
 
     let indexHtml = fs.readFileSync(indexPath, 'utf8');
 
+    const initialDataObj = {
+      services,
+      articles,
+      settings,
+      translations,
+      gallery,
+      heroVideo,
+      secondOpinions
+    };
+
     const inlineScript = `
   <script id="initial-data">
+    window.__INITIAL_DATA__ = ${JSON.stringify(initialDataObj)};
     window.__INITIAL_SERVICES__ = ${JSON.stringify(services)};
     window.__INITIAL_ARTICLES__ = ${JSON.stringify(articles)};
     window.__INITIAL_SETTINGS__ = ${JSON.stringify(settings)};

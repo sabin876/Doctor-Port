@@ -8,29 +8,25 @@ import Breadcrumbs from './ui/Breadcrumbs';
 import SEO from './SEO';
 // import { articles } from '../constants/articlesData'; // No longer needed
 
+import { useInitialData } from '../context/InitialDataContext';
+
 const ArticleDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { t } = useLanguage();
-    const [article, setArticle] = useState(() => {
-        if (typeof window !== 'undefined' && window.__INITIAL_ARTICLES__) {
-            return window.__INITIAL_ARTICLES__.find(a => a.slug?.toLowerCase() === id?.toLowerCase()) || null;
-        }
-        return null;
-    });
-    const [siteSettings, setSiteSettings] = useState(() => {
-        if (typeof window !== 'undefined' && window.__INITIAL_SETTINGS__) {
-            return window.__INITIAL_SETTINGS__;
-        }
-        return null;
-    });
-    const [loading, setLoading] = useState(() => {
-        if (typeof window !== 'undefined' && window.__INITIAL_ARTICLES__) {
-            const found = window.__INITIAL_ARTICLES__.some(a => a.slug?.toLowerCase() === id?.toLowerCase());
-            if (found && window.__INITIAL_SETTINGS__) return false;
-        }
-        return true;
-    });
+    const initialData = useInitialData();
+
+    const initialArticle = initialData?.getArticle?.(id)
+        || (typeof window !== 'undefined' && window.__INITIAL_ARTICLES__
+            ? window.__INITIAL_ARTICLES__.find(a => a.slug?.toLowerCase() === id?.toLowerCase() || String(a.id) === id)
+            : null);
+
+    const initialSettings = initialData?.settings
+        || (typeof window !== 'undefined' ? window.__INITIAL_SETTINGS__ : null);
+
+    const [article, setArticle] = useState(initialArticle);
+    const [siteSettings, setSiteSettings] = useState(initialSettings);
+    const [loading, setLoading] = useState(!initialArticle);
     const [copied, setCopied] = useState(false);
 
     useEffect(() => {

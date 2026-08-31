@@ -8,27 +8,27 @@ import { api } from '../lib/api';
 import Breadcrumbs from './ui/Breadcrumbs';
 import heroImg from '../assets/joint-replacement-bg.webp';
 
+import { useInitialData } from '../context/InitialDataContext';
+
 const ServicesPage = () => {
     const { t } = useLanguage();
-    const [services, setServices] = useState(() => {
-        if (typeof window !== 'undefined' && window.__INITIAL_SERVICES__) {
-            return window.__INITIAL_SERVICES__;
-        }
-        return [];
-    });
+    const initialData = useInitialData();
+    const initialServices = initialData?.getServices?.()
+        || (typeof window !== 'undefined' && window.__INITIAL_SERVICES__ ? window.__INITIAL_SERVICES__ : []);
+
+    const [services, setServices] = useState(initialServices);
     
     useEffect(() => {
-        if (services.length > 0) {
-            return;
-        }
         api.getServices()
             .then(data => {
-                setServices(data || []);
+                if (Array.isArray(data) && data.length > 0) {
+                    setServices(data);
+                }
             })
             .catch(err => {
                 console.error("Failed to fetch services for schema:", err);
             });
-    }, [services]);
+    }, []);
     
     // Get service-specific FAQs from translations
     const serviceFaqs = [0, 1, 2].map(i => ({
@@ -42,7 +42,7 @@ const ServicesPage = () => {
         return html.replace(/<[^>]*>/g, '').trim();
     };
 
-    const origin = window.location.origin;
+    const origin = typeof window !== 'undefined' ? window.location.origin : 'https://drulhasorthopedic.com';
 
     // 1. BreadcrumbList Schema
     const breadcrumbSchema = {

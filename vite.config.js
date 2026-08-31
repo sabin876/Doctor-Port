@@ -10,7 +10,7 @@ process.env.VITE_CONTACT_EMAIL = process.env.VITE_CONTACT_EMAIL || "appointment@
 process.env.VITE_WHATSAPP_NUMBER = process.env.VITE_WHATSAPP_NUMBER || "+919049200041";
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ isSsrBuild }) => ({
   plugins: [
     react(),
     // Gzip compression
@@ -64,8 +64,8 @@ export default defineConfig({
     chunkSizeWarningLimit: 600,
     rollupOptions: {
       output: {
-        // Manually split vendor libraries into separate chunks
-        manualChunks: {
+        // Manually split vendor libraries into separate chunks (client only)
+        manualChunks: isSsrBuild ? undefined : {
           'vendor-react': ['react', 'react-dom', 'react-router-dom'],
           'vendor-motion': ['framer-motion'],
           'vendor-icons': ['lucide-react'],
@@ -88,4 +88,4 @@ export default defineConfig({
       },
     },
   },
-})
+}))

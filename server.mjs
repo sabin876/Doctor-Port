@@ -30,6 +30,24 @@ async function createServer() {
     app.use(express.static(path.resolve(__dirname, 'dist/client'), { index: false }));
   }
 
+  async function fetchFromApi(endpoint) {
+    const primaryUrl = (process.env.VITE_API_BASE_URL || 'http://localhost:8000/api').replace(/\/+$/, '');
+    const fallbackUrl = 'https://api.drulhasorthopedic.com/api';
+    try {
+      const res = await fetch(`${primaryUrl}${endpoint}`, { signal: AbortSignal.timeout(3000) });
+      if (res && res.ok) return await res.json();
+    } catch (e) {
+      // ignore
+    }
+    try {
+      const fbRes = await fetch(`${fallbackUrl}${endpoint}`, { signal: AbortSignal.timeout(5000) });
+      if (fbRes && fbRes.ok) return await fbRes.json();
+    } catch (e) {
+      // ignore
+    }
+    return null;
+  }
+
   // Pathname-Aware Data Fetching helper
   async function fetchInitialDataForRoute(pathname) {
     const data = {
@@ -45,72 +63,83 @@ async function createServer() {
     };
 
     try {
-      const [sRes, aRes, setRes, tEnRes, tHiRes, tArRes, gRes, hRes, soRes] = await Promise.all([
-        fetch(`${API_BASE_URL}/services/`).catch(() => null),
-        fetch(`${API_BASE_URL}/articles/`).catch(() => null),
-        fetch(`${API_BASE_URL}/settings/`).catch(() => null),
-        fetch(`${API_BASE_URL}/translations/?lang=EN`).catch(() => null),
-        fetch(`${API_BASE_URL}/translations/?lang=HI`).catch(() => null),
-        fetch(`${API_BASE_URL}/translations/?lang=AR`).catch(() => null),
-        fetch(`${API_BASE_URL}/gallery/`).catch(() => null),
-        fetch(`${API_BASE_URL}/hero-video/`).catch(() => null),
-        fetch(`${API_BASE_URL}/second-opinions/`).catch(() => null),
+      const [sData, aData, setData, tEnData, tHiData, tArData, gData, hData, soData] = await Promise.all([
+        fetchFromApi('/services/'),
+        fetchFromApi('/articles/'),
+        fetchFromApi('/settings/'),
+        fetchFromApi('/translations/?lang=EN'),
+        fetchFromApi('/translations/?lang=HI'),
+        fetchFromApi('/translations/?lang=AR'),
+        fetchFromApi('/gallery/'),
+        fetchFromApi('/hero-video/'),
+        fetchFromApi('/second-opinions/'),
       ]);
 
-      if (sRes && sRes.ok) data.services = await sRes.json();
-      if (aRes && aRes.ok) data.articles = await aRes.json();
-      if (setRes && setRes.ok) data.settings = await setRes.json();
-      if (tEnRes && tEnRes.ok) data.translations.EN = await tEnRes.json();
-      if (tHiRes && tHiRes.ok) data.translations.HI = await tHiRes.json();
-      if (tArRes && tArRes.ok) data.translations.AR = await tArRes.json();
+      if (Array.isArray(sData)) data.services = sData;
+      if (Array.isArray(aData)) data.articles = aData;
+      if (setData && typeof setData === 'object') data.settings = setData;
+      if (tEnData) data.translations.EN = tEnData;
+      if (tHiData) data.translations.HI = tHiData;
+      if (tArData) data.translations.AR = tArData;
 
-      if (gRes && gRes.ok) {
-        const rawG = await gRes.json();
-        if (Array.isArray(rawG)) {
-          const baseUrl = API_BASE_URL.replace(/\/api\/?$/, '');
-          data.gallery = rawG.map((item) => {
-            let img = item.image;
-            if (img && !img.startsWith('http')) {
-              img = `${baseUrl}${img.startsWith('/') ? '' : '/'}${img}`;
-            }
-            return {
-              id: item.id,
-              src: img,
-              category: item.category,
-              title: item.title,
-              desc: item.description,
-              span: item.span || 'col-span-1 row-span-1',
-            };
-          });
-        }
+      if (Array.isArray(gData)) {
+        const baseUrl = API_BASE_URL.replace(/\/api\/?$/, '');
+        data.gallery = gData.map((item) => {
+          let img = item.image;
+          if (img && !img.startsWith('http')) {
+            img = `${baseUrl}${img.startsWith('/') ? '' : '/'}${img}`;
+          }
+          return {
+            id: item.id,
+            src: img,
+            category: item.category,
+            title: item.title,
+            desc: item.description,
+            span: item.span || 'col-span-1 row-span-1',
+          };
+        });
       }
-      if (hRes && hRes.ok) data.heroVideo = await hRes.json();
-      if (soRes && soRes.ok) data.secondOpinions = await soRes.json();
+      if (hData) data.heroVideo = hData;
+      if (soData) data.secondOpinions = soData;
 
-      // Specific route matching for dedicated service / article data
+      // Specific route matching for dedicated service / sub-service / article data
       if (pathname.startsWith('/services/')) {
-        const slug = pathname.replace('/services/', '').replace(/\/$/, '');
-        if (slug) {
-          const matchService = data.services.find(s => String(s.id) === slug || s.slug === slug);
-          if (matchService) {
-            data.routeData = matchService;
-          } else {
-            const detailRes = await fetch(`${API_BASE_URL}/services/${slug}/`).catch(() => null);
-            if (detailRes && detailRes.ok) {
-              data.routeData = await detailRes.json();
+        const remaining = pathname.replace(/^\/services\//, '').replace(/\/+$/, '');
+        if (remaining) {
+          const parts = remaining.split('/');
+          if (parts.length === 1) {
+            const slug = parts[0];
+            const matchService = data.services.find(s => String(s.id) === slug || s.slug?.toLowerCase() === slug.toLowerCase());
+            if (matchService) {
+              data.routeData = matchService;
+            } else {
+              const detail = await fetchFromApi(`/services/${slug}/`);
+              if (detail) {
+                data.routeData = detail;
+              }
+            }
+          } else if (parts.length >= 2) {
+            const [parentSlug, subSlug] = parts;
+            let parent = data.services.find(s => s.slug?.toLowerCase() === parentSlug.toLowerCase() || String(s.id) === parentSlug);
+            if (!parent) {
+              parent = await fetchFromApi(`/services/${parentSlug}/`);
+            }
+            if (parent) {
+              const sub = parent.sub_services?.find(s => s.slug?.toLowerCase() === subSlug.toLowerCase() || String(s.id) === subSlug);
+              data.routeData = { parentService: parent, subService: sub || null };
             }
           }
         }
       } else if (pathname.startsWith('/blog/')) {
-        const slug = pathname.replace('/blog/', '').replace(/\/$/, '');
+        const slug = pathname.replace(/^\/blog\//, '').replace(/\/+$/, '');
         if (slug) {
-          const matchArticle = data.articles.find(a => String(a.id) === slug || a.slug === slug);
+          const matchArticle = data.articles.find(a => String(a.id) === slug || a.slug?.toLowerCase() === slug.toLowerCase());
           if (matchArticle) {
             data.routeData = matchArticle;
           } else {
-            const detailRes = await fetch(`${API_BASE_URL}/articles/${slug}/`).catch(() => null);
-            if (detailRes && detailRes.ok) {
-              data.routeData = await detailRes.json();
+            const detail = await fetchFromApi(`/articles/${slug}/`);
+            if (detail) {
+              data.routeData = detail;
             }
           }
         }
@@ -137,7 +166,18 @@ async function createServer() {
         render = (await vite.ssrLoadModule('/src/entry-server.jsx')).render;
       } else {
         template = fs.readFileSync(path.resolve(__dirname, 'dist/client/index.html'), 'utf-8');
-        render = (await import('./dist/server/entry-server.js')).render;
+        const jsDir = path.resolve(__dirname, 'dist/server/assets/js');
+        if (fs.existsSync(jsDir)) {
+          const serverJsFiles = fs.readdirSync(jsDir);
+          const entryFile = serverJsFiles.find(f => f.startsWith('entry-server') && f.endsWith('.js'));
+          if (entryFile) {
+            const entryUrl = new URL(`./dist/server/assets/js/${entryFile}`, import.meta.url).href;
+            render = (await import(entryUrl)).render;
+          }
+        }
+        if (!render && fs.existsSync(path.resolve(__dirname, 'dist/server/entry-server.js'))) {
+          render = (await import('./dist/server/entry-server.js')).render;
+        }
       }
 
       // 2. Fetch Pathname-Aware Initial Data for THIS route

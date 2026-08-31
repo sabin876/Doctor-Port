@@ -78,65 +78,69 @@ function ScrollToTop() {
   return null;
 }
 
+import { InitialDataProvider } from './context/InitialDataContext';
+
 function App({ initialData }) {
   return (
-    <HelmetProvider>
-      <ErrorBoundary>
-        <ScrollToTop />
-        <TrailingSlashRedirect />
-        <CanonicalTag />
-        <SEOWrapper>
-          <div className="min-h-screen bg-white font-sans text-gray-800">
-            <Routes>
-              {/* Standalone Social Media Page (No Navbar/Footer) */}
-              <Route path="/social-media" element={<SocialLinksPage />} />
+    <InitialDataProvider initialData={initialData}>
+      <HelmetProvider>
+        <ErrorBoundary>
+          <ScrollToTop />
+          <TrailingSlashRedirect />
+          <CanonicalTag />
+          <SEOWrapper>
+            <div className="min-h-screen bg-white font-sans text-gray-800">
+              <Routes>
+                {/* Standalone Social Media Page (No Navbar/Footer) */}
+                <Route path="/social-media" element={<SocialLinksPage />} />
 
-              {/* Dashboard Routes (Custom Layout) */}
-              <Route path="/dashboard" element={<DashboardLayout />}>
-                <Route index element={<DashboardHome />} />
-                <Route path="articles" element={<ArticlesManager />} />
-                <Route path="services" element={<ServicesManager />} />
-                <Route path="settings" element={<SettingsManager />} />
-              </Route>
+                {/* Dashboard Routes (Custom Layout) */}
+                <Route path="/dashboard" element={<DashboardLayout />}>
+                  <Route index element={<DashboardHome />} />
+                  <Route path="articles" element={<ArticlesManager />} />
+                  <Route path="services" element={<ServicesManager />} />
+                  <Route path="settings" element={<SettingsManager />} />
+                </Route>
 
-              {/* Main App Routes with Header/Footer */}
-              <Route path="*" element={
-                <>
-                  <TopBar />
-                  <Navbar />
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<AboutPage />} />
-                    <Route path="/services" element={<ServicesPage />} />
-                    <Route path="/services/physiotherapy" element={<PhysiotherapyHomeService />} />
-                    <Route path="/services/test-physiotherapy" element={<PhysiotherapyHomeService />} />
-                    <Route path="/services/test-physiotherapy-service" element={<PhysiotherapyHomeService />} />
-                    <Route path="/services/physiotherapy-home-services" element={<Navigate to="/services/physiotherapy" replace />} />
-                    <Route path="/services/physiotherapy-services" element={<Navigate to="/services/physiotherapy" replace />} />
-                    <Route path="/services/Physiotherapy-Services" element={<Navigate to="/services/physiotherapy" replace />} />
-                    <Route path="/services/:id" element={<ServiceDetail />} />
-                    <Route path="/services/:parent_slug/:sub_slug" element={<SubServiceDetail />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/blog" element={<Articles />} />
-                    <Route path="/blog/:id" element={<ArticleDetail />} />
-                    <Route path="/gallery" element={<Gallery />} />
-                    <Route path="/thank-you" element={<ThankYou />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/report-access" element={<ReportAccess />} />
-                    <Route path="/verify-otp" element={<Navigate to="/report-access" replace />} />
-                    <Route path="/report" element={<ReportView />} />
-                    <Route path="/sitemap" element={<HtmlSitemap />} />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                  <Footer />
-                  <FloatingContactButtons />
-                </>
-              } />
-            </Routes>
-          </div>
-        </SEOWrapper>
-      </ErrorBoundary>
-    </HelmetProvider>
+                {/* Main App Routes with Header/Footer */}
+                <Route path="*" element={
+                  <>
+                    <TopBar />
+                    <Navbar />
+                    <Routes>
+                      <Route path="/" element={<Home />} />
+                      <Route path="/about" element={<AboutPage />} />
+                      <Route path="/services" element={<ServicesPage />} />
+                      <Route path="/services/physiotherapy" element={<PhysiotherapyHomeService />} />
+                      <Route path="/services/test-physiotherapy" element={<PhysiotherapyHomeService />} />
+                      <Route path="/services/test-physiotherapy-service" element={<PhysiotherapyHomeService />} />
+                      <Route path="/services/physiotherapy-home-services" element={<Navigate to="/services/physiotherapy" replace />} />
+                      <Route path="/services/physiotherapy-services" element={<Navigate to="/services/physiotherapy" replace />} />
+                      <Route path="/services/Physiotherapy-Services" element={<Navigate to="/services/physiotherapy" replace />} />
+                      <Route path="/services/:id" element={<ServiceDetail />} />
+                      <Route path="/services/:parent_slug/:sub_slug" element={<SubServiceDetail />} />
+                      <Route path="/contact" element={<Contact />} />
+                      <Route path="/blog" element={<Articles />} />
+                      <Route path="/blog/:id" element={<ArticleDetail />} />
+                      <Route path="/gallery" element={<Gallery />} />
+                      <Route path="/thank-you" element={<ThankYou />} />
+                      <Route path="/login" element={<Login />} />
+                      <Route path="/report-access" element={<ReportAccess />} />
+                      <Route path="/verify-otp" element={<Navigate to="/report-access" replace />} />
+                      <Route path="/report" element={<ReportView />} />
+                      <Route path="/sitemap" element={<HtmlSitemap />} />
+                      <Route path="*" element={<NotFound />} />
+                    </Routes>
+                    <Footer />
+                    <FloatingContactButtons />
+                  </>
+                } />
+              </Routes>
+            </div>
+          </SEOWrapper>
+        </ErrorBoundary>
+      </HelmetProvider>
+    </InitialDataProvider>
   );
 }
 

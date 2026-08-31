@@ -128,47 +128,41 @@ const staggerItem = {
     }
 };
 
+import { useInitialData } from '../context/InitialDataContext';
+
 const ServiceDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { t, language } = useLanguage();
     const isRtl = language === 'AR';
+    const initialData = useInitialData();
     
-    const [rawService, setRawService] = useState(() => {
-        if (typeof window !== 'undefined' && window.__INITIAL_SERVICES__) {
-            return window.__INITIAL_SERVICES__.find(s => s.slug?.toLowerCase() === id?.toLowerCase()) || null;
-        }
-        return null;
-    });
-    const [loading, setLoading] = useState(() => {
-        if (typeof window !== 'undefined' && window.__INITIAL_SERVICES__) {
-            const found = window.__INITIAL_SERVICES__.some(s => s.slug?.toLowerCase() === id?.toLowerCase());
-            if (found) return false;
-        }
-        return true;
-    });
+    const initialService = initialData?.getService?.(id)
+        || (typeof window !== 'undefined' && window.__INITIAL_SERVICES__
+            ? window.__INITIAL_SERVICES__.find(s => s.slug?.toLowerCase() === id?.toLowerCase() || String(s.id) === id)
+            : null);
+
+    const [rawService, setRawService] = useState(initialService);
+    const [loading, setLoading] = useState(!initialService);
 
     const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+91 90492 00041";
     const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "+919049200041";
 
-
-
     useEffect(() => {
         window.scrollTo(0, 0);
-        if (rawService) {
-            return;
-        }
         api.getServices()
             .then(data => {
-                const found = data.find(s => s.slug?.toLowerCase() === id?.toLowerCase());
-                setRawService(found);
+                const found = data.find(s => s.slug?.toLowerCase() === id?.toLowerCase() || String(s.id) === id);
+                if (found) {
+                    setRawService(found);
+                }
                 setLoading(false);
             })
             .catch(err => {
                 console.error("Failed to fetch service detail:", err);
                 setLoading(false);
             });
-    }, [id, rawService]);
+    }, [id]);
 
     const service = getTranslatedService(rawService, t, language);
 
@@ -362,7 +356,7 @@ const ServiceDetail = () => {
         return html.replace(/<[^>]*>/g, '').trim();
     };
 
-    const origin = window.location.origin;
+    const origin = typeof window !== 'undefined' ? window.location.origin : 'https://drulhasorthopedic.com';
 
     // 1. MedicalProcedure Schema
     let bodyLocation = "";

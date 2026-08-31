@@ -36,23 +36,19 @@ const stripHtml = (html) => {
     return html.replace(/<[^>]*>/g, '');
 };
 
+import { useInitialData } from '../context/InitialDataContext';
+
 const Services = ({ isHomePage = false }) => {
     const { t, language } = useLanguage();
     const location = useLocation();
     const isHome = isHomePage || location.pathname === '/';
+    const initialData = useInitialData();
 
-    const [services, setServices] = useState(() => {
-        if (typeof window !== 'undefined' && window.__INITIAL_SERVICES__) {
-            return window.__INITIAL_SERVICES__;
-        }
-        return [];
-    });
-    const [loading, setLoading] = useState(() => {
-        if (typeof window !== 'undefined' && window.__INITIAL_SERVICES__) {
-            return false;
-        }
-        return true;
-    });
+    const initialServices = initialData?.getServices?.()
+        || (typeof window !== 'undefined' && window.__INITIAL_SERVICES__ ? window.__INITIAL_SERVICES__ : []);
+
+    const [services, setServices] = useState(initialServices);
+    const [loading, setLoading] = useState(initialServices.length === 0);
     const [showAll, setShowAll] = useState(false);
 
     useEffect(() => {

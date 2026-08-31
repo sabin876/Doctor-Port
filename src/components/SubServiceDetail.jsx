@@ -11,58 +11,39 @@ import CTABanner from './CTABanner';
 
 const defaultImage = "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1200";
 
+import { useInitialData } from '../context/InitialDataContext';
+
 const SubServiceDetail = () => {
     const { parent_slug, sub_slug } = useParams();
     const { t, language } = useLanguage();
     const isRtl = language === 'AR';
+    const initialData = useInitialData();
 
-    const [parentService, setParentService] = useState(() => {
-        if (typeof window !== 'undefined' && window.__INITIAL_SERVICES__) {
-            const foundParent = window.__INITIAL_SERVICES__.find(s => s.slug?.toLowerCase() === parent_slug?.toLowerCase());
-            if (foundParent) {
-                return getTranslatedService(foundParent, t, language);
-            }
-        }
-        return null;
-    });
-    const [subService, setSubService] = useState(() => {
-        if (typeof window !== 'undefined' && window.__INITIAL_SERVICES__) {
-            const foundParent = window.__INITIAL_SERVICES__.find(s => s.slug?.toLowerCase() === parent_slug?.toLowerCase());
-            if (foundParent && foundParent.sub_services) {
-                return foundParent.sub_services.find(sub => sub.slug?.toLowerCase() === sub_slug?.toLowerCase()) || null;
-            }
-        }
-        return null;
-    });
-    const [loading, setLoading] = useState(() => {
-        if (typeof window !== 'undefined' && window.__INITIAL_SERVICES__) {
-            const foundParent = window.__INITIAL_SERVICES__.find(s => s.slug?.toLowerCase() === parent_slug?.toLowerCase());
-            if (foundParent) {
-                const foundSub = foundParent.sub_services?.some(sub => sub.slug?.toLowerCase() === sub_slug?.toLowerCase());
-                if (foundSub) return false;
-            }
-        }
-        return true;
-    });
+    const initialMatch = initialData?.getSubService?.(parent_slug, sub_slug);
+    const initialParent = initialMatch?.parentService
+        ? getTranslatedService(initialMatch.parentService, t, language)
+        : null;
+    const initialSub = initialMatch?.subService || null;
+
+    const [parentService, setParentService] = useState(initialParent);
+    const [subService, setSubService] = useState(initialSub);
+    const [loading, setLoading] = useState(!initialSub);
 
     const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+91 90492 00041";
     const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "+919049200041";
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        if (parentService && subService) {
-            return;
-        }
         api.getServices()
             .then(data => {
                 const foundParent = data.find(s => s.slug?.toLowerCase() === parent_slug?.toLowerCase());
-                
                 if (foundParent) {
                     const translatedParent = getTranslatedService(foundParent, t, language);
                     setParentService(translatedParent);
-                    
                     const foundSub = foundParent.sub_services?.find(sub => sub.slug?.toLowerCase() === sub_slug?.toLowerCase());
-                    setSubService(foundSub);
+                    if (foundSub) {
+                        setSubService(foundSub);
+                    }
                 }
                 setLoading(false);
             })
@@ -70,7 +51,7 @@ const SubServiceDetail = () => {
                 console.error("Failed to fetch sub-service details:", err);
                 setLoading(false);
             });
-    }, [parent_slug, sub_slug, language, t, parentService, subService]);
+    }, [parent_slug, sub_slug, language, t]);
 
     if (loading) return <div className="min-h-screen flex items-center justify-center text-primary-600 font-bold">Loading...</div>;
 

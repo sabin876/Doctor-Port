@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { User, Calendar, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { useInitialData } from '../context/InitialDataContext';
 import Breadcrumbs from './ui/Breadcrumbs';
 import { api } from '../lib/api';
 import FAQ from './FAQ';
@@ -52,18 +53,12 @@ const Articles = () => {
     if (faqSchema) {
         schemaList.push(faqSchema);
     }
-    const [articles, setArticles] = useState(() => {
-        if (typeof window !== 'undefined' && window.__INITIAL_ARTICLES__) {
-            return window.__INITIAL_ARTICLES__;
-        }
-        return [];
-    });
-    const [loading, setLoading] = useState(() => {
-        if (typeof window !== 'undefined' && window.__INITIAL_ARTICLES__) {
-            return false;
-        }
-        return true;
-    });
+    const initialData = useInitialData();
+    const initialArticles = initialData?.getArticles?.()
+        || (typeof window !== 'undefined' && window.__INITIAL_ARTICLES__ ? window.__INITIAL_ARTICLES__ : []);
+
+    const [articles, setArticles] = useState(initialArticles);
+    const [loading, setLoading] = useState(initialArticles.length === 0);
 
     useEffect(() => {
         window.scrollTo(0, 0);
