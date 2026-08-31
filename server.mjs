@@ -219,57 +219,94 @@ async function createServer() {
           .replace(/'/g, '&#039;');
       }
 
-      // 4. Build Specific Social OG & Twitter Tags for Blog/Service
-      let routeSocialTags = '';
+      // 4. Build Authoritative Dynamic SEO Metadata for THIS route
+      const cleanPath = req.path === '/' ? '' : req.path.replace(/\/+$/, '');
+      const canonicalUrl = `https://drulhasorthopedic.com${cleanPath || '/'}`;
+      const pageUrl = `https://drulhasorthopedic.com${cleanPath}`;
+
+      let routeTitle = 'Dr. Ulhas Sonar | Orthopaedic Surgeon Dubai';
+      let routeDescription = 'Expert orthopedic care specializing in joint replacement, sports injuries, and comprehensive rehabilitation with Dr. Ulhas Sonar in Dubai.';
+      let routeOgImage = 'https://drulhasorthopedic.com/assets/images/doctor-hero.webp';
+      let routeOgType = 'website';
+      let ogTitle = routeTitle;
+      let ogDesc = routeDescription;
+
       if (req.path.startsWith('/blog/') && initialData.routeData) {
         const art = initialData.routeData;
-        const ogTitle = art.og_title || art.meta_title || art.title || 'Expert Orthopedic Article';
-        const ogDesc = art.og_description || art.meta_description || art.excerpt || art.title;
-        const ogImg = getAbsoluteImageUrl(art.og_image || art.image || art.featured_image);
-        const pageUrl = `https://drulhasorthopedic.com${req.path.replace(/\/+$/, '')}`;
-
-        routeSocialTags = `
-    <!-- Specific Blog Social OG & Twitter Card Tags -->
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="${escapeHtml(ogTitle)}" />
-    <meta property="og:description" content="${escapeHtml(ogDesc)}" />
-    <meta property="og:url" content="${pageUrl}" />
-    <meta property="og:image" content="${ogImg}" />
-    <meta property="og:image:secure_url" content="${ogImg}" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:site_name" content="Dr. Ulhas Sonar | Orthopaedic Surgeon Dubai" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="${escapeHtml(ogTitle)}" />
-    <meta name="twitter:description" content="${escapeHtml(ogDesc)}" />
-    <meta name="twitter:image" content="${ogImg}" />
-`;
+        routeTitle = art.meta_title || (art.title ? `${art.title} | Dr. Ulhas Sonar` : 'Orthopedic Blog Article | Dr. Ulhas Sonar');
+        routeDescription = art.meta_description || art.excerpt || art.title || routeDescription;
+        ogTitle = art.og_title || routeTitle;
+        ogDesc = art.og_description || routeDescription;
+        routeOgImage = getAbsoluteImageUrl(art.og_image || art.image || art.featured_image);
+        routeOgType = 'article';
+      } else if (req.path === '/blog') {
+        routeTitle = 'Orthopedic Articles & Insights | Dr. Ulhas Sonar';
+        routeDescription = 'Read the latest articles on orthopedic conditions, treatments, and recovery from Dr. Ulhas Sonar.';
+        ogTitle = routeTitle;
+        ogDesc = routeDescription;
+        routeOgImage = 'https://drulhasorthopedic.com/assets/images/doctor-surgery.webp';
+        routeOgType = 'website';
       } else if (req.path.startsWith('/services/') && initialData.routeData) {
         const srv = initialData.routeData?.subService || initialData.routeData;
-        const ogTitle = srv.og_title || srv.meta_title || srv.title || 'Orthopedic Service';
-        const ogDesc = srv.og_description || srv.meta_description || srv.description || srv.title;
-        const ogImg = getAbsoluteImageUrl(srv.og_image || srv.image);
-        const pageUrl = `https://drulhasorthopedic.com${req.path.replace(/\/+$/, '')}`;
+        routeTitle = srv.meta_title || (srv.title ? `${srv.title} | Dr. Ulhas Sonar` : 'Orthopedic Service | Dr. Ulhas Sonar');
+        routeDescription = srv.meta_description || srv.description || routeDescription;
+        ogTitle = srv.og_title || routeTitle;
+        ogDesc = srv.og_description || routeDescription;
+        routeOgImage = getAbsoluteImageUrl(srv.og_image || srv.image);
+        routeOgType = 'website';
+      } else if (req.path === '/services') {
+        routeTitle = 'Orthopedic Services & Procedures | Dr. Ulhas Sonar';
+        routeDescription = 'Comprehensive orthopedic services including robotic knee replacement, hip surgery, and sports medicine by Dr. Ulhas Sonar.';
+        ogTitle = routeTitle;
+        ogDesc = routeDescription;
+      } else if (req.path === '/about') {
+        routeTitle = 'About Dr. Ulhas Sonar | Orthopedic Surgeon Dubai';
+        routeDescription = 'Learn more about Dr. Ulhas Sonar, a leading orthopedic surgeon specializing in robotic joint replacement and sports injuries.';
+        ogTitle = routeTitle;
+        ogDesc = routeDescription;
+      } else if (req.path === '/contact') {
+        routeTitle = 'Contact Dr. Ulhas Sonar | Book Appointment in Dubai';
+        routeDescription = 'Book an appointment with Dr. Ulhas Sonar at Canadian Specialist Hospital in Dubai.';
+        ogTitle = routeTitle;
+        ogDesc = routeDescription;
+      }
 
-        routeSocialTags = `
-    <!-- Specific Service Social OG & Twitter Card Tags -->
-    <meta property="og:type" content="website" />
+      // 5. Clean template from any static SEO tags to prevent duplicate or conflicting tags
+      let html = template
+        .replace(/<title[^>]*>.*?<\/title>/gi, '')
+        .replace(/<link[^>]*rel=["']canonical["'][^>]*>/gi, '')
+        .replace(/<meta[^>]*name=["']description["'][^>]*>/gi, '')
+        .replace(/<meta[^>]*name=["']keywords["'][^>]*>/gi, '')
+        .replace(/<meta[^>]*property=["']og:[^"']*["'][^>]*>/gi, '')
+        .replace(/<meta[^>]*name=["']twitter:[^"']*["'][^>]*>/gi, '');
+
+      // 6. Primary Route Meta & Social OG Injection
+      const primaryMetaTags = `
+    <!-- Primary Page SEO Metadata -->
+    <title>${escapeHtml(routeTitle)}</title>
+    <meta name="description" content="${escapeHtml(routeDescription)}" />
+    <link rel="canonical" href="${canonicalUrl}" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Social Media Tags -->
+    <meta property="og:type" content="${routeOgType}" />
     <meta property="og:title" content="${escapeHtml(ogTitle)}" />
     <meta property="og:description" content="${escapeHtml(ogDesc)}" />
     <meta property="og:url" content="${pageUrl}" />
-    <meta property="og:image" content="${ogImg}" />
-    <meta property="og:image:secure_url" content="${ogImg}" />
+    <meta property="og:image" content="${routeOgImage}" />
+    <meta property="og:image:secure_url" content="${routeOgImage}" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="Dr. Ulhas Sonar | Orthopaedic Surgeon Dubai" />
+
+    <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escapeHtml(ogTitle)}" />
     <meta name="twitter:description" content="${escapeHtml(ogDesc)}" />
-    <meta name="twitter:image" content="${ogImg}" />
+    <meta name="twitter:image" content="${routeOgImage}" />
 `;
-      }
 
-      // 5. Inject Helmet Tags and Initial Data
+      // 7. Inject Helmet Scripts (Schemas, etc.) and Initial Data
       const inlineDataScript = `<script id="initial-data">
         window.__INITIAL_DATA__ = ${JSON.stringify(initialData)};
         window.__INITIAL_SERVICES__ = ${JSON.stringify(initialData.services || [])};
@@ -283,18 +320,10 @@ async function createServer() {
 
       let helmetHead = '';
       if (helmet) {
-        if (helmet.title) helmetHead += helmet.title.toString() + '\n';
-        if (helmet.meta) helmetHead += helmet.meta.toString() + '\n';
-        if (helmet.link) helmetHead += helmet.link.toString() + '\n';
         if (helmet.script) helmetHead += helmet.script.toString() + '\n';
       }
 
-      let html = template;
-      if (helmet?.title && helmet.title.toString()) {
-        html = html.replace(/<title[^>]*>.*?<\/title>/i, '');
-      }
-
-      const headInjections = `${inlineDataScript}\n${routeSocialTags}\n${helmetHead}`;
+      const headInjections = `${inlineDataScript}\n${primaryMetaTags}\n${helmetHead}`;
       if (html.includes('</head>')) {
         html = html.replace('</head>', `${headInjections}\n</head>`);
       } else {
@@ -302,7 +331,7 @@ async function createServer() {
       }
       html = html.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`);
 
-      // 6. Send exact pathname-aware HTML back to browser
+      // 8. Send exact pathname-aware HTML back to browser
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
     } catch (e) {
       if (!isProd && vite) {

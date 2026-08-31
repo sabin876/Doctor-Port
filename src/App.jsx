@@ -8,7 +8,6 @@ import TopBar from './components/TopBar';
 import Footer from './components/Footer';
 import FloatingContactButtons from './components/FloatingContactButtons';
 import TrailingSlashRedirect from './components/ui/TrailingSlashRedirect';
-import CanonicalTag from './components/CanonicalTag';
 import SEOWrapper from './components/SEOWrapper';
 import HtmlSitemap from './components/HtmlSitemap';
 
@@ -87,7 +86,6 @@ function App({ initialData, helmetContext }) {
         <ErrorBoundary>
           <ScrollToTop />
           <TrailingSlashRedirect />
-          <CanonicalTag />
           <SEOWrapper>
             <div className="min-h-screen bg-white font-sans text-gray-800">
               <Routes>

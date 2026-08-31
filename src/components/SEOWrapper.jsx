@@ -125,30 +125,6 @@ const SEOWrapper = ({ children }) => {
 
     return (
         <>
-            <Helmet>
-                {seoData && !isDetailRoute && (
-                    <>
-                        <title>{seoData.meta_title || seoData.title || "Dr. Ulhas Sonar"}</title>
-                        <meta name="description" content={seoData.meta_description || seoData.description} />
-                        <link rel="canonical" href={canonicalUrl} />
-                        <meta name="robots" content={`${seoData.index_page !== false ? 'index' : 'noindex'}, ${seoData.follow_links !== false ? 'follow' : 'nofollow'}`} />
-                        
-                        {/* OG Tags */}
-                        <meta property="og:title" content={seoData.og_title || seoData.meta_title || seoData.title} />
-                        <meta property="og:description" content={seoData.og_description || seoData.meta_description || seoData.description} />
-                        <meta property="og:url" content={currentUrl} />
-                        <meta property="og:type" content="website" />
-                        <meta property="og:image" content={absoluteOgImage} />
-                        <meta property="og:image:secure_url" content={absoluteOgImage} />
-                        <meta name="twitter:card" content="summary_large_image" />
-                        <meta name="twitter:image" content={absoluteOgImage} />
-                        
-                        {/* Schema Markup */}
-                        {seoData.schema_markup && renderSchemaMarkup(seoData.schema_markup)}
-                    </>
-                )}
-            </Helmet>
-            
             {/* Inject Header Scripts directly if they contain <script> tags */}
             {siteSettings?.header_scripts && (
                 <div style={{ display: 'none' }} dangerouslySetInnerHTML={{ __html: siteSettings.header_scripts }} />
