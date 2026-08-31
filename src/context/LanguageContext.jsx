@@ -14,8 +14,11 @@ export const useLanguage = () => {
 
 export const LanguageProvider = ({ children }) => {
     const [language, setLanguage] = useState(() => {
-        const savedLang = localStorage.getItem('language');
-        return (savedLang && ['EN', 'HI', 'AR'].includes(savedLang)) ? savedLang : 'EN';
+        if (typeof window !== 'undefined' && window.localStorage) {
+            const savedLang = localStorage.getItem('language');
+            return (savedLang && ['EN', 'HI', 'AR'].includes(savedLang)) ? savedLang : 'EN';
+        }
+        return 'EN';
     });
     
     const [dynamicTranslations, setDynamicTranslations] = useState(() => {
@@ -55,23 +58,29 @@ export const LanguageProvider = ({ children }) => {
 
     // Save language to localStorage when it changes
     useEffect(() => {
-        localStorage.setItem('language', language);
-        // Update document direction for RTL languages
-        document.documentElement.dir = language === 'AR' ? 'rtl' : 'ltr';
-        document.documentElement.lang = language === 'AR' ? 'ar' : language === 'HI' ? 'hi' : 'en';
-
-        // Trigger Google Translate
-        const triggerGoogleTranslate = () => {
-            const googleCombo = document.querySelector('.goog-te-combo');
-            if (googleCombo) {
-                googleCombo.value = language.toLowerCase();
-                googleCombo.dispatchEvent(new Event('change'));
-            } else {
-                setTimeout(triggerGoogleTranslate, 500);
+        if (typeof window !== 'undefined') {
+            if (window.localStorage) {
+                localStorage.setItem('language', language);
             }
-        };
+            // Update document direction for RTL languages
+            if (typeof document !== 'undefined') {
+                document.documentElement.dir = language === 'AR' ? 'rtl' : 'ltr';
+                document.documentElement.lang = language === 'AR' ? 'ar' : language === 'HI' ? 'hi' : 'en';
+            }
 
-        triggerGoogleTranslate();
+            // Trigger Google Translate
+            const triggerGoogleTranslate = () => {
+                const googleCombo = document.querySelector('.goog-te-combo');
+                if (googleCombo) {
+                    googleCombo.value = language.toLowerCase();
+                    googleCombo.dispatchEvent(new Event('change'));
+                } else {
+                    setTimeout(triggerGoogleTranslate, 500);
+                }
+            };
+
+            triggerGoogleTranslate();
+        }
     }, [language]);
 
     const t = (key) => {
