@@ -49,10 +49,6 @@ const Articles = () => {
         }))
     } : null;
 
-    const schemaList = [];
-    if (faqSchema) {
-        schemaList.push(faqSchema);
-    }
     const initialData = useInitialData();
     const initialArticles = initialData?.getArticles?.()
         || (typeof window !== 'undefined' && window.__INITIAL_ARTICLES__ ? window.__INITIAL_ARTICLES__ : []);
@@ -74,6 +70,59 @@ const Articles = () => {
                 setLoading(false);
             });
     }, []);
+
+    // 1. BreadcrumbList Schema
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://drulhasorthopedic.com"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://drulhasorthopedic.com/blog"
+            }
+        ]
+    };
+
+    // 2. Blog Collection / ItemList Schema
+    const blogSchema = {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Orthopedic Articles & Insights | Dr. Ulhas Sonar",
+        "description": "Read the latest articles on orthopedic conditions, treatments, and recovery from Dr. Ulhas Sonar.",
+        "url": "https://drulhasorthopedic.com/blog",
+        "publisher": {
+            "@type": "Physician",
+            "name": "Dr. Ulhas Sonar",
+            "url": "https://drulhasorthopedic.com"
+        },
+        ...(articles && articles.length > 0 ? {
+            "blogPost": articles.map(art => ({
+                "@type": "BlogPosting",
+                "headline": art.title,
+                "description": art.meta_description || art.excerpt || art.title,
+                "url": `https://drulhasorthopedic.com/blog/${art.slug || art.id}`,
+                ...(art.image ? { "image": art.image } : {}),
+                "datePublished": art.date || art.created_at,
+                "author": {
+                    "@type": "Person",
+                    "name": art.author || "Dr. Ulhas Sonar"
+                }
+            }))
+        } : {})
+    };
+
+    const schemaList = [breadcrumbSchema, blogSchema];
+    if (faqSchema) {
+        schemaList.push(faqSchema);
+    }
 
     return (
         <main className="pt-20 min-h-screen bg-gray-50">

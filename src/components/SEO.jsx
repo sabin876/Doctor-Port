@@ -129,13 +129,16 @@ const SEO = ({
       {schemaList && schemaList.length > 0 && schemaList.map((schema, idx) => {
         if (!schema) return null;
         if (typeof schema === 'string') {
-          const trimmed = schema.trim();
-          if (trimmed.startsWith('<script') && trimmed.includes('</script>')) {
-            return <div key={idx} dangerouslySetInnerHTML={{ __html: trimmed }} />;
+          let content = schema.trim();
+          if (content.startsWith('<script') && content.includes('</script>')) {
+            const match = content.match(/<script[^>]*>([\s\S]*?)<\/script>/i);
+            if (match) {
+              content = match[1].trim();
+            }
           }
           return (
             <script key={idx} type="application/ld+json">
-              {trimmed}
+              {content}
             </script>
           );
         }

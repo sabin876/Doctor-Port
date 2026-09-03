@@ -247,6 +247,8 @@ const ArticlesManager = () => {
           alert('Invalid JSON markup format in Schema settings.');
           return;
         }
+      } else {
+        payload.append('schema_markup', '');
       }
 
       if (imageFile) {

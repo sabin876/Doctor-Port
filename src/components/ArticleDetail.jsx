@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Clock, Calendar, ChevronLeft, Share2, Tag, Activity, User, ArrowRight, Link2, Check, HelpCircle, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { api } from '../lib/api';
+import { api, getAbsoluteImageUrl } from '../lib/api';
 import Breadcrumbs from './ui/Breadcrumbs';
 import SEO from './SEO';
 // import { articles } from '../constants/articlesData'; // No longer needed
@@ -252,15 +252,135 @@ const ArticleDetail = () => {
     }
 
     const currentUrl = typeof window !== 'undefined' ? window.location.href : `https://drulhasorthopedic.com/blog/${id}`;
+    const origin = 'https://drulhasorthopedic.com';
+    const articleSlug = article.slug || id;
+    const articleUrl = `${origin}/blog/${articleSlug}`;
+    const contactPhone = import.meta.env.VITE_CONTACT_PHONE || "+91 90492 00041";
+    const absoluteImg = getAbsoluteImageUrl(article.og_image || article.image || article.featured_image);
+
+    const stripHtml = (html) => {
+        if (!html) return '';
+        return String(html).replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+    };
+
+    // 1. Article / BlogPosting Schema
+    const articleType = (article.schema_type && article.schema_type !== 'None' && article.schema_type !== 'FAQPage' && article.schema_type !== 'BreadcrumbList') 
+        ? article.schema_type 
+        : 'Article';
+
+    const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": articleType,
+        "headline": article.h1_title || article.title,
+        "description": stripHtml(article.meta_description || article.excerpt || article.title),
+        "image": absoluteImg ? [absoluteImg] : [],
+        "datePublished": article.date || (article.created_at ? article.created_at.split('T')[0] : undefined),
+        "dateModified": article.updated_at ? article.updated_at.split('T')[0] : (article.date || undefined),
+        "author": {
+            "@type": "Person",
+            "name": article.author || "Dr. Ulhas Sonar",
+            "url": `${origin}/about`
+        },
+        "publisher": {
+            "@type": "Physician",
+            "name": "Dr. Ulhas Sonar",
+            "url": origin,
+            "telephone": contactPhone,
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Canadian Specialist Hospital",
+                "addressLocality": "Dubai",
+                "addressCountry": "AE"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": articleUrl
+        }
+    };
+
+    // 2. BreadcrumbList Schema
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": origin
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": `${origin}/blog`
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": article.title,
+                "item": articleUrl
+            }
+        ]
+    };
+
+    // 3. FAQ Schema
+    let parsedFaqs = [];
+    if (article?.faqs) {
+        if (typeof article.faqs === 'string') {
+            try { parsedFaqs = JSON.parse(article.faqs); } catch (e) { parsedFaqs = []; }
+        } else if (Array.isArray(article.faqs)) {
+            parsedFaqs = article.faqs;
+        }
+    }
+    if (!parsedFaqs || parsedFaqs.length === 0) {
+        parsedFaqs = [
+            {
+                question: "When should I consult an orthopedic specialist for knee pain?",
+                answer: "You should consult an orthopedic specialist if your knee pain persists for more than a few days, causes swelling, prevents weight-bearing, or is accompanied by stiffness, clicking, or instability."
+            },
+            {
+                question: "Can knee injuries heal without surgery?",
+                answer: "Yes, many knee conditions and minor ligament or cartilage injuries can be treated successfully with non-surgical methods such as targeted physical therapy, rest, medication, and lifestyle adjustments."
+            },
+            {
+                question: "What diagnostic tests are recommended for knee problems?",
+                answer: "A physical examination by an orthopedic surgeon is typically followed by imaging tests like X-rays (for bone structure and joint alignment) or an MRI scan (for soft tissues like ligaments, cartilage, and meniscus)."
+            }
+        ];
+    }
+    const faqSchema = parsedFaqs && parsedFaqs.length > 0 ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": parsedFaqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question || faq.q,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": stripHtml(faq.answer || faq.a)
+            }
+        }))
+    } : null;
+
+    // 4. Combine Schema List
+    const schemaList = [articleSchema, breadcrumbSchema];
+    if (faqSchema) {
+        schemaList.push(faqSchema);
+    }
+    if (article.schema_markup) {
+        schemaList.push(article.schema_markup);
+    }
 
     return (
         <div className="min-h-screen bg-gray-50">
             <SEO 
                 title={article.meta_title || `${article.title} | Dr. Ulhas Sonar`}
                 description={article.meta_description || article.excerpt || article.title}
-                url={`/blog/${id}`}
+                url={`/blog/${articleSlug}`}
                 image={article.og_image || article.image || article.featured_image}
                 type="article"
+                schemaList={schemaList}
                 twitterLabel1="Written by"
                 twitterData1={article.author || "Dr. Ulhas Sonar"}
                 twitterLabel2="Time to read"
