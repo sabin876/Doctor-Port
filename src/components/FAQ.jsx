@@ -1,12 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { api } from '../lib/api';
 import faqImage from '../assets/faq-pic.jpeg';
 
 const FAQ = ({ title, description, items }) => {
     const { t } = useLanguage();
     const [openIndex, setOpenIndex] = useState(0);
+    const [backendFaqs, setBackendFaqs] = useState([]);
+
+    useEffect(() => {
+        if (!items) {
+            let isMounted = true;
+            api.getHomeFaqs()
+                .then(data => {
+                    if (isMounted && Array.isArray(data) && data.length > 0) {
+                        setBackendFaqs(data);
+                    }
+                })
+                .catch(err => {
+                    console.error("Failed to fetch home FAQs from backend:", err);
+                });
+            return () => { isMounted = false; };
+        }
+    }, [items]);
 
     const defaultFaqs = [
         {
@@ -31,9 +49,9 @@ const FAQ = ({ title, description, items }) => {
         }
     ];
 
-    const faqs = items || defaultFaqs;
+    const faqs = items || (backendFaqs.length > 0 ? backendFaqs : defaultFaqs);
     const displayTitle = title || t('faq.title') || "Asked Frequently Questions";
-    const displayDescription = description || t('faq.description') || "Non cum cras felis lacus sociosqu, risus porttitor suspendisse.";
+    const displayDescription = description || t('faq.description') || "Common questions about our care, robotic surgery, and orthopedic treatments in Dubai.";
 
     return (
         <section id="faq" className="py-24 bg-gradient-to-b from-slate-50 via-blue-50/20 to-slate-50 font-sans relative overflow-hidden border-t border-slate-100">

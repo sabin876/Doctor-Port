@@ -239,6 +239,29 @@ export const api = {
             method: 'DELETE'
         });
         return response.ok;
+    },
+    getHomeFaqs: async () => {
+        const response = await fetch(`${API_BASE_URL}/home-faqs/`);
+        const data = await response.json();
+        return Array.isArray(data) ? data : [];
+    },
+    getHomePage: async () => {
+        const response = await fetch(`${API_BASE_URL}/home-page/`);
+        const data = await response.json();
+        return processImageUrls(data);
+    },
+    updateHomePage: async (data) => {
+        const isFormData = data instanceof FormData;
+        const response = await fetch(`${API_BASE_URL}/home-page/`, {
+            method: 'PATCH',
+            headers: isFormData ? {} : { 'Content-Type': 'application/json' },
+            body: isFormData ? data : JSON.stringify(data)
+        });
+        if (!response.ok) {
+            const errData = await response.json().catch(() => ({}));
+            throw new Error(errData.detail || 'Failed to update home page');
+        }
+        return response.json();
     }
 };
 
