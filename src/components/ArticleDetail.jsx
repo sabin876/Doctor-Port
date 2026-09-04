@@ -17,12 +17,15 @@ const ArticleDetail = () => {
     const initialData = useInitialData();
 
     const initialArticle = initialData?.getArticle?.(id)
+        || (typeof window !== 'undefined' && window.__INITIAL_DATA__?.routeData && (window.__INITIAL_DATA__.routeData.slug?.toLowerCase() === id?.toLowerCase() || String(window.__INITIAL_DATA__.routeData.id) === id)
+            ? window.__INITIAL_DATA__.routeData
+            : null)
         || (typeof window !== 'undefined' && window.__INITIAL_ARTICLES__
             ? window.__INITIAL_ARTICLES__.find(a => a.slug?.toLowerCase() === id?.toLowerCase() || String(a.id) === id)
             : null);
 
     const initialSettings = initialData?.settings
-        || (typeof window !== 'undefined' ? window.__INITIAL_SETTINGS__ : null);
+        || (typeof window !== 'undefined' ? (window.__INITIAL_DATA__?.settings || window.__INITIAL_SETTINGS__) : null);
 
     const [article, setArticle] = useState(initialArticle);
     const [siteSettings, setSiteSettings] = useState(initialSettings);
@@ -31,6 +34,13 @@ const ArticleDetail = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        // If SSR already provided full article content, reuse it during hydration
+        if (article && article.content && (article.slug?.toLowerCase() === id?.toLowerCase() || String(article.id) === id)) {
+            setLoading(false);
+            return;
+        }
+
         const fetchData = async () => {
             try {
                 const [articleData, settingsData] = await Promise.all([
@@ -139,6 +149,8 @@ const ArticleDetail = () => {
     const formatArticleContent = (content) => {
         if (!content) return '';
         let processed = applyInternalLinks(content);
+        // Ensure single H1 on the page: demote any internal subheadings from h1 to h2
+        processed = processed.replace(/<h1(\s|>)/gi, '<h2$1').replace(/<\/h1>/gi, '</h2>');
         processed = processed.replace(/<img/g, '<img loading="lazy" class="rounded-2xl shadow-md max-w-full h-auto"');
         
         try {

@@ -138,6 +138,9 @@ const ServiceDetail = () => {
     const initialData = useInitialData();
     
     const initialService = initialData?.getService?.(id)
+        || (typeof window !== 'undefined' && window.__INITIAL_DATA__?.routeData && (window.__INITIAL_DATA__.routeData.slug?.toLowerCase() === id?.toLowerCase() || String(window.__INITIAL_DATA__.routeData.id) === id)
+            ? window.__INITIAL_DATA__.routeData
+            : null)
         || (typeof window !== 'undefined' && window.__INITIAL_SERVICES__
             ? window.__INITIAL_SERVICES__.find(s => s.slug?.toLowerCase() === id?.toLowerCase() || String(s.id) === id)
             : null);
@@ -150,6 +153,13 @@ const ServiceDetail = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        // If SSR already provided this exact service, reuse it without redundant client re-fetch
+        if (rawService && (rawService.slug?.toLowerCase() === id?.toLowerCase() || String(rawService.id) === id)) {
+            setLoading(false);
+            return;
+        }
+
         api.getServices()
             .then(data => {
                 const found = data.find(s => s.slug?.toLowerCase() === id?.toLowerCase() || String(s.id) === id);

@@ -38,7 +38,7 @@ const stripHtml = (html) => {
 
 import { useInitialData } from '../context/InitialDataContext';
 
-const Services = ({ isHomePage = false }) => {
+const Services = ({ isPage = false, isHomePage = false }) => {
     const { t, language } = useLanguage();
     const location = useLocation();
     const isHome = isHomePage || location.pathname === '/';
@@ -52,6 +52,10 @@ const Services = ({ isHomePage = false }) => {
     const [showAll, setShowAll] = useState(false);
 
     useEffect(() => {
+        if (initialServices && initialServices.length > 0) {
+            setLoading(false);
+            return;
+        }
         api.getServices()
             .then(data => {
                 if (Array.isArray(data) && data.length > 0) {
@@ -78,12 +82,21 @@ const Services = ({ isHomePage = false }) => {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-16">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        className="text-3xl md:text-4xl font-montserrat font-bold text-gray-900 mb-6 tracking-tight">
-                        {t('services.title')} <span className="text-primary-600">{t('services.titleHighlight')}</span> {t('services.titleEnd')}
-                    </motion.h2>
+                    {isPage ? (
+                        <motion.h1
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            className="text-3xl md:text-4xl font-montserrat font-bold text-gray-900 mb-6 tracking-tight">
+                            {t('services.title')} <span className="text-primary-600">{t('services.titleHighlight')}</span> {t('services.titleEnd')}
+                        </motion.h1>
+                    ) : (
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            className="text-3xl md:text-4xl font-montserrat font-bold text-gray-900 mb-6 tracking-tight">
+                            {t('services.title')} <span className="text-primary-600">{t('services.titleHighlight')}</span> {t('services.titleEnd')}
+                        </motion.h2>
+                    )}
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}

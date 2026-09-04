@@ -171,7 +171,13 @@ async function prerender() {
       let routeData = null;
       if (route.startsWith('/blog/')) {
         const slug = route.split('/')[2];
-        routeData = articles.find(a => a.slug?.toLowerCase() === slug?.toLowerCase()) || null;
+        const rawArt = articles.find(a => a.slug?.toLowerCase() === slug?.toLowerCase()) || null;
+        if (rawArt) {
+          routeData = {
+            ...rawArt,
+            content: rawArt.content ? rawArt.content.replace(/<h1(\s|>)/gi, '<h2$1').replace(/<\/h1>/gi, '</h2>') : ''
+          };
+        }
       } else if (route.startsWith('/services/')) {
         const parts = route.split('/').filter(Boolean);
         if (parts.length === 2) {
@@ -190,84 +196,109 @@ async function prerender() {
         }
       }
 
-      const initialData = {
-        services,
-        articles,
-        settings,
-        translations,
-        gallery,
-        heroVideo,
-        secondOpinions,
-        routeData
-      };
+    // Transform articles and services into lightweight lists for general navigation
+    const lightweightArticles = articles.map(a => ({
+      id: a.id,
+      title: a.title,
+      slug: a.slug,
+      excerpt: a.excerpt,
+      category: a.category,
+      image: a.image,
+      og_image: a.og_image,
+      date: a.date,
+      created_at: a.created_at,
+      updated_at: a.updated_at,
+      author: a.author,
+      readTime: a.readTime,
+      featured: a.featured,
+      meta_title: a.meta_title,
+      meta_description: a.meta_description,
+      h1_title: a.h1_title
+    }));
 
-      // Call React SSR render
-      const renderResult = render(route, initialData);
-      const appHtml = renderResult?.html || '';
-      const helmet = renderResult?.helmet || null;
+    const initialData = {
+      services,
+      articles: lightweightArticles,
+      settings,
+      translations,
+      gallery,
+      heroVideo,
+      secondOpinions,
+      routeData
+    };
 
-      // Metadata calculations
-      const cleanPath = route === '/' ? '' : route.replace(/\/+$/, '');
-      const canonicalUrl = `https://drulhasorthopedic.com${cleanPath || '/'}`;
-      const pageUrl = `https://drulhasorthopedic.com${cleanPath}`;
+    // Call React SSR render
+    const renderResult = render(route, initialData);
+    const appHtml = renderResult?.html || '';
+    const helmet = renderResult?.helmet || null;
 
-      let routeTitle = 'Dr. Ulhas Sonar | Orthopaedic Surgeon Dubai';
-      let routeDescription = 'Expert orthopedic care specializing in joint replacement, sports injuries, and comprehensive rehabilitation with Dr. Ulhas Sonar in Dubai.';
-      let routeOgImage = 'https://drulhasorthopedic.com/assets/images/doctor-hero.webp';
-      let routeOgType = 'website';
-      let ogTitle = routeTitle;
-      let ogDesc = routeDescription;
+    // Clean any tags that React 19 renderToString may have left inside appHtml
+    const cleanAppHtml = appHtml
+      .replace(/<link[^>]*rel=["']canonical["'][^>]*\/?>/gi, '')
+      .replace(/<meta\s+name=["']twitter:(?:label|data)\d+["'][^>]*\/?>/gi, '');
 
-      if (route.startsWith('/blog/') && routeData) {
-        routeTitle = routeData.meta_title || (routeData.title ? `${routeData.title} | Dr. Ulhas Sonar` : 'Orthopedic Blog Article | Dr. Ulhas Sonar');
-        routeDescription = routeData.meta_description || routeData.excerpt || routeData.title || routeDescription;
-        ogTitle = routeData.og_title || routeTitle;
-        ogDesc = routeData.og_description || routeDescription;
-        routeOgImage = getAbsoluteImageUrl(routeData.og_image || routeData.image || routeData.featured_image);
-        routeOgType = 'article';
-      } else if (route === '/blog') {
-        routeTitle = 'Orthopedic Articles & Insights | Dr. Ulhas Sonar';
-        routeDescription = 'Read the latest articles on orthopedic conditions, treatments, and recovery from Dr. Ulhas Sonar.';
-        ogTitle = routeTitle;
-        ogDesc = routeDescription;
-        routeOgImage = 'https://drulhasorthopedic.com/assets/images/doctor-surgery.webp';
-        routeOgType = 'website';
-      } else if (route.startsWith('/services/') && routeData) {
-        const srv = routeData.subService || routeData;
-        routeTitle = srv.meta_title || (srv.title ? `${srv.title} | Dr. Ulhas Sonar` : 'Orthopedic Service | Dr. Ulhas Sonar');
-        routeDescription = srv.meta_description || srv.description || routeDescription;
-        ogTitle = srv.og_title || routeTitle;
-        ogDesc = srv.og_description || routeDescription;
-        routeOgImage = getAbsoluteImageUrl(srv.og_image || srv.image);
-        routeOgType = 'website';
-      } else if (route === '/services') {
-        routeTitle = 'Orthopedic Services & Procedures | Dr. Ulhas Sonar';
-        routeDescription = 'Comprehensive orthopedic services including robotic knee replacement, hip surgery, and sports medicine by Dr. Ulhas Sonar.';
-        ogTitle = routeTitle;
-        ogDesc = routeDescription;
-      } else if (route === '/about') {
-        routeTitle = 'About Dr. Ulhas Sonar | Orthopedic Surgeon Dubai';
-        routeDescription = 'Learn more about Dr. Ulhas Sonar, a leading orthopedic surgeon specializing in robotic joint replacement and sports injuries.';
-        ogTitle = routeTitle;
-        ogDesc = routeDescription;
-      } else if (route === '/contact') {
-        routeTitle = 'Contact Dr. Ulhas Sonar | Book Appointment in Dubai';
-        routeDescription = 'Book an appointment with Dr. Ulhas Sonar at Canadian Specialist Hospital in Dubai.';
-        ogTitle = routeTitle;
-        ogDesc = routeDescription;
-      }
+    // Metadata calculations
+    const cleanPath = route === '/' ? '' : route.replace(/\/+$/, '');
+    const canonicalUrl = `https://drulhasorthopedic.com${cleanPath || '/'}`;
+    const pageUrl = `https://drulhasorthopedic.com${cleanPath}`;
 
-      // Clean template
-      let html = baseTemplate
-        .replace(/<title[^>]*>.*?<\/title>/gi, '')
-        .replace(/<link[^>]*rel=["']canonical["'][^>]*>/gi, '')
-        .replace(/<meta[^>]*name=["']description["'][^>]*>/gi, '')
-        .replace(/<meta[^>]*name=["']keywords["'][^>]*>/gi, '')
-        .replace(/<meta[^>]*property=["']og:[^"']*["'][^>]*>/gi, '')
-        .replace(/<meta[^>]*name=["']twitter:[^"']*["'][^>]*>/gi, '');
+    let routeTitle = 'Dr. Ulhas Sonar | Orthopaedic Surgeon Dubai';
+    let routeDescription = 'Expert orthopedic care specializing in joint replacement, sports injuries, and comprehensive rehabilitation with Dr. Ulhas Sonar in Dubai.';
+    let routeOgImage = 'https://drulhasorthopedic.com/assets/images/doctor-hero.webp';
+    let routeOgType = 'website';
+    let ogTitle = routeTitle;
+    let ogDesc = routeDescription;
 
-      // Build primary meta tags
-      const primaryMetaTags = `
+    if (route.startsWith('/blog/') && routeData) {
+      routeTitle = routeData.meta_title || (routeData.title ? `${routeData.title} | Dr. Ulhas Sonar` : 'Orthopedic Blog Article | Dr. Ulhas Sonar');
+      routeDescription = routeData.meta_description || routeData.excerpt || routeData.title || routeDescription;
+      ogTitle = routeData.og_title || routeTitle;
+      ogDesc = routeData.og_description || routeDescription;
+      routeOgImage = getAbsoluteImageUrl(routeData.og_image || routeData.image || routeData.featured_image);
+      routeOgType = 'article';
+    } else if (route === '/blog') {
+      routeTitle = 'Orthopedic Articles & Insights | Dr. Ulhas Sonar';
+      routeDescription = 'Read the latest articles on orthopedic conditions, treatments, and recovery from Dr. Ulhas Sonar.';
+      ogTitle = routeTitle;
+      ogDesc = routeDescription;
+      routeOgImage = 'https://drulhasorthopedic.com/assets/images/doctor-surgery.webp';
+      routeOgType = 'website';
+    } else if (route.startsWith('/services/') && routeData) {
+      const srv = routeData.subService || routeData;
+      routeTitle = srv.meta_title || (srv.title ? `${srv.title} | Dr. Ulhas Sonar` : 'Orthopedic Service | Dr. Ulhas Sonar');
+      routeDescription = srv.meta_description || srv.description || routeDescription;
+      ogTitle = srv.og_title || routeTitle;
+      ogDesc = srv.og_description || routeDescription;
+      routeOgImage = getAbsoluteImageUrl(srv.og_image || srv.image);
+      routeOgType = 'website';
+    } else if (route === '/services') {
+      routeTitle = 'Orthopedic Services & Procedures | Dr. Ulhas Sonar';
+      routeDescription = 'Comprehensive orthopedic services including robotic knee replacement, hip surgery, and sports medicine by Dr. Ulhas Sonar.';
+      ogTitle = routeTitle;
+      ogDesc = routeDescription;
+    } else if (route === '/about') {
+      routeTitle = 'About Dr. Ulhas Sonar | Orthopedic Surgeon Dubai';
+      routeDescription = 'Learn more about Dr. Ulhas Sonar, a leading orthopedic surgeon specializing in robotic joint replacement and sports injuries.';
+      ogTitle = routeTitle;
+      ogDesc = routeDescription;
+    } else if (route === '/contact') {
+      routeTitle = 'Contact Dr. Ulhas Sonar | Book Appointment in Dubai';
+      routeDescription = 'Book an appointment with Dr. Ulhas Sonar at Canadian Specialist Hospital in Dubai.';
+      ogTitle = routeTitle;
+      ogDesc = routeDescription;
+    }
+
+    // Clean template
+    let html = baseTemplate
+      .replace(/<title[^>]*>.*?<\/title>/gi, '')
+      .replace(/<link[^>]*rel=["']canonical["'][^>]*>/gi, '')
+      .replace(/<meta[^>]*name=["']description["'][^>]*>/gi, '')
+      .replace(/<meta[^>]*name=["']keywords["'][^>]*>/gi, '')
+      .replace(/<meta[^>]*property=["']og:[^"']*["'][^>]*>/gi, '')
+      .replace(/<meta[^>]*name=["']twitter:[^"']*["'][^>]*>/gi, '');
+
+    // Build primary meta tags
+    const primaryMetaTags = `
     <!-- Primary Page SEO Metadata -->
     <title>${escapeHtml(routeTitle)}</title>
     <meta name="description" content="${escapeHtml(routeDescription)}" />
@@ -292,29 +323,29 @@ async function prerender() {
     <meta name="twitter:image" content="${routeOgImage}" />
 `;
 
-      const inlineDataScript = `<script id="initial-data">
-        window.__INITIAL_DATA__ = ${JSON.stringify(initialData)};
-        window.__INITIAL_SERVICES__ = ${JSON.stringify(services)};
-        window.__INITIAL_ARTICLES__ = ${JSON.stringify(articles)};
-        window.__INITIAL_SETTINGS__ = ${JSON.stringify(settings)};
-        window.__INITIAL_TRANSLATIONS__ = ${JSON.stringify(translations)};
-        window.__INITIAL_GALLERY__ = ${JSON.stringify(gallery)};
-        window.__INITIAL_HERO_VIDEO__ = ${JSON.stringify(heroVideo)};
-        window.__INITIAL_SECOND_OPINIONS__ = ${JSON.stringify(secondOpinions)};
-      </script>`;
+    const inlineDataScript = `<script id="initial-data">
+      window.__INITIAL_DATA__ = ${JSON.stringify(initialData)};
+      window.__INITIAL_SERVICES__ = window.__INITIAL_DATA__.services || [];
+      window.__INITIAL_ARTICLES__ = window.__INITIAL_DATA__.articles || [];
+      window.__INITIAL_SETTINGS__ = window.__INITIAL_DATA__.settings || {};
+      window.__INITIAL_TRANSLATIONS__ = window.__INITIAL_DATA__.translations || {};
+      window.__INITIAL_GALLERY__ = window.__INITIAL_DATA__.gallery || [];
+      window.__INITIAL_HERO_VIDEO__ = window.__INITIAL_DATA__.heroVideo || {};
+      window.__INITIAL_SECOND_OPINIONS__ = window.__INITIAL_DATA__.secondOpinions || [];
+    </script>`;
 
-      let helmetHead = '';
-      if (helmet && helmet.script) {
-        helmetHead = helmet.script.toString() + '\n';
-      }
+    let helmetHead = '';
+    if (helmet && helmet.script) {
+      helmetHead = helmet.script.toString() + '\n';
+    }
 
-      const headInjections = `${inlineDataScript}\n${primaryMetaTags}\n${helmetHead}`;
-      if (html.includes('</head>')) {
-        html = html.replace('</head>', `${headInjections}\n</head>`);
-      } else {
-        html = headInjections + html;
-      }
-      html = html.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`);
+    const headInjections = `${inlineDataScript}\n${primaryMetaTags}\n${helmetHead}`;
+    if (html.includes('</head>')) {
+      html = html.replace('</head>', `${headInjections}\n</head>`);
+    } else {
+      html = headInjections + html;
+    }
+    html = html.replace('<div id="root"></div>', `<div id="root">${cleanAppHtml}</div>`);
 
       // Write out target HTML file
       const cleanRoute = route.replace(/^\/+|\/+$/g, '');

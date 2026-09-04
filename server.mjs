@@ -76,7 +76,27 @@ async function createServer() {
       ]);
 
       if (Array.isArray(sData)) data.services = sData;
-      if (Array.isArray(aData)) data.articles = aData;
+      if (Array.isArray(aData)) {
+        // Map to lightweight articles to avoid dumping megabytes of raw HTML into initialData
+        data.articles = aData.map(a => ({
+          id: a.id,
+          title: a.title,
+          slug: a.slug,
+          excerpt: a.excerpt,
+          category: a.category,
+          image: a.image,
+          og_image: a.og_image,
+          date: a.date,
+          created_at: a.created_at,
+          updated_at: a.updated_at,
+          author: a.author,
+          readTime: a.readTime,
+          featured: a.featured,
+          meta_title: a.meta_title,
+          meta_description: a.meta_description,
+          h1_title: a.h1_title
+        }));
+      }
       if (setData && typeof setData === 'object') data.settings = setData;
       if (tEnData) data.translations.EN = tEnData;
       if (tHiData) data.translations.HI = tHiData;
@@ -109,7 +129,7 @@ async function createServer() {
           const parts = remaining.split('/');
           if (parts.length === 1) {
             const slug = parts[0];
-            const matchService = data.services.find(s => String(s.id) === slug || s.slug?.toLowerCase() === slug.toLowerCase());
+            const matchService = (Array.isArray(sData) ? sData : []).find(s => String(s.id) === slug || s.slug?.toLowerCase() === slug.toLowerCase());
             if (matchService) {
               data.routeData = matchService;
             } else {
@@ -120,7 +140,7 @@ async function createServer() {
             }
           } else if (parts.length >= 2) {
             const [parentSlug, subSlug] = parts;
-            let parent = data.services.find(s => s.slug?.toLowerCase() === parentSlug.toLowerCase() || String(s.id) === parentSlug);
+            let parent = (Array.isArray(sData) ? sData : []).find(s => s.slug?.toLowerCase() === parentSlug.toLowerCase() || String(s.id) === parentSlug);
             if (!parent) {
               parent = await fetchFromApi(`/services/${parentSlug}/`);
             }
@@ -133,13 +153,20 @@ async function createServer() {
       } else if (pathname.startsWith('/blog/')) {
         const slug = pathname.replace(/^\/blog\//, '').replace(/\/+$/, '');
         if (slug) {
-          const matchArticle = data.articles.find(a => String(a.id) === slug || a.slug?.toLowerCase() === slug.toLowerCase());
+          // Find full article from original fetched aData (which contains full content)
+          const matchArticle = (Array.isArray(aData) ? aData : []).find(a => String(a.id) === slug || a.slug?.toLowerCase() === slug.toLowerCase());
           if (matchArticle) {
-            data.routeData = matchArticle;
+            data.routeData = {
+              ...matchArticle,
+              content: matchArticle.content ? matchArticle.content.replace(/<h1(\s|>)/gi, '<h2$1').replace(/<\/h1>/gi, '</h2>') : ''
+            };
           } else {
             const detail = await fetchFromApi(`/articles/${slug}/`);
             if (detail) {
-              data.routeData = detail;
+              data.routeData = {
+                ...detail,
+                content: detail.content ? detail.content.replace(/<h1(\s|>)/gi, '<h2$1').replace(/<\/h1>/gi, '</h2>') : ''
+              };
             }
           }
         }
@@ -187,6 +214,11 @@ async function createServer() {
       const renderResult = render(url, initialData);
       const appHtml = renderResult?.html || '';
       const helmet = renderResult?.helmet || null;
+
+      // Clean any tags that React 19 renderToString may have left inside appHtml
+      const cleanAppHtml = appHtml
+        .replace(/<link[^>]*rel=["']canonical["'][^>]*\/?>/gi, '')
+        .replace(/<meta\s+name=["']twitter:(?:label|data)\d+["'][^>]*\/?>/gi, '');
 
       // Helper to generate absolute image URLs for social previews
       function getAbsoluteImageUrl(imgUrl) {
@@ -309,13 +341,13 @@ async function createServer() {
       // 7. Inject Helmet Scripts (Schemas, etc.) and Initial Data
       const inlineDataScript = `<script id="initial-data">
         window.__INITIAL_DATA__ = ${JSON.stringify(initialData)};
-        window.__INITIAL_SERVICES__ = ${JSON.stringify(initialData.services || [])};
-        window.__INITIAL_ARTICLES__ = ${JSON.stringify(initialData.articles || [])};
-        window.__INITIAL_SETTINGS__ = ${JSON.stringify(initialData.settings || {})};
-        window.__INITIAL_TRANSLATIONS__ = ${JSON.stringify(initialData.translations || {})};
-        window.__INITIAL_GALLERY__ = ${JSON.stringify(initialData.gallery || [])};
-        window.__INITIAL_HERO_VIDEO__ = ${JSON.stringify(initialData.heroVideo || {})};
-        window.__INITIAL_SECOND_OPINIONS__ = ${JSON.stringify(initialData.secondOpinions || [])};
+        window.__INITIAL_SERVICES__ = window.__INITIAL_DATA__.services || [];
+        window.__INITIAL_ARTICLES__ = window.__INITIAL_DATA__.articles || [];
+        window.__INITIAL_SETTINGS__ = window.__INITIAL_DATA__.settings || {};
+        window.__INITIAL_TRANSLATIONS__ = window.__INITIAL_DATA__.translations || {};
+        window.__INITIAL_GALLERY__ = window.__INITIAL_DATA__.gallery || [];
+        window.__INITIAL_HERO_VIDEO__ = window.__INITIAL_DATA__.heroVideo || {};
+        window.__INITIAL_SECOND_OPINIONS__ = window.__INITIAL_DATA__.secondOpinions || [];
       </script>`;
 
       let helmetHead = '';
@@ -329,7 +361,7 @@ async function createServer() {
       } else {
         html = headInjections + html;
       }
-      html = html.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`);
+      html = html.replace('<div id="root"></div>', `<div id="root">${cleanAppHtml}</div>`);
 
       // 8. Send exact pathname-aware HTML back to browser
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html);

@@ -34,6 +34,13 @@ const SubServiceDetail = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        // If SSR already provided parent and sub-service, reuse them
+        if (parentService && subService && subService.slug?.toLowerCase() === sub_slug?.toLowerCase()) {
+            setLoading(false);
+            return;
+        }
+
         api.getServices()
             .then(data => {
                 const foundParent = data.find(s => s.slug?.toLowerCase() === parent_slug?.toLowerCase());

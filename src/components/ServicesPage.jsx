@@ -117,7 +117,7 @@ const ServicesPage = () => {
                     { name: t('nav.services') }
                 ]} />
             </div>
-            <Services />
+            <Services isPage={true} />
             <CTABanner />
             <FAQ 
                 title={t('faq_services.title')} 
