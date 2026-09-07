@@ -43,12 +43,15 @@ export const InitialDataProvider = ({ initialData, children }) => {
         const pTarget = String(parentSlug).toLowerCase();
         const sTarget = String(subSlug).toLowerCase();
 
-        if (routeData?.parentService && routeData?.subService) {
-            if (routeData.parentService.slug?.toLowerCase() === pTarget && routeData.subService.slug?.toLowerCase() === sTarget) {
-                return routeData;
+        // 1. Check if routeData contains matched subService
+        if (routeData?.subService) {
+            const parent = routeData.parentService || (routeData.slug?.toLowerCase() === pTarget ? routeData : null);
+            if (parent && parent.slug?.toLowerCase() === pTarget && routeData.subService.slug?.toLowerCase() === sTarget) {
+                return { parentService: parent, subService: routeData.subService };
             }
         }
 
+        // 2. Check in loaded services list
         const parent = getService(parentSlug);
         if (parent && Array.isArray(parent.sub_services)) {
             const sub = parent.sub_services.find(s => s.slug?.toLowerCase() === sTarget || String(s.id) === sTarget);

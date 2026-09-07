@@ -30,20 +30,36 @@ async function createServer() {
     app.use(express.static(path.resolve(__dirname, 'dist/client'), { index: false }));
   }
 
+  const CACHE_DIR = path.resolve(__dirname, 'scripts/.cache');
+
   async function fetchFromApi(endpoint) {
-    const primaryUrl = (process.env.VITE_API_BASE_URL || 'http://localhost:8000/api').replace(/\/+$/, '');
-    const fallbackUrl = 'https://api.drulhasorthopedic.com/api';
-    try {
-      const res = await fetch(`${primaryUrl}${endpoint}`, { signal: AbortSignal.timeout(3000) });
-      if (res && res.ok) return await res.json();
-    } catch (e) {
-      // ignore
+    const safeName = endpoint.replace(/[^a-zA-Z0-9_]/g, '_') + '.json';
+    const cacheFile = path.join(CACHE_DIR, safeName);
+
+    const primaryUrl = (process.env.VITE_API_BASE_URL || 'https://api.drulhasorthopedic.com/api').replace(/\/+$/, '');
+    const fallbackUrls = [
+      `${primaryUrl}${endpoint}`,
+      `http://127.0.0.1:8000/api${endpoint}`,
+      `https://api.drulhasorthopedic.com/api${endpoint}`
+    ];
+    for (const u of fallbackUrls) {
+      try {
+        const res = await fetch(u, { signal: AbortSignal.timeout(15000) });
+        if (res && res.ok) {
+          const data = await res.json();
+          try {
+            if (!fs.existsSync(CACHE_DIR)) fs.mkdirSync(CACHE_DIR, { recursive: true });
+            fs.writeFileSync(cacheFile, JSON.stringify(data), 'utf8');
+          } catch (e) {}
+          return data;
+        }
+      } catch (e) {}
     }
-    try {
-      const fbRes = await fetch(`${fallbackUrl}${endpoint}`, { signal: AbortSignal.timeout(5000) });
-      if (fbRes && fbRes.ok) return await fbRes.json();
-    } catch (e) {
-      // ignore
+
+    if (fs.existsSync(cacheFile)) {
+      try {
+        return JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
+      } catch (e) {}
     }
     return null;
   }
@@ -215,10 +231,26 @@ async function createServer() {
       const appHtml = renderResult?.html || '';
       const helmet = renderResult?.helmet || null;
 
-      // Clean any tags that React 19 renderToString may have left inside appHtml
+      // Helper to strip HTML tags from rich text descriptions
+      function stripHtml(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/<[^>]*>/g, ' ')
+          .replace(/&nbsp;/g, ' ')
+          .replace(/&amp;/g, '&')
+          .replace(/&quot;/g, '"')
+          .replace(/&#039;/g, "'")
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/\s+/g, ' ')
+          .trim();
+      }
+
+      // Clean all head tags (title, meta, link) that React 19 renderToString outputs inside appHtml
       const cleanAppHtml = appHtml
-        .replace(/<link[^>]*rel=["']canonical["'][^>]*\/?>/gi, '')
-        .replace(/<meta\s+name=["']twitter:(?:label|data)\d+["'][^>]*\/?>/gi, '');
+        .replace(/<title[^>]*>[\s\S]*?<\/title>/gi, '')
+        .replace(/<meta[^>]*\/?>/gi, '')
+        .replace(/<link[^>]*\/?>/gi, '');
 
       // Helper to generate absolute image URLs for social previews
       function getAbsoluteImageUrl(imgUrl) {
@@ -253,7 +285,7 @@ async function createServer() {
 
       // 4. Build Authoritative Dynamic SEO Metadata for THIS route
       const cleanPath = req.path === '/' ? '' : req.path.replace(/\/+$/, '');
-      const canonicalUrl = `https://drulhasorthopedic.com${cleanPath || '/'}`;
+      let canonicalUrl = `https://drulhasorthopedic.com${cleanPath || '/'}`;
       const pageUrl = `https://drulhasorthopedic.com${cleanPath}`;
 
       let routeTitle = 'Dr. Ulhas Sonar | Orthopaedic Surgeon Dubai';
@@ -266,11 +298,14 @@ async function createServer() {
       if (req.path.startsWith('/blog/') && initialData.routeData) {
         const art = initialData.routeData;
         routeTitle = art.meta_title || (art.title ? `${art.title} | Dr. Ulhas Sonar` : 'Orthopedic Blog Article | Dr. Ulhas Sonar');
-        routeDescription = art.meta_description || art.excerpt || art.title || routeDescription;
+        const rawDesc = art.meta_description || art.excerpt || art.title || routeDescription;
+        routeDescription = stripHtml(rawDesc) || routeDescription;
         ogTitle = art.og_title || routeTitle;
-        ogDesc = art.og_description || routeDescription;
+        const rawOgDesc = art.og_description || art.meta_description || art.excerpt || routeDescription;
+        ogDesc = stripHtml(rawOgDesc) || routeDescription;
         routeOgImage = getAbsoluteImageUrl(art.og_image || art.image || art.featured_image);
         routeOgType = 'article';
+        if (art.canonical_url) canonicalUrl = art.canonical_url;
       } else if (req.path === '/blog') {
         routeTitle = 'Orthopedic Articles & Insights | Dr. Ulhas Sonar';
         routeDescription = 'Read the latest articles on orthopedic conditions, treatments, and recovery from Dr. Ulhas Sonar.';
@@ -279,12 +314,28 @@ async function createServer() {
         routeOgImage = 'https://drulhasorthopedic.com/assets/images/doctor-surgery.webp';
         routeOgType = 'website';
       } else if (req.path.startsWith('/services/') && initialData.routeData) {
-        const srv = initialData.routeData?.subService || initialData.routeData;
-        routeTitle = srv.meta_title || (srv.title ? `${srv.title} | Dr. Ulhas Sonar` : 'Orthopedic Service | Dr. Ulhas Sonar');
-        routeDescription = srv.meta_description || srv.description || routeDescription;
-        ogTitle = srv.og_title || routeTitle;
-        ogDesc = srv.og_description || routeDescription;
-        routeOgImage = getAbsoluteImageUrl(srv.og_image || srv.image);
+        if (initialData.routeData?.subService) {
+          const sub = initialData.routeData.subService;
+          const parent = initialData.routeData.parentService;
+          routeTitle = sub.meta_title || `${sub.title} | ${parent?.title ? parent.title + ' | ' : ''}Dr. Ulhas Sonar`;
+          const rawDesc = sub.meta_description || sub.description || `Learn more about ${sub.title}, a specialized treatment under ${parent?.title || 'Orthopedics'}.`;
+          routeDescription = stripHtml(rawDesc) || routeDescription;
+          ogTitle = sub.og_title || routeTitle;
+          const rawOgDesc = sub.og_description || rawDesc;
+          ogDesc = stripHtml(rawOgDesc) || routeDescription;
+          routeOgImage = getAbsoluteImageUrl(sub.og_image || sub.image || parent?.image);
+          if (sub.canonical_url) canonicalUrl = sub.canonical_url;
+        } else {
+          const srv = initialData.routeData;
+          routeTitle = srv.meta_title || (srv.title ? `${srv.title} | Dr. Ulhas Sonar` : 'Orthopedic Service | Dr. Ulhas Sonar');
+          const rawDesc = srv.meta_description || srv.description || routeDescription;
+          routeDescription = stripHtml(rawDesc) || routeDescription;
+          ogTitle = srv.og_title || routeTitle;
+          const rawOgDesc = srv.og_description || rawDesc;
+          ogDesc = stripHtml(rawOgDesc) || routeDescription;
+          routeOgImage = getAbsoluteImageUrl(srv.og_image || srv.image);
+          if (srv.canonical_url) canonicalUrl = srv.canonical_url;
+        }
         routeOgType = 'website';
       } else if (req.path === '/services') {
         routeTitle = 'Orthopedic Services & Procedures | Dr. Ulhas Sonar';
@@ -305,12 +356,13 @@ async function createServer() {
 
       // 5. Clean template from any static SEO tags to prevent duplicate or conflicting tags
       let html = template
-        .replace(/<title[^>]*>.*?<\/title>/gi, '')
-        .replace(/<link[^>]*rel=["']canonical["'][^>]*>/gi, '')
-        .replace(/<meta[^>]*name=["']description["'][^>]*>/gi, '')
-        .replace(/<meta[^>]*name=["']keywords["'][^>]*>/gi, '')
-        .replace(/<meta[^>]*property=["']og:[^"']*["'][^>]*>/gi, '')
-        .replace(/<meta[^>]*name=["']twitter:[^"']*["'][^>]*>/gi, '');
+        .replace(/<title[^>]*>[\s\S]*?<\/title>/gi, '')
+        .replace(/<link[^>]*rel=["']canonical["'][^>]*\/?>/gi, '')
+        .replace(/<meta[^>]*name=["']description["'][^>]*\/?>/gi, '')
+        .replace(/<meta[^>]*name=["']keywords["'][^>]*\/?>/gi, '')
+        .replace(/<meta[^>]*property=["']og:[^"']*["'][^>]*\/?>/gi, '')
+        .replace(/<meta[^>]*name=["']twitter:[^"']*["'][^>]*\/?>/gi, '')
+        .replace(/<meta[^>]*name=["']robots["'][^>]*\/?>/gi, '');
 
       // 6. Primary Route Meta & Social OG Injection
       const primaryMetaTags = `

@@ -1,35 +1,120 @@
 import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { 
   Plus, 
-  Edit3, 
   Trash2, 
-  ChevronRight, 
-  Check, 
   X, 
   Search, 
   FileText, 
   ArrowLeft,
-  BookOpen,
+  Clock,
   Calendar,
-  User,
+  Zap,
   Activity,
   Globe,
   HelpCircle,
-  Eye,
-  Settings,
-  Filter,
-  Sparkles,
-  AlertTriangle
+  ExternalLink,
+  CheckCircle2
 } from 'lucide-react';
 import { api } from '../../lib/api';
+
+const toDateTimeLocal = (dateStr) => {
+  if (!dateStr) {
+    const now = new Date();
+    const tzOffset = now.getTimezoneOffset() * 60000;
+    return new Date(Date.now() - tzOffset).toISOString().slice(0, 16);
+  }
+  try {
+    const d = new Date(dateStr);
+    if (isNaN(d.getTime())) return '';
+    const tzOffset = d.getTimezoneOffset() * 60000;
+    return new Date(d.getTime() - tzOffset).toISOString().slice(0, 16);
+  } catch {
+    return '';
+  }
+};
+
+const getDatePart = (dtString) => {
+  if (!dtString) return new Date().toISOString().slice(0, 10);
+  return dtString.slice(0, 10);
+};
+
+const getTimeParts = (dtString) => {
+  if (!dtString) return { hour: '09', minute: '00', ampm: 'AM' };
+  try {
+    const d = new Date(dtString);
+    if (isNaN(d.getTime())) return { hour: '09', minute: '00', ampm: 'AM' };
+    let hours = d.getHours();
+    const minutes = String(d.getMinutes()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    return {
+      hour: String(hours).padStart(2, '0'),
+      minute: minutes,
+      ampm
+    };
+  } catch {
+    return { hour: '09', minute: '00', ampm: 'AM' };
+  }
+};
+
+const buildDateTimeLocal = (datePart, hour12, minute, ampm) => {
+  let h = parseInt(hour12, 10) || 12;
+  if (ampm === 'PM' && h < 12) h += 12;
+  if (ampm === 'AM' && h === 12) h = 0;
+  const hStr = String(h).padStart(2, '0');
+  const mStr = String(minute).padStart(2, '0');
+  const dStr = datePart || new Date().toISOString().slice(0, 10);
+  return `${dStr}T${hStr}:${mStr}`;
+};
+
+const formatHumanCountdown = (targetDateStr) => {
+  if (!targetDateStr) return '';
+  try {
+    const target = new Date(targetDateStr);
+    const now = new Date();
+    const diffMs = target - now;
+    if (diffMs <= 0) return 'Immediate / Live Now';
+    const diffMins = Math.floor(diffMs / 60000);
+    const days = Math.floor(diffMins / (60 * 24));
+    const hours = Math.floor((diffMins % (60 * 24)) / 60);
+    const mins = diffMins % 60;
+    
+    const parts = [];
+    if (days > 0) parts.push(`${days} day${days > 1 ? 's' : ''}`);
+    if (hours > 0) parts.push(`${hours} hr${hours > 1 ? 's' : ''}`);
+    if (mins > 0 || parts.length === 0) parts.push(`${mins} min${mins !== 1 ? 's' : ''}`);
+    return `In ${parts.join(', ')}`;
+  } catch {
+    return '';
+  }
+};
+
+const formatFriendlyDateTime = (targetDateStr) => {
+  if (!targetDateStr) return '';
+  try {
+    const d = new Date(targetDateStr);
+    if (isNaN(d.getTime())) return '';
+    return d.toLocaleString(undefined, {
+      weekday: 'short',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true
+    });
+  } catch {
+    return targetDateStr;
+  }
+};
 
 const ArticlesManager = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeFilter, setActiveFilter] = useState('all'); // all, published, draft, review, seo_issues
+  const [activeFilter, setActiveFilter] = useState('all'); // all, published, scheduled, draft, review, seo_issues
   
   // Editor State
   const [isEditing, setIsEditing] = useState(false);
@@ -43,6 +128,8 @@ const ArticlesManager = () => {
     author: 'Dr. Ulhas Sonar',
     category: 'Blog',
     category_color: 'bg-indigo-50 text-indigo-600 border border-indigo-150',
+    status: 'published',
+    published_at: toDateTimeLocal(),
     meta_title: '',
     meta_description: '',
     canonical_url: '',
@@ -70,12 +157,10 @@ const ArticlesManager = () => {
   const fetchArticles = async () => {
     try {
       setLoading(true);
-      const data = await api.getArticles();
-      setArticles(data);
-      setError(null);
+      const data = await api.getArticles({ all: true });
+      setArticles(Array.isArray(data) ? data : []);
     } catch (err) {
       console.error('Failed to fetch articles:', err);
-      setError('Could not load articles from backend database.');
     } finally {
       setLoading(false);
     }
@@ -104,6 +189,26 @@ const ArticlesManager = () => {
     return { text: 'Good', class: 'text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded font-bold' };
   };
 
+  const isArticleScheduled = (art) => {
+    if (!art) return false;
+    if (art.status === 'scheduled') return true;
+    if (art.status === 'draft') return false;
+    if (art.published_at) {
+      return new Date(art.published_at) > new Date();
+    }
+    return false;
+  };
+
+  const isArticlePublished = (art) => {
+    if (!art) return false;
+    if (art.status === 'draft') return false;
+    if (art.is_published !== undefined) return art.is_published;
+    if (art.published_at) {
+      return new Date(art.published_at) <= new Date();
+    }
+    return art.status === 'published';
+  };
+
   const handleOpenEdit = (article) => {
     if (article) {
       setEditingArticle(article);
@@ -115,6 +220,8 @@ const ArticlesManager = () => {
         author: article.author || 'Dr. Ulhas Sonar',
         category: article.category || 'Blog',
         category_color: article.category_color || 'bg-indigo-50 text-indigo-600 border border-indigo-150',
+        status: article.status || 'published',
+        published_at: toDateTimeLocal(article.published_at),
         meta_title: article.meta_title || '',
         meta_description: article.meta_description || '',
         canonical_url: article.canonical_url || '',
@@ -130,7 +237,7 @@ const ArticlesManager = () => {
       let parsedFaqs = [];
       if (article.faqs) {
         if (typeof article.faqs === 'string') {
-          try { parsedFaqs = JSON.parse(article.faqs); } catch (e) { parsedFaqs = []; }
+          try { parsedFaqs = JSON.parse(article.faqs); } catch { parsedFaqs = []; }
         } else if (Array.isArray(article.faqs)) {
           parsedFaqs = article.faqs;
         }
@@ -148,6 +255,8 @@ const ArticlesManager = () => {
         author: 'Dr. Ulhas Sonar',
         category: 'Blog',
         category_color: 'bg-indigo-50 text-indigo-600 border border-indigo-150',
+        status: 'published',
+        published_at: toDateTimeLocal(),
         meta_title: '',
         meta_description: '',
         canonical_url: '',
@@ -227,6 +336,14 @@ const ArticlesManager = () => {
       payload.append('author', formData.author);
       payload.append('category', formData.category);
       payload.append('category_color', formData.category_color);
+      payload.append('status', formData.status || 'published');
+      if (formData.published_at) {
+        try {
+          payload.append('published_at', new Date(formData.published_at).toISOString());
+        } catch {
+          payload.append('published_at', new Date().toISOString());
+        }
+      }
       payload.append('meta_title', formData.meta_title);
       payload.append('meta_description', formData.meta_description);
       payload.append('canonical_url', formData.canonical_url);
@@ -243,7 +360,7 @@ const ArticlesManager = () => {
         try {
           const parsed = JSON.parse(formData.schema_markup);
           payload.append('schema_markup', JSON.stringify(parsed));
-        } catch (err) {
+        } catch {
           alert('Invalid JSON markup format in Schema settings.');
           return;
         }
@@ -287,17 +404,20 @@ const ArticlesManager = () => {
   };
 
   // Stats calculation
-  const publishedCount = articles.filter(a => a.index_page).length;
-  const draftCount = articles.filter(a => !a.index_page).length;
+  const publishedCount = articles.filter(a => isArticlePublished(a)).length;
+  const scheduledCount = articles.filter(a => isArticleScheduled(a)).length;
+  const draftCount = articles.filter(a => a.status === 'draft').length;
   const reviewCount = articles.filter(a => !a.meta_description).length; // Simulated review
   const seoIssuesCount = articles.filter(a => calculateSEOScore(a) < 85).length;
 
   const getFilteredArticles = () => {
     let list = articles;
     if (activeFilter === 'published') {
-      list = articles.filter(a => a.index_page);
+      list = articles.filter(a => isArticlePublished(a));
+    } else if (activeFilter === 'scheduled') {
+      list = articles.filter(a => isArticleScheduled(a));
     } else if (activeFilter === 'draft') {
-      list = articles.filter(a => !a.index_page);
+      list = articles.filter(a => a.status === 'draft');
     } else if (activeFilter === 'review') {
       list = articles.filter(a => !a.meta_description);
     } else if (activeFilter === 'seo_issues') {
@@ -335,12 +455,12 @@ const ArticlesManager = () => {
             exit={{ opacity: 0 }}
             className="space-y-6"
           >
-            {/* Header section matching screenshot */}
+            {/* Header section */}
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div>
                 <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Posts / Blog</h1>
                 <p className="text-slate-500 text-xs mt-1">
-                  Manage posts / blog like WordPress with SEO, schema, index/noindex and follow/nofollow controls.
+                  Manage posts, publication date & time schedules, SEO, schema, index/noindex, and follow/nofollow controls.
                 </p>
               </div>
               <div className="flex flex-wrap gap-2.5">
@@ -348,23 +468,18 @@ const ArticlesManager = () => {
                   onClick={() => handleOpenEdit(null)}
                   className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-bold text-xs uppercase tracking-wider cursor-pointer shadow-sm transition-all"
                 >
-                  Add Article
-                </button>
-                <button
-                  onClick={() => alert("Bulk SEO Editor Comming Soon!")}
-                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-white border border-slate-250 text-slate-700 hover:bg-slate-50 rounded-lg font-bold text-xs uppercase tracking-wider cursor-pointer shadow-sm transition-all"
-                >
-                  <Filter size={14} /> Bulk SEO Edit
+                  <Plus size={14} /> Add Article
                 </button>
               </div>
             </div>
 
-            {/* Filter pills and Search matching screenshot */}
+            {/* Filter pills and Search */}
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 bg-white p-3 border border-slate-200/80 rounded-2xl shadow-sm">
               <div className="flex flex-wrap gap-2">
                 {[
                   { id: 'all', label: `All ${articles.length}` },
                   { id: 'published', label: `Published ${publishedCount}` },
+                  { id: 'scheduled', label: `Scheduled ${scheduledCount}` },
                   { id: 'draft', label: `Draft ${draftCount}` },
                   { id: 'review', label: `Review ${reviewCount}` },
                   { id: 'seo_issues', label: `SEO Issues ${seoIssuesCount}` }
@@ -374,7 +489,7 @@ const ArticlesManager = () => {
                     onClick={() => setActiveFilter(tab.id)}
                     className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                       activeFilter === tab.id
-                        ? 'bg-primary-50 text-primary-600 border border-primary-100'
+                        ? 'bg-primary-50 text-primary-600 border border-primary-100 shadow-xs'
                         : 'text-slate-500 hover:text-slate-800 bg-slate-50 border border-transparent'
                     }`}
                   >
@@ -395,16 +510,16 @@ const ArticlesManager = () => {
               </div>
             </div>
 
-            {/* Table view matching reference layout */}
+            {/* Table view */}
             <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-x-auto">
               <table className="w-full text-left border-collapse select-none">
                 <thead>
                   <tr className="bg-slate-50/75 border-b border-slate-200 text-slate-500 text-[10px] font-extrabold uppercase tracking-wider">
                     <th className="py-4 px-4 w-10 text-center"><input type="checkbox" className="rounded text-primary-600 focus:ring-primary-500" /></th>
                     <th className="py-4 px-4 w-72">Title</th>
-                    <th className="py-4 px-3">Type</th>
-                    <th className="py-4 px-3">Slug</th>
                     <th className="py-4 px-3">Status</th>
+                    <th className="py-4 px-3">Schedule / Date</th>
+                    <th className="py-4 px-3">Type</th>
                     <th className="py-4 px-3">Index</th>
                     <th className="py-4 px-3">Follow</th>
                     <th className="py-4 px-4 w-32">SEO</th>
@@ -416,6 +531,10 @@ const ArticlesManager = () => {
                   {displayedArticles.map(article => {
                     const seoScore = calculateSEOScore(article);
                     const issue = getSEOIssue(article);
+                    const scheduled = isArticleScheduled(article);
+                    const formattedSchedule = article.published_at 
+                      ? new Date(article.published_at).toLocaleString([], { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) 
+                      : (article.date || '-');
                     
                     return (
                       <tr key={article.slug} className="hover:bg-slate-50/40 transition-colors group">
@@ -430,7 +549,7 @@ const ArticlesManager = () => {
                             <div className="flex gap-2.5 mt-1.5 text-[10px] font-bold text-slate-450 uppercase tracking-wide opacity-0 group-hover:opacity-100 transition-opacity duration-150">
                               <button onClick={() => handleOpenEdit(article)} className="text-primary-600 hover:text-primary-700 cursor-pointer">Edit</button>
                               <span className="text-slate-300">|</span>
-                              <button onClick={() => handleOpenEdit(article)} className="text-slate-600 hover:text-slate-800 cursor-pointer">Quick Edit</button>
+                              <button onClick={() => handleOpenEdit(article)} className="text-slate-600 hover:text-slate-800 cursor-pointer">Schedule</button>
                               <span className="text-slate-300">|</span>
                               <a href={`/blog/${article.slug}`} target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:text-slate-800 flex items-center gap-0.5">
                                 View <ExternalLink size={10} />
@@ -443,22 +562,35 @@ const ArticlesManager = () => {
                           </div>
                         </td>
                         <td className="py-4 px-3">
+                          {article.status === 'draft' ? (
+                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-slate-100 text-slate-600 border border-slate-200">
+                              ● Draft
+                            </span>
+                          ) : scheduled ? (
+                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-200" title={`Goes live on ${formattedSchedule}`}>
+                              <Clock size={11} className="text-blue-600" /> Scheduled
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                              ● Published
+                            </span>
+                          )}
+                        </td>
+                        <td className="py-4 px-3">
+                          <div className="flex flex-col text-[11px]">
+                            <span className="font-semibold text-slate-700">{formattedSchedule}</span>
+                            {scheduled && (
+                              <span className="text-[10px] text-blue-600 font-medium">Future release</span>
+                            )}
+                          </div>
+                        </td>
+                        <td className="py-4 px-3">
                           <span className={`text-[9px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full ${
                             article.slug.startsWith('services/') 
                               ? 'bg-blue-50 text-blue-600 border border-blue-100'
                               : 'bg-indigo-50 text-indigo-600 border border-indigo-100'
                           }`}>
                             {article.slug.startsWith('services/') ? 'Service' : (article.category || 'Blog')}
-                          </span>
-                        </td>
-                        <td className="py-4 px-3 font-mono text-[10px] text-slate-400 truncate max-w-[150px]">
-                          /blog/{article.slug}/
-                        </td>
-                        <td className="py-4 px-3">
-                          <span className={`inline-flex items-center gap-1 text-[10px] font-bold ${
-                            article.index_page ? 'text-emerald-600' : 'text-amber-500'
-                          }`}>
-                            ● {article.index_page ? 'Published' : 'Draft'}
                           </span>
                         </td>
                         <td className="py-4 px-3">
@@ -591,6 +723,287 @@ const ArticlesManager = () => {
                     exit={{ opacity: 0, y: -10 }}
                     className="space-y-5"
                   >
+                    {/* Enhanced Publishing & Scheduling Control Panel */}
+                    <div className="bg-slate-50/80 border border-slate-200 rounded-2xl p-5 shadow-xs space-y-4">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-slate-200/80">
+                        <div>
+                          <span className="text-xs font-black text-slate-800 flex items-center gap-1.5 uppercase tracking-wider">
+                            <Clock size={15} className="text-primary-600" /> Article Publication & Time Scheduling
+                          </span>
+                          <p className="text-[11px] text-slate-500 mt-0.5 font-medium">
+                            Choose whether to make this article live now, schedule it for a future release date & time, or save as draft.
+                          </p>
+                        </div>
+
+                        {/* Status mode pills */}
+                        <div className="grid grid-cols-3 gap-1.5 bg-slate-200/70 p-1 rounded-xl">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setFormData(prev => ({
+                                ...prev,
+                                status: 'published',
+                                published_at: toDateTimeLocal()
+                              }));
+                            }}
+                            className={`flex items-center justify-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                              formData.status === 'published' && (!formData.published_at || new Date(formData.published_at) <= new Date())
+                                ? 'bg-emerald-600 text-white shadow-xs'
+                                : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                            }`}
+                          >
+                            <Zap size={13} /> Live Now
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const future = new Date();
+                              future.setDate(future.getDate() + 1);
+                              future.setHours(9, 0, 0, 0);
+                              setFormData(prev => ({
+                                ...prev,
+                                status: 'scheduled',
+                                published_at: toDateTimeLocal(future.toISOString())
+                              }));
+                            }}
+                            className={`flex items-center justify-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                              formData.status === 'scheduled' || (formData.status !== 'draft' && new Date(formData.published_at) > new Date())
+                                ? 'bg-blue-600 text-white shadow-xs'
+                                : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                            }`}
+                          >
+                            <Clock size={13} /> Schedule
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setFormData(prev => ({
+                                ...prev,
+                                status: 'draft'
+                              }));
+                            }}
+                            className={`flex items-center justify-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                              formData.status === 'draft'
+                                ? 'bg-slate-800 text-white shadow-xs'
+                                : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                            }`}
+                          >
+                            <FileText size={13} /> Draft
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Scheduling Tools Section */}
+                      {formData.status !== 'draft' && (
+                        <div className="space-y-4 pt-1">
+                          
+                          {/* Quick Presets Shortcuts */}
+                          <div className="space-y-1.5">
+                            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                              <Calendar size={11} className="text-primary-600" /> Quick Scheduling Shortcuts
+                            </label>
+                            <div className="flex flex-wrap gap-1.5">
+                              {[
+                                { id: 'now', label: '⚡ Now', action: () => setFormData(prev => ({ ...prev, status: 'published', published_at: toDateTimeLocal() })) },
+                                { id: '1h', label: '+1 Hour', action: () => {
+                                  const t = new Date(Date.now() + 60 * 60 * 1000);
+                                  setFormData(prev => ({ ...prev, status: 'scheduled', published_at: toDateTimeLocal(t.toISOString()) }));
+                                }},
+                                { id: '3h', label: '+3 Hours', action: () => {
+                                  const t = new Date(Date.now() + 3 * 60 * 60 * 1000);
+                                  setFormData(prev => ({ ...prev, status: 'scheduled', published_at: toDateTimeLocal(t.toISOString()) }));
+                                }},
+                                { id: 'tomorrow_9am', label: 'Tomorrow 9:00 AM', action: () => {
+                                  const t = new Date();
+                                  t.setDate(t.getDate() + 1);
+                                  t.setHours(9, 0, 0, 0);
+                                  setFormData(prev => ({ ...prev, status: 'scheduled', published_at: toDateTimeLocal(t.toISOString()) }));
+                                }},
+                                { id: 'tomorrow_6pm', label: 'Tomorrow 6:00 PM', action: () => {
+                                  const t = new Date();
+                                  t.setDate(t.getDate() + 1);
+                                  t.setHours(18, 0, 0, 0);
+                                  setFormData(prev => ({ ...prev, status: 'scheduled', published_at: toDateTimeLocal(t.toISOString()) }));
+                                }},
+                                { id: '2days', label: 'In 2 Days (10 AM)', action: () => {
+                                  const t = new Date();
+                                  t.setDate(t.getDate() + 2);
+                                  t.setHours(10, 0, 0, 0);
+                                  setFormData(prev => ({ ...prev, status: 'scheduled', published_at: toDateTimeLocal(t.toISOString()) }));
+                                }},
+                                { id: 'next_mon', label: 'Next Monday (9 AM)', action: () => {
+                                  const t = new Date();
+                                  const day = t.getDay();
+                                  const diff = ((1 + 7 - day) % 7) || 7;
+                                  t.setDate(t.getDate() + diff);
+                                  t.setHours(9, 0, 0, 0);
+                                  setFormData(prev => ({ ...prev, status: 'scheduled', published_at: toDateTimeLocal(t.toISOString()) }));
+                                }},
+                              ].map(p => (
+                                <button
+                                  key={p.id}
+                                  type="button"
+                                  onClick={p.action}
+                                  className="px-2.5 py-1 bg-white hover:bg-primary-50 hover:text-primary-700 hover:border-primary-200 border border-slate-250 text-slate-700 rounded-lg text-[11px] font-semibold transition-all cursor-pointer select-none shadow-2xs"
+                                >
+                                  {p.label}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Split Date & Time Interactive Selectors */}
+                          {(() => {
+                            const datePart = getDatePart(formData.published_at);
+                            const timeParts = getTimeParts(formData.published_at);
+                            const isFuture = formData.published_at && new Date(formData.published_at) > new Date();
+
+                            const updateCombined = (newDate, newH, newM, newAmpm) => {
+                              const updated = buildDateTimeLocal(newDate, newH, newM, newAmpm);
+                              const futureCheck = new Date(updated) > new Date();
+                              setFormData(prev => ({
+                                ...prev,
+                                published_at: updated,
+                                status: prev.status === 'draft' ? 'draft' : (futureCheck ? 'scheduled' : 'published')
+                              }));
+                            };
+
+                            return (
+                              <div className="grid lg:grid-cols-12 gap-3 bg-white p-3.5 border border-slate-200 rounded-xl">
+                                
+                                {/* Date Picker Column */}
+                                <div className="lg:col-span-4 space-y-1">
+                                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">
+                                    Publish Date
+                                  </label>
+                                  <div className="relative">
+                                    <input 
+                                      type="date" 
+                                      className="w-full text-xs font-bold px-3 py-2.5 bg-slate-50 border border-slate-250 rounded-xl focus:ring-2 ring-primary-500/20 focus:outline-none text-slate-800 cursor-pointer"
+                                      value={datePart}
+                                      onChange={e => updateCombined(e.target.value, timeParts.hour, timeParts.minute, timeParts.ampm)}
+                                    />
+                                  </div>
+                                  <span className="text-[10px] text-slate-400 font-medium block">
+                                    {formatFriendlyDateTime(formData.published_at).split(' at ')[0] || ''}
+                                  </span>
+                                </div>
+
+                                {/* 12-Hour Time Selector Column */}
+                                <div className="lg:col-span-4 space-y-1">
+                                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">
+                                    Publish Time
+                                  </label>
+                                  <div className="flex items-center gap-1">
+                                    {/* Hour */}
+                                    <select
+                                      className="w-16 text-xs font-bold px-2 py-2.5 bg-slate-50 border border-slate-250 rounded-xl focus:ring-2 ring-primary-500/20 focus:outline-none text-slate-800 cursor-pointer"
+                                      value={timeParts.hour}
+                                      onChange={e => updateCombined(datePart, e.target.value, timeParts.minute, timeParts.ampm)}
+                                    >
+                                      {Array.from({ length: 12 }, (_, i) => String(i + 1).padStart(2, '0')).map(h => (
+                                        <option key={h} value={h}>{h}</option>
+                                      ))}
+                                    </select>
+                                    <span className="font-bold text-slate-400">:</span>
+                                    
+                                    {/* Minute */}
+                                    <select
+                                      className="w-16 text-xs font-bold px-2 py-2.5 bg-slate-50 border border-slate-250 rounded-xl focus:ring-2 ring-primary-500/20 focus:outline-none text-slate-800 cursor-pointer"
+                                      value={timeParts.minute}
+                                      onChange={e => updateCombined(datePart, timeParts.hour, e.target.value, timeParts.ampm)}
+                                    >
+                                      {['00', '05', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55'].map(m => (
+                                        <option key={m} value={m}>{m}</option>
+                                      ))}
+                                    </select>
+
+                                    {/* AM/PM Toggle */}
+                                    <div className="flex bg-slate-100 p-0.5 rounded-xl border border-slate-250">
+                                      <button
+                                        type="button"
+                                        onClick={() => updateCombined(datePart, timeParts.hour, timeParts.minute, 'AM')}
+                                        className={`px-2 py-2 rounded-lg text-[10px] font-bold transition-all cursor-pointer ${
+                                          timeParts.ampm === 'AM' ? 'bg-white text-primary-600 shadow-xs' : 'text-slate-500 hover:text-slate-800'
+                                        }`}
+                                      >
+                                        AM
+                                      </button>
+                                      <button
+                                        type="button"
+                                        onClick={() => updateCombined(datePart, timeParts.hour, timeParts.minute, 'PM')}
+                                        className={`px-2 py-2 rounded-lg text-[10px] font-bold transition-all cursor-pointer ${
+                                          timeParts.ampm === 'PM' ? 'bg-white text-primary-600 shadow-xs' : 'text-slate-500 hover:text-slate-800'
+                                        }`}
+                                      >
+                                        PM
+                                      </button>
+                                    </div>
+                                  </div>
+
+                                  {/* Quick Time Pills */}
+                                  <div className="flex items-center gap-1 pt-1">
+                                    {[
+                                      { h: '09', m: '00', a: 'AM' },
+                                      { h: '12', m: '00', a: 'PM' },
+                                      { h: '03', m: '00', a: 'PM' },
+                                      { h: '06', m: '00', a: 'PM' },
+                                    ].map(slot => (
+                                      <button
+                                        key={`${slot.h}:${slot.m}${slot.a}`}
+                                        type="button"
+                                        onClick={() => updateCombined(datePart, slot.h, slot.m, slot.a)}
+                                        className="text-[9px] font-semibold px-1.5 py-0.5 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded transition-colors"
+                                      >
+                                        {slot.h}:{slot.m} {slot.a}
+                                      </button>
+                                    ))}
+                                  </div>
+                                </div>
+
+                                {/* Live Countdown & Summary Preview Column */}
+                                <div className="lg:col-span-4 flex flex-col justify-between bg-slate-50/70 p-3 rounded-xl border border-slate-200 text-xs">
+                                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Release Summary</span>
+                                  
+                                  <div className="my-1.5">
+                                    {isFuture ? (
+                                      <div className="space-y-1">
+                                        <div className="flex items-center gap-1.5 text-blue-700 font-bold">
+                                          <Clock size={13} className="text-blue-600" />
+                                          <span>{formatFriendlyDateTime(formData.published_at)}</span>
+                                        </div>
+                                        <span className="inline-block px-2 py-0.5 rounded-md text-[10px] font-bold bg-blue-100 text-blue-800">
+                                          ⏳ {formatHumanCountdown(formData.published_at)}
+                                        </span>
+                                      </div>
+                                    ) : (
+                                      <div className="flex items-center gap-1.5 text-emerald-700 font-bold">
+                                        <CheckCircle2 size={14} className="text-emerald-600" />
+                                        <span>Publish Immediately (Live)</span>
+                                      </div>
+                                    )}
+                                  </div>
+
+                                  <span className="text-[10px] text-slate-400 font-medium">
+                                    🌐 Schedule matches your local timezone
+                                  </span>
+                                </div>
+
+                              </div>
+                            );
+                          })()}
+
+                        </div>
+                      )}
+
+                      {/* Draft notification if draft is chosen */}
+                      {formData.status === 'draft' && (
+                        <div className="flex items-center gap-2 p-3 bg-slate-100/80 border border-slate-250 rounded-xl text-xs text-slate-600">
+                          <span className="w-2 h-2 rounded-full bg-slate-400"></span>
+                          <span><strong>Draft Mode:</strong> This article will remain private and won't appear on the public website.</span>
+                        </div>
+                      )}
+                    </div>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div className="space-y-1">
                         <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Article Title</label>

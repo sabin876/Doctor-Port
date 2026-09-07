@@ -87,10 +87,10 @@ const SubServiceDetail = () => {
     return (
         <main className="relative pt-20 bg-white overflow-hidden">
             <SEO 
-                title={`${subService.title} | ${parentService.title} | Dr. Ulhas Sonar`}
-                description={`Learn more about ${subService.title}, a specialized treatment under ${parentService.title}.`}
+                title={subService.meta_title || `${subService.title} | ${parentService.title} | Dr. Ulhas Sonar`}
+                description={subService.meta_description || subService.description || `Learn more about ${subService.title}, a specialized treatment under ${parentService.title}.`}
                 url={`/services/${parent_slug}/${sub_slug}`}
-                image={parentService.image || defaultImage}
+                image={subService.image || parentService.image || defaultImage}
             />
 
             <div className="bg-white border-b border-gray-100">
@@ -126,15 +126,22 @@ const SubServiceDetail = () => {
                         </h2>
 
                         <div className="text-base md:text-lg text-gray-500 font-normal leading-relaxed mb-10 max-w-2xl text-justify">
-                            <p className="mb-4">
-                                {subService.title} is an advanced sub-specialty under our comprehensive {parentService.title} program. We provide targeted diagnostics, cutting-edge therapies, and personalized rehabilitation for optimal patient outcomes.
-                            </p>
-                            <p>
-                                Our clinical approach centers on providing tailored, premium care guided by international medical benchmarks, safety guidelines, and active therapy to ensure your fast recovery.
-                            </p>
+                            {subService.description ? (
+                                <div 
+                                    className="prose prose-primary select-text [&>p]:mb-4"
+                                    dangerouslySetInnerHTML={{ __html: subService.description }}
+                                />
+                            ) : (
+                                <>
+                                    <p className="mb-4">
+                                        {subService.title} is an advanced sub-specialty under our comprehensive {parentService.title} program. We provide targeted diagnostics, cutting-edge therapies, and personalized rehabilitation for optimal patient outcomes.
+                                    </p>
+                                    <p>
+                                        Our clinical approach centers on providing tailored, premium care guided by international medical benchmarks, safety guidelines, and active therapy to ensure your fast recovery.
+                                    </p>
+                                </>
+                            )}
                         </div>
-
-
 
                         <div className="flex flex-col sm:flex-row items-center gap-4">
                             <a 
@@ -164,7 +171,7 @@ const SubServiceDetail = () => {
                     >
                         <div className="relative h-[400px] md:h-[500px] p-4 rounded-[4rem] bg-gradient-to-br from-primary-50 to-white border border-primary-50 shadow-2xl overflow-hidden group">
                             <img 
-                                src={parentService.image || defaultImage} 
+                                src={subService.image || parentService.image || defaultImage} 
                                 alt={subService.title} 
                                 className="w-full h-full object-cover rounded-[3rem] relative z-10 group-hover:scale-105 transition-transform duration-700"
                             />

@@ -34,13 +34,29 @@ const SEO = ({
   const formattedTitle = title ? (title.includes('Dr. Ulhas') ? title : `${title} | Dr. Ulhas Sonar`) : siteName;
   const defaultDesc = "Expert orthopedic care specializing in joint replacement, sports injuries, and comprehensive rehabilitation with Dr. Ulhas.";
 
+  const stripHtml = (str) => {
+    if (!str) return '';
+    return String(str)
+      .replace(/<[^>]*>/g, ' ')
+      .replace(/&nbsp;/g, ' ')
+      .replace(/&amp;/g, '&')
+      .replace(/&quot;/g, '"')
+      .replace(/&#039;/g, "'")
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/\s+/g, ' ')
+      .trim();
+  };
+
+  const cleanDescription = stripHtml(description) || defaultDesc;
+
   return (
     <Helmet>
       {/* 1. Title tags */}
       <title>{formattedTitle}</title>
 
       {/* 2. Meta Description */}
-      <meta name="description" content={description || defaultDesc} />
+      <meta name="description" content={cleanDescription} />
 
       {/* 3. Canonical Tag */}
       <link rel="canonical" href={fullUrl} />
@@ -56,7 +72,7 @@ const SEO = ({
       <meta property="og:title" content={formattedTitle} />
 
       {/* 12. Meta- og: description */}
-      <meta property="og:description" content={description || defaultDesc} />
+      <meta property="og:description" content={cleanDescription} />
 
       {/* 13. Meta- og: url */}
       <meta property="og:url" content={fullUrl} />
@@ -93,7 +109,7 @@ const SEO = ({
       <meta name="twitter:title" content={formattedTitle} />
 
       {/* 17. twitter:description */}
-      <meta name="twitter:description" content={description || defaultDesc} />
+      <meta name="twitter:description" content={cleanDescription} />
 
       {/* 20. twitter:image */}
       <meta name="twitter:image" content={absoluteImage} />

@@ -52,7 +52,12 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
+const CACHE_DIR = resolvePath('./.cache');
+
 async function fetchFromApi(endpoint) {
+  const safeName = endpoint.replace(/[^a-zA-Z0-9_]/g, '_') + '.json';
+  const cacheFile = path.join(CACHE_DIR, safeName);
+
   const urls = [
     `${API_BASE_URL}${endpoint}`,
     `http://127.0.0.1:8000/api${endpoint}`,
@@ -60,13 +65,25 @@ async function fetchFromApi(endpoint) {
   ];
   for (const u of urls) {
     try {
-      const res = await fetch(u, { signal: AbortSignal.timeout(6000) });
+      const res = await fetch(u, { signal: AbortSignal.timeout(15000) });
       if (res.ok) {
-        return await res.json();
+        const data = await res.json();
+        try {
+          if (!fs.existsSync(CACHE_DIR)) fs.mkdirSync(CACHE_DIR, { recursive: true });
+          fs.writeFileSync(cacheFile, JSON.stringify(data), 'utf8');
+        } catch (e) {}
+        return data;
       }
     } catch (e) {
       // try next
     }
+  }
+
+  // Fallback to local cache if network is slow/unreachable
+  if (fs.existsSync(cacheFile)) {
+    try {
+      return JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
+    } catch (e) {}
   }
   return null;
 }
@@ -232,14 +249,30 @@ async function prerender() {
     const appHtml = renderResult?.html || '';
     const helmet = renderResult?.helmet || null;
 
-    // Clean any tags that React 19 renderToString may have left inside appHtml
+    // Helper to strip HTML tags from rich text descriptions
+    function stripHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/<[^>]*>/g, ' ')
+        .replace(/&nbsp;/g, ' ')
+        .replace(/&amp;/g, '&')
+        .replace(/&quot;/g, '"')
+        .replace(/&#039;/g, "'")
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    // Clean all head tags (title, meta, link) that React 19 renderToString outputs inside appHtml
     const cleanAppHtml = appHtml
-      .replace(/<link[^>]*rel=["']canonical["'][^>]*\/?>/gi, '')
-      .replace(/<meta\s+name=["']twitter:(?:label|data)\d+["'][^>]*\/?>/gi, '');
+      .replace(/<title[^>]*>[\s\S]*?<\/title>/gi, '')
+      .replace(/<meta[^>]*\/?>/gi, '')
+      .replace(/<link[^>]*\/?>/gi, '');
 
     // Metadata calculations
     const cleanPath = route === '/' ? '' : route.replace(/\/+$/, '');
-    const canonicalUrl = `https://drulhasorthopedic.com${cleanPath || '/'}`;
+    let canonicalUrl = `https://drulhasorthopedic.com${cleanPath || '/'}`;
     const pageUrl = `https://drulhasorthopedic.com${cleanPath}`;
 
     let routeTitle = 'Dr. Ulhas Sonar | Orthopaedic Surgeon Dubai';
@@ -251,11 +284,14 @@ async function prerender() {
 
     if (route.startsWith('/blog/') && routeData) {
       routeTitle = routeData.meta_title || (routeData.title ? `${routeData.title} | Dr. Ulhas Sonar` : 'Orthopedic Blog Article | Dr. Ulhas Sonar');
-      routeDescription = routeData.meta_description || routeData.excerpt || routeData.title || routeDescription;
+      const rawDesc = routeData.meta_description || routeData.excerpt || routeData.title || routeDescription;
+      routeDescription = stripHtml(rawDesc) || routeDescription;
       ogTitle = routeData.og_title || routeTitle;
-      ogDesc = routeData.og_description || routeDescription;
+      const rawOgDesc = routeData.og_description || routeData.meta_description || routeData.excerpt || routeDescription;
+      ogDesc = stripHtml(rawOgDesc) || routeDescription;
       routeOgImage = getAbsoluteImageUrl(routeData.og_image || routeData.image || routeData.featured_image);
       routeOgType = 'article';
+      if (routeData.canonical_url) canonicalUrl = routeData.canonical_url;
     } else if (route === '/blog') {
       routeTitle = 'Orthopedic Articles & Insights | Dr. Ulhas Sonar';
       routeDescription = 'Read the latest articles on orthopedic conditions, treatments, and recovery from Dr. Ulhas Sonar.';
@@ -264,12 +300,28 @@ async function prerender() {
       routeOgImage = 'https://drulhasorthopedic.com/assets/images/doctor-surgery.webp';
       routeOgType = 'website';
     } else if (route.startsWith('/services/') && routeData) {
-      const srv = routeData.subService || routeData;
-      routeTitle = srv.meta_title || (srv.title ? `${srv.title} | Dr. Ulhas Sonar` : 'Orthopedic Service | Dr. Ulhas Sonar');
-      routeDescription = srv.meta_description || srv.description || routeDescription;
-      ogTitle = srv.og_title || routeTitle;
-      ogDesc = srv.og_description || routeDescription;
-      routeOgImage = getAbsoluteImageUrl(srv.og_image || srv.image);
+      if (routeData.subService) {
+        const sub = routeData.subService;
+        const parent = routeData.parentService;
+        routeTitle = sub.meta_title || `${sub.title} | ${parent?.title ? parent.title + ' | ' : ''}Dr. Ulhas Sonar`;
+        const rawDesc = sub.meta_description || sub.description || `Learn more about ${sub.title}, a specialized treatment under ${parent?.title || 'Orthopedics'}.`;
+        routeDescription = stripHtml(rawDesc) || routeDescription;
+        ogTitle = sub.og_title || routeTitle;
+        const rawOgDesc = sub.og_description || rawDesc;
+        ogDesc = stripHtml(rawOgDesc) || routeDescription;
+        routeOgImage = getAbsoluteImageUrl(sub.og_image || sub.image || parent?.image);
+        if (sub.canonical_url) canonicalUrl = sub.canonical_url;
+      } else {
+        const srv = routeData;
+        routeTitle = srv.meta_title || (srv.title ? `${srv.title} | Dr. Ulhas Sonar` : 'Orthopedic Service | Dr. Ulhas Sonar');
+        const rawDesc = srv.meta_description || srv.description || routeDescription;
+        routeDescription = stripHtml(rawDesc) || routeDescription;
+        ogTitle = srv.og_title || routeTitle;
+        const rawOgDesc = srv.og_description || rawDesc;
+        ogDesc = stripHtml(rawOgDesc) || routeDescription;
+        routeOgImage = getAbsoluteImageUrl(srv.og_image || srv.image);
+        if (srv.canonical_url) canonicalUrl = srv.canonical_url;
+      }
       routeOgType = 'website';
     } else if (route === '/services') {
       routeTitle = 'Orthopedic Services & Procedures | Dr. Ulhas Sonar';
@@ -290,12 +342,13 @@ async function prerender() {
 
     // Clean template
     let html = baseTemplate
-      .replace(/<title[^>]*>.*?<\/title>/gi, '')
-      .replace(/<link[^>]*rel=["']canonical["'][^>]*>/gi, '')
-      .replace(/<meta[^>]*name=["']description["'][^>]*>/gi, '')
-      .replace(/<meta[^>]*name=["']keywords["'][^>]*>/gi, '')
-      .replace(/<meta[^>]*property=["']og:[^"']*["'][^>]*>/gi, '')
-      .replace(/<meta[^>]*name=["']twitter:[^"']*["'][^>]*>/gi, '');
+      .replace(/<title[^>]*>[\s\S]*?<\/title>/gi, '')
+      .replace(/<link[^>]*rel=["']canonical["'][^>]*\/?>/gi, '')
+      .replace(/<meta[^>]*name=["']description["'][^>]*\/?>/gi, '')
+      .replace(/<meta[^>]*name=["']keywords["'][^>]*\/?>/gi, '')
+      .replace(/<meta[^>]*property=["']og:[^"']*["'][^>]*\/?>/gi, '')
+      .replace(/<meta[^>]*name=["']twitter:[^"']*["'][^>]*\/?>/gi, '')
+      .replace(/<meta[^>]*name=["']robots["'][^>]*\/?>/gi, '');
 
     // Build primary meta tags
     const primaryMetaTags = `

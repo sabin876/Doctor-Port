@@ -59,8 +59,16 @@ const processImageUrls = (item) => {
 };
 
 export const api = {
-    getArticles: async () => {
-        const response = await fetch(`${API_BASE_URL}/articles/`);
+    getArticles: async (params = {}) => {
+        let url = `${API_BASE_URL}/articles/`;
+        const query = new URLSearchParams();
+        if (params.all) query.append('all', 'true');
+        if (params.admin) query.append('admin', 'true');
+        const queryString = query.toString();
+        if (queryString) {
+            url += `?${queryString}`;
+        }
+        const response = await fetch(url);
         const data = await response.json();
         return Array.isArray(data) ? data.map(processImageUrls) : data;
     },
@@ -69,10 +77,57 @@ export const api = {
         const data = await response.json();
         return processImageUrls(data);
     },
+    createArticle: async (data) => {
+        const isFormData = data instanceof FormData;
+        const response = await fetch(`${API_BASE_URL}/articles/`, {
+            method: 'POST',
+            headers: isFormData ? {} : { 'Content-Type': 'application/json' },
+            body: isFormData ? data : JSON.stringify(data)
+        });
+        if (!response.ok) {
+            const errData = await response.json().catch(() => ({}));
+            const errMessage = errData.detail || Object.entries(errData).map(([k, v]) => `${k}: ${v}`).join(', ') || 'Validation failed';
+            throw new Error(errMessage);
+        }
+        return response.json();
+    },
+    updateArticle: async (slug, data) => {
+        const isFormData = data instanceof FormData;
+        const response = await fetch(`${API_BASE_URL}/articles/${slug}/`, {
+            method: 'PATCH',
+            headers: isFormData ? {} : { 'Content-Type': 'application/json' },
+            body: isFormData ? data : JSON.stringify(data)
+        });
+        if (!response.ok) {
+            const errData = await response.json().catch(() => ({}));
+            const errMessage = errData.detail || Object.entries(errData).map(([k, v]) => `${k}: ${v}`).join(', ') || 'Validation failed';
+            throw new Error(errMessage);
+        }
+        return response.json();
+    },
+    deleteArticle: async (slug) => {
+        const response = await fetch(`${API_BASE_URL}/articles/${slug}/`, {
+            method: 'DELETE'
+        });
+        return response.ok;
+    },
     getServices: async () => {
         const response = await fetch(`${API_BASE_URL}/services/`);
         const data = await response.json();
         return Array.isArray(data) ? data.map(processImageUrls) : data;
+    },
+    getService: async (slug) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/services/${slug}/`);
+            if (response.ok) {
+                const data = await response.json();
+                return processImageUrls(data);
+            }
+        } catch (e) {
+            // fallback
+        }
+        const all = await api.getServices();
+        return Array.isArray(all) ? all.find(s => s.slug?.toLowerCase() === slug?.toLowerCase() || String(s.id) === String(slug)) || null : null;
     },
     createService: async (data) => {
         const isFormData = data instanceof FormData;
