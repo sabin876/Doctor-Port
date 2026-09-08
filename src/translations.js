@@ -236,7 +236,7 @@ export const translations = {
         faq: {
             badge: "Help Center",
             title: "Frequently Asked Questions",
-            description: "Common questions about our care, robotic surgery, and orthopedic treatments in Dubai.",
+            description: "Common questions about our care, robotic surgery, and orthopedic treatments in Pune.",
             items: [
                 {
                     question: "What is robotic-assisted surgery?",
@@ -252,7 +252,7 @@ export const translations = {
                 },
                 {
                     question: "Where is the clinic located?",
-                    answer: "Our main consultation rooms are located in Dubai, within premium medical facilities."
+                    answer: "Our main consultation rooms are located in Pune, within premium medical facilities."
                 },
                 {
                     question: "Is second opinion available?",
@@ -719,7 +719,7 @@ export const translations = {
         faq: {
             badge: "सहायता केंद्र",
             title: "अक्सर पूछे जाने वाले प्रश्न",
-            description: "दुबई में हमारी देखभाल, रोबोटिक सर्जरी और आर्थोपेडिक उपचारों के बारे में सामान्य प्रश्न।",
+            description: "पुणे में हमारी देखभाल, रोबोटिक सर्जरी और आर्थोपेडिक उपचारों के बारे में सामान्य प्रश्न।",
             items: [
                 {
                     question: "रोबोटिक-सहायता प्राप्त सर्जरी क्या है?",
@@ -735,7 +735,7 @@ export const translations = {
                 },
                 {
                     question: "क्लिनिक कहाँ स्थित है?",
-                    answer: "हमारे मुख्य परामर्श कक्ष दुबई में प्रीमियम चिकित्सा सुविधाओं के भीतर स्थित हैं।"
+                    answer: "हमारे मुख्य परामर्श कक्ष पुणे में प्रीमियम चिकित्सा सुविधाओं के भीतर स्थित हैं।"
                 },
                 {
                     question: "क्या दूसरी राय उपलब्ध है?",

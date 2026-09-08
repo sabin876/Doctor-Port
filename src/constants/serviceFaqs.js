@@ -63,7 +63,7 @@ export const defaultServiceFaqs = {
                 answer: "No, the robot does not perform the surgery. The entire procedure is performed by the expert surgeon. The robotic system acts as a highly advanced guide, providing real-time data and boundary controls that prevent the surgical tools from deviating from the pre-planned safety zone."
             },
             {
-                question: "Is robotic surgery covered by health insurance in Dubai?",
+                question: "Is robotic surgery covered by health insurance in Pune?",
                 answer: "Most insurance plans cover joint replacement and major orthopedic surgeries, but coverage details for robotic-assisted technology depend on your specific provider and policy. Our team can help you verify your benefits."
             },
             {
@@ -155,10 +155,10 @@ export const defaultServiceFaqs = {
     "physiotherapy": {
         badge: "Frequently asked questions",
         title: "Answers to common physiotherapy questions",
-        description: "Helpful information for patients looking for home physiotherapy, rehabilitation support, and same-day care options in Dubai.",
+        description: "Helpful information for patients looking for home physiotherapy, rehabilitation support, and same-day care options in Pune.",
         items: [
             {
-                question: "How much does physiotherapy cost in Dubai?",
+                question: "How much does physiotherapy cost in Pune?",
                 answer: "The cost depends on the type of treatment and the number of sessions required. Flexible packages are available to make treatment more affordable and practical for different recovery needs."
             },
             {
@@ -174,12 +174,12 @@ export const defaultServiceFaqs = {
                 answer: "Yes, we provide specialized geriatric home physiotherapy to improve strength, balance, mobility, and independence, while significantly reducing the risk of falls in the home environment."
             },
             {
-                question: "Can I get same-day physiotherapy service in Dubai?",
+                question: "Can I get same-day physiotherapy service in Pune?",
                 answer: "Yes, same-day appointments are often available depending on the location and timing of your request. Contact our coordination team to check real-time availability."
             },
             {
-                question: "Are the physiotherapists certified for home visits in Dubai?",
-                answer: "Yes, all our physiotherapists are fully DHA-licensed (Dubai Health Authority) and specifically certified and experienced in providing high-standard clinical care directly in home, hotel, or office settings."
+                question: "Are the physiotherapists certified for home visits in Pune?",
+                answer: "Yes, all our physiotherapists are fully licensed and specifically certified and experienced in providing high-standard clinical care directly in home, hotel, or office settings."
             },
             {
                 question: "Is physiotherapy at home cheaper than a clinic visit?",

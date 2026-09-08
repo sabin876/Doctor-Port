@@ -920,7 +920,7 @@ const ServiceDetail = () => {
                         <div className="relative z-10 flex flex-col items-center text-center gap-8">
                             <div className="inline-flex items-center px-5 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-[10px] font-normal uppercase tracking-[0.25em]">
                                 <Zap size={12} className="mr-2 fill-yellow-400 text-yellow-400" />
-                                Expert {service.title} in Dubai
+                                Expert {service.title} in Pune
                             </div>
 
                             <h2 className="text-2xl md:text-4xl font-normal text-white tracking-tight leading-[1.1] max-w-3xl">
