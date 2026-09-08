@@ -230,7 +230,7 @@ const Articles = () => {
                                             </div>
                                             <div className="flex items-center gap-1.5 text-gray-500">
                                                 <Calendar className="w-4 h-4" />
-                                                <span className="text-xs">{article.date}</span>
+                                                <span className="text-xs">{article.published_at ? new Date(article.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : article.date}</span>
                                             </div>
                                         </div>
                                     </div>

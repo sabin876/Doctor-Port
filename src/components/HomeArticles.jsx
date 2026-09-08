@@ -151,10 +151,10 @@ const HomeArticles = () => {
                                                 <User className="w-3.5 h-3.5 text-primary-600" />
                                                 <span className="font-medium text-gray-700">{article.author || "Dr. Ulhas Sonar"}</span>
                                             </div>
-                                            {article.date && (
+                                            {(article.published_at || article.date) && (
                                                 <div className="flex items-center gap-1">
                                                     <Calendar className="w-3.5 h-3.5" />
-                                                    <span>{article.date}</span>
+                                                    <span>{article.published_at ? new Date(article.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : article.date}</span>
                                                 </div>
                                             )}
                                         </div>
