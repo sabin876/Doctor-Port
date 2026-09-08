@@ -23,19 +23,24 @@ const CanonicalTag = () => {
             ? pathname.slice(0, -1)
             : pathname;
 
-        const canonicalUrl = `${BASE_URL}${cleanPath}`;
+        const canonicalUrl = `${BASE_URL}${cleanPath || '/'}`;
 
-        // Find existing tag or create one
-        let link = document.querySelector('link[rel="canonical"]');
+        // Find existing canonical tags
+        const links = document.querySelectorAll('link[rel="canonical"]');
 
-        if (!link) {
-            link = document.createElement('link');
+        if (links.length > 0) {
+            // Keep the first tag updated
+            links[0].setAttribute('href', canonicalUrl);
+            // Remove any duplicates to guarantee single canonical in DOM
+            for (let i = 1; i < links.length; i++) {
+                links[i].remove();
+            }
+        } else {
+            const link = document.createElement('link');
             link.setAttribute('rel', 'canonical');
+            link.setAttribute('href', canonicalUrl);
             document.head.appendChild(link);
         }
-
-        link.setAttribute('href', canonicalUrl);
-
     }, [pathname]);
 
     return null; // renders nothing

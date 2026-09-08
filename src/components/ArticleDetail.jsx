@@ -250,11 +250,25 @@ const ArticleDetail = () => {
         }
     };
 
-    if (loading) return <div className="min-h-screen flex items-center justify-center text-primary-600 font-bold">Loading Article...</div>;
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center text-primary-600 font-bold">
+                <SEO 
+                    title="Loading Article | Dr. Ulhas Sonar"
+                    url={`/blog/${id}`}
+                />
+                Loading Article...
+            </div>
+        );
+    }
 
     if (!article) {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center p-4">
+                <SEO 
+                    title="Article Not Found | Dr. Ulhas Sonar"
+                    url={`/blog/${id}`}
+                />
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">Article Not Found</h2>
                 <Link to="/blog" className="text-primary-600 font-bold flex items-center gap-2">
                     <ChevronLeft className="w-5 h-5" /> Back to Blog

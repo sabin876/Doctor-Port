@@ -60,11 +60,25 @@ const SubServiceDetail = () => {
             });
     }, [parent_slug, sub_slug, language, t]);
 
-    if (loading) return <div className="min-h-screen flex items-center justify-center text-primary-600 font-bold">Loading...</div>;
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center text-primary-600 font-bold">
+                <SEO 
+                    title="Loading Service | Dr. Ulhas Sonar"
+                    url={`/services/${parent_slug}/${sub_slug}`}
+                />
+                Loading...
+            </div>
+        );
+    }
 
     if (!parentService || !subService) {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center p-4">
+                <SEO 
+                    title="Service Not Found | Dr. Ulhas Sonar"
+                    url={`/services/${parent_slug}/${sub_slug}`}
+                />
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">Service Not Found</h2>
                 <Link to="/services" className="text-primary-600 font-medium flex items-center gap-2">
                     <ChevronLeft className="w-5 h-5" /> Back to Services
