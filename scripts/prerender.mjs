@@ -115,7 +115,7 @@ async function prerender() {
 
   // 2. Fetch all shared datasets
   console.log('Fetching shared datasets from API...');
-  const [servicesData, articlesData, settingsData, tEn, tHi, tAr, galleryData, heroVideoData, soData] = await Promise.all([
+  const [servicesData, articlesData, settingsData, tEn, tHi, tAr, galleryData, heroVideoData, soData, homePageData] = await Promise.all([
     fetchFromApi('/services/'),
     fetchFromApi('/articles/'),
     fetchFromApi('/settings/'),
@@ -124,7 +124,8 @@ async function prerender() {
     fetchFromApi('/translations/?lang=AR'),
     fetchFromApi('/gallery/'),
     fetchFromApi('/hero-video/'),
-    fetchFromApi('/second-opinions/')
+    fetchFromApi('/second-opinions/'),
+    fetchFromApi('/home-page/')
   ]);
 
   const services = Array.isArray(servicesData) ? servicesData : [];
@@ -138,8 +139,9 @@ async function prerender() {
   const gallery = Array.isArray(galleryData) ? galleryData : [];
   const heroVideo = heroVideoData || {};
   const secondOpinions = Array.isArray(soData) ? soData : [];
+  const homepage = homePageData || {};
 
-  console.log(`✅ Loaded ${services.length} services and ${articles.length} articles.`);
+  console.log(`✅ Loaded ${services.length} services, ${articles.length} articles, and homepage config.`);
 
   // 3. Read template HTML
   const templatePath = path.join(DIST_DIR, 'index.html');
@@ -241,6 +243,7 @@ async function prerender() {
       gallery,
       heroVideo,
       secondOpinions,
+      homepage,
       routeData
     };
 
@@ -282,7 +285,20 @@ async function prerender() {
     let ogTitle = routeTitle;
     let ogDesc = routeDescription;
 
-    if (route.startsWith('/blog/') && routeData) {
+    if (route === '/' || route === '') {
+      const hp = homepage || {};
+      routeTitle = hp.meta_title || 'Dr. Ulhas Sonar | Orthopaedic Surgeon Dubai';
+      const rawDesc = hp.meta_description || 'Expert orthopedic care specializing in joint replacement, sports injuries, and comprehensive rehabilitation with Dr. Ulhas Sonar in Dubai.';
+      routeDescription = stripHtml(rawDesc) || routeDescription;
+      ogTitle = hp.og_title || routeTitle;
+      const rawOgDesc = hp.og_description || rawDesc;
+      ogDesc = stripHtml(rawOgDesc) || routeDescription;
+      if (hp.og_image) {
+        routeOgImage = getAbsoluteImageUrl(hp.og_image);
+      }
+      if (hp.canonical_url) canonicalUrl = hp.canonical_url;
+      routeOgType = 'website';
+    } else if (route.startsWith('/blog/') && routeData) {
       routeTitle = routeData.meta_title || (routeData.title ? `${routeData.title} | Dr. Ulhas Sonar` : 'Orthopedic Blog Article | Dr. Ulhas Sonar');
       const rawDesc = routeData.meta_description || routeData.excerpt || routeData.title || routeDescription;
       routeDescription = stripHtml(rawDesc) || routeDescription;
@@ -392,11 +408,24 @@ async function prerender() {
       helmetHead = helmet.script.toString() + '\n';
     }
 
-    const headInjections = `${inlineDataScript}\n${primaryMetaTags}\n${helmetHead}`;
-    if (html.includes('</head>')) {
-      html = html.replace('</head>', `${headInjections}\n</head>`);
+    // Place primary SEO tags prominently at the top of <head>
+    if (html.includes('<meta name="viewport" content="width=device-width, initial-scale=1.0" />')) {
+      html = html.replace(
+        '<meta name="viewport" content="width=device-width, initial-scale=1.0" />',
+        `<meta name="viewport" content="width=device-width, initial-scale=1.0" />\n${primaryMetaTags}`
+      );
+    } else if (html.includes('<head>')) {
+      html = html.replace('<head>', `<head>\n${primaryMetaTags}`);
     } else {
-      html = headInjections + html;
+      html = primaryMetaTags + html;
+    }
+
+    // Place JSON data script and schema scripts right before </head>
+    const tailInjections = `${inlineDataScript}\n${helmetHead}`;
+    if (html.includes('</head>')) {
+      html = html.replace('</head>', `${tailInjections}\n</head>`);
+    } else {
+      html = tailInjections + html;
     }
     html = html.replace('<div id="root"></div>', `<div id="root">${cleanAppHtml}</div>`);
 

@@ -79,7 +79,7 @@ async function createServer() {
     };
 
     try {
-      const [sData, aData, setData, tEnData, tHiData, tArData, gData, hData, soData] = await Promise.all([
+      const [sData, aData, setData, tEnData, tHiData, tArData, gData, hData, soData, homeData] = await Promise.all([
         fetchFromApi('/services/'),
         fetchFromApi('/articles/'),
         fetchFromApi('/settings/'),
@@ -89,7 +89,10 @@ async function createServer() {
         fetchFromApi('/gallery/'),
         fetchFromApi('/hero-video/'),
         fetchFromApi('/second-opinions/'),
+        fetchFromApi('/home-page/'),
       ]);
+
+      if (homeData) data.homepage = homeData;
 
       if (Array.isArray(sData)) data.services = sData;
       if (Array.isArray(aData)) {
@@ -295,7 +298,20 @@ async function createServer() {
       let ogTitle = routeTitle;
       let ogDesc = routeDescription;
 
-      if (req.path.startsWith('/blog/') && initialData.routeData) {
+      if (req.path === '/' || req.path === '') {
+        const hp = initialData.homepage || {};
+        routeTitle = hp.meta_title || 'Dr. Ulhas Sonar | Orthopaedic Surgeon Dubai';
+        const rawDesc = hp.meta_description || 'Expert orthopedic care specializing in joint replacement, sports injuries, and comprehensive rehabilitation with Dr. Ulhas Sonar in Dubai.';
+        routeDescription = stripHtml(rawDesc) || routeDescription;
+        ogTitle = hp.og_title || routeTitle;
+        const rawOgDesc = hp.og_description || rawDesc;
+        ogDesc = stripHtml(rawOgDesc) || routeDescription;
+        if (hp.og_image) {
+          routeOgImage = getAbsoluteImageUrl(hp.og_image);
+        }
+        if (hp.canonical_url) canonicalUrl = hp.canonical_url;
+        routeOgType = 'website';
+      } else if (req.path.startsWith('/blog/') && initialData.routeData) {
         const art = initialData.routeData;
         routeTitle = art.meta_title || (art.title ? `${art.title} | Dr. Ulhas Sonar` : 'Orthopedic Blog Article | Dr. Ulhas Sonar');
         const rawDesc = art.meta_description || art.excerpt || art.title || routeDescription;
@@ -407,11 +423,24 @@ async function createServer() {
         if (helmet.script) helmetHead += helmet.script.toString() + '\n';
       }
 
-      const headInjections = `${inlineDataScript}\n${primaryMetaTags}\n${helmetHead}`;
-      if (html.includes('</head>')) {
-        html = html.replace('</head>', `${headInjections}\n</head>`);
+      // Place primary SEO tags prominently at the top of <head>
+      if (html.includes('<meta name="viewport" content="width=device-width, initial-scale=1.0" />')) {
+        html = html.replace(
+          '<meta name="viewport" content="width=device-width, initial-scale=1.0" />',
+          `<meta name="viewport" content="width=device-width, initial-scale=1.0" />\n${primaryMetaTags}`
+        );
+      } else if (html.includes('<head>')) {
+        html = html.replace('<head>', `<head>\n${primaryMetaTags}`);
       } else {
-        html = headInjections + html;
+        html = primaryMetaTags + html;
+      }
+
+      // Place JSON data script and schema scripts right before </head>
+      const tailInjections = `${inlineDataScript}\n${helmetHead}`;
+      if (html.includes('</head>')) {
+        html = html.replace('</head>', `${tailInjections}\n</head>`);
+      } else {
+        html = tailInjections + html;
       }
       html = html.replace('<div id="root"></div>', `<div id="root">${cleanAppHtml}</div>`);
 
