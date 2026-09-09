@@ -58,7 +58,7 @@ const Home = () => {
             <CTABanner />
             <Services isHomePage={true} />
             <MovementMission />
-            <SportingInjury />
+            <SportingInjury homeData={homeData} />
             <WhyPatientsTrust />
             <Testimonials />
             <FAQ 

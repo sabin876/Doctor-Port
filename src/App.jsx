@@ -27,11 +27,6 @@ import ThankYou from './components/ThankYou';
 import SocialLinksPage from './components/SocialLinksPage';
 import Login from './components/Login';
 import NotFound from './components/NotFound';
-import DashboardLayout from './components/dashboard/DashboardLayout';
-import DashboardHome from './components/dashboard/DashboardHome';
-import ArticlesManager from './components/dashboard/ArticlesManager';
-import ServicesManager from './components/dashboard/ServicesManager';
-import SettingsManager from './components/dashboard/SettingsManager';
 import ReportAccess from './pages/patient/ReportAccess';
 import ReportView from './pages/patient/ReportView';
 
@@ -94,13 +89,9 @@ function App({ initialData, helmetContext }) {
                 {/* Standalone Social Media Page (No Navbar/Footer) */}
                 <Route path="/social-media" element={<SocialLinksPage />} />
 
-                {/* Dashboard Routes (Custom Layout) */}
-                <Route path="/dashboard" element={<DashboardLayout />}>
-                  <Route index element={<DashboardHome />} />
-                  <Route path="articles" element={<ArticlesManager />} />
-                  <Route path="services" element={<ServicesManager />} />
-                  <Route path="settings" element={<SettingsManager />} />
-                </Route>
+                {/* Redirect /dashboard to Login / Django Admin */}
+                <Route path="/dashboard/*" element={<Navigate to="/login" replace />} />
+                <Route path="/dashboard" element={<Navigate to="/login" replace />} />
 
                 {/* Main App Routes with Header/Footer */}
                 <Route path="*" element={

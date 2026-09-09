@@ -51,7 +51,7 @@ const FAQ = ({ title, description, items }) => {
 
     const faqs = items || (backendFaqs.length > 0 ? backendFaqs : defaultFaqs);
     const displayTitle = title || t('faq.title') || "Asked Frequently Questions";
-    const displayDescription = description || t('faq.description') || "Common questions about our care, robotic surgery, and orthopedic treatments in Pune.";
+    const displayDescription = description || t('faq.description') || "Common questions about our care, robotic surgery, and orthopedic treatments in Dubai.";
 
     return (
         <section id="faq" className="py-24 bg-gradient-to-b from-slate-50 via-blue-50/20 to-slate-50 font-sans relative overflow-hidden border-t border-slate-100">

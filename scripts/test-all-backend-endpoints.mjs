@@ -137,6 +137,10 @@ async function runAudit() {
     const secondOpinionsRes = await testEndpoint('Second Opinions (/api/second-opinions/)', `${API_BASE}/second-opinions/`);
     results.push(secondOpinionsRes);
 
+    // 13. Sports Injury Clinic
+    const sportsInjuryRes = await testEndpoint('Sports Injury Clinic (/api/sports-injury/)', `${API_BASE}/sports-injury/`);
+    results.push(sportsInjuryRes);
+
     // Print summary table
     console.log('\n📡 Endpoint Fetch Results:');
     let passCount = 0;
