@@ -59,7 +59,7 @@ const Home = () => {
             <Services isHomePage={true} />
             <MovementMission />
             <SportingInjury homeData={homeData} />
-            <WhyPatientsTrust />
+            <WhyPatientsTrust homeData={homeData} />
             <Testimonials />
             <FAQ 
                 title={homeData?.faq_title}

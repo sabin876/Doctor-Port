@@ -1,41 +1,86 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Award, Cpu, Zap, HeartHandshake, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { Award, Cpu, Zap, HeartHandshake, ShieldCheck, CheckCircle2, Activity, HeartPulse, Sparkles } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { api } from '../lib/api';
 
-const trustPoints = [
+const ICON_MAP = {
+    Award,
+    Cpu,
+    Zap,
+    HeartHandshake,
+    ShieldCheck,
+    CheckCircle2,
+    Activity,
+    HeartPulse,
+    Sparkles
+};
+
+const defaultTrustPoints = [
     {
         id: '01',
-        icon: Award,
+        icon: 'Award',
         title: 'Expert Care',
         description: '14+ years of complex orthopaedic care experience and surgical precision.',
         badge: '14+ Yrs Experience'
     },
     {
         id: '02',
-        icon: Cpu,
+        icon: 'Cpu',
         title: 'Advanced Technology',
         description: 'Using the latest medical technologies and techniques for optimal surgical outcomes.',
         badge: 'Robotic & Tech Led'
     },
     {
         id: '03',
-        icon: Zap,
+        icon: 'Zap',
         title: 'Quick Recovery',
         description: 'Specialized minimally invasive techniques for faster healing and reduced hospital stays.',
         badge: 'Minimally Invasive'
     },
     {
         id: '04',
-        icon: HeartHandshake,
+        icon: 'HeartHandshake',
         title: 'Personalized Care',
         description: 'Each treatment plan is carefully tailored to address your specific needs and conditions.',
         badge: 'Tailored Plans'
     }
 ];
 
-const WhyPatientsTrust = () => {
+const WhyPatientsTrust = ({ homeData }) => {
     const { language } = useLanguage();
+    const [fetchedData, setFetchedData] = useState(null);
+
+    useEffect(() => {
+        if (!homeData) {
+            let isMounted = true;
+            api.getHomePage()
+                .then(data => {
+                    if (isMounted && data) {
+                        setFetchedData(data);
+                    }
+                })
+                .catch(err => {
+                    console.error("Failed to load why patients trust data:", err);
+                });
+            return () => { isMounted = false; };
+        }
+    }, [homeData]);
+
+    const activeData = homeData || fetchedData;
+
+    if (activeData && activeData.trust_is_active === false) {
+        return null;
+    }
+
+    const badge = activeData?.trust_badge || "PATIENT-FOCUSED EXCELLENCE";
+    const title = activeData?.trust_title || "Why Patients Trust";
+    const titleHighlight = activeData?.trust_title_highlight || "Dr. Ulhas Sonar";
+    const description = activeData?.trust_description || "Combining global surgical experience with cutting-edge technology and a compassionate, individualized recovery approach.";
+
+    const cards = (activeData?.trust_cards && Array.isArray(activeData.trust_cards) && activeData.trust_cards.length > 0)
+        ? activeData.trust_cards
+        : defaultTrustPoints;
 
     return (
         <section className="relative py-20 md:py-28 overflow-hidden bg-gradient-to-b from-blue-50/80 via-white to-blue-50/50">
@@ -63,7 +108,7 @@ const WhyPatientsTrust = () => {
                         className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-100 text-[#3a7e7a] text-[10px] font-black tracking-widest uppercase mb-4"
                     >
                         <ShieldCheck className="w-3.5 h-3.5" />
-                        <span>PATIENT-FOCUSED EXCELLENCE</span>
+                        <span>{badge}</span>
                     </motion.div>
 
                     <motion.h2
@@ -73,9 +118,9 @@ const WhyPatientsTrust = () => {
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="text-3xl sm:text-4xl md:text-5xl font-montserrat font-bold text-slate-900 tracking-tight leading-tight mb-5"
                     >
-                        Why Patients Trust{' '}
+                        {title}{' '}
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 block sm:inline">
-                            Dr. Ulhas Sonar
+                            {titleHighlight}
                         </span>
                     </motion.h2>
 
@@ -86,17 +131,18 @@ const WhyPatientsTrust = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="text-slate-600 text-base md:text-lg leading-relaxed font-medium"
                     >
-                        Combining global surgical experience with cutting-edge technology and a compassionate, individualized recovery approach.
+                        {description}
                     </motion.p>
                 </div>
 
-                {/* 4 Feature Cards Grid */}
+                {/* Feature Cards Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                    {trustPoints.map((item, index) => {
-                        const IconComponent = item.icon;
+                    {cards.map((item, index) => {
+                        const IconComponent = (typeof item.icon === 'string' ? ICON_MAP[item.icon] : null) || Award;
+                        const cardId = item.id || String(index + 1).padStart(2, '0');
                         return (
                             <motion.div
-                                key={item.id}
+                                key={cardId || index}
                                 initial={{ opacity: 0, y: 25 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
@@ -114,7 +160,7 @@ const WhyPatientsTrust = () => {
                                             <IconComponent className="w-6 h-6" />
                                         </div>
                                         <span className="text-2xl font-black text-slate-300 group-hover:text-blue-600/40 transition-colors font-mono">
-                                            {item.id}
+                                            {cardId}
                                         </span>
                                     </div>
 
@@ -130,12 +176,14 @@ const WhyPatientsTrust = () => {
                                 </div>
 
                                 {/* Bottom Badge */}
-                                <div className="pt-4 border-t border-slate-100 flex items-center">
-                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700 group-hover:bg-blue-100 transition-colors">
-                                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-600" />
-                                        {item.badge}
-                                    </span>
-                                </div>
+                                {item.badge && (
+                                    <div className="pt-4 border-t border-slate-100 flex items-center">
+                                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700 group-hover:bg-blue-100 transition-colors">
+                                            <CheckCircle2 className="w-3.5 h-3.5 text-blue-600" />
+                                            {item.badge}
+                                        </span>
+                                    </div>
+                                )}
                             </motion.div>
                         );
                     })}
