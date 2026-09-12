@@ -19,7 +19,6 @@ const TikTokIcon = ({ className }) => (
 const SocialLinksPage = () => {
     const { t } = useLanguage();
     
-    const dubaiPhone = "+971556319379";
     const indiaPhone = "+919049200041";
     
     const whatsappLink = `https://wa.me/919049200041?text=Hello%20Dr.%20Ulhas,%20I%20would%20like%20to%20book%20an%20orthopedic%20consultation.`;

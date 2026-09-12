@@ -472,14 +472,14 @@ export const translations = {
         },
         socialMedia: {
             title: "Connect with Dr. Ulhas Sonar",
-            description: "Precise orthopaedic surgical care delivered with integrity and an evidence-based approach in Dubai, UAE.",
+            description: "Precise orthopaedic surgical care delivered with integrity and an evidence-based approach in Pune, India.",
             callDubai: "Call Dubai Clinic",
             callIndia: "Call India Clinic",
             whatsapp: "WhatsApp Consultation",
             whatsappSubtitle: "Direct message for appointments",
             website: "Visit Official Website",
             websiteSubtitle: "Explore services & treatments",
-            shareText: "Connect with Dr. Ulhas Sonar, Orthopedic Surgeon in Dubai.",
+            shareText: "Connect with Dr. Ulhas Sonar, Orthopedic Surgeon in Pune, India.",
             copySuccess: "Link copied to clipboard!"
         }
     },
@@ -925,14 +925,14 @@ export const translations = {
         },
         socialMedia: {
             title: "डॉ. उल्हास सोनार से जुड़ें",
-            description: "दुबई, यूएई में अखंडता और साक्ष्य-आधारित दृष्टिकोण के साथ प्रदान की जाने वाली सटीक आर्थोपेडिक सर्जिकल देखभाल।",
+            description: "पुणे, भारत में अखंडता और साक्ष्य-आधारित दृष्टिकोण के साथ प्रदान की जाने वाली सटीक आर्थोपेडिक सर्जिकल देखभाल।",
             callDubai: "दुबई क्लिनिक को कॉल करें",
             callIndia: "इंडिया क्लिनिक को कॉल करें",
             whatsapp: "व्हाट्सएप परामर्श",
             whatsappSubtitle: "अपॉइंटमेंट के लिए सीधा संदेश",
             website: "आधिकारिक वेबसाइट पर जाएं",
             websiteSubtitle: "सेवाएं और उपचार देखें",
-            shareText: "दुबई में आर्थोपेडिक सर्जन डॉ. उल्हास सोनार से जुड़ें।",
+            shareText: "पुणे, भारत में आर्थोपेडिक सर्जन डॉ. उल्हास सोनार से जुड़ें।",
             copySuccess: "लिंक क्लिपबोर्ड पर कॉपी किया गया!"
         }
     },
@@ -1406,14 +1406,14 @@ export const translations = {
         },
         socialMedia: {
             title: "تواصل مع الدكتور أولهاس سونار",
-            description: "رعاية جراحية دقيقة للعظام والمفاصل تُقدم بنزاهة ونهج قائم على الأدلة في دبي، الإمارات العربية المتحدة.",
+            description: "رعاية جراحية دقيقة للعظام والمفاصل تُقدم بنزاهة ونهج قائم على الأدلة في بونا، الهند.",
             callDubai: "اتصل بعيادة دبي",
             callIndia: "اتصل بعيادة الهند",
             whatsapp: "استشارة عبر الواتساب",
             whatsappSubtitle: "رسالة مباشرة للمواعيد",
             website: "زيارة الموقع الرسمي",
             websiteSubtitle: "استكشف الخدمات والعلاجات",
-            shareText: "تواصل مع الدكتور أولهاس سونار، جراح العظام في دبي.",
+            shareText: "تواصل مع الدكتور أولهاس سونار، جراح العظام في بونا، الهند.",
             copySuccess: "تم نسخ الرابط!"
         }
     }
