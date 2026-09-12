@@ -9,14 +9,24 @@ const FAQ = ({ title, description, items }) => {
     const { t } = useLanguage();
     const [openIndex, setOpenIndex] = useState(0);
     const [backendFaqs, setBackendFaqs] = useState([]);
+    const [backendTitle, setBackendTitle] = useState('');
+    const [backendDescription, setBackendDescription] = useState('');
 
     useEffect(() => {
-        if (!items) {
+        if (!items || !title || !description) {
             let isMounted = true;
-            api.getHomeFaqs()
+            api.getHomePage()
                 .then(data => {
-                    if (isMounted && Array.isArray(data) && data.length > 0) {
-                        setBackendFaqs(data);
+                    if (isMounted && data) {
+                        if (Array.isArray(data.faqs) && data.faqs.length > 0) {
+                            setBackendFaqs(data.faqs);
+                        }
+                        if (data.faq_title) {
+                            setBackendTitle(data.faq_title);
+                        }
+                        if (data.faq_description) {
+                            setBackendDescription(data.faq_description);
+                        }
                     }
                 })
                 .catch(err => {
@@ -24,7 +34,7 @@ const FAQ = ({ title, description, items }) => {
                 });
             return () => { isMounted = false; };
         }
-    }, [items]);
+    }, [items, title, description]);
 
     const defaultFaqs = [
         {
@@ -50,8 +60,8 @@ const FAQ = ({ title, description, items }) => {
     ];
 
     const faqs = items || (backendFaqs.length > 0 ? backendFaqs : defaultFaqs);
-    const displayTitle = title || t('faq.title') || "Asked Frequently Questions";
-    const displayDescription = description || t('faq.description') || "Common questions about our care, robotic surgery, and orthopedic treatments.";
+    const displayTitle = title || backendTitle || t('faq.title') || "Frequently Asked Questions";
+    const displayDescription = description || backendDescription || t('faq.description') || "Common questions about our care, robotic surgery, and orthopedic treatments in Pune, India.";
 
     return (
         <section id="faq" className="py-24 bg-gradient-to-b from-slate-50 via-blue-50/20 to-slate-50 font-sans relative overflow-hidden border-t border-slate-100">
