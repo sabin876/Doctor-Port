@@ -35,12 +35,7 @@ const ArticleDetail = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
 
-        // If SSR already provided full article content, reuse it during hydration
-        if (article && article.content && (article.slug?.toLowerCase() === id?.toLowerCase() || String(article.id) === id)) {
-            setLoading(false);
-            return;
-        }
-
+        let isMounted = true;
         const fetchData = async () => {
             try {
                 const [articleData, settingsData] = await Promise.all([
@@ -48,6 +43,7 @@ const ArticleDetail = () => {
                     siteSettings ? Promise.resolve(siteSettings) : api.getSiteSettings()
                 ]);
                 
+                if (!isMounted) return;
                 if (articleData && !articleData.detail) {
                     setArticle(articleData);
                 }
@@ -56,11 +52,17 @@ const ArticleDetail = () => {
                 }
                 setLoading(false);
             } catch (err) {
+                if (!isMounted) return;
                 console.error("Failed to fetch article data:", err);
                 setLoading(false);
             }
         };
+
         fetchData();
+
+        return () => {
+            isMounted = false;
+        };
     }, [id]);
 
     const handleShare = () => {

@@ -35,15 +35,11 @@ const SubServiceDetail = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
 
-        // If SSR already provided parent and sub-service, reuse them
-        if (parentService && subService && subService.slug?.toLowerCase() === sub_slug?.toLowerCase()) {
-            setLoading(false);
-            return;
-        }
-
+        let isMounted = true;
         api.getServices()
             .then(data => {
-                const foundParent = data.find(s => s.slug?.toLowerCase() === parent_slug?.toLowerCase());
+                if (!isMounted) return;
+                const foundParent = Array.isArray(data) && data.find(s => s.slug?.toLowerCase() === parent_slug?.toLowerCase());
                 if (foundParent) {
                     const translatedParent = getTranslatedService(foundParent, t, language);
                     setParentService(translatedParent);
@@ -55,9 +51,14 @@ const SubServiceDetail = () => {
                 setLoading(false);
             })
             .catch(err => {
+                if (!isMounted) return;
                 console.error("Failed to fetch sub-service details:", err);
                 setLoading(false);
             });
+
+        return () => {
+            isMounted = false;
+        };
     }, [parent_slug, sub_slug, language, t]);
 
     if (loading) {

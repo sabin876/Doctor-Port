@@ -154,24 +154,36 @@ const ServiceDetail = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
 
-        // If SSR already provided this exact service, reuse it without redundant client re-fetch
-        if (rawService && (rawService.slug?.toLowerCase() === id?.toLowerCase() || String(rawService.id) === id)) {
-            setLoading(false);
-            return;
-        }
-
-        api.getServices()
+        let isMounted = true;
+        api.getService(id)
             .then(data => {
-                const found = data.find(s => s.slug?.toLowerCase() === id?.toLowerCase() || String(s.id) === id);
-                if (found) {
-                    setRawService(found);
+                if (!isMounted) return;
+                if (data) {
+                    setRawService(data);
                 }
                 setLoading(false);
             })
             .catch(err => {
+                if (!isMounted) return;
                 console.error("Failed to fetch service detail:", err);
-                setLoading(false);
+                api.getServices()
+                    .then(all => {
+                        if (!isMounted) return;
+                        const found = Array.isArray(all) && all.find(s => s.slug?.toLowerCase() === id?.toLowerCase() || String(s.id) === id);
+                        if (found) {
+                            setRawService(found);
+                        }
+                        setLoading(false);
+                    })
+                    .catch(() => {
+                        if (!isMounted) return;
+                        setLoading(false);
+                    });
             });
+
+        return () => {
+            isMounted = false;
+        };
     }, [id]);
 
     const service = getTranslatedService(rawService, t, language);
