@@ -336,6 +336,25 @@ export const api = {
             throw new Error(errMessage);
         }
         return response.json();
+    },
+    getServicesPage: async () => {
+        const response = await fetch(`${API_BASE_URL}/services-page/`);
+        const data = await response.json();
+        return processImageUrls(data);
+    },
+    updateServicesPage: async (data) => {
+        const isFormData = data instanceof FormData;
+        const response = await fetch(`${API_BASE_URL}/services-page/`, {
+            method: 'PATCH',
+            headers: isFormData ? {} : { 'Content-Type': 'application/json' },
+            body: isFormData ? data : JSON.stringify(data)
+        });
+        if (!response.ok) {
+            const errData = await response.json().catch(() => ({}));
+            const errMessage = errData.detail || Object.entries(errData).map(([k, v]) => `${k}: ${v}`).join(', ') || 'Validation failed';
+            throw new Error(errMessage);
+        }
+        return response.json();
     }
 };
 

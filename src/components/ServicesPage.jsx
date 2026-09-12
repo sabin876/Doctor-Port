@@ -17,6 +17,7 @@ const ServicesPage = () => {
         || (typeof window !== 'undefined' && window.__INITIAL_SERVICES__ ? window.__INITIAL_SERVICES__ : []);
 
     const [services, setServices] = useState(initialServices);
+    const [pageData, setPageData] = useState(null);
     
     useEffect(() => {
         api.getServices()
@@ -28,13 +29,30 @@ const ServicesPage = () => {
             .catch(err => {
                 console.error("Failed to fetch services for schema:", err);
             });
+
+        api.getServicesPage()
+            .then(data => {
+                if (data) {
+                    setPageData(data);
+                }
+            })
+            .catch(err => {
+                console.error("Failed to fetch services page config from backend:", err);
+            });
     }, []);
     
-    // Get service-specific FAQs from translations
-    const serviceFaqs = [0, 1, 2].map(i => ({
+    // Get fallback service-specific FAQs from translations
+    const defaultServiceFaqs = [0, 1, 2].map(i => ({
         question: t(`faq_services.items.${i}.question`),
         answer: t(`faq_services.items.${i}.answer`)
     }));
+
+    const currentFaqs = (pageData?.faqs && Array.isArray(pageData.faqs) && pageData.faqs.length > 0)
+        ? pageData.faqs
+        : defaultServiceFaqs;
+
+    const faqTitle = pageData?.faq_title || t('faq_services.title') || "Services FAQ";
+    const faqDescription = pageData?.faq_description || t('faq_services.description') || "Common questions about our orthopedic procedures and specialized care plans in Pune, India.";
 
     // Dynamic Schema Generation for SEO
     const stripHtml = (html) => {
@@ -80,11 +98,11 @@ const ServicesPage = () => {
     } : null;
 
     // 3. FAQPage Schema for the services page
-    const hasValidFaqs = serviceFaqs && serviceFaqs.length > 0 && serviceFaqs[0].question && !serviceFaqs[0].question.startsWith('faq_services');
+    const hasValidFaqs = currentFaqs && currentFaqs.length > 0 && currentFaqs[0].question && !String(currentFaqs[0].question).startsWith('faq_services');
     const faqSchema = hasValidFaqs ? {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        "mainEntity": serviceFaqs.map(faq => ({
+        "mainEntity": currentFaqs.map(faq => ({
             "@type": "Question",
             "name": faq.question,
             "acceptedAnswer": {
@@ -101,14 +119,22 @@ const ServicesPage = () => {
     if (faqSchema) {
         schemaList.push(faqSchema);
     }
+    if (pageData?.schema_markup) {
+        schemaList.push(pageData.schema_markup);
+    }
+
+    const seoTitle = pageData?.meta_title || "Orthopedic Services & Treatments | Dr. Ulhas";
+    const seoDesc = pageData?.meta_description || "Explore our specialized orthopedic services including joint replacement, sports injury management, and arthroscopy.";
+    const seoImage = pageData?.og_image || heroImg;
+    const canonicalUrl = pageData?.canonical_url || "/services";
 
     return (
         <main className="pt-20 bg-gray-50 min-h-screen">
             <SEO 
-                title="Orthopedic Services & Treatments | Dr. Ulhas"
-                description="Explore our specialized orthopedic services including joint replacement, sports injury management, and arthroscopy."
-                url="/services"
-                image={heroImg}
+                title={seoTitle}
+                description={seoDesc}
+                url={canonicalUrl}
+                image={seoImage}
                 schemaList={schemaList}
             />
             <div className="bg-white border-b border-gray-100">
@@ -120,9 +146,9 @@ const ServicesPage = () => {
             <Services isPage={true} />
             <CTABanner />
             <FAQ 
-                title={t('faq_services.title')} 
-                description={t('faq_services.description')} 
-                items={serviceFaqs} 
+                title={faqTitle} 
+                description={faqDescription} 
+                items={currentFaqs} 
             />
         </main>
     );
