@@ -56,7 +56,7 @@ const Home = () => {
                 image={seoImage}
                 schemaList={schemaList}
             />
-            <HomeHero />
+            <HomeHero homeData={homeData} />
 
             <Affiliations />
             <PersonalizedSolutions />

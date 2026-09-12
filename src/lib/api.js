@@ -46,7 +46,7 @@ const processImageUrls = (item) => {
     const baseUrl = API_BASE_URL.replace(/\/api\/?$/, '');
     const isProdHost = typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
     
-    ['image', 'og_image', 'checklist_image', 'highlight_doctor_image', 'video_file'].forEach(key => {
+    ['image', 'og_image', 'checklist_image', 'highlight_doctor_image', 'video_file', 'hero_video_file'].forEach(key => {
         if (item[key] && typeof item[key] === 'string') {
             if (isProdHost && (item[key].includes('localhost') || item[key].includes('127.0.0.1'))) {
                 item[key] = item[key].replace(/http:\/\/(localhost|127\.0\.0\.1)(:\d+)?/g, 'https://api.drulhasorthopedic.com');
