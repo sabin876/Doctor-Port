@@ -11,6 +11,7 @@ import { defaultServiceFaqs } from '../constants/serviceFaqs';
 import CTABanner from './CTABanner';
 import RoboticKneeJourney from './RoboticKneeJourney';
 import SecondOpinionSection from './SecondOpinionSection';
+import FAQ from './FAQ';
 
 // Import images
 import kneeArthroscopyImg from '../assets/knee-arthroscopy.png';
@@ -919,6 +920,17 @@ const ServiceDetail = () => {
 
                 {/* Custom Highlight Section */}
                 {rawService?.highlight_title && <WhyChooseRoboticKnee service={rawService} />}
+
+                {/* Service Specific FAQ Section */}
+                {((rawService?.faqs && rawService.faqs.length > 0) || (defaultServiceFaqs && defaultServiceFaqs[rawService?.slug])) && (
+                    <div className="mb-24 mt-16">
+                        <FAQ 
+                            title={rawService?.faq_title || `Frequently Asked Questions`}
+                            description={rawService?.faq_description || `Common questions and answers regarding ${service.title} treatments and procedures.`}
+                            items={rawService?.faqs && rawService.faqs.length > 0 ? rawService.faqs : defaultServiceFaqs[rawService?.slug]}
+                        />
+                    </div>
+                )}
 
                 {/* CTA Banner - Dynamic Booking Card */}
                 <motion.div
