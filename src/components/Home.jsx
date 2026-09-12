@@ -15,8 +15,13 @@ import Testimonials from './Testimonials';
 import FAQ from './FAQ';
 import HomeArticles from './HomeArticles';
 
+import { useInitialData } from '../context/InitialDataContext';
+
 const Home = () => {
-    const [homeData, setHomeData] = useState(null);
+    const initialData = useInitialData();
+    const [homeData, setHomeData] = useState(() => {
+        return initialData?.homepage || (typeof window !== 'undefined' ? window.__INITIAL_DATA__?.homepage : null);
+    });
 
     useEffect(() => {
         let isMounted = true;

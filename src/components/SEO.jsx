@@ -123,25 +123,29 @@ const SEO = ({
       {twitterLabel2 && <meta name="twitter:label2" content={twitterLabel2} />}
       {twitterData2 && <meta name="twitter:data2" content={twitterData2} />}
 
-      {/* 9. Schema */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Physician",
-          "name": "Dr. Ulhas Sonar",
-          "image": absoluteImage,
-          "@id": baseUrl,
-          "url": baseUrl,
-          "telephone": contactPhone,
-          "medicalSpecialty": "Orthopedic",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Canadian Specialist Hospital",
-            "addressLocality": "Dubai",
-            "addressCountry": "AE"
-          }
-        })}
-      </script>
+      {/* 9. Schema - render fallback only if custom schemaList is empty */}
+      {(!schemaList || schemaList.length === 0 || schemaList.every(s => !s)) && (
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Physician",
+            "name": "Dr. Ulhas Sonar",
+            "image": absoluteImage,
+            "@id": baseUrl,
+            "url": baseUrl,
+            "telephone": contactPhone,
+            "medicalSpecialty": "Orthopedic",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Office 401, Majestique Biznow, B G Lonkar Rd, Kondhwa",
+              "addressLocality": "Pune",
+              "addressRegion": "Maharashtra",
+              "postalCode": "411048",
+              "addressCountry": "IN"
+            }
+          })}
+        </script>
+      )}
       {schemaList && schemaList.length > 0 && schemaList.map((schema, idx) => {
         if (!schema) return null;
         if (typeof schema === 'string') {
