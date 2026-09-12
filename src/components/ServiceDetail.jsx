@@ -11,7 +11,6 @@ import { defaultServiceFaqs } from '../constants/serviceFaqs';
 import CTABanner from './CTABanner';
 import RoboticKneeJourney from './RoboticKneeJourney';
 import SecondOpinionSection from './SecondOpinionSection';
-import FAQ from './FAQ';
 
 // Import images
 import kneeArthroscopyImg from '../assets/knee-arthroscopy.png';
@@ -461,13 +460,18 @@ const ServiceDetail = () => {
     };
 
     // 3. FAQPage Schema
-    const defaultData = defaultServiceFaqs[id] || defaultServiceFaqs["physiotherapy"];
-    const faqs = (service.faqs && service.faqs.length > 0) ? service.faqs : (defaultData ? defaultData.items : []);
+    const serviceSlug = rawService?.slug || id;
+    const defaultData = (defaultServiceFaqs && defaultServiceFaqs[serviceSlug]) || (defaultServiceFaqs && defaultServiceFaqs["physiotherapy"]) || {};
+    const effectiveFaqs = (rawService?.faqs && Array.isArray(rawService.faqs) && rawService.faqs.length > 0) 
+        ? rawService.faqs 
+        : ((service?.faqs && Array.isArray(service.faqs) && service.faqs.length > 0) 
+            ? service.faqs 
+            : (defaultData?.items || []));
     
-    const faqSchema = faqs && faqs.length > 0 ? {
+    const faqSchema = effectiveFaqs && effectiveFaqs.length > 0 ? {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        "mainEntity": faqs.map(faq => ({
+        "mainEntity": effectiveFaqs.map(faq => ({
             "@type": "Question",
             "name": faq.question || faq.q,
             "acceptedAnswer": {
@@ -921,17 +925,6 @@ const ServiceDetail = () => {
                 {/* Custom Highlight Section */}
                 {rawService?.highlight_title && <WhyChooseRoboticKnee service={rawService} />}
 
-                {/* Service Specific FAQ Section */}
-                {((rawService?.faqs && rawService.faqs.length > 0) || (defaultServiceFaqs && defaultServiceFaqs[rawService?.slug])) && (
-                    <div className="mb-24 mt-16">
-                        <FAQ 
-                            title={rawService?.faq_title || `Frequently Asked Questions`}
-                            description={rawService?.faq_description || `Common questions and answers regarding ${service.title} treatments and procedures.`}
-                            items={rawService?.faqs && rawService.faqs.length > 0 ? rawService.faqs : defaultServiceFaqs[rawService?.slug]}
-                        />
-                    </div>
-                )}
-
                 {/* CTA Banner - Dynamic Booking Card */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -979,7 +972,14 @@ const ServiceDetail = () => {
                 </motion.div>
 
                 {/* FAQ Section */}
-                <ServiceFAQSection serviceSlug={id} customFaqs={service.faqs} serviceTitle={service.title} />
+                <ServiceFAQSection 
+                    serviceSlug={rawService?.slug || id} 
+                    customFaqs={rawService?.faqs && rawService.faqs.length > 0 ? rawService.faqs : service?.faqs} 
+                    serviceTitle={service.title}
+                    faqBadge={rawService?.faq_badge || service?.faq_badge}
+                    faqTitle={rawService?.faq_title || service?.faq_title}
+                    faqDescription={rawService?.faq_description || service?.faq_description}
+                />
 
                 {/* Additional Sections can be added here dynamically from service.items or extra fields */}
             </div>
@@ -987,13 +987,17 @@ const ServiceDetail = () => {
     );
 };
 
-const ServiceFAQSection = ({ serviceSlug, customFaqs, serviceTitle }) => {
-    const defaultData = defaultServiceFaqs[serviceSlug] || defaultServiceFaqs["physiotherapy"];
-    const faqs = (customFaqs && customFaqs.length > 0) ? customFaqs : defaultData.items;
-    const badge = defaultData.badge || "Frequently asked questions";
-    const defaultTitle = defaultData.title || `Answers to common ${serviceTitle.toLowerCase()} questions`;
-    const title = (customFaqs && customFaqs.length > 0) ? `Answers to common ${serviceTitle.toLowerCase()} questions` : defaultTitle;
-    const description = defaultData.description || `Helpful information for patients seeking ${serviceTitle.toLowerCase()} treatment.`;
+const ServiceFAQSection = ({ serviceSlug, customFaqs, serviceTitle, faqBadge, faqTitle, faqDescription }) => {
+    const defaultData = (defaultServiceFaqs && defaultServiceFaqs[serviceSlug]) || (defaultServiceFaqs && defaultServiceFaqs["physiotherapy"]) || {};
+    const faqs = (customFaqs && Array.isArray(customFaqs) && customFaqs.length > 0) ? customFaqs : (defaultData.items || []);
+    
+    if (!faqs || faqs.length === 0) return null;
+
+    const badge = faqBadge || defaultData.badge || "Frequently asked questions";
+    const defaultTitle = defaultData.title || `Answers to common ${serviceTitle ? serviceTitle.toLowerCase() : 'service'} questions`;
+    const title = faqTitle || defaultTitle;
+    const defaultDescription = defaultData.description || `Helpful information for patients seeking ${serviceTitle ? serviceTitle.toLowerCase() : 'orthopedic'} treatment.`;
+    const description = (faqDescription !== undefined && faqDescription !== null && faqDescription !== '') ? faqDescription : defaultDescription;
 
     const [openIndex, setOpenIndex] = useState(0);
 
@@ -1005,15 +1009,19 @@ const ServiceFAQSection = ({ serviceSlug, customFaqs, serviceTitle }) => {
 
             <div className="max-w-4xl mx-auto relative z-10">
                 <div className="text-center mb-12">
-                    <span className="inline-flex items-center px-4 py-1.5 mb-4 rounded-full bg-blue-50 text-blue-700 text-[10px] font-normal uppercase tracking-[0.3em] border border-blue-100/50">
-                        {badge}
-                    </span>
+                    {badge && (
+                        <span className="inline-flex items-center px-4 py-1.5 mb-4 rounded-full bg-blue-50 text-blue-700 text-[10px] font-normal uppercase tracking-[0.3em] border border-blue-100/50">
+                            {badge}
+                        </span>
+                    )}
                     <h2 className="text-3xl md:text-5xl font-normal text-primary-950 mb-6 tracking-tighter leading-[1.05]">
                         {title}
                     </h2>
-                    <p className="text-gray-500 max-w-2xl mx-auto text-sm md:text-base leading-relaxed font-normal">
-                        {description}
-                    </p>
+                    {description && (
+                        <p className="text-gray-500 max-w-2xl mx-auto text-sm md:text-base leading-relaxed font-normal">
+                            {description}
+                        </p>
+                    )}
                 </div>
 
                 <div className="space-y-4">
