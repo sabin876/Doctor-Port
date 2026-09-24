@@ -438,9 +438,11 @@ const ServiceDetail = () => {
             "telephone": contactPhone,
             "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "Canadian Specialist Hospital",
-                "addressLocality": "Dubai",
-                "addressCountry": "AE"
+                "streetAddress": "Office 401, Majestique Biznow, B G Lonkar Rd, Kondhwa",
+                "addressLocality": "Pune",
+                "addressRegion": "Maharashtra",
+                "postalCode": "411048",
+                "addressCountry": "IN"
             }
         }
     };
@@ -493,14 +495,18 @@ const ServiceDetail = () => {
         }))
     } : null;
 
-    const schemaList = [medicalProcedureSchema, breadcrumbSchema];
+    // Build schema list:
+    // - If backend has a custom schema_markup set, use it as the primary content schema
+    //   (replaces auto-generated MedicalProcedure) + keep Breadcrumb + FAQ
+    // - Otherwise fall back to auto-generated MedicalProcedure schema
+    const backendSchemaMarkup = rawService?.schema_markup || service?.schema_markup;
+
+    const schemaList = backendSchemaMarkup
+        ? [backendSchemaMarkup, breadcrumbSchema]  // Backend schema replaces MedicalProcedure
+        : [medicalProcedureSchema, breadcrumbSchema]; // Fallback: auto-generated
+
     if (faqSchema) {
         schemaList.push(faqSchema);
-    }
-    
-    // Support merging user custom backend schema if present
-    if (service.schema_markup) {
-        schemaList.push(service.schema_markup);
     }
 
     return (

@@ -408,6 +408,16 @@ async function prerender() {
       helmetHead = helmet.script.toString() + '\n';
     }
 
+    // Inject backend schema_markup for service detail pages directly as static JSON-LD
+    // This ensures search engines crawling static HTML see the backend-configured schema
+    let backendSchemaScript = '';
+    if (route.startsWith('/services/') && routeData && !routeData.subService && routeData.schema_markup) {
+      const schemaJson = typeof routeData.schema_markup === 'string'
+        ? routeData.schema_markup
+        : JSON.stringify(routeData.schema_markup);
+      backendSchemaScript = `\n<script type="application/ld+json">${schemaJson}</script>`;
+    }
+
     // Place primary SEO tags prominently at the top of <head>
     if (html.includes('<meta name="viewport" content="width=device-width, initial-scale=1.0" />')) {
       html = html.replace(
@@ -420,8 +430,8 @@ async function prerender() {
       html = primaryMetaTags + html;
     }
 
-    // Place JSON data script and schema scripts right before </head>
-    const tailInjections = `${inlineDataScript}\n${helmetHead}`;
+    // Place JSON data script, schema scripts, and backend schema right before </head>
+    const tailInjections = `${inlineDataScript}\n${helmetHead}${backendSchemaScript}`;
     if (html.includes('</head>')) {
       html = html.replace('</head>', `${tailInjections}\n</head>`);
     } else {
