@@ -8,7 +8,7 @@ const getApiBaseUrl = () => {
     }
     return (envUrl || 'https://api.drulhasorthopedic.com/api').replace(/\/+$/, '');
 };
-
+//comment
 const API_BASE_URL = getApiBaseUrl();
 
 export const getAbsoluteImageUrl = (imgUrl, defaultImage = null) => {
