@@ -52,10 +52,7 @@ const Services = ({ isPage = false, isHomePage = false }) => {
     const [showAll, setShowAll] = useState(false);
 
     useEffect(() => {
-        if (initialServices && initialServices.length > 0) {
-            setLoading(false);
-            return;
-        }
+        let cancelled = false;
         api.getServices()
             .then(data => {
                 if (Array.isArray(data) && data.length > 0) {
