@@ -52,19 +52,26 @@ const Services = ({ isPage = false, isHomePage = false }) => {
     const [showAll, setShowAll] = useState(false);
 
     useEffect(() => {
-        let cancelled = false;
-        api.getServices()
-            .then(data => {
-                if (Array.isArray(data) && data.length > 0) {
-                    setServices(data);
-                }
-                setLoading(false);
-            })
-            .catch(err => {
-                console.error("Failed to fetch services:", err);
-                setLoading(false);
-            });
-    }, []);
+    let cancelled = false;
+
+    api.getServices()
+        .then(data => {
+            if (!cancelled && Array.isArray(data) && data.length > 0) {
+                console.log('fresh services:', data.length, data.map(s => s.slug));
+                setServices(data);
+            }
+        })
+        .catch(err => {
+            console.error("Failed to fetch services:", err);
+        })
+        .finally(() => {
+            if (!cancelled) setLoading(false);
+        });
+
+    return () => {
+        cancelled = true;
+    };
+}, []);
 
     const displayedServices = (showAll || !isHome ? services : services.slice(0, 4)).map(s => 
         getTranslatedService(s, t, language)
