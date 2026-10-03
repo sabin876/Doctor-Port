@@ -28,9 +28,6 @@ const Navbar = () => {
     const isHome = location.pathname === '/';
 
     useEffect(() => {
-        if (dynamicServices.length > 0) {
-            return;
-        }
         api.getServices()
             .then(data => {
                 // Only show services that are marked for indexing (optional filter)
